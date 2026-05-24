@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:siriustoastmasters.club)",
+      "Bash(npm --version)",
+      "PowerShell(python --version 2>$null)",
+      "PowerShell(python3 --version 2>$null)",
+      "mcp__42be77d6-11b0-4a9b-a118-be0f630cd3ab__list_recent_files",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(gh auth *)"
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "sirius-preview",
+      "runtimeExecutable": "C:\\Users\\Tudor\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "runtimeArgs": ["-m", "http.server", "3001"],
+      "port": 3001
+    }
+  ]
+}

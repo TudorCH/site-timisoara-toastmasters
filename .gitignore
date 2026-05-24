@@ -1,0 +1,12 @@
+# Claude Code local settings (machine-specific)
+.claude/settings.local.json
+.claude/launch.json
+
+# Node.js / Next.js
+node_modules/
+timisoara-toastmasters/node_modules/
+timisoara-toastmasters/.next/
+
+# OS files
+.DS_Store
+Thumbs.db

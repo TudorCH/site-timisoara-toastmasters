@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin — Înregistrări | Timișoara Toastmasters</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: { DEFAULT: '#004165', light: '#00537f', dark: '#002d47' },
+            maroon:  { DEFAULT: '#772432', light: '#8c2b3b' },
+            gold:    { DEFAULT: '#F2DF74' },
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gray-50 min-h-screen font-sans antialiased">
+
+<!-- Header -->
+<header class="bg-primary shadow-lg">
+  <div class="max-w-6xl mx-auto px-5 py-4 flex items-center justify-between">
+    <div>
+      <h1 class="text-white font-bold text-lg">Timișoara Toastmasters</h1>
+      <p class="text-gold/80 text-xs tracking-widest uppercase">Admin · Înregistrări</p>
+    </div>
+    <a href="index.html" class="text-white/70 hover:text-white text-sm transition-colors">← Înapoi la site</a>
+  </div>
+</header>
+
+<!-- Main -->
+<main class="max-w-6xl mx-auto px-5 py-10">
+
+  <!-- Stats bar -->
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+    <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
+      <div id="stat-total" class="text-3xl font-bold text-primary">0</div>
+      <div class="text-gray-400 text-sm mt-1">Total înregistrări</div>
+    </div>
+    <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
+      <div id="stat-today" class="text-3xl font-bold text-maroon">0</div>
+      <div class="text-gray-400 text-sm mt-1">Azi</div>
+    </div>
+    <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
+      <div id="stat-week" class="text-3xl font-bold text-primary">0</div>
+      <div class="text-gray-400 text-sm mt-1">Săptămâna aceasta</div>
+    </div>
+    <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
+      <div id="stat-month" class="text-3xl font-bold text-primary">0</div>
+      <div class="text-gray-400 text-sm mt-1">Luna aceasta</div>
+    </div>
+  </div>
+
+  <!-- Toolbar -->
+  <div class="flex flex-wrap items-center justify-between gap-4 mb-5">
+    <div class="flex items-center gap-3">
+      <input id="filter-input" type="text" placeholder="Filtrează după nume / email…"
+        class="border border-gray-200 rounded-xl px-4 py-2.5 text-sm w-64 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+        oninput="renderTable()" />
+    </div>
+    <div class="flex gap-3">
+      <button onclick="exportCSV()"
+        class="bg-primary hover:bg-primary-light text-white font-semibold px-5 py-2.5 rounded-xl text-sm transition-colors">
+        ⬇ Export CSV
+      </button>
+      <button onclick="confirmClear()"
+        class="bg-red-50 hover:bg-red-100 text-red-600 font-semibold px-5 py-2.5 rounded-xl text-sm transition-colors">
+        🗑 Șterge tot
+      </button>
+    </div>
+  </div>
+
+  <!-- Table -->
+  <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+    <div id="empty-state" class="hidden text-center py-16">
+      <div class="text-5xl mb-4">📋</div>
+      <p class="text-gray-400 text-lg font-medium">Nicio înregistrare încă</p>
+      <p class="text-gray-300 text-sm mt-1">Completează formularul de pe site pentru a testa.</p>
+    </div>
+    <div class="overflow-x-auto">
+      <table id="reg-table" class="w-full">
+        <thead class="bg-gray-50 border-b border-gray-100">
+          <tr>
+            <th class="text-left px-5 py-3.5 text-xs font-semibold text-gray-500 uppercase tracking-wider">#</th>
+            <th class="text-left px-5 py-3.5 text-xs font-semibold text-gray-500 uppercase tracking-wider">Nume</th>
+            <th class="text-left px-5 py-3.5 text-xs font-semibold text-gray-500 uppercase tracking-wider">Email</th>
+            <th class="text-left px-5 py-3.5 text-xs font-semibold text-gray-500 uppercase tracking-wider">Telefon</th>
+            <th class="text-left px-5 py-3.5 text-xs font-semibold text-gray-500 uppercase tracking-wider">Mesaj</th>
+            <th class="text-left px-5 py-3.5 text-xs font-semibold text-gray-500 uppercase tracking-wider">Data</th>
+            <th class="text-left px-5 py-3.5 text-xs font-semibold text-gray-500 uppercase tracking-wider"></th>
+          </tr>
+        </thead>
+        <tbody id="reg-body" class="divide-y divide-gray-50 text-sm">
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <p class="text-gray-400 text-xs mt-4 text-center">
+    Datele sunt stocate local în browser (localStorage). Exportați CSV pentru backup permanent.
+  </p>
+</main>
+
+<script>
+  const DB_KEY = 'tm_registrations';
+
+  function getRegistrations() {
+    try { return JSON.parse(localStorage.getItem(DB_KEY)) || []; }
+    catch { return []; }
+  }
+
+  function deleteRegistration(id) {
+    if (!confirm('Ștergi această înregistrare?')) return;
+    const list = getRegistrations().filter(r => r.id !== id);
+    localStorage.setItem(DB_KEY, JSON.stringify(list));
+    renderTable();
+    renderStats();
+  }
+
+  function confirmClear() {
+    if (!confirm('Ești sigur că vrei să ștergi TOATE înregistrările? Acțiunea nu poate fi anulată.')) return;
+    localStorage.removeItem(DB_KEY);
+    renderTable();
+    renderStats();
+  }
+
+  function formatDate(iso) {
+    const d = new Date(iso);
+    return d.toLocaleDateString('ro-RO', { day: '2-digit', month: 'short', year: 'numeric' })
+      + ' ' + d.toLocaleTimeString('ro-RO', { hour: '2-digit', minute: '2-digit' });
+  }
+
+  function isToday(iso) {
+    const d = new Date(iso), now = new Date();
+    return d.toDateString() === now.toDateString();
+  }
+  function isThisWeek(iso) {
+    const d = new Date(iso), now = new Date();
+    const start = new Date(now); start.setDate(now.getDate() - now.getDay());
+    return d >= start;
+  }
+  function isThisMonth(iso) {
+    const d = new Date(iso), now = new Date();
+    return d.getMonth() === now.getMonth() && d.getFullYear() === now.getFullYear();
+  }
+
+  function renderStats() {
+    const list = getRegistrations();
+    document.getElementById('stat-total').textContent = list.length;
+    document.getElementById('stat-today').textContent = list.filter(r => isToday(r.date)).length;
+    document.getElementById('stat-week').textContent  = list.filter(r => isThisWeek(r.date)).length;
+    document.getElementById('stat-month').textContent = list.filter(r => isThisMonth(r.date)).length;
+  }
+
+  function renderTable() {
+    const filter = document.getElementById('filter-input').value.toLowerCase();
+    let list = getRegistrations();
+    if (filter) {
+      list = list.filter(r =>
+        (r.prenume + ' ' + r.nume).toLowerCase().includes(filter) ||
+        r.email.toLowerCase().includes(filter)
+      );
+    }
+    list = list.slice().reverse(); // newest first
+
+    const tbody = document.getElementById('reg-body');
+    const empty = document.getElementById('empty-state');
+    const table = document.getElementById('reg-table');
+
+    if (!list.length) {
+      empty.classList.remove('hidden');
+      table.classList.add('hidden');
+      return;
+    }
+    empty.classList.add('hidden');
+    table.classList.remove('hidden');
+
+    tbody.innerHTML = list.map((r, i) => `
+      <tr class="hover:bg-gray-50 transition-colors">
+        <td class="px-5 py-3.5 text-gray-400 font-mono text-xs">${list.length - i}</td>
+        <td class="px-5 py-3.5 font-semibold text-primary">${esc(r.prenume)} ${esc(r.nume)}</td>
+        <td class="px-5 py-3.5 text-gray-600">
+          <a href="mailto:${esc(r.email)}" class="hover:text-maroon hover:underline">${esc(r.email)}</a>
+        </td>
+        <td class="px-5 py-3.5 text-gray-500">${esc(r.telefon) || '—'}</td>
+        <td class="px-5 py-3.5 text-gray-500 max-w-xs truncate" title="${esc(r.mesaj)}">${esc(r.mesaj) || '—'}</td>
+        <td class="px-5 py-3.5 text-gray-400 text-xs whitespace-nowrap">${formatDate(r.date)}</td>
+        <td class="px-5 py-3.5">
+          <button onclick="deleteRegistration(${r.id})"
+            class="text-red-400 hover:text-red-600 text-xs font-semibold transition-colors">
+            Șterge
+          </button>
+        </td>
+      </tr>`).join('');
+  }
+
+  function esc(str) {
+    if (!str) return '';
+    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function exportCSV() {
+    const list = getRegistrations();
+    if (!list.length) { alert('Nu există înregistrări de exportat.'); return; }
+    const header = ['ID', 'Prenume', 'Nume', 'Email', 'Telefon', 'Mesaj', 'Data'];
+    const rows = list.map(r => [r.id, r.prenume, r.nume, r.email, r.telefon, r.mesaj, r.date]
+      .map(v => `"${String(v || '').replace(/"/g, '""')}"`)
+      .join(','));
+    const csv = '﻿' + [header.join(','), ...rows].join('\r\n');
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = 'inregistrari_toastmasters.csv';
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  // Init
+  renderStats();
+  renderTable();
+</script>
+</body>
+</html>
