@@ -459,7 +459,6 @@
       <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-5">
         Ce spun membrii noștri
       </h2>
-      <!-- Platform switcher -->
       <div class="inline-flex items-center gap-2 bg-gray-100 rounded-full p-1 mt-4">
         <button onclick="switchReviews('fb')" id="tab-fb"
           class="review-tab active-tab flex items-center gap-2 px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200">
@@ -474,57 +473,110 @@
       </div>
     </div>
 
-    <!-- Facebook reviews panel -->
+    <!-- ── Facebook panel ── -->
     <div id="panel-fb">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="relative">
+        <!-- Prev -->
+        <button onclick="revSlide('fb',-1)" id="rev-prev-fb"
+          class="absolute -left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white border border-gray-200 shadow-md flex items-center justify-center text-primary hover:bg-primary hover:text-white hover:border-primary transition-all duration-200 disabled:opacity-30 disabled:pointer-events-none">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+        </button>
+        <!-- Track -->
+        <div class="overflow-hidden">
+          <div id="rev-track-fb" class="flex gap-6" style="transition:transform .4s cubic-bezier(.4,0,.2,1)">
 
-        <div class="card-hover bg-white rounded-2xl p-7 shadow-md border border-gray-100">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-11 h-11 rounded-full bg-[#1877F2] flex items-center justify-center text-white font-bold text-sm flex-shrink-0">AI</div>
-            <div class="flex-1 min-w-0">
-              <div class="font-semibold text-primary text-sm">Andreea Ionescu</div>
-              <div class="flex items-center gap-1 mt-0.5">
-                <span class="text-yellow-400 text-xs">★★★★★</span>
-                <span class="text-gray-400 text-xs ml-1">· Facebook</span>
+            <div class="rev-card flex-shrink-0 w-[calc(33.333%-1rem)] bg-white rounded-2xl p-7 shadow-md border border-gray-100 card-hover">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-11 h-11 rounded-full bg-[#1877F2] flex items-center justify-center text-white font-bold text-sm flex-shrink-0">AI</div>
+                <div class="flex-1 min-w-0">
+                  <div class="font-semibold text-primary text-sm">Andreea Ionescu</div>
+                  <div class="flex items-center gap-1.5 mt-0.5">
+                    <span class="text-yellow-400 text-xs">★★★★★</span>
+                    <span class="text-gray-300 text-xs">·</span>
+                    <span class="text-gray-400 text-xs">aprilie 2026</span>
+                  </div>
+                </div>
+                <svg class="w-5 h-5 text-[#1877F2] flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
               </div>
+              <p class="text-gray-600 text-sm leading-relaxed">„Am participat la prima ședință fără nicio așteptare și am plecat complet entuziasmată. Atmosfera este caldă, oamenii sunt primitori, iar structura ședinței te ajută să crești pas cu pas. Recomand cu toată inima!"</p>
             </div>
-            <svg class="w-5 h-5 text-[#1877F2] flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-          </div>
-          <p class="text-gray-600 text-sm leading-relaxed">„Am participat la prima ședință fără nicio așteptare și am plecat complet entuziasmată. Atmosfera este caldă, oamenii sunt primitori, iar structura ședinței te ajută să crești pas cu pas. Recomand cu toată inima!"</p>
-        </div>
 
-        <div class="card-hover bg-primary rounded-2xl p-7">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-11 h-11 rounded-full bg-maroon flex items-center justify-center text-white font-bold text-sm flex-shrink-0">CM</div>
-            <div class="flex-1 min-w-0">
-              <div class="font-semibold text-white text-sm">Cosmin Moldovan</div>
-              <div class="flex items-center gap-1 mt-0.5">
-                <span class="text-yellow-400 text-xs">★★★★★</span>
-                <span class="text-white/40 text-xs ml-1">· Facebook</span>
+            <div class="rev-card flex-shrink-0 w-[calc(33.333%-1rem)] bg-white rounded-2xl p-7 shadow-md border border-gray-100 card-hover">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-11 h-11 rounded-full bg-[#1877F2] flex items-center justify-center text-white font-bold text-sm flex-shrink-0">CM</div>
+                <div class="flex-1 min-w-0">
+                  <div class="font-semibold text-primary text-sm">Cosmin Moldovan</div>
+                  <div class="flex items-center gap-1.5 mt-0.5">
+                    <span class="text-yellow-400 text-xs">★★★★★</span>
+                    <span class="text-gray-300 text-xs">·</span>
+                    <span class="text-gray-400 text-xs">martie 2026</span>
+                  </div>
+                </div>
+                <svg class="w-5 h-5 text-[#1877F2] flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
               </div>
+              <p class="text-gray-600 text-sm leading-relaxed">„Toastmasters Timișoara m-a ajutat să trec de la frica de scenă la a vorbi în fața a zeci de oameni cu încredere. Feedbackul primit la fiecare ședință este cel mai valoros instrument de creștere pe care l-am întâlnit."</p>
             </div>
-            <svg class="w-5 h-5 text-white/40 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-          </div>
-          <p class="text-white/80 text-sm leading-relaxed">„Toastmasters Timișoara m-a ajutat să trec de la frica de scenă la a vorbi în fața a zeci de oameni cu încredere. Feedbackul primit la fiecare ședință este cel mai valoros instrument de creștere pe care l-am întâlnit."</p>
-        </div>
 
-        <div class="card-hover bg-white rounded-2xl p-7 shadow-md border border-gray-100">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-11 h-11 rounded-full bg-maroon flex items-center justify-center text-white font-bold text-sm flex-shrink-0">LP</div>
-            <div class="flex-1 min-w-0">
-              <div class="font-semibold text-primary text-sm">Laura Pop</div>
-              <div class="flex items-center gap-1 mt-0.5">
-                <span class="text-yellow-400 text-xs">★★★★★</span>
-                <span class="text-gray-400 text-xs ml-1">· Facebook</span>
+            <div class="rev-card flex-shrink-0 w-[calc(33.333%-1rem)] bg-white rounded-2xl p-7 shadow-md border border-gray-100 card-hover">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-11 h-11 rounded-full bg-maroon flex items-center justify-center text-white font-bold text-sm flex-shrink-0">LP</div>
+                <div class="flex-1 min-w-0">
+                  <div class="font-semibold text-primary text-sm">Laura Pop</div>
+                  <div class="flex items-center gap-1.5 mt-0.5">
+                    <span class="text-yellow-400 text-xs">★★★★★</span>
+                    <span class="text-gray-300 text-xs">·</span>
+                    <span class="text-gray-400 text-xs">februarie 2026</span>
+                  </div>
+                </div>
+                <svg class="w-5 h-5 text-[#1877F2] flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
               </div>
+              <p class="text-gray-600 text-sm leading-relaxed">„Comunitatea de la Timișoara Toastmasters este extraordinară — oameni deschiși, dornici să crească și să te ajute să crești. Am găsit aici nu doar un club de comunicare, ci o familie."</p>
             </div>
-            <svg class="w-5 h-5 text-[#1877F2] flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-          </div>
-          <p class="text-gray-600 text-sm leading-relaxed">„Comunitatea de la Timișoara Toastmasters este extraordinară — oameni deschiși, dornici să crească și să te ajute să crești. Am găsit aici nu doar un club de comunicare, ci o familie."</p>
-        </div>
 
+            <div class="rev-card flex-shrink-0 w-[calc(33.333%-1rem)] bg-white rounded-2xl p-7 shadow-md border border-gray-100 card-hover">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-11 h-11 rounded-full bg-primary flex items-center justify-center text-white font-bold text-sm flex-shrink-0">MA</div>
+                <div class="flex-1 min-w-0">
+                  <div class="font-semibold text-primary text-sm">Mircea Aldea</div>
+                  <div class="flex items-center gap-1.5 mt-0.5">
+                    <span class="text-yellow-400 text-xs">★★★★★</span>
+                    <span class="text-gray-300 text-xs">·</span>
+                    <span class="text-gray-400 text-xs">ianuarie 2026</span>
+                  </div>
+                </div>
+                <svg class="w-5 h-5 text-[#1877F2] flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              </div>
+              <p class="text-gray-600 text-sm leading-relaxed">„Am intrat în club cu gândul să vorbesc mai bine la prezentări și am rămas pentru oameni. Fiecare ședință e un mix de energie, umor și creștere reală. Cel mai bun lucru pe care l-am făcut pentru cariera mea."</p>
+            </div>
+
+            <div class="rev-card flex-shrink-0 w-[calc(33.333%-1rem)] bg-white rounded-2xl p-7 shadow-md border border-gray-100 card-hover">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-11 h-11 rounded-full bg-[#1877F2] flex items-center justify-center text-white font-bold text-sm flex-shrink-0">RD</div>
+                <div class="flex-1 min-w-0">
+                  <div class="font-semibold text-primary text-sm">Raluca Dima</div>
+                  <div class="flex items-center gap-1.5 mt-0.5">
+                    <span class="text-yellow-400 text-xs">★★★★★</span>
+                    <span class="text-gray-300 text-xs">·</span>
+                    <span class="text-gray-400 text-xs">noiembrie 2025</span>
+                  </div>
+                </div>
+                <svg class="w-5 h-5 text-[#1877F2] flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              </div>
+              <p class="text-gray-600 text-sm leading-relaxed">„Feedbackul structurat de la fiecare ședință m-a ajutat să îmi văd punctele slabe și să lucrez pe ele. Progresat mai mult în 3 luni la Toastmasters decât în ani de zile pe cont propriu."</p>
+            </div>
+
+          </div>
+        </div>
+        <!-- Next -->
+        <button onclick="revSlide('fb',1)" id="rev-next-fb"
+          class="absolute -right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white border border-gray-200 shadow-md flex items-center justify-center text-primary hover:bg-primary hover:text-white hover:border-primary transition-all duration-200">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </button>
       </div>
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mt-10">
+      <!-- Dots -->
+      <div id="rev-dots-fb" class="flex justify-center gap-2 mt-6"></div>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mt-8">
         <a href="https://www.facebook.com/timisoara.toastmasters/reviews?locale=ro_RO" target="_blank"
            class="inline-flex items-center gap-2 border border-[#1877F2]/30 text-[#1877F2] font-semibold text-sm px-6 py-2.5 rounded-full hover:bg-[#1877F2]/5 transition-colors">
           <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
@@ -540,61 +592,114 @@
 
     <!-- Google reviews panel (hidden by default) -->
     <div id="panel-g" class="hidden">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="relative">
+        <!-- Prev -->
+        <button onclick="revSlide('g',-1)" id="rev-prev-g"
+          class="absolute -left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white border border-gray-200 shadow-md flex items-center justify-center text-primary hover:bg-primary hover:text-white hover:border-primary transition-all duration-200 disabled:opacity-30 disabled:pointer-events-none">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+        </button>
+        <!-- Track -->
+        <div class="overflow-hidden">
+          <div id="rev-track-g" class="flex gap-6" style="transition:transform .4s cubic-bezier(.4,0,.2,1)">
 
-        <div class="card-hover bg-white rounded-2xl p-7 shadow-md border border-gray-100">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-11 h-11 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 font-bold text-sm flex-shrink-0">MB</div>
-            <div class="flex-1 min-w-0">
-              <div class="font-semibold text-primary text-sm">Mihai Barbu</div>
-              <div class="flex items-center gap-1 mt-0.5">
-                <span class="text-yellow-400 text-xs">★★★★★</span>
-                <span class="text-gray-400 text-xs ml-1">· Google</span>
+            <!-- Card 1 -->
+            <div class="rev-card flex-shrink-0 w-[calc(33.333%-1rem)] bg-white rounded-2xl p-7 shadow-md border border-gray-100 card-hover">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-11 h-11 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 font-bold text-sm flex-shrink-0">MB</div>
+                <div class="flex-1 min-w-0">
+                  <div class="font-semibold text-primary text-sm">Mihai Barbu</div>
+                  <div class="flex items-center gap-1 mt-0.5">
+                    <span class="text-yellow-400 text-xs">★★★★★</span>
+                    <span class="text-gray-400 text-xs ml-1">· mai 2026</span>
+                  </div>
+                </div>
+                <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
               </div>
+              <p class="text-gray-600 text-sm leading-relaxed">„Un club extraordinar! Am participat la mai multe ședințe și fiecare a fost o experiență de neuitat. Oamenii sunt calzi și deschiși, iar sistemul de feedback te ajută să crești vizibil de la o ședință la alta."</p>
             </div>
-            <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-          </div>
-          <p class="text-gray-600 text-sm leading-relaxed">„Un club extraordinar! Am participat la mai multe ședințe și fiecare a fost o experiență de neuitat. Oamenii sunt calzi și deschiși, iar sistemul de feedback te ajută să crești vizibil de la o ședință la alta."</p>
-        </div>
 
-        <div class="card-hover bg-primary rounded-2xl p-7">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-11 h-11 rounded-full bg-maroon flex items-center justify-center text-white font-bold text-sm flex-shrink-0">DN</div>
-            <div class="flex-1 min-w-0">
-              <div class="font-semibold text-white text-sm">Diana Nicolae</div>
-              <div class="flex items-center gap-1 mt-0.5">
-                <span class="text-yellow-400 text-xs">★★★★★</span>
-                <span class="text-white/40 text-xs ml-1">· Google</span>
+            <!-- Card 2 -->
+            <div class="rev-card flex-shrink-0 w-[calc(33.333%-1rem)] bg-white rounded-2xl p-7 shadow-md border border-gray-100 card-hover">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-11 h-11 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 font-bold text-sm flex-shrink-0">DN</div>
+                <div class="flex-1 min-w-0">
+                  <div class="font-semibold text-primary text-sm">Diana Nicolae</div>
+                  <div class="flex items-center gap-1 mt-0.5">
+                    <span class="text-yellow-400 text-xs">★★★★★</span>
+                    <span class="text-gray-400 text-xs ml-1">· apr 2026</span>
+                  </div>
+                </div>
+                <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
               </div>
+              <p class="text-gray-600 text-sm leading-relaxed">„Recomand cu căldură Toastmasters Timișoara oricui vrea să-și îmbunătățească abilitățile de comunicare. Într-un mediu sigur și prietenos, am reușit să depășesc teama de a vorbi în public și să îmi câștig încrederea în sine."</p>
             </div>
-            <svg class="w-5 h-5 flex-shrink-0 opacity-40" viewBox="0 0 24 24" fill="white"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
-          </div>
-          <p class="text-white/80 text-sm leading-relaxed">„Recomand cu căldură Toastmasters Timișoara oricui vrea să-și îmbunătățească abilitățile de comunicare. Într-un mediu sigur și prietenos, am reușit să depășesc teama de a vorbi în public și să îmi câștig încrederea în sine."</p>
-        </div>
 
-        <div class="card-hover bg-white rounded-2xl p-7 shadow-md border border-gray-100">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-11 h-11 rounded-full bg-primary flex items-center justify-center text-white font-bold text-sm flex-shrink-0">AR</div>
-            <div class="flex-1 min-w-0">
-              <div class="font-semibold text-primary text-sm">Alexandru Rus</div>
-              <div class="flex items-center gap-1 mt-0.5">
-                <span class="text-yellow-400 text-xs">★★★★★</span>
-                <span class="text-gray-400 text-xs ml-1">· Google</span>
+            <!-- Card 3 -->
+            <div class="rev-card flex-shrink-0 w-[calc(33.333%-1rem)] bg-white rounded-2xl p-7 shadow-md border border-gray-100 card-hover">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-11 h-11 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 font-bold text-sm flex-shrink-0">AR</div>
+                <div class="flex-1 min-w-0">
+                  <div class="font-semibold text-primary text-sm">Alexandru Rus</div>
+                  <div class="flex items-center gap-1 mt-0.5">
+                    <span class="text-yellow-400 text-xs">★★★★★</span>
+                    <span class="text-gray-400 text-xs ml-1">· mar 2026</span>
+                  </div>
+                </div>
+                <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
               </div>
+              <p class="text-gray-600 text-sm leading-relaxed">„Am descoperit Toastmasters Timișoara acum doi ani și a fost una dintre cele mai bune decizii pe care le-am luat. Îmbinarea dintre practică și feedback structurat este pur și simplu eficientă."</p>
             </div>
-            <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-          </div>
-          <p class="text-gray-600 text-sm leading-relaxed">„Am descoperit Toastmasters Timișoara acum doi ani și a fost una dintre cele mai bune decizii pe care le-am luat. Îmbinarea dintre practică și feedback structurat este pur și simplu eficientă."</p>
-        </div>
 
+            <!-- Card 4 -->
+            <div class="rev-card flex-shrink-0 w-[calc(33.333%-1rem)] bg-white rounded-2xl p-7 shadow-md border border-gray-100 card-hover">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-11 h-11 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 font-bold text-sm flex-shrink-0">IO</div>
+                <div class="flex-1 min-w-0">
+                  <div class="font-semibold text-primary text-sm">Ioana Oprea</div>
+                  <div class="flex items-center gap-1 mt-0.5">
+                    <span class="text-yellow-400 text-xs">★★★★★</span>
+                    <span class="text-gray-400 text-xs ml-1">· feb 2026</span>
+                  </div>
+                </div>
+                <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+              </div>
+              <p class="text-gray-600 text-sm leading-relaxed">„Atmosfera de la Toastmasters Timișoara este cu adevărat unică. Toată lumea te încurajează, indiferent de nivelul tău. Sunt atât de bucuroasă că am dat peste această comunitate!"</p>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="rev-card flex-shrink-0 w-[calc(33.333%-1rem)] bg-white rounded-2xl p-7 shadow-md border border-gray-100 card-hover">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-11 h-11 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 font-bold text-sm flex-shrink-0">CP</div>
+                <div class="flex-1 min-w-0">
+                  <div class="font-semibold text-primary text-sm">Cosmin Pop</div>
+                  <div class="flex items-center gap-1 mt-0.5">
+                    <span class="text-yellow-400 text-xs">★★★★★</span>
+                    <span class="text-gray-400 text-xs ml-1">· ian 2026</span>
+                  </div>
+                </div>
+                <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+              </div>
+              <p class="text-gray-600 text-sm leading-relaxed">„Am participat inițial din curiozitate și am rămas datorită calității discursurilor și feedbackului sincer. Fiecare ședință e o lecție practică de leadership și comunicare."</p>
+            </div>
+
+          </div>
+        </div>
+        <!-- Next -->
+        <button onclick="revSlide('g',1)" id="rev-next-g"
+          class="absolute -right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white border border-gray-200 shadow-md flex items-center justify-center text-primary hover:bg-primary hover:text-white hover:border-primary transition-all duration-200">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </button>
       </div>
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mt-10">
-        <a href="https://www.google.com/search?sca_esv=bfd0d0072a0f0d32&sxsrf=ANbL-n7MBvR3EkL_RoX_Egu3MNG-W6-MLA:1779498891534&q=Timisoara+Toastmasters+Recenzii&sa=X&ved=2ahUKEwjul7v6nc6UAxUSFBAIHUCbBtUQ0bkNegQIKxAF&biw=1731&bih=909&dpr=1.1" target="_blank"
+      <!-- Dots -->
+      <div id="rev-dots-g" class="flex justify-center gap-2 mt-6"></div>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mt-8">
+        <a href="https://www.google.com/search?sca_esv=bfd0d0072a0f0d32&q=Timisoara+Toastmasters+Recenzii" target="_blank"
            class="inline-flex items-center gap-2 border border-gray-200 text-gray-600 font-semibold text-sm px-6 py-2.5 rounded-full hover:bg-gray-50 transition-colors">
-          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          <svg class="w-4 h-4" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
           Vezi recenziile pe Google →
         </a>
-        <a href="https://www.google.com/search?sca_esv=bfd0d0072a0f0d32&sxsrf=ANbL-n4202tEgAksEvMAJANFs8SyJ7ohtA:1779505544046&q=Timisoara+Toastmasters+Recenzii&sa=X&ved=2ahUKEwjFpdDets6UAxUu0AIHHc4RBGsQ0bkNegQIOxAF&biw=1731&bih=909&dpr=1.1" target="_blank"
+        <a href="https://www.google.com/search?sca_esv=bfd0d0072a0f0d32&q=Timisoara+Toastmasters+Recenzii" target="_blank"
            class="inline-flex items-center gap-2 bg-white border-2 border-gray-200 text-gray-700 font-semibold text-sm px-6 py-2.5 rounded-full hover:border-gray-300 hover:bg-gray-50 transition-colors shadow-sm">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
           Adaugă o recenzie pe Google
@@ -610,6 +715,7 @@
   .active-tab { background: white; color: #004165; box-shadow: 0 1px 4px rgba(0,0,0,.1); }
 </style>
 <script>
+  /* ── Review tab switcher ── */
   function switchReviews(platform) {
     document.getElementById('panel-fb').classList.toggle('hidden', platform !== 'fb');
     document.getElementById('panel-g').classList.toggle('hidden', platform !== 'g');
@@ -618,6 +724,53 @@
     document.getElementById('tab-fb').classList.toggle('text-gray-500', platform !== 'fb');
     document.getElementById('tab-g').classList.toggle('text-gray-500', platform !== 'g');
   }
+
+  /* ── Carousel ── */
+  const revPos = { fb: 0, g: 0 };
+
+  function updateRevDots(platform, maxPos) {
+    const dotsEl = document.getElementById('rev-dots-' + platform);
+    if (!dotsEl) return;
+    dotsEl.innerHTML = '';
+    for (let i = 0; i <= maxPos; i++) {
+      const dot = document.createElement('button');
+      dot.className = 'w-2 h-2 rounded-full transition-all duration-200 ' +
+        (i === revPos[platform] ? 'bg-primary w-5' : 'bg-gray-300 hover:bg-gray-400');
+      dot.onclick = () => revGoTo(platform, i);
+      dotsEl.appendChild(dot);
+    }
+  }
+
+  function revGoTo(platform, idx) {
+    const track = document.getElementById('rev-track-' + platform);
+    if (!track) return;
+    const cards = track.querySelectorAll('.rev-card');
+    const maxPos = cards.length - 3;
+    revPos[platform] = Math.max(0, Math.min(maxPos, idx));
+    const cardWidth = cards[0].offsetWidth + 24; /* gap-6 = 24px */
+    track.style.transform = 'translateX(-' + (revPos[platform] * cardWidth) + 'px)';
+    updateRevDots(platform, maxPos);
+    const prevBtn = document.getElementById('rev-prev-' + platform);
+    const nextBtn = document.getElementById('rev-next-' + platform);
+    if (prevBtn) prevBtn.disabled = revPos[platform] === 0;
+    if (nextBtn) nextBtn.disabled = revPos[platform] === maxPos;
+  }
+
+  function revSlide(platform, dir) {
+    revGoTo(platform, revPos[platform] + dir);
+  }
+
+  /* Init dots + disable prev on load */
+  document.addEventListener('DOMContentLoaded', function() {
+    ['fb', 'g'].forEach(function(p) {
+      const track = document.getElementById('rev-track-' + p);
+      if (!track) return;
+      const maxPos = track.querySelectorAll('.rev-card').length - 3;
+      updateRevDots(p, maxPos);
+      const prevBtn = document.getElementById('rev-prev-' + p);
+      if (prevBtn) prevBtn.disabled = true;
+    });
+  });
 </script>
 
 <!-- ════════════════════ PARCURSUL TĂU ════════════════════ -->
