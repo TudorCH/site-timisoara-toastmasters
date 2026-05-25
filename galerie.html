@@ -348,14 +348,15 @@ const galleryData = {
 
   sedinte: [
     // ── Adaugă ședințe noi deasupra acestei linii ──
-    // {
-    //   title: 'Ședința de Iunie',
-    //   date: 'Iun 2025',
-    //   photos: [
-    //     { src: 'Galerie/Sedinte/iun-2025/main.jpg',    caption: 'Deschiderea ședinței' },
-    //     { src: 'Galerie/Sedinte/iun-2025/photo-2.jpg', caption: '' },
-    //   ]
-    // },
+    {
+      title: 'Ședința din 13 Mai 2026',
+      date:  '13 Mai 2026',
+      photos: [
+        { src: '702612739_1379663647304675_6695921920133115058_n_1_ntifjk.jpg', caption: '' },
+        { src: '702393186_1379663107304729_5808496598109987291_n_m3bzsh.jpg',   caption: '' },
+        // ── copiază mai jos restul de 18 fișiere ──
+      ]
+    },
   ],
 
   concursuri: [
@@ -381,6 +382,27 @@ const galleryData = {
 
 const PLACEHOLDER = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23e5e7eb'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='14' fill='%239ca3af'%3EFoto indisponibilă%3C/text%3E%3C/svg%3E";
 
+// ── Cloudinary config ────────────────────────────────────────────────────────
+// Schimbă doar CLOUD_NAME dacă îți schimbi contul Cloudinary.
+// În array-ul de date de mai jos, src poate fi:
+//   - doar numele fișierului:  '702612739_abc.jpg'
+//   - un subfolder + fișier:   'sedinte/mai-2025/main.jpg'
+//   - un URL complet extern:   'https://...'  (folosit nemodificat)
+const CLOUD_NAME = 'dnxcej0q5';
+const CLD_BASE   = `https://res.cloudinary.com/${CLOUD_NAME}/image/upload`;
+
+function cldUrl(src, width) {
+  if (!src) return PLACEHOLDER;
+  // URL complet extern — folosit nemodificat
+  if (src.startsWith('http') && !src.includes('res.cloudinary.com')) return src;
+  // Deja URL complet Cloudinary
+  if (src.includes('res.cloudinary.com')) {
+    return src.replace('/upload/', `/upload/w_${width},q_auto,f_auto/`);
+  }
+  // Doar filename sau subfolder/filename → construim URL complet
+  return `${CLD_BASE}/w_${width},q_auto,f_auto/${src}`;
+}
+
 function getVisibleCards() { return window.innerWidth >= 768 ? 3 : 1; }
 function getVisibleSoc()   { return window.innerWidth >= 768 ? 2 : 1; }
 
@@ -390,7 +412,7 @@ function renderCards(panel, items) {
   const track = document.getElementById('gal-track-' + panel);
   if (!items.length) { track.innerHTML = ''; return; }
   track.innerHTML = items.map((item, idx) => {
-    const mainSrc = item.photos[0]?.src || PLACEHOLDER;
+    const mainSrc = cldUrl(item.photos[0]?.src, 800) || PLACEHOLDER;
     const count   = item.photos.length;
     return `
       <div class="gal-card card-hover bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden cursor-pointer"
@@ -398,6 +420,7 @@ function renderCards(panel, items) {
         <div class="relative overflow-hidden" style="aspect-ratio:4/3;">
           <img src="${mainSrc}" alt="${item.title}"
                class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+               loading="lazy" decoding="async"
                onerror="this.src='${PLACEHOLDER}'" />
           <div class="absolute top-3 left-3">
             <span class="bg-primary/90 text-white text-xs font-semibold px-3 py-1 rounded-full">${item.date}</span>
@@ -425,8 +448,9 @@ function renderSocializare() {
   track.innerHTML = items.map((photo, idx) => `
     <div class="soc-slide card-hover rounded-2xl overflow-hidden cursor-pointer shadow-sm border border-gray-100"
          onclick="openSocPhoto(${idx})" style="aspect-ratio:4/3;">
-      <img src="${photo.src}" alt="${photo.caption || 'Socializare'}"
+      <img src="${cldUrl(photo.src, 900) || PLACEHOLDER}" alt="${photo.caption || 'Socializare'}"
            class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+           loading="lazy" decoding="async"
            onerror="this.src='${PLACEHOLDER}'" />
     </div>`).join('');
 }
@@ -544,7 +568,7 @@ function updateLb() {
   const img = document.getElementById('lb-img');
   img.style.opacity = '0';
   setTimeout(() => {
-    img.src = p.src || PLACEHOLDER;
+    img.src = cldUrl(p.src, 1600) || PLACEHOLDER;
     img.onerror = () => { img.src = PLACEHOLDER; };
     img.style.opacity = '1';
   }, 120);
