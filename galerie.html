@@ -352,7 +352,6 @@ const galleryData = {
       title: 'Ședința din 13 Mai 2026',
       date:  '13 Mai 2026',
       photos: [
-        { src: '702612739_1379663647304675_6695921920133115058_n_1_ntifjk.jpg', caption: '' },
         { src: '702393186_1379663107304729_5808496598109987291_n_m3bzsh.jpg',   caption: '' },
         { src: '703702677_1379662930638080_7945090669665827414_n_xixbub.jpg',   caption: '' },
         { src: '702751779_1379662927304747_4742266031644192374_n_ln6vcj.jpg',   caption: '' },
@@ -431,7 +430,7 @@ function renderCards(panel, items) {
         <div class="relative overflow-hidden" style="aspect-ratio:4/3;">
           <img src="${mainSrc}" alt="${item.title}"
                class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-               loading="lazy" decoding="async"
+               decoding="async"
                onerror="this.src='${PLACEHOLDER}'" />
           <div class="absolute top-3 left-3">
             <span class="bg-primary/90 text-white text-xs font-semibold px-3 py-1 rounded-full">${item.date}</span>
@@ -461,7 +460,7 @@ function renderSocializare() {
          onclick="openSocPhoto(${idx})" style="aspect-ratio:4/3;">
       <img src="${cldUrl(photo.src, 900) || PLACEHOLDER}" alt="${photo.caption || 'Socializare'}"
            class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-           loading="lazy" decoding="async"
+           decoding="async"
            onerror="this.src='${PLACEHOLDER}'" />
     </div>`).join('');
 }
@@ -574,19 +573,30 @@ function showLb() {
   updateLb();
 }
 
+// Preîncarcă poza adiacentă în fundal (fără să o afișeze)
+function preloadLb(idx) {
+  const p = lbPhotos[(idx + lbPhotos.length) % lbPhotos.length];
+  if (!p) return;
+  const pre = new Image();
+  pre.src = cldUrl(p.src, 1200);
+}
+
 function updateLb() {
   const p   = lbPhotos[lbIdx];
   const img = document.getElementById('lb-img');
   img.style.opacity = '0';
   setTimeout(() => {
-    img.src = cldUrl(p.src, 1600) || PLACEHOLDER;
+    img.src = cldUrl(p.src, 1200) || PLACEHOLDER;
     img.onerror = () => { img.src = PLACEHOLDER; };
     img.style.opacity = '1';
-  }, 120);
+  }, 80);
   document.getElementById('lb-caption').textContent = p.caption || '';
   document.getElementById('lb-counter').textContent = lbPhotos.length > 1 ? `${lbIdx + 1} / ${lbPhotos.length}` : '';
   document.getElementById('lb-prev-btn').style.visibility = lbPhotos.length > 1 ? 'visible' : 'hidden';
   document.getElementById('lb-next-btn').style.visibility = lbPhotos.length > 1 ? 'visible' : 'hidden';
+  // Preîncarcă poza următoare și cea anterioară
+  preloadLb(lbIdx + 1);
+  preloadLb(lbIdx - 1);
 }
 
 function lbPrev() { lbIdx = (lbIdx - 1 + lbPhotos.length) % lbPhotos.length; updateLb(); }
