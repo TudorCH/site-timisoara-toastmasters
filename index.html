@@ -81,6 +81,13 @@
     .scroll-fade { opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s ease; }
     .scroll-fade.visible { opacity:1; transform:translateY(0); }
 
+    /* ── Toasty chatbot ── */
+    @media (min-width: 640px) {
+      #toasty-btn  { width:64px !important; height:64px !important; bottom:28px !important; right:28px !important; }
+      #toasty-btn svg { width:30px !important; height:30px !important; }
+      #toasty-window { bottom:104px !important; right:28px !important; width:360px !important; }
+    }
+
     /* ── hero: viewport-uri scurte (laptop cu bară browser) ── */
     @media (max-height: 750px) {
       .hero-title { font-size: clamp(1.9rem, 5vw, 3rem) !important; margin-bottom: 0.75rem; }
@@ -1967,7 +1974,7 @@
 
 <!-- Buton flotant -->
 <button id="toasty-btn" onclick="toastyToggle()"
-  style="position:fixed; bottom:24px; right:24px; z-index:9999;
+  style="position:fixed; bottom:20px; right:16px; z-index:9999;
          width:56px; height:56px; border-radius:50%; border:none; cursor:pointer;
          background:linear-gradient(135deg,#004165,#00537f);
          box-shadow:0 4px 20px rgba(0,65,101,0.45);
@@ -1988,8 +1995,8 @@
 
 <!-- Fereastra de chat -->
 <div id="toasty-window"
-  style="position:fixed; bottom:92px; right:24px; z-index:9998;
-         width:340px; max-width:calc(100vw - 32px);
+  style="position:fixed; bottom:88px; right:16px; z-index:9998;
+         width:calc(100vw - 32px); max-width:340px;
          background:white; border-radius:20px;
          box-shadow:0 8px 40px rgba(0,0,0,0.18);
          display:none; flex-direction:column; overflow:hidden;
