@@ -270,6 +270,7 @@
   </button>
   <!-- Image area -->
   <div class="flex flex-col items-center max-w-4xl w-full px-16">
+    <p id="lb-album-title" class="text-white/80 text-sm font-semibold text-center mb-3 hidden"></p>
     <img id="lb-img" src="" alt="" class="max-h-[75vh] max-w-full object-contain rounded-xl shadow-2xl" />
     <p id="lb-caption" class="text-white/60 text-sm mt-4 text-center min-h-[1.4rem] italic"></p>
     <p id="lb-counter" class="text-white/35 text-xs mt-1 font-mono"></p>
@@ -494,14 +495,14 @@ const galleryData = {
     // ── Adaugă concursuri/evenimente noi deasupra acestei linii ──
     {
       title:    'Concursul național de discursuri inspiraționale și evaluări de discurs Aprilie 2026',
-      date:     '19–20 Aprilie 2026',
-      location: 'Timișoara',
+      date:     '18–19 Aprilie 2026',
+      location: 'Iași',
       photos: [
-        { src: '685137590_1362854318985608_1688709100149260053_n_trr2qc.jpg',  caption: '' }, // LANDSCAPE cover
+        { src: '684918986_1362854235652283_8692383011814902506_n_ieuoij.jpg',  caption: '' }, // LANDSCAPE cover (poza 5 originală)
+        { src: '685137590_1362854318985608_1688709100149260053_n_trr2qc.jpg',  caption: '' },
         { src: '684972111_1362854572318916_4192433221653765530_n_oz40ml.jpg',  caption: '' },
         { src: '684931505_1362853928985647_9139015800625913810_n_sjtwpm.jpg',  caption: '' },
         { src: '684921623_1362853485652358_6589911580044734367_n_o034ye.jpg',  caption: '' },
-        { src: '684918986_1362854235652283_8692383011814902506_n_ieuoij.jpg',  caption: '' },
         { src: '684909974_1362854005652306_7130252740426781213_n_a9hico.jpg',  caption: '' },
         { src: '684705466_1362854965652210_5170421987334332625_n_rl1pvm.jpg',  caption: '' },
         { src: '684662036_1362854715652235_8157585409814662883_n_mhcpxf.jpg',  caption: '' },
@@ -747,13 +748,16 @@ function socSlide(dir) { socGoTo(socPos + dir); }
 
 // ════════════════ LIGHTBOX ════════════════
 
-let lbPhotos = [];
-let lbIdx    = 0;
+let lbPhotos      = [];
+let lbIdx         = 0;
+let lbAlbumTitle  = '';
 
 function openAlbum(panel, albumIdx) {
-  const items = panel === 'sedinte' ? galleryData.sedinte : galleryData.concursuri;
-  lbPhotos = items[albumIdx].photos;
-  lbIdx    = 0;
+  const items  = panel === 'sedinte' ? galleryData.sedinte : galleryData.concursuri;
+  const album  = items[albumIdx];
+  lbPhotos     = album.photos;
+  lbAlbumTitle = album.title || '';
+  lbIdx        = 0;
   showLb();
 }
 
@@ -766,6 +770,14 @@ function openSocPhoto(idx) {
 function showLb() {
   document.getElementById('lightbox').classList.add('open');
   document.body.style.overflow = 'hidden';
+  const titleEl = document.getElementById('lb-album-title');
+  if (lbAlbumTitle) {
+    titleEl.textContent = lbAlbumTitle;
+    titleEl.classList.remove('hidden');
+  } else {
+    titleEl.textContent = '';
+    titleEl.classList.add('hidden');
+  }
   updateLb();
 }
 
