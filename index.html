@@ -82,6 +82,19 @@
     .scroll-fade.visible { opacity:1; transform:translateY(0); }
 
     /* ── Toasty chatbot ── */
+    #toasty-btn {
+      position: fixed !important;
+      bottom: 20px !important;
+      right: 16px !important;
+      z-index: 99999 !important;
+      display: flex !important;
+      width: 56px !important;
+      height: 56px !important;
+    }
+    #toasty-window {
+      position: fixed !important;
+      z-index: 99998 !important;
+    }
     @media (min-width: 640px) {
       #toasty-btn  { width:64px !important; height:64px !important; bottom:28px !important; right:28px !important; }
       #toasty-btn svg { width:30px !important; height:30px !important; }
