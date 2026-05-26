@@ -1963,5 +1963,207 @@
   }, { threshold: 0.08 });
   document.querySelectorAll('.scroll-fade').forEach(el => io.observe(el));
 </script>
+<!-- ════════════════════ TOASTY CHATBOT ════════════════════ -->
+
+<!-- Buton flotant -->
+<button id="toasty-btn" onclick="toastyToggle()"
+  style="position:fixed; bottom:24px; right:24px; z-index:9999;
+         width:56px; height:56px; border-radius:50%; border:none; cursor:pointer;
+         background:linear-gradient(135deg,#004165,#00537f);
+         box-shadow:0 4px 20px rgba(0,65,101,0.45);
+         display:flex; align-items:center; justify-content:center;
+         transition:transform .2s ease, box-shadow .2s ease;"
+  onmouseenter="this.style.transform='scale(1.1)';this.style.boxShadow='0 6px 28px rgba(0,65,101,0.55)'"
+  onmouseleave="this.style.transform='scale(1)';this.style.boxShadow='0 4px 20px rgba(0,65,101,0.45)'"
+  title="Întreabă-l pe Toasty">
+  <!-- Iconiță chat (vizibilă când e închis) -->
+  <svg id="toasty-icon-open" style="width:26px;height:26px;color:white;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
+  </svg>
+  <!-- X (vizibil când e deschis) -->
+  <svg id="toasty-icon-close" style="width:22px;height:22px;color:white;display:none;" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+  </svg>
+</button>
+
+<!-- Fereastra de chat -->
+<div id="toasty-window"
+  style="position:fixed; bottom:92px; right:24px; z-index:9998;
+         width:340px; max-width:calc(100vw - 32px);
+         background:white; border-radius:20px;
+         box-shadow:0 8px 40px rgba(0,0,0,0.18);
+         display:none; flex-direction:column; overflow:hidden;
+         font-family:'Inter',sans-serif;
+         transition:opacity .25s ease, transform .25s ease;
+         opacity:0; transform:translateY(12px);">
+
+  <!-- Header -->
+  <div style="background:linear-gradient(135deg,#004165,#00537f); padding:16px 18px; display:flex; align-items:center; gap:12px;">
+    <div style="width:38px;height:38px;border-radius:50%;background:rgba(242,223,116,0.2);border:2px solid rgba(242,223,116,0.5);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+      <svg style="width:20px;height:20px;color:#F2DF74;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
+      </svg>
+    </div>
+    <div>
+      <div style="color:white;font-weight:700;font-size:15px;line-height:1.2;">Toasty</div>
+      <div style="color:rgba(242,223,116,0.9);font-size:11px;">Asistentul Timișoara Toastmasters</div>
+    </div>
+    <div style="margin-left:auto;display:flex;align-items:center;gap:6px;">
+      <span style="width:8px;height:8px;background:#4ade80;border-radius:50%;display:inline-block;"></span>
+      <span style="color:rgba(255,255,255,0.6);font-size:11px;">Online</span>
+    </div>
+  </div>
+
+  <!-- Mesaje -->
+  <div id="toasty-messages"
+    style="flex:1; overflow-y:auto; padding:16px; display:flex; flex-direction:column; gap:10px; max-height:320px; min-height:200px;">
+    <!-- Mesaj de bun venit -->
+    <div class="toasty-msg-bot" style="display:flex;gap:8px;align-items:flex-end;">
+      <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#004165,#00537f);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <svg style="width:14px;height:14px;color:#F2DF74;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
+      </div>
+      <div style="background:#f3f4f6;border-radius:16px 16px 16px 4px;padding:10px 14px;max-width:82%;font-size:13.5px;line-height:1.5;color:#1f2937;">
+        Bună! 👋 Sunt <strong>Toasty</strong>, asistentul Timișoara Toastmasters.<br/>Cu ce te pot ajuta?
+      </div>
+    </div>
+  </div>
+
+  <!-- Întrebări rapide -->
+  <div id="toasty-chips" style="padding:0 14px 10px;display:flex;flex-wrap:wrap;gap:6px;">
+    <button onclick="toastySend('Când sunt ședințele?')" style="background:#f0f4f8;border:1px solid #e2e8f0;border-radius:999px;padding:5px 12px;font-size:12px;color:#004165;cursor:pointer;font-family:Inter,sans-serif;transition:background .2s;" onmouseenter="this.style.background='#dbeafe'" onmouseleave="this.style.background='#f0f4f8'">📅 Ședințe</button>
+    <button onclick="toastySend('Cum mă pot înscrie?')" style="background:#f0f4f8;border:1px solid #e2e8f0;border-radius:999px;padding:5px 12px;font-size:12px;color:#004165;cursor:pointer;font-family:Inter,sans-serif;transition:background .2s;" onmouseenter="this.style.background='#dbeafe'" onmouseleave="this.style.background='#f0f4f8'">✍️ Înscriere</button>
+    <button onclick="toastySend('Este prima ședință gratuită?')" style="background:#f0f4f8;border:1px solid #e2e8f0;border-radius:999px;padding:5px 12px;font-size:12px;color:#004165;cursor:pointer;font-family:Inter,sans-serif;transition:background .2s;" onmouseenter="this.style.background='#dbeafe'" onmouseleave="this.style.background='#f0f4f8'">💰 Cost</button>
+    <button onclick="toastySend('Unde se țin ședințele?')" style="background:#f0f4f8;border:1px solid #e2e8f0;border-radius:999px;padding:5px 12px;font-size:12px;color:#004165;cursor:pointer;font-family:Inter,sans-serif;transition:background .2s;" onmouseenter="this.style.background='#dbeafe'" onmouseleave="this.style.background='#f0f4f8'">📍 Locație</button>
+  </div>
+
+  <!-- Input -->
+  <div style="padding:12px 14px;border-top:1px solid #f0f0f0;display:flex;gap:8px;align-items:center;">
+    <input id="toasty-input" type="text" placeholder="Scrie un mesaj…"
+      style="flex:1;border:1px solid #e5e7eb;border-radius:999px;padding:9px 16px;font-size:13.5px;outline:none;font-family:Inter,sans-serif;color:#1f2937;transition:border-color .2s;"
+      onfocus="this.style.borderColor='#004165'"
+      onblur="this.style.borderColor='#e5e7eb'"
+      onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();toastySendInput();}" />
+    <button onclick="toastySendInput()"
+      style="width:36px;height:36px;border-radius:50%;background:#004165;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .2s;"
+      onmouseenter="this.style.background='#00537f'" onmouseleave="this.style.background='#004165'">
+      <svg style="width:16px;height:16px;color:white;" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<script>
+(function() {
+  let isOpen = false;
+  let isLoading = false;
+  const history = [];
+
+  window.toastyToggle = function() {
+    isOpen = !isOpen;
+    const win = document.getElementById('toasty-window');
+    const iconOpen  = document.getElementById('toasty-icon-open');
+    const iconClose = document.getElementById('toasty-icon-close');
+    if (isOpen) {
+      win.style.display = 'flex';
+      setTimeout(() => { win.style.opacity = '1'; win.style.transform = 'translateY(0)'; }, 10);
+      iconOpen.style.display  = 'none';
+      iconClose.style.display = 'block';
+      document.getElementById('toasty-input').focus();
+    } else {
+      win.style.opacity = '0';
+      win.style.transform = 'translateY(12px)';
+      setTimeout(() => { win.style.display = 'none'; }, 250);
+      iconOpen.style.display  = 'block';
+      iconClose.style.display = 'none';
+    }
+  };
+
+  window.toastySendInput = function() {
+    const input = document.getElementById('toasty-input');
+    const text = input.value.trim();
+    if (!text) return;
+    input.value = '';
+    toastySend(text);
+  };
+
+  window.toastySend = function(text) {
+    if (isLoading) return;
+
+    // Ascunde chip-urile după primul mesaj
+    document.getElementById('toasty-chips').style.display = 'none';
+
+    appendMessage('user', text);
+    history.push({ role: 'user', content: text });
+
+    isLoading = true;
+    const loadingId = appendLoading();
+
+    fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ messages: history })
+    })
+    .then(r => r.json())
+    .then(data => {
+      removeLoading(loadingId);
+      const reply = data.reply || 'Ne pare rău, a apărut o eroare. Încearcă din nou!';
+      appendMessage('bot', reply);
+      history.push({ role: 'assistant', content: reply });
+      isLoading = false;
+    })
+    .catch(() => {
+      removeLoading(loadingId);
+      appendMessage('bot', '⚠️ Eroare de conexiune. Te rog încearcă din nou.');
+      isLoading = false;
+    });
+  };
+
+  function appendMessage(role, text) {
+    const container = document.getElementById('toasty-messages');
+    const div = document.createElement('div');
+    div.style.cssText = 'display:flex;gap:8px;align-items:flex-end;' + (role === 'user' ? 'flex-direction:row-reverse;' : '');
+
+    const avatar = role === 'bot'
+      ? '<div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#004165,#00537f);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg style="width:14px;height:14px;color:#F2DF74;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg></div>'
+      : '';
+
+    const bubble = role === 'user'
+      ? `<div style="background:#004165;color:white;border-radius:16px 16px 4px 16px;padding:10px 14px;max-width:82%;font-size:13.5px;line-height:1.5;">${escHtml(text)}</div>`
+      : `<div style="background:#f3f4f6;color:#1f2937;border-radius:16px 16px 16px 4px;padding:10px 14px;max-width:82%;font-size:13.5px;line-height:1.5;">${escHtml(text)}</div>`;
+
+    div.innerHTML = avatar + bubble;
+    container.appendChild(div);
+    container.scrollTop = container.scrollHeight;
+  }
+
+  function appendLoading() {
+    const container = document.getElementById('toasty-messages');
+    const id = 'toasty-loading-' + Date.now();
+    const div = document.createElement('div');
+    div.id = id;
+    div.style.cssText = 'display:flex;gap:8px;align-items:flex-end;';
+    div.innerHTML = '<div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#004165,#00537f);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg style="width:14px;height:14px;color:#F2DF74;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg></div><div style="background:#f3f4f6;border-radius:16px 16px 16px 4px;padding:12px 16px;display:flex;gap:4px;align-items:center;"><span style="width:7px;height:7px;background:#9ca3af;border-radius:50%;animation:toastyDot 1.2s infinite;"></span><span style="width:7px;height:7px;background:#9ca3af;border-radius:50%;animation:toastyDot 1.2s infinite .2s;"></span><span style="width:7px;height:7px;background:#9ca3af;border-radius:50%;animation:toastyDot 1.2s infinite .4s;"></span></div>';
+    container.appendChild(div);
+    container.scrollTop = container.scrollHeight;
+    return id;
+  }
+
+  function removeLoading(id) {
+    const el = document.getElementById(id);
+    if (el) el.remove();
+  }
+
+  function escHtml(str) {
+    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br/>');
+  }
+
+  // Animație dots
+  const style = document.createElement('style');
+  style.textContent = '@keyframes toastyDot{0%,80%,100%{transform:scale(.6);opacity:.4}40%{transform:scale(1);opacity:1}}';
+  document.head.appendChild(style);
+})();
+</script>
+
 </body>
 </html>
