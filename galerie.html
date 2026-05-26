@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Galerie Foto — Timișoara Toastmasters</title>
+  <title>Galerie Foto, Timișoara Toastmasters</title>
   <link rel="icon" type="image/png" href="logo.png" />
   <link rel="apple-touch-icon" href="logo.png" />
   <script src="https://cdn.tailwindcss.com"></script>
@@ -52,13 +52,13 @@
     @keyframes fadeInUp { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:translateY(0); } }
     .animate-in { animation:fadeInUp .7s ease forwards; }
 
-    /* Gallery event cards — same logic as reviews carousel */
+    /* Gallery event cards, same logic as reviews carousel */
     .gal-card { flex: 0 0 100%; max-width: 100%; }
     @media (min-width: 768px) {
       .gal-card { flex: 0 0 calc(33.333% - 1rem); max-width: calc(33.333% - 1rem); }
     }
 
-    /* Socializare carousel — 1 on mobile, 2 on desktop */
+    /* Socializare carousel, 1 on mobile, 2 on desktop */
     .soc-slide { flex: 0 0 100%; max-width: 100%; }
     @media (min-width: 768px) {
       .soc-slide { flex: 0 0 calc(50% - 0.75rem); max-width: calc(50% - 0.75rem); }
@@ -142,7 +142,7 @@
       Momente din viața clubului
     </h1>
     <p class="text-white/60 text-lg max-w-xl mx-auto animate-in" style="animation-delay:.1s">
-      Ședințe, concursuri, evenimente și socializare — surprinse în imagini.
+      Ședințe, concursuri, evenimente și socializare, surprinse în imagini.
     </p>
   </div>
 </section>
@@ -291,7 +291,7 @@
           </div>
         </div>
         <p class="text-white/50 text-sm leading-relaxed max-w-xs mb-6">
-          Clubul Timișoara Toastmasters — un spațiu sigur pentru practică, feedback și
+          Clubul Timișoara Toastmasters, un spațiu sigur pentru practică, feedback și
           creștere în comunicare și vorbit în public, parte din rețeaua globală Toastmasters International.
         </p>
         <div class="flex gap-3">
@@ -338,14 +338,14 @@
 <script>
 
 // ═══════════════════════════════════════════════════════════════
-//  GALLERY DATA — Editează aici pentru a adăuga ședințe și poze
+//  GALLERY DATA, Editează aici pentru a adăuga ședințe și poze
 // ═══════════════════════════════════════════════════════════════
 //
 //  ȘEDINȚE & CONCURSURI:
 //    Fiecare intrare = un eveniment cu:
-//      title  — titlul afișat pe card
-//      date   — eticheta de dată (ex: "Mai 2025")
-//      photos — array de obiecte { src, caption }
+//      title , titlul afișat pe card
+//      date  , eticheta de dată (ex: "Mai 2025")
+//      photos, array de obiecte { src, caption }
 //               Prima poză din array = main photo (apare pe card)
 //               Toate sunt vizibile în lightbox când dai click
 //
@@ -486,7 +486,7 @@ const galleryData = {
         { src: '697792885_1373788254558881_6575097800992075229_n_hrphdx.jpg',  caption: '' },
         { src: '697792927_1373787464558960_7746980756878453613_n_fyhwbu.jpg',  caption: '' },
         { src: '698435938_1373787104558996_1222479069653406315_n_f9ncn8.jpg',  caption: '' },
-        { src: '696778205_1373788881225485_4162072167057977718_n_g6onhr.jpg',  caption: '' }, // group photo — always last
+        { src: '696778205_1373788881225485_4162072167057977718_n_g6onhr.jpg',  caption: '' }, // group photo, always last
       ]
     },
   ],
@@ -557,7 +557,7 @@ const galleryData = {
       location: 'Oradea',
       pill:     'Concurs Arie',
       photos: [
-        { src: '666542022_1344488917488815_152104965546920242_n_muhqlq.jpg',   caption: '' }, // LANDSCAPE cover — 2048×1365
+        { src: '666542022_1344488917488815_152104965546920242_n_muhqlq.jpg',   caption: '' }, // LANDSCAPE cover, 2048×1365
         { src: '667565553_1344487800822260_8166184626994273649_n_pkx9ew.jpg',  caption: '' },
         { src: '667234993_1344489760822064_333501557323022731_n_qegux0.jpg',   caption: '' },
         { src: '667513349_1344488214155552_2036394766166181620_n_zmwbaz.jpg',  caption: '' },
@@ -643,7 +643,7 @@ const CLD_BASE   = `https://res.cloudinary.com/${CLOUD_NAME}/image/upload`;
 
 function cldUrl(src, width) {
   if (!src) return PLACEHOLDER;
-  // URL complet extern — folosit nemodificat
+  // URL complet extern, folosit nemodificat
   if (src.startsWith('http') && !src.includes('res.cloudinary.com')) return src;
   // Deja URL complet Cloudinary
   if (src.includes('res.cloudinary.com')) {
@@ -740,7 +740,7 @@ function checkEmpty(panel, items) {
   }
 }
 
-// ════════════════ CAROUSEL — event cards ════════════════
+// ════════════════ CAROUSEL, event cards ════════════════
 
 const galPos = { sedinte: 0, concursuri: 0 };
 
@@ -778,7 +778,7 @@ function galGoTo(panel, idx) {
 
 function galSlide(panel, dir) { galGoTo(panel, galPos[panel] + dir); }
 
-// ════════════════ CAROUSEL — socializare ════════════════
+// ════════════════ CAROUSEL, socializare ════════════════
 
 let socPos = 0;
 
@@ -925,7 +925,7 @@ function switchTab(tab) {
   emptyEl.classList.toggle('hidden', items.length > 0);
 }
 
-// ════════════════ TOUCH SWIPE — carousels ════════════════
+// ════════════════ TOUCH SWIPE, carousels ════════════════
 (function() {
   let tx = 0, ty = 0, activePnl = null;
 
