@@ -14,7 +14,7 @@ INFORMAȚII CLUB:
 - Restul ședințelor sunt în română
 
 CUM TE ALĂTURI:
-1. Vii ca invitat la o ședință — primele 4 ședințe sunt complet GRATUITE, fără nicio obligație
+1. Vii ca invitat la o ședință, primele 4 ședințe sunt complet GRATUITE, fără nicio obligație
 2. Dacă îți place, completezi un formular de înregistrare
 3. Devii membru oficial cu acces la platforma Pathways și toate resursele Toastmasters
 
@@ -31,7 +31,7 @@ CE FACEM LA ȘEDINȚE:
 REGULI:
 - Răspunde DOAR la întrebări despre club, Toastmasters, vorbit în public sau dezvoltare personală
 - Dacă nu știi ceva specific, îndrumă utilizatorul să contacteze clubul pe Facebook sau prin formularul de contact
-- Fii scurt și la obiect — maxim 3-4 propoziții per răspuns
+- Fii scurt și la obiect, maxim 3-4 propoziții per răspuns
 - Folosește ocazional emoji pentru a fi mai prietenos 😊`;
 
 module.exports = async function handler(req, res) {

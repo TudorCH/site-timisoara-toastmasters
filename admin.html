@@ -186,8 +186,8 @@
         <td class="px-5 py-3.5 text-gray-600">
           <a href="mailto:${esc(r.email)}" class="hover:text-maroon hover:underline">${esc(r.email)}</a>
         </td>
-        <td class="px-5 py-3.5 text-gray-500">${esc(r.telefon) || '—'}</td>
-        <td class="px-5 py-3.5 text-gray-500 max-w-xs truncate" title="${esc(r.mesaj)}">${esc(r.mesaj) || '—'}</td>
+        <td class="px-5 py-3.5 text-gray-500">${esc(r.telefon) || '-'}</td>
+        <td class="px-5 py-3.5 text-gray-500 max-w-xs truncate" title="${esc(r.mesaj)}">${esc(r.mesaj) || '-'}</td>
         <td class="px-5 py-3.5 text-gray-400 text-xs whitespace-nowrap">${formatDate(r.date)}</td>
         <td class="px-5 py-3.5">
           <button onclick="deleteRegistration(${r.id})"
