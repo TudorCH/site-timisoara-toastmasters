@@ -6,13 +6,6 @@
   <title>Timișoara Toastmasters | Vorbit în Public</title>
   <link rel="icon" type="image/png" href="logo.png" />
   <link rel="apple-touch-icon" href="logo.png" />
-  <!-- Preload hero image – browser fetches it before CSS is parsed -->
-  <link rel="preload" as="image" fetchpriority="high"
-        href="https://res.cloudinary.com/dnxcej0q5/image/upload/f_auto,q_auto,w_768/background-header"
-        media="(max-width: 767px)" />
-  <link rel="preload" as="image" fetchpriority="high"
-        href="https://res.cloudinary.com/dnxcej0q5/image/upload/f_auto,q_auto,w_1280/background-header"
-        media="(min-width: 768px)" />
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -106,17 +99,6 @@
       #toasty-btn  { width:64px !important; height:64px !important; bottom:28px !important; right:28px !important; }
       #toasty-btn svg { width:30px !important; height:30px !important; }
       #toasty-window { bottom:104px !important; right:28px !important; width:360px !important; }
-    }
-
-    /* ── hero background: responsive via Cloudinary (f_auto = WebP/AVIF automat) ── */
-    .hero-bg {
-      background-image: url('https://res.cloudinary.com/dnxcej0q5/image/upload/f_auto,q_auto,w_768/background-header');
-    }
-    @media (min-width: 768px) {
-      .hero-bg { background-image: url('https://res.cloudinary.com/dnxcej0q5/image/upload/f_auto,q_auto,w_1280/background-header'); }
-    }
-    @media (min-width: 1280px) {
-      .hero-bg { background-image: url('https://res.cloudinary.com/dnxcej0q5/image/upload/f_auto,q_auto,w_1920/background-header'); }
     }
 
     /* ── hero: viewport-uri scurte (laptop cu bară browser) ── */
@@ -236,8 +218,8 @@
 </nav>
 
 <!-- ════════════════════ HERO ════════════════════ -->
-<section class="hero-bg min-h-screen flex items-end relative overflow-hidden pt-16"
-         style="background-size:cover; background-position:center top; min-height: 100svh;">
+<section class="min-h-screen flex items-end relative overflow-hidden pt-16"
+         style="background-image:url('Images/background-header.jpg'); background-size:cover; background-position:center top; min-height: 100svh;">
 
   <!-- Subtle dark scrim over whole image so text stays readable -->
   <div class="absolute inset-0 z-0" style="background: rgba(0,30,50,0.45);"></div>
@@ -2142,5 +2124,5 @@
 })();
 </script>
 
-</body>pe 
+</body>
 </html>
