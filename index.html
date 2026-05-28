@@ -371,136 +371,299 @@
   </div>
 </section>
 
-<!-- ════════════════════ SISTEMUL TOASTMASTERS ════════════════════ -->
-<section id="club" class="py-14 lg:py-24 bg-gray-50 scroll-fade">
-  <div class="max-w-7xl mx-auto px-5 lg:px-8">
-    <div class="text-center mb-16">
-      <div class="badge mb-4">Sistemul Toastmasters</div>
+<!-- ════════════════════ PARCURSUL TĂU ════════════════════ -->
+<section id="journey-section" class="py-16 lg:py-28 bg-gray-50 overflow-hidden scroll-fade">
+  <div class="max-w-5xl mx-auto px-5 lg:px-8">
+
+    <div class="text-center mb-20">
+      <div class="badge mb-4">Parcursul tău</div>
       <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-5">
-        Un sistem testat de peste 100 de ani
+        Cum arată drumul tău în Toastmasters
       </h2>
       <p class="text-gray-500 text-lg max-w-2xl mx-auto">
-        Toastmasters International a ajutat milioane de oameni din întreaga lume să devină comunicatori mai buni.
+        De la prima ședință ca invitat la lider recunoscut, fiecare pas este susținut de comunitate.
       </p>
     </div>
 
-    <!-- Image-card grid: 2 cols mobile → 4 cols desktop -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6">
+    <!-- ── DESKTOP: Horizontal timeline ── -->
+    <div class="hidden md:block">
 
-      <!-- Card 1: Club -->
-      <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 card-hover flex flex-col">
-        <div class="relative">
-          <img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=600&q=80&auto=format&fit=crop"
-               alt="Club" class="w-full h-36 object-cover" loading="lazy" />
-          <div class="absolute -bottom-4 left-4 w-9 h-9 bg-primary rounded-full flex items-center justify-center text-white font-bold text-sm shadow-md z-10">01</div>
+      <!-- Nodes row -->
+      <div class="relative mb-2">
+        <!-- Track line -->
+        <div class="absolute top-9 left-[36px] right-[36px] h-0.5 bg-gray-200" style="z-index:0">
+          <div id="jrn-bar" class="h-full bg-gradient-to-r from-maroon via-primary to-gold transition-[width] duration-500 ease-in-out" style="width:0%"></div>
         </div>
-        <div class="pt-7 pb-5 px-4 flex flex-col flex-1">
-          <div class="text-[10px] font-bold text-maroon uppercase tracking-widest mb-1.5">Club</div>
-          <h3 class="font-bold text-primary text-sm leading-snug mb-2">Club de public speaking</h3>
-          <p class="text-gray-500 text-xs leading-relaxed">Un spațiu sigur și structurat unde exersezi vorbitul în public alături de colegi care te sprijină.</p>
+
+        <!-- 5 nodes -->
+        <div class="flex justify-between relative" style="z-index:1">
+
+          <button class="journey-node flex flex-col items-center gap-2 focus:outline-none" onclick="jrnSelect(0)">
+            <div class="jrn-circle w-[4.5rem] h-[4.5rem] rounded-full bg-white border-2 border-gray-200 flex items-center justify-center shadow-md transition-all duration-300">
+              <svg class="jrn-icon w-6 h-6 text-gray-400 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+              </svg>
+            </div>
+            <span class="jrn-label text-[11px] font-bold uppercase tracking-wide text-gray-400 text-center leading-tight transition-all duration-300 w-20">Vii ca<br>invitat</span>
+          </button>
+
+          <button class="journey-node flex flex-col items-center gap-2 focus:outline-none" onclick="jrnSelect(1)">
+            <div class="jrn-circle w-[4.5rem] h-[4.5rem] rounded-full bg-white border-2 border-gray-200 flex items-center justify-center shadow-md transition-all duration-300">
+              <svg class="jrn-icon w-6 h-6 text-gray-400 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <span class="jrn-label text-[11px] font-bold uppercase tracking-wide text-gray-400 text-center leading-tight transition-all duration-300 w-20">Devii<br>membru</span>
+          </button>
+
+          <button class="journey-node flex flex-col items-center gap-2 focus:outline-none" onclick="jrnSelect(2)">
+            <div class="jrn-circle w-[4.5rem] h-[4.5rem] rounded-full bg-white border-2 border-gray-200 flex items-center justify-center shadow-md transition-all duration-300">
+              <svg class="jrn-icon w-6 h-6 text-gray-400 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+              </svg>
+            </div>
+            <span class="jrn-label text-[11px] font-bold uppercase tracking-wide text-gray-400 text-center leading-tight transition-all duration-300 w-20">Implicare<br>treptată</span>
+          </button>
+
+          <button class="journey-node flex flex-col items-center gap-2 focus:outline-none" onclick="jrnSelect(3)">
+            <div class="jrn-circle w-[4.5rem] h-[4.5rem] rounded-full bg-white border-2 border-gray-200 flex items-center justify-center shadow-md transition-all duration-300">
+              <svg class="jrn-icon w-6 h-6 text-gray-400 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+              </svg>
+            </div>
+            <span class="jrn-label text-[11px] font-bold uppercase tracking-wide text-gray-400 text-center leading-tight transition-all duration-300 w-20">Pathways<br>& Mentorat</span>
+          </button>
+
+          <button class="journey-node flex flex-col items-center gap-2 focus:outline-none" onclick="jrnSelect(4)">
+            <div class="jrn-circle w-[4.5rem] h-[4.5rem] rounded-full bg-white border-2 border-gray-200 flex items-center justify-center shadow-md transition-all duration-300">
+              <svg class="jrn-icon w-6 h-6 text-gray-400 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
+              </svg>
+            </div>
+            <span class="jrn-label text-[11px] font-bold uppercase tracking-wide text-gray-400 text-center leading-tight transition-all duration-300 w-24">Performanță<br>& Leadership</span>
+          </button>
+
         </div>
       </div>
 
-      <!-- Card 2: Feedback -->
-      <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 card-hover flex flex-col">
-        <div class="relative">
-          <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=600&q=80&auto=format&fit=crop"
-               alt="Feedback" class="w-full h-36 object-cover" loading="lazy" />
-          <div class="absolute -bottom-4 left-4 w-9 h-9 bg-maroon rounded-full flex items-center justify-center text-white font-bold text-sm shadow-md z-10">02</div>
+      <!-- Detail panels -->
+      <div class="relative mt-10" style="min-height:156px">
+
+        <div id="jrn-panel-0" class="jrn-panel absolute inset-x-0 flex justify-center" style="opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .35s ease,transform .35s ease">
+          <div class="bg-white border border-gray-100 rounded-2xl shadow-lg px-8 py-6 flex gap-6 items-start w-full max-w-2xl">
+            <div class="w-14 h-14 rounded-2xl bg-maroon/10 flex-shrink-0 flex items-center justify-center">
+              <svg class="w-7 h-7 text-maroon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+            </div>
+            <div>
+              <div class="text-[10px] font-bold uppercase tracking-widest text-maroon mb-1">Pasul 1</div>
+              <h3 class="font-heading font-bold text-primary text-xl mb-2">Vii ca invitat</h3>
+              <p class="text-gray-500 leading-relaxed">Participi la o ședință, observi cum funcționează totul și vorbești cu membrii. Zero presiune, primele 4 ședințe sunt complet gratuite, fără nicio obligație.</p>
+            </div>
+          </div>
         </div>
-        <div class="pt-7 pb-5 px-4 flex flex-col flex-1">
-          <div class="text-[10px] font-bold text-maroon uppercase tracking-widest mb-1.5">Feedback</div>
-          <h3 class="font-bold text-primary text-sm leading-snug mb-2">Feedback pe discursuri</h3>
-          <p class="text-gray-500 text-xs leading-relaxed">Fiecare discurs este evaluat cu feedback constructiv și imediat, cel mai rapid mod de a progresa.</p>
+
+        <div id="jrn-panel-1" class="jrn-panel absolute inset-x-0 flex justify-center" style="opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .35s ease,transform .35s ease">
+          <div class="bg-white border border-gray-100 rounded-2xl shadow-lg px-8 py-6 flex gap-6 items-start w-full max-w-2xl">
+            <div class="w-14 h-14 rounded-2xl bg-primary/10 flex-shrink-0 flex items-center justify-center">
+              <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div>
+              <div class="text-[10px] font-bold uppercase tracking-widest text-primary mb-1">Pasul 2</div>
+              <h3 class="font-heading font-bold text-primary text-xl mb-2">Devii membru oficial</h3>
+              <p class="text-gray-500 leading-relaxed">Devii oficial membru al clubului și al rețelei Toastmasters International, cu acces complet la platforma Pathways și la toate resursele de dezvoltare.</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="jrn-panel-2" class="jrn-panel absolute inset-x-0 flex justify-center" style="opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .35s ease,transform .35s ease">
+          <div class="bg-white border border-gray-100 rounded-2xl shadow-lg px-8 py-6 flex gap-6 items-start w-full max-w-2xl">
+            <div class="w-14 h-14 rounded-2xl bg-primary/10 flex-shrink-0 flex items-center justify-center">
+              <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            </div>
+            <div>
+              <div class="text-[10px] font-bold uppercase tracking-widest text-primary mb-1">Pasul 3</div>
+              <h3 class="font-heading font-bold text-primary text-xl mb-2">Implicare treptată</h3>
+              <p class="text-gray-500 leading-relaxed">Preiei roluri mici în ședințe, cronometror, evaluator de gramatică, numărator de cuvinte de umplutură, la ritmul tău, fără presiune.</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="jrn-panel-3" class="jrn-panel absolute inset-x-0 flex justify-center" style="opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .35s ease,transform .35s ease">
+          <div class="bg-white border border-gray-100 rounded-2xl shadow-lg px-8 py-6 flex gap-6 items-start w-full max-w-2xl">
+            <div class="w-14 h-14 rounded-2xl bg-primary/10 flex-shrink-0 flex items-center justify-center">
+              <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+            </div>
+            <div>
+              <div class="text-[10px] font-bold uppercase tracking-widest text-primary mb-1">Pasul 4</div>
+              <h3 class="font-heading font-bold text-primary text-xl mb-2">Pathways + Mentorat</h3>
+              <p class="text-gray-500 leading-relaxed">Urmezi un curriculum personalizat de discursuri și proiecte de leadership, ghidat de un mentor experimentat care te ajută să avansezi cu încredere.</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="jrn-panel-4" class="jrn-panel absolute inset-x-0 flex justify-center" style="opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .35s ease,transform .35s ease">
+          <div class="bg-primary border border-primary/20 rounded-2xl shadow-lg px-8 py-6 flex gap-6 items-start w-full max-w-2xl">
+            <div class="w-14 h-14 rounded-2xl bg-gold/20 flex-shrink-0 flex items-center justify-center">
+              <svg class="w-7 h-7 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+            </div>
+            <div>
+              <div class="text-[10px] font-bold uppercase tracking-widest text-gold mb-1">Pasul 5</div>
+              <h3 class="font-heading font-bold text-white text-xl mb-2">Performanță & Leadership</h3>
+              <p class="text-white/75 leading-relaxed">Concurezi în competiții de public speaking, conduci echipe, inspiri. Devii modelul de urmat pentru noii membri și contribui la creșterea clubului.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- end desktop -->
+
+    <!-- ── MOBILE: Vertical timeline ── -->
+    <div class="md:hidden">
+      <div class="relative">
+        <div class="absolute left-7 top-7 bottom-7 w-0.5 bg-gradient-to-b from-maroon via-primary to-gold"></div>
+        <div class="space-y-5">
+
+          <div class="flex gap-4">
+            <div class="w-14 h-14 rounded-full bg-maroon flex-shrink-0 flex items-center justify-center shadow-lg z-10 relative">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+            </div>
+            <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex-1">
+              <div class="text-[10px] font-bold uppercase tracking-widest text-maroon mb-1">Pasul 1</div>
+              <h3 class="font-heading font-bold text-primary mb-1">Vii ca invitat</h3>
+              <p class="text-gray-500 text-sm leading-relaxed">Participi la o ședință, observi cum funcționează totul și vorbești cu membrii. Zero presiune.</p>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="w-14 h-14 rounded-full bg-primary flex-shrink-0 flex items-center justify-center shadow-lg z-10 relative">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex-1">
+              <div class="text-[10px] font-bold uppercase tracking-widest text-primary mb-1">Pasul 2</div>
+              <h3 class="font-heading font-bold text-primary mb-1">Devii membru oficial</h3>
+              <p class="text-gray-500 text-sm leading-relaxed">Devii oficial membru și al rețelei Toastmasters International, cu acces complet la Pathways.</p>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="w-14 h-14 rounded-full bg-primary flex-shrink-0 flex items-center justify-center shadow-lg z-10 relative">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            </div>
+            <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex-1">
+              <div class="text-[10px] font-bold uppercase tracking-widest text-primary mb-1">Pasul 3</div>
+              <h3 class="font-heading font-bold text-primary mb-1">Implicare treptată</h3>
+              <p class="text-gray-500 text-sm leading-relaxed">Preiei roluri mici în ședințe, cronometror, evaluator de gramatică, la ritmul tău.</p>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="w-14 h-14 rounded-full flex-shrink-0 flex items-center justify-center shadow-lg z-10 relative" style="background:#002d47">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+            </div>
+            <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex-1">
+              <div class="text-[10px] font-bold uppercase tracking-widest text-primary mb-1">Pasul 4</div>
+              <h3 class="font-heading font-bold text-primary mb-1">Pathways + Mentorat</h3>
+              <p class="text-gray-500 text-sm leading-relaxed">Urmezi un curriculum personalizat și ești ghidat de un mentor experimentat din club.</p>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="w-14 h-14 rounded-full flex-shrink-0 flex items-center justify-center shadow-lg z-10 relative" style="background:linear-gradient(135deg,#002d47,#004165)">
+              <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+            </div>
+            <div class="bg-primary rounded-2xl p-5 shadow-sm flex-1">
+              <div class="text-[10px] font-bold uppercase tracking-widest text-gold mb-1">Pasul 5</div>
+              <h3 class="font-heading font-bold text-white mb-1">Performanță & Leadership</h3>
+              <p class="text-white/70 text-sm leading-relaxed">Concurezi, conduci, inspiri. Devii modelul de urmat pentru noii membri care vin după tine.</p>
+            </div>
+          </div>
+
         </div>
       </div>
+    </div><!-- end mobile -->
 
-      <!-- Card 3: Pathways -->
-      <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 card-hover flex flex-col">
-        <div class="relative">
-          <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&q=80&auto=format&fit=crop"
-               alt="Pathways" class="w-full h-36 object-cover" loading="lazy" />
-          <div class="absolute -bottom-4 left-4 w-9 h-9 bg-primary rounded-full flex items-center justify-center text-white font-bold text-sm shadow-md z-10">03</div>
-        </div>
-        <div class="pt-7 pb-5 px-4 flex flex-col flex-1">
-          <div class="text-[10px] font-bold text-maroon uppercase tracking-widest mb-1.5">Pathways</div>
-          <h3 class="font-bold text-primary text-sm leading-snug mb-2">Pathways – platforma de învățare</h3>
-          <p class="text-gray-500 text-xs leading-relaxed">Curriculum structurat cu zeci de proiecte, personalizat pe obiectivele tale de carieră.</p>
-        </div>
-      </div>
-
-      <!-- Card 4: Roluri -->
-      <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 card-hover flex flex-col">
-        <div class="relative">
-          <img src="https://images.unsplash.com/photo-1560523159-4a9692d222ef?w=600&q=80&auto=format&fit=crop"
-               alt="Roluri" class="w-full h-36 object-cover" loading="lazy" />
-          <div class="absolute -bottom-4 left-4 w-9 h-9 bg-maroon rounded-full flex items-center justify-center text-white font-bold text-sm shadow-md z-10">04</div>
-        </div>
-        <div class="pt-7 pb-5 px-4 flex flex-col flex-1">
-          <div class="text-[10px] font-bold text-maroon uppercase tracking-widest mb-1.5">Roluri</div>
-          <h3 class="font-bold text-primary text-sm leading-snug mb-2">Roluri de suport</h3>
-          <p class="text-gray-500 text-xs leading-relaxed">Toastmaster of the Evening, Gramatician, Cronometror, roluri care îți dezvoltă gândirea critică.</p>
-        </div>
-      </div>
-
-      <!-- Card 5: Leadership -->
-      <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 card-hover flex flex-col">
-        <div class="relative">
-          <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600&q=80&auto=format&fit=crop"
-               alt="Leadership" class="w-full h-36 object-cover" loading="lazy" />
-          <div class="absolute -bottom-4 left-4 w-9 h-9 bg-primary rounded-full flex items-center justify-center text-white font-bold text-sm shadow-md z-10">05</div>
-        </div>
-        <div class="pt-7 pb-5 px-4 flex flex-col flex-1">
-          <div class="text-[10px] font-bold text-maroon uppercase tracking-widest mb-1.5">Leadership</div>
-          <h3 class="font-bold text-primary text-sm leading-snug mb-2">Leadership în acțiune</h3>
-          <p class="text-gray-500 text-xs leading-relaxed">Înveți să organizezi și să motivezi echipe, competențe transferabile oricărui mediu profesional.</p>
-        </div>
-      </div>
-
-      <!-- Card 6: Comunitate -->
-      <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 card-hover flex flex-col">
-        <div class="relative">
-          <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80&auto=format&fit=crop"
-               alt="Comunitate" class="w-full h-36 object-cover" loading="lazy" />
-          <div class="absolute -bottom-4 left-4 w-9 h-9 bg-maroon rounded-full flex items-center justify-center text-white font-bold text-sm shadow-md z-10">06</div>
-        </div>
-        <div class="pt-7 pb-5 px-4 flex flex-col flex-1">
-          <div class="text-[10px] font-bold text-maroon uppercase tracking-widest mb-1.5">Comunitate</div>
-          <h3 class="font-bold text-primary text-sm leading-snug mb-2">O comunitate caldă</h3>
-          <p class="text-gray-500 text-xs leading-relaxed">Oameni din domenii diverse, uniți de dorința de a crește și de a se exprima autentic.</p>
-        </div>
-      </div>
-
-      <!-- Card 7: Competiții -->
-      <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 card-hover flex flex-col">
-        <div class="relative">
-          <img src="https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?w=600&q=80&auto=format&fit=crop"
-               alt="Competiții" class="w-full h-36 object-cover" loading="lazy" />
-          <div class="absolute -bottom-4 left-4 w-9 h-9 bg-primary rounded-full flex items-center justify-center text-white font-bold text-sm shadow-md z-10">07</div>
-        </div>
-        <div class="pt-7 pb-5 px-4 flex flex-col flex-1">
-          <div class="text-[10px] font-bold text-maroon uppercase tracking-widest mb-1.5">Concursuri</div>
-          <h3 class="font-bold text-primary text-sm leading-snug mb-2">Competiții Toastmasters</h3>
-          <p class="text-gray-500 text-xs leading-relaxed">De la nivel de club până la nivel internațional, testează-te pe scenă și obține recunoaștere.</p>
-        </div>
-      </div>
-
-      <!-- Card 8: Academie -->
-      <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 card-hover flex flex-col">
-        <div class="relative">
-          <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&q=80&auto=format&fit=crop"
-               alt="Academie" class="w-full h-36 object-cover" loading="lazy" />
-          <div class="absolute -bottom-4 left-4 w-9 h-9 bg-maroon rounded-full flex items-center justify-center text-white font-bold text-sm shadow-md z-10">08</div>
-        </div>
-        <div class="pt-7 pb-5 px-4 flex flex-col flex-1">
-          <div class="text-[10px] font-bold text-maroon uppercase tracking-widest mb-1.5">Club</div>
-          <h3 class="font-bold text-primary text-sm leading-snug mb-2">Academie & Ateliere</h3>
-          <p class="text-gray-500 text-xs leading-relaxed">Workshop-uri și sesiuni tematice care completează experiența din ședințele săptămânale de club.</p>
-        </div>
-      </div>
-
-    </div>
   </div>
+</section>
+
+<!-- ════════════════════ GALERIE FOTO, teaser ════════════════════ -->
+<section id="galerie" class="py-14 lg:py-20 bg-gray-50 scroll-fade">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8">
+
+    <!-- Header -->
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+      <div>
+        <div class="badge mb-4">Galerie foto</div>
+        <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-3">
+          Momente din viața clubului
+        </h2>
+        <p class="text-gray-500 text-lg max-w-xl">
+          Ședințe, concursuri și socializare, surprinse în imagini.
+        </p>
+      </div>
+      <a href="galerie.html"
+         class="group inline-flex items-center gap-2 bg-white border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold px-6 py-3 rounded-full transition-all duration-300 hover:scale-105 shadow-sm hover:shadow-lg hover:shadow-primary/20 flex-shrink-0">
+        Vezi toată galeria
+        <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <!-- Cele mai recente 3 evenimente -->
+    <div id="teaser-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+
+  </div>
+
+  <script>
+  (function() {
+    const CLOUD_NAME = 'dnxcej0q5';
+    const CLD_BASE   = 'https://res.cloudinary.com/' + CLOUD_NAME + '/image/upload';
+
+    function cldUrl(src, width) {
+      if (!src) return '';
+      if (src.startsWith('http') && !src.includes('res.cloudinary.com')) return src;
+      if (src.includes('res.cloudinary.com')) return src.replace('/upload/', '/upload/w_' + width + ',q_auto,f_auto/');
+      return CLD_BASE + '/w_' + width + ',q_auto,f_auto/' + src;
+    }
+
+    // Cele mai recente 3 ședințe, copiate din galleryData.sedinte (primele 3)
+    const recent = [
+      {
+        title: 'Ședința din 13 Mai 2026',
+        type:  'Ședință',
+        count: 13,
+        src:   '703702677_1379662930638080_7945090669665827414_n_xixbub.jpg'
+      },
+      {
+        title: 'Ședința din 6 Mai 2026',
+        type:  'Ședință',
+        count: 46,
+        src:   '698860972_1374827497788290_3518597981334695481_n_kyswzf.jpg'
+      },
+      {
+        title: 'Ședința din 29 Aprilie 2026',
+        type:  'Ședință',
+        count: 38,
+        src:   '695730004_1373786967892343_7291983604951077472_n_pq3x8j.jpg'
+      }
+    ];
+
+    const grid = document.getElementById('teaser-grid');
+    grid.innerHTML = recent.map(function(ev) {
+      const imgSrc = cldUrl(ev.src, 800);
+      return '<a href="galerie.html" class="group block rounded-2xl overflow-hidden shadow-sm border border-gray-100 bg-white card-hover" style="aspect-ratio:4/3; position:relative;">' +
+        '<img src="' + imgSrc + '" alt="' + ev.title + '" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" decoding="async" loading="lazy" />' +
+        '<div class="absolute inset-0" style="background:linear-gradient(to top, rgba(0,30,50,0.82) 0%, rgba(0,30,50,0.35) 45%, transparent 100%);"></div>' +
+        '<div class="absolute bottom-0 left-0 right-0 p-4">' +
+          '<div class="text-white font-semibold text-sm leading-tight mb-2">' + ev.title + '</div>' +
+          '<div class="inline-flex items-center gap-1 text-white/70 text-xs">' +
+            '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>' +
+            ev.count + ' poze' +
+          '</div>' +
+        '</div>' +
+      '</a>';
+    }).join('');
+  })();
+  </script>
 </section>
 
 <!-- ════════════════════ TESTIMONIALE ════════════════════ -->
@@ -829,272 +992,6 @@
   })();
 </script>
 
-<!-- ════════════════════ PARCURSUL TĂU ════════════════════ -->
-<section id="journey-section" class="py-16 lg:py-28 bg-gray-50 overflow-hidden scroll-fade">
-  <div class="max-w-5xl mx-auto px-5 lg:px-8">
-
-    <div class="text-center mb-20">
-      <div class="badge mb-4">Parcursul tău</div>
-      <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-5">
-        Cum arată drumul tău în Toastmasters
-      </h2>
-      <p class="text-gray-500 text-lg max-w-2xl mx-auto">
-        De la prima ședință ca invitat la lider recunoscut, fiecare pas este susținut de comunitate.
-      </p>
-    </div>
-
-    <!-- ── DESKTOP: Horizontal timeline ── -->
-    <div class="hidden md:block">
-
-      <!-- Nodes row -->
-      <div class="relative mb-2">
-        <!-- Track line -->
-        <div class="absolute top-9 left-[36px] right-[36px] h-0.5 bg-gray-200" style="z-index:0">
-          <div id="jrn-bar" class="h-full bg-gradient-to-r from-maroon via-primary to-gold transition-[width] duration-500 ease-in-out" style="width:0%"></div>
-        </div>
-
-        <!-- 5 nodes -->
-        <div class="flex justify-between relative" style="z-index:1">
-
-          <button class="journey-node flex flex-col items-center gap-2 focus:outline-none" onclick="jrnSelect(0)">
-            <div class="jrn-circle w-[4.5rem] h-[4.5rem] rounded-full bg-white border-2 border-gray-200 flex items-center justify-center shadow-md transition-all duration-300">
-              <svg class="jrn-icon w-6 h-6 text-gray-400 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-              </svg>
-            </div>
-            <span class="jrn-label text-[11px] font-bold uppercase tracking-wide text-gray-400 text-center leading-tight transition-all duration-300 w-20">Vii ca<br>invitat</span>
-          </button>
-
-          <button class="journey-node flex flex-col items-center gap-2 focus:outline-none" onclick="jrnSelect(1)">
-            <div class="jrn-circle w-[4.5rem] h-[4.5rem] rounded-full bg-white border-2 border-gray-200 flex items-center justify-center shadow-md transition-all duration-300">
-              <svg class="jrn-icon w-6 h-6 text-gray-400 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-              </svg>
-            </div>
-            <span class="jrn-label text-[11px] font-bold uppercase tracking-wide text-gray-400 text-center leading-tight transition-all duration-300 w-20">Devii<br>membru</span>
-          </button>
-
-          <button class="journey-node flex flex-col items-center gap-2 focus:outline-none" onclick="jrnSelect(2)">
-            <div class="jrn-circle w-[4.5rem] h-[4.5rem] rounded-full bg-white border-2 border-gray-200 flex items-center justify-center shadow-md transition-all duration-300">
-              <svg class="jrn-icon w-6 h-6 text-gray-400 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-              </svg>
-            </div>
-            <span class="jrn-label text-[11px] font-bold uppercase tracking-wide text-gray-400 text-center leading-tight transition-all duration-300 w-20">Implicare<br>treptată</span>
-          </button>
-
-          <button class="journey-node flex flex-col items-center gap-2 focus:outline-none" onclick="jrnSelect(3)">
-            <div class="jrn-circle w-[4.5rem] h-[4.5rem] rounded-full bg-white border-2 border-gray-200 flex items-center justify-center shadow-md transition-all duration-300">
-              <svg class="jrn-icon w-6 h-6 text-gray-400 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
-              </svg>
-            </div>
-            <span class="jrn-label text-[11px] font-bold uppercase tracking-wide text-gray-400 text-center leading-tight transition-all duration-300 w-20">Pathways<br>& Mentorat</span>
-          </button>
-
-          <button class="journey-node flex flex-col items-center gap-2 focus:outline-none" onclick="jrnSelect(4)">
-            <div class="jrn-circle w-[4.5rem] h-[4.5rem] rounded-full bg-white border-2 border-gray-200 flex items-center justify-center shadow-md transition-all duration-300">
-              <svg class="jrn-icon w-6 h-6 text-gray-400 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
-              </svg>
-            </div>
-            <span class="jrn-label text-[11px] font-bold uppercase tracking-wide text-gray-400 text-center leading-tight transition-all duration-300 w-24">Performanță<br>& Leadership</span>
-          </button>
-
-        </div>
-      </div>
-
-      <!-- Detail panels -->
-      <div class="relative mt-10" style="min-height:156px">
-
-        <div id="jrn-panel-0" class="jrn-panel absolute inset-x-0 flex justify-center" style="opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .35s ease,transform .35s ease">
-          <div class="bg-white border border-gray-100 rounded-2xl shadow-lg px-8 py-6 flex gap-6 items-start w-full max-w-2xl">
-            <div class="w-14 h-14 rounded-2xl bg-maroon/10 flex-shrink-0 flex items-center justify-center">
-              <svg class="w-7 h-7 text-maroon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
-            </div>
-            <div>
-              <div class="text-[10px] font-bold uppercase tracking-widest text-maroon mb-1">Pasul 1</div>
-              <h3 class="font-heading font-bold text-primary text-xl mb-2">Vii ca invitat</h3>
-              <p class="text-gray-500 leading-relaxed">Participi la o ședință, observi cum funcționează totul și vorbești cu membrii. Zero presiune, primele 4 ședințe sunt complet gratuite, fără nicio obligație.</p>
-            </div>
-          </div>
-        </div>
-
-        <div id="jrn-panel-1" class="jrn-panel absolute inset-x-0 flex justify-center" style="opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .35s ease,transform .35s ease">
-          <div class="bg-white border border-gray-100 rounded-2xl shadow-lg px-8 py-6 flex gap-6 items-start w-full max-w-2xl">
-            <div class="w-14 h-14 rounded-2xl bg-primary/10 flex-shrink-0 flex items-center justify-center">
-              <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            </div>
-            <div>
-              <div class="text-[10px] font-bold uppercase tracking-widest text-primary mb-1">Pasul 2</div>
-              <h3 class="font-heading font-bold text-primary text-xl mb-2">Devii membru oficial</h3>
-              <p class="text-gray-500 leading-relaxed">Devii oficial membru al clubului și al rețelei Toastmasters International, cu acces complet la platforma Pathways și la toate resursele de dezvoltare.</p>
-            </div>
-          </div>
-        </div>
-
-        <div id="jrn-panel-2" class="jrn-panel absolute inset-x-0 flex justify-center" style="opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .35s ease,transform .35s ease">
-          <div class="bg-white border border-gray-100 rounded-2xl shadow-lg px-8 py-6 flex gap-6 items-start w-full max-w-2xl">
-            <div class="w-14 h-14 rounded-2xl bg-primary/10 flex-shrink-0 flex items-center justify-center">
-              <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-            </div>
-            <div>
-              <div class="text-[10px] font-bold uppercase tracking-widest text-primary mb-1">Pasul 3</div>
-              <h3 class="font-heading font-bold text-primary text-xl mb-2">Implicare treptată</h3>
-              <p class="text-gray-500 leading-relaxed">Preiei roluri mici în ședințe, cronometror, evaluator de gramatică, numărator de cuvinte de umplutură, la ritmul tău, fără presiune.</p>
-            </div>
-          </div>
-        </div>
-
-        <div id="jrn-panel-3" class="jrn-panel absolute inset-x-0 flex justify-center" style="opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .35s ease,transform .35s ease">
-          <div class="bg-white border border-gray-100 rounded-2xl shadow-lg px-8 py-6 flex gap-6 items-start w-full max-w-2xl">
-            <div class="w-14 h-14 rounded-2xl bg-primary/10 flex-shrink-0 flex items-center justify-center">
-              <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
-            </div>
-            <div>
-              <div class="text-[10px] font-bold uppercase tracking-widest text-primary mb-1">Pasul 4</div>
-              <h3 class="font-heading font-bold text-primary text-xl mb-2">Pathways + Mentorat</h3>
-              <p class="text-gray-500 leading-relaxed">Urmezi un curriculum personalizat de discursuri și proiecte de leadership, ghidat de un mentor experimentat care te ajută să avansezi cu încredere.</p>
-            </div>
-          </div>
-        </div>
-
-        <div id="jrn-panel-4" class="jrn-panel absolute inset-x-0 flex justify-center" style="opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .35s ease,transform .35s ease">
-          <div class="bg-primary border border-primary/20 rounded-2xl shadow-lg px-8 py-6 flex gap-6 items-start w-full max-w-2xl">
-            <div class="w-14 h-14 rounded-2xl bg-gold/20 flex-shrink-0 flex items-center justify-center">
-              <svg class="w-7 h-7 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
-            </div>
-            <div>
-              <div class="text-[10px] font-bold uppercase tracking-widest text-gold mb-1">Pasul 5</div>
-              <h3 class="font-heading font-bold text-white text-xl mb-2">Performanță & Leadership</h3>
-              <p class="text-white/75 leading-relaxed">Concurezi în competiții de public speaking, conduci echipe, inspiri. Devii modelul de urmat pentru noii membri și contribui la creșterea clubului.</p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div><!-- end desktop -->
-
-    <!-- ── MOBILE: Vertical timeline ── -->
-    <div class="md:hidden">
-      <div class="relative">
-        <div class="absolute left-7 top-7 bottom-7 w-0.5 bg-gradient-to-b from-maroon via-primary to-gold"></div>
-        <div class="space-y-5">
-
-          <div class="flex gap-4">
-            <div class="w-14 h-14 rounded-full bg-maroon flex-shrink-0 flex items-center justify-center shadow-lg z-10 relative">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
-            </div>
-            <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex-1">
-              <div class="text-[10px] font-bold uppercase tracking-widest text-maroon mb-1">Pasul 1</div>
-              <h3 class="font-heading font-bold text-primary mb-1">Vii ca invitat</h3>
-              <p class="text-gray-500 text-sm leading-relaxed">Participi la o ședință, observi cum funcționează totul și vorbești cu membrii. Zero presiune.</p>
-            </div>
-          </div>
-
-          <div class="flex gap-4">
-            <div class="w-14 h-14 rounded-full bg-primary flex-shrink-0 flex items-center justify-center shadow-lg z-10 relative">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            </div>
-            <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex-1">
-              <div class="text-[10px] font-bold uppercase tracking-widest text-primary mb-1">Pasul 2</div>
-              <h3 class="font-heading font-bold text-primary mb-1">Devii membru oficial</h3>
-              <p class="text-gray-500 text-sm leading-relaxed">Devii oficial membru și al rețelei Toastmasters International, cu acces complet la Pathways.</p>
-            </div>
-          </div>
-
-          <div class="flex gap-4">
-            <div class="w-14 h-14 rounded-full bg-primary flex-shrink-0 flex items-center justify-center shadow-lg z-10 relative">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-            </div>
-            <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex-1">
-              <div class="text-[10px] font-bold uppercase tracking-widest text-primary mb-1">Pasul 3</div>
-              <h3 class="font-heading font-bold text-primary mb-1">Implicare treptată</h3>
-              <p class="text-gray-500 text-sm leading-relaxed">Preiei roluri mici în ședințe, cronometror, evaluator de gramatică, la ritmul tău.</p>
-            </div>
-          </div>
-
-          <div class="flex gap-4">
-            <div class="w-14 h-14 rounded-full flex-shrink-0 flex items-center justify-center shadow-lg z-10 relative" style="background:#002d47">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
-            </div>
-            <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex-1">
-              <div class="text-[10px] font-bold uppercase tracking-widest text-primary mb-1">Pasul 4</div>
-              <h3 class="font-heading font-bold text-primary mb-1">Pathways + Mentorat</h3>
-              <p class="text-gray-500 text-sm leading-relaxed">Urmezi un curriculum personalizat și ești ghidat de un mentor experimentat din club.</p>
-            </div>
-          </div>
-
-          <div class="flex gap-4">
-            <div class="w-14 h-14 rounded-full flex-shrink-0 flex items-center justify-center shadow-lg z-10 relative" style="background:linear-gradient(135deg,#002d47,#004165)">
-              <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
-            </div>
-            <div class="bg-primary rounded-2xl p-5 shadow-sm flex-1">
-              <div class="text-[10px] font-bold uppercase tracking-widest text-gold mb-1">Pasul 5</div>
-              <h3 class="font-heading font-bold text-white mb-1">Performanță & Leadership</h3>
-              <p class="text-white/70 text-sm leading-relaxed">Concurezi, conduci, inspiri. Devii modelul de urmat pentru noii membri care vin după tine.</p>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div><!-- end mobile -->
-
-  </div>
-</section>
-
-<!-- ════════════════════ DE CE TIMIȘOARA ════════════════════ -->
-<section class="py-24 bg-primary relative overflow-hidden scroll-fade">
-  <div class="absolute inset-0 opacity-[0.04]">
-    <div class="absolute top-10 right-10 w-96 h-96 rounded-full border-2 border-gold"></div>
-    <div class="absolute bottom-10 left-10 w-64 h-64 rounded-full border border-white"></div>
-  </div>
-  <div class="max-w-7xl mx-auto px-5 lg:px-8 relative z-10">
-    <div class="text-center mb-16">
-      <div class="badge-light mb-4">De ce Timișoara?</div>
-      <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-5">
-        Ce face clubul nostru special
-      </h2>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-
-      <div class="text-center p-8 rounded-2xl bg-white/5 border border-white/10 card-hover">
-        <div class="w-16 h-16 bg-maroon/20 rounded-full flex items-center justify-center mx-auto mb-6">
-          <svg class="w-8 h-8 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-        </div>
-        <h3 class="font-semibold text-white text-base mb-3">Ședințe săptămânale</h3>
-        <p class="text-white/50 text-sm leading-relaxed">Practică constantă, în fiecare miercuri seară. Consistența e cheia progresului real.</p>
-      </div>
-
-      <div class="text-center p-8 rounded-2xl bg-white/5 border border-white/10 card-hover">
-        <div class="w-16 h-16 bg-maroon/20 rounded-full flex items-center justify-center mx-auto mb-6">
-          <svg class="w-8 h-8 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
-        </div>
-        <h3 class="font-semibold text-white text-base mb-3">Academie & Ateliere</h3>
-        <p class="text-white/50 text-sm leading-relaxed">Evenimente speciale pe povestire, improvizație și limbaj nonverbal.</p>
-      </div>
-
-      <div class="text-center p-8 rounded-2xl bg-white/5 border border-white/10 card-hover">
-        <div class="w-16 h-16 bg-maroon/20 rounded-full flex items-center justify-center mx-auto mb-6">
-          <svg class="w-8 h-8 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/></svg>
-        </div>
-        <h3 class="font-semibold text-white text-base mb-3">Bilingv: RO & EN</h3>
-        <p class="text-white/50 text-sm leading-relaxed">Ședințele alternează între română și engleză, practică în ambele limbi.</p>
-      </div>
-
-      <div class="text-center p-8 rounded-2xl bg-white/5 border border-white/10 card-hover">
-        <div class="w-16 h-16 bg-maroon/20 rounded-full flex items-center justify-center mx-auto mb-6">
-          <svg class="w-8 h-8 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
-        </div>
-        <h3 class="font-semibold text-white text-base mb-3">Comunitate proactivă</h3>
-        <p class="text-white/50 text-sm leading-relaxed">Membri din toate domeniile, uniți de aceeași dorință de creștere.</p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
 <!-- ════════════════════ PROGRAM ȘEDINȚE ════════════════════ -->
 <section id="schedule" class="py-14 lg:py-24 bg-white scroll-fade">
   <div class="max-w-7xl mx-auto px-5 lg:px-8">
@@ -1325,219 +1222,6 @@
         })();
       })();
       </script>
-
-    </div>
-  </div>
-</section>
-
-<!-- ════════════════════ GALERIE FOTO, teaser ════════════════════ -->
-<section id="galerie" class="py-14 lg:py-20 bg-gray-50 scroll-fade">
-  <div class="max-w-7xl mx-auto px-5 lg:px-8">
-
-    <!-- Header -->
-    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
-      <div>
-        <div class="badge mb-4">Galerie foto</div>
-        <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-3">
-          Momente din viața clubului
-        </h2>
-        <p class="text-gray-500 text-lg max-w-xl">
-          Ședințe, concursuri și socializare, surprinse în imagini.
-        </p>
-      </div>
-      <a href="galerie.html"
-         class="group inline-flex items-center gap-2 bg-white border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold px-6 py-3 rounded-full transition-all duration-300 hover:scale-105 shadow-sm hover:shadow-lg hover:shadow-primary/20 flex-shrink-0">
-        Vezi toată galeria
-        <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-      </a>
-    </div>
-
-    <!-- Cele mai recente 3 evenimente -->
-    <div id="teaser-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
-
-  </div>
-
-  <script>
-  (function() {
-    const CLOUD_NAME = 'dnxcej0q5';
-    const CLD_BASE   = 'https://res.cloudinary.com/' + CLOUD_NAME + '/image/upload';
-
-    function cldUrl(src, width) {
-      if (!src) return '';
-      if (src.startsWith('http') && !src.includes('res.cloudinary.com')) return src;
-      if (src.includes('res.cloudinary.com')) return src.replace('/upload/', '/upload/w_' + width + ',q_auto,f_auto/');
-      return CLD_BASE + '/w_' + width + ',q_auto,f_auto/' + src;
-    }
-
-    // Cele mai recente 3 ședințe, copiate din galleryData.sedinte (primele 3)
-    const recent = [
-      {
-        title: 'Ședința din 13 Mai 2026',
-        type:  'Ședință',
-        count: 13,
-        src:   '703702677_1379662930638080_7945090669665827414_n_xixbub.jpg'
-      },
-      {
-        title: 'Ședința din 6 Mai 2026',
-        type:  'Ședință',
-        count: 46,
-        src:   '698860972_1374827497788290_3518597981334695481_n_kyswzf.jpg'
-      },
-      {
-        title: 'Ședința din 29 Aprilie 2026',
-        type:  'Ședință',
-        count: 38,
-        src:   '695730004_1373786967892343_7291983604951077472_n_pq3x8j.jpg'
-      }
-    ];
-
-    const grid = document.getElementById('teaser-grid');
-    grid.innerHTML = recent.map(function(ev) {
-      const imgSrc = cldUrl(ev.src, 800);
-      return '<a href="galerie.html" class="group block rounded-2xl overflow-hidden shadow-sm border border-gray-100 bg-white card-hover" style="aspect-ratio:4/3; position:relative;">' +
-        '<img src="' + imgSrc + '" alt="' + ev.title + '" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" decoding="async" loading="lazy" />' +
-        '<div class="absolute inset-0" style="background:linear-gradient(to top, rgba(0,30,50,0.82) 0%, rgba(0,30,50,0.35) 45%, transparent 100%);"></div>' +
-        '<div class="absolute bottom-0 left-0 right-0 p-4">' +
-          '<div class="text-white font-semibold text-sm leading-tight mb-2">' + ev.title + '</div>' +
-          '<div class="inline-flex items-center gap-1 text-white/70 text-xs">' +
-            '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>' +
-            ev.count + ' poze' +
-          '</div>' +
-        '</div>' +
-      '</a>';
-    }).join('');
-  })();
-  </script>
-
-<!-- ════════════════════ BOARD ════════════════════ -->
-<section id="about" class="py-14 lg:py-24 bg-white scroll-fade">
-  <div class="max-w-7xl mx-auto px-5 lg:px-8">
-    <div class="text-center mb-16">
-      <div class="badge mb-4">Conducere</div>
-      <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-5">Conducerea Timișoara Toastmasters</h2>
-      <p class="text-gray-500 text-lg max-w-xl mx-auto">Echipa care organizează, coordonează și inspiră clubul în fiecare săptămână.</p>
-    </div>
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-
-      <!-- Robert Cernea -->
-      <div class="card-hover text-center p-4 sm:p-6 rounded-2xl border border-gray-100 bg-white shadow-sm">
-        <div class="w-24 h-24 sm:w-32 sm:h-32 rounded-full mx-auto mb-3 sm:mb-4 overflow-hidden" style="box-shadow:0 8px 24px rgba(0,65,101,.18), 0 0 0 4px #772432 bg-primary flex items-center justify-center">
-          <img src="Profile%20Pictures/robert-cernea-pp.jpg" alt="Robert Cernea"
-               class="w-full h-full object-cover"
-               onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'text-white font-bold text-lg\'>RC</span>'" />
-        </div>
-        <div class="font-semibold text-primary text-sm">Robert Cernea</div>
-        <div class="text-maroon text-xs font-semibold mt-1">Președinte</div>
-        <a href="https://www.linkedin.com/in/robert-cernea/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Robert Cernea"
-           class="inline-flex items-center justify-center mt-2 w-7 h-7 rounded-full bg-[#0077B5]/10 hover:bg-[#0077B5] text-[#0077B5] hover:text-white transition-colors duration-200">
-          <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        </a>
-      </div>
-
-      <!-- Olga Lancea -->
-      <div class="card-hover text-center p-4 sm:p-6 rounded-2xl border border-gray-100 bg-white shadow-sm">
-        <div class="w-24 h-24 sm:w-32 sm:h-32 rounded-full mx-auto mb-3 sm:mb-4 overflow-hidden" style="box-shadow:0 8px 24px rgba(0,65,101,.18), 0 0 0 4px #772432 bg-maroon flex items-center justify-center">
-          <img src="Profile%20Pictures/olga-lancea-pp.jpg" alt="Olga Lancea"
-               class="w-full h-full object-cover"
-               onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'text-white font-bold text-lg\'>OL</span>'" />
-        </div>
-        <div class="font-semibold text-primary text-sm">Olga Lancea</div>
-        <div class="text-maroon text-xs font-semibold mt-1">Vicepreședinte Educație</div>
-        <a href="https://www.linkedin.com/in/olga-lancea/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Olga Lancea"
-           class="inline-flex items-center justify-center mt-2 w-7 h-7 rounded-full bg-[#0077B5]/10 hover:bg-[#0077B5] text-[#0077B5] hover:text-white transition-colors duration-200">
-          <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        </a>
-      </div>
-
-      <!-- Ionuț Cornean -->
-      <div class="card-hover text-center p-4 sm:p-6 rounded-2xl border border-gray-100 bg-white shadow-sm">
-        <div class="w-24 h-24 sm:w-32 sm:h-32 rounded-full mx-auto mb-3 sm:mb-4 overflow-hidden" style="box-shadow:0 8px 24px rgba(0,65,101,.18), 0 0 0 4px #772432 bg-primary flex items-center justify-center">
-          <img src="Profile%20Pictures/ionut-cornean-pp.jpg" alt="Ionuț Cornean"
-               class="w-full h-full object-cover"
-               onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'text-white font-bold text-lg\'>IC</span>'" />
-        </div>
-        <div class="font-semibold text-primary text-sm">Ionuț Cornean</div>
-        <div class="text-maroon text-xs font-semibold mt-1">Vicepreședinte Membri</div>
-        <a href="https://www.linkedin.com/in/ionut-cornean/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Ionuț Cornean"
-           class="inline-flex items-center justify-center mt-2 w-7 h-7 rounded-full bg-[#0077B5]/10 hover:bg-[#0077B5] text-[#0077B5] hover:text-white transition-colors duration-200">
-          <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        </a>
-      </div>
-
-      <!-- Lavinia Borza -->
-      <div class="card-hover text-center p-4 sm:p-6 rounded-2xl border border-gray-100 bg-white shadow-sm">
-        <div class="w-24 h-24 sm:w-32 sm:h-32 rounded-full mx-auto mb-3 sm:mb-4 overflow-hidden" style="box-shadow:0 8px 24px rgba(0,65,101,.18), 0 0 0 4px #772432 bg-maroon flex items-center justify-center">
-          <img src="Profile%20Pictures/lavinia-borza-pp.jpg" alt="Lavinia Borza"
-               class="w-full h-full object-cover"
-               onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'text-white font-bold text-lg\'>LB</span>'" />
-        </div>
-        <div class="font-semibold text-primary text-sm">Lavinia Borza</div>
-        <div class="text-maroon text-xs font-semibold mt-1">Vicepreședinte Relații Publice</div>
-        <span title="LinkedIn indisponibil momentan"
-           class="inline-flex items-center justify-center mt-2 w-7 h-7 rounded-full bg-gray-100 text-gray-300 cursor-default">
-          <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        </span>
-      </div>
-
-      <!-- Tudor Chiu -->
-      <div class="card-hover text-center p-4 sm:p-6 rounded-2xl border border-gray-100 bg-white shadow-sm">
-        <div class="w-24 h-24 sm:w-32 sm:h-32 rounded-full mx-auto mb-3 sm:mb-4 overflow-hidden" style="box-shadow:0 8px 24px rgba(0,65,101,.18), 0 0 0 4px #772432 bg-primary flex items-center justify-center">
-          <img src="Profile%20Pictures/tudor-chiu-pp.jpg" alt="Tudor Chiu"
-               class="w-full h-full object-cover"
-               onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'text-white font-bold text-lg\'>TC</span>'" />
-        </div>
-        <div class="font-semibold text-primary text-sm">Tudor Chiu</div>
-        <div class="text-maroon text-xs font-semibold mt-1">Secretar</div>
-        <a href="https://www.linkedin.com/in/tudor-chiu-181b3b182/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Tudor Chiu"
-           class="inline-flex items-center justify-center mt-2 w-7 h-7 rounded-full bg-[#0077B5]/10 hover:bg-[#0077B5] text-[#0077B5] hover:text-white transition-colors duration-200">
-          <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        </a>
-      </div>
-
-      <!-- Mihaela Cristina -->
-      <div class="card-hover text-center p-4 sm:p-6 rounded-2xl border border-gray-100 bg-white shadow-sm">
-        <div class="w-24 h-24 sm:w-32 sm:h-32 rounded-full mx-auto mb-3 sm:mb-4 overflow-hidden" style="box-shadow:0 8px 24px rgba(0,65,101,.18), 0 0 0 4px #772432 bg-maroon flex items-center justify-center">
-          <img src="Profile%20Pictures/mihaela-cristina-pp.jpg" alt="Mihaela Cristina"
-               class="w-full h-full object-cover"
-               onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'text-white font-bold text-lg\'>MC</span>'" />
-        </div>
-        <div class="font-semibold text-primary text-sm">Mihaela Cristina</div>
-        <div class="text-maroon text-xs font-semibold mt-1">Trezorier</div>
-        <a href="https://www.linkedin.com/in/mihaela-cristina-867092276/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Mihaela Cristina"
-           class="inline-flex items-center justify-center mt-2 w-7 h-7 rounded-full bg-[#0077B5]/10 hover:bg-[#0077B5] text-[#0077B5] hover:text-white transition-colors duration-200">
-          <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        </a>
-      </div>
-
-      <!-- Sergiu Spătar -->
-      <div class="card-hover text-center p-4 sm:p-6 rounded-2xl border border-gray-100 bg-white shadow-sm">
-        <div class="w-24 h-24 sm:w-32 sm:h-32 rounded-full mx-auto mb-3 sm:mb-4 overflow-hidden" style="box-shadow:0 8px 24px rgba(0,65,101,.18), 0 0 0 4px #772432 bg-primary flex items-center justify-center">
-          <img src="Profile%20Pictures/sergiu-spatar-pp.jpg" alt="Sergiu Spătar"
-               class="w-full h-full object-cover"
-               onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'text-white font-bold text-lg\'>SS</span>'" />
-        </div>
-        <div class="font-semibold text-primary text-sm">Sergiu Spătar</div>
-        <div class="text-maroon text-xs font-semibold mt-1">Sergent</div>
-        <a href="https://www.linkedin.com/in/sergiu-sp%C4%83tar-534947216/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Sergiu Spătar"
-           class="inline-flex items-center justify-center mt-2 w-7 h-7 rounded-full bg-[#0077B5]/10 hover:bg-[#0077B5] text-[#0077B5] hover:text-white transition-colors duration-200">
-          <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        </a>
-      </div>
-
-      <!-- Adriana Stamatin -->
-      <div class="card-hover text-center p-4 sm:p-6 rounded-2xl border border-gray-100 bg-white shadow-sm">
-        <div class="w-24 h-24 sm:w-32 sm:h-32 rounded-full mx-auto mb-3 sm:mb-4 overflow-hidden" style="box-shadow:0 8px 24px rgba(0,65,101,.18), 0 0 0 4px #772432 bg-maroon flex items-center justify-center">
-          <img src="Profile%20Pictures/adriana-stamatin-pp.jpg" alt="Adriana Stamatin"
-               class="w-full h-full object-cover"
-               onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'text-white font-bold text-lg\'>AS</span>'" />
-        </div>
-        <div class="font-semibold text-primary text-sm">Adriana Stamatin</div>
-        <div class="text-maroon text-xs font-semibold mt-1">Președinte Precedent</div>
-        <a href="https://www.linkedin.com/in/stamatin-adriana-michaela-57236590/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Adriana Stamatin"
-           class="inline-flex items-center justify-center mt-2 w-7 h-7 rounded-full bg-[#0077B5]/10 hover:bg-[#0077B5] text-[#0077B5] hover:text-white transition-colors duration-200">
-          <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        </a>
-      </div>
 
     </div>
   </div>
