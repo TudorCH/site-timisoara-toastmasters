@@ -348,7 +348,7 @@
 
 <!-- ════════════════════ CUM ARATĂ O SEARĂ ════════════════════ -->
 <section class="py-20 bg-gray-50 scroll-fade">
-  <div class="max-w-4xl mx-auto px-5 lg:px-8">
+  <div class="max-w-3xl mx-auto px-5 lg:px-8">
     <div class="text-center mb-14">
       <span class="badge mb-4" data-i18n="eve-badge">O seară tipică</span>
       <h2 class="font-heading text-3xl md:text-4xl font-bold text-primary mb-4" data-i18n="eve-h2">
@@ -360,26 +360,25 @@
       </p>
     </div>
 
-    <!-- Step selectors -->
-    <div class="flex items-start justify-center mb-10">
-      <button onclick="eveSelect(0)" class="flex flex-col items-center gap-2 px-5 md:px-10 focus:outline-none">
-        <span id="eve-num-0" class="w-11 h-11 rounded-full border-2 flex items-center justify-center text-sm font-bold transition-all duration-300 bg-primary border-primary text-white">1</span>
-        <span id="eve-lbl-0" class="text-xs md:text-sm font-semibold transition-colors duration-300 text-primary text-center max-w-[80px] leading-tight mt-1">Discursuri pregătite</span>
+    <!-- Step selectors — full-width grid, connector line behind circles -->
+    <div class="grid grid-cols-3 mb-10 relative">
+      <div class="absolute h-0.5 bg-gray-200" style="top:28px;left:calc(100%/6);right:calc(100%/6)"></div>
+      <button onclick="eveSelect(0)" class="flex flex-col items-center gap-3 pb-2 focus:outline-none relative z-10">
+        <span id="eve-num-0" class="w-14 h-14 rounded-full border-2 flex items-center justify-center text-base font-bold transition-all duration-300 bg-primary border-primary text-white">1</span>
+        <span id="eve-lbl-0" class="text-xs sm:text-sm font-semibold transition-colors duration-300 text-primary text-center leading-tight">Discursuri<br/>pregătite</span>
       </button>
-      <div class="w-16 md:w-28 h-0.5 bg-gray-200 mt-5 flex-shrink-0"></div>
-      <button onclick="eveSelect(1)" class="flex flex-col items-center gap-2 px-5 md:px-10 focus:outline-none">
-        <span id="eve-num-1" class="w-11 h-11 rounded-full border-2 flex items-center justify-center text-sm font-bold transition-all duration-300 bg-white border-gray-300 text-gray-400">2</span>
-        <span id="eve-lbl-1" class="text-xs md:text-sm font-semibold transition-colors duration-300 text-gray-400 text-center max-w-[80px] leading-tight mt-1">Discursuri Improvizate</span>
+      <button onclick="eveSelect(1)" class="flex flex-col items-center gap-3 pb-2 focus:outline-none relative z-10">
+        <span id="eve-num-1" class="w-14 h-14 rounded-full border-2 flex items-center justify-center text-base font-bold transition-all duration-300 bg-white border-gray-300 text-gray-400">2</span>
+        <span id="eve-lbl-1" class="text-xs sm:text-sm font-semibold transition-colors duration-300 text-gray-400 text-center leading-tight">Discursuri<br/>Improvizate</span>
       </button>
-      <div class="w-16 md:w-28 h-0.5 bg-gray-200 mt-5 flex-shrink-0"></div>
-      <button onclick="eveSelect(2)" class="flex flex-col items-center gap-2 px-5 md:px-10 focus:outline-none">
-        <span id="eve-num-2" class="w-11 h-11 rounded-full border-2 flex items-center justify-center text-sm font-bold transition-all duration-300 bg-white border-gray-300 text-gray-400">3</span>
-        <span id="eve-lbl-2" class="text-xs md:text-sm font-semibold transition-colors duration-300 text-gray-400 text-center max-w-[80px] leading-tight mt-1">Feedback structurat</span>
+      <button onclick="eveSelect(2)" class="flex flex-col items-center gap-3 pb-2 focus:outline-none relative z-10">
+        <span id="eve-num-2" class="w-14 h-14 rounded-full border-2 flex items-center justify-center text-base font-bold transition-all duration-300 bg-white border-gray-300 text-gray-400">3</span>
+        <span id="eve-lbl-2" class="text-xs sm:text-sm font-semibold transition-colors duration-300 text-gray-400 text-center leading-tight">Feedback<br/>structurat</span>
       </button>
     </div>
 
     <!-- Detail card -->
-    <div id="eve-card" class="bg-white rounded-2xl p-8 md:p-10 shadow-sm border border-gray-100"></div>
+    <div id="eve-card" class="bg-white rounded-2xl p-7 md:p-10 shadow-sm border border-gray-100 min-h-[120px]"></div>
 
   </div>
 </section>
@@ -1057,8 +1056,8 @@
   function eveSelect(i) {
     if (eveActive === i) return;
     eveActive = i;
-    const numBase = 'w-11 h-11 rounded-full border-2 flex items-center justify-center text-sm font-bold transition-all duration-300 ';
-    const lblBase = 'text-xs md:text-sm font-semibold transition-colors duration-300 text-center max-w-[80px] leading-tight mt-1 ';
+    const numBase = 'w-14 h-14 rounded-full border-2 flex items-center justify-center text-base font-bold transition-all duration-300 ';
+    const lblBase = 'text-xs sm:text-sm font-semibold transition-colors duration-300 text-center leading-tight ';
     EVE.forEach((s, j) => {
       document.getElementById('eve-num-' + j).className = numBase + (j === i ? s.numCls    : EVE_INACTIVE.num);
       document.getElementById('eve-lbl-' + j).className = lblBase + (j === i ? s.lblCls    : EVE_INACTIVE.lbl);
