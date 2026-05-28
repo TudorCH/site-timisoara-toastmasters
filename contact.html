@@ -571,9 +571,9 @@
   var ua = navigator.userAgent||navigator.vendor||window.opera;
   var url;
   if (/iPad|iPhone|iPod/.test(ua) && !window.MSStream)
-    url = 'maps://?ll=45.7653976,21.225036&q=Cowork+The+Office+Timi%C8%99oara';
+    url = null;
   else if (/android/i.test(ua))
-    url = 'geo:45.7653976,21.225036?q=Cowork+The+Office+Timi%C8%99oara';
+    url = 'intent://maps.app.goo.gl/xf5mo1xVjvU79gQo8#Intent;scheme=https;end';
   if (url) document.querySelectorAll('a[href*="maps.app.goo.gl"]').forEach(function(el){ el.href = url; });
 })();
 </script>
