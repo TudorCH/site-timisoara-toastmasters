@@ -1603,6 +1603,16 @@
 </script>
 <!-- ════════════════════ TOASTY CHATBOT ════════════════════ -->
 <script src="toasty.js"></script>
-
+<script>
+(function(){
+  var ua = navigator.userAgent||navigator.vendor||window.opera;
+  var url;
+  if (/iPad|iPhone|iPod/.test(ua) && !window.MSStream)
+    url = 'https://maps.apple.com/?q=45.7653976,21.225036';
+  else if (/android/i.test(ua))
+    url = 'geo:45.7653976,21.225036?q=45.7653976,21.225036';
+  if (url) document.querySelectorAll('a[href*="maps.app.goo.gl"]').forEach(function(el){ el.href = url; });
+})();
+</script>
 </body>
 </html>
