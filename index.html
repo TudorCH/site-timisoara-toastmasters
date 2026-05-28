@@ -101,11 +101,24 @@
       #toasty-window { bottom:104px !important; right:28px !important; width:360px !important; }
     }
 
+    /* ── hero fade overlay ── */
+    .hero-fade {
+      height: 65%;
+      background: linear-gradient(to top, #002d47 0%, #002d47 12%, rgba(0,45,71,0.92) 32%, rgba(0,55,85,0.55) 55%, rgba(0,65,101,0.2) 78%, transparent 100%);
+    }
+    @media (max-width: 767px) {
+      .hero-fade {
+        height: 85%;
+        background: linear-gradient(to top, #002d47 0%, #002d47 30%, rgba(0,45,71,0.95) 55%, rgba(0,55,85,0.6) 72%, rgba(0,65,101,0.2) 88%, transparent 100%);
+      }
+    }
+
     /* ── hero: mobil — scalare după lățime ca să se vadă mai mulți oameni ── */
     @media (max-width: 767px) {
       .hero-section {
         background-size: 170% auto !important;
         background-position: center top !important;
+        background-repeat: no-repeat !important;
         background-color: #002d47;
       }
     }
@@ -233,9 +246,8 @@
   <!-- Subtle dark scrim over whole image so text stays readable -->
   <div class="absolute inset-0 z-0" style="background: rgba(0,30,50,0.45);"></div>
 
-  <!-- Bottom fade: raised higher, covers more of the image -->
-  <div class="absolute bottom-0 left-0 right-0 z-0"
-       style="height: 65%; background: linear-gradient(to top, #002d47 0%, #002d47 12%, rgba(0,45,71,0.92) 32%, rgba(0,55,85,0.55) 55%, rgba(0,65,101,0.2) 78%, transparent 100%);"></div>
+  <!-- Bottom fade: taller on mobile to cover bodies area -->
+  <div class="absolute bottom-0 left-0 right-0 z-0 hero-fade"></div>
 
   <!-- Blur glow behind text area (left side, bottom) -->
   <div class="absolute bottom-0 left-0 z-0"
@@ -249,8 +261,8 @@
     <div class="max-w-2xl">
       <h1 class="hero-title font-heading font-bold text-white leading-tight mb-4 sm:mb-6 animate-in"
           style="font-size: clamp(1rem, 5vw, 4.2rem); animation-delay:.1s; text-shadow: 0 2px 20px rgba(0,0,0,0.7), 0 1px 4px rgba(0,0,0,0.5);">
-        <span class="block mb-1 md:mb-5 whitespace-nowrap">Dezvoltă-ți abilitățile de</span>
-        <span class="block text-gold whitespace-nowrap">vorbit în public</span>
+        <span class="block md:inline whitespace-nowrap">Dezvoltă-ți abilitățile de&nbsp;</span>
+        <span class="block md:inline text-gold whitespace-nowrap">vorbit în public</span>
       </h1>
       <p class="hero-desc text-white/90 text-lg md:text-xl leading-relaxed mb-6 sm:mb-10 max-w-xl animate-in"
          style="animation-delay:.3s; text-shadow: 0 1px 6px rgba(0,0,0,0.5);">
