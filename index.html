@@ -101,6 +101,15 @@
       #toasty-window { bottom:104px !important; right:28px !important; width:360px !important; }
     }
 
+    /* ── hero: mobil — scalare după lățime ca să se vadă mai mulți oameni ── */
+    @media (max-width: 767px) {
+      .hero-section {
+        background-size: 170% auto !important;
+        background-position: center top !important;
+        background-color: #002d47;
+      }
+    }
+
     /* ── hero: viewport-uri scurte (laptop cu bară browser) ── */
     @media (max-height: 750px) {
       .hero-title { font-size: clamp(1.9rem, 5vw, 3rem) !important; margin-bottom: 0.75rem; }
@@ -218,7 +227,7 @@
 </nav>
 
 <!-- ════════════════════ HERO ════════════════════ -->
-<section class="min-h-screen flex items-end relative overflow-hidden pt-16"
+<section class="hero-section min-h-screen flex items-end relative overflow-hidden pt-16"
          style="background-image:url('Images/background-header.jpg'); background-size:cover; background-position:center top; min-height: 100svh;">
 
   <!-- Subtle dark scrim over whole image so text stays readable -->
