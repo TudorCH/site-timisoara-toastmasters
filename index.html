@@ -534,14 +534,6 @@
           Ședințe, concursuri și socializare, surprinse în imagini.
         </p>
       </div>
-      <!-- CTA desktop: aliniat dreapta sub header, vizibil doar sm+ -->
-      <div class="hidden sm:flex justify-end mt-5">
-        <a href="galerie.html"
-           class="group inline-flex items-center gap-3 bg-white border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold px-8 py-4 rounded-2xl transition-all duration-300 hover:scale-105 shadow-sm hover:shadow-lg hover:shadow-primary/20 text-base">
-          Vezi toată galeria
-          <svg class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-        </a>
-      </div>
     </div>
 
     <!-- Slider mobile / Grid desktop -->
@@ -553,12 +545,19 @@
                 pb-3 sm:pb-0
                 scrollbar-hide"></div>
 
-    <!-- CTA mobile: vizibil doar sub slider -->
-    <div class="flex sm:hidden justify-center mt-6">
+    <!-- Scroll indicator mobile -->
+    <div class="flex sm:hidden justify-center gap-1.5 mt-4" id="teaser-dots">
+      <span class="teaser-dot h-1.5 w-6 rounded-full bg-primary transition-all duration-300"></span>
+      <span class="teaser-dot h-1.5 w-1.5 rounded-full bg-gray-300 transition-all duration-300"></span>
+      <span class="teaser-dot h-1.5 w-1.5 rounded-full bg-gray-300 transition-all duration-300"></span>
+    </div>
+
+    <!-- CTA: centrat, lat, sub carduri -->
+    <div class="flex justify-center mt-6">
       <a href="galerie.html"
-         class="group inline-flex items-center gap-2 bg-white border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold px-7 py-3 rounded-2xl transition-all duration-300 shadow-sm">
+         class="group inline-flex items-center gap-3 bg-white border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold px-12 py-3.5 sm:py-4 rounded-2xl transition-all duration-300 hover:scale-105 shadow-sm hover:shadow-lg hover:shadow-primary/20 text-sm sm:text-base">
         Vezi toată galeria
-        <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+        <svg class="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
       </a>
     </div>
 
@@ -613,6 +612,19 @@
         '</div>' +
       '</a>';
     }).join('');
+
+    // ── Scroll dots indicator (mobile only) ──
+    var dots = document.querySelectorAll('#teaser-dots .teaser-dot');
+    var total = recent.length;
+    grid.addEventListener('scroll', function() {
+      var cardW = grid.querySelector('a') ? grid.querySelector('a').offsetWidth : 0;
+      var idx = cardW > 0 ? Math.round(grid.scrollLeft / (cardW + 16)) : 0;
+      idx = Math.max(0, Math.min(total - 1, idx));
+      dots.forEach(function(d, i) {
+        d.style.width      = i === idx ? '1.5rem' : '0.375rem';
+        d.style.background = i === idx ? '#004165' : '#d1d5db';
+      });
+    }, { passive: true });
   })();
   </script>
 </section>
