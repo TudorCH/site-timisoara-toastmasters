@@ -546,10 +546,10 @@
                 scrollbar-hide"></div>
 
     <!-- Scroll indicator mobile -->
-    <div class="flex sm:hidden justify-center gap-1.5 mt-4" id="teaser-dots">
-      <span class="teaser-dot h-1.5 w-6 rounded-full bg-primary transition-all duration-300"></span>
-      <span class="teaser-dot h-1.5 w-1.5 rounded-full bg-gray-300 transition-all duration-300"></span>
-      <span class="teaser-dot h-1.5 w-1.5 rounded-full bg-gray-300 transition-all duration-300"></span>
+    <div class="flex sm:hidden justify-center gap-2 mt-5" id="teaser-dots">
+      <span class="teaser-dot h-2 w-8 rounded-full bg-primary transition-all duration-300"></span>
+      <span class="teaser-dot h-2 w-2 rounded-full bg-gray-300 transition-all duration-300"></span>
+      <span class="teaser-dot h-2 w-2 rounded-full bg-gray-300 transition-all duration-300"></span>
     </div>
 
     <!-- CTA: centrat, lat, sub carduri -->
@@ -621,7 +621,7 @@
       var idx = cardW > 0 ? Math.round(grid.scrollLeft / (cardW + 16)) : 0;
       idx = Math.max(0, Math.min(total - 1, idx));
       dots.forEach(function(d, i) {
-        d.style.width      = i === idx ? '1.5rem' : '0.375rem';
+        d.style.width      = i === idx ? '2rem' : '0.5rem';
         d.style.background = i === idx ? '#004165' : '#d1d5db';
       });
     }, { passive: true });
