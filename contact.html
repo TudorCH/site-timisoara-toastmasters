@@ -566,5 +566,16 @@
 <script src="search.js"></script>
 <!-- ════════════════════ TOASTY CHATBOT ════════════════════ -->
 <script src="toasty.js"></script>
+<script>
+(function(){
+  var ua = navigator.userAgent||navigator.vendor||window.opera;
+  var url;
+  if (/iPad|iPhone|iPod/.test(ua) && !window.MSStream)
+    url = 'maps://?ll=45.7653976,21.225036&q=Cowork+The+Office+Timi%C8%99oara';
+  else if (/android/i.test(ua))
+    url = 'geo:45.7653976,21.225036?q=Cowork+The+Office+Timi%C8%99oara';
+  if (url) document.querySelectorAll('a[href*="maps.app.goo.gl"]').forEach(function(el){ el.href = url; });
+})();
+</script>
 </body>
 </html>
