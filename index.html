@@ -893,8 +893,6 @@
       if (prevBtn) prevBtn.disabled = true;
     });
 
-    // Build full-text search index from live DOM
-    buildSearchIndex();
   });
 
   /* Recalculate on resize (orientation change, window resize) */
@@ -1391,144 +1389,6 @@
     document.getElementById('form-success').classList.remove('hidden');
   }
 
-  // ════════════════════ SEARCH ════════════════════
-  let searchIndex = [];
-
-  function buildSearchIndex() {
-    searchIndex = [];
-
-    // Map known section IDs to friendly labels
-    const labelMap = {
-      'club':           'Despre Club',
-      'schedule':       'Ședințe & Program',
-      'about':          'Conducere',
-      'contact':        'Contact & Înscriere',
-      'galerie':        'Galerie',
-      'journey-section':'Călătoria Toastmasters',
-    };
-
-    // Index every <section> on the page
-    document.querySelectorAll('section').forEach(section => {
-      const id = section.id || '';
-      const anchor = id ? '#' + id : '';
-      // Use the mapped label, or fall back to first heading text, or the id
-      const heading = section.querySelector('h2, h3, h1');
-      const label = labelMap[id] || (heading ? heading.textContent.trim() : id || 'Acasă');
-      const text = (section.innerText || section.textContent || '').toLowerCase().replace(/\s+/g, ' ').trim();
-      if (text.length > 5) {
-        searchIndex.push({ label, anchor, text });
-      }
-    });
-
-    // Also index the hero (first section has no id, give it one here)
-    const firstSection = document.querySelector('section:not([id])');
-    if (firstSection) {
-      const text = (firstSection.innerText || '').toLowerCase();
-      // update the existing entry or push if hero text wasn't caught
-      const already = searchIndex.find(i => i.anchor === '' && i.label !== 'Acasă');
-      if (!already) {
-        searchIndex.unshift({ label: 'Acasă', anchor: '', text });
-      }
-    }
-
-    // Index individual board members by name + role
-    document.querySelectorAll('#about .card-hover').forEach(card => {
-      const name = card.querySelector('.font-semibold')?.textContent?.trim() || '';
-      const role = card.querySelector('.text-maroon')?.textContent?.trim() || '';
-      if (name) {
-        searchIndex.push({
-          label: name + (role ? ', ' + role : ''),
-          anchor: '#about',
-          text: (name + ' ' + role).toLowerCase()
-        });
-      }
-    });
-  }
-
-  function liveSearch(q, source) {
-    source = source || 'desktop';
-    const ddId = source === 'mobile' ? 'mobile-search-dropdown' : 'search-dropdown';
-    const dd = document.getElementById(ddId);
-    q = q.trim().toLowerCase();
-    if (q.length < 2) { dd.classList.add('hidden'); return; }
-
-    const words = q.split(/\s+/).filter(w => w.length >= 2);
-
-    // Score each index entry
-    const scored = searchIndex.map(item => {
-      const labelLow = item.label.toLowerCase();
-      let score = 0;
-      words.forEach(word => {
-        if (labelLow.includes(word)) score += 4;       // label match → top priority
-        if (item.text.includes(word))  score += 1;     // body text match
-      });
-      return { ...item, score };
-    }).filter(item => item.score > 0);
-
-    // Deduplicate by anchor, keep highest-scored entry per destination
-    const seen = new Map();
-    scored.forEach(item => {
-      const key = item.anchor + '|' + item.label;
-      if (!seen.has(key) || item.score > seen.get(key).score) seen.set(key, item);
-    });
-
-    // Collapse multiple entries with same anchor into the highest-scored one
-    const byAnchor = new Map();
-    seen.forEach(item => {
-      if (!byAnchor.has(item.anchor) || item.score > byAnchor.get(item.anchor).score) {
-        byAnchor.set(item.anchor, item);
-      }
-    });
-
-    // Board member results keep their own label (don't collapse with section)
-    const boardHits = scored.filter(i => i.anchor === '#about' && i.label.includes('—'));
-    const sectionHits = Array.from(byAnchor.values()).filter(i => !(i.anchor === '#about' && i.label.includes('—')));
-    const hits = [...boardHits, ...sectionHits].sort((a, b) => b.score - a.score);
-
-    if (!hits.length) {
-      dd.innerHTML = '<div class="px-4 py-3 text-sm text-gray-400">Niciun rezultat găsit.</div>';
-    } else {
-      dd.innerHTML = hits.slice(0, 7).map(h => `
-        <button onclick="goTo('${h.anchor}','${source}')"
-          class="w-full text-left px-4 py-3 hover:bg-primary/5 flex items-center gap-3 border-b border-gray-50 last:border-0 transition-colors">
-          <svg class="w-4 h-4 text-maroon flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-          </svg>
-          <span class="text-sm text-gray-700 font-medium">${h.label}</span>
-        </button>`).join('');
-    }
-    dd.classList.remove('hidden');
-  }
-
-  function goTo(anchor, source) {
-    closeSearch();
-    document.getElementById('search-input').value = '';
-    const mobileInput = document.getElementById('mobile-search-input');
-    if (mobileInput) mobileInput.value = '';
-    if (source === 'mobile') {
-      document.getElementById('mobile-search').classList.add('hidden');
-    }
-    if (anchor) {
-      document.querySelector(anchor).scrollIntoView({ behavior: 'smooth' });
-    } else {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  }
-
-  function closeSearch() {
-    document.getElementById('search-dropdown').classList.add('hidden');
-    const mdd = document.getElementById('mobile-search-dropdown');
-    if (mdd) mdd.classList.add('hidden');
-  }
-
-  // Close dropdowns when clicking outside
-  document.addEventListener('click', e => {
-    if (!e.target.closest('#search-input') && !e.target.closest('#search-dropdown') &&
-        !e.target.closest('#mobile-search-input') && !e.target.closest('#mobile-search-dropdown')) {
-      closeSearch();
-    }
-  });
-
   // ════════════════════ JOURNEY TIMELINE ════════════════════
   const JRN_COLORS = ['#772432','#004165','#004165','#002d47','#F2DF74'];
   const JRN_PCTS   = [0, 25, 50, 75, 100];
@@ -1601,6 +1461,7 @@
   }, { threshold: 0.08 });
   document.querySelectorAll('.scroll-fade').forEach(el => io.observe(el));
 </script>
+<script src="search.js"></script>
 <!-- ════════════════════ TOASTY CHATBOT ════════════════════ -->
 <script src="toasty.js"></script>
 <script>
