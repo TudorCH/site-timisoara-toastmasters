@@ -992,49 +992,44 @@
   })();
 </script>
 
-<!-- ════════════════════ PROGRAM ȘEDINȚE ════════════════════ -->
-<section id="schedule" class="py-14 lg:py-24 bg-white scroll-fade">
+<!-- ════════════════════ PROGRAM & CONTACT ════════════════════ -->
+<section id="contact" class="py-14 lg:py-24 bg-gray-50 scroll-fade">
   <div class="max-w-7xl mx-auto px-5 lg:px-8">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-stretch">
 
-      <!-- Left -->
-      <div class="flex flex-col">
-        <div class="badge mb-4">Programul nostru</div>
-        <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-5">
-          Următoarele ședințe
-        </h2>
-        <p class="text-gray-500 text-lg mb-8 leading-relaxed">
-          Ne întâlnim în fiecare <strong class="text-primary">miercuri</strong>, 19:30 – 21:00.
-          Vino ca invitat și descoperă comunitatea!
-        </p>
-        <!-- Map embed, flex-1 umple spațiul rămas -->
-        <div class="mt-8 flex-1 flex flex-col overflow-hidden rounded-2xl shadow-sm border border-gray-100 min-h-[280px]">
-          <iframe
-            src="https://maps.google.com/maps?q=45.7653976,21.225036&output=embed&z=17&hl=ro"
-            width="100%"
-            class="flex-1 min-h-[240px]"
-            style="border:0; display:block;"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            title="Cowork The Office Timișoara">
-          </iframe>
-          <div class="bg-gray-50 px-4 py-3 flex items-center justify-between flex-shrink-0">
-            <div>
-              <div class="font-semibold text-primary text-sm">Cowork The Office (Etajul 2)</div>
-              <div class="text-gray-400 text-xs mt-0.5">Clădirea BCR, Calea Aradului nr.11, Timișoara</div>
-            </div>
-            <a href="https://www.google.com/maps/place/Cowork+Timisoara+-+The+Office/@45.7653976,21.2155088,1513m/data=!3m1!1e3!4m10!1m2!2m1!1sCowork+The+Office+Timisoara!3m6!1s0x474567fdbfe777cd:0xcb9d641549027845!8m2!3d45.7653976!4d21.225036!15sChtDb3dvcmsgVGhlIE9mZmljZSBUaW1pc29hcmFaHSIbY293b3JrIHRoZSBvZmZpY2UgdGltaXNvYXJhkgEPY293b3JraW5nX3NwYWNlmgFEQ2k5RFFVbFJRVU52WkVOb2RIbGpSamx2VDIxNGVtSlhhRWhQUkZaVlducEtWRlpWTlhSYVIwWk5UVmhvVjJJd1JSQULgAQD6AQQILRA1!16s%2Fg%2F11tfv4m4qy?hl=ro&entry=ttu" target="_blank"
-               class="inline-flex items-center gap-1.5 bg-primary hover:bg-primary-light text-white text-xs font-semibold px-3 py-2 rounded-xl transition-colors">
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-              Deschide Maps
-            </a>
-          </div>
-        </div>
+    <!-- Header central -->
+    <div class="text-center mb-10 lg:mb-14">
+      <div class="badge mb-4">Program & Înscriere</div>
+      <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-4">
+        Hai la o ședință!
+      </h2>
+      <p class="text-gray-500 text-lg max-w-xl mx-auto mb-8 leading-relaxed">
+        Alege o dată din calendar și completează formularul —<br class="hidden sm:block"/>
+        te contactăm noi cu toate detaliile.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-3">
+        <span class="inline-flex items-center gap-2 bg-white border border-gray-200 text-primary text-sm font-medium px-4 py-2 rounded-full shadow-sm">
+          <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          Miercuri, 19:30 – 21:00
+        </span>
+        <span class="inline-flex items-center gap-2 bg-white border border-gray-200 text-primary text-sm font-medium px-4 py-2 rounded-full shadow-sm">
+          <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          Cowork The Office, Timișoara
+        </span>
+        <span class="inline-flex items-center gap-2 bg-maroon/10 border border-maroon/20 text-maroon text-sm font-semibold px-4 py-2 rounded-full shadow-sm">
+          <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          Gratuit pentru vizitatori
+        </span>
       </div>
+    </div>
 
-      <!-- Right: Interactive Calendar -->
-      <div class="overflow-hidden rounded-2xl border border-gray-100 shadow-sm flex flex-col">
+    <!-- 2-col: (Calendar + Hartă) + Formular -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+
+      <!-- Coloana stânga: Calendar + Hartă stacked -->
+      <div class="flex flex-col gap-6">
+
+      <!-- Calendar card -->
+      <div class="overflow-hidden rounded-2xl border border-gray-100 shadow-sm flex flex-col bg-white">
 
         <!-- Header cu navigare lună -->
         <div class="bg-primary px-4 py-3 flex items-center justify-between">
@@ -1087,7 +1082,32 @@
           </a>
         </div>
 
-      </div>
+      </div><!-- /calendar card -->
+
+      <!-- Hartă -->
+      <div class="overflow-hidden rounded-2xl shadow-sm border border-gray-100">
+        <iframe
+          src="https://maps.google.com/maps?q=45.7653976,21.225036&output=embed&z=17&hl=ro"
+          width="100%" height="260"
+          style="border:0; display:block;"
+          allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Cowork The Office Timișoara">
+        </iframe>
+        <div class="bg-white px-5 py-3.5 flex items-center justify-between">
+          <div>
+            <div class="font-semibold text-primary text-sm">Cowork The Office (Etajul 2)</div>
+            <div class="text-gray-400 text-xs mt-0.5">Clădirea BCR, Calea Aradului nr.11, Timișoara</div>
+          </div>
+          <a href="https://share.google/JtHrmJa2aGGGUZ5n8" target="_blank"
+             class="inline-flex items-center gap-1.5 bg-primary hover:bg-primary-light text-white text-xs font-semibold px-3 py-2 rounded-xl transition-colors">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            Deschide Maps
+          </a>
+        </div>
+      </div><!-- /harta -->
+
+      </div><!-- /coloana stanga -->
 
       <script>
       (function () {
@@ -1198,8 +1218,8 @@
 
         window.calScrollToForm = function() {
           setTimeout(() => {
-            const el = document.getElementById('contact');
-            if (el) el.scrollIntoView({ behavior: 'smooth' });
+            const el = document.getElementById('form-card');
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }, 50);
         };
 
@@ -1223,44 +1243,8 @@
       })();
       </script>
 
-    </div>
-  </div>
-</section>
-
-<!-- ════════════════════ CONTACT ════════════════════ -->
-<section id="contact" class="py-14 lg:py-24 bg-gray-50 scroll-fade">
-  <div class="max-w-7xl mx-auto px-5 lg:px-8">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
-
-      <div>
-        <div class="badge mb-4">Contact</div>
-        <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-5">Hai la o ședință!</h2>
-        <p class="text-gray-500 text-lg mb-8 leading-relaxed">Completează formularul și te contactăm noi cu detalii despre următoarea ședință potrivită pentru tine.</p>
-
-        <div class="space-y-5">
-          <div class="flex items-center gap-4">
-            <div class="w-12 h-12 bg-primary/5 rounded-xl flex items-center justify-center flex-shrink-0">
-              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            </div>
-            <div>
-              <div class="font-semibold text-primary text-sm">Miercuri, 19:30 – 21:00</div>
-              <div class="text-gray-500 text-sm">Ședințe săptămânale</div>
-            </div>
-          </div>
-          <div class="flex items-center gap-4">
-            <div class="w-12 h-12 bg-primary/5 rounded-xl flex items-center justify-center flex-shrink-0">
-              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-            </div>
-            <div>
-              <div class="font-semibold text-primary text-sm">Cowork The Office (Etajul 2)</div>
-              <div class="text-gray-500 text-sm">Clădirea BCR, Calea Aradului nr.11</div>
-              <div class="text-gray-400 text-xs">Timișoara, România</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="bg-white rounded-3xl p-8 shadow-sm border border-gray-100">
+      <!-- Coloana dreapta: Formular -->
+      <div id="form-card" class="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 lg:row-span-1">
         <h3 class="font-heading text-2xl font-bold text-primary mb-6">Înscrie-te ca invitat</h3>
         <form id="contact-form" onsubmit="submitForm(event)" class="space-y-5">
           <div class="grid grid-cols-2 gap-4">
@@ -1318,6 +1302,7 @@
       </div>
 
     </div>
+
   </div>
 </section>
 
