@@ -209,7 +209,7 @@
               <div>
                 <div id="cal-detail-date" class="font-bold text-primary text-sm capitalize"></div>
                 <div class="text-gray-500 text-xs mt-0.5">19:30 – 21:00 &nbsp;·&nbsp;
-                  <a href="https://maps.app.goo.gl/DVs13RVEuvLN1zsZ7" target="_blank"
+                  <a href="https://maps.app.goo.gl/xf5mo1xVjvU79gQo8" target="_blank"
                      class="text-maroon hover:underline">Cowork The Office, Etajul 2</a>
                 </div>
                 <div class="text-gray-400 text-xs mt-0.5">Clădirea BCR, Calea Aradului nr.11</div>
@@ -248,7 +248,7 @@
               <div class="font-semibold text-primary text-sm">Cowork The Office (Etajul 2)</div>
               <div class="text-gray-400 text-xs mt-0.5">Clădirea BCR, Calea Aradului nr.11, Timișoara</div>
             </div>
-            <a href="https://maps.app.goo.gl/DVs13RVEuvLN1zsZ7" target="_blank"
+            <a href="https://maps.app.goo.gl/xf5mo1xVjvU79gQo8" target="_blank"
                class="inline-flex items-center gap-1.5 bg-primary hover:bg-primary-light text-white text-xs font-semibold px-3 py-2 rounded-xl transition-colors">
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
               Deschide Maps
@@ -566,16 +566,5 @@
 <script src="search.js"></script>
 <!-- ════════════════════ TOASTY CHATBOT ════════════════════ -->
 <script src="toasty.js"></script>
-<script>
-(function(){
-  var ua = navigator.userAgent||navigator.vendor||window.opera;
-  var url;
-  if (/iPad|iPhone|iPod/.test(ua) && !window.MSStream)
-    url = 'https://maps.apple.com/?q=45.7653976,21.225036';
-  else if (/android/i.test(ua))
-    url = 'geo:45.7653976,21.225036?q=45.7653976,21.225036';
-  if (url) document.querySelectorAll('a[href*="maps.app.goo.gl"]').forEach(function(el){ el.href = url; });
-})();
-</script>
 </body>
 </html>
