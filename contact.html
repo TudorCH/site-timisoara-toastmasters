@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact & Program | Timișoara Toastmasters</title>
+  <link rel="icon" type="image/png" href="logo.png" />
+  <link rel="apple-touch-icon" href="logo.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary:  { DEFAULT: '#004165', light: '#00537f', dark: '#002d47' },
+            maroon:   { DEFAULT: '#772432', light: '#8c2b3b', dark: '#5c1a25' },
+            gold:     { DEFAULT: '#F2DF74', light: '#f7ea99', dark: '#dcc83a' },
+            'tm-gray': { DEFAULT: '#A9B2B1' },
+          },
+          fontFamily: {
+            sans:    ['Inter', 'sans-serif'],
+            heading: ['Plus Jakarta Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    * { scroll-behavior: smooth; }
+    .gradient-hero { background: linear-gradient(135deg, #002d47 0%, #004165 55%, #003555 100%); }
+    .gradient-dark { background: linear-gradient(135deg, #002d47 0%, #004165 100%); }
+    .nav-link { position: relative; }
+    .nav-link::after {
+      content:''; position:absolute; bottom:-2px; left:0;
+      width:0; height:2px; background:#F2DF74; transition:width .3s ease;
+    }
+    .nav-link:hover::after { width:100%; }
+    .badge {
+      display:inline-flex; align-items:center; gap:6px;
+      background:rgba(119,36,50,.12); color:#772432;
+      border:1px solid rgba(119,36,50,.25);
+      border-radius:999px; padding:4px 14px; font-size:13px; font-weight:600;
+    }
+    #mobile-menu { transition:all .3s ease; }
+    .search-input:focus { outline:none; box-shadow:0 0 0 2px rgba(242,223,116,.4); }
+    .scroll-fade { opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s ease; }
+    .scroll-fade.visible { opacity:1; transform:translateY(0); }
+  </style>
+</head>
+<body class="font-sans bg-white text-gray-900 antialiased">
+
+<!-- ════════════════════ NAVBAR ════════════════════ -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-primary shadow-lg shadow-primary/30">
+  <div class="max-w-7xl mx-auto px-4 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center gap-3 flex-shrink-0">
+        <img src="logo.png" alt="Toastmasters International" class="h-8 sm:h-10 w-auto object-contain flex-shrink-0" />
+        <div>
+          <div class="text-white font-bold text-sm sm:text-base leading-tight uppercase tracking-wide">Timișoara Toastmasters</div>
+          <div class="text-gold text-[10px] sm:text-[11px] font-semibold tracking-wide leading-tight">"Where Leaders Are Made!"</div>
+        </div>
+      </a>
+
+      <!-- Desktop nav -->
+      <div class="hidden lg:flex items-center gap-6">
+        <a href="index.html"        class="nav-link text-white/80 hover:text-white text-sm font-medium transition-colors">Acasă</a>
+        <a href="despre-noi.html"   class="nav-link text-white/80 hover:text-white text-sm font-medium transition-colors">Despre noi</a>
+        <a href="galerie.html"      class="nav-link text-white/80 hover:text-white text-sm font-medium transition-colors">Galerie</a>
+        <a href="contact.html"      class="nav-link text-gold text-sm font-semibold transition-colors">Contact</a>
+        <a href="contact.html"
+           class="ml-1 bg-maroon hover:bg-maroon-light text-white font-semibold px-5 py-2 rounded-full text-sm
+                  transition-all duration-200 hover:scale-105 shadow-md shadow-maroon/30">
+          Hai la o ședință
+        </a>
+      </div>
+
+      <!-- Mobile: hamburger -->
+      <div class="flex lg:hidden items-center gap-2">
+        <button id="mobile-toggle" onclick="toggleMobile()"
+                class="text-white p-2 rounded-full hover:bg-white/10 transition-colors">
+          <svg id="icon-menu"  class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+          <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden lg:hidden border-t border-white/10 pt-4 pb-5 overflow-hidden">
+      <div class="flex flex-col gap-1">
+        <a href="index.html"      onclick="closeMobile()" class="text-white/80 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors">Acasă</a>
+        <a href="despre-noi.html" onclick="closeMobile()" class="text-white/80 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors">Despre noi</a>
+        <a href="galerie.html"    onclick="closeMobile()" class="text-white/80 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors">Galerie</a>
+        <a href="contact.html"    onclick="closeMobile()" class="text-gold bg-white/5 rounded-xl px-4 py-3 text-sm font-semibold">Contact</a>
+        <div class="pt-2 px-4">
+          <a href="contact.html" onclick="closeMobile()"
+             class="block w-full bg-maroon text-white font-semibold px-5 py-3 rounded-full text-sm text-center shadow-md">
+            Hai la o ședință
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ════════════════════ HERO SIMPLU ════════════════════ -->
+<div class="gradient-hero pt-28 pb-12 px-5 lg:px-8 text-center">
+  <div class="max-w-2xl mx-auto">
+    <div class="badge mb-4" style="background:rgba(242,223,116,.15);color:#F2DF74;border-color:rgba(242,223,116,.3);">Program & Înscriere</div>
+    <h1 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
+      Hai la o ședință!
+    </h1>
+    <p class="text-white/70 text-lg max-w-xl mx-auto leading-relaxed">
+      Alege o dată din calendar și completează formularul.<br class="hidden sm:block"/>
+      Te contactăm noi cu toate detaliile.
+    </p>
+  </div>
+</div>
+
+<!-- ════════════════════ PROGRAM & CONTACT ════════════════════ -->
+<section class="py-14 lg:py-20 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8">
+
+    <!-- 2-col: (Calendar + Hartă) + Formular -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+
+      <!-- Coloana stânga: Calendar + Hartă stacked -->
+      <div class="flex flex-col gap-6">
+
+        <!-- Calendar card -->
+        <div class="overflow-hidden rounded-2xl border border-gray-100 shadow-sm flex flex-col bg-white">
+
+          <!-- Header cu navigare lună -->
+          <div class="bg-primary px-4 py-3 flex items-center justify-between">
+            <button id="cal-prev" onclick="calNav(-1)"
+              class="w-8 h-8 flex items-center justify-center rounded-full text-white/70 hover:text-white hover:bg-white/10 transition-colors disabled:opacity-30 disabled:cursor-not-allowed">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+              </svg>
+            </button>
+            <div class="text-center">
+              <div id="cal-month-label" class="text-white font-semibold text-sm"></div>
+              <div class="flex items-center justify-center gap-3 mt-0.5 text-[10px] text-white/60">
+                <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-white/30 inline-block"></span>RO</span>
+                <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-gold inline-block"></span>EN</span>
+              </div>
+            </div>
+            <button id="cal-next" onclick="calNav(1)"
+              class="w-8 h-8 flex items-center justify-center rounded-full text-white/70 hover:text-white hover:bg-white/10 transition-colors disabled:opacity-30 disabled:cursor-not-allowed">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Detail panel -->
+          <div id="cal-detail" class="hidden border-b border-gray-100 bg-primary/5 px-4 py-3">
+            <div class="flex items-center justify-between gap-3">
+              <div>
+                <div id="cal-detail-date" class="font-bold text-primary text-sm capitalize"></div>
+                <div class="text-gray-500 text-xs mt-0.5">19:30 – 21:00 &nbsp;·&nbsp;
+                  <a href="https://maps.app.goo.gl/DVs13RVEuvLN1zsZ7" target="_blank"
+                     class="text-maroon hover:underline">Cowork The Office, Etajul 2</a>
+                </div>
+                <div class="text-gray-400 text-xs mt-0.5">Clădirea BCR, Calea Aradului nr.11</div>
+              </div>
+              <span id="cal-detail-lang" class="flex-shrink-0 text-xs font-bold px-3 py-1 rounded-full"></span>
+            </div>
+          </div>
+
+          <!-- Calendar grid -->
+          <div class="px-4 pt-3 pb-1" id="cal-months"></div>
+
+          <!-- CTA calendar -->
+          <div class="px-4 pb-4 pt-1 mt-auto">
+            <a id="cal-cta" href="#form-card"
+               onclick="calScrollToForm()"
+               class="w-full flex items-center justify-center gap-2 border-2 border-dashed border-gray-200 text-gray-400 font-semibold text-sm px-6 py-3 rounded-xl transition-all duration-300 cursor-not-allowed pointer-events-none">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+              <span id="cal-cta-text">Selectează o dată mai întâi</span>
+            </a>
+          </div>
+
+        </div><!-- /calendar card -->
+
+        <!-- Hartă -->
+        <div class="overflow-hidden rounded-2xl shadow-sm border border-gray-100">
+          <iframe
+            src="https://maps.google.com/maps?q=45.7653976,21.225036&output=embed&z=17&hl=ro"
+            width="100%" height="260"
+            style="border:0; display:block;"
+            allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Cowork The Office Timișoara">
+          </iframe>
+          <div class="bg-white px-5 py-3.5 flex items-center justify-between">
+            <div>
+              <div class="font-semibold text-primary text-sm">Cowork The Office (Etajul 2)</div>
+              <div class="text-gray-400 text-xs mt-0.5">Clădirea BCR, Calea Aradului nr.11, Timișoara</div>
+            </div>
+            <a href="https://maps.app.goo.gl/DVs13RVEuvLN1zsZ7" target="_blank"
+               class="inline-flex items-center gap-1.5 bg-primary hover:bg-primary-light text-white text-xs font-semibold px-3 py-2 rounded-xl transition-colors">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              Deschide Maps
+            </a>
+          </div>
+        </div><!-- /harta -->
+
+      </div><!-- /coloana stanga -->
+
+      <script>
+      (function () {
+        const MONTHS = ['Ianuarie','Februarie','Martie','Aprilie','Mai','Iunie',
+                        'Iulie','August','Septembrie','Octombrie','Noiembrie','Decembrie'];
+        const DAYS   = ['L','M','M','J','V','S','D'];
+        const START_M = 5, END_M = 11, YR = 2026;
+
+        function lastWed(month) {
+          const last = new Date(YR, month + 1, 0);
+          const diff = (last.getDay() - 3 + 7) % 7;
+          return last.getDate() - diff;
+        }
+        function mf(date) { return (date.getDay() + 6) % 7; }
+
+        let curMonth = START_M;
+        let sel = null;
+
+        function render() {
+          const m = curMonth;
+          const today = new Date(); today.setHours(0,0,0,0);
+          const firstDay = new Date(YR, m, 1);
+          const daysInMo = new Date(YR, m + 1, 0).getDate();
+          const lw       = lastWed(m);
+          const startDow = mf(firstDay);
+
+          document.getElementById('cal-month-label').textContent = MONTHS[m] + ' ' + YR;
+          document.getElementById('cal-prev').disabled = m <= START_M;
+          document.getElementById('cal-next').disabled = m >= END_M;
+
+          let html = '';
+          html += `<div class="grid grid-cols-7 mb-1">`;
+          DAYS.forEach((d, i) => {
+            html += `<div class="text-center text-[10px] font-semibold py-1 ${i===2?'text-primary':'text-gray-300'}">${d}</div>`;
+          });
+          html += `</div><div class="grid grid-cols-7 gap-y-1">`;
+
+          for (let b = 0; b < startDow; b++) html += `<div></div>`;
+          for (let day = 1; day <= daysInMo; day++) {
+            const d = new Date(YR, m, day); d.setHours(0,0,0,0);
+            const isWed   = d.getDay() === 3;
+            const lang    = isWed ? (day === lw ? 'EN' : 'RO') : null;
+            const isPast  = d < today;
+            const isToday = d.getTime() === today.getTime();
+            const isSel   = sel && sel.month===m && sel.day===day;
+
+            if (isWed) {
+              let cls;
+              if (isSel)       cls = lang==='EN' ? 'bg-amber-400 text-white font-bold' : 'bg-primary text-white font-bold';
+              else if (isPast) cls = lang==='EN' ? 'bg-amber-50 text-amber-300 font-semibold' : 'bg-primary/8 text-primary/30 font-semibold';
+              else             cls = lang==='EN'
+                ? 'bg-amber-100 text-amber-700 font-bold hover:bg-amber-200 transition-colors'
+                : 'bg-primary/10 text-primary font-bold hover:bg-primary/20 transition-colors';
+              html += `<div class="flex items-center justify-center">
+                <button class="w-9 h-9 rounded-full text-xs ${cls}" onclick="calSel(${m},${day},'${lang}')">${day}</button>
+              </div>`;
+            } else {
+              const cls = isToday ? 'text-maroon font-bold' : isPast ? 'text-gray-200' : 'text-gray-400';
+              html += `<div class="flex items-center justify-center h-9"><span class="text-xs ${cls}">${day}</span></div>`;
+            }
+          }
+          html += `</div>`;
+          document.getElementById('cal-months').innerHTML = html;
+        }
+
+        window.calNav = function(dir) {
+          const next = curMonth + dir;
+          if (next < START_M || next > END_M) return;
+          curMonth = next;
+          sel = null;
+          document.getElementById('cal-detail').classList.add('hidden');
+          render();
+        };
+
+        window.calSel = function(month, day, lang) {
+          sel = { month, day };
+          render();
+
+          const panel  = document.getElementById('cal-detail');
+          const dateEl = document.getElementById('cal-detail-date');
+          const langEl = document.getElementById('cal-detail-lang');
+          const d   = new Date(YR, month, day);
+          const str = d.toLocaleDateString('ro-RO', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
+          const dateStr = str.charAt(0).toUpperCase() + str.slice(1);
+          dateEl.textContent = dateStr;
+          langEl.textContent = lang === 'EN' ? 'Ședință EN' : 'Ședință RO';
+          langEl.className   = lang === 'EN'
+            ? 'flex-shrink-0 text-xs font-bold px-3 py-1 rounded-full bg-amber-100 text-amber-700'
+            : 'flex-shrink-0 text-xs font-bold px-3 py-1 rounded-full bg-primary/10 text-primary';
+          panel.classList.remove('hidden');
+
+          const cta     = document.getElementById('cal-cta');
+          const ctaTxt  = document.getElementById('cal-cta-text');
+          const shortDate = d.toLocaleDateString('ro-RO', { day:'numeric', month:'long' });
+          ctaTxt.textContent = 'Vreau să vin pe ' + shortDate;
+          cta.className = 'w-full flex items-center justify-center gap-2 bg-maroon hover:bg-maroon-light text-white font-semibold text-sm px-6 py-3 rounded-xl transition-all duration-300 shadow-md shadow-maroon/20 hover:scale-[1.02] pointer-events-auto cursor-pointer';
+
+          const formField = document.getElementById('form-sedinta');
+          if (formField) formField.value = dateStr + (lang === 'EN' ? ' (EN)' : ' (RO)');
+        };
+
+        window.calScrollToForm = function() {
+          setTimeout(() => {
+            const el = document.getElementById('form-card');
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 50);
+        };
+
+        // Auto-select next upcoming meeting
+        (function autoSelect() {
+          const today = new Date(); today.setHours(0,0,0,0);
+          for (let m = START_M; m <= END_M; m++) {
+            const lw   = lastWed(m);
+            const days = new Date(YR, m + 1, 0).getDate();
+            for (let day = 1; day <= days; day++) {
+              const d = new Date(YR, m, day); d.setHours(0,0,0,0);
+              if (d.getDay() === 3 && d >= today) {
+                curMonth = m;
+                calSel(m, day, day===lw?'EN':'RO');
+                return;
+              }
+            }
+          }
+          render();
+        })();
+      })();
+      </script>
+
+      <!-- Coloana dreapta: Formular -->
+      <div id="form-card" class="bg-white rounded-3xl p-5 sm:p-8 shadow-sm border border-gray-100">
+        <h3 class="font-heading text-2xl font-bold text-primary mb-6">Înscrie-te ca invitat</h3>
+        <form id="contact-form" onsubmit="submitForm(event)" class="space-y-5">
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1.5">Prenume</label>
+              <input type="text" placeholder="Ion" required
+                class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1.5">Nume</label>
+              <input type="text" placeholder="Popescu" required
+                class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1.5">Email</label>
+            <input type="email" placeholder="ion.popescu@email.com" required
+              class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1.5">Telefon <span class="text-gray-400">(opțional)</span></label>
+            <input type="tel" placeholder="+40 7XX XXX XXX"
+              class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1.5">
+              Ședința dorită
+              <span class="text-gray-400 font-normal">(opțional)</span>
+            </label>
+            <div class="relative">
+              <input id="form-sedinta" type="text" readonly placeholder="Selectează o dată din calendar…"
+                class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm bg-gray-50 text-primary font-medium cursor-default focus:outline-none" />
+              <svg class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1.5">Mesaj</label>
+            <textarea rows="3" placeholder="Sunt interesat să vin ca invitat la o ședință…"
+              class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none"></textarea>
+          </div>
+          <button type="submit"
+            class="w-full bg-maroon hover:bg-maroon-light text-white font-semibold py-3.5 rounded-xl text-sm
+                   transition-all duration-200 hover:scale-[1.02] shadow-md shadow-maroon/20">
+            Trimite cererea
+          </button>
+          <p class="text-xs text-gray-400 text-center">Prin trimitere accepți <a href="#" class="text-maroon hover:underline">Politica de confidențialitate</a></p>
+        </form>
+        <div id="form-success" class="hidden text-center py-8">
+          <div class="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          </div>
+          <h4 class="font-semibold text-primary text-lg mb-2">Mulțumim!</h4>
+          <p class="text-gray-500 text-sm">Te vom contacta în curând cu detalii despre următoarea ședință.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ FOOTER ════════════════════ -->
+<footer class="bg-[#002d47] border-t border-white/5 pt-16 pb-8">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8">
+    <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10 pb-12 border-b border-white/10">
+
+      <div class="col-span-2 lg:col-span-2">
+        <div class="flex items-center gap-3 mb-5">
+          <img src="logo.png" alt="Toastmasters" class="h-12 w-auto object-contain" />
+          <div>
+            <div class="text-white font-bold text-lg leading-tight">Timișoara Toastmasters</div>
+            <div class="text-gold text-[10px] font-semibold tracking-widest uppercase">CLUB</div>
+          </div>
+        </div>
+        <p class="hidden md:block text-white/50 text-sm leading-relaxed max-w-xs mb-6">
+          Clubul Timișoara Toastmasters, un spațiu sigur pentru practică, feedback și
+          creștere în comunicare și vorbit în public, parte din rețeaua globală Toastmasters International.
+        </p>
+        <div class="flex gap-3 mt-1 md:mt-0">
+          <a href="https://www.instagram.com/timisoaratoastmasters/" target="_blank" class="w-11 h-11 rounded-full bg-white/10 hover:bg-maroon/40 flex items-center justify-center transition-colors" title="Instagram">
+            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="https://www.facebook.com/timisoara.toastmasters/?locale=ro_RO" target="_blank" class="w-11 h-11 rounded-full bg-white/10 hover:bg-maroon/40 flex items-center justify-center transition-colors" title="Facebook">
+            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/company/toastmasters-timisoara/posts/?feedView=all" target="_blank" class="w-11 h-11 rounded-full bg-white/10 hover:bg-maroon/40 flex items-center justify-center transition-colors" title="LinkedIn">
+            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="text-white font-semibold text-sm mb-5 uppercase tracking-wider">Pagini utile</h4>
+        <ul class="space-y-3">
+          <li><a href="index.html"      class="text-white/50 hover:text-gold text-sm transition-colors">Acasă</a></li>
+          <li><a href="despre-noi.html" class="text-white/50 hover:text-gold text-sm transition-colors">Despre noi</a></li>
+          <li><a href="galerie.html"    class="text-white/50 hover:text-gold text-sm transition-colors">Galerie</a></li>
+          <li><a href="contact.html"    class="text-gold text-sm font-medium">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-white font-semibold text-sm mb-5 uppercase tracking-wider">Legal</h4>
+        <ul class="space-y-3">
+          <li><a href="#" class="text-white/50 hover:text-gold text-sm transition-colors">Politică cookies</a></li>
+          <li><a href="#" class="text-white/50 hover:text-gold text-sm transition-colors">Politică confidențialitate</a></li>
+          <li><a href="#" class="text-white/50 hover:text-gold text-sm transition-colors">GDPR</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pt-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-2 md:gap-4">
+      <p class="text-white/30 text-xs">© 2026 Timișoara Toastmasters Club. Toate drepturile rezervate.</p>
+      <p class="text-white/30 text-xs flex items-center gap-1.5">
+        Parte din rețeaua globală <span class="text-gold/60">Toastmasters International</span>
+        <span class="relative group">
+          <button aria-label="Disclaimer" class="w-3.5 h-3.5 rounded-full border border-white/20 text-white/30 hover:text-white/60 hover:border-white/40 flex items-center justify-center transition-colors leading-none text-[9px] font-bold cursor-default">i</button>
+          <span class="pointer-events-none absolute bottom-full right-0 mb-2 w-72 bg-[#001e2f] border border-white/10 text-white/50 text-[10px] leading-relaxed rounded-lg px-3 py-2.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 shadow-xl z-50">
+            Informațiile de pe acest site sunt destinate exclusiv membrilor Toastmasters, pentru activități Toastmasters. Acestea nu pot fi utilizate pentru solicitări sau distribuirea de materiale și informații non-Toastmasters.
+          </span>
+        </span>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<!-- ════════════════════ JAVASCRIPT ════════════════════ -->
+<script>
+  function toggleMobile() {
+    const m = document.getElementById('mobile-menu');
+    const a = document.getElementById('icon-menu');
+    const b = document.getElementById('icon-close');
+    m.classList.toggle('hidden');
+    a.classList.toggle('hidden');
+    b.classList.toggle('hidden');
+  }
+  function closeMobile() {
+    document.getElementById('mobile-menu').classList.add('hidden');
+    document.getElementById('icon-menu').classList.remove('hidden');
+    document.getElementById('icon-close').classList.add('hidden');
+  }
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').style.boxShadow =
+      window.scrollY > 20 ? '0 4px 30px rgba(0,65,101,0.35)' : '';
+  });
+
+  function submitForm(e) {
+    e.preventDefault();
+    const form   = e.target;
+    const inputs = form.querySelectorAll('input, textarea');
+    const reg = {
+      prenume: inputs[0].value.trim(),
+      nume:    inputs[1].value.trim(),
+      email:   inputs[2].value.trim(),
+      telefon: inputs[3].value.trim(),
+      sedinta: document.getElementById('form-sedinta')?.value.trim() || '',
+      mesaj:   inputs[4].value.trim(),
+      id:      Date.now(),
+      date:    new Date().toISOString(),
+    };
+    try {
+      const list = JSON.parse(localStorage.getItem('tm_registrations')) || [];
+      list.push(reg);
+      localStorage.setItem('tm_registrations', JSON.stringify(list));
+    } catch(err) {}
+    document.getElementById('contact-form').classList.add('hidden');
+    document.getElementById('form-success').classList.remove('hidden');
+  }
+</script>
+<!-- ════════════════════ TOASTY CHATBOT ════════════════════ -->
+<script src="toasty.js"></script>
+</body>
+</html>
