@@ -21,9 +21,38 @@ CE ÎNVEȚI / BENEFICII:
 - Dezvoltare personală: construiești o prezență autentică și o voce care captează atenția
 - Leadership & Networking: inspiri echipe, construiești relații profesionale autentice, devii liderul pe care ceilalți îl urmează
 
+MISIUNEA CLUBULUI:
+Misiunea unui club Toastmasters este de a oferi o experiență de învățare într-un mediu pozitiv și de suport reciproc, prin intermediul căruia fiecare membru să își dezvolte abilitățile de comunicare și de leadership, ducând la dezvoltarea personală, profesională și la creșterea încrederii în sine.
+
+TOASTMASTERS INTERNATIONAL (rețeaua globală):
+- Fondată în 1924, cea mai mare organizație non-profit dedicată comunicării și leadershipului
+- 270.000+ membri activi, 14.200+ cluburi, 150+ țări
+- Timișoara Toastmasters aplică același sistem dovedit, cu ședințe în română și engleză
+
+VALORILE CLUBULUI:
+- Integritate: sentiment al demnității, dreptății și onestității, călăuză în conduita noastră
+- Respect: prețuire și stimă pentru fiecare membru, indiferent de rolul din organizație
+- Serviciu: angajament pentru binele colectiv al membrilor, mai presus de interesul propriu
+- Excelență: standard care ne motivează să devenim mai buni cu fiecare acțiune
+
+CUM ARATĂ O SEARĂ (structura unei ședințe):
+- Partea 1 — Discursuri pregătite: membrii susțin discursuri din programul Pathways, cu obiective clare de comunicare. De la discursuri introductive la prezentări complexe cu date și argumente.
+- Partea 2 — Table Topics (discursuri improvizate): primești un subiect pe loc și ai 1–2 minute să vorbești despre el. Dezvoltă gândirea rapidă și spontaneitatea.
+- Ultima parte — Feedback structurat: fiecare discurs primește feedback detaliat de la un evaluator desemnat — ce a mers bine și ce poate fi îmbunătățit.
+
+CELE 8 COMPONENTE ALE SISTEMULUI TOASTMASTERS:
+1. Club de public speaking — spațiu sigur și structurat pentru exersat vorbitul în public
+2. Feedback pe discursuri — evaluare constructivă și imediată, cel mai rapid mod de a progresa
+3. Pathways — platformă de învățare cu curriculum structurat, zeci de proiecte, personalizat pe obiectivele tale
+4. Roluri de suport — Toastmaster of the Evening, Gramatician, Cronometror (dezvoltă gândirea critică)
+5. Leadership în acțiune — organizezi și motivezi echipe, competențe transferabile în carieră
+6. Comunitate caldă — oameni din domenii diverse, uniți de dorința de a crește și de a se exprima autentic
+7. Competiții Toastmasters — de la nivel de club până la nivel internațional
+8. Academie & Ateliere — workshop-uri și sesiuni tematice care completează ședințele săptămânale
+
 CE FACEM LA ȘEDINȚE:
 - Discursuri pregătite (membri susțin discursuri din programul Pathways)
-- Table Topics: discursuri improvizate de 2 minute pe un subiect dat pe loc
+- Table Topics: discursuri improvizate de 1–2 minute pe un subiect dat pe loc
 - Evaluări constructive: fiecare discurs primește feedback detaliat
 - Roluri speciale: Moderator (Toastmaster of the Evening), Cronometror, Ah-Counter, Evaluator de gramatică etc.
 
@@ -44,6 +73,19 @@ CONTACT & SOCIAL:
 - Instagram: https://www.instagram.com/timisoaratoastmasters/
 - LinkedIn: https://www.linkedin.com/company/toastmasters-timisoara/
 - Formular de contact și calendar disponibil pe pagina Contact a site-ului
+
+ECHIPA DE CONDUCERE (sezon curent):
+- Robert Cernea — Președinte
+- Olga Culeac — Vicepreședinte Educație
+- Ionuț Cornean — Vicepreședinte Membri
+- Lavinia Borza — Vicepreședinte Relații Publice
+- Tudor Chiu — Secretar
+- Mihaela Cristina — Trezorier
+- Sergiu Spătar — Sergent la Arme
+- Adriana Stamatin — Președinte Precedent
+
+POVESTEA CLUBULUI:
+Timișoara Toastmasters s-a născut din dorința unui grup de oameni care credeau că abilitatea de a comunica eficient este una dintre cele mai valoroase investiții pe care le poți face în tine însuți. Clubul oferă un mediu prietenos și structurat în care poți exersa vorbitul în public, poți primi feedback constructiv și poți prelua roluri de conducere, toate acestea săptămânal, alături de o comunitate care te susține.
 
 RECENZII REALE DE LA MEMBRI:
 - "Toastmasters este locul unde am învățat că este normal să greșești atât ca lider, cât și ca vorbitor în public. Important este să perseverezi." — Argint Dragoș
