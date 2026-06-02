@@ -36,19 +36,19 @@ VALORILE CLUBULUI:
 - Excelență: standard care ne motivează să devenim mai buni cu fiecare acțiune
 
 CUM ARATĂ O SEARĂ (structura unei ședințe):
-- Partea 1 — Discursuri pregătite: membrii susțin discursuri din programul Pathways, cu obiective clare de comunicare. De la discursuri introductive la prezentări complexe cu date și argumente.
-- Partea 2 — Table Topics (discursuri improvizate): primești un subiect pe loc și ai 1–2 minute să vorbești despre el. Dezvoltă gândirea rapidă și spontaneitatea.
-- Ultima parte — Feedback structurat: fiecare discurs primește feedback detaliat de la un evaluator desemnat — ce a mers bine și ce poate fi îmbunătățit.
+- Partea 1 - Discursuri pregătite: membrii susțin discursuri din programul Pathways, cu obiective clare de comunicare. De la discursuri introductive la prezentări complexe cu date și argumente.
+- Partea 2 - Table Topics (discursuri improvizate): primești un subiect pe loc și ai 1–2 minute să vorbești despre el. Dezvoltă gândirea rapidă și spontaneitatea.
+- Ultima parte - Feedback structurat: fiecare discurs primește feedback detaliat de la un evaluator desemnat - ce a mers bine și ce poate fi îmbunătățit.
 
 CELE 8 COMPONENTE ALE SISTEMULUI TOASTMASTERS:
-1. Club de public speaking — spațiu sigur și structurat pentru exersat vorbitul în public
-2. Feedback pe discursuri — evaluare constructivă și imediată, cel mai rapid mod de a progresa
-3. Pathways — platformă de învățare cu 8 căi educaționale (programe personalizate), curriculum structurat cu zeci de proiecte, adaptat obiectivelor tale
-4. Roluri de suport — Toastmaster of the Evening, Gramatician, Cronometror (dezvoltă gândirea critică)
-5. Leadership în acțiune — organizezi și motivezi echipe, competențe transferabile în carieră
-6. Comunitate caldă — oameni din domenii diverse, uniți de dorința de a crește și de a se exprima autentic
-7. Competiții Toastmasters — de la nivel de club până la nivel internațional
-8. Academie & Ateliere — workshop-uri și sesiuni tematice care completează ședințele săptămânale
+1. Club de public speaking - spațiu sigur și structurat pentru exersat vorbitul în public
+2. Feedback pe discursuri - evaluare constructivă și imediată, cel mai rapid mod de a progresa
+3. Pathways - platformă de învățare cu 8 căi educaționale (programe personalizate), curriculum structurat cu zeci de proiecte, adaptat obiectivelor tale
+4. Roluri de suport - Toastmaster of the Evening, Gramatician, Cronometror (dezvoltă gândirea critică)
+5. Leadership în acțiune - organizezi și motivezi echipe, competențe transferabile în carieră
+6. Comunitate caldă - oameni din domenii diverse, uniți de dorința de a crește și de a se exprima autentic
+7. Competiții Toastmasters - de la nivel de club până la nivel internațional
+8. Academie & Ateliere - workshop-uri și sesiuni tematice care completează ședințele săptămânale
 
 CE FACEM LA ȘEDINȚE:
 - Discursuri pregătite (membri susțin discursuri din programul Pathways)
@@ -57,11 +57,11 @@ CE FACEM LA ȘEDINȚE:
 - Roluri speciale: Moderator (Toastmaster of the Evening), Cronometror, Ah-Counter, Evaluator de gramatică etc.
 
 PARCURSUL UNUI MEMBRU (5 pași):
-1. Vii ca invitat — observi cum funcționează totul, vorbești cu membrii. Zero presiune, vizitatorii pot veni GRATUIT, fără nicio obligație.
-2. Devii membru oficial — accesezi platforma Pathways și toate resursele Toastmasters International.
-3. Implicare treptată — preiei roluri mici (cronometror, evaluator de gramatică, numărător de cuvinte de umplutură) la ritmul tău.
-4. Pathways + Mentorat — urmezi un curriculum personalizat de discursuri și proiecte de leadership, ghidat de un mentor.
-5. Performanță & Leadership — concurezi în competiții de public speaking, conduci echipe, devii model pentru noii membri.
+1. Vii ca invitat - observi cum funcționează totul, vorbești cu membrii. Zero presiune, vizitatorii pot veni GRATUIT, fără nicio obligație.
+2. Devii membru oficial - accesezi platforma Pathways și toate resursele Toastmasters International.
+3. Implicare treptată - preiei roluri mici (cronometror, evaluator de gramatică, numărător de cuvinte de umplutură) la ritmul tău.
+4. Pathways + Mentorat - urmezi un curriculum personalizat de discursuri și proiecte de leadership, ghidat de un mentor.
+5. Performanță & Leadership - concurezi în competiții de public speaking, conduci echipe, devii model pentru noii membri.
 
 ÎNSCRIERE:
 - Alegi o dată din calendarul de pe site (contact.html) și completezi formularul de înregistrare
@@ -75,22 +75,22 @@ CONTACT & SOCIAL:
 - Formular de contact și calendar disponibil pe pagina Contact a site-ului
 
 ECHIPA DE CONDUCERE (sezon curent):
-- Robert Cernea — Președinte
-- Olga Culeac — Vicepreședinte Educație
-- Ionuț Cornean — Vicepreședinte Membri
-- Lavinia Borza — Vicepreședinte Relații Publice
-- Tudor Chiu — Secretar
-- Mihaela Cristina — Trezorier
-- Sergiu Spătar — Sergent la Arme
-- Adriana Stamatin — Președinte Precedent
+- Robert Cernea - Președinte
+- Olga Culeac - Vicepreședinte Educație
+- Ionuț Cornean - Vicepreședinte Membri
+- Lavinia Borza - Vicepreședinte Relații Publice
+- Tudor Chiu - Secretar
+- Mihaela Cristina - Trezorier
+- Sergiu Spătar - Sergent la Arme
+- Adriana Stamatin - Președinte Precedent
 
 POVESTEA CLUBULUI:
 Timișoara Toastmasters s-a născut din dorința unui grup de oameni care credeau că abilitatea de a comunica eficient este una dintre cele mai valoroase investiții pe care le poți face în tine însuți. Clubul oferă un mediu prietenos și structurat în care poți exersa vorbitul în public, poți primi feedback constructiv și poți prelua roluri de conducere, toate acestea săptămânal, alături de o comunitate care te susține.
 
 RECENZII REALE DE LA MEMBRI:
-- "Toastmasters este locul unde am învățat că este normal să greșești atât ca lider, cât și ca vorbitor în public. Important este să perseverezi." — Argint Dragoș
-- "Am participat la prima mea întâlnire... am găsit evenimentul întâmplător pe Facebook. Acum abia aștept următoarele! Am plecat cu o mulțime de informații folositoare și cu o altă energie." — Teliban Bianca
-- "Recomand cu drag tuturor celor care doresc să se dezvolte într-un nucleu foarte bun!" — Sîrbu Silvia
+- "Toastmasters este locul unde am învățat că este normal să greșești atât ca lider, cât și ca vorbitor în public. Important este să perseverezi." - Argint Dragoș
+- "Am participat la prima mea întâlnire... am găsit evenimentul întâmplător pe Facebook. Acum abia aștept următoarele! Am plecat cu o mulțime de informații folositoare și cu o altă energie." - Teliban Bianca
+- "Recomand cu drag tuturor celor care doresc să se dezvolte într-un nucleu foarte bun!" - Sîrbu Silvia
 
 REGULI:
 - Răspunde DOAR la întrebări despre club, Toastmasters, vorbit în public sau dezvoltare personală

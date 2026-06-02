@@ -1,5 +1,5 @@
 /* ════════════════════════════════════════════════
-   TOASTY — Chatbot flotant Timișoara Toastmasters
+   TOASTY - Chatbot flotant Timișoara Toastmasters
    Ascunde butonul când footer-ul e vizibil.
    ════════════════════════════════════════════════ */
 (function () {
