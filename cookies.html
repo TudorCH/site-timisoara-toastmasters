@@ -32,23 +32,75 @@
     .nav-link { position: relative; }
     .nav-link::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:2px; background:#F2DF74; transition:width .3s ease; }
     .nav-link:hover::after { width:100%; }
-    .prose h2 { font-family:'Plus Jakarta Sans',sans-serif; font-size:1.4rem; font-weight:700; color:#004165; margin-top:2.5rem; margin-bottom:.75rem; }
-    .prose h3 { font-family:'Plus Jakarta Sans',sans-serif; font-size:1.05rem; font-weight:600; color:#004165; margin-top:1.5rem; margin-bottom:.5rem; }
-    .prose p { color:#4b5563; line-height:1.75; margin-bottom:1rem; }
-    .prose ul { list-style:disc; padding-left:1.5rem; color:#4b5563; line-height:1.75; margin-bottom:1rem; }
-    .prose ul li { margin-bottom:.35rem; }
-    .prose a { color:#004165; text-decoration:underline; }
-    .prose table { width:100%; border-collapse:collapse; margin-bottom:1.5rem; font-size:.9rem; }
-    .prose th { background:#004165; color:#fff; text-align:left; padding:10px 14px; font-weight:600; }
-    .prose td { padding:10px 14px; border-bottom:1px solid #e5e7eb; color:#374151; vertical-align:top; }
-    .prose tr:nth-child(even) td { background:#f9fafb; }
     #mobile-menu { transition:all .3s ease; }
+
+    /* ── Prose ── */
+    .prose { color: #374151; }
+    .prose h2 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.35rem; font-weight: 800; color: #004165;
+      margin-top: 2.75rem; margin-bottom: 0.75rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #f3f4f6;
+    }
+    .prose h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1rem; font-weight: 700; color: #004165;
+      margin-top: 1.75rem; margin-bottom: 0.4rem;
+    }
+    .prose p { line-height: 1.8; margin-bottom: 1rem; color: #4b5563; font-size: .95rem; }
+    .prose ul { list-style: none; padding: 0; margin-bottom: 1.2rem; }
+    .prose ul li {
+      position: relative; padding-left: 1.4rem;
+      color: #4b5563; font-size: .95rem; line-height: 1.75; margin-bottom: .4rem;
+    }
+    .prose ul li::before {
+      content: '·'; position: absolute; left: 0;
+      color: #004165; font-weight: 900; font-size: 1.2rem; line-height: 1.4;
+    }
+    .prose a { color: #004165; font-weight: 600; text-decoration: underline; }
+    .prose a:hover { color: #00537f; }
+    .prose strong { color: #1f2937; font-weight: 700; }
+    .prose code {
+      background: #f3f4f6; color: #772432;
+      padding: 1px 6px; border-radius: 4px;
+      font-size: .85rem; font-family: monospace;
+    }
+
+    /* ── Table ── */
+    .prose .tm-table-wrap { overflow-x: auto; margin-bottom: 1.5rem; border-radius: 12px; border: 1px solid #e5e7eb; }
+    .prose table { width: 100%; border-collapse: collapse; font-size: .875rem; }
+    .prose thead tr { background: #004165; }
+    .prose th { color: #fff; text-align: left; padding: 12px 16px; font-weight: 700; font-size: .8rem; text-transform: uppercase; letter-spacing: .04em; white-space: nowrap; }
+    .prose td { padding: 12px 16px; border-bottom: 1px solid #f3f4f6; color: #374151; vertical-align: top; line-height: 1.6; }
+    .prose tr:last-child td { border-bottom: none; }
+    .prose tbody tr:nth-child(even) { background: #f9fafb; }
+
+    /* ── Info box ── */
+    .info-box {
+      background: #eff6ff; border: 1px solid #bfdbfe;
+      border-radius: 12px; padding: 16px 20px;
+      margin-bottom: 1.5rem;
+      display: flex; gap: 12px; align-items: flex-start;
+      font-size: .9rem; color: #1e40af; line-height: 1.65;
+    }
+    .info-box svg { flex-shrink: 0; margin-top: 1px; }
+
+    /* ── Section chip ── */
+    .section-chip {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(0,65,101,.07); color: #004165;
+      border: 1px solid rgba(0,65,101,.15);
+      border-radius: 999px; padding: 3px 12px;
+      font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em;
+      margin-bottom: 0.5rem;
+    }
   </style>
 </head>
 <body class="font-sans bg-white text-gray-900 antialiased">
 
 <!-- ════════════════════ NAVBAR ════════════════════ -->
-<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-primary shadow-lg shadow-primary/30">
+<nav class="fixed top-0 left-0 right-0 z-50 bg-primary shadow-lg shadow-primary/30">
   <div class="max-w-7xl mx-auto px-4 lg:px-8">
     <div class="flex items-center justify-between h-16">
       <a href="index.html" class="flex items-center gap-3 flex-shrink-0">
@@ -68,7 +120,7 @@
         </a>
       </div>
       <div class="flex lg:hidden items-center">
-        <button id="mobile-toggle" onclick="document.getElementById('mobile-menu').classList.toggle('hidden');document.getElementById('icon-menu').classList.toggle('hidden');document.getElementById('icon-close').classList.toggle('hidden');"
+        <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden');document.getElementById('icon-menu').classList.toggle('hidden');document.getElementById('icon-close').classList.toggle('hidden');"
                 class="text-white p-2 rounded-full hover:bg-white/10 transition-colors">
           <svg id="icon-menu"  class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
           <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -77,12 +129,12 @@
     </div>
     <div id="mobile-menu" class="hidden lg:hidden border-t border-white/10 pt-4 pb-5">
       <div class="flex flex-col gap-1">
-        <a href="index.html"      class="text-white/80 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors">Acasă</a>
-        <a href="despre-noi.html" class="text-white/80 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors">Despre noi</a>
-        <a href="galerie.html"    class="text-white/80 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors">Galerie</a>
-        <a href="contact.html"    class="text-white/80 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors">Contact</a>
+        <a href="index.html"      class="text-white/80 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium">Acasă</a>
+        <a href="despre-noi.html" class="text-white/80 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium">Despre noi</a>
+        <a href="galerie.html"    class="text-white/80 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium">Galerie</a>
+        <a href="contact.html"    class="text-white/80 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium">Contact</a>
         <div class="pt-2 px-4">
-          <a href="contact.html" class="block w-full bg-maroon text-white font-semibold px-5 py-3 rounded-full text-sm text-center shadow-md">
+          <a href="contact.html" class="block w-full bg-maroon text-white font-semibold px-5 py-3 rounded-full text-sm text-center">
             Hai la o ședință →
           </a>
         </div>
@@ -93,17 +145,17 @@
 
 <!-- ════════════════════ HERO ════════════════════ -->
 <section class="gradient-hero pt-16">
-  <div class="max-w-3xl mx-auto px-5 lg:px-8 py-16 lg:py-24">
+  <div class="max-w-3xl mx-auto px-5 lg:px-8 py-16 lg:py-20">
     <div class="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 mb-6">
-      <svg class="w-3.5 h-3.5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-      <span class="text-gold text-xs font-semibold tracking-wide">Legal</span>
+      <svg class="w-3.5 h-3.5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+      <span class="text-gold text-xs font-semibold tracking-wide uppercase">Legal</span>
     </div>
     <h1 class="font-heading text-4xl md:text-5xl font-bold text-white leading-tight mb-4">
       Politică <span class="text-gold">Cookies</span>
     </h1>
-    <p class="text-white/70 text-lg">Ultima actualizare: iunie 2026</p>
+    <p class="text-white/65 text-base">Ultima actualizare: <strong class="text-white/80">iunie 2026</strong> &nbsp;·&nbsp; Timișoara Toastmasters Club</p>
   </div>
-  <div class="relative">
+  <div>
     <svg viewBox="0 0 1440 40" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" class="w-full h-10">
       <path d="M0 40 L0 20 Q360 0 720 20 Q1080 40 1440 10 L1440 40 Z" fill="white"/>
     </svg>
@@ -111,69 +163,138 @@
 </section>
 
 <!-- ════════════════════ CONTENT ════════════════════ -->
-<section class="py-16">
+<section class="py-14 lg:py-20">
   <div class="max-w-3xl mx-auto px-5 lg:px-8 prose">
 
-    <p>Această politică explică ce sunt cookie-urile, cum le folosim pe site-ul <strong>timisoaratoastmasters.ro</strong> și ce opțiuni ai ca vizitator.</p>
+    <div class="info-box">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <span>Această pagină descrie exact ce date stocăm în browserul tău, de ce și cum le poți gestiona. Nu folosim cookie-uri de publicitate sau urmărire.</span>
+    </div>
 
-    <h2>Ce sunt cookie-urile?</h2>
-    <p>Cookie-urile sunt fișiere text de mici dimensiuni pe care un site web le salvează în browserul tău atunci când îl vizitezi. Ele permit site-ului să îți rețină preferințele sau să funcționeze corect la vizite ulterioare.</p>
-    <p>Site-ul nostru folosește în principal <strong>localStorage</strong> - o tehnologie similară care stochează date local în browserul tău, fără a trimite informații către serverele noastre.</p>
+    <!-- 1 -->
+    <h2>1. Ce sunt cookie-urile și localStorage?</h2>
+    <p>Cookie-urile sunt fișiere mici salvate de browser atunci când vizitezi un site. <strong>localStorage</strong> este o tehnologie similară, parte din standardul web, care stochează date exclusiv în browserul tău fără a le trimite automat la server la fiecare cerere.</p>
+    <p>Site-ul <strong>timisoaratoastmasters.ro</strong> folosește în principal localStorage pentru preferințele tale. Niciun cookie de tracking, publicitate sau analiză comportamentală nu este instalat.</p>
 
-    <h2>Ce date stocăm</h2>
+    <!-- 2 -->
+    <h2>2. Ce stocăm în browserul tău</h2>
+    <p>Mai jos sunt descrise toate cheile localStorage folosite de acest site:</p>
 
-    <table>
-      <thead>
-        <tr>
-          <th>Cheie</th>
-          <th>Scop</th>
-          <th>Tip</th>
-          <th>Expiră</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><code>tm-lang</code></td>
-          <td>Reține preferința de limbă (română / engleză)</td>
-          <td>Esențial</td>
-          <td>Permanent (până la ștergere manuală)</td>
-        </tr>
-        <tr>
-          <td><code>tm-cookies-v1</code></td>
-          <td>Reține alegerea ta privind cookie-urile</td>
-          <td>Esențial</td>
-          <td>Permanent (până la ștergere manuală)</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="tm-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Cheie localStorage</th>
+            <th>Scop</th>
+            <th>Categorie</th>
+            <th>Expiră</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>tm-cookies-v1</code></td>
+            <td>Reține alegerea ta din banner-ul de consimțământ cookies (valori posibile: <em>all</em> sau <em>essential</em>)</td>
+            <td>Esențial</td>
+            <td>Permanent (până la ștergere manuală)</td>
+          </tr>
+          <tr>
+            <td><code>tm-lang</code></td>
+            <td>Reține preferința de limbă selectată (română sau engleză) pe pagina Despre noi</td>
+            <td>Funcțional</td>
+            <td>Permanent (până la ștergere manuală)</td>
+          </tr>
+          <tr>
+            <td><code>tm_registrations</code></td>
+            <td>Stochează înregistrările completate prin formularul de contact, exclusiv local în browserul tău. Datele nu sunt transmise automat nicăieri.</td>
+            <td>Funcțional</td>
+            <td>Permanent (până la ștergere manuală sau export CSV)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-    <p>Nu folosim cookie-uri de tracking, publicitate sau analytics de la terți. Nu instalăm cookie-uri înainte ca tu să îți exprimi consimțământul.</p>
+    <p>Nu folosim cookies de sesiune, de autentificare, de publicitate sau de analiză comportamentală (ex. Google Analytics, Facebook Pixel, Hotjar).</p>
 
-    <h2>Cookie-uri esențiale</h2>
-    <p>Aceste date sunt necesare pentru funcționarea corectă a site-ului și nu pot fi dezactivate. Ele nu colectează informații personale și nu sunt transmise niciunei terțe părți.</p>
+    <!-- 3 -->
+    <h2>3. Servicii externe încărcate pe site</h2>
+    <p>Unele resurse tehnice sunt încărcate de pe servere externe. Prin simpla vizitare a site-ului, browserul tău realizează conexiuni către:</p>
 
-    <h2>Cookie-uri terțe</h2>
-    <p>Dacă accesezi linkuri externe prezente pe site (Facebook, Instagram, LinkedIn, Google Maps), aceste platforme pot instala propriile cookie-uri conform politicilor lor de confidențialitate. Nu avem control asupra acestora.</p>
+    <h3>Tailwind CSS CDN</h3>
+    <p>Framework-ul de stilizare vizuală al site-ului este încărcat de pe <code>cdn.tailwindcss.com</code>. Aceasta înseamnă că serverul CDN poate înregistra adresa ta IP și tipul de browser ca parte a traficului normal de rețea. Nu controlăm aceste date. Detalii: <a href="https://tailwindcss.com/privacy-policy" target="_blank" rel="noopener noreferrer">politica de confidențialitate Tailwind</a>.</p>
 
-    <h2>Cum îți poți gestiona preferințele</h2>
+    <h3>Google Fonts</h3>
+    <p>Fonturile <em>Plus Jakarta Sans</em> și <em>Inter</em> sunt încărcate de pe <code>fonts.googleapis.com</code> și <code>fonts.gstatic.com</code>. Google poate înregistra adresa IP a browserului tău la încărcarea acestor fișiere. Detalii: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">politica de confidențialitate Google</a>.</p>
+
+    <h3>Asistentul virtual Toasty (AI Chatbot)</h3>
+    <p>Butonul de chat din colțul paginii este alimentat de <strong>Anthropic Claude</strong> (API extern). Când trimiți un mesaj prin Toasty, textul conversației este transmis securizat către serverele Anthropic pentru generarea răspunsului. Istoricul conversației este păstrat temporar <strong>doar în memoria sesiunii curente</strong> (în variabilele JavaScript ale paginii) și se șterge automat la închiderea paginii sau a tab-ului - nu este salvat în localStorage sau în altă parte. Detalii: <a href="https://www.anthropic.com/privacy" target="_blank" rel="noopener noreferrer">politica de confidențialitate Anthropic</a>.</p>
+
+    <h3>Google Maps</h3>
+    <p>Pe pagina Contact există un link către locația clubului pe Google Maps (<code>maps.app.goo.gl</code>). Accesarea acestui link te redirecționează către platforma Google, unde se aplică politica lor de confidențialitate. Linkul nu se deschide automat fără acțiunea ta.</p>
+
+    <!-- 4 -->
+    <h2>4. Rețele sociale</h2>
+    <p>Site-ul conține linkuri către paginile oficiale ale clubului pe:</p>
     <ul>
-      <li><strong>Retrage consimțământul</strong> - șterge datele din localStorage prin setările browserului tău (Instrumente de dezvoltator &gt; Application &gt; Local Storage).</li>
-      <li><strong>Setări browser</strong> - poți configura browserul să blocheze sau să șteargă datele stocate local oricând dorești.</li>
-      <li><strong>Resetează banner-ul</strong> - dacă ștergi cheia <code>tm-cookies-v1</code> din localStorage, banner-ul de consimțământ va reapărea la următoarea vizită.</li>
+      <li><strong>Facebook</strong> - facebook.com/timisoara.toastmasters</li>
+      <li><strong>Instagram</strong> - instagram.com/timisoaratoastmasters</li>
+      <li><strong>LinkedIn</strong> - linkedin.com/company/toastmasters-timisoara</li>
+      <li><strong>WhatsApp</strong> - grup comunitate club</li>
+    </ul>
+    <p>Aceste linkuri nu instalează cookie-uri pe site-ul nostru. Odată ce le accesezi, intri sub incidența politicilor de confidențialitate ale respectivelor platforme. Nu avem control asupra cookie-urilor lor.</p>
+
+    <!-- 5 -->
+    <h2>5. Cum îți gestionezi preferințele</h2>
+
+    <h3>Resetarea consimțământului cookies</h3>
+    <p>Dacă dorești să modifici alegerea făcută în banner-ul de consimțământ, poți șterge cheia <code>tm-cookies-v1</code> din localStorage. Banner-ul va reapărea la următoarea vizită.</p>
+    <p>Pași în Chrome/Edge: <em>F12 - Application - Local Storage - timisoaratoastmasters.ro - selectează cheia - Delete</em>.</p>
+
+    <h3>Ștergerea tuturor datelor stocate local</h3>
+    <p>Poți șterge orice date stocate de site-ul nostru din setările browserului:</p>
+    <ul>
+      <li><strong>Chrome/Edge:</strong> Setări - Confidențialitate - Șterge datele de navigare - Date din site-uri stocate</li>
+      <li><strong>Firefox:</strong> Setări - Confidențialitate - Șterge datele - Date din site-uri web</li>
+      <li><strong>Safari:</strong> Preferințe - Confidențialitate - Gestionează datele site-urilor web</li>
     </ul>
 
-    <h2>Modificări ale politicii</h2>
-    <p>Ne rezervăm dreptul de a actualiza această politică. Orice modificare semnificativă va fi comunicată printr-o notificare vizibilă pe site. Data ultimei actualizări este afișată în partea de sus a acestei pagini.</p>
+    <h3>Blocarea stocării locale</h3>
+    <p>Poți configura browserul să blocheze complet localStorage pentru orice site. Rețineți că aceasta poate afecta funcționarea preferinței de limbă.</p>
 
-    <h2>Contact</h2>
-    <p>Pentru orice întrebare legată de această politică, ne poți contacta prin <a href="contact.html">formularul de contact</a> sau pe paginile noastre de social media.</p>
+    <!-- 6 -->
+    <h2>6. Drepturile tale (GDPR)</h2>
+    <p>În conformitate cu Regulamentul General privind Protecția Datelor (GDPR - UE 2016/679), ai următoarele drepturi:</p>
+    <ul>
+      <li><strong>Dreptul de acces</strong> - poți solicita oricând ce date deținem despre tine</li>
+      <li><strong>Dreptul la ștergere</strong> - poți solicita ștergerea datelor tale</li>
+      <li><strong>Dreptul la portabilitate</strong> - poți solicita datele într-un format structurat</li>
+      <li><strong>Dreptul de opoziție</strong> - poți refuza prelucrarea datelor tale</li>
+      <li><strong>Dreptul la rectificare</strong> - poți solicita corectarea datelor incorecte</li>
+    </ul>
+    <p>Întrucât datele din formularul de contact sunt stocate exclusiv local în browserul tău (nu pe serverele noastre), exercitarea acestor drepturi revine în mare parte controlului direct pe care îl ai asupra browserului tău.</p>
 
-    <div class="mt-10 pt-8 border-t border-gray-100">
+    <!-- 7 -->
+    <h2>7. Modificări ale politicii</h2>
+    <p>Ne rezervăm dreptul de a actualiza această politică pe măsură ce site-ul evoluează. Orice modificare va fi reflectată în data de actualizare din antetul paginii. Continuarea utilizării site-ului după publicarea modificărilor constituie acceptarea acestora.</p>
+
+    <!-- 8 -->
+    <h2>8. Contact</h2>
+    <p>Pentru orice întrebare legată de această politică sau de datele tale, ne poți contacta prin <a href="contact.html">formularul de contact</a> sau pe oricare dintre paginile noastre de social media.</p>
+    <p><strong>Timișoara Toastmasters Club</strong><br/>
+    Cowork The Office, Et. 2, Clădirea BCR, Calea Aradului nr. 11, Timișoara</p>
+
+    <!-- Back link -->
+    <div class="mt-12 pt-8 border-t border-gray-100 flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
       <a href="index.html" class="inline-flex items-center gap-2 text-primary font-semibold hover:text-primary-light transition-colors text-sm">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
         Înapoi la pagina principală
       </a>
+      <button onclick="localStorage.removeItem('tm-cookies-v1');localStorage.removeItem('tm-cookie-consent');window.location.reload();"
+              class="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-maroon transition-colors border border-gray-200 hover:border-maroon rounded-full px-4 py-2">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+        Resetează preferințele cookies
+      </button>
     </div>
+
   </div>
 </section>
 
@@ -189,7 +310,7 @@
             <div class="text-gold text-[10px] font-semibold tracking-widest uppercase">CLUB</div>
           </div>
         </div>
-        <div class="flex gap-3 mt-1">
+        <div class="flex gap-3">
           <a href="https://www.instagram.com/timisoaratoastmasters/" target="_blank" class="w-11 h-11 rounded-full bg-white/10 hover:bg-maroon/40 flex items-center justify-center transition-colors">
             <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
           </a>
@@ -213,9 +334,9 @@
       <div>
         <h4 class="text-white font-semibold text-sm mb-5 uppercase tracking-wider">Legal</h4>
         <ul class="space-y-3">
-          <li><a href="cookies.html"    class="text-gold text-sm font-medium">Politică cookies</a></li>
-          <li><a href="#"               class="text-white/50 hover:text-gold text-sm transition-colors">Politică confidențialitate</a></li>
-          <li><a href="#"               class="text-white/50 hover:text-gold text-sm transition-colors">GDPR</a></li>
+          <li><a href="cookies.html" class="text-gold text-sm font-semibold">Politică cookies</a></li>
+          <li><a href="#"            class="text-white/50 hover:text-gold text-sm transition-colors">Politică confidențialitate</a></li>
+          <li><a href="#"            class="text-white/50 hover:text-gold text-sm transition-colors">GDPR</a></li>
         </ul>
       </div>
     </div>
