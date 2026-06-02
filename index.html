@@ -28,7 +28,9 @@
     }
   </script>
   <style>
-    * { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: no-preference) {
+      html { scroll-behavior: smooth; }
+    }
 
     /* ── gradient backgrounds ── */
     .gradient-hero { background: linear-gradient(135deg, #002d47 0%, #004165 55%, #003555 100%); }
@@ -75,7 +77,7 @@
     .search-input:focus { outline:none; box-shadow:0 0 0 2px rgba(242,223,116,.4); }
 
     /* ── mobile menu slide ── */
-    #mobile-menu { transition:all .3s ease; }
+    #mobile-menu { transition: max-height .3s ease, opacity .3s ease; }
 
     /* ── hide scrollbar on slider ── */
     .scrollbar-hide { -ms-overflow-style:none; scrollbar-width:none; }
@@ -122,6 +124,26 @@
     }
     @media (max-height: 620px) {
       .hero-title { font-size: clamp(1.6rem, 4vw, 2.4rem) !important; }
+    }
+
+    /* ── scroll-margin: compensate fixed navbar on anchor jumps ── */
+    #contact, #journey-section, #galerie { scroll-margin-top: 4.5rem; }
+
+    /* ── prefers-reduced-motion ── */
+    @media (prefers-reduced-motion: reduce) {
+      .animate-in { animation: none; opacity: 1; transform: none; }
+      .scroll-fade { transition: none; opacity: 1; transform: none; }
+      .card-hover { transition: none; }
+    }
+
+    /* ── hero blur glow: reduce on mobile for perf ── */
+    @media (max-width: 767px) {
+      .hero-blur-glow { backdrop-filter: blur(8px) !important; -webkit-backdrop-filter: blur(8px) !important; }
+    }
+
+    /* ── hero title: prevent overflow on very small screens (< 375px) ── */
+    @media (max-width: 374px) {
+      .hero-title span { white-space: normal !important; }
     }
   </style>
 </head>
@@ -240,7 +262,7 @@
   <div class="absolute bottom-0 left-0 right-0 z-0 hero-fade"></div>
 
   <!-- Blur glow behind text area (left side, bottom) -->
-  <div class="absolute bottom-0 left-0 z-0"
+  <div class="absolute bottom-0 left-0 z-0 hero-blur-glow"
        style="width: 55%; height: 60%; background: radial-gradient(ellipse at 0% 100%, rgba(0,45,71,0.6) 0%, rgba(0,65,101,0.25) 50%, transparent 75%); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); mask-image: linear-gradient(to right, black 30%, transparent 100%), linear-gradient(to top, black 30%, transparent 100%); mask-composite: intersect; -webkit-mask-image: linear-gradient(to right, black 30%, transparent 100%), linear-gradient(to top, black 30%, transparent 100%); -webkit-mask-composite: source-in;"></div>
 
   <!-- Decorative rings (kept for depth) -->
@@ -266,7 +288,7 @@
           Hai și tu la o ședință!
         </a>
         <a href="#journey-section"
-           class="border border-white/30 hover:border-gold text-white hover:text-gold font-semibold
+           class="border border-white/50 hover:border-gold text-white hover:text-gold font-semibold
                   px-8 py-4 rounded-full text-base transition-all duration-200 text-center backdrop-blur-sm">
           Vezi cum funcționează
         </a>
@@ -276,21 +298,21 @@
       <div class="grid grid-cols-3 gap-3 sm:gap-6 mt-6 sm:mt-10 lg:mt-14 pt-5 sm:pt-8 border-t border-white/10 animate-in" style="animation-delay:.5s">
         <div>
           <div class="text-2xl sm:text-3xl font-bold text-white">15+</div>
-          <div class="text-white/45 text-xs sm:text-sm mt-1">
+          <div class="text-white/70 text-xs sm:text-sm mt-1">
             <span class="sm:hidden">ani activi</span>
             <span class="hidden sm:inline">ani de activitate</span>
           </div>
         </div>
         <div>
           <div class="text-2xl sm:text-3xl font-bold text-white">200+</div>
-          <div class="text-white/45 text-xs sm:text-sm mt-1">
+          <div class="text-white/70 text-xs sm:text-sm mt-1">
             <span class="sm:hidden">membri</span>
             <span class="hidden sm:inline">membri de-a lungul timpului</span>
           </div>
         </div>
         <div>
           <div class="text-2xl sm:text-3xl font-bold text-white">14k+</div>
-          <div class="text-white/45 text-xs sm:text-sm mt-1">
+          <div class="text-white/70 text-xs sm:text-sm mt-1">
             <span class="sm:hidden">cluburi globale</span>
             <span class="hidden sm:inline">cluburi în peste 150 de țări</span>
           </div>
@@ -389,7 +411,7 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
             </svg>
           </div>
-          <span class="jrn-label block text-[9px] sm:text-[11px] lg:text-xs font-bold uppercase tracking-wide text-gray-400 text-center leading-tight transition-all duration-300 w-14 sm:w-20 lg:w-24">
+          <span class="jrn-label block text-[11px] sm:text-[11px] lg:text-xs font-bold uppercase tracking-wide text-gray-400 text-center leading-tight transition-all duration-300 w-14 sm:w-20 lg:w-24">
             <span class="sm:hidden">Invitat</span>
             <span class="hidden sm:inline">Vii ca<br>invitat</span>
           </span>
@@ -401,7 +423,7 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
             </svg>
           </div>
-          <span class="jrn-label block text-[9px] sm:text-[11px] lg:text-xs font-bold uppercase tracking-wide text-gray-400 text-center leading-tight transition-all duration-300 w-14 sm:w-20 lg:w-24">
+          <span class="jrn-label block text-[11px] sm:text-[11px] lg:text-xs font-bold uppercase tracking-wide text-gray-400 text-center leading-tight transition-all duration-300 w-14 sm:w-20 lg:w-24">
             <span class="sm:hidden">Membru</span>
             <span class="hidden sm:inline">Devii<br>membru</span>
           </span>
@@ -413,7 +435,7 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M13 10V3L4 14h7v7l9-11h-7z"/>
             </svg>
           </div>
-          <span class="jrn-label block text-[9px] sm:text-[11px] lg:text-xs font-bold uppercase tracking-wide text-gray-400 text-center leading-tight transition-all duration-300 w-14 sm:w-20 lg:w-24">
+          <span class="jrn-label block text-[11px] sm:text-[11px] lg:text-xs font-bold uppercase tracking-wide text-gray-400 text-center leading-tight transition-all duration-300 w-14 sm:w-20 lg:w-24">
             <span class="sm:hidden">Implicare</span>
             <span class="hidden sm:inline">Implicare<br>treptată</span>
           </span>
@@ -425,7 +447,7 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
             </svg>
           </div>
-          <span class="jrn-label block text-[9px] sm:text-[11px] lg:text-xs font-bold uppercase tracking-wide text-gray-400 text-center leading-tight transition-all duration-300 w-14 sm:w-20 lg:w-24">
+          <span class="jrn-label block text-[11px] sm:text-[11px] lg:text-xs font-bold uppercase tracking-wide text-gray-400 text-center leading-tight transition-all duration-300 w-14 sm:w-20 lg:w-24">
             <span class="sm:hidden">Pathways</span>
             <span class="hidden sm:inline">Pathways<br>& Mentorat</span>
           </span>
@@ -437,7 +459,7 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
             </svg>
           </div>
-          <span class="jrn-label block text-[9px] sm:text-[11px] lg:text-xs font-bold uppercase tracking-wide text-gray-400 text-center leading-tight transition-all duration-300 w-14 sm:w-24 lg:w-28">
+          <span class="jrn-label block text-[11px] sm:text-[11px] lg:text-xs font-bold uppercase tracking-wide text-gray-400 text-center leading-tight transition-all duration-300 w-14 sm:w-24 lg:w-28">
             <span class="sm:hidden">Lider</span>
             <span class="hidden sm:inline">Performanță<br>& Leadership</span>
           </span>
@@ -447,7 +469,7 @@
     </div>
 
     <!-- ── Panele de detaliu: shared desktop + mobile ── -->
-    <div class="relative mt-6 md:mt-10" style="min-height:280px">
+    <div class="relative mt-6 md:mt-10" style="min-height:320px" id="jrn-panels-container">
 
       <div id="jrn-panel-0" class="jrn-panel absolute inset-x-0 flex justify-center" style="opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .35s ease,transform .35s ease">
         <div class="bg-white border border-gray-100 rounded-2xl shadow-lg px-4 sm:px-8 py-4 sm:py-6 flex gap-4 sm:gap-6 items-start w-full max-w-2xl">
@@ -545,12 +567,8 @@
                 pb-3 sm:pb-0
                 scrollbar-hide"></div>
 
-    <!-- Scroll indicator mobile -->
-    <div class="flex sm:hidden justify-center gap-2 mt-5" id="teaser-dots">
-      <span class="teaser-dot h-2 w-8 rounded-full bg-primary transition-all duration-300"></span>
-      <span class="teaser-dot h-2 w-2 rounded-full bg-gray-300 transition-all duration-300"></span>
-      <span class="teaser-dot h-2 w-2 rounded-full bg-gray-300 transition-all duration-300"></span>
-    </div>
+    <!-- Scroll indicator mobile (rendered dynamically by JS) -->
+    <div class="flex sm:hidden justify-center gap-2 mt-5" id="teaser-dots"></div>
 
     <!-- CTA: centrat, lat, sub carduri -->
     <div class="flex justify-center mt-6">
@@ -613,10 +631,17 @@
       '</a>';
     }).join('');
 
-    // ── Scroll dots indicator (mobile only) ──
-    var dots = document.querySelectorAll('#teaser-dots .teaser-dot');
+    // ── Scroll dots indicator (mobile only) — rendered dynamically ──
+    var dotsContainer = document.getElementById('teaser-dots');
+    if (dotsContainer) {
+      dotsContainer.innerHTML = recent.map(function(_, i) {
+        return '<span class="teaser-dot h-2 rounded-full transition-all duration-300 ' +
+          (i === 0 ? 'w-8 bg-primary' : 'w-2 bg-gray-300') + '"></span>';
+      }).join('');
+    }
     var total = recent.length;
     grid.addEventListener('scroll', function() {
+      var dots = document.querySelectorAll('#teaser-dots .teaser-dot');
       var cardW = grid.querySelector('a') ? grid.querySelector('a').offsetWidth : 0;
       var idx = cardW > 0 ? Math.round(grid.scrollLeft / (cardW + 16)) : 0;
       idx = Math.max(0, Math.min(total - 1, idx));
@@ -639,14 +664,16 @@
       <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-5">
         Ce spun oamenii care<br class="sm:hidden"> ne-au trecut pragul?
       </h2>
-      <div class="inline-flex items-center gap-2 bg-gray-100 rounded-full p-1 mt-4">
+      <div class="inline-flex items-center gap-2 bg-gray-100 rounded-full p-1 mt-4" role="tablist" aria-label="Platformă recenzii">
         <button onclick="switchReviews('fb')" id="tab-fb"
-          class="review-tab active-tab flex items-center gap-2 px-3 sm:px-5 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200"
+          role="tab" aria-selected="true" aria-controls="panel-fb"
+          class="review-tab active-tab flex items-center gap-2 px-3 sm:px-5 py-3.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200">
           <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
           Facebook
         </button>
         <button onclick="switchReviews('g')" id="tab-g"
-          class="review-tab flex items-center gap-2 px-3 sm:px-5 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 text-gray-500 hover:text-gray-700"
+          role="tab" aria-selected="false" aria-controls="panel-g"
+          class="review-tab flex items-center gap-2 px-3 sm:px-5 py-3.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 text-gray-500 hover:text-gray-700">
           <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
           Google
         </button>
@@ -654,7 +681,7 @@
     </div>
 
     <!-- ── Facebook panel ── -->
-    <div id="panel-fb">
+    <div id="panel-fb" role="tabpanel" aria-labelledby="tab-fb">
       <div class="relative">
         <!-- Prev -->
         <button onclick="revSlide('fb',-1)" id="rev-prev-fb"
@@ -737,7 +764,7 @@
     </div>
 
     <!-- Google reviews panel (hidden by default) -->
-    <div id="panel-g" class="hidden">
+    <div id="panel-g" class="hidden" role="tabpanel" aria-labelledby="tab-g">
       <div class="relative">
         <!-- Prev -->
         <button onclick="revSlide('g',-1)" id="rev-prev-g"
@@ -838,6 +865,8 @@
     document.getElementById('tab-g').classList.toggle('active-tab', platform === 'g');
     document.getElementById('tab-fb').classList.toggle('text-gray-500', platform !== 'fb');
     document.getElementById('tab-g').classList.toggle('text-gray-500', platform !== 'g');
+    document.getElementById('tab-fb').setAttribute('aria-selected', String(platform === 'fb'));
+    document.getElementById('tab-g').setAttribute('aria-selected', String(platform === 'g'));
   }
 
   /* ── Carousel ── */
@@ -971,7 +1000,7 @@
         <!-- Header cu navigare lună -->
         <div class="bg-primary px-4 py-3 flex items-center justify-between">
           <button id="cal-prev" onclick="calNav(-1)"
-            class="w-8 h-8 flex items-center justify-center rounded-full text-white/70 hover:text-white hover:bg-white/10 transition-colors disabled:opacity-30 disabled:cursor-not-allowed">
+            class="w-11 h-11 flex items-center justify-center rounded-full text-white/70 hover:text-white hover:bg-white/10 transition-colors disabled:opacity-30 disabled:cursor-not-allowed">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
             </svg>
@@ -984,7 +1013,7 @@
             </div>
           </div>
           <button id="cal-next" onclick="calNav(1)"
-            class="w-8 h-8 flex items-center justify-center rounded-full text-white/70 hover:text-white hover:bg-white/10 transition-colors disabled:opacity-30 disabled:cursor-not-allowed">
+            class="w-11 h-11 flex items-center justify-center rounded-full text-white/70 hover:text-white hover:bg-white/10 transition-colors disabled:opacity-30 disabled:cursor-not-allowed">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
             </svg>
@@ -1103,11 +1132,11 @@
                 ? 'bg-amber-100 text-amber-700 font-bold hover:bg-amber-200 transition-colors'
                 : 'bg-primary/10 text-primary font-bold hover:bg-primary/20 transition-colors';
               html += `<div class="flex items-center justify-center">
-                <button class="w-9 h-9 rounded-full text-xs ${cls}" onclick="calSel(${m},${day},'${lang}')">${day}</button>
+                <button class="w-11 h-11 rounded-full text-xs ${cls}" onclick="calSel(${m},${day},'${lang}')">${day}</button>
               </div>`;
             } else {
               const cls = isToday ? 'text-maroon font-bold' : isPast ? 'text-gray-200' : 'text-gray-400';
-              html += `<div class="flex items-center justify-center h-9"><span class="text-xs ${cls}">${day}</span></div>`;
+              html += `<div class="flex items-center justify-center h-11"><span class="text-xs ${cls}">${day}</span></div>`;
             }
           }
           html += `</div>`;
@@ -1187,23 +1216,23 @@
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-1.5">Prenume</label>
-              <input type="text" placeholder="Ion" required
+              <input type="text" placeholder="Ion" required autocomplete="given-name"
                 class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
             </div>
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-1.5">Nume</label>
-              <input type="text" placeholder="Popescu" required
+              <input type="text" placeholder="Popescu" required autocomplete="family-name"
                 class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
             </div>
           </div>
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1.5">Email</label>
-            <input type="email" placeholder="ion.popescu@email.com" required
+            <input type="email" placeholder="ion.popescu@email.com" required autocomplete="email"
               class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
           </div>
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1.5">Telefon <span class="text-gray-400">(opțional)</span></label>
-            <input type="tel" placeholder="+40 7XX XXX XXX"
+            <input type="tel" placeholder="+40 7XX XXX XXX" autocomplete="tel"
               class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
           </div>
           <div>
@@ -1213,7 +1242,7 @@
             </label>
             <div class="relative">
               <input id="form-sedinta" type="text" readonly placeholder="Selectează o dată din calendar…"
-                class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm bg-gray-50 text-primary font-medium cursor-default focus:outline-none" />
+                class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm bg-gray-50 text-primary font-medium cursor-default focus:outline-none focus:ring-2 focus:ring-gray-300" />
               <svg class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
             </div>
           </div>
@@ -1257,9 +1286,9 @@
             <div class="text-gold text-[10px] font-semibold tracking-widest uppercase">CLUB</div>
           </div>
         </div>
-        <p class="hidden md:block text-white/50 text-sm leading-relaxed max-w-xs mb-6">
-          Clubul Timișoara Toastmasters, un spațiu sigur pentru practică, feedback și
-          creștere în comunicare și vorbit în public, parte din rețeaua globală Toastmasters International.
+        <p class="text-white/50 text-sm leading-relaxed max-w-xs mb-6">
+          <span class="hidden md:inline">Clubul Timișoara Toastmasters, un spațiu sigur pentru practică, feedback și creștere în comunicare și vorbit în public, parte din rețeaua globală Toastmasters International.</span>
+          <span class="md:hidden">Club de vorbit în public din Timișoara, parte din rețeaua globală Toastmasters.</span>
         </p>
         <div class="flex gap-3 mt-1 md:mt-0">
           <a href="https://www.instagram.com/timisoaratoastmasters/" target="_blank" class="w-11 h-11 rounded-full bg-white/10 hover:bg-maroon/40 flex items-center justify-center transition-colors" title="Instagram">
@@ -1303,7 +1332,7 @@
         Parte din rețeaua globală <span class="text-gold/60">Toastmasters International</span>
         <!-- Disclaimer info icon -->
         <span class="relative group">
-          <button aria-label="Disclaimer" class="w-3.5 h-3.5 rounded-full border border-white/20 text-white/30 hover:text-white/60 hover:border-white/40 flex items-center justify-center transition-colors leading-none text-[9px] font-bold cursor-default">i</button>
+          <button aria-label="Disclaimer" class="w-3.5 h-3.5 rounded-full border border-white/20 text-white/30 hover:text-white/60 hover:border-white/40 flex items-center justify-center transition-colors leading-none text-[11px] font-bold cursor-default">i</button>
           <span class="pointer-events-none absolute bottom-full right-0 mb-2 w-72 bg-[#001e2f] border border-white/10 text-white/50 text-[10px] leading-relaxed rounded-lg px-3 py-2.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 shadow-xl z-50">
             Informațiile de pe acest site sunt destinate exclusiv membrilor Toastmasters, pentru activități Toastmasters. Acestea nu pot fi utilizate pentru solicitări sau distribuirea de materiale și informații non-Toastmasters.
           </span>
@@ -1316,18 +1345,46 @@
 <!-- ════════════════════ JAVASCRIPT ════════════════════ -->
 <script>
   // ── Mobile nav ──
+  var _focusTrapHandler = null;
+
+  function trapFocus(el) {
+    releaseFocus();
+    var focusable = el.querySelectorAll('a[href], button:not([disabled])');
+    var first = focusable[0];
+    var last  = focusable[focusable.length - 1];
+    _focusTrapHandler = function(e) {
+      if (e.key !== 'Tab') return;
+      if (e.shiftKey) {
+        if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+      } else {
+        if (document.activeElement === last)  { e.preventDefault(); first.focus(); }
+      }
+    };
+    document.addEventListener('keydown', _focusTrapHandler);
+    if (first) first.focus();
+  }
+
+  function releaseFocus() {
+    if (_focusTrapHandler) {
+      document.removeEventListener('keydown', _focusTrapHandler);
+      _focusTrapHandler = null;
+    }
+  }
+
   function toggleMobile() {
     const m = document.getElementById('mobile-menu');
     const a = document.getElementById('icon-menu');
     const b = document.getElementById('icon-close');
-    m.classList.toggle('hidden');
+    const isOpen = !m.classList.toggle('hidden');
     a.classList.toggle('hidden');
     b.classList.toggle('hidden');
+    if (isOpen) trapFocus(m); else releaseFocus();
   }
   function closeMobile() {
     document.getElementById('mobile-menu').classList.add('hidden');
     document.getElementById('icon-menu').classList.remove('hidden');
     document.getElementById('icon-close').classList.add('hidden');
+    releaseFocus();
   }
 
   // ── Mobile search ──
@@ -1439,6 +1496,15 @@
         panel.style.pointerEvents = 'none';
       }
     });
+
+    // Grow container to fit active panel so it never clips
+    const activePanel = document.getElementById('jrn-panel-' + idx);
+    const container   = document.getElementById('jrn-panels-container');
+    if (activePanel && container) {
+      requestAnimationFrame(() => {
+        container.style.minHeight = (activePanel.scrollHeight + 32) + 'px';
+      });
+    }
   }
 
   // Auto-trigger step 1 when section enters viewport
