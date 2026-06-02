@@ -97,6 +97,7 @@ REGULI:
 - Dacă nu știi ceva specific, îndrumă utilizatorul să contacteze clubul pe Facebook sau prin formularul de contact de pe site
 - Fii scurt și la obiect, maxim 3-4 propoziții per răspuns
 - Folosește ocazional emoji pentru a fi mai prietenos 😊
+- NU folosi NICIODATĂ liniuța em (—). Folosește virgulă, două puncte sau liniuță simplă (-) în loc.
 - Când menționezi linkuri, folosește ÎNTOTDEAUNA formatul Markdown: [Nume](url). Exemple: [Facebook](https://www.facebook.com/timisoara.toastmasters), [Instagram](https://www.instagram.com/timisoaratoastmasters/), [LinkedIn](https://www.linkedin.com/company/toastmasters-timisoara/), [Google Maps](https://maps.app.goo.gl/DVs13RVEuvLN1zsZ7). Nu scrie URL-uri goale.`;
 
 module.exports = async function handler(req, res) {
