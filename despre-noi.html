@@ -102,6 +102,16 @@
 
     /* ── Leadership interactive cards ── */
     .leader-card { position: relative; overflow: hidden; }
+    .leader-card::after {
+      content: '';
+      position: absolute; bottom: 8px; right: 8px;
+      width: 16px; height: 16px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 16 16'%3E%3Cpath d='M5 5L11 11M11 5V11H5'/%3E%3C/svg%3E");
+      background-size: contain; background-repeat: no-repeat;
+      opacity: 0.4; pointer-events: none;
+      transition: opacity .2s, transform .2s;
+    }
+    .leader-card.leader-open::after { opacity: 0; }
     .leader-overlay {
       position: absolute; inset: 0;
       background: linear-gradient(135deg, #002d47 0%, #004165 100%);
@@ -700,7 +710,7 @@
     </div>
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
 
-      <div class="leader-card card-hover text-center p-4 sm:p-6 rounded-2xl border border-gray-100 bg-white shadow-sm cursor-pointer min-h-[220px] sm:min-h-0" onclick="leaderToggle(this)">
+      <div class="leader-card text-center p-4 sm:p-6 rounded-2xl border border-gray-100 bg-white shadow-sm cursor-pointer min-h-[220px] sm:min-h-0" onclick="leaderToggle(this)">
         <div class="w-24 h-24 sm:w-32 sm:h-32 rounded-full mx-auto mb-3 sm:mb-4 overflow-hidden" style="box-shadow:0 8px 24px rgba(0,65,101,.18), 0 0 0 4px #772432">
           <img src="Profile%20Pictures/robert-cernea-pp.jpg" alt="Robert Cernea" class="w-full h-full object-cover" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'text-white font-bold text-lg\'>RC</span>'" />
         </div>
@@ -724,7 +734,7 @@
         </div>
       </div>
 
-      <div class="leader-card card-hover text-center p-4 sm:p-6 rounded-2xl border border-gray-100 bg-white shadow-sm cursor-pointer min-h-[220px] sm:min-h-0" onclick="leaderToggle(this)">
+      <div class="leader-card text-center p-4 sm:p-6 rounded-2xl border border-gray-100 bg-white shadow-sm cursor-pointer min-h-[220px] sm:min-h-0" onclick="leaderToggle(this)">
         <div class="w-24 h-24 sm:w-32 sm:h-32 rounded-full mx-auto mb-3 sm:mb-4 overflow-hidden" style="box-shadow:0 8px 24px rgba(0,65,101,.18), 0 0 0 4px #772432">
           <img src="Profile%20Pictures/olga-lancea-pp.jpg" alt="Olga Culeac" class="w-full h-full object-cover" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'text-white font-bold text-lg\'>OL</span>'" />
         </div>
@@ -748,7 +758,7 @@
         </div>
       </div>
 
-      <div class="leader-card card-hover text-center p-4 sm:p-6 rounded-2xl border border-gray-100 bg-white shadow-sm cursor-pointer min-h-[220px] sm:min-h-0" onclick="leaderToggle(this)">
+      <div class="leader-card text-center p-4 sm:p-6 rounded-2xl border border-gray-100 bg-white shadow-sm cursor-pointer min-h-[220px] sm:min-h-0" onclick="leaderToggle(this)">
         <div class="w-24 h-24 sm:w-32 sm:h-32 rounded-full mx-auto mb-3 sm:mb-4 overflow-hidden" style="box-shadow:0 8px 24px rgba(0,65,101,.18), 0 0 0 4px #772432">
           <img src="Profile%20Pictures/ionut-cornean-pp.jpg" alt="Ionuț Cornean" class="w-full h-full object-cover" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'text-white font-bold text-lg\'>IC</span>'" />
         </div>
@@ -772,7 +782,7 @@
         </div>
       </div>
 
-      <div class="leader-card card-hover text-center p-4 sm:p-6 rounded-2xl border border-gray-100 bg-white shadow-sm cursor-pointer min-h-[220px] sm:min-h-0" onclick="leaderToggle(this)">
+      <div class="leader-card text-center p-4 sm:p-6 rounded-2xl border border-gray-100 bg-white shadow-sm cursor-pointer min-h-[220px] sm:min-h-0" onclick="leaderToggle(this)">
         <div class="w-24 h-24 sm:w-32 sm:h-32 rounded-full mx-auto mb-3 sm:mb-4 overflow-hidden" style="box-shadow:0 8px 24px rgba(0,65,101,.18), 0 0 0 4px #772432">
           <img src="Profile%20Pictures/lavinia-borza-pp.jpg" alt="Lavinia Borza" class="w-full h-full object-cover" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'text-white font-bold text-lg\'>LB</span>'" />
         </div>
@@ -792,7 +802,7 @@
         </div>
       </div>
 
-      <div class="leader-card card-hover text-center p-4 sm:p-6 rounded-2xl border border-gray-100 bg-white shadow-sm cursor-pointer min-h-[220px] sm:min-h-0" onclick="leaderToggle(this)">
+      <div class="leader-card text-center p-4 sm:p-6 rounded-2xl border border-gray-100 bg-white shadow-sm cursor-pointer min-h-[220px] sm:min-h-0" onclick="leaderToggle(this)">
         <div class="w-24 h-24 sm:w-32 sm:h-32 rounded-full mx-auto mb-3 sm:mb-4 overflow-hidden" style="box-shadow:0 8px 24px rgba(0,65,101,.18), 0 0 0 4px #772432">
           <img src="Profile%20Pictures/tudor-chiu-pp.jpg" alt="Tudor Chiu" class="w-full h-full object-cover" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'text-white font-bold text-lg\'>TC</span>'" />
         </div>
@@ -816,7 +826,7 @@
         </div>
       </div>
 
-      <div class="leader-card card-hover text-center p-4 sm:p-6 rounded-2xl border border-gray-100 bg-white shadow-sm cursor-pointer min-h-[220px] sm:min-h-0" onclick="leaderToggle(this)">
+      <div class="leader-card text-center p-4 sm:p-6 rounded-2xl border border-gray-100 bg-white shadow-sm cursor-pointer min-h-[220px] sm:min-h-0" onclick="leaderToggle(this)">
         <div class="w-24 h-24 sm:w-32 sm:h-32 rounded-full mx-auto mb-3 sm:mb-4 overflow-hidden" style="box-shadow:0 8px 24px rgba(0,65,101,.18), 0 0 0 4px #772432">
           <img src="Profile%20Pictures/mihaela-cristina-pp.jpg" alt="Mihaela Cristina" class="w-full h-full object-cover" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'text-white font-bold text-lg\'>MC</span>'" />
         </div>
@@ -840,7 +850,7 @@
         </div>
       </div>
 
-      <div class="leader-card card-hover text-center p-4 sm:p-6 rounded-2xl border border-gray-100 bg-white shadow-sm cursor-pointer min-h-[220px] sm:min-h-0" onclick="leaderToggle(this)">
+      <div class="leader-card text-center p-4 sm:p-6 rounded-2xl border border-gray-100 bg-white shadow-sm cursor-pointer min-h-[220px] sm:min-h-0" onclick="leaderToggle(this)">
         <div class="w-24 h-24 sm:w-32 sm:h-32 rounded-full mx-auto mb-3 sm:mb-4 overflow-hidden" style="box-shadow:0 8px 24px rgba(0,65,101,.18), 0 0 0 4px #772432">
           <img src="Profile%20Pictures/sergiu-spatar-pp.jpg" alt="Sergiu Spătar" class="w-full h-full object-cover" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'text-white font-bold text-lg\'>SS</span>'" />
         </div>
@@ -864,7 +874,7 @@
         </div>
       </div>
 
-      <div class="leader-card card-hover text-center p-4 sm:p-6 rounded-2xl border border-gray-100 bg-white shadow-sm cursor-pointer min-h-[220px] sm:min-h-0" onclick="leaderToggle(this)">
+      <div class="leader-card text-center p-4 sm:p-6 rounded-2xl border border-gray-100 bg-white shadow-sm cursor-pointer min-h-[220px] sm:min-h-0" onclick="leaderToggle(this)">
         <div class="w-24 h-24 sm:w-32 sm:h-32 rounded-full mx-auto mb-3 sm:mb-4 overflow-hidden" style="box-shadow:0 8px 24px rgba(0,65,101,.18), 0 0 0 4px #772432">
           <img src="Profile%20Pictures/adriana-stamatin-pp.jpg" alt="Adriana Stamatin" class="w-full h-full object-cover" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'text-white font-bold text-lg\'>AS</span>'" />
         </div>
