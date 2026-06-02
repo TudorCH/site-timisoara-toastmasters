@@ -1,43 +1,131 @@
 (function () {
-  var STORAGE_KEY = 'tm-cookie-consent';
-
-  if (localStorage.getItem(STORAGE_KEY)) return;
+  var KEY = 'tm-cookie-consent';
+  if (localStorage.getItem(KEY)) return;
 
   var css = document.createElement('style');
-  css.textContent =
-    '#tm-cookie-bar{position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#002d47;border-top:1px solid rgba(242,223,116,.2);padding:16px 20px;display:flex;flex-wrap:wrap;align-items:center;gap:12px;box-shadow:0 -4px 24px rgba(0,0,0,.3);transform:translateY(100%);transition:transform .4s ease;}' +
-    '#tm-cookie-bar.visible{transform:translateY(0);}' +
-    '#tm-cookie-bar p{flex:1;min-width:220px;color:rgba(255,255,255,.8);font-size:13px;line-height:1.5;margin:0;font-family:Inter,sans-serif;}' +
-    '#tm-cookie-bar a{color:#F2DF74;text-decoration:underline;}' +
-    '#tm-cookie-bar .tm-cb-btns{display:flex;gap:8px;flex-shrink:0;}' +
-    '#tm-cb-accept{background:#772432;color:#fff;border:none;border-radius:999px;padding:9px 20px;font-size:13px;font-weight:600;cursor:pointer;font-family:Inter,sans-serif;transition:background .2s;}' +
-    '#tm-cb-accept:hover{background:#8c2b3b;}' +
-    '#tm-cb-decline{background:transparent;color:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:9px 16px;font-size:13px;font-weight:500;cursor:pointer;font-family:Inter,sans-serif;transition:all .2s;}' +
-    '#tm-cb-decline:hover{color:#fff;border-color:rgba(255,255,255,.5);}' +
-    '@media(max-width:480px){#tm-cookie-bar{flex-direction:column;align-items:flex-start;}#tm-cookie-bar .tm-cb-btns{width:100%;}#tm-cb-accept,#tm-cb-decline{flex:1;text-align:center;}}';
+  css.textContent = `
+    #tm-cookie-overlay {
+      position: fixed; inset: 0; z-index: 99999;
+      background: rgba(0,0,0,.55);
+      backdrop-filter: blur(4px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 16px;
+      opacity: 0; transition: opacity .35s ease;
+    }
+    #tm-cookie-overlay.visible { opacity: 1; }
+
+    #tm-cookie-modal {
+      background: #fff;
+      border-radius: 24px;
+      box-shadow: 0 24px 80px rgba(0,0,0,.25);
+      max-width: 460px; width: 100%;
+      padding: 36px 32px 28px;
+      transform: translateY(28px) scale(.97);
+      transition: transform .35s cubic-bezier(.34,1.56,.64,1);
+      font-family: Inter, sans-serif;
+    }
+    #tm-cookie-overlay.visible #tm-cookie-modal {
+      transform: translateY(0) scale(1);
+    }
+
+    #tm-cookie-modal .tm-cookie-icon {
+      width: 56px; height: 56px; border-radius: 16px;
+      background: linear-gradient(135deg,#002d47,#004165);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+    }
+    #tm-cookie-modal h2 {
+      font-family: 'Plus Jakarta Sans', Inter, sans-serif;
+      font-size: 1.35rem; font-weight: 800; color: #004165;
+      margin: 0 0 10px;
+    }
+    #tm-cookie-modal p {
+      font-size: .9rem; line-height: 1.65; color: #6b7280;
+      margin: 0 0 24px;
+    }
+    #tm-cookie-modal p a {
+      color: #004165; font-weight: 600; text-decoration: underline;
+    }
+
+    #tm-cookie-modal .tm-btns {
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    #tm-cb-accept-all {
+      background: #772432; color: #fff;
+      border: none; border-radius: 999px;
+      padding: 14px 24px; font-size: .95rem; font-weight: 700;
+      cursor: pointer; font-family: inherit; width: 100%;
+      transition: background .2s, transform .15s;
+    }
+    #tm-cb-accept-all:hover { background: #8c2b3b; transform: scale(1.02); }
+
+    #tm-cb-essential {
+      background: transparent; color: #004165;
+      border: 2px solid #004165; border-radius: 999px;
+      padding: 12px 24px; font-size: .9rem; font-weight: 600;
+      cursor: pointer; font-family: inherit; width: 100%;
+      transition: background .2s, color .2s;
+    }
+    #tm-cb-essential:hover { background: #004165; color: #fff; }
+
+    #tm-cookie-modal .tm-cookie-note {
+      text-align: center; margin-top: 16px;
+      font-size: .78rem; color: #9ca3af;
+    }
+    #tm-cookie-modal .tm-cookie-note a {
+      color: #9ca3af; text-decoration: underline;
+    }
+
+    @media (max-width: 480px) {
+      #tm-cookie-modal { padding: 28px 20px 22px; border-radius: 20px; }
+      #tm-cookie-modal h2 { font-size: 1.2rem; }
+    }
+  `;
   document.head.appendChild(css);
 
-  var bar = document.createElement('div');
-  bar.id = 'tm-cookie-bar';
-  bar.innerHTML =
-    '<p>Folosim cookie-uri esențiale pentru funcționarea site-ului. ' +
-    'Citește <a href="cookies.html">Politica noastră de cookies</a>.</p>' +
-    '<div class="tm-cb-btns">' +
-    '<button id="tm-cb-decline">Doar esențiale</button>' +
-    '<button id="tm-cb-accept">Acceptă toate</button>' +
-    '</div>';
-  document.body.appendChild(bar);
+  var overlay = document.createElement('div');
+  overlay.id = 'tm-cookie-overlay';
+  overlay.innerHTML = `
+    <div id="tm-cookie-modal" role="dialog" aria-modal="true" aria-labelledby="tm-cookie-title">
+      <div class="tm-cookie-icon">
+        <svg width="28" height="28" fill="none" viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" fill="rgba(242,223,116,.15)" stroke="#F2DF74" stroke-width="1.5"/>
+          <circle cx="8.5"  cy="9"    r="1.2" fill="#F2DF74"/>
+          <circle cx="14.5" cy="8"    r="1.2" fill="#F2DF74"/>
+          <circle cx="10"   cy="13.5" r="1.2" fill="#F2DF74"/>
+          <circle cx="15"   cy="13"   r="1"   fill="#F2DF74"/>
+          <circle cx="8.5"  cy="14.5" r=".8"  fill="#F2DF74"/>
+        </svg>
+      </div>
+      <h2 id="tm-cookie-title">Respectăm confidențialitatea ta 🍪</h2>
+      <p>Folosim cookie-uri esențiale pentru a asigura funcționarea corectă a site-ului și pentru a reține preferințele tale. Nu urmărim activitatea ta și nu partajăm date cu terți în scopuri publicitare.</p>
+      <div class="tm-btns">
+        <button id="tm-cb-accept-all">Acceptă toate cookie-urile</button>
+        <button id="tm-cb-essential">Doar esențiale</button>
+      </div>
+      <p class="tm-cookie-note">
+        <a href="cookies.html">Politică cookies</a> &nbsp;·&nbsp; poți modifica oricând preferințele din browser
+      </p>
+    </div>
+  `;
+  document.body.appendChild(overlay);
 
+  // Animate in
   requestAnimationFrame(function () {
-    requestAnimationFrame(function () { bar.classList.add('visible'); });
+    requestAnimationFrame(function () { overlay.classList.add('visible'); });
   });
 
   function dismiss(value) {
-    localStorage.setItem(STORAGE_KEY, value);
-    bar.style.transform = 'translateY(100%)';
-    setTimeout(function () { bar.remove(); }, 400);
+    localStorage.setItem(KEY, value);
+    overlay.style.opacity = '0';
+    setTimeout(function () { overlay.remove(); }, 350);
   }
 
-  document.getElementById('tm-cb-accept').addEventListener('click', function () { dismiss('all'); });
-  document.getElementById('tm-cb-decline').addEventListener('click', function () { dismiss('essential'); });
+  document.getElementById('tm-cb-accept-all').addEventListener('click', function () { dismiss('all'); });
+  document.getElementById('tm-cb-essential').addEventListener('click',  function () { dismiss('essential'); });
+
+  // Close on backdrop click
+  overlay.addEventListener('click', function (e) {
+    if (e.target === overlay) dismiss('essential');
+  });
 })();
