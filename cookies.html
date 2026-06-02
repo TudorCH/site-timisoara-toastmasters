@@ -192,7 +192,7 @@
         </thead>
         <tbody>
           <tr>
-            <td><code>tm-cookies-v2</code></td>
+            <td><code>tm-cookies-v3</code></td>
             <td>Reține alegerea ta din banner-ul de consimțământ cookies (valori posibile: <em>all</em> sau <em>essential</em>)</td>
             <td>Esențial</td>
             <td>Permanent (până la ștergere manuală)</td>
@@ -246,7 +246,7 @@
     <h2>5. Cum îți gestionezi preferințele</h2>
 
     <h3>Resetarea consimțământului cookies</h3>
-    <p>Dacă dorești să modifici alegerea făcută în banner-ul de consimțământ, poți șterge cheia <code>tm-cookies-v2</code> din localStorage. Banner-ul va reapărea la următoarea vizită.</p>
+    <p>Dacă dorești să modifici alegerea făcută în banner-ul de consimțământ, poți șterge cheia <code>tm-cookies-v3</code> din localStorage. Banner-ul va reapărea la următoarea vizită.</p>
     <p>Pași în Chrome/Edge: <em>F12 - Application - Local Storage - timisoaratoastmasters.ro - selectează cheia - Delete</em>.</p>
 
     <h3>Ștergerea tuturor datelor stocate local</h3>
@@ -288,7 +288,7 @@
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
         Înapoi la pagina principală
       </a>
-      <button onclick="localStorage.removeItem('tm-cookies-v2');localStorage.removeItem('tm-cookie-consent');window.location.reload();"
+      <button onclick="localStorage.removeItem('tm-cookies-v3');localStorage.removeItem('tm-cookie-consent');window.location.reload();"
               class="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-maroon transition-colors border border-gray-200 hover:border-maroon rounded-full px-4 py-2">
         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
         Resetează preferințele cookies

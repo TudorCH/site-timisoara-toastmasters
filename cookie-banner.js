@@ -1,7 +1,8 @@
 (function () {
-  var KEY = 'tm-cookies-v2';
+  var KEY = 'tm-cookies-v3';
   localStorage.removeItem('tm-cookie-consent');
   localStorage.removeItem('tm-cookies-v1');
+  localStorage.removeItem('tm-cookies-v2');
   if (localStorage.getItem(KEY)) return;
 
   var style = document.createElement('style');
