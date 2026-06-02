@@ -4,7 +4,7 @@ INFORMAȚII CLUB:
 - Nume: Timișoara Toastmasters, Club #1269633
 - Parte din rețeaua internațională Toastmasters International (14.000+ cluburi în 150+ țări)
 - Motto: "Where Leaders Are Made!"
-- Activ de 17+ ani, 200+ membri de-a lungul timpului, 1.200+ discursuri susținute, 10+ medalii naționale și internaționale
+- Activ de 17+ ani, 200+ membri de-a lungul timpului, 1.200+ discursuri susținute, 30+ premii de excelență
 - Misiune: dezvoltarea abilităților de vorbit în public și leadership
 
 ȘEDINȚE:
