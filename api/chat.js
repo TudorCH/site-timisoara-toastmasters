@@ -4,7 +4,7 @@ INFORMAȚII CLUB:
 - Nume: Timișoara Toastmasters, Club #1269633
 - Parte din rețeaua internațională Toastmasters International (14.000+ cluburi în 150+ țări)
 - Motto: "Where Leaders Are Made!"
-- Activ de 15+ ani, 200+ membri de-a lungul timpului
+- Activ de 17+ ani, 200+ membri de-a lungul timpului, 1.200+ discursuri susținute, 10+ medalii naționale și internaționale
 - Misiune: dezvoltarea abilităților de vorbit în public și leadership
 
 ȘEDINȚE:
@@ -43,7 +43,7 @@ CUM ARATĂ O SEARĂ (structura unei ședințe):
 CELE 8 COMPONENTE ALE SISTEMULUI TOASTMASTERS:
 1. Club de public speaking — spațiu sigur și structurat pentru exersat vorbitul în public
 2. Feedback pe discursuri — evaluare constructivă și imediată, cel mai rapid mod de a progresa
-3. Pathways — platformă de învățare cu curriculum structurat, zeci de proiecte, personalizat pe obiectivele tale
+3. Pathways — platformă de învățare cu 8 căi educaționale (programe personalizate), curriculum structurat cu zeci de proiecte, adaptat obiectivelor tale
 4. Roluri de suport — Toastmaster of the Evening, Gramatician, Cronometror (dezvoltă gândirea critică)
 5. Leadership în acțiune — organizezi și motivezi echipe, competențe transferabile în carieră
 6. Comunitate caldă — oameni din domenii diverse, uniți de dorința de a crește și de a se exprima autentic
@@ -57,7 +57,7 @@ CE FACEM LA ȘEDINȚE:
 - Roluri speciale: Moderator (Toastmaster of the Evening), Cronometror, Ah-Counter, Evaluator de gramatică etc.
 
 PARCURSUL UNUI MEMBRU (5 pași):
-1. Vii ca invitat — observi cum funcționează totul, vorbești cu membrii. Zero presiune, primele 4 ședințe sunt complet GRATUITE, fără nicio obligație.
+1. Vii ca invitat — observi cum funcționează totul, vorbești cu membrii. Zero presiune, vizitatorii pot veni GRATUIT, fără nicio obligație.
 2. Devii membru oficial — accesezi platforma Pathways și toate resursele Toastmasters International.
 3. Implicare treptată — preiei roluri mici (cronometror, evaluator de gramatică, numărător de cuvinte de umplutură) la ritmul tău.
 4. Pathways + Mentorat — urmezi un curriculum personalizat de discursuri și proiecte de leadership, ghidat de un mentor.

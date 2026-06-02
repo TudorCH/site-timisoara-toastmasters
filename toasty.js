@@ -46,7 +46,7 @@
     '<div id="toasty-chips" style="padding:0 12px 10px;display:flex;flex-wrap:wrap;gap:6px;">',
       '<button onclick="toastySend(\'Când sunt ședințele?\')" style="all:unset;background:#f0f4f8;border:1px solid #e2e8f0;border-radius:999px;padding:5px 11px;font-size:12px;color:#004165;cursor:pointer;">📅 Ședințe</button>',
       '<button onclick="toastySend(\'Cum mă pot înscrie?\')" style="all:unset;background:#f0f4f8;border:1px solid #e2e8f0;border-radius:999px;padding:5px 11px;font-size:12px;color:#004165;cursor:pointer;">✍️ Înscriere</button>',
-      '<button onclick="toastySend(\'Este prima ședință gratuită?\')" style="all:unset;background:#f0f4f8;border:1px solid #e2e8f0;border-radius:999px;padding:5px 11px;font-size:12px;color:#004165;cursor:pointer;">💰 Cost</button>',
+      '<button onclick="toastySend(\'Pot veni gratuit?\')" style="all:unset;background:#f0f4f8;border:1px solid #e2e8f0;border-radius:999px;padding:5px 11px;font-size:12px;color:#004165;cursor:pointer;">💰 Cost</button>',
       '<button onclick="toastySend(\'Unde se țin ședințele?\')" style="all:unset;background:#f0f4f8;border:1px solid #e2e8f0;border-radius:999px;padding:5px 11px;font-size:12px;color:#004165;cursor:pointer;">📍 Locație</button>',
     '</div>',
     '<div style="padding:10px 12px;border-top:1px solid #f0f0f0;display:flex;gap:8px;align-items:center;">',
