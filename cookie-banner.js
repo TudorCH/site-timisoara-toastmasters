@@ -1,5 +1,7 @@
 (function () {
-  var KEY = 'tm-cookie-consent';
+  var KEY = 'tm-cookies-v1';
+  // Clear old key from previous deploys
+  localStorage.removeItem('tm-cookie-consent');
   if (localStorage.getItem(KEY)) return;
 
   var css = document.createElement('style');
