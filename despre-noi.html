@@ -119,15 +119,17 @@
       display: flex; flex-direction: column; align-items: center; justify-content: center;
       padding: 0.625rem 0.75rem;
       overflow: hidden;
-      opacity: 0; transition: opacity 0.3s ease; pointer-events: none;
+      transform: translateY(102%);
+      transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+      pointer-events: none;
     }
     @media (min-width: 640px) {
       .leader-overlay { padding: 1.25rem 1rem; }
     }
     @media (min-width: 1024px) {
-      .leader-card:hover .leader-overlay { opacity: 1; pointer-events: auto; }
+      .leader-card:hover .leader-overlay { transform: translateY(0); pointer-events: auto; }
     }
-    .leader-card.leader-open .leader-overlay { opacity: 1; pointer-events: auto; }
+    .leader-card.leader-open .leader-overlay { transform: translateY(0); pointer-events: auto; }
 
     /* ── Stat label truncation safeguard ── */
     .stat-label { word-break: break-word; hyphens: auto; }
