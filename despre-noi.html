@@ -62,9 +62,9 @@
     .scroll-fade.visible { opacity:1; transform:translateY(0); }
     .section-divider { height:1px; background: linear-gradient(to right, transparent, rgba(0,65,101,0.2), transparent); }
 
-    /* Justify body text on mobile */
+    /* Body text left-aligned on mobile (justified causes rivers on narrow columns) */
     @media (max-width: 767px) {
-      p, blockquote p { text-align: justify; }
+      p, blockquote p { text-align: left; }
     }
 
     /* ── Flip cards (Beneficii) ── */
@@ -300,7 +300,7 @@
 </section>
 
 <!-- ════════════════════ MISIUNEA NOASTRĂ ════════════════════ -->
-<section class="py-20 bg-white scroll-fade">
+<section class="py-10 lg:py-20 bg-white scroll-fade">
   <div class="max-w-3xl mx-auto px-5 lg:px-8 text-center">
     <span class="badge mb-4 inline-flex" data-i18n="mission-badge">Misiunea noastră</span>
     <h2 class="font-heading text-3xl md:text-4xl font-bold text-primary mb-6 leading-tight" data-i18n="mission-h2">
@@ -316,9 +316,9 @@
 <div class="section-divider mx-auto max-w-5xl"></div>
 
 <!-- ════════════════════ VALORI ════════════════════ -->
-<section class="py-20 bg-gray-50 scroll-fade">
+<section class="py-10 lg:py-20 bg-gray-50 scroll-fade">
   <div class="max-w-7xl mx-auto px-5 lg:px-8">
-    <div class="text-center mb-14">
+    <div class="text-center mb-8 lg:mb-14">
       <span class="badge mb-4" data-i18n="val-badge">Ce ne definește</span>
       <h2 class="font-heading text-3xl md:text-4xl font-bold text-primary mb-4" data-i18n="val-h2">
         Valorile clubului nostru
@@ -389,7 +389,7 @@
 <div class="section-divider mx-auto max-w-5xl"></div>
 
 <!-- ════════════════════ POVESTEA NOASTRĂ ════════════════════ -->
-<section class="py-20 bg-white scroll-fade">
+<section class="py-10 lg:py-20 bg-white scroll-fade">
   <div class="max-w-4xl mx-auto px-5 lg:px-8 text-center">
     <span class="badge mb-4 inline-flex" data-i18n="achiev-badge">Povestea noastră</span>
     <h2 class="font-heading text-3xl md:text-4xl font-bold text-primary mb-6 leading-tight" data-i18n="achiev-h2">
@@ -400,7 +400,7 @@
       <p class="text-center" data-i18n="achiev-p2">Clubul nostru oferă un mediu prietenos și structurat în care poți exersa vorbitul în public, poți primi feedback constructiv și poți prelua roluri de conducere, toate acestea săptămânal, alături de o comunitate care te susține și te provoacă să crești.</p>
       <p class="text-center" data-i18n="achiev-p3">Fie că ești la primul tău discurs sau la al suta, <strong class="text-primary">locul tău este aici.</strong></p>
     </div>
-    <div class="mt-14 grid grid-cols-2 md:grid-cols-4 gap-4">
+    <div class="mt-8 lg:mt-14 grid grid-cols-2 md:grid-cols-4 gap-4">
       <div class="gradient-dark rounded-2xl p-5 sm:p-7 text-center card-hover flex flex-col items-center justify-center">
         <div class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-gold mb-1 sm:mb-2">17+</div>
         <div class="stat-label text-white/70 text-[10px] sm:text-xs lg:text-sm font-medium uppercase tracking-wide leading-tight" data-i18n="achiev-s1">Ani de activitate</div>
@@ -424,9 +424,9 @@
 <div class="section-divider mx-auto max-w-5xl"></div>
 
 <!-- ════════════════════ CUM ARATĂ O SEARĂ ════════════════════ -->
-<section id="section-eve" class="py-20 bg-gray-50 scroll-fade">
+<section id="section-eve" class="py-10 lg:py-20 bg-gray-50 scroll-fade">
   <div class="max-w-3xl mx-auto px-5 lg:px-8">
-    <div class="text-center mb-14">
+    <div class="text-center mb-8 lg:mb-14">
       <span class="badge mb-4" data-i18n="eve-badge">O seară tipică</span>
       <h2 class="font-heading text-3xl md:text-4xl font-bold text-primary mb-4" data-i18n="eve-h2">
         Cum arată o ședință la<br/>Timișoara Toastmasters?
@@ -534,9 +534,9 @@
 </section>
 
 <!-- ════════════════════ BENEFICIILE MEMBRILOR ════════════════════ -->
-<section class="py-14 lg:py-24 bg-white scroll-fade">
+<section class="py-8 lg:py-24 bg-white scroll-fade">
   <div class="max-w-7xl mx-auto px-5 lg:px-8">
-    <div class="text-center mb-12 lg:mb-16">
+    <div class="text-center mb-6 lg:mb-16">
       <div class="badge mb-4" data-i18n="ben-badge">Ce câștigi</div>
       <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-5" data-i18n="ben-h2">Beneficiile membrilor</h2>
       <p class="text-gray-500 text-lg max-w-2xl mx-auto" data-i18n="ben-p">Un sistem dovedit de 100+ ani, aplicat săptămânal. Iată ce dezvolți concret ca membru Timișoara Toastmasters.</p>
@@ -702,9 +702,9 @@
 <div class="section-divider mx-auto max-w-5xl"></div>
 
 <!-- ════════════════════ CONDUCERE ════════════════════ -->
-<section class="py-14 lg:py-24 bg-gray-50 scroll-fade">
+<section class="py-8 lg:py-24 bg-gray-50 scroll-fade">
   <div class="max-w-7xl mx-auto px-5 lg:px-8">
-    <div class="text-center mb-16">
+    <div class="text-center mb-8 lg:mb-16">
       <div class="badge mb-4">Conducere</div>
       <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-5">Conducerea Timișoara Toastmasters</h2>
       <p class="text-gray-500 text-lg max-w-xl mx-auto">Echipa care organizează, coordonează și inspiră clubul în fiecare săptămână.</p>
@@ -906,7 +906,7 @@
 <div class="section-divider mx-auto max-w-5xl"></div>
 
 <!-- ════════════════════ CTA ════════════════════ -->
-<section class="gradient-hero py-20 scroll-fade relative overflow-hidden">
+<section class="gradient-hero py-10 lg:py-20 scroll-fade relative overflow-hidden">
   <div class="absolute top-[-60px] right-[-80px] w-96 h-96 rounded-full border border-gold/10 pointer-events-none"></div>
   <div class="absolute bottom-[-40px] left-20 w-64 h-64 rounded-full border border-white/5 pointer-events-none"></div>
 
@@ -1059,7 +1059,7 @@
   // ── Scroll-fade observer ──
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.08 });
+  }, { threshold: 0.03 });
   document.querySelectorAll('.scroll-fade').forEach(el => io.observe(el));
 
   // ════════════════════ TRANSLATIONS ════════════════════
