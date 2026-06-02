@@ -67,6 +67,25 @@
       p, blockquote p { text-align: justify; }
     }
 
+    /* ── Flip cards (Beneficii) ── */
+    .flip-card { perspective: 1200px; }
+    .flip-inner {
+      position: relative; width: 100%; height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+    }
+    @media (min-width: 1024px) {
+      .flip-card:hover .flip-inner { transform: rotateY(180deg); }
+    }
+    .flip-card.flipped .flip-inner { transform: rotateY(180deg); }
+    .flip-front, .flip-back {
+      position: absolute; inset: 0;
+      backface-visibility: hidden; -webkit-backface-visibility: hidden;
+      border-radius: 16px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+    }
+    .flip-back { transform: rotateY(180deg); }
+
     /* ── Language toggle ── */
     .lang-btn {
       padding: 3px 10px; border-radius: 999px; font-size: 11px; font-weight: 600;
@@ -246,82 +265,68 @@
 
 <div class="section-divider mx-auto max-w-5xl"></div>
 
-<!-- ════════════════════ TOASTMASTERS INTERNATIONAL ════════════════════ -->
+<!-- ════════════════════ VALORI ════════════════════ -->
 <section class="py-20 bg-gray-50 scroll-fade">
   <div class="max-w-7xl mx-auto px-5 lg:px-8">
-    <div class="flex flex-col lg:flex-row gap-10 lg:gap-16 items-start lg:items-center">
-
-      <!-- Text -->
-      <div class="w-full lg:w-1/2">
-        <span class="badge mb-4" data-i18n="tm-badge">Rețeaua globală</span>
-        <h2 class="font-heading text-3xl md:text-4xl font-bold text-primary mb-6 leading-tight"
-            data-i18n="tm-h2">
-          Parte dintr-o mișcare globală<br/>de peste 100 de ani
-        </h2>
-        <p class="text-gray-600 text-lg leading-relaxed mb-4" data-i18n="tm-p1">
-          Toastmasters International este cea mai mare organizație non-profit din lume dedicată
-          dezvoltării abilităților de comunicare și leadership. Fondată în 1924, rețeaua reunește
-          astăzi sute de mii de membri pe toate continentele.
-        </p>
-        <p class="text-gray-600 text-lg leading-relaxed" data-i18n="tm-p2">
-          Timișoara Toastmasters face parte din această rețea și aplică același sistem dovedit de
-          dezvoltare personală, adaptat comunității noastre locale, cu ședințe în română și engleză.
-        </p>
+    <div class="text-center mb-14">
+      <span class="badge mb-4" data-i18n="val-badge">Ce ne definește</span>
+      <h2 class="font-heading text-3xl md:text-4xl font-bold text-primary mb-4" data-i18n="val-h2">
+        Valorile clubului nostru
+      </h2>
+    </div>
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+      <div class="card-hover bg-white rounded-2xl border border-gray-100 shadow-sm p-4 md:p-8 text-center flex flex-col items-center cursor-pointer sm:cursor-default" onclick="valToggle(this)">
+        <div class="w-11 h-11 md:w-16 md:h-16 rounded-2xl gradient-dark flex items-center justify-center mb-3 md:mb-5 flex-shrink-0">
+          <svg class="w-5 h-5 md:w-8 md:h-8 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        </div>
+        <h3 class="font-heading font-bold text-primary text-sm md:text-xl mb-1.5 md:mb-3" data-i18n="val-v1-title">Integritate</h3>
+        <svg class="val-chevron sm:hidden w-4 h-4 text-gray-400 mt-1 mb-0.5 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        <p class="hidden sm:block text-gray-500 text-xs md:text-base leading-relaxed" data-i18n="val-v1-body">Sentiment al demnității, dreptății și onestității, servește drept călăuză în conduita noastră.</p>
       </div>
-
-      <!-- Stats grid -->
-      <div class="w-full lg:w-1/2 grid grid-cols-2 gap-4">
-        <div class="gradient-dark rounded-2xl p-5 sm:p-7 text-center card-hover">
-          <div class="font-heading text-4xl sm:text-5xl font-bold text-gold mb-1 sm:mb-2">1924</div>
-          <div class="text-white/70 text-xs sm:text-sm font-medium uppercase tracking-wide" data-i18n="stat-founded">Fondată în</div>
+      <div class="card-hover bg-white rounded-2xl border border-gray-100 shadow-sm p-4 md:p-8 text-center flex flex-col items-center cursor-pointer sm:cursor-default" onclick="valToggle(this)">
+        <div class="w-11 h-11 md:w-16 md:h-16 rounded-2xl gradient-dark flex items-center justify-center mb-3 md:mb-5 flex-shrink-0">
+          <svg class="w-5 h-5 md:w-8 md:h-8 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
         </div>
-        <div class="gradient-dark rounded-2xl p-5 sm:p-7 text-center card-hover">
-          <div class="font-heading text-4xl sm:text-5xl font-bold text-gold mb-1 sm:mb-2">270k+</div>
-          <div class="text-white/70 text-xs sm:text-sm font-medium uppercase tracking-wide" data-i18n="stat-members">Membri activi</div>
-        </div>
-        <div class="gradient-dark rounded-2xl p-5 sm:p-7 text-center card-hover">
-          <div class="font-heading text-4xl sm:text-5xl font-bold text-gold mb-1 sm:mb-2">14.200+</div>
-          <div class="text-white/70 text-xs sm:text-sm font-medium uppercase tracking-wide" data-i18n="stat-clubs">Cluburi în lume</div>
-        </div>
-        <div class="gradient-dark rounded-2xl p-5 sm:p-7 text-center card-hover">
-          <div class="font-heading text-4xl sm:text-5xl font-bold text-gold mb-1 sm:mb-2">150+</div>
-          <div class="text-white/70 text-xs sm:text-sm font-medium uppercase tracking-wide" data-i18n="stat-countries">Țări reprezentate</div>
-        </div>
+        <h3 class="font-heading font-bold text-primary text-sm md:text-xl mb-1.5 md:mb-3" data-i18n="val-v2-title">Respect</h3>
+        <svg class="val-chevron sm:hidden w-4 h-4 text-gray-400 mt-1 mb-0.5 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        <p class="hidden sm:block text-gray-500 text-xs md:text-base leading-relaxed" data-i18n="val-v2-body">Prețuire, stimă și respect pentru fiecare membru, indiferent de rolul pe care acesta îl ocupă în organizație.</p>
       </div>
-
+      <div class="card-hover bg-white rounded-2xl border border-gray-100 shadow-sm p-4 md:p-8 text-center flex flex-col items-center cursor-pointer sm:cursor-default" onclick="valToggle(this)">
+        <div class="w-11 h-11 md:w-16 md:h-16 rounded-2xl gradient-dark flex items-center justify-center mb-3 md:mb-5 flex-shrink-0">
+          <svg class="w-5 h-5 md:w-8 md:h-8 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+        </div>
+        <h3 class="font-heading font-bold text-primary text-sm md:text-xl mb-1.5 md:mb-3" data-i18n="val-v3-title">Serviciu</h3>
+        <svg class="val-chevron sm:hidden w-4 h-4 text-gray-400 mt-1 mb-0.5 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        <p class="hidden sm:block text-gray-500 text-xs md:text-base leading-relaxed" data-i18n="val-v3-body">Mai presus de interesul propriu, un angajament pentru binele colectiv al membrilor clubului.</p>
+      </div>
+      <div class="card-hover bg-white rounded-2xl border border-gray-100 shadow-sm p-4 md:p-8 text-center flex flex-col items-center cursor-pointer sm:cursor-default" onclick="valToggle(this)">
+        <div class="w-11 h-11 md:w-16 md:h-16 rounded-2xl gradient-dark flex items-center justify-center mb-3 md:mb-5 flex-shrink-0">
+          <svg class="w-5 h-5 md:w-8 md:h-8 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+        </div>
+        <h3 class="font-heading font-bold text-primary text-sm md:text-xl mb-1.5 md:mb-3" data-i18n="val-v4-title">Excelență</h3>
+        <svg class="val-chevron sm:hidden w-4 h-4 text-gray-400 mt-1 mb-0.5 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        <p class="hidden sm:block text-gray-500 text-xs md:text-base leading-relaxed" data-i18n="val-v4-body">Standard al cluburilor Toastmasters, ne motivează să devenim mai buni cu fiecare acțiune pe care o întreprindem.</p>
+      </div>
     </div>
   </div>
 </section>
 
 <div class="section-divider mx-auto max-w-5xl"></div>
 
-<!-- ════════════════════ POVESTEA NOASTRĂ ════════════════════ -->
+<!-- ════════════════════ REALIZĂRI CLUB ════════════════════ -->
 <section class="py-20 bg-white scroll-fade">
-  <div class="max-w-3xl mx-auto px-5 lg:px-8">
-    <div>
-        <span class="badge mb-4" data-i18n="story-badge">Povestea noastră</span>
-        <h2 class="font-heading text-3xl md:text-4xl font-bold text-primary mb-6 leading-tight"
-            data-i18n="story-h2">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8">
+    <div class="flex flex-col lg:flex-row gap-10 lg:gap-16 items-start">
+      <div class="w-full lg:w-1/2">
+        <span class="badge mb-4" data-i18n="achiev-badge">Realizările noastre</span>
+        <h2 class="font-heading text-3xl md:text-4xl font-bold text-primary mb-6 leading-tight" data-i18n="achiev-h2">
           De ce există<br/>Timișoara Toastmasters?
         </h2>
         <div class="space-y-5 text-gray-600 text-lg leading-relaxed">
-          <p data-i18n="story-p1">
-            Timișoara Toastmasters s-a născut din dorința unui grup de oameni care credeau că
-            abilitatea de a comunica eficient este una dintre cele mai valoroase investiții pe
-            care le poți face în tine însuți.
-          </p>
-          <p data-i18n="story-p2">
-            Clubul nostru oferă un mediu prietenos și structurat în care poți exersa vorbitul
-            în public, poți primi feedback constructiv și poți prelua roluri de conducere, toate
-            acestea săptămânal, alături de o comunitate care te susține și te provoacă să crești.
-          </p>
-          <p data-i18n="story-p3">
-            Fie că ești la primul tău discurs sau la al suta, fie că vrei să devii mai clar,
-            mai convingător sau pur și simplu mai puțin nervos în fața unui public,
-            <strong class="text-primary">locul tău este aici.</strong>
-          </p>
+          <p data-i18n="achiev-p1">Timișoara Toastmasters s-a născut din dorința unui grup de oameni care credeau că abilitatea de a comunica eficient este una dintre cele mai valoroase investiții pe care le poți face în tine însuți.</p>
+          <p data-i18n="achiev-p2">Clubul nostru oferă un mediu prietenos și structurat în care poți exersa vorbitul în public, poți primi feedback constructiv și poți prelua roluri de conducere, toate acestea săptămânal, alături de o comunitate care te susține și te provoacă să crești.</p>
+          <p data-i18n="achiev-p3">Fie că ești la primul tău discurs sau la al suta, <strong class="text-primary">locul tău este aici.</strong></p>
         </div>
-
         <div class="mt-8 flex flex-wrap gap-3">
           <div class="flex items-center gap-2 bg-primary/5 border border-primary/10 rounded-full px-4 py-2 text-sm text-primary font-medium">
             <svg class="w-4 h-4 text-gold" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
@@ -341,13 +346,32 @@
           </div>
         </div>
       </div>
+      <div class="w-full lg:w-1/2 grid grid-cols-2 gap-4">
+        <div class="gradient-dark rounded-2xl p-5 sm:p-7 text-center card-hover">
+          <div class="font-heading text-4xl sm:text-5xl font-bold text-gold mb-1 sm:mb-2">15+</div>
+          <div class="text-white/70 text-xs sm:text-sm font-medium uppercase tracking-wide" data-i18n="achiev-s1">Ani de activitate</div>
+        </div>
+        <div class="gradient-dark rounded-2xl p-5 sm:p-7 text-center card-hover">
+          <div class="font-heading text-4xl sm:text-5xl font-bold text-gold mb-1 sm:mb-2">200+</div>
+          <div class="text-white/70 text-xs sm:text-sm font-medium uppercase tracking-wide" data-i18n="achiev-s2">Membri de-a lungul timpului</div>
+        </div>
+        <div class="gradient-dark rounded-2xl p-5 sm:p-7 text-center card-hover">
+          <div class="font-heading text-4xl sm:text-5xl font-bold text-gold mb-1 sm:mb-2">1.000+</div>
+          <div class="text-white/70 text-xs sm:text-sm font-medium uppercase tracking-wide" data-i18n="achiev-s3">Discursuri susținute</div>
+        </div>
+        <div class="gradient-dark rounded-2xl p-5 sm:p-7 text-center card-hover">
+          <div class="font-heading text-4xl sm:text-5xl font-bold text-gold mb-1 sm:mb-2">50+</div>
+          <div class="text-white/70 text-xs sm:text-sm font-medium uppercase tracking-wide" data-i18n="achiev-s4">Ședințe pe an</div>
+        </div>
+      </div>
     </div>
+  </div>
 </section>
 
 <div class="section-divider mx-auto max-w-5xl"></div>
 
 <!-- ════════════════════ CUM ARATĂ O SEARĂ ════════════════════ -->
-<section class="py-20 bg-gray-50 scroll-fade">
+<section id="section-eve" class="py-20 bg-gray-50 scroll-fade">
   <div class="max-w-3xl mx-auto px-5 lg:px-8">
     <div class="text-center mb-14">
       <span class="badge mb-4" data-i18n="eve-badge">O seară tipică</span>
@@ -456,186 +480,153 @@
   </div>
 </section>
 
-<!-- ════════════════════ VALORI ════════════════════ -->
-<section class="py-20 bg-white scroll-fade">
+<!-- ════════════════════ BENEFICIILE MEMBRILOR ════════════════════ -->
+<section class="py-14 lg:py-24 bg-white scroll-fade">
   <div class="max-w-7xl mx-auto px-5 lg:px-8">
-    <div class="text-center mb-14">
-      <span class="badge mb-4" data-i18n="val-badge">Ce ne definește</span>
-      <h2 class="font-heading text-3xl md:text-4xl font-bold text-primary mb-4" data-i18n="val-h2">
-        Valorile clubului nostru
-      </h2>
+    <div class="text-center mb-12 lg:mb-16">
+      <div class="badge mb-4" data-i18n="ben-badge">Ce câștigi</div>
+      <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-5" data-i18n="ben-h2">Beneficiile membrilor</h2>
+      <p class="text-gray-500 text-lg max-w-2xl mx-auto" data-i18n="ben-p">Un sistem dovedit de 100+ ani, aplicat săptămânal. Iată ce dezvolți concret ca membru Timișoara Toastmasters.</p>
     </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-5">
 
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-
-      <div class="card-hover bg-white rounded-2xl border border-gray-100 shadow-sm p-4 md:p-8 text-center flex flex-col items-center cursor-pointer sm:cursor-default" onclick="valToggle(this)">
-        <div class="w-11 h-11 md:w-16 md:h-16 rounded-2xl gradient-dark flex items-center justify-center mb-3 md:mb-5 flex-shrink-0">
-          <svg class="w-5 h-5 md:w-8 md:h-8 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-          </svg>
-        </div>
-        <h3 class="font-heading font-bold text-primary text-sm md:text-xl mb-1.5 md:mb-3" data-i18n="val-v1-title">Integritate</h3>
-        <svg class="val-chevron sm:hidden w-4 h-4 text-gray-400 mt-1 mb-0.5 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-        <p class="hidden sm:block text-gray-500 text-xs md:text-base leading-relaxed" data-i18n="val-v1-body">Sentiment al demnității, dreptății și onestității, servește drept călăuză în conduita noastră.</p>
-      </div>
-
-      <div class="card-hover bg-white rounded-2xl border border-gray-100 shadow-sm p-4 md:p-8 text-center flex flex-col items-center cursor-pointer sm:cursor-default" onclick="valToggle(this)">
-        <div class="w-11 h-11 md:w-16 md:h-16 rounded-2xl gradient-dark flex items-center justify-center mb-3 md:mb-5 flex-shrink-0">
-          <svg class="w-5 h-5 md:w-8 md:h-8 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
-          </svg>
-        </div>
-        <h3 class="font-heading font-bold text-primary text-sm md:text-xl mb-1.5 md:mb-3" data-i18n="val-v2-title">Respect</h3>
-        <svg class="val-chevron sm:hidden w-4 h-4 text-gray-400 mt-1 mb-0.5 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-        <p class="hidden sm:block text-gray-500 text-xs md:text-base leading-relaxed" data-i18n="val-v2-body">Prețuire, stimă și respect pentru fiecare membru, indiferent de rolul pe care acesta îl ocupă în organizație.</p>
-      </div>
-
-      <div class="card-hover bg-white rounded-2xl border border-gray-100 shadow-sm p-4 md:p-8 text-center flex flex-col items-center cursor-pointer sm:cursor-default" onclick="valToggle(this)">
-        <div class="w-11 h-11 md:w-16 md:h-16 rounded-2xl gradient-dark flex items-center justify-center mb-3 md:mb-5 flex-shrink-0">
-          <svg class="w-5 h-5 md:w-8 md:h-8 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
-          </svg>
-        </div>
-        <h3 class="font-heading font-bold text-primary text-sm md:text-xl mb-1.5 md:mb-3" data-i18n="val-v3-title">Serviciu</h3>
-        <svg class="val-chevron sm:hidden w-4 h-4 text-gray-400 mt-1 mb-0.5 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-        <p class="hidden sm:block text-gray-500 text-xs md:text-base leading-relaxed" data-i18n="val-v3-body">Mai presus de interesul propriu, un angajament pentru binele colectiv al membrilor clubului.</p>
-      </div>
-
-      <div class="card-hover bg-white rounded-2xl border border-gray-100 shadow-sm p-4 md:p-8 text-center flex flex-col items-center cursor-pointer sm:cursor-default" onclick="valToggle(this)">
-        <div class="w-11 h-11 md:w-16 md:h-16 rounded-2xl gradient-dark flex items-center justify-center mb-3 md:mb-5 flex-shrink-0">
-          <svg class="w-5 h-5 md:w-8 md:h-8 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
-          </svg>
-        </div>
-        <h3 class="font-heading font-bold text-primary text-sm md:text-xl mb-1.5 md:mb-3" data-i18n="val-v4-title">Excelență</h3>
-        <svg class="val-chevron sm:hidden w-4 h-4 text-gray-400 mt-1 mb-0.5 transition-transform duration-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-        <p class="hidden text-gray-500 text-xs leading-relaxed">Standardul clubului, ne motivează să fim mereu mai buni.</p>
-        <p class="hidden sm:block text-gray-500 text-xs md:text-base leading-relaxed" data-i18n="val-v4-body">Standard al cluburilor Toastmasters, ne motivează să devenim mai buni cu fiecare acțiune pe care o întreprindem.</p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ════════════════════ SISTEMUL TOASTMASTERS ════════════════════ -->
-<section class="py-14 lg:py-24 bg-gray-50 scroll-fade">
-  <div class="max-w-7xl mx-auto px-5 lg:px-8">
-    <div class="text-center mb-16">
-      <div class="badge mb-4">Sistemul Toastmasters</div>
-      <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-5">
-        Un sistem testat de peste 100 de ani
-      </h2>
-      <p class="text-gray-500 text-lg max-w-2xl mx-auto">
-        Toastmasters International a ajutat milioane de oameni din întreaga lume să devină comunicatori mai buni.
-      </p>
-    </div>
-
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6">
-
-      <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 card-hover flex flex-col">
-        <div class="relative">
-          <img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=600&q=80&auto=format&fit=crop" alt="Club" class="w-full h-36 object-cover" loading="lazy" />
-          <div class="absolute -bottom-4 left-4 w-9 h-9 bg-primary rounded-full flex items-center justify-center text-white font-bold text-sm shadow-md z-10">01</div>
-        </div>
-        <div class="pt-7 pb-5 px-4 flex flex-col flex-1">
-          <div class="text-[10px] font-bold text-maroon uppercase tracking-widest mb-1.5">Club</div>
-          <h3 class="font-bold text-primary text-sm leading-snug mb-2">Club de public speaking</h3>
-          <p class="text-gray-500 text-xs leading-relaxed">Un spațiu sigur și structurat unde exersezi vorbitul în public alături de colegi care te sprijină.</p>
+      <!-- 1: Vorbit în public -->
+      <div class="flip-card h-48 lg:h-52 cursor-pointer select-none" onclick="benFlip(this)">
+        <div class="flip-inner">
+          <div class="flip-front bg-white border border-gray-100 shadow-sm p-5 lg:p-6 gap-2">
+            <div class="w-11 h-11 lg:w-14 lg:h-14 rounded-2xl bg-primary/8 flex items-center justify-center"><svg class="w-5 h-5 lg:w-7 lg:h-7 text-primary" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg></div>
+            <div class="text-[9px] lg:text-[10px] font-bold text-maroon uppercase tracking-widest" data-i18n="ben-c1-tag">Competență de bază</div>
+            <h3 class="font-bold text-primary text-sm lg:text-base leading-snug" data-i18n="ben-c1-title">Vorbit în public</h3>
+          </div>
+          <div class="flip-back gradient-dark p-5 lg:p-6 gap-2">
+            <div class="text-[9px] lg:text-[10px] font-bold text-gold/70 uppercase tracking-widest" data-i18n="ben-c1-tag">Competență de bază</div>
+            <h3 class="font-bold text-gold text-sm lg:text-base leading-snug" data-i18n="ben-c1-title">Vorbit în public</h3>
+            <p class="text-white/75 text-xs lg:text-sm leading-relaxed" data-i18n="ben-c1-desc">Exersezi săptămânal într-un spațiu sigur. Progresezi discurs după discurs, aplaudat și încurajat de colegi.</p>
+          </div>
         </div>
       </div>
 
-      <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 card-hover flex flex-col">
-        <div class="relative">
-          <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=600&q=80&auto=format&fit=crop" alt="Feedback" class="w-full h-36 object-cover" loading="lazy" />
-          <div class="absolute -bottom-4 left-4 w-9 h-9 bg-maroon rounded-full flex items-center justify-center text-white font-bold text-sm shadow-md z-10">02</div>
-        </div>
-        <div class="pt-7 pb-5 px-4 flex flex-col flex-1">
-          <div class="text-[10px] font-bold text-maroon uppercase tracking-widest mb-1.5">Feedback</div>
-          <h3 class="font-bold text-primary text-sm leading-snug mb-2">Feedback pe discursuri</h3>
-          <p class="text-gray-500 text-xs leading-relaxed">Fiecare discurs este evaluat cu feedback constructiv și imediat, cel mai rapid mod de a progresa.</p>
-        </div>
-      </div>
-
-      <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 card-hover flex flex-col">
-        <div class="relative">
-          <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&q=80&auto=format&fit=crop" alt="Pathways" class="w-full h-36 object-cover" loading="lazy" />
-          <div class="absolute -bottom-4 left-4 w-9 h-9 bg-primary rounded-full flex items-center justify-center text-white font-bold text-sm shadow-md z-10">03</div>
-        </div>
-        <div class="pt-7 pb-5 px-4 flex flex-col flex-1">
-          <div class="text-[10px] font-bold text-maroon uppercase tracking-widest mb-1.5">Pathways</div>
-          <h3 class="font-bold text-primary text-sm leading-snug mb-2">Pathways – platforma de învățare</h3>
-          <p class="text-gray-500 text-xs leading-relaxed">Curriculum structurat cu zeci de proiecte, personalizat pe obiectivele tale de carieră.</p>
+      <!-- 2: Leadership -->
+      <div class="flip-card h-48 lg:h-52 cursor-pointer select-none" onclick="benFlip(this)">
+        <div class="flip-inner">
+          <div class="flip-front bg-white border border-gray-100 shadow-sm p-5 lg:p-6 gap-2">
+            <div class="w-11 h-11 lg:w-14 lg:h-14 rounded-2xl bg-primary/8 flex items-center justify-center"><svg class="w-5 h-5 lg:w-7 lg:h-7 text-primary" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg></div>
+            <div class="text-[9px] lg:text-[10px] font-bold text-maroon uppercase tracking-widest" data-i18n="ben-c2-tag">Experiență reală</div>
+            <h3 class="font-bold text-primary text-sm lg:text-base leading-snug" data-i18n="ben-c2-title">Leadership</h3>
+          </div>
+          <div class="flip-back gradient-dark p-5 lg:p-6 gap-2">
+            <div class="text-[9px] lg:text-[10px] font-bold text-gold/70 uppercase tracking-widest" data-i18n="ben-c2-tag">Experiență reală</div>
+            <h3 class="font-bold text-gold text-sm lg:text-base leading-snug" data-i18n="ben-c2-title">Leadership</h3>
+            <p class="text-white/75 text-xs lg:text-sm leading-relaxed" data-i18n="ben-c2-desc">Preiei roluri reale la fiecare ședință: moderezi, evaluezi, cronometrezi. Competențe de conducere transferabile oricărui mediu.</p>
+          </div>
         </div>
       </div>
 
-      <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 card-hover flex flex-col">
-        <div class="relative">
-          <img src="https://images.unsplash.com/photo-1560523159-4a9692d222ef?w=600&q=80&auto=format&fit=crop" alt="Roluri" class="w-full h-36 object-cover" loading="lazy" />
-          <div class="absolute -bottom-4 left-4 w-9 h-9 bg-maroon rounded-full flex items-center justify-center text-white font-bold text-sm shadow-md z-10">04</div>
-        </div>
-        <div class="pt-7 pb-5 px-4 flex flex-col flex-1">
-          <div class="text-[10px] font-bold text-maroon uppercase tracking-widest mb-1.5">Roluri</div>
-          <h3 class="font-bold text-primary text-sm leading-snug mb-2">Roluri de suport</h3>
-          <p class="text-gray-500 text-xs leading-relaxed">Toastmaster of the Evening, Gramatician, Cronometror, roluri care îți dezvoltă gândirea critică.</p>
-        </div>
-      </div>
-
-      <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 card-hover flex flex-col">
-        <div class="relative">
-          <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600&q=80&auto=format&fit=crop" alt="Leadership" class="w-full h-36 object-cover" loading="lazy" />
-          <div class="absolute -bottom-4 left-4 w-9 h-9 bg-primary rounded-full flex items-center justify-center text-white font-bold text-sm shadow-md z-10">05</div>
-        </div>
-        <div class="pt-7 pb-5 px-4 flex flex-col flex-1">
-          <div class="text-[10px] font-bold text-maroon uppercase tracking-widest mb-1.5">Leadership</div>
-          <h3 class="font-bold text-primary text-sm leading-snug mb-2">Leadership în acțiune</h3>
-          <p class="text-gray-500 text-xs leading-relaxed">Înveți să organizezi și să motivezi echipe, competențe transferabile oricărui mediu profesional.</p>
+      <!-- 3: Feedback -->
+      <div class="flip-card h-48 lg:h-52 cursor-pointer select-none" onclick="benFlip(this)">
+        <div class="flip-inner">
+          <div class="flip-front bg-white border border-gray-100 shadow-sm p-5 lg:p-6 gap-2">
+            <div class="w-11 h-11 lg:w-14 lg:h-14 rounded-2xl bg-primary/8 flex items-center justify-center"><svg class="w-5 h-5 lg:w-7 lg:h-7 text-primary" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg></div>
+            <div class="text-[9px] lg:text-[10px] font-bold text-maroon uppercase tracking-widest" data-i18n="ben-c3-tag">Progres accelerat</div>
+            <h3 class="font-bold text-primary text-sm lg:text-base leading-snug" data-i18n="ben-c3-title">Feedback constructiv</h3>
+          </div>
+          <div class="flip-back gradient-dark p-5 lg:p-6 gap-2">
+            <div class="text-[9px] lg:text-[10px] font-bold text-gold/70 uppercase tracking-widest" data-i18n="ben-c3-tag">Progres accelerat</div>
+            <h3 class="font-bold text-gold text-sm lg:text-base leading-snug" data-i18n="ben-c3-title">Feedback constructiv</h3>
+            <p class="text-white/75 text-xs lg:text-sm leading-relaxed" data-i18n="ben-c3-desc">Fiecare discurs primește evaluare detaliată: ce a mers bine și ce poate fi îmbunătățit. Cel mai rapid traseu spre progres real.</p>
+          </div>
         </div>
       </div>
 
-      <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 card-hover flex flex-col">
-        <div class="relative">
-          <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80&auto=format&fit=crop" alt="Comunitate" class="w-full h-36 object-cover" loading="lazy" />
-          <div class="absolute -bottom-4 left-4 w-9 h-9 bg-maroon rounded-full flex items-center justify-center text-white font-bold text-sm shadow-md z-10">06</div>
-        </div>
-        <div class="pt-7 pb-5 px-4 flex flex-col flex-1">
-          <div class="text-[10px] font-bold text-maroon uppercase tracking-widest mb-1.5">Comunitate</div>
-          <h3 class="font-bold text-primary text-sm leading-snug mb-2">O comunitate caldă</h3>
-          <p class="text-gray-500 text-xs leading-relaxed">Oameni din domenii diverse, uniți de dorința de a crește și de a se exprima autentic.</p>
-        </div>
-      </div>
-
-      <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 card-hover flex flex-col">
-        <div class="relative">
-          <img src="https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?w=600&q=80&auto=format&fit=crop" alt="Competiții" class="w-full h-36 object-cover" loading="lazy" />
-          <div class="absolute -bottom-4 left-4 w-9 h-9 bg-primary rounded-full flex items-center justify-center text-white font-bold text-sm shadow-md z-10">07</div>
-        </div>
-        <div class="pt-7 pb-5 px-4 flex flex-col flex-1">
-          <div class="text-[10px] font-bold text-maroon uppercase tracking-widest mb-1.5">Concursuri</div>
-          <h3 class="font-bold text-primary text-sm leading-snug mb-2">Competiții Toastmasters</h3>
-          <p class="text-gray-500 text-xs leading-relaxed">De la nivel de club până la nivel internațional, testează-te pe scenă și obții recunoaștere.</p>
+      <!-- 4: Pathways -->
+      <div class="flip-card h-48 lg:h-52 cursor-pointer select-none" onclick="benFlip(this)">
+        <div class="flip-inner">
+          <div class="flip-front bg-white border border-gray-100 shadow-sm p-5 lg:p-6 gap-2">
+            <div class="w-11 h-11 lg:w-14 lg:h-14 rounded-2xl bg-primary/8 flex items-center justify-center"><svg class="w-5 h-5 lg:w-7 lg:h-7 text-primary" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg></div>
+            <div class="text-[9px] lg:text-[10px] font-bold text-maroon uppercase tracking-widest" data-i18n="ben-c4-tag">300+ abilități</div>
+            <h3 class="font-bold text-primary text-sm lg:text-base leading-snug" data-i18n="ben-c4-title">Pathways</h3>
+          </div>
+          <div class="flip-back gradient-dark p-5 lg:p-6 gap-2">
+            <div class="text-[9px] lg:text-[10px] font-bold text-gold/70 uppercase tracking-widest" data-i18n="ben-c4-tag">300+ abilități</div>
+            <h3 class="font-bold text-gold text-sm lg:text-base leading-snug" data-i18n="ben-c4-title">Pathways</h3>
+            <p class="text-white/75 text-xs lg:text-sm leading-relaxed" data-i18n="ben-c4-desc">Platformă de învățare cu trasee personalizate: management de proiect, rezoluția conflictelor, pregătire interviuri și altele.</p>
+          </div>
         </div>
       </div>
 
-      <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 card-hover flex flex-col">
-        <div class="relative">
-          <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&q=80&auto=format&fit=crop" alt="Academie" class="w-full h-36 object-cover" loading="lazy" />
-          <div class="absolute -bottom-4 left-4 w-9 h-9 bg-maroon rounded-full flex items-center justify-center text-white font-bold text-sm shadow-md z-10">08</div>
+      <!-- 5: Încredere -->
+      <div class="flip-card h-48 lg:h-52 cursor-pointer select-none" onclick="benFlip(this)">
+        <div class="flip-inner">
+          <div class="flip-front bg-white border border-gray-100 shadow-sm p-5 lg:p-6 gap-2">
+            <div class="w-11 h-11 lg:w-14 lg:h-14 rounded-2xl bg-primary/8 flex items-center justify-center"><svg class="w-5 h-5 lg:w-7 lg:h-7 text-primary" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
+            <div class="text-[9px] lg:text-[10px] font-bold text-maroon uppercase tracking-widest" data-i18n="ben-c5-tag">Transformare</div>
+            <h3 class="font-bold text-primary text-sm lg:text-base leading-snug" data-i18n="ben-c5-title">Încredere în sine</h3>
+          </div>
+          <div class="flip-back gradient-dark p-5 lg:p-6 gap-2">
+            <div class="text-[9px] lg:text-[10px] font-bold text-gold/70 uppercase tracking-widest" data-i18n="ben-c5-tag">Transformare</div>
+            <h3 class="font-bold text-gold text-sm lg:text-base leading-snug" data-i18n="ben-c5-title">Încredere în sine</h3>
+            <p class="text-white/75 text-xs lg:text-sm leading-relaxed" data-i18n="ben-c5-desc">Transformi nervozitatea în energie pozitivă. Câștigi prezență și autoritate în orice context public sau profesional.</p>
+          </div>
         </div>
-        <div class="pt-7 pb-5 px-4 flex flex-col flex-1">
-          <div class="text-[10px] font-bold text-maroon uppercase tracking-widest mb-1.5">Club</div>
-          <h3 class="font-bold text-primary text-sm leading-snug mb-2">Academie & Ateliere</h3>
-          <p class="text-gray-500 text-xs leading-relaxed">Workshop-uri și sesiuni tematice care completează experiența din ședințele săptămânale de club.</p>
+      </div>
+
+      <!-- 6: Networking -->
+      <div class="flip-card h-48 lg:h-52 cursor-pointer select-none" onclick="benFlip(this)">
+        <div class="flip-inner">
+          <div class="flip-front bg-white border border-gray-100 shadow-sm p-5 lg:p-6 gap-2">
+            <div class="w-11 h-11 lg:w-14 lg:h-14 rounded-2xl bg-primary/8 flex items-center justify-center"><svg class="w-5 h-5 lg:w-7 lg:h-7 text-primary" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg></div>
+            <div class="text-[9px] lg:text-[10px] font-bold text-maroon uppercase tracking-widest" data-i18n="ben-c6-tag">Conexiuni reale</div>
+            <h3 class="font-bold text-primary text-sm lg:text-base leading-snug" data-i18n="ben-c6-title">Networking</h3>
+          </div>
+          <div class="flip-back gradient-dark p-5 lg:p-6 gap-2">
+            <div class="text-[9px] lg:text-[10px] font-bold text-gold/70 uppercase tracking-widest" data-i18n="ben-c6-tag">Conexiuni reale</div>
+            <h3 class="font-bold text-gold text-sm lg:text-base leading-snug" data-i18n="ben-c6-title">Networking</h3>
+            <p class="text-white/75 text-xs lg:text-sm leading-relaxed" data-i18n="ben-c6-desc">Construiești relații cu oameni din domenii diverse, uniți de dorința de a crește. Un network autentic, construit în timp.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7: Competiții -->
+      <div class="flip-card h-48 lg:h-52 cursor-pointer select-none" onclick="benFlip(this)">
+        <div class="flip-inner">
+          <div class="flip-front bg-white border border-gray-100 shadow-sm p-5 lg:p-6 gap-2">
+            <div class="w-11 h-11 lg:w-14 lg:h-14 rounded-2xl bg-primary/8 flex items-center justify-center"><svg class="w-5 h-5 lg:w-7 lg:h-7 text-primary" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg></div>
+            <div class="text-[9px] lg:text-[10px] font-bold text-maroon uppercase tracking-widest" data-i18n="ben-c7-tag">Provocare</div>
+            <h3 class="font-bold text-primary text-sm lg:text-base leading-snug" data-i18n="ben-c7-title">Competiții</h3>
+          </div>
+          <div class="flip-back gradient-dark p-5 lg:p-6 gap-2">
+            <div class="text-[9px] lg:text-[10px] font-bold text-gold/70 uppercase tracking-widest" data-i18n="ben-c7-tag">Provocare</div>
+            <h3 class="font-bold text-gold text-sm lg:text-base leading-snug" data-i18n="ben-c7-title">Competiții</h3>
+            <p class="text-white/75 text-xs lg:text-sm leading-relaxed" data-i18n="ben-c7-desc">Testează-te de la nivel de club până la internațional. Competițiile Toastmasters sunt o experiență transformatoare.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8: Creștere personală -->
+      <div class="flip-card h-48 lg:h-52 cursor-pointer select-none" onclick="benFlip(this)">
+        <div class="flip-inner">
+          <div class="flip-front bg-white border border-gray-100 shadow-sm p-5 lg:p-6 gap-2">
+            <div class="w-11 h-11 lg:w-14 lg:h-14 rounded-2xl bg-primary/8 flex items-center justify-center"><svg class="w-5 h-5 lg:w-7 lg:h-7 text-primary" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg></div>
+            <div class="text-[9px] lg:text-[10px] font-bold text-maroon uppercase tracking-widest" data-i18n="ben-c8-tag">Curriculum propriu</div>
+            <h3 class="font-bold text-primary text-sm lg:text-base leading-snug" data-i18n="ben-c8-title">Creștere personală</h3>
+          </div>
+          <div class="flip-back gradient-dark p-5 lg:p-6 gap-2">
+            <div class="text-[9px] lg:text-[10px] font-bold text-gold/70 uppercase tracking-widest" data-i18n="ben-c8-tag">Curriculum propriu</div>
+            <h3 class="font-bold text-gold text-sm lg:text-base leading-snug" data-i18n="ben-c8-title">Creștere personală</h3>
+            <p class="text-white/75 text-xs lg:text-sm leading-relaxed" data-i18n="ben-c8-desc">Un traseu personalizat pe obiectivele tale, la ritmul tău. Fiecare săptămână e o investiție în versiunea ta mai bună.</p>
+          </div>
         </div>
       </div>
 
     </div>
+    <p class="text-center text-gray-400 text-xs mt-8 lg:hidden" data-i18n="ben-hint">Apasă pe un card pentru detalii</p>
   </div>
 </section>
 
 <div class="section-divider mx-auto max-w-5xl"></div>
 
 <!-- ════════════════════ CONDUCERE ════════════════════ -->
-<section class="py-14 lg:py-24 bg-white scroll-fade">
+<section class="py-14 lg:py-24 bg-gray-50 scroll-fade">
   <div class="max-w-7xl mx-auto px-5 lg:px-8">
     <div class="text-center mb-16">
       <div class="badge mb-4">Conducere</div>
@@ -986,6 +977,27 @@
       'footer-copyright':   '© 2026 Timișoara Toastmasters Club. Toate drepturile rezervate.',
       'footer-network':     'Parte din rețeaua globală',
       'footer-disclaimer':  'Informațiile de pe acest site sunt destinate exclusiv membrilor Toastmasters, pentru activități Toastmasters. Acestea nu pot fi utilizate pentru solicitări sau distribuirea de materiale și informații non-Toastmasters.',
+      'achiev-badge': 'Realizările noastre',
+      'achiev-h2':    'De ce există<br/>Timișoara Toastmasters?',
+      'achiev-p1':    'Timișoara Toastmasters s-a născut din dorința unui grup de oameni care credeau că abilitatea de a comunica eficient este una dintre cele mai valoroase investiții pe care le poți face în tine însuți.',
+      'achiev-p2':    'Clubul nostru oferă un mediu prietenos și structurat în care poți exersa vorbitul în public, poți primi feedback constructiv și poți prelua roluri de conducere, toate acestea săptămânal, alături de o comunitate care te susține și te provoacă să crești.',
+      'achiev-p3':    'Fie că ești la primul tău discurs sau la al suta, <strong class="text-primary">locul tău este aici.</strong>',
+      'achiev-s1':    'Ani de activitate',
+      'achiev-s2':    'Membri de-a lungul timpului',
+      'achiev-s3':    'Discursuri susținute',
+      'achiev-s4':    'Ședințe pe an',
+      'ben-badge':    'Ce câștigi',
+      'ben-h2':       'Beneficiile membrilor',
+      'ben-p':        'Un sistem dovedit de 100+ ani, aplicat săptămânal. Iată ce dezvolți concret ca membru Timișoara Toastmasters.',
+      'ben-hint':     'Apasă pe un card pentru detalii',
+      'ben-c1-tag':   'Competență de bază',  'ben-c1-title': 'Vorbit în public',    'ben-c1-desc': 'Exersezi săptămânal într-un spațiu sigur. Progresezi discurs după discurs, aplaudat și încurajat de colegi.',
+      'ben-c2-tag':   'Experiență reală',    'ben-c2-title': 'Leadership',          'ben-c2-desc': 'Preiei roluri reale la fiecare ședință: moderezi, evaluezi, cronometrezi. Competențe transferabile oricărui mediu.',
+      'ben-c3-tag':   'Progres accelerat',   'ben-c3-title': 'Feedback constructiv','ben-c3-desc': 'Fiecare discurs primește evaluare detaliată: ce a mers bine și ce poate fi îmbunătățit. Cel mai rapid traseu spre progres real.',
+      'ben-c4-tag':   '300+ abilități',      'ben-c4-title': 'Pathways',            'ben-c4-desc': 'Platformă de învățare cu trasee personalizate: management de proiect, rezoluția conflictelor, pregătire interviuri și altele.',
+      'ben-c5-tag':   'Transformare',        'ben-c5-title': 'Încredere în sine',   'ben-c5-desc': 'Transformi nervozitatea în energie pozitivă. Câștigi prezență și autoritate în orice context public sau profesional.',
+      'ben-c6-tag':   'Conexiuni reale',     'ben-c6-title': 'Networking',          'ben-c6-desc': 'Construiești relații cu oameni din domenii diverse, uniți de dorința de a crește. Un network autentic, construit în timp.',
+      'ben-c7-tag':   'Provocare',           'ben-c7-title': 'Competiții',          'ben-c7-desc': 'Testează-te de la nivel de club până la internațional. Competițiile Toastmasters sunt o experiență transformatoare.',
+      'ben-c8-tag':   'Curriculum propriu',  'ben-c8-title': 'Creștere personală',  'ben-c8-desc': 'Un traseu personalizat pe obiectivele tale, la ritmul tău. Fiecare săptămână e o investiție în versiunea ta mai bună.',
     },
 
     en: {
@@ -1069,6 +1081,27 @@
       'footer-copyright':   '© 2026 Timișoara Toastmasters Club. All rights reserved.',
       'footer-network':     'Part of the global network',
       'footer-disclaimer':  'Information on this website is intended exclusively for Toastmasters members, for Toastmasters activities. It may not be used for non-Toastmasters solicitations or for distributing non-Toastmasters materials and information.',
+      'achiev-badge': 'Our Achievements',
+      'achiev-h2':    'Why Does<br/>Timișoara Toastmasters Exist?',
+      'achiev-p1':    'Timișoara Toastmasters was born from the desire of a group of people who believed that effective communication is one of the most valuable investments you can make in yourself.',
+      'achiev-p2':    'Our club provides a friendly, structured environment where you can practice public speaking, receive constructive feedback, and take on leadership roles, all on a weekly basis, alongside a community that supports and challenges you to grow.',
+      'achiev-p3':    'Whether you\'re giving your first speech or your hundredth, <strong class="text-primary">your place is here.</strong>',
+      'achiev-s1':    'Years Active',
+      'achiev-s2':    'Members Over Time',
+      'achiev-s3':    'Speeches Delivered',
+      'achiev-s4':    'Meetings per Year',
+      'ben-badge':    'What You Gain',
+      'ben-h2':       'Member Benefits',
+      'ben-p':        'A proven system 100+ years in the making, applied weekly. Here\'s what you concretely develop as a Timișoara Toastmasters member.',
+      'ben-hint':     'Tap a card for details',
+      'ben-c1-tag':   'Core Skill',         'ben-c1-title': 'Public Speaking',     'ben-c1-desc': 'You practice weekly in a safe environment. You improve speech by speech, applauded and encouraged by your peers.',
+      'ben-c2-tag':   'Real Experience',    'ben-c2-title': 'Leadership',          'ben-c2-desc': 'You take on real roles at every meeting: moderating, evaluating, timekeeping. Skills transferable to any professional setting.',
+      'ben-c3-tag':   'Accelerated Growth', 'ben-c3-title': 'Constructive Feedback','ben-c3-desc': 'Every speech receives detailed evaluation: what worked and what can be improved. The fastest path to real progress.',
+      'ben-c4-tag':   '300+ Skills',        'ben-c4-title': 'Pathways',            'ben-c4-desc': 'A learning platform with personalized tracks: project management, conflict resolution, interview preparation, and more.',
+      'ben-c5-tag':   'Transformation',     'ben-c5-title': 'Self-Confidence',     'ben-c5-desc': 'You turn nervousness into positive energy. You gain presence and authority in any public or professional context.',
+      'ben-c6-tag':   'Real Connections',   'ben-c6-title': 'Networking',          'ben-c6-desc': 'You build relationships with people from diverse fields, united by the desire to grow. An authentic network, built over time.',
+      'ben-c7-tag':   'Challenge',          'ben-c7-title': 'Competitions',        'ben-c7-desc': 'Test yourself from club level to international. Toastmasters competitions are a transformative experience.',
+      'ben-c8-tag':   'Own Curriculum',     'ben-c8-title': 'Personal Growth',     'ben-c8-desc': 'A personalized track at your own pace. Every week is an investment in a better version of yourself.',
     }
   };
 
@@ -1146,7 +1179,15 @@
   // ── Init on load ──
   setLang(localStorage.getItem('tm-lang') || 'ro');
 
-  const eveSect = document.querySelector('section.py-20.bg-gray-50');
+  // ══════════════ BENEFICII FLIP ══════════════
+  function benFlip(card) {
+    if (window.innerWidth < 1024) {
+      document.querySelectorAll('.flip-card.flipped').forEach(c => { if (c !== card) c.classList.remove('flipped'); });
+      card.classList.toggle('flipped');
+    }
+  }
+
+  const eveSect = document.getElementById('section-eve');
   if (eveSect) {
     const eveObs = new IntersectionObserver(entries => {
       entries.forEach(e => {
