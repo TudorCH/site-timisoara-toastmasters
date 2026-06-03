@@ -427,11 +427,14 @@
             <textarea rows="3" placeholder="Sunt interesat să vin ca invitat la o ședință…"
               class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none"></textarea>
           </div>
-          <button type="submit"
+          <button type="submit" id="form-submit-btn"
             class="w-full bg-maroon hover:bg-maroon-light text-white font-semibold py-3.5 rounded-xl text-sm
                    transition-all duration-200 hover:scale-[1.02] shadow-md shadow-maroon/20">
             Trimite cererea
           </button>
+          <p id="form-error" class="hidden text-sm text-red-600 text-center bg-red-50 rounded-xl py-2.5 px-4">
+            A apărut o eroare. Încearcă din nou sau scrie-ne pe <a href="https://www.facebook.com/timisoara.toastmasters" target="_blank" class="font-semibold underline">Facebook</a>.
+          </p>
           <p class="text-xs text-gray-400 text-center">Prin trimitere accepți <a href="#" class="text-maroon hover:underline">Politica de confidențialitate</a></p>
         </form>
         <div id="form-success" class="hidden text-center py-8">
@@ -439,7 +442,7 @@
             <svg class="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
           </div>
           <h4 class="font-semibold text-primary text-lg mb-2">Mulțumim!</h4>
-          <p class="text-gray-500 text-sm">Te vom contacta în curând cu detalii despre următoarea ședință.</p>
+          <p class="text-gray-500 text-sm">Cineva din echipa noastră te contactează în 24–48 de ore cu toate detaliile.</p>
         </div>
       </div>
 
@@ -540,9 +543,10 @@
       window.scrollY > 20 ? '0 4px 30px rgba(0,65,101,0.35)' : '';
   });
 
-  function submitForm(e) {
+  async function submitForm(e) {
     e.preventDefault();
     const form   = e.target;
+    const btn    = document.getElementById('form-submit-btn');
     const inputs = form.querySelectorAll('input, textarea');
     const reg = {
       prenume: inputs[0].value.trim(),
@@ -551,16 +555,32 @@
       telefon: inputs[3].value.trim(),
       sedinta: document.getElementById('form-sedinta')?.value.trim() || '',
       mesaj:   inputs[4].value.trim(),
-      id:      Date.now(),
-      date:    new Date().toISOString(),
     };
+
+    const origText = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = 'Se trimite…';
+    document.getElementById('form-error')?.classList.add('hidden');
+
     try {
-      const list = JSON.parse(localStorage.getItem('tm_registrations')) || [];
-      list.push(reg);
-      localStorage.setItem('tm_registrations', JSON.stringify(list));
-    } catch(err) {}
-    document.getElementById('contact-form').classList.add('hidden');
-    document.getElementById('form-success').classList.remove('hidden');
+      const res = await fetch('/api/register', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify(reg),
+      });
+      if (!res.ok) throw new Error('api-error');
+      try {
+        const list = JSON.parse(localStorage.getItem('tm_registrations') || '[]');
+        list.push({ ...reg, id: Date.now(), date: new Date().toISOString() });
+        localStorage.setItem('tm_registrations', JSON.stringify(list));
+      } catch (_) {}
+      document.getElementById('contact-form').classList.add('hidden');
+      document.getElementById('form-success').classList.remove('hidden');
+    } catch (_) {
+      btn.disabled = false;
+      btn.textContent = origText;
+      document.getElementById('form-error')?.classList.remove('hidden');
+    }
   }
 </script>
 <script src="search.js"></script>

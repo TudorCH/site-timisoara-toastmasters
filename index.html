@@ -127,7 +127,7 @@
     }
 
     /* ── scroll-margin: compensate fixed navbar on anchor jumps ── */
-    #contact, #journey-section, #galerie { scroll-margin-top: 4.5rem; }
+    #contact, #journey-section, #galerie, #de-ce, #testimoniale { scroll-margin-top: 4.5rem; }
 
     /* ── prefers-reduced-motion ── */
     @media (prefers-reduced-motion: reduce) {
@@ -278,8 +278,8 @@
       </h1>
       <p class="hero-desc text-white/90 text-lg md:text-xl leading-relaxed mb-6 sm:mb-10 max-w-xl animate-in"
          style="animation-delay:.3s; text-shadow: 0 1px 6px rgba(0,0,0,0.5);">
-        Clubul de vorbit în public și comunicare din Timișoara, practică săptămânală,
-        feedback constructiv, comunitate autentică.
+        În fiecare miercuri seară, oameni din Timișoara se adună să vorbească, să primească
+        feedback sincer și să crească. Participarea ca invitat e gratuită.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 animate-in" style="animation-delay:.4s">
         <a href="#contact"
@@ -306,7 +306,7 @@
         </div>
         <div>
           <div class="text-xl sm:text-3xl font-bold text-white">14.000+</div>
-          <div class="text-white/70 text-xs sm:text-sm mt-1 leading-tight">cluburi la nivel global</div>
+          <div class="text-white/70 text-xs sm:text-sm mt-1 leading-tight">cluburi în rețeaua globală</div>
         </div>
       </div>
     </div>
@@ -314,12 +314,12 @@
 </section>
 
 <!-- ════════════════════ DE CE COMUNICARE ════════════════════ -->
-<section class="py-14 lg:py-24 bg-white scroll-fade">
+<section id="de-ce" class="py-14 lg:py-24 bg-white scroll-fade">
   <div class="max-w-7xl mx-auto px-5 lg:px-8">
     <div class="text-center mb-8 md:mb-16">
       <div class="badge mb-4">De ce noi?</div>
       <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-5">
-        De ce comunicare și vorbit în public?
+        De ce Timișoara Toastmasters?
       </h2>
       <p class="text-gray-500 text-lg max-w-2xl mx-auto">
         Comunicarea eficientă nu este un talent înnăscut, este o abilitate care se poate învăța și exersa.
@@ -334,7 +334,7 @@
           </div>
           <h3 class="font-semibold text-primary text-xs md:text-base leading-snug">Comunicare & Impact</h3>
         </div>
-        <p class="text-gray-500 text-xs md:text-sm leading-relaxed">Structurează-ți gândurile și transmite mesaje clare, convingătoare și memorabile în orice context.</p>
+        <p class="text-gray-500 text-xs md:text-sm leading-relaxed">La fiecare ședință susții sau asculți un discurs. Nu citești despre comunicare, o practici.</p>
       </div>
 
       <div class="card-hover bg-white rounded-xl md:rounded-2xl p-5 md:p-8 shadow-sm border border-gray-100">
@@ -344,7 +344,7 @@
           </div>
           <h3 class="font-semibold text-primary text-xs md:text-base leading-snug">Gestionarea emoțiilor</h3>
         </div>
-        <p class="text-gray-500 text-xs md:text-sm leading-relaxed">Transformă nervozitatea de pe scenă în energie pozitivă și vorbești cu calm și autoritate în fața oricărui public.</p>
+        <p class="text-gray-500 text-xs md:text-sm leading-relaxed">Vorbitul în fața unui grup se exersează. Membrii care tremurau la primul discurs vorbesc azi relaxat în orice context.</p>
       </div>
 
       <div class="card-hover bg-white rounded-xl md:rounded-2xl p-5 md:p-8 shadow-sm border border-gray-100">
@@ -354,7 +354,7 @@
           </div>
           <h3 class="font-semibold text-primary text-xs md:text-base leading-snug">Dezvoltare personală</h3>
         </div>
-        <p class="text-gray-500 text-xs md:text-sm leading-relaxed">Construiește o prezență autentică și o voce care captează atenția, pe scenă sau în orice conversație.</p>
+        <p class="text-gray-500 text-xs md:text-sm leading-relaxed">Preiei roluri mici și roluri mari, la ritmul tău. Fiecare ședință îți adaugă o competență concretă.</p>
       </div>
 
       <div class="card-hover bg-white rounded-xl md:rounded-2xl p-5 md:p-8 shadow-sm border border-gray-100">
@@ -364,7 +364,7 @@
           </div>
           <h3 class="font-semibold text-primary text-xs md:text-base leading-snug">Leadership & Networking</h3>
         </div>
-        <p class="text-gray-500 text-xs md:text-sm leading-relaxed">Inspiră echipe, construiește relații profesionale autentice și devino liderul pe care ceilalți îl urmează.</p>
+        <p class="text-gray-500 text-xs md:text-sm leading-relaxed">Cunoști oameni care muncesc, construiesc, învață. Relații reale, construite în timp, nu conexiuni de LinkedIn.</p>
       </div>
 
     </div>
@@ -427,8 +427,8 @@
             </svg>
           </div>
           <span class="jrn-label block text-[11px] sm:text-[11px] lg:text-xs font-bold uppercase tracking-wide text-gray-400 text-center leading-tight transition-all duration-300 w-11 sm:w-20 lg:w-24">
-            <span class="sm:hidden">Implicare</span>
-            <span class="hidden sm:inline">Implicare<br>treptată</span>
+            <span class="sm:hidden">Roluri</span>
+            <span class="hidden sm:inline">Primele<br>roluri</span>
           </span>
         </button>
 
@@ -470,7 +470,7 @@
           <div>
             <div class="text-[10px] font-bold uppercase tracking-widest text-maroon mb-1">Pasul 1</div>
             <h3 class="font-heading font-bold text-primary text-base sm:text-xl mb-1 sm:mb-2">Vii ca invitat</h3>
-            <p class="text-gray-500 text-sm sm:text-base leading-relaxed">Participi la o ședință, observi cum funcționează totul și vorbești cu membrii. Zero presiune, primele 4 ședințe sunt complet gratuite, fără nicio obligație.</p>
+            <p class="text-gray-500 text-sm sm:text-base leading-relaxed">Participi la o ședință, observi cum funcționează totul și vorbești cu membrii. Zero presiune, participarea ca invitat e complet gratuită, fără nicio obligație.</p>
           </div>
         </div>
       </div>
@@ -650,7 +650,7 @@
   <div class="max-w-7xl mx-auto px-5 lg:px-8">
 
     <!-- Header + platform tabs -->
-    <div class="text-center mb-6">
+    <div id="testimoniale" class="text-center mb-6">
       <div class="badge mb-4">Recenzii</div>
       <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-5">
         Ce spun oamenii care<br class="sm:hidden"> ne-au trecut pragul?
@@ -1242,11 +1242,14 @@
             <textarea rows="3" placeholder="Sunt interesat să vin ca invitat la o ședință…"
               class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none"></textarea>
           </div>
-          <button type="submit"
+          <button type="submit" id="form-submit-btn"
             class="w-full bg-maroon hover:bg-maroon-light text-white font-semibold py-3.5 rounded-xl text-sm
                    transition-all duration-200 hover:scale-[1.02] shadow-md shadow-maroon/20">
             Trimite cererea
           </button>
+          <p id="form-error" class="hidden text-sm text-red-600 text-center bg-red-50 rounded-xl py-2.5 px-4">
+            A apărut o eroare. Încearcă din nou sau scrie-ne pe <a href="https://www.facebook.com/timisoara.toastmasters" target="_blank" class="font-semibold underline">Facebook</a>.
+          </p>
           <p class="text-xs text-gray-400 text-center">Prin trimitere accepți <a href="#" class="text-maroon hover:underline">Politica de confidențialitate</a></p>
         </form>
         <div id="form-success" class="hidden text-center py-8">
@@ -1254,7 +1257,7 @@
             <svg class="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
           </div>
           <h4 class="font-semibold text-primary text-lg mb-2">Mulțumim!</h4>
-          <p class="text-gray-500 text-sm">Te vom contacta în curând cu detalii despre următoarea ședință.</p>
+          <p class="text-gray-500 text-sm">Cineva din echipa noastră te contactează în 24–48 de ore cu toate detaliile.</p>
         </div>
       </div>
 
@@ -1419,10 +1422,10 @@
     return reg;
   }
 
-  // Form submit → save to localStorage
-  function submitForm(e) {
+  async function submitForm(e) {
     e.preventDefault();
     const form = e.target;
+    const btn  = document.getElementById('form-submit-btn');
     const inputs = form.querySelectorAll('input, textarea');
     const reg = {
       prenume: inputs[0].value.trim(),
@@ -1432,9 +1435,27 @@
       sedinta: document.getElementById('form-sedinta')?.value.trim() || '',
       mesaj:   inputs[4].value.trim(),
     };
-    saveRegistration(reg);
-    document.getElementById('contact-form').classList.add('hidden');
-    document.getElementById('form-success').classList.remove('hidden');
+
+    const origText = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = 'Se trimite…';
+    document.getElementById('form-error')?.classList.add('hidden');
+
+    try {
+      const res = await fetch('/api/register', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify(reg),
+      });
+      if (!res.ok) throw new Error('api-error');
+      saveRegistration(reg);
+      document.getElementById('contact-form').classList.add('hidden');
+      document.getElementById('form-success').classList.remove('hidden');
+    } catch (_) {
+      btn.disabled = false;
+      btn.textContent = origText;
+      document.getElementById('form-error')?.classList.remove('hidden');
+    }
   }
 
   // ════════════════════ JOURNEY TIMELINE ════════════════════

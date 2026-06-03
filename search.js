@@ -5,16 +5,16 @@
 
   // Static cross-page index
   const STATIC = [
-    { label: 'Acasă',                  url: 'index.html',                 q: 'acasa toastmasters timisoara club discursuri public speaking vorbit' },
-    { label: 'Despre Club',            url: 'index.html#club',            q: 'despre club misiune valori comunitate' },
-    { label: 'Ședințe & Program',      url: 'index.html#schedule',        q: 'sedinte program calendar orar agenda bilunar urmatoarea sedinta' },
-    { label: 'Conducere',              url: 'index.html#about',           q: 'conducere echipa board presedinte secretar vice lider' },
-    { label: 'Contact & Înscriere',    url: 'index.html#contact',         q: 'contact inscriere formular email inregistrare' },
-    { label: 'Galerie Foto',           url: 'galerie.html',               q: 'galerie foto poze fotografii sedinte concursuri arie national' },
-    { label: 'Despre noi',             url: 'despre-noi.html',            q: 'despre noi toastmasters international misiune viziune poveste' },
-    { label: 'Contact',                url: 'contact.html',               q: 'contact formular adresa harta locatie directii' },
-    { label: 'Călătoria Toastmasters', url: 'index.html#journey-section', q: 'calatorie cum functioneaza pathways roluri discurs evaluare progres' },
-    { label: 'Recenzii',               url: 'index.html#reviews',         q: 'recenzii opinii testimoniale feedback membri' },
+    { label: 'Acasă',                  url: 'index.html',                  q: 'acasa toastmasters timisoara club discursuri public speaking vorbit' },
+    { label: 'De ce Toastmasters',     url: 'index.html#de-ce',            q: 'de ce comunicare vorbit public impact emotii leadership networking beneficii' },
+    { label: 'Parcursul tău',          url: 'index.html#journey-section',  q: 'calatorie cum functioneaza pathways roluri discurs evaluare progres invitat membru pasi' },
+    { label: 'Galerie Foto',           url: 'galerie.html',                q: 'galerie foto poze fotografii sedinte concursuri' },
+    { label: 'Testimoniale & Recenzii',url: 'index.html#testimoniale',     q: 'recenzii opinii testimoniale feedback membri pareri facebook google' },
+    { label: 'Program & Înscriere',    url: 'contact.html',                q: 'sedinte program calendar orar agenda urmatoarea sedinta miercuri inscriere formular' },
+    { label: 'Despre noi',             url: 'despre-noi.html',             q: 'despre noi toastmasters misiune viziune poveste valori integritate respect serviciu excelenta' },
+    { label: 'O seară tipică',         url: 'despre-noi.html#section-eve', q: 'sedinta seara discursuri improvizate table topics feedback roluri toastmaster cum arata' },
+    { label: 'Conducere & Echipă',     url: 'despre-noi.html#conducere',   q: 'conducere echipa board presedinte secretar vice lider trezorier sergent' },
+    { label: 'Contact',                url: 'contact.html',                q: 'contact adresa harta locatie directii cowork office calea aradului' },
   ];
 
   let idx = STATIC.map(e => ({ label: e.label, url: e.url, text: e.q }));
@@ -22,16 +22,17 @@
   function buildIndex() {
     const page = (window.location.pathname.split('/').pop() || 'index.html');
 
-    // Index sections on the current page
     const labelMap = {
-      'club':            'Despre Club',
-      'schedule':        'Ședințe & Program',
-      'about':           'Conducere',
-      'contact':         'Contact & Înscriere',
-      'reviews':         'Recenzii',
-      'journey-section': 'Călătoria Toastmasters',
+      'de-ce':           'De ce Toastmasters',
+      'journey-section': 'Parcursul tău',
+      'galerie':         'Galerie Foto',
+      'testimoniale':    'Testimoniale & Recenzii',
+      'contact':         'Program & Înscriere',
+      'section-eve':     'O seară tipică',
+      'conducere':       'Conducere & Echipă',
     };
-    document.querySelectorAll('section[id]').forEach(sec => {
+
+    document.querySelectorAll('section[id], div[id]').forEach(sec => {
       const anchor = '#' + sec.id;
       const url    = page + anchor;
       if (idx.some(i => i.url === url)) return;
@@ -41,11 +42,15 @@
       if (text.length > 10) idx.push({ label, url, text });
     });
 
-    // Index board member cards on pages that have them
-    document.querySelectorAll('#about .card-hover').forEach(card => {
+    // Index board member cards
+    document.querySelectorAll('#conducere .leader-card').forEach(card => {
       const name = card.querySelector('.font-semibold')?.textContent?.trim() || '';
       const role = card.querySelector('.text-maroon')?.textContent?.trim() || '';
-      if (name) idx.push({ label: name + (role ? ' · ' + role : ''), url: page + '#about', text: (name + ' ' + role).toLowerCase() });
+      if (name) idx.push({
+        label: name + (role ? ' · ' + role : ''),
+        url:   page + '#conducere',
+        text:  (name + ' ' + role).toLowerCase()
+      });
     });
   }
 
@@ -88,18 +93,24 @@
 
   function siteGoTo(url, source) {
     closeSearch();
-    ['search-input', 'mobile-search-input'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
-    if (source === 'mobile') { const ms = document.getElementById('mobile-search'); if (ms) ms.classList.add('hidden'); }
+    ['search-input', 'mobile-search-input'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.value = '';
+    });
+    if (source === 'mobile') {
+      const ms = document.getElementById('mobile-search');
+      if (ms) ms.classList.add('hidden');
+    }
 
-    const page  = window.location.pathname.split('/').pop() || 'index.html';
-    const parts = url.split('#');
+    const page       = window.location.pathname.split('/').pop() || 'index.html';
+    const parts      = url.split('#');
     const targetPage = parts[0] || 'index.html';
-    const hash = parts[1];
+    const hash       = parts[1];
 
     if (page === targetPage || (page === '' && targetPage === 'index.html')) {
       if (hash) {
         const el = document.getElementById(hash);
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
       } else {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
@@ -109,7 +120,10 @@
   }
 
   function closeSearch() {
-    ['search-dropdown', 'mobile-search-dropdown'].forEach(id => { const el = document.getElementById(id); if (el) el.classList.add('hidden'); });
+    ['search-dropdown', 'mobile-search-dropdown'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.classList.add('hidden');
+    });
   }
 
   document.addEventListener('click', e => {
@@ -117,6 +131,10 @@
         !e.target.closest('#mobile-search-input') && !e.target.closest('#mobile-search-dropdown')) {
       closeSearch();
     }
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeSearch();
   });
 
   window.liveSearch  = liveSearch;
