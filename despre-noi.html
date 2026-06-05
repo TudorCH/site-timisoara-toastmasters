@@ -146,6 +146,12 @@
     /* ── Stat label truncation safeguard ── */
     .stat-label { word-break: break-word; hyphens: auto; }
 
+    /* ── Mobile section nav scroll offset (navbar 64px + pill nav ~44px) ── */
+    #mission-section, #val-section, #story-section,
+    #section-eve, #benefits-section, #conducere {
+      scroll-margin-top: 7rem;
+    }
+
     /* ── Language toggle ── */
     .lang-btn {
       padding: 3px 10px; border-radius: 999px; font-size: 11px; font-weight: 600;
@@ -312,9 +318,21 @@
   </div>
 </section>
 
+<!-- ════════════════ MOBILE SECTION NAV (lg:hidden) ════════════ -->
+<nav class="lg:hidden sticky top-16 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm">
+  <div class="flex overflow-x-auto gap-2 px-4 py-2.5 scrollbar-hide">
+    <a href="#mission-section" class="flex-shrink-0 text-[11px] font-semibold px-3 py-1.5 rounded-full bg-primary/8 text-primary whitespace-nowrap">Misiune</a>
+    <a href="#val-section"     class="flex-shrink-0 text-[11px] font-semibold px-3 py-1.5 rounded-full bg-gray-100 text-gray-600 whitespace-nowrap">Valori</a>
+    <a href="#story-section"   class="flex-shrink-0 text-[11px] font-semibold px-3 py-1.5 rounded-full bg-gray-100 text-gray-600 whitespace-nowrap">Poveste</a>
+    <a href="#section-eve"     class="flex-shrink-0 text-[11px] font-semibold px-3 py-1.5 rounded-full bg-gray-100 text-gray-600 whitespace-nowrap">O seară</a>
+    <a href="#benefits-section" class="flex-shrink-0 text-[11px] font-semibold px-3 py-1.5 rounded-full bg-gray-100 text-gray-600 whitespace-nowrap">Beneficii</a>
+    <a href="#conducere"       class="flex-shrink-0 text-[11px] font-semibold px-3 py-1.5 rounded-full bg-gray-100 text-gray-600 whitespace-nowrap">Echipă</a>
+  </div>
+</nav>
+
 <!-- ════════════════════ MISIUNEA NOASTRĂ ════════════════════ -->
 <div id="main-content"></div>
-<section class="py-10 lg:py-20 bg-white scroll-fade">
+<section id="mission-section" class="py-10 lg:py-20 bg-white scroll-fade">
   <div class="max-w-3xl mx-auto px-5 lg:px-8 text-center">
     <span class="badge mb-4 inline-flex" data-i18n="mission-badge">Misiunea noastră</span>
     <h2 class="font-heading text-3xl md:text-4xl font-bold text-primary mb-6 leading-tight" data-i18n="mission-h2">
@@ -330,7 +348,7 @@
 <div class="section-divider mx-auto max-w-5xl"></div>
 
 <!-- ════════════════════ VALORI ════════════════════ -->
-<section class="py-10 lg:py-20 bg-gray-50 scroll-fade">
+<section id="val-section" class="py-10 lg:py-20 bg-gray-50 scroll-fade">
   <div class="max-w-7xl mx-auto px-5 lg:px-8">
     <div class="text-center mb-8 lg:mb-14">
       <span class="badge mb-4" data-i18n="val-badge">Ce ne definește</span>
@@ -403,7 +421,7 @@
 <div class="section-divider mx-auto max-w-5xl"></div>
 
 <!-- ════════════════════ POVESTEA NOASTRĂ ════════════════════ -->
-<section class="py-10 lg:py-20 bg-white scroll-fade">
+<section id="story-section" class="py-10 lg:py-20 bg-white scroll-fade">
   <div class="max-w-4xl mx-auto px-5 lg:px-8 text-center">
     <span class="badge mb-4 inline-flex" data-i18n="achiev-badge">Povestea noastră</span>
     <h2 class="font-heading text-3xl md:text-4xl font-bold text-primary mb-6 leading-tight" data-i18n="achiev-h2">
@@ -547,7 +565,7 @@
 </section>
 
 <!-- ════════════════════ BENEFICIILE MEMBRILOR ════════════════════ -->
-<section class="py-12 lg:py-24 bg-white scroll-fade">
+<section id="benefits-section" class="py-12 lg:py-24 bg-white scroll-fade">
   <div class="max-w-7xl mx-auto px-5 lg:px-8">
     <div class="text-center mb-6 lg:mb-16">
       <div class="badge mb-4" data-i18n="ben-badge">Ce câștigi</div>
@@ -632,8 +650,9 @@
         </div>
       </div>
 
+      <!-- Cards 5-8: hidden on mobile by default, shown via toggle -->
       <!-- 5: Încredere -->
-      <div class="flip-card h-52 sm:h-52 lg:h-56 cursor-pointer select-none" onclick="benFlip(this)" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){benFlip(this);event.preventDefault()}" aria-label="Încredere în sine – apasă pentru detalii">
+      <div class="ben-extra hidden lg:block flip-card h-52 sm:h-52 lg:h-56 cursor-pointer select-none" onclick="benFlip(this)" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){benFlip(this);event.preventDefault()}" aria-label="Încredere în sine – apasă pentru detalii">
         <div class="flip-inner">
           <div class="flip-front bg-white border border-gray-100 shadow-sm p-5 lg:p-6 gap-2">
             <div class="w-11 h-11 lg:w-14 lg:h-14 rounded-2xl bg-primary/8 flex items-center justify-center"><svg class="w-5 h-5 lg:w-7 lg:h-7 text-primary" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
@@ -652,7 +671,7 @@
       </div>
 
       <!-- 6: Networking -->
-      <div class="flip-card h-52 sm:h-52 lg:h-56 cursor-pointer select-none" onclick="benFlip(this)" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){benFlip(this);event.preventDefault()}" aria-label="Networking – apasă pentru detalii">
+      <div class="ben-extra hidden lg:block flip-card h-52 sm:h-52 lg:h-56 cursor-pointer select-none" onclick="benFlip(this)" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){benFlip(this);event.preventDefault()}" aria-label="Networking – apasă pentru detalii">
         <div class="flip-inner">
           <div class="flip-front bg-white border border-gray-100 shadow-sm p-5 lg:p-6 gap-2">
             <div class="w-11 h-11 lg:w-14 lg:h-14 rounded-2xl bg-primary/8 flex items-center justify-center"><svg class="w-5 h-5 lg:w-7 lg:h-7 text-primary" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg></div>
@@ -671,7 +690,7 @@
       </div>
 
       <!-- 7: Competiții -->
-      <div class="flip-card h-52 sm:h-52 lg:h-56 cursor-pointer select-none" onclick="benFlip(this)" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){benFlip(this);event.preventDefault()}" aria-label="Competiții – apasă pentru detalii">
+      <div class="ben-extra hidden lg:block flip-card h-52 sm:h-52 lg:h-56 cursor-pointer select-none" onclick="benFlip(this)" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){benFlip(this);event.preventDefault()}" aria-label="Competiții – apasă pentru detalii">
         <div class="flip-inner">
           <div class="flip-front bg-white border border-gray-100 shadow-sm p-5 lg:p-6 gap-2">
             <div class="w-11 h-11 lg:w-14 lg:h-14 rounded-2xl bg-primary/8 flex items-center justify-center"><svg class="w-5 h-5 lg:w-7 lg:h-7 text-primary" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg></div>
@@ -690,7 +709,7 @@
       </div>
 
       <!-- 8: Creștere personală -->
-      <div class="flip-card h-52 sm:h-52 lg:h-56 cursor-pointer select-none" onclick="benFlip(this)" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){benFlip(this);event.preventDefault()}" aria-label="Creștere personală – apasă pentru detalii">
+      <div class="ben-extra hidden lg:block flip-card h-52 sm:h-52 lg:h-56 cursor-pointer select-none" onclick="benFlip(this)" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){benFlip(this);event.preventDefault()}" aria-label="Creștere personală – apasă pentru detalii">
         <div class="flip-inner">
           <div class="flip-front bg-white border border-gray-100 shadow-sm p-5 lg:p-6 gap-2">
             <div class="w-11 h-11 lg:w-14 lg:h-14 rounded-2xl bg-primary/8 flex items-center justify-center"><svg class="w-5 h-5 lg:w-7 lg:h-7 text-primary" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg></div>
@@ -708,6 +727,16 @@
         </div>
       </div>
 
+    </div>
+    <!-- Show more/less toggle — mobile only -->
+    <div class="lg:hidden flex justify-center mt-4">
+      <button id="ben-toggle-btn" onclick="toggleBenefits()"
+        class="inline-flex items-center gap-2 text-sm font-semibold text-primary bg-primary/8 hover:bg-primary/15 px-5 py-2.5 rounded-full transition-colors">
+        <span id="ben-toggle-label">Arată toate beneficiile</span>
+        <svg id="ben-toggle-icon" class="w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+        </svg>
+      </button>
     </div>
   </div>
 </section>
@@ -1354,6 +1383,18 @@
     document.querySelectorAll('.leader-card.leader-open').forEach(c => { if (c !== card) c.classList.remove('leader-open'); });
     card.classList.toggle('leader-open');
   }
+
+  // ══════════════ BENEFICII TOGGLE (mobile) ══════════════
+  var benExpanded = false;
+  function toggleBenefits() {
+    benExpanded = !benExpanded;
+    document.querySelectorAll('.ben-extra').forEach(function(el) {
+      el.classList.toggle('hidden', !benExpanded);
+    });
+    document.getElementById('ben-toggle-label').textContent = benExpanded ? 'Ascunde' : 'Arată toate beneficiile';
+    document.getElementById('ben-toggle-icon').style.transform = benExpanded ? 'rotate(180deg)' : '';
+  }
+  window.toggleBenefits = toggleBenefits;
 
   // ══════════════ BENEFICII FLIP ══════════════
   function benFlip(card) {
