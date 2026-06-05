@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Despre Noi | Timișoara Toastmasters</title>
+  <meta name="description" content="Aflați povestea Timișoara Toastmasters – primul club Toastmasters din România, cu 17 ani de activitate, 200+ membri și o comunitate vibrantă de vorbitori în public." />
   <link rel="icon" type="image/png" href="logo.png" />
   <link rel="apple-touch-icon" href="logo.png" />
   <script src="https://cdn.tailwindcss.com"></script>
@@ -28,7 +29,7 @@
     }
   </script>
   <style>
-    * { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
     .gradient-hero { background: linear-gradient(135deg, #002d47 0%, #004165 55%, #003555 100%); }
     .gradient-dark { background: linear-gradient(135deg, #002d47 0%, #004165 100%); }
     .card-hover { transition: transform .3s ease, box-shadow .3s ease; }
@@ -153,7 +154,7 @@
 
       <!-- Logo -->
       <a href="index.html" class="flex items-center gap-3 flex-shrink-0">
-        <img src="logo.png" alt="Toastmasters International" class="h-8 sm:h-10 w-auto object-contain flex-shrink-0" />
+        <img src="logo.png" alt="Toastmasters International" width="40" height="40" class="h-8 sm:h-10 w-auto object-contain flex-shrink-0" />
         <div>
           <div class="text-white font-bold text-sm sm:text-base leading-tight uppercase tracking-wide">Timișoara Toastmasters</div>
           <div class="text-gold text-[10px] sm:text-[11px] font-semibold tracking-wide leading-tight">"Where Leaders Are Made!"</div>
@@ -192,13 +193,13 @@
 
       <!-- Mobile right side: search icon + hamburger -->
       <div class="flex lg:hidden items-center gap-2">
-        <button onclick="toggleSearch()" class="text-white p-2 rounded-full hover:bg-white/10 transition-colors">
+        <button onclick="toggleSearch()" aria-label="Caută pe site" class="text-white p-2 rounded-full hover:bg-white/10 transition-colors">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z"/>
           </svg>
         </button>
-        <button id="mobile-toggle" onclick="toggleMobile()"
+        <button id="mobile-toggle" onclick="toggleMobile()" aria-label="Deschide meniu" aria-expanded="false" aria-controls="mobile-menu"
                 class="text-white p-2 rounded-full hover:bg-white/10 transition-colors">
           <svg id="icon-menu"  class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
@@ -966,7 +967,7 @@
 
       <div class="col-span-2 lg:col-span-2">
         <div class="flex items-center gap-3 mb-5">
-          <img src="logo.png" alt="Toastmasters" class="h-12 w-auto object-contain" />
+          <img src="logo.png" alt="Toastmasters" width="48" height="48" class="h-12 w-auto object-contain" />
           <div>
             <div class="text-white font-bold text-lg leading-tight">Timișoara Toastmasters</div>
             <div class="text-gold text-[10px] font-semibold tracking-widest uppercase">CLUB</div>
@@ -1006,8 +1007,8 @@
         <h4 class="text-white font-semibold text-sm mb-5 uppercase tracking-wider">Legal</h4>
         <ul class="space-y-3">
           <li><a href="cookies.html" class="text-white/50 hover:text-gold text-sm transition-colors" data-i18n="footer-legal-cookies">Politică cookies</a></li>
-          <li><a href="#" class="text-white/50 hover:text-gold text-sm transition-colors" data-i18n="footer-legal-privacy">Politică confidențialitate</a></li>
-          <li><a href="#" class="text-white/50 hover:text-gold text-sm transition-colors">GDPR</a></li>
+          <li><a href="cookies.html" class="text-white/50 hover:text-gold text-sm transition-colors" data-i18n="footer-legal-privacy">Politică confidențialitate</a></li>
+          <li><a href="cookies.html#gdpr" class="text-white/50 hover:text-gold text-sm transition-colors">GDPR</a></li>
         </ul>
       </div>
     </div>
@@ -1037,17 +1038,21 @@
     if (!s.classList.contains('hidden')) document.getElementById('mobile-search-input').focus();
   }
   function toggleMobile() {
-    const m = document.getElementById('mobile-menu');
-    const a = document.getElementById('icon-menu');
-    const b = document.getElementById('icon-close');
-    m.classList.toggle('hidden');
+    const m   = document.getElementById('mobile-menu');
+    const a   = document.getElementById('icon-menu');
+    const b   = document.getElementById('icon-close');
+    const btn = document.getElementById('mobile-toggle');
+    const isOpen = !m.classList.toggle('hidden');
     a.classList.toggle('hidden');
     b.classList.toggle('hidden');
+    if (btn) { btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false'); btn.setAttribute('aria-label', isOpen ? 'Închide meniu' : 'Deschide meniu'); }
   }
   function closeMobile() {
+    const btn = document.getElementById('mobile-toggle');
     document.getElementById('mobile-menu').classList.add('hidden');
     document.getElementById('icon-menu').classList.remove('hidden');
     document.getElementById('icon-close').classList.add('hidden');
+    if (btn) { btn.setAttribute('aria-expanded', 'false'); btn.setAttribute('aria-label', 'Deschide meniu'); }
   }
 
   // ── Scroll shadow ──

@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Timișoara Toastmasters | Vorbit în Public</title>
+  <meta name="description" content="Timișoara Toastmasters – primul club Toastmasters din România. Ședințe săptămânale de vorbit în public și leadership. Vino ca invitat gratuit, în fiecare miercuri seară la Cowork The Office." />
   <link rel="icon" type="image/png" href="logo.png" />
   <link rel="apple-touch-icon" href="logo.png" />
   <script src="https://cdn.tailwindcss.com"></script>
@@ -156,7 +157,7 @@
 
       <!-- Logo -->
       <a href="#" class="flex items-center gap-3 flex-shrink-0">
-        <img src="logo.png" alt="Toastmasters International" class="h-8 sm:h-10 w-auto object-contain flex-shrink-0" />
+        <img src="logo.png" alt="Toastmasters International" width="40" height="40" class="h-8 sm:h-10 w-auto object-contain flex-shrink-0" />
         <div>
           <div class="text-white font-bold text-sm sm:text-base leading-tight uppercase tracking-wide">Timișoara Toastmasters</div>
           <div class="text-gold text-[10px] sm:text-[11px] font-semibold tracking-wide leading-tight">"Where Leaders Are Made!"</div>
@@ -165,7 +166,7 @@
 
       <!-- Desktop nav + search -->
       <div class="hidden lg:flex items-center gap-6">
-        <a href="#"        class="nav-link text-white/80 hover:text-white text-sm font-medium transition-colors">Acasă</a>
+        <a href="#"        class="nav-link text-white font-semibold text-sm transition-colors">Acasă</a>
         <a href="despre-noi.html" class="nav-link text-white/80 hover:text-white text-sm font-medium transition-colors">Despre noi</a>
         <a href="galerie.html"  class="nav-link text-white/80 hover:text-white text-sm font-medium transition-colors">Galerie</a>
         <a href="contact.html" class="nav-link text-white/80 hover:text-white text-sm font-medium transition-colors">Contact</a>
@@ -195,13 +196,13 @@
 
       <!-- Mobile right side: search icon + hamburger -->
       <div class="flex lg:hidden items-center gap-2">
-        <button onclick="toggleSearch()" class="text-white p-2 rounded-full hover:bg-white/10 transition-colors">
+        <button onclick="toggleSearch()" aria-label="Caută pe site" class="text-white p-2 rounded-full hover:bg-white/10 transition-colors">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z"/>
           </svg>
         </button>
-        <button id="mobile-toggle" onclick="toggleMobile()"
+        <button id="mobile-toggle" onclick="toggleMobile()" aria-label="Deschide meniu" aria-expanded="false" aria-controls="mobile-menu"
                 class="text-white p-2 rounded-full hover:bg-white/10 transition-colors">
           <svg id="icon-menu"  class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
@@ -675,7 +676,7 @@
     <div id="panel-fb" role="tabpanel" aria-labelledby="tab-fb">
       <div class="relative">
         <!-- Prev -->
-        <button onclick="revSlide('fb',-1)" id="rev-prev-fb"
+        <button onclick="revSlide('fb',-1)" id="rev-prev-fb" aria-label="Recenzie anterioară"
           class="absolute -left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white border border-gray-200 shadow-md hidden md:flex items-center justify-center text-primary hover:bg-primary hover:text-white hover:border-primary transition-all duration-200 disabled:opacity-30 disabled:pointer-events-none">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
         </button>
@@ -737,7 +738,7 @@
           </div>
         </div>
         <!-- Next -->
-        <button onclick="revSlide('fb',1)" id="rev-next-fb"
+        <button onclick="revSlide('fb',1)" id="rev-next-fb" aria-label="Recenzie următoare"
           class="absolute -right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white border border-gray-200 shadow-md hidden md:flex items-center justify-center text-primary hover:bg-primary hover:text-white hover:border-primary transition-all duration-200">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
         </button>
@@ -758,7 +759,7 @@
     <div id="panel-g" class="hidden" role="tabpanel" aria-labelledby="tab-g">
       <div class="relative">
         <!-- Prev -->
-        <button onclick="revSlide('g',-1)" id="rev-prev-g"
+        <button onclick="revSlide('g',-1)" id="rev-prev-g" aria-label="Recenzie anterioară"
           class="absolute -left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white border border-gray-200 shadow-md hidden md:flex items-center justify-center text-primary hover:bg-primary hover:text-white hover:border-primary transition-all duration-200 disabled:opacity-30 disabled:pointer-events-none">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
         </button>
@@ -817,7 +818,7 @@
           </div>
         </div>
         <!-- Next -->
-        <button onclick="revSlide('g',1)" id="rev-next-g"
+        <button onclick="revSlide('g',1)" id="rev-next-g" aria-label="Recenzie următoare"
           class="absolute -right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white border border-gray-200 shadow-md hidden md:flex items-center justify-center text-primary hover:bg-primary hover:text-white hover:border-primary transition-all duration-200">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
         </button>
@@ -1071,7 +1072,10 @@
         const MONTHS = ['Ianuarie','Februarie','Martie','Aprilie','Mai','Iunie',
                         'Iulie','August','Septembrie','Octombrie','Noiembrie','Decembrie'];
         const DAYS   = ['L','M','M','J','V','S','D'];
-        const START_M = 5, END_M = 11, YR = 2026;
+        const _now = new Date();
+        const YR = _now.getFullYear();
+        const START_M = _now.getMonth();
+        const END_M = Math.min(START_M + 5, 11);
 
         function lastWed(month) {
           const last = new Date(YR, month + 1, 0);
@@ -1206,24 +1210,24 @@
         <form id="contact-form" onsubmit="submitForm(event)" class="space-y-3 sm:space-y-5">
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1.5">Prenume</label>
-              <input type="text" placeholder="Ion" required autocomplete="given-name"
+              <label for="idx-prenume" class="block text-sm font-medium text-gray-700 mb-1.5">Prenume <span class="text-maroon" aria-hidden="true">*</span></label>
+              <input id="idx-prenume" type="text" placeholder="Ion" required autocomplete="given-name"
                 class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
             </div>
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1.5">Nume</label>
-              <input type="text" placeholder="Popescu" required autocomplete="family-name"
+              <label for="idx-nume" class="block text-sm font-medium text-gray-700 mb-1.5">Nume</label>
+              <input id="idx-nume" type="text" placeholder="Popescu" autocomplete="family-name"
                 class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
             </div>
           </div>
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1.5">Email</label>
-            <input type="email" placeholder="ion.popescu@email.com" required autocomplete="email"
+            <label for="idx-email" class="block text-sm font-medium text-gray-700 mb-1.5">Email <span class="text-maroon" aria-hidden="true">*</span></label>
+            <input id="idx-email" type="email" placeholder="ion.popescu@email.com" required autocomplete="email"
               class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
           </div>
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1.5">Telefon <span class="text-gray-400">(opțional)</span></label>
-            <input type="tel" placeholder="+40 7XX XXX XXX" autocomplete="tel"
+            <label for="idx-telefon" class="block text-sm font-medium text-gray-700 mb-1.5">Telefon <span class="text-gray-400">(opțional)</span></label>
+            <input id="idx-telefon" type="tel" placeholder="+40 7XX XXX XXX" autocomplete="tel"
               class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
           </div>
           <div>
@@ -1250,7 +1254,7 @@
           <p id="form-error" class="hidden text-sm text-red-600 text-center bg-red-50 rounded-xl py-2.5 px-4">
             A apărut o eroare. Încearcă din nou sau scrie-ne pe <a href="https://www.facebook.com/timisoara.toastmasters" target="_blank" class="font-semibold underline">Facebook</a>.
           </p>
-          <p class="text-xs text-gray-400 text-center">Prin trimitere accepți <a href="#" class="text-maroon hover:underline">Politica de confidențialitate</a></p>
+          <p class="text-xs text-gray-400 text-center">Prin trimitere accepți <a href="cookies.html" class="text-maroon hover:underline">Politica de confidențialitate</a></p>
         </form>
         <div id="form-success" class="hidden text-center py-8">
           <div class="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -1274,7 +1278,7 @@
 
       <div class="col-span-2 lg:col-span-2">
         <div class="flex items-center gap-3 mb-5">
-          <img src="logo.png" alt="Toastmasters" class="h-12 w-auto object-contain" />
+          <img src="logo.png" alt="Toastmasters" width="48" height="48" class="h-12 w-auto object-contain" />
           <div>
             <div class="text-white font-bold text-lg leading-tight">Timișoara Toastmasters</div>
             <div class="text-gold text-[10px] font-semibold tracking-widest uppercase">CLUB</div>
@@ -1314,8 +1318,8 @@
         <h4 class="text-white font-semibold text-sm mb-5 uppercase tracking-wider">Legal</h4>
         <ul class="space-y-3">
           <li><a href="cookies.html" class="text-white/50 hover:text-gold text-sm transition-colors">Politică cookies</a></li>
-          <li><a href="#" class="text-white/50 hover:text-gold text-sm transition-colors">Politică confidențialitate</a></li>
-          <li><a href="#" class="text-white/50 hover:text-gold text-sm transition-colors">GDPR</a></li>
+          <li><a href="cookies.html" class="text-white/50 hover:text-gold text-sm transition-colors">Politică confidențialitate</a></li>
+          <li><a href="cookies.html#gdpr" class="text-white/50 hover:text-gold text-sm transition-colors">GDPR</a></li>
         </ul>
       </div>
     </div>
@@ -1366,18 +1370,23 @@
   }
 
   function toggleMobile() {
-    const m = document.getElementById('mobile-menu');
-    const a = document.getElementById('icon-menu');
-    const b = document.getElementById('icon-close');
+    const m   = document.getElementById('mobile-menu');
+    const a   = document.getElementById('icon-menu');
+    const b   = document.getElementById('icon-close');
+    const btn = document.getElementById('mobile-toggle');
     const isOpen = !m.classList.toggle('hidden');
     a.classList.toggle('hidden');
     b.classList.toggle('hidden');
+    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    btn.setAttribute('aria-label', isOpen ? 'Închide meniu' : 'Deschide meniu');
     if (isOpen) trapFocus(m); else releaseFocus();
   }
   function closeMobile() {
+    const btn = document.getElementById('mobile-toggle');
     document.getElementById('mobile-menu').classList.add('hidden');
     document.getElementById('icon-menu').classList.remove('hidden');
     document.getElementById('icon-close').classList.add('hidden');
+    if (btn) { btn.setAttribute('aria-expanded', 'false'); btn.setAttribute('aria-label', 'Deschide meniu'); }
     releaseFocus();
   }
 
@@ -1426,14 +1435,13 @@
     e.preventDefault();
     const form = e.target;
     const btn  = document.getElementById('form-submit-btn');
-    const inputs = form.querySelectorAll('input, textarea');
     const reg = {
-      prenume: inputs[0].value.trim(),
-      nume:    inputs[1].value.trim(),
-      email:   inputs[2].value.trim(),
-      telefon: inputs[3].value.trim(),
+      prenume: document.getElementById('idx-prenume')?.value.trim() || '',
+      nume:    document.getElementById('idx-nume')?.value.trim() || '',
+      email:   document.getElementById('idx-email')?.value.trim() || '',
+      telefon: document.getElementById('idx-telefon')?.value.trim() || '',
       sedinta: document.getElementById('form-sedinta')?.value.trim() || '',
-      mesaj:   inputs[4].value.trim(),
+      mesaj:   form.querySelector('textarea')?.value.trim() || '',
     };
 
     const origText = btn.textContent;

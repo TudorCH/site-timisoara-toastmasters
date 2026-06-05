@@ -24,6 +24,7 @@
   var btn = document.createElement('button');
   btn.id    = 'toasty-btn';
   btn.title = 'Întreabă-l pe Toasty';
+  btn.setAttribute('aria-label', 'Deschide chat Toasty');
   btn.innerHTML = iconBot + iconX;
   document.body.appendChild(btn);
 
@@ -62,6 +63,7 @@
   function closeChat() {
     isOpen = false;
     btn.classList.remove('open');
+    btn.setAttribute('aria-label', 'Deschide chat Toasty');
     document.getElementById('ti-chat').style.display = 'block';
     document.getElementById('ti-x').style.display    = 'none';
     win.style.opacity   = '0';
@@ -72,6 +74,7 @@
   btn.addEventListener('click', function () {
     isOpen = !isOpen;
     btn.classList.toggle('open', isOpen);
+    btn.setAttribute('aria-label', isOpen ? 'Închide chat Toasty' : 'Deschide chat Toasty');
     document.getElementById('ti-chat').style.display = isOpen ? 'none' : 'block';
     document.getElementById('ti-x').style.display    = isOpen ? 'block' : 'none';
     if (isOpen) {
