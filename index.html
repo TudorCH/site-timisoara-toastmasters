@@ -3,24 +3,36 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Timișoara Toastmasters | Vorbit în Public</title>
-  <meta name="description" content="Timișoara Toastmasters – primul club Toastmasters din România. Ședințe săptămânale de vorbit în public și leadership. Vino ca invitat gratuit, în fiecare miercuri seară la Cowork The Office." />
+  <title>Vorbit în Public Timișoara | Timișoara Toastmasters</title>
+  <meta name="description" content="Primul club Toastmasters din România, activ de 17 ani. Ședințe miercuri seară în Timișoara – vorbit în public, leadership, feedback. Intrare gratuită ca invitat." />
   <!-- UPDATE: replace placeholder URL with actual production domain -->
   <link rel="canonical" href="https://timisoaratoastmasters.ro/" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://timisoaratoastmasters.ro/" />
-  <meta property="og:title" content="Timișoara Toastmasters | Vorbit în Public" />
+  <meta property="og:site_name" content="Timișoara Toastmasters" />
+  <meta property="og:title" content="Vorbit în Public Timișoara | Timișoara Toastmasters" />
   <meta property="og:description" content="Primul club Toastmasters din România. Vino ca invitat gratuit miercuri seară și exersează vorbitul în public alături de o comunitate activă." />
   <meta property="og:image" content="https://timisoaratoastmasters.ro/Images/background-header.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Ședință Timișoara Toastmasters – vorbit în public" />
   <meta property="og:locale" content="ro_RO" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Timișoara Toastmasters | Vorbit în Public" />
-  <meta name="twitter:description" content="Primul club Toastmasters din România. Vino ca invitat gratuit miercuri seară." />
+  <meta name="twitter:site" content="@toastmastersti" />
+  <meta name="twitter:title" content="Vorbit în Public Timișoara | Toastmasters" />
+  <meta name="twitter:description" content="Primul club Toastmasters din România. Vino ca invitat gratuit miercuri seară în Timișoara." />
   <meta name="twitter:image" content="https://timisoaratoastmasters.ro/Images/background-header.jpg" />
+  <meta name="twitter:image:alt" content="Ședință Timișoara Toastmasters" />
+  <!-- Geo / Local SEO -->
+  <meta name="geo.region" content="RO-TM" />
+  <meta name="geo.placename" content="Timișoara, România" />
+  <meta name="geo.position" content="45.7653976;21.225036" />
+  <meta name="ICBM" content="45.7653976, 21.225036" />
   <link rel="icon" type="image/png" href="logo.png" />
   <link rel="apple-touch-icon" href="logo.png" />
   <link rel="stylesheet" href="output.css" />
   <link rel="preload" as="image" href="Images/background-header.jpg" fetchpriority="high" />
+  <link rel="preconnect" href="https://res.cloudinary.com" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
@@ -270,8 +282,8 @@
     <div class="max-w-2xl">
       <h1 class="hero-title font-heading font-bold text-white leading-tight mb-4 sm:mb-6 animate-in"
           style="font-size: clamp(1.6rem, 5vw, 5.5rem); animation-delay:.1s; text-shadow: 0 2px 20px rgba(0,0,0,0.7), 0 1px 4px rgba(0,0,0,0.5);">
-        <span class="block whitespace-nowrap">Dezvoltă-ți abilitățile de</span>
-        <span class="block text-gold whitespace-nowrap">vorbit în public</span>
+        <span class="block whitespace-nowrap">Vorbit în public</span>
+        <span class="block text-gold whitespace-nowrap">în Timișoara</span>
       </h1>
       <p class="hero-desc text-white/90 text-lg md:text-xl leading-relaxed mb-6 sm:mb-10 max-w-xl animate-in"
          style="animation-delay:.3s; text-shadow: 0 1px 6px rgba(0,0,0,0.5);">
@@ -1560,39 +1572,80 @@
 })();
 </script>
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "SportsClub",
-  "name": "Timișoara Toastmasters",
-  "description": "Primul club Toastmasters înființat în România. Ședințe săptămânale de vorbit în public și leadership în Timișoara.",
-  "url": "https://timisoaratoastmasters.ro/",
-  "logo": "https://timisoaratoastmasters.ro/logo.png",
-  "image": "https://timisoaratoastmasters.ro/Images/background-header.jpg",
-  "telephone": "",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Calea Aradului nr.11",
-    "addressLocality": "Timișoara",
-    "addressRegion": "Timiș",
-    "addressCountry": "RO"
+[
+  {
+    "@context": "https://schema.org",
+    "@type": ["EducationalOrganization", "LocalBusiness"],
+    "name": "Timișoara Toastmasters",
+    "alternateName": "Toastmasters Timișoara",
+    "description": "Primul club Toastmasters înființat în România. Ședințe săptămânale de vorbit în public și leadership în Timișoara.",
+    "url": "https://timisoaratoastmasters.ro/",
+    "logo": "https://timisoaratoastmasters.ro/logo.png",
+    "image": "https://timisoaratoastmasters.ro/Images/background-header.jpg",
+    "priceRange": "€",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Calea Aradului nr.11",
+      "addressLocality": "Timișoara",
+      "addressRegion": "Timiș",
+      "postalCode": "300088",
+      "addressCountry": "RO"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 45.7653976,
+      "longitude": 21.225036
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Wednesday",
+      "opens": "19:30",
+      "closes": "21:00"
+    },
+    "sameAs": [
+      "https://www.facebook.com/timisoara.toastmasters/",
+      "https://www.instagram.com/timisoaratoastmasters/",
+      "https://www.linkedin.com/company/toastmasters-timisoara/",
+      "https://www.toastmasters.org/Find-a-Club/01269633"
+    ]
   },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": 45.7653976,
-    "longitude": 21.225036
-  },
-  "openingHoursSpecification": {
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": "Wednesday",
-    "opens": "19:30",
-    "closes": "21:00"
-  },
-  "sameAs": [
-    "https://www.facebook.com/timisoara.toastmasters/",
-    "https://www.instagram.com/timisoaratoastmasters/",
-    "https://www.linkedin.com/company/toastmasters-timisoara/"
-  ]
-}
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "Ședință Timișoara Toastmasters",
+    "description": "Ședință săptămânală de vorbit în public și leadership. Discursuri pregătite, improvizații și feedback constructiv. Intrare liberă ca invitat.",
+    "url": "https://timisoaratoastmasters.ro/contact.html",
+    "eventSchedule": {
+      "@type": "Schedule",
+      "byDay": "https://schema.org/Wednesday",
+      "startTime": "19:30",
+      "endTime": "21:00",
+      "repeatFrequency": "P1W"
+    },
+    "location": {
+      "@type": "Place",
+      "name": "Cowork The Office",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Calea Aradului nr.11, Etaj 2",
+        "addressLocality": "Timișoara",
+        "addressCountry": "RO"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 45.7653976,
+        "longitude": 21.225036
+      }
+    },
+    "organizer": {
+      "@type": "Organization",
+      "name": "Timișoara Toastmasters",
+      "url": "https://timisoaratoastmasters.ro/"
+    },
+    "isAccessibleForFree": true,
+    "inLanguage": "ro"
+  }
+]
 </script>
 </body>
 </html>
