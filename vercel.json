@@ -1,4 +1,6 @@
 {
+  "buildCommand": "npm install && npm run build:css",
+  "outputDirectory": ".",
   "functions": {
     "api/chat.js": {
       "memory": 256,
