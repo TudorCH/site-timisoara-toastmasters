@@ -64,7 +64,11 @@
     }
 
     @keyframes fadeInUp { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:translateY(0); } }
-    .animate-in { animation:fadeInUp .7s ease forwards; }
+    .animate-in { animation:fadeInUp .4s ease forwards; }
+    @media (prefers-reduced-motion: reduce) {
+      .animate-in { animation: none; opacity: 1; transform: none; }
+      .card-hover { transition: none; }
+    }
 
     /* Gallery event cards, same logic as reviews carousel */
     .gal-card { flex: 0 0 100%; max-width: 100%; }

@@ -42,6 +42,10 @@
   </script>
   <style>
     @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+    @media (prefers-reduced-motion: reduce) {
+      .scroll-fade { transition: none; opacity: 1; transform: none; }
+      .card-hover { transition: none; }
+    }
     #form-card, #contact-section { scroll-margin-top: 4.5rem; }
     .gradient-hero { background: linear-gradient(135deg, #002d47 0%, #004165 55%, #003555 100%); }
     .gradient-dark { background: linear-gradient(135deg, #002d47 0%, #004165 100%); }
@@ -59,7 +63,7 @@
     }
     #mobile-menu { transition:all .3s ease; }
     .search-input:focus { outline:none; box-shadow:0 0 0 2px rgba(242,223,116,.4); }
-    .scroll-fade { opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s ease; }
+    .scroll-fade { opacity:0; transform:translateY(22px); transition:opacity .4s ease, transform .4s ease; }
     .scroll-fade.visible { opacity:1; transform:translateY(0); }
   </style>
 </head>
@@ -411,23 +415,23 @@
             <div>
               <label for="ct-prenume" class="block text-sm font-medium text-gray-700 mb-1.5">Prenume <span class="text-maroon" aria-hidden="true">*</span></label>
               <input id="ct-prenume" type="text" placeholder="Ion" required autocomplete="given-name"
-                class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
+                class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/60 focus:border-primary transition-all" />
             </div>
             <div>
               <label for="ct-nume" class="block text-sm font-medium text-gray-700 mb-1.5">Nume</label>
               <input id="ct-nume" type="text" placeholder="Popescu" autocomplete="family-name"
-                class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
+                class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/60 focus:border-primary transition-all" />
             </div>
           </div>
           <div>
             <label for="ct-email" class="block text-sm font-medium text-gray-700 mb-1.5">Email <span class="text-maroon" aria-hidden="true">*</span></label>
             <input id="ct-email" type="email" placeholder="ion.popescu@email.com" required autocomplete="email"
-              class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
+              class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/60 focus:border-primary transition-all" />
           </div>
           <div>
             <label for="ct-telefon" class="block text-sm font-medium text-gray-700 mb-1.5">Telefon <span class="text-gray-400">(opțional)</span></label>
             <input id="ct-telefon" type="tel" placeholder="+40 7XX XXX XXX" autocomplete="tel"
-              class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
+              class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/60 focus:border-primary transition-all" />
           </div>
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1.5">
@@ -443,7 +447,7 @@
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1.5">Mesaj</label>
             <textarea rows="3" placeholder="Sunt interesat să vin ca invitat la o ședință…"
-              class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none"></textarea>
+              class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/60 focus:border-primary transition-all resize-none"></textarea>
           </div>
           <button type="submit" id="form-submit-btn"
             class="w-full bg-maroon hover:bg-maroon-light text-white font-semibold py-3.5 rounded-xl text-sm
