@@ -3,8 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Galerie Foto, Timișoara Toastmasters</title>
-  <meta name="description" content="Galerie foto Timișoara Toastmasters – imagini din ședințele și evenimentele clubului. Peste 17 ani de memorii capturate." />
+  <title>Galerie Foto | Timișoara Toastmasters</title>
+  <meta name="description" content="Galerie foto Timișoara Toastmasters – imagini din ședințele și evenimentele clubului. Peste 17 ani de memorii capturate. Vino și tu miercuri seară în Timișoara." />
+  <!-- UPDATE: replace placeholder URL with actual production domain -->
+  <link rel="canonical" href="https://timisoaratoastmasters.ro/galerie.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://timisoaratoastmasters.ro/galerie.html" />
+  <meta property="og:title" content="Galerie Foto | Timișoara Toastmasters" />
+  <meta property="og:description" content="Imagini din ședințele și evenimentele Timișoara Toastmasters. Peste 17 ani de momente capturate." />
+  <meta property="og:image" content="https://timisoaratoastmasters.ro/Images/background-header.jpg" />
+  <meta property="og:locale" content="ro_RO" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Galerie Foto | Timișoara Toastmasters" />
+  <meta name="twitter:description" content="Imagini din ședințele și evenimentele Timișoara Toastmasters." />
+  <meta name="twitter:image" content="https://timisoaratoastmasters.ro/Images/background-header.jpg" />
   <link rel="icon" type="image/png" href="logo.png" />
   <link rel="apple-touch-icon" href="logo.png" />
   <script src="https://cdn.tailwindcss.com"></script>
@@ -82,6 +94,7 @@
   </style>
 </head>
 <body class="font-sans bg-white text-gray-900 antialiased">
+<a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[9999] focus:bg-white focus:text-primary focus:font-semibold focus:px-4 focus:py-2 focus:rounded-lg focus:shadow-lg">Sari la conținut</a>
 
 <!-- ════════════════════ NAVBAR ════════════════════ -->
 <nav class="fixed top-0 left-0 right-0 z-50 bg-primary shadow-lg shadow-primary/30">
@@ -122,7 +135,7 @@
         <a href="contact.html"
            class="ml-1 bg-maroon hover:bg-maroon-light text-white font-semibold px-5 py-2 rounded-full text-sm
                   transition-all duration-200 hover:scale-105 shadow-md shadow-maroon/30">
-          Hai la o ședință
+          Hai și tu la o ședință
         </a>
       </div>
 
@@ -176,7 +189,7 @@
         <div class="pt-2 px-4">
           <a href="contact.html" onclick="closeMobile()"
              class="block w-full bg-maroon text-white font-semibold px-5 py-3 rounded-full text-sm text-center shadow-md">
-            Hai la o ședință →
+            Hai și tu la o ședință →
           </a>
         </div>
       </div>
@@ -185,7 +198,7 @@
 </nav>
 
 <!-- ════════════════════ HERO ════════════════════ -->
-<section class="pt-28 pb-14 bg-primary">
+<section id="main-content" class="pt-28 pb-14 bg-primary">
   <div class="max-w-3xl mx-auto px-5 text-center">
     <div class="badge-light mb-4 animate-in">Galerie foto</div>
     <h1 class="font-heading text-4xl md:text-5xl font-bold text-white mb-4 animate-in" style="animation-delay:.05s">
@@ -225,11 +238,11 @@
     <!-- ── Panel: Ședințe ── -->
     <div id="panel-sedinte">
       <div class="relative">
-        <button onclick="galSlide('sedinte',-1)" id="gal-prev-sedinte"
+        <button onclick="galSlide('sedinte',-1)" id="gal-prev-sedinte" aria-label="Ședință anterioară"
           class="absolute -left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white border border-gray-200 shadow-md hidden md:flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors disabled:opacity-30 disabled:pointer-events-none">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
         </button>
-        <button onclick="galSlide('sedinte',1)" id="gal-next-sedinte"
+        <button onclick="galSlide('sedinte',1)" id="gal-next-sedinte" aria-label="Ședință următoare"
           class="absolute -right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white border border-gray-200 shadow-md hidden md:flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors disabled:opacity-30 disabled:pointer-events-none">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
         </button>
@@ -243,11 +256,11 @@
     <!-- ── Panel: Concursuri & Evenimente ── -->
     <div id="panel-concursuri" class="hidden">
       <div class="relative">
-        <button onclick="galSlide('concursuri',-1)" id="gal-prev-concursuri"
+        <button onclick="galSlide('concursuri',-1)" id="gal-prev-concursuri" aria-label="Eveniment anterior"
           class="absolute -left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white border border-gray-200 shadow-md hidden md:flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors disabled:opacity-30 disabled:pointer-events-none">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
         </button>
-        <button onclick="galSlide('concursuri',1)" id="gal-next-concursuri"
+        <button onclick="galSlide('concursuri',1)" id="gal-next-concursuri" aria-label="Eveniment următor"
           class="absolute -right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white border border-gray-200 shadow-md hidden md:flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors disabled:opacity-30 disabled:pointer-events-none">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
         </button>
@@ -261,11 +274,11 @@
     <!-- ── Panel: Socializare ── -->
     <div id="panel-social" class="hidden">
       <div class="relative">
-        <button onclick="socSlide(-1)" id="soc-prev"
+        <button onclick="socSlide(-1)" id="soc-prev" aria-label="Fotografie anterioară"
           class="absolute -left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white border border-gray-200 shadow-md hidden md:flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors disabled:opacity-30 disabled:pointer-events-none">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
         </button>
-        <button onclick="socSlide(1)" id="soc-next"
+        <button onclick="socSlide(1)" id="soc-next" aria-label="Fotografie următoare"
           class="absolute -right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white border border-gray-200 shadow-md hidden md:flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors disabled:opacity-30 disabled:pointer-events-none">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
         </button>
@@ -327,6 +340,25 @@
 </div>
 
 <!-- ════════════════════ FOOTER ════════════════════ -->
+<!-- ════════════════════ CTA ════════════════════ -->
+<section class="py-14 lg:py-20 bg-primary">
+  <div class="max-w-2xl mx-auto px-5 text-center">
+    <div class="badge-light mb-5 inline-flex">Vino și tu</div>
+    <h2 class="font-heading text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">
+      Participarea ca invitat e gratuită
+    </h2>
+    <p class="text-white/70 text-lg mb-8 leading-relaxed">
+      Miercuri seară la Cowork The Office, Timișoara.<br class="hidden sm:block"/>
+      Vino să vezi cum funcționează — zero presiune, zero obligații.
+    </p>
+    <a href="contact.html"
+       class="inline-flex items-center gap-2 bg-maroon hover:bg-maroon-light text-white font-bold px-8 py-4 rounded-full text-base transition-all duration-200 hover:scale-105 shadow-lg shadow-maroon/30">
+      Hai și tu la o ședință
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</section>
+
 <footer class="bg-[#002d47] border-t border-white/5 pt-16 pb-8">
   <div class="max-w-7xl mx-auto px-5 lg:px-8">
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-10 pb-12 border-b border-white/10">

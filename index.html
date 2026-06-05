@@ -5,9 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Timișoara Toastmasters | Vorbit în Public</title>
   <meta name="description" content="Timișoara Toastmasters – primul club Toastmasters din România. Ședințe săptămânale de vorbit în public și leadership. Vino ca invitat gratuit, în fiecare miercuri seară la Cowork The Office." />
+  <!-- UPDATE: replace placeholder URL with actual production domain -->
+  <link rel="canonical" href="https://timisoaratoastmasters.ro/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://timisoaratoastmasters.ro/" />
+  <meta property="og:title" content="Timișoara Toastmasters | Vorbit în Public" />
+  <meta property="og:description" content="Primul club Toastmasters din România. Vino ca invitat gratuit miercuri seară și exersează vorbitul în public alături de o comunitate activă." />
+  <meta property="og:image" content="https://timisoaratoastmasters.ro/Images/background-header.jpg" />
+  <meta property="og:locale" content="ro_RO" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Timișoara Toastmasters | Vorbit în Public" />
+  <meta name="twitter:description" content="Primul club Toastmasters din România. Vino ca invitat gratuit miercuri seară." />
+  <meta name="twitter:image" content="https://timisoaratoastmasters.ro/Images/background-header.jpg" />
   <link rel="icon" type="image/png" href="logo.png" />
   <link rel="apple-touch-icon" href="logo.png" />
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preload" as="image" href="Images/background-header.jpg" fetchpriority="high" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <script>
@@ -149,6 +162,7 @@
   </style>
 </head>
 <body class="font-sans bg-white text-gray-900 antialiased">
+<a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[9999] focus:bg-white focus:text-primary focus:font-semibold focus:px-4 focus:py-2 focus:rounded-lg focus:shadow-lg">Sari la conținut</a>
 
 <!-- ════════════════════ NAVBAR ════════════════════ -->
 <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-primary shadow-lg shadow-primary/30">
@@ -315,6 +329,7 @@
 </section>
 
 <!-- ════════════════════ DE CE COMUNICARE ════════════════════ -->
+<div id="main-content" style="position:relative;top:-4.5rem;visibility:hidden"></div>
 <section id="de-ce" class="py-14 lg:py-24 bg-white scroll-fade">
   <div class="max-w-7xl mx-auto px-5 lg:px-8">
     <div class="text-center mb-8 md:mb-16">
@@ -1560,6 +1575,41 @@
     url = 'intent://maps.app.goo.gl/xf5mo1xVjvU79gQo8#Intent;scheme=https;end';
   if (url) document.querySelectorAll('a[href*="maps.app.goo.gl"]').forEach(function(el){ el.href = url; });
 })();
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SportsClub",
+  "name": "Timișoara Toastmasters",
+  "description": "Primul club Toastmasters înființat în România. Ședințe săptămânale de vorbit în public și leadership în Timișoara.",
+  "url": "https://timisoaratoastmasters.ro/",
+  "logo": "https://timisoaratoastmasters.ro/logo.png",
+  "image": "https://timisoaratoastmasters.ro/Images/background-header.jpg",
+  "telephone": "",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Calea Aradului nr.11",
+    "addressLocality": "Timișoara",
+    "addressRegion": "Timiș",
+    "addressCountry": "RO"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 45.7653976,
+    "longitude": 21.225036
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": "Wednesday",
+    "opens": "19:30",
+    "closes": "21:00"
+  },
+  "sameAs": [
+    "https://www.facebook.com/timisoara.toastmasters/",
+    "https://www.instagram.com/timisoaratoastmasters/",
+    "https://www.linkedin.com/company/toastmasters-timisoara/"
+  ]
+}
 </script>
 </body>
 </html>
