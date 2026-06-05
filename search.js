@@ -5,16 +5,22 @@
 
   // Static cross-page index
   const STATIC = [
-    { label: 'Acasă',                  url: 'index.html',                  q: 'acasa toastmasters timisoara club discursuri public speaking vorbit' },
-    { label: 'De ce Toastmasters',     url: 'index.html#de-ce',            q: 'de ce comunicare vorbit public impact emotii leadership networking beneficii' },
-    { label: 'Parcursul tău',          url: 'index.html#journey-section',  q: 'calatorie cum functioneaza pathways roluri discurs evaluare progres invitat membru pasi' },
-    { label: 'Galerie Foto',           url: 'galerie.html',                q: 'galerie foto poze fotografii sedinte concursuri' },
-    { label: 'Testimoniale & Recenzii',url: 'index.html#testimoniale',     q: 'recenzii opinii testimoniale feedback membri pareri facebook google' },
-    { label: 'Program & Înscriere',    url: 'contact.html',                q: 'sedinte program calendar orar agenda urmatoarea sedinta miercuri inscriere formular' },
-    { label: 'Despre noi',             url: 'despre-noi.html',             q: 'despre noi toastmasters misiune viziune poveste valori integritate respect serviciu excelenta' },
-    { label: 'O seară tipică',         url: 'despre-noi.html#section-eve', q: 'sedinta seara discursuri improvizate table topics feedback roluri toastmaster cum arata' },
-    { label: 'Conducere & Echipă',     url: 'despre-noi.html#conducere',   q: 'conducere echipa board presedinte secretar vice lider trezorier sergent' },
-    { label: 'Contact',                url: 'contact.html',                q: 'contact adresa harta locatie directii cowork office calea aradului' },
+    { label: 'Acasă',                  url: 'index.html',                  q: 'acasa toastmasters timisoara club discursuri public speaking vorbit homepage' },
+    { label: 'De ce Toastmasters',     url: 'index.html#de-ce',            q: 'de ce comunicare vorbit public impact emotii leadership networking beneficii avantaje' },
+    { label: 'Parcursul tău',          url: 'index.html#journey-section',  q: 'calatorie cum functioneaza pathways roluri discurs evaluare progres invitat membru pasi inceput' },
+    { label: 'Galerie Foto',           url: 'galerie.html',                q: 'galerie foto poze fotografii sedinte concursuri events socializare imagini' },
+    { label: 'Testimoniale & Recenzii',url: 'index.html#testimoniale',     q: 'recenzii opinii testimoniale feedback membri pareri facebook google reviews' },
+    { label: 'Program & Înscriere',    url: 'contact.html',                q: 'sedinte program calendar orar agenda urmatoarea sedinta miercuri inscriere formular inregistrare rezerva loc' },
+    { label: 'Despre noi',             url: 'despre-noi.html',             q: 'despre noi toastmasters misiune viziune poveste valori integritate respect serviciu excelenta istorie' },
+    { label: 'Beneficii membre',       url: 'despre-noi.html',             q: 'beneficii ce castig ce invat vorbire incredere feedback pathways leadership networking competitii crestere personala' },
+    { label: 'O seară tipică',         url: 'despre-noi.html#section-eve', q: 'sedinta seara discursuri improvizate table topics feedback roluri toastmaster cum arata structura' },
+    { label: 'Conducere & Echipă',     url: 'despre-noi.html#conducere',   q: 'conducere echipa board presedinte secretar vice lider trezorier sergent robert olga ionut tudor mihaela lavinia sergiu adriana' },
+    { label: 'Contact',                url: 'contact.html',                q: 'contact adresa harta locatie directii cowork office calea aradului timisoara' },
+    { label: 'Vino ca invitat',        url: 'contact.html',                q: 'vino invitat gratuit prima sedinta inscriere vizita cum ajung rezervare' },
+    { label: 'WhatsApp grup',          url: 'https://chat.whatsapp.com/B7t3hyfuaZFIu7dw23QIRH', q: 'whatsapp grup chat mesaj comunitate' },
+    { label: 'Facebook',               url: 'https://www.facebook.com/timisoara.toastmasters', q: 'facebook social media pagina urmareste' },
+    { label: 'Valorile clubului',      url: 'despre-noi.html',             q: 'valori integritate respect serviciu excelenta cultura club' },
+    { label: 'Cost & taxe membre',     url: 'contact.html',                q: 'cost pret taxa cat costa bani membership fee gratuit prima vizita' },
   ];
 
   let idx = STATIC.map(e => ({ label: e.label, url: e.url, text: e.q }));

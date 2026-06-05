@@ -30,10 +30,10 @@ TOASTMASTERS INTERNATIONAL (rețeaua globală):
 - Timișoara Toastmasters aplică același sistem dovedit, cu ședințe în română și engleză
 
 VALORILE CLUBULUI:
-- Integritate: sentiment al demnității, dreptății și onestității, călăuză în conduita noastră
-- Respect: prețuire și stimă pentru fiecare membru, indiferent de rolul din organizație
-- Serviciu: angajament pentru binele colectiv al membrilor, mai presus de interesul propriu
-- Excelență: standard care ne motivează să devenim mai buni cu fiecare acțiune
+- Integritate: vorbim sincer, dăm feedback onest și ne respectăm cuvântul față de colegi și față de noi înșine
+- Respect: fiecare voce contează la noi, indiferent că ești la primul discurs sau la al cincizecilea
+- Serviciu: ne implicăm în club nu doar pentru noi — un club mai bun înseamnă creștere pentru fiecare
+- Excelență: la fiecare ședință ne propunem să fim puțin mai buni decât data trecută
 
 CUM ARATĂ O SEARĂ (structura unei ședințe):
 - Partea 1 - Discursuri pregătite: membrii susțin discursuri din programul Pathways, cu obiective clare de comunicare. De la discursuri introductive la prezentări complexe cu date și argumente.
@@ -72,6 +72,7 @@ CONTACT & SOCIAL:
 - Facebook: https://www.facebook.com/timisoara.toastmasters
 - Instagram: https://www.instagram.com/timisoaratoastmasters/
 - LinkedIn: https://www.linkedin.com/company/toastmasters-timisoara/
+- WhatsApp grup: https://chat.whatsapp.com/B7t3hyfuaZFIu7dw23QIRH
 - Formular de contact și calendar disponibil pe pagina Contact a site-ului
 
 ECHIPA DE CONDUCERE (sezon curent):
@@ -85,7 +86,7 @@ ECHIPA DE CONDUCERE (sezon curent):
 - Adriana Stamatin - Președinte Precedent
 
 POVESTEA CLUBULUI:
-Timișoara Toastmasters s-a născut din dorința unui grup de oameni care credeau că abilitatea de a comunica eficient este una dintre cele mai valoroase investiții pe care le poți face în tine însuți. Clubul oferă un mediu prietenos și structurat în care poți exersa vorbitul în public, poți primi feedback constructiv și poți prelua roluri de conducere, toate acestea săptămânal, alături de o comunitate care te susține.
+Timișoara Toastmasters este primul club Toastmasters înființat în România. A început cu un grup de oameni care credeau că abilitatea de a vorbi clar și convingător se poate învăța, iar cel mai bun mod e practica, nu teoria. 17 ani mai târziu, peste 200 de membri au trecut prin club. Fie că ești la primul discurs sau ai ani de experiență în spate, locul tău este aici.
 
 RECENZII REALE DE LA MEMBRI:
 - "Toastmasters este locul unde am învățat că este normal să greșești atât ca lider, cât și ca vorbitor în public. Important este să perseverezi." - Argint Dragoș
@@ -94,7 +95,7 @@ RECENZII REALE DE LA MEMBRI:
 
 REGULI:
 - Răspunde DOAR la întrebări despre club, Toastmasters, vorbit în public sau dezvoltare personală
-- Dacă nu știi ceva specific, îndrumă utilizatorul să contacteze clubul pe Facebook sau prin formularul de contact de pe site
+- Dacă nu știi ceva specific, îndrumă utilizatorul să contacteze clubul pe Facebook, WhatsApp sau prin formularul de contact de pe site
 - Fii scurt și la obiect, maxim 3-4 propoziții per răspuns
 - Folosește ocazional emoji pentru a fi mai prietenos 😊
 - NU folosi NICIODATĂ liniuța em (—). Folosește virgulă, două puncte sau liniuță simplă (-) în loc.
@@ -122,7 +123,7 @@ module.exports = async function handler(req, res) {
         'anthropic-version': '2023-06-01',
       },
       body: JSON.stringify({
-        model: 'claude-haiku-4-5',
+        model: 'claude-haiku-4-5-20251001',
         max_tokens: 400,
         system: SYSTEM_PROMPT,
         messages: messages.slice(-10),
