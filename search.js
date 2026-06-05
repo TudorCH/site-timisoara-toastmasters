@@ -108,6 +108,8 @@
       if (ms) ms.classList.add('hidden');
     }
 
+    if (url.startsWith('http')) { window.open(url, '_blank', 'noopener,noreferrer'); return; }
+
     const page       = window.location.pathname.split('/').pop() || 'index.html';
     const parts      = url.split('#');
     const targetPage = parts[0] || 'index.html';

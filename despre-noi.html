@@ -99,6 +99,18 @@
     @media (min-width: 1024px) {
       .flip-card:hover .flip-front::after { opacity: 0.9; transform: scale(1.25); }
     }
+    /* Mobile touch hint — visible below lg, hidden once card is flipped */
+    @media (max-width: 1023px) {
+      .flip-front::before {
+        content: 'Atinge ↕';
+        position: absolute; bottom: 7px; left: 0; right: 0;
+        text-align: center; font-size: 9px; font-weight: 700;
+        letter-spacing: 0.06em; color: rgba(119,36,50,0.45);
+        pointer-events: none;
+      }
+      .flip-card.flipped .flip-front::before { display: none; }
+      .flip-front::after { display: none; }
+    }
 
     /* ── Leadership interactive cards ── */
     .leader-card { position: relative; overflow: hidden; }
@@ -452,7 +464,7 @@
             </svg>
             <span class="absolute bottom-0 right-0 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-white border border-gray-200 flex items-center justify-center text-[10px] sm:text-xs font-bold text-primary shadow-sm">1</span>
           </div>
-          <span class="eve-label block text-[9px] sm:text-[11px] lg:text-xs font-bold uppercase tracking-wide text-gray-400 text-center leading-tight transition-all duration-300 w-14 sm:w-20 lg:w-24">
+          <span class="eve-label block text-[11px] sm:text-[11px] lg:text-xs font-bold uppercase tracking-wide text-gray-400 text-center leading-tight transition-all duration-300 w-14 sm:w-20 lg:w-24">
             <span class="sm:hidden">Pregătite</span>
             <span class="hidden sm:inline">Discursuri<br>pregătite</span>
           </span>
@@ -465,7 +477,7 @@
             </svg>
             <span class="absolute bottom-0 right-0 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-white border border-gray-200 flex items-center justify-center text-[10px] sm:text-xs font-bold text-primary shadow-sm">2</span>
           </div>
-          <span class="eve-label block text-[9px] sm:text-[11px] lg:text-xs font-bold uppercase tracking-wide text-gray-400 text-center leading-tight transition-all duration-300 w-14 sm:w-20 lg:w-24">
+          <span class="eve-label block text-[11px] sm:text-[11px] lg:text-xs font-bold uppercase tracking-wide text-gray-400 text-center leading-tight transition-all duration-300 w-14 sm:w-20 lg:w-24">
             <span class="sm:hidden">Improvizate</span>
             <span class="hidden sm:inline">Discursuri<br>Improvizate</span>
           </span>
@@ -478,7 +490,7 @@
             </svg>
             <span class="absolute bottom-0 right-0 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-white border border-gray-200 flex items-center justify-center text-[10px] sm:text-xs font-bold text-primary shadow-sm">3</span>
           </div>
-          <span class="eve-label block text-[9px] sm:text-[11px] lg:text-xs font-bold uppercase tracking-wide text-gray-400 text-center leading-tight transition-all duration-300 w-14 sm:w-20 lg:w-24">
+          <span class="eve-label block text-[11px] sm:text-[11px] lg:text-xs font-bold uppercase tracking-wide text-gray-400 text-center leading-tight transition-all duration-300 w-14 sm:w-20 lg:w-24">
             <span class="sm:hidden">Feedback</span>
             <span class="hidden sm:inline">Feedback<br>structurat</span>
           </span>
@@ -549,7 +561,7 @@
         <div class="flip-inner">
           <div class="flip-front bg-white border border-gray-100 shadow-sm p-5 lg:p-6 gap-2">
             <div class="w-11 h-11 lg:w-14 lg:h-14 rounded-2xl bg-primary/8 flex items-center justify-center"><svg class="w-5 h-5 lg:w-7 lg:h-7 text-primary" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg></div>
-            <div class="text-[9px] lg:text-[10px] font-bold text-maroon uppercase tracking-widest" data-i18n="ben-c1-tag">Competență de bază</div>
+            <div class="text-[10px] lg:text-[10px] font-bold text-maroon uppercase tracking-widest" data-i18n="ben-c1-tag">Competență de bază</div>
             <h3 class="font-bold text-primary text-sm lg:text-base leading-snug" data-i18n="ben-c1-title">Vorbit în public</h3>
           </div>
           <div class="flip-back gradient-dark p-5 lg:p-6 gap-2">
@@ -568,7 +580,7 @@
         <div class="flip-inner">
           <div class="flip-front bg-white border border-gray-100 shadow-sm p-5 lg:p-6 gap-2">
             <div class="w-11 h-11 lg:w-14 lg:h-14 rounded-2xl bg-primary/8 flex items-center justify-center"><svg class="w-5 h-5 lg:w-7 lg:h-7 text-primary" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg></div>
-            <div class="text-[9px] lg:text-[10px] font-bold text-maroon uppercase tracking-widest" data-i18n="ben-c2-tag">Experiență reală</div>
+            <div class="text-[10px] lg:text-[10px] font-bold text-maroon uppercase tracking-widest" data-i18n="ben-c2-tag">Experiență reală</div>
             <h3 class="font-bold text-primary text-sm lg:text-base leading-snug" data-i18n="ben-c2-title">Leadership</h3>
           </div>
           <div class="flip-back gradient-dark p-5 lg:p-6 gap-2">
@@ -587,7 +599,7 @@
         <div class="flip-inner">
           <div class="flip-front bg-white border border-gray-100 shadow-sm p-5 lg:p-6 gap-2">
             <div class="w-11 h-11 lg:w-14 lg:h-14 rounded-2xl bg-primary/8 flex items-center justify-center"><svg class="w-5 h-5 lg:w-7 lg:h-7 text-primary" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg></div>
-            <div class="text-[9px] lg:text-[10px] font-bold text-maroon uppercase tracking-widest" data-i18n="ben-c3-tag">Progres accelerat</div>
+            <div class="text-[10px] lg:text-[10px] font-bold text-maroon uppercase tracking-widest" data-i18n="ben-c3-tag">Progres accelerat</div>
             <h3 class="font-bold text-primary text-sm lg:text-base leading-snug" data-i18n="ben-c3-title">Feedback constructiv</h3>
           </div>
           <div class="flip-back gradient-dark p-5 lg:p-6 gap-2">
@@ -606,7 +618,7 @@
         <div class="flip-inner">
           <div class="flip-front bg-white border border-gray-100 shadow-sm p-5 lg:p-6 gap-2">
             <div class="w-11 h-11 lg:w-14 lg:h-14 rounded-2xl bg-primary/8 flex items-center justify-center"><svg class="w-5 h-5 lg:w-7 lg:h-7 text-primary" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg></div>
-            <div class="text-[9px] lg:text-[10px] font-bold text-maroon uppercase tracking-widest" data-i18n="ben-c4-tag">8 căi educaționale</div>
+            <div class="text-[10px] lg:text-[10px] font-bold text-maroon uppercase tracking-widest" data-i18n="ben-c4-tag">8 căi educaționale</div>
             <h3 class="font-bold text-primary text-sm lg:text-base leading-snug" data-i18n="ben-c4-title">Pathways</h3>
           </div>
           <div class="flip-back gradient-dark p-5 lg:p-6 gap-2">
@@ -625,7 +637,7 @@
         <div class="flip-inner">
           <div class="flip-front bg-white border border-gray-100 shadow-sm p-5 lg:p-6 gap-2">
             <div class="w-11 h-11 lg:w-14 lg:h-14 rounded-2xl bg-primary/8 flex items-center justify-center"><svg class="w-5 h-5 lg:w-7 lg:h-7 text-primary" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
-            <div class="text-[9px] lg:text-[10px] font-bold text-maroon uppercase tracking-widest" data-i18n="ben-c5-tag">Transformare</div>
+            <div class="text-[10px] lg:text-[10px] font-bold text-maroon uppercase tracking-widest" data-i18n="ben-c5-tag">Transformare</div>
             <h3 class="font-bold text-primary text-sm lg:text-base leading-snug" data-i18n="ben-c5-title">Încredere în sine</h3>
           </div>
           <div class="flip-back gradient-dark p-5 lg:p-6 gap-2">
@@ -644,7 +656,7 @@
         <div class="flip-inner">
           <div class="flip-front bg-white border border-gray-100 shadow-sm p-5 lg:p-6 gap-2">
             <div class="w-11 h-11 lg:w-14 lg:h-14 rounded-2xl bg-primary/8 flex items-center justify-center"><svg class="w-5 h-5 lg:w-7 lg:h-7 text-primary" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg></div>
-            <div class="text-[9px] lg:text-[10px] font-bold text-maroon uppercase tracking-widest" data-i18n="ben-c6-tag">Conexiuni reale</div>
+            <div class="text-[10px] lg:text-[10px] font-bold text-maroon uppercase tracking-widest" data-i18n="ben-c6-tag">Conexiuni reale</div>
             <h3 class="font-bold text-primary text-sm lg:text-base leading-snug" data-i18n="ben-c6-title">Networking</h3>
           </div>
           <div class="flip-back gradient-dark p-5 lg:p-6 gap-2">
@@ -663,7 +675,7 @@
         <div class="flip-inner">
           <div class="flip-front bg-white border border-gray-100 shadow-sm p-5 lg:p-6 gap-2">
             <div class="w-11 h-11 lg:w-14 lg:h-14 rounded-2xl bg-primary/8 flex items-center justify-center"><svg class="w-5 h-5 lg:w-7 lg:h-7 text-primary" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg></div>
-            <div class="text-[9px] lg:text-[10px] font-bold text-maroon uppercase tracking-widest" data-i18n="ben-c7-tag">Provocare</div>
+            <div class="text-[10px] lg:text-[10px] font-bold text-maroon uppercase tracking-widest" data-i18n="ben-c7-tag">Provocare</div>
             <h3 class="font-bold text-primary text-sm lg:text-base leading-snug" data-i18n="ben-c7-title">Competiții</h3>
           </div>
           <div class="flip-back gradient-dark p-5 lg:p-6 gap-2">
@@ -682,7 +694,7 @@
         <div class="flip-inner">
           <div class="flip-front bg-white border border-gray-100 shadow-sm p-5 lg:p-6 gap-2">
             <div class="w-11 h-11 lg:w-14 lg:h-14 rounded-2xl bg-primary/8 flex items-center justify-center"><svg class="w-5 h-5 lg:w-7 lg:h-7 text-primary" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg></div>
-            <div class="text-[9px] lg:text-[10px] font-bold text-maroon uppercase tracking-widest" data-i18n="ben-c8-tag">Curriculum propriu</div>
+            <div class="text-[10px] lg:text-[10px] font-bold text-maroon uppercase tracking-widest" data-i18n="ben-c8-tag">Curriculum propriu</div>
             <h3 class="font-bold text-primary text-sm lg:text-base leading-snug" data-i18n="ben-c8-title">Creștere personală</h3>
           </div>
           <div class="flip-back gradient-dark p-5 lg:p-6 gap-2">
