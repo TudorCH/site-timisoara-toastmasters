@@ -1075,7 +1075,7 @@
         const _now = new Date();
         const YR = _now.getFullYear();
         const START_M = _now.getMonth();
-        const END_M = Math.min(START_M + 5, 11);
+        const END_M = 11;
 
         function lastWed(month) {
           const last = new Date(YR, month + 1, 0);
@@ -1377,8 +1377,7 @@
     const isOpen = !m.classList.toggle('hidden');
     a.classList.toggle('hidden');
     b.classList.toggle('hidden');
-    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-    btn.setAttribute('aria-label', isOpen ? 'Închide meniu' : 'Deschide meniu');
+    if (btn) { btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false'); btn.setAttribute('aria-label', isOpen ? 'Închide meniu' : 'Deschide meniu'); }
     if (isOpen) trapFocus(m); else releaseFocus();
   }
   function closeMobile() {
