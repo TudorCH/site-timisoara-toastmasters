@@ -3,23 +3,26 @@
    ════════════════════════════════════════════════ */
 (function () {
 
-  /* ── CSS for button states ── */
+  /* ── CSS ── */
   var css = document.createElement('style');
   css.textContent = [
     '@keyframes ttsPulse{0%,100%{opacity:1}50%{opacity:.4}}',
     '@keyframes ttsSpin{to{transform:rotate(360deg)}}',
-    '[data-tts-btn].tts-loading svg{animation:ttsPulse .9s ease-in-out infinite;}',
-    '[data-tts-btn].tts-speaking{color:#F2DF74!important;}',
-    '[data-tts-btn] .tts-spin{animation:ttsSpin .9s linear infinite;transform-origin:center;}',
+    '#tts-float{position:fixed;bottom:1.5rem;left:1.25rem;z-index:9998;width:3rem;height:3rem;border-radius:9999px;background:#004165;color:white;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(0,45,71,.45);transition:background .2s,transform .2s,opacity .2s;}',
+    '#tts-float:hover{background:#00527f;transform:scale(1.08);}',
+    '#tts-float.tts-loading svg{animation:ttsPulse .9s ease-in-out infinite;}',
+    '#tts-float.tts-speaking{background:#772432!important;}',
+    '#tts-float.tts-speaking:hover{background:#8e2b3a!important;}',
+    '#tts-float .tts-spin{animation:ttsSpin .9s linear infinite;transform-origin:center;}',
+    '[data-tts-btn].tts-nav-active{color:#F2DF74!important;}',
     '#tts-live{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;}'
   ].join('');
   document.head.appendChild(css);
 
-  /* ── Icons ── */
-  var iSpeak = '<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>';
-  var iPause = '<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>';
-  var iPlay  = '<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>';
-  var iLoad  = '<svg class="w-4 h-4 tts-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 2a10 10 0 0 1 10 10" opacity=".9"/><path d="M12 2a10 10 0 0 0-10 10" opacity=".3"/></svg>';
+  /* ── Icons (float uses w-5 h-5 for larger target) ── */
+  var iPause = '<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>';
+  var iPlay  = '<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>';
+  var iLoad  = '<svg class="w-5 h-5 tts-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 2a10 10 0 0 1 10 10" opacity=".9"/><path d="M12 2a10 10 0 0 0-10 10" opacity=".3"/></svg>';
 
   /* ── Live region for screen readers ── */
   var live = document.createElement('div');
@@ -37,18 +40,44 @@
   var FIRST_CHUNK = 650;
   var CHUNK = 2800;
 
-  function updateBtns(icon, addCls) {
+  /* ── Floating button ── */
+  var floatBtn = null;
+
+  function createFloat() {
+    if (floatBtn) return;
+    floatBtn = document.createElement('button');
+    floatBtn.id = 'tts-float';
+    floatBtn.setAttribute('aria-label', 'Control citire pagină');
+    floatBtn.innerHTML = iLoad;
+    floatBtn.addEventListener('click', toggleFloat);
+    document.body.appendChild(floatBtn);
+  }
+
+  function removeFloat() {
+    if (floatBtn) { floatBtn.remove(); floatBtn = null; }
+  }
+
+  function updateFloat(icon, addCls) {
+    if (!floatBtn) return;
+    floatBtn.innerHTML = icon;
+    floatBtn.classList.remove('tts-speaking', 'tts-loading');
+    if (addCls) floatBtn.classList.add(addCls);
+  }
+
+  function setNavActive(active) {
     document.querySelectorAll('[data-tts-btn]').forEach(function(b) {
-      b.innerHTML = icon;
-      b.classList.remove('tts-speaking', 'tts-loading');
-      if (addCls) b.classList.add(addCls);
+      b.classList.toggle('tts-nav-active', active);
     });
   }
 
-  function setIdle()    { state='idle';     updateBtns(iSpeak);               }
-  function setLoading() { state='loading';  updateBtns(iLoad, 'tts-loading'); }
-  function setSpeaking(){ state='speaking'; updateBtns(iPause,'tts-speaking');}
-  function setPaused()  { state='paused';   updateBtns(iPlay);                }
+  function setIdle() {
+    state = 'idle';
+    setNavActive(false);
+    removeFloat();
+  }
+  function setLoading() { state = 'loading';  updateFloat(iLoad,  'tts-loading'); }
+  function setSpeaking(){ state = 'speaking'; updateFloat(iPause, 'tts-speaking'); }
+  function setPaused()  { state = 'paused';   updateFloat(iPlay); }
 
   /* ── Extract readable text ── */
   function getPageText() {
@@ -56,14 +85,14 @@
     var clone = document.body.cloneNode(true);
     clone.querySelectorAll(
       'script,style,noscript,nav,footer,header,[aria-hidden="true"],' +
-      '[data-tts-btn],#toasty-btn,#toasty-win,#btt-btn,' +
+      '[data-tts-btn],#tts-float,#toasty-btn,#toasty-win,#btt-btn,' +
       '#mobile-menu,#search-dropdown,#mobile-search-dropdown,.sr-only,#tts-live'
     ).forEach(function(el){ el.remove(); });
     var body = (clone.innerText || '').replace(/\s+/g, ' ').trim();
     return 'Bună ziua! Citesc pagina ' + title + '. ' + body + ' Acesta este sfârșitul paginii. Vă mulțumesc că ați ascultat.';
   }
 
-  /* ── Split: small first chunk for fast start, larger rest ── */
+  /* ── Split: small first chunk for fast start ── */
   function splitChunks(text) {
     var chunks = [];
     var rem = text.trim();
@@ -131,31 +160,47 @@
     if (!aborted) { announce('Citirea paginii s-a terminat.'); setIdle(); }
   }
 
-  /* ── Toggle ── */
-  function toggle() {
+  /* ── Navbar button: start or stop ── */
+  function toggleNav() {
     if (state === 'idle') {
+      createFloat();
+      setNavActive(true);
       runQueue(splitChunks(getPageText()));
-    } else if (state === 'loading') {
-      aborted = true; announce('Citire anulată.'); setIdle();
-    } else if (state === 'speaking') {
+    } else {
+      aborted = true;
       if (currentAudio) currentAudio.pause();
-      announce('Pauză.'); setPaused();
-    } else if (state === 'paused') {
-      if (currentAudio) currentAudio.play();
-      announce('Continuă citirea.'); setSpeaking();
+      announce('Citire anulată.');
+      setIdle();
     }
   }
 
-  /* ── Wire buttons after DOM ready ── */
+  /* ── Float button: pause / resume / cancel loading ── */
+  function toggleFloat() {
+    if (state === 'loading') {
+      aborted = true;
+      announce('Citire anulată.');
+      setIdle();
+    } else if (state === 'speaking') {
+      if (currentAudio) currentAudio.pause();
+      announce('Pauză.');
+      setPaused();
+    } else if (state === 'paused') {
+      if (currentAudio) currentAudio.play();
+      announce('Continuă citirea.');
+      setSpeaking();
+    }
+  }
+
+  /* ── Wire navbar buttons after DOM ready ── */
   document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('[data-tts-btn]').forEach(function(b) {
-      b.addEventListener('click', toggle);
+      b.addEventListener('click', toggleNav);
     });
   });
 
   /* ── Alt+T keyboard shortcut ── */
   document.addEventListener('keydown', function(e) {
-    if (e.altKey && (e.key === 't' || e.key === 'T')) { e.preventDefault(); toggle(); }
+    if (e.altKey && (e.key === 't' || e.key === 'T')) { e.preventDefault(); toggleNav(); }
   });
 
   window.addEventListener('beforeunload', function() {
