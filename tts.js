@@ -6,10 +6,10 @@
   /* ── CSS ── */
   var css = document.createElement('style');
   css.textContent = [
-    '@keyframes ttsPulse{0%,100%{box-shadow:0 4px 20px rgba(0,65,101,.5)}50%{box-shadow:0 4px 28px rgba(0,65,101,.85),0 0 0 7px rgba(0,65,101,.15)}}',
+    '@keyframes ttsPulse{0%,100%{box-shadow:0 4px 20px rgba(119,36,50,.5)}50%{box-shadow:0 4px 28px rgba(119,36,50,.85),0 0 0 7px rgba(119,36,50,.15)}}',
     '@keyframes ttsSpin{to{transform:rotate(360deg)}}',
-    '#tts-btn{all:unset;position:fixed!important;bottom:24px!important;left:24px!important;z-index:2147483646!important;width:48px;height:48px;border-radius:50%;cursor:pointer;background:linear-gradient(135deg,#004165,#00537f);box-shadow:0 4px 20px rgba(0,65,101,.45);display:flex!important;align-items:center;justify-content:center;transition:background .25s,box-shadow .2s;}',
-    '#tts-btn:hover{box-shadow:0 6px 28px rgba(0,65,101,.6);}',
+    '#tts-btn{all:unset;position:fixed!important;bottom:24px!important;left:24px!important;z-index:2147483646!important;width:48px;height:48px;border-radius:50%;cursor:pointer;background:linear-gradient(135deg,#772432,#9a2f40);box-shadow:0 4px 20px rgba(119,36,50,.45);display:flex!important;align-items:center;justify-content:center;transition:background .25s,box-shadow .2s;}',
+    '#tts-btn:hover{box-shadow:0 6px 28px rgba(119,36,50,.6);}',
     '#tts-btn.tts-speaking{animation:ttsPulse 1.5s ease-in-out infinite;}',
     '#tts-btn .tts-spin{animation:ttsSpin .9s linear infinite;transform-origin:center;}',
     '@media(min-width:640px){#tts-btn{width:56px;height:56px;}}'
