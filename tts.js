@@ -191,12 +191,17 @@
     }
   }
 
-  /* ── Wire navbar buttons after DOM ready ── */
-  document.addEventListener('DOMContentLoaded', function() {
+  /* ── Wire navbar buttons (script is at bottom of body — DOM already ready) ── */
+  function wireButtons() {
     document.querySelectorAll('[data-tts-btn]').forEach(function(b) {
       b.addEventListener('click', toggleNav);
     });
-  });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', wireButtons);
+  } else {
+    wireButtons();
+  }
 
   /* ── Alt+T keyboard shortcut ── */
   document.addEventListener('keydown', function(e) {

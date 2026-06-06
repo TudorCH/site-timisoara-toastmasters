@@ -293,9 +293,13 @@
     applyLang(lang);
   };
 
-  document.addEventListener('DOMContentLoaded', function () {
-    var saved = localStorage.getItem(LANG_KEY) || 'ro';
-    applyLang(saved);
-  });
+  function initLang() {
+    applyLang(localStorage.getItem(LANG_KEY) || 'ro');
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initLang);
+  } else {
+    initLang();
+  }
 
 })();
