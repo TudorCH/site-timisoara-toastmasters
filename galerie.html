@@ -127,10 +127,10 @@
 
       <!-- Desktop nav + search -->
       <div class="hidden lg:flex items-center gap-6">
-        <a href="index.html"         class="nav-link text-white/80 hover:text-white text-sm font-medium transition-colors">Acasă</a>
-        <a href="despre-noi.html"    class="nav-link text-white/80 hover:text-white text-sm font-medium transition-colors">Despre noi</a>
-        <a href="galerie.html"       class="nav-link text-gold text-sm font-semibold transition-colors">Galerie</a>
-        <a href="contact.html" class="nav-link text-white/80 hover:text-white text-sm font-medium transition-colors">Contact</a>
+        <a href="index.html"         class="nav-link text-white/80 hover:text-white text-sm font-medium transition-colors" data-i18n="nav-home">Acasă</a>
+        <a href="despre-noi.html"    class="nav-link text-white/80 hover:text-white text-sm font-medium transition-colors" data-i18n="nav-about">Despre noi</a>
+        <a href="galerie.html"       class="nav-link text-gold text-sm font-semibold transition-colors" data-i18n="nav-gallery">Galerie</a>
+        <a href="contact.html" class="nav-link text-white/80 hover:text-white text-sm font-medium transition-colors" data-i18n="nav-contact">Contact</a>
 
         <!-- Search bar -->
         <div class="relative ml-2">
@@ -148,10 +148,22 @@
           </div>
         </div>
 
+        <!-- Language + TTS -->
+        <div class="flex items-center gap-1.5">
+          <div class="flex items-center bg-white/10 rounded-full p-0.5">
+            <button data-lang="ro" onclick="setLang('ro')" class="lang-btn active" aria-pressed="true">RO</button>
+            <button data-lang="en" onclick="setLang('en')" class="lang-btn" aria-pressed="false">EN</button>
+          </div>
+          <button id="tts-nav-btn" data-tts-btn aria-label="Citește pagina (Alt+T)" aria-keyshortcuts="Alt+T"
+                  class="text-white/60 hover:text-white p-1.5 rounded-full hover:bg-white/10 transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+          </button>
+        </div>
+
         <a href="contact.html"
            class="ml-1 bg-maroon hover:bg-maroon-light text-white font-semibold px-5 py-2 rounded-full text-sm
                   transition-all duration-200 hover:scale-105 shadow-md shadow-maroon/30">
-          Hai și tu la o ședință
+          <span data-i18n="nav-cta">Hai și tu la o ședință</span>
         </a>
       </div>
 
@@ -198,14 +210,26 @@
     <!-- Mobile menu -->
     <div id="mobile-menu" class="hidden lg:hidden border-t border-white/10 pt-4 pb-5">
       <div class="flex flex-col gap-1">
-        <a href="index.html"         onclick="closeMobile()" class="text-white/80 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors">Acasă</a>
-        <a href="despre-noi.html"    onclick="closeMobile()" class="text-white/80 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors">Despre noi</a>
-        <a href="galerie.html"       onclick="closeMobile()" class="text-gold bg-white/5 rounded-xl px-4 py-3 text-sm font-semibold">Galerie</a>
-        <a href="contact.html" onclick="closeMobile()" class="text-white/80 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors">Contact</a>
+        <a href="index.html"         onclick="closeMobile()" class="text-white/80 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors" data-i18n="nav-home">Acasă</a>
+        <a href="despre-noi.html"    onclick="closeMobile()" class="text-white/80 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors" data-i18n="nav-about">Despre noi</a>
+        <a href="galerie.html"       onclick="closeMobile()" class="text-gold bg-white/5 rounded-xl px-4 py-3 text-sm font-semibold" data-i18n="nav-gallery">Galerie</a>
+        <a href="contact.html" onclick="closeMobile()" class="text-white/80 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors" data-i18n="nav-contact">Contact</a>
+        <!-- Language + TTS row -->
+        <div class="flex items-center gap-3 px-4 py-2 mt-1 border-t border-white/10">
+          <span class="text-white/40 text-xs" data-i18n="nav-util-label">Limbă:</span>
+          <div class="flex items-center bg-white/10 rounded-full p-0.5">
+            <button data-lang="ro" onclick="setLang('ro')" class="lang-btn active" aria-pressed="true">RO</button>
+            <button data-lang="en" onclick="setLang('en')" class="lang-btn" aria-pressed="false">EN</button>
+          </div>
+          <button id="tts-mob-btn" data-tts-btn aria-label="Citește pagina (Alt+T)"
+                  class="text-white/60 hover:text-white p-1.5 rounded-full hover:bg-white/10 transition-colors ml-auto">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+          </button>
+        </div>
         <div class="pt-2 px-4">
           <a href="contact.html" onclick="closeMobile()"
              class="block w-full bg-maroon text-white font-semibold px-5 py-3 rounded-full text-sm text-center shadow-md">
-            Hai și tu la o ședință →
+            <span data-i18n="nav-cta">Hai și tu la o ședință</span> →
           </a>
         </div>
       </div>
@@ -216,11 +240,11 @@
 <!-- ════════════════════ HERO ════════════════════ -->
 <section id="main-content" class="pt-28 pb-14 bg-primary">
   <div class="max-w-3xl mx-auto px-5 text-center">
-    <div class="badge-light mb-4 animate-in">Galerie foto</div>
-    <h1 class="font-heading text-4xl md:text-5xl font-bold text-white mb-4 animate-in" style="animation-delay:.05s">
+    <div class="badge-light mb-4 animate-in" data-i18n="gal-badge">Galerie foto</div>
+    <h1 class="font-heading text-4xl md:text-5xl font-bold text-white mb-4 animate-in" style="animation-delay:.05s" data-i18n="gal-h1">
       Galerie Foto — Timișoara Toastmasters
     </h1>
-    <p class="text-white/60 text-lg max-w-xl mx-auto animate-in" style="animation-delay:.1s">
+    <p class="text-white/60 text-lg max-w-xl mx-auto animate-in" style="animation-delay:.1s" data-i18n="gal-p">
       Ședințe, concursuri, evenimente și socializare, surprinse în imagini.
     </p>
   </div>
@@ -360,12 +384,12 @@
   <div class="absolute top-[-40px] right-[-80px] w-80 h-80 rounded-full border border-gold/8 pointer-events-none" aria-hidden="true"></div>
   <div class="absolute bottom-[-60px] left-[-50px] w-72 h-72 rounded-full border border-white/5 pointer-events-none" aria-hidden="true"></div>
   <div class="max-w-3xl mx-auto px-5 text-center relative z-10">
-    <div class="badge-light mb-5 inline-flex">Vino și tu</div>
-    <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
+    <div class="badge-light mb-5 inline-flex" data-i18n="gal-cta-badge">Vino și tu</div>
+    <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight" data-i18n="gal-cta-h2">
       Prima ședință e gratuită.<br/>
       <span class="text-gold">Mereu.</span>
     </h2>
-    <p class="text-white/65 text-lg mb-8 leading-relaxed max-w-xl mx-auto">
+    <p class="text-white/65 text-lg mb-8 leading-relaxed max-w-xl mx-auto" data-i18n="gal-cta-p">
       Miercuri seară la Cowork The Office, Timișoara.<br class="hidden sm:block"/>
       Zero presiune. Zero obligații.
     </p>
@@ -390,7 +414,7 @@
     </div>
     <a href="contact.html"
        class="inline-flex items-center gap-2 bg-maroon hover:bg-maroon-light text-white font-bold px-8 py-4 rounded-full text-base transition-all duration-200 hover:scale-105 shadow-lg shadow-maroon/30">
-      Hai și tu la o ședință
+      <span data-i18n="gal-cta-btn">Hai și tu la o ședință</span>
       <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
     </a>
     <!-- Social proof -->
@@ -421,7 +445,7 @@
             <div class="text-gold text-[10px] font-semibold tracking-widest uppercase">CLUB</div>
           </div>
         </div>
-        <p class="hidden md:block text-white/50 text-sm leading-relaxed max-w-xs mb-6">
+        <p class="hidden md:block text-white/50 text-sm leading-relaxed max-w-xs mb-6" data-i18n="footer-desc">
           Clubul Timișoara Toastmasters, un spațiu sigur pentru practică, feedback și
           creștere în comunicare și vorbit în public, parte din rețeaua globală Toastmasters International.
         </p>
@@ -442,28 +466,28 @@
       </div>
 
       <div>
-        <h4 class="text-white font-semibold text-sm mb-5 uppercase tracking-wider">Pagini utile</h4>
+        <h4 class="text-white font-semibold text-sm mb-5 uppercase tracking-wider" data-i18n="footer-nav-title">Pagini utile</h4>
         <ul class="space-y-3">
-          <li><a href="index.html"         class="text-white/50 hover:text-gold text-sm transition-colors">Acasă</a></li>
-          <li><a href="despre-noi.html"    class="text-white/50 hover:text-gold text-sm transition-colors">Despre noi</a></li>
-          <li><a href="galerie.html"       class="text-gold text-sm">Galerie</a></li>
-          <li><a href="contact.html" class="text-white/50 hover:text-gold text-sm transition-colors">Contact</a></li>
+          <li><a href="index.html"         class="text-white/50 hover:text-gold text-sm transition-colors" data-i18n="footer-nav-home">Acasă</a></li>
+          <li><a href="despre-noi.html"    class="text-white/50 hover:text-gold text-sm transition-colors" data-i18n="footer-nav-about">Despre noi</a></li>
+          <li><a href="galerie.html"       class="text-gold text-sm" data-i18n="footer-nav-gallery">Galerie</a></li>
+          <li><a href="contact.html" class="text-white/50 hover:text-gold text-sm transition-colors" data-i18n="footer-nav-contact">Contact</a></li>
         </ul>
       </div>
 
       <div>
-        <h4 class="text-white font-semibold text-sm mb-5 uppercase tracking-wider">Legal</h4>
+        <h4 class="text-white font-semibold text-sm mb-5 uppercase tracking-wider" data-i18n="footer-legal-title">Legal</h4>
         <ul class="space-y-3">
-          <li><a href="cookies.html#politica-cookies" class="text-white/50 hover:text-gold text-sm transition-colors">Politică cookies</a></li>
-          <li><a href="cookies.html#confidentialitate" class="text-white/50 hover:text-gold text-sm transition-colors">Politică confidențialitate</a></li>
-          <li><a href="cookies.html#gdpr" class="text-white/50 hover:text-gold text-sm transition-colors">GDPR</a></li>
+          <li><a href="cookies.html#politica-cookies" class="text-white/50 hover:text-gold text-sm transition-colors" data-i18n="footer-legal-cookies">Politică cookies</a></li>
+          <li><a href="cookies.html#confidentialitate" class="text-white/50 hover:text-gold text-sm transition-colors" data-i18n="footer-legal-privacy">Politică confidențialitate</a></li>
+          <li><a href="cookies.html#gdpr" class="text-white/50 hover:text-gold text-sm transition-colors" data-i18n="footer-legal-gdpr">GDPR</a></li>
         </ul>
       </div>
     </div>
     <div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-2 md:gap-4">
-      <p class="text-white/30 text-xs">© 2026 Timișoara Toastmasters Club. Toate drepturile rezervate.</p>
+      <p class="text-white/30 text-xs" data-i18n="footer-copyright">© 2026 Timișoara Toastmasters Club. Toate drepturile rezervate.</p>
       <p class="text-white/30 text-xs flex items-center gap-1.5">
-        Parte din rețeaua globală <span class="text-gold/60">Toastmasters International</span>
+        <span data-i18n="footer-network">Parte din rețeaua globală</span> <span class="text-gold/60">Toastmasters International</span>
         <span class="relative group">
           <button aria-label="Disclaimer" class="w-3.5 h-3.5 rounded-full border border-white/20 text-white/30 hover:text-white/60 hover:border-white/40 flex items-center justify-center transition-colors leading-none text-[9px] font-bold cursor-default">i</button>
           <span class="pointer-events-none absolute bottom-full right-0 mb-2 w-72 bg-[#001e2f] border border-white/10 text-white/50 text-[10px] leading-relaxed rounded-lg px-3 py-2.5 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-200 shadow-xl z-50">
@@ -1206,6 +1230,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { passive: true });
 })();
 </script>
+<script src="i18n.js"></script>
 <script src="tts.js"></script>
 <script src="toasty.js"></script>
 <script type="application/ld+json">

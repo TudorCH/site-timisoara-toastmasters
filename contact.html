@@ -83,10 +83,10 @@
 
       <!-- Desktop nav + search -->
       <div class="hidden lg:flex items-center gap-6">
-        <a href="index.html"        class="nav-link text-white/80 hover:text-white text-sm font-medium transition-colors">Acasă</a>
-        <a href="despre-noi.html"   class="nav-link text-white/80 hover:text-white text-sm font-medium transition-colors">Despre noi</a>
-        <a href="galerie.html"      class="nav-link text-white/80 hover:text-white text-sm font-medium transition-colors">Galerie</a>
-        <a href="contact.html"      class="nav-link text-gold text-sm font-semibold transition-colors">Contact</a>
+        <a href="index.html"        class="nav-link text-white/80 hover:text-white text-sm font-medium transition-colors" data-i18n="nav-home">Acasă</a>
+        <a href="despre-noi.html"   class="nav-link text-white/80 hover:text-white text-sm font-medium transition-colors" data-i18n="nav-about">Despre noi</a>
+        <a href="galerie.html"      class="nav-link text-white/80 hover:text-white text-sm font-medium transition-colors" data-i18n="nav-gallery">Galerie</a>
+        <a href="contact.html"      class="nav-link text-gold text-sm font-semibold transition-colors" data-i18n="nav-contact">Contact</a>
 
         <!-- Search bar -->
         <div class="relative ml-2">
@@ -104,10 +104,22 @@
           </div>
         </div>
 
+        <!-- Language + TTS -->
+        <div class="flex items-center gap-1.5">
+          <div class="flex items-center bg-white/10 rounded-full p-0.5">
+            <button data-lang="ro" onclick="setLang('ro')" class="lang-btn active" aria-pressed="true">RO</button>
+            <button data-lang="en" onclick="setLang('en')" class="lang-btn" aria-pressed="false">EN</button>
+          </div>
+          <button id="tts-nav-btn" data-tts-btn aria-label="Citește pagina (Alt+T)" aria-keyshortcuts="Alt+T"
+                  class="text-white/60 hover:text-white p-1.5 rounded-full hover:bg-white/10 transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+          </button>
+        </div>
+
         <a href="contact.html"
            class="ml-1 bg-maroon hover:bg-maroon-light text-white font-semibold px-5 py-2 rounded-full text-sm
                   transition-all duration-200 hover:scale-105 shadow-md shadow-maroon/30">
-          Hai și tu la o ședință
+          <span data-i18n="nav-cta">Hai și tu la o ședință</span>
         </a>
       </div>
 
@@ -154,14 +166,26 @@
     <!-- Mobile menu -->
     <div id="mobile-menu" class="hidden lg:hidden border-t border-white/10 pt-4 pb-5 overflow-hidden">
       <div class="flex flex-col gap-1">
-        <a href="index.html"      onclick="closeMobile()" class="text-white/80 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors">Acasă</a>
-        <a href="despre-noi.html" onclick="closeMobile()" class="text-white/80 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors">Despre noi</a>
-        <a href="galerie.html"    onclick="closeMobile()" class="text-white/80 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors">Galerie</a>
-        <a href="contact.html"    onclick="closeMobile()" class="text-gold bg-white/5 rounded-xl px-4 py-3 text-sm font-semibold">Contact</a>
+        <a href="index.html"      onclick="closeMobile()" class="text-white/80 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors" data-i18n="nav-home">Acasă</a>
+        <a href="despre-noi.html" onclick="closeMobile()" class="text-white/80 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors" data-i18n="nav-about">Despre noi</a>
+        <a href="galerie.html"    onclick="closeMobile()" class="text-white/80 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors" data-i18n="nav-gallery">Galerie</a>
+        <a href="contact.html"    onclick="closeMobile()" class="text-gold bg-white/5 rounded-xl px-4 py-3 text-sm font-semibold" data-i18n="nav-contact">Contact</a>
+        <!-- Language + TTS row -->
+        <div class="flex items-center gap-3 px-4 py-2 mt-1 border-t border-white/10">
+          <span class="text-white/40 text-xs" data-i18n="nav-util-label">Limbă:</span>
+          <div class="flex items-center bg-white/10 rounded-full p-0.5">
+            <button data-lang="ro" onclick="setLang('ro')" class="lang-btn active" aria-pressed="true">RO</button>
+            <button data-lang="en" onclick="setLang('en')" class="lang-btn" aria-pressed="false">EN</button>
+          </div>
+          <button id="tts-mob-btn" data-tts-btn aria-label="Citește pagina (Alt+T)"
+                  class="text-white/60 hover:text-white p-1.5 rounded-full hover:bg-white/10 transition-colors ml-auto">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+          </button>
+        </div>
         <div class="pt-2 px-4">
           <a href="contact.html" onclick="closeMobile()"
              class="block w-full bg-maroon text-white font-semibold px-5 py-3 rounded-full text-sm text-center shadow-md">
-            Hai și tu la o ședință
+            <span data-i18n="nav-cta">Hai și tu la o ședință</span>
           </a>
         </div>
       </div>
@@ -172,11 +196,11 @@
 <!-- ════════════════════ HERO SIMPLU ════════════════════ -->
 <div class="gradient-hero pt-28 pb-12 px-5 lg:px-8 text-center">
   <div class="max-w-2xl mx-auto">
-    <div class="badge mb-4" style="background:rgba(242,223,116,.15);color:#F2DF74;border-color:rgba(242,223,116,.3);">Program & Înscriere</div>
-    <h1 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
+    <div class="badge mb-4" style="background:rgba(242,223,116,.15);color:#F2DF74;border-color:rgba(242,223,116,.3);" data-i18n="ct-hero-badge">Program & Înscriere</div>
+    <h1 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight" data-i18n="ct-hero-h1">
       Prima ședință e gratuită
     </h1>
-    <p class="text-white/70 text-lg max-w-xl mx-auto leading-relaxed">
+    <p class="text-white/70 text-lg max-w-xl mx-auto leading-relaxed" data-i18n="ct-hero-p">
       Alege o dată din calendar și completează formularul.<br class="hidden sm:block"/>
       Te contactăm în cel mult 24 de ore cu toate detaliile.
     </p>
@@ -243,7 +267,7 @@
                onclick="calScrollToForm()"
                class="w-full flex items-center justify-center gap-2 border-2 border-dashed border-gray-200 text-gray-400 font-semibold text-sm px-6 py-3 rounded-xl transition-all duration-300 cursor-not-allowed pointer-events-none">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-              <span id="cal-cta-text">Selectează o dată mai întâi</span>
+              <span id="cal-cta-text" data-i18n="ct-cal-default">Selectează o dată mai întâi</span>
             </a>
           </div>
 
@@ -267,7 +291,7 @@
             <a href="https://maps.app.goo.gl/xf5mo1xVjvU79gQo8" target="_blank"
                class="inline-flex items-center gap-1.5 bg-primary hover:bg-primary-light text-white text-xs font-semibold px-3 py-2 rounded-xl transition-colors">
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-              Deschide Maps
+              <span data-i18n="ct-maps">Deschide Maps</span>
             </a>
           </div>
         </div><!-- /harta -->
@@ -407,34 +431,34 @@
 
       <!-- Coloana dreapta: Formular -->
       <div id="form-card" class="bg-white rounded-3xl p-5 sm:p-8 shadow-sm border border-gray-100">
-        <h3 class="font-heading text-2xl font-bold text-primary mb-6">Înscrie-te ca invitat</h3>
+        <h3 class="font-heading text-2xl font-bold text-primary mb-6" data-i18n="ct-form-h3">Înscrie-te ca invitat</h3>
         <form id="contact-form" onsubmit="submitForm(event)" class="space-y-3 sm:space-y-5">
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             <div>
-              <label for="ct-prenume" class="block text-sm font-medium text-gray-700 mb-1.5">Prenume <span class="text-maroon" aria-hidden="true">*</span></label>
+              <label for="ct-prenume" class="block text-sm font-medium text-gray-700 mb-1.5"><span data-i18n="ct-prenume">Prenume</span> <span class="text-maroon" aria-hidden="true">*</span></label>
               <input id="ct-prenume" type="text" placeholder="Ion" required autocomplete="given-name"
                 class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/60 focus:border-primary transition-all" />
             </div>
             <div>
-              <label for="ct-nume" class="block text-sm font-medium text-gray-700 mb-1.5">Nume</label>
+              <label for="ct-nume" class="block text-sm font-medium text-gray-700 mb-1.5" data-i18n="ct-nome">Nume</label>
               <input id="ct-nume" type="text" placeholder="Popescu" autocomplete="family-name"
                 class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/60 focus:border-primary transition-all" />
             </div>
           </div>
           <div>
-            <label for="ct-email" class="block text-sm font-medium text-gray-700 mb-1.5">Email <span class="text-maroon" aria-hidden="true">*</span></label>
+            <label for="ct-email" class="block text-sm font-medium text-gray-700 mb-1.5"><span data-i18n="ct-email">Email</span> <span class="text-maroon" aria-hidden="true">*</span></label>
             <input id="ct-email" type="email" placeholder="ion.popescu@email.com" required autocomplete="email"
               class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/60 focus:border-primary transition-all" />
           </div>
           <div>
-            <label for="ct-telefon" class="block text-sm font-medium text-gray-700 mb-1.5">Telefon <span class="text-gray-400">(opțional)</span></label>
+            <label for="ct-telefon" class="block text-sm font-medium text-gray-700 mb-1.5"><span data-i18n="ct-tel">Telefon</span> <span class="text-gray-400" data-i18n="ct-optional">(opțional)</span></label>
             <input id="ct-telefon" type="tel" placeholder="+40 7XX XXX XXX" autocomplete="tel"
               class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/60 focus:border-primary transition-all" />
           </div>
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1.5">
-              Ședința dorită
-              <span class="text-gray-400 font-normal">(opțional)</span>
+              <span data-i18n="ct-sedinta">Ședința dorită</span>
+              <span class="text-gray-400 font-normal" data-i18n="ct-optional">(opțional)</span>
             </label>
             <div class="relative">
               <input id="form-sedinta" type="text" readonly placeholder="Selectează o dată din calendar…"
@@ -443,14 +467,14 @@
             </div>
           </div>
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1.5">Mesaj</label>
+            <label class="block text-sm font-medium text-gray-700 mb-1.5" data-i18n="ct-mesaj">Mesaj</label>
             <textarea rows="3" placeholder="Sunt interesat să vin ca invitat la o ședință…"
               class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/60 focus:border-primary transition-all resize-none"></textarea>
           </div>
           <button type="submit" id="form-submit-btn"
             class="w-full bg-maroon hover:bg-maroon-light text-white font-semibold py-3.5 rounded-xl text-sm
                    transition-all duration-200 hover:scale-[1.02] shadow-md shadow-maroon/20">
-            Rezervă-mi locul
+            <span data-i18n="ct-submit">Rezervă-mi locul</span>
           </button>
           <p id="form-error" role="alert" aria-live="assertive" class="hidden text-sm text-red-600 text-center bg-red-50 rounded-xl py-2.5 px-4">
             A apărut o eroare. Încearcă din nou sau scrie-ne pe <a href="https://www.facebook.com/timisoara.toastmasters" target="_blank" class="font-semibold underline">Facebook</a>.
@@ -461,8 +485,8 @@
           <div class="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-4">
             <svg class="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
           </div>
-          <h4 class="font-semibold text-primary text-lg mb-2">Mulțumim!</h4>
-          <p class="text-gray-500 text-sm">Cineva din echipa noastră te contactează în 24–48 de ore cu toate detaliile.</p>
+          <h4 class="font-semibold text-primary text-lg mb-2" data-i18n="ct-ok-h">Mulțumim!</h4>
+          <p class="text-gray-500 text-sm" data-i18n="ct-ok-p">Cineva din echipa noastră te contactează în 24–48 de ore cu toate detaliile.</p>
         </div>
       </div>
 
@@ -483,7 +507,7 @@
             <div class="text-gold text-[10px] font-semibold tracking-widest uppercase">CLUB</div>
           </div>
         </div>
-        <p class="hidden md:block text-white/50 text-sm leading-relaxed max-w-xs mb-6">
+        <p class="hidden md:block text-white/50 text-sm leading-relaxed max-w-xs mb-6" data-i18n="footer-desc">
           Clubul Timișoara Toastmasters, un spațiu sigur pentru practică, feedback și
           creștere în comunicare și vorbit în public, parte din rețeaua globală Toastmasters International.
         </p>
@@ -504,29 +528,29 @@
       </div>
 
       <div>
-        <h4 class="text-white font-semibold text-sm mb-5 uppercase tracking-wider">Pagini utile</h4>
+        <h4 class="text-white font-semibold text-sm mb-5 uppercase tracking-wider" data-i18n="footer-nav-title">Pagini utile</h4>
         <ul class="space-y-3">
-          <li><a href="index.html"      class="text-white/50 hover:text-gold text-sm transition-colors">Acasă</a></li>
-          <li><a href="despre-noi.html" class="text-white/50 hover:text-gold text-sm transition-colors">Despre noi</a></li>
-          <li><a href="galerie.html"    class="text-white/50 hover:text-gold text-sm transition-colors">Galerie</a></li>
-          <li><a href="contact.html"    class="text-gold text-sm font-medium">Contact</a></li>
+          <li><a href="index.html"      class="text-white/50 hover:text-gold text-sm transition-colors" data-i18n="footer-nav-home">Acasă</a></li>
+          <li><a href="despre-noi.html" class="text-white/50 hover:text-gold text-sm transition-colors" data-i18n="footer-nav-about">Despre noi</a></li>
+          <li><a href="galerie.html"    class="text-white/50 hover:text-gold text-sm transition-colors" data-i18n="footer-nav-gallery">Galerie</a></li>
+          <li><a href="contact.html"    class="text-gold text-sm font-medium" data-i18n="footer-nav-contact">Contact</a></li>
         </ul>
       </div>
 
       <div>
-        <h4 class="text-white font-semibold text-sm mb-5 uppercase tracking-wider">Legal</h4>
+        <h4 class="text-white font-semibold text-sm mb-5 uppercase tracking-wider" data-i18n="footer-legal-title">Legal</h4>
         <ul class="space-y-3">
-          <li><a href="cookies.html#politica-cookies" class="text-white/50 hover:text-gold text-sm transition-colors">Politică cookies</a></li>
-          <li><a href="cookies.html#confidentialitate" class="text-white/50 hover:text-gold text-sm transition-colors">Politică confidențialitate</a></li>
-          <li><a href="cookies.html#gdpr" class="text-white/50 hover:text-gold text-sm transition-colors">GDPR</a></li>
+          <li><a href="cookies.html#politica-cookies" class="text-white/50 hover:text-gold text-sm transition-colors" data-i18n="footer-legal-cookies">Politică cookies</a></li>
+          <li><a href="cookies.html#confidentialitate" class="text-white/50 hover:text-gold text-sm transition-colors" data-i18n="footer-legal-privacy">Politică confidențialitate</a></li>
+          <li><a href="cookies.html#gdpr" class="text-white/50 hover:text-gold text-sm transition-colors" data-i18n="footer-legal-gdpr">GDPR</a></li>
         </ul>
       </div>
     </div>
 
     <div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-2 md:gap-4">
-      <p class="text-white/30 text-xs">© 2026 Timișoara Toastmasters Club. Toate drepturile rezervate.</p>
+      <p class="text-white/30 text-xs" data-i18n="footer-copyright">© 2026 Timișoara Toastmasters Club. Toate drepturile rezervate.</p>
       <p class="text-white/30 text-xs flex items-center gap-1.5">
-        Parte din rețeaua globală <span class="text-gold/60">Toastmasters International</span>
+        <span data-i18n="footer-network">Parte din rețeaua globală</span> <span class="text-gold/60">Toastmasters International</span>
         <span class="relative group">
           <button aria-label="Disclaimer" class="w-3.5 h-3.5 rounded-full border border-white/20 text-white/30 hover:text-white/60 hover:border-white/40 flex items-center justify-center transition-colors leading-none text-[9px] font-bold cursor-default">i</button>
           <span class="pointer-events-none absolute bottom-full right-0 mb-2 w-72 bg-[#001e2f] border border-white/10 text-white/50 text-[10px] leading-relaxed rounded-lg px-3 py-2.5 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-200 shadow-xl z-50">
@@ -609,6 +633,7 @@
 <script src="search.js"></script>
 <script src="cookie-banner.js"></script>
 <!-- ════════════════════ TOASTY CHATBOT ════════════════════ -->
+<script src="i18n.js"></script>
 <script src="tts.js"></script>
 <script src="toasty.js"></script>
 <script>

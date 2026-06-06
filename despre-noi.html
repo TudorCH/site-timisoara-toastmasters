@@ -195,10 +195,10 @@
 
       <!-- Desktop nav + search -->
       <div class="hidden lg:flex items-center gap-6">
-        <a href="index.html"         class="nav-link text-white/80 hover:text-white text-sm font-medium transition-colors">Acasă</a>
-        <a href="despre-noi.html"    class="nav-link text-gold text-sm font-semibold transition-colors">Despre noi</a>
-        <a href="galerie.html"       class="nav-link text-white/80 hover:text-white text-sm font-medium transition-colors">Galerie</a>
-        <a href="contact.html" class="nav-link text-white/80 hover:text-white text-sm font-medium transition-colors">Contact</a>
+        <a href="index.html"         class="nav-link text-white/80 hover:text-white text-sm font-medium transition-colors" data-i18n="nav-home">Acasă</a>
+        <a href="despre-noi.html"    class="nav-link text-gold text-sm font-semibold transition-colors" data-i18n="nav-about">Despre noi</a>
+        <a href="galerie.html"       class="nav-link text-white/80 hover:text-white text-sm font-medium transition-colors" data-i18n="nav-gallery">Galerie</a>
+        <a href="contact.html" class="nav-link text-white/80 hover:text-white text-sm font-medium transition-colors" data-i18n="nav-contact">Contact</a>
 
         <!-- Search bar -->
         <div class="relative ml-2">
@@ -216,10 +216,22 @@
           </div>
         </div>
 
+        <!-- Language + TTS -->
+        <div class="flex items-center gap-1.5">
+          <div class="flex items-center bg-white/10 rounded-full p-0.5">
+            <button data-lang="ro" onclick="setLang('ro')" class="lang-btn active" aria-pressed="true">RO</button>
+            <button data-lang="en" onclick="setLang('en')" class="lang-btn" aria-pressed="false">EN</button>
+          </div>
+          <button id="tts-nav-btn" data-tts-btn aria-label="Citește pagina (Alt+T)" aria-keyshortcuts="Alt+T"
+                  class="text-white/60 hover:text-white p-1.5 rounded-full hover:bg-white/10 transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+          </button>
+        </div>
+
         <a href="contact.html"
            class="ml-1 bg-maroon hover:bg-maroon-light text-white font-semibold px-5 py-2 rounded-full text-sm
                   transition-all duration-200 hover:scale-105 shadow-md shadow-maroon/30">
-          Hai și tu la o ședință
+          <span data-i18n="nav-cta">Hai și tu la o ședință</span>
         </a>
       </div>
 
@@ -266,10 +278,22 @@
     <!-- Mobile menu -->
     <div id="mobile-menu" class="hidden lg:hidden border-t border-white/10 pt-4 pb-5 overflow-hidden">
       <div class="flex flex-col gap-1">
-        <a href="index.html"         onclick="closeMobile()" class="text-white/80 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors">Acasă</a>
-        <a href="despre-noi.html"    onclick="closeMobile()" class="text-gold bg-white/5 rounded-xl px-4 py-3 text-sm font-semibold transition-colors">Despre noi</a>
-        <a href="galerie.html"       onclick="closeMobile()" class="text-white/80 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors">Galerie</a>
-        <a href="contact.html" onclick="closeMobile()" class="text-white/80 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors">Contact</a>
+        <a href="index.html"         onclick="closeMobile()" class="text-white/80 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors" data-i18n="nav-home">Acasă</a>
+        <a href="despre-noi.html"    onclick="closeMobile()" class="text-gold bg-white/5 rounded-xl px-4 py-3 text-sm font-semibold transition-colors" data-i18n="nav-about">Despre noi</a>
+        <a href="galerie.html"       onclick="closeMobile()" class="text-white/80 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors" data-i18n="nav-gallery">Galerie</a>
+        <a href="contact.html" onclick="closeMobile()" class="text-white/80 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors" data-i18n="nav-contact">Contact</a>
+        <!-- Language + TTS row -->
+        <div class="flex items-center gap-3 px-4 py-2 mt-1 border-t border-white/10">
+          <span class="text-white/40 text-xs" data-i18n="nav-util-label">Limbă:</span>
+          <div class="flex items-center bg-white/10 rounded-full p-0.5">
+            <button data-lang="ro" onclick="setLang('ro')" class="lang-btn active" aria-pressed="true">RO</button>
+            <button data-lang="en" onclick="setLang('en')" class="lang-btn" aria-pressed="false">EN</button>
+          </div>
+          <button id="tts-mob-btn" data-tts-btn aria-label="Citește pagina (Alt+T)"
+                  class="text-white/60 hover:text-white p-1.5 rounded-full hover:bg-white/10 transition-colors ml-auto">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+          </button>
+        </div>
         <div class="pt-2 px-4">
           <a href="contact.html" onclick="closeMobile()"
              class="block w-full bg-maroon text-white font-semibold px-5 py-3 rounded-full text-sm text-center shadow-md">
@@ -1059,11 +1083,11 @@
       </div>
 
       <div>
-        <h4 class="text-white font-semibold text-sm mb-5 uppercase tracking-wider">Legal</h4>
+        <h4 class="text-white font-semibold text-sm mb-5 uppercase tracking-wider" data-i18n="footer-legal-title">Legal</h4>
         <ul class="space-y-3">
           <li><a href="cookies.html#politica-cookies" class="text-white/50 hover:text-gold text-sm transition-colors" data-i18n="footer-legal-cookies">Politică cookies</a></li>
           <li><a href="cookies.html#confidentialitate" class="text-white/50 hover:text-gold text-sm transition-colors" data-i18n="footer-legal-privacy">Politică confidențialitate</a></li>
-          <li><a href="cookies.html#gdpr" class="text-white/50 hover:text-gold text-sm transition-colors">GDPR</a></li>
+          <li><a href="cookies.html#gdpr" class="text-white/50 hover:text-gold text-sm transition-colors" data-i18n="footer-legal-gdpr">GDPR</a></li>
         </ul>
       </div>
     </div>
@@ -1388,8 +1412,7 @@
     });
   }
 
-  // ── Init on load ──
-  setLang(localStorage.getItem('tm-lang') || 'ro');
+  // i18n init handled by global i18n.js
 
   // ══════════════ LEADERSHIP TOGGLE (mobile) ══════════════
   function leaderToggle(card) {
@@ -1436,6 +1459,7 @@
 <script src="search.js"></script>
 <script src="cookie-banner.js"></script>
 <!-- ════════════════════ TOASTY CHATBOT ════════════════════ -->
+<script src="i18n.js"></script>
 <script src="tts.js"></script>
 <script src="toasty.js"></script>
 <script type="application/ld+json">
