@@ -1488,5 +1488,29 @@
   ]
 }
 </script>
+
+<!-- Back to top -->
+<button id="btt-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})"
+  aria-label="Înapoi sus"
+  class="fixed bottom-20 left-10 z-40 w-11 h-11 rounded-full bg-primary text-white shadow-lg
+         flex items-center justify-center opacity-0 pointer-events-none"
+  style="transition:opacity .3s ease,transform .3s ease;">
+  <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/>
+  </svg>
+</button>
+<script>
+(function(){
+  var btt = document.getElementById('btt-btn');
+  if (!btt) return;
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 400) {
+      btt.style.opacity = '1'; btt.style.pointerEvents = 'auto';
+    } else {
+      btt.style.opacity = '0'; btt.style.pointerEvents = 'none';
+    }
+  }, { passive: true });
+})();
+</script>
 </body>
 </html>
