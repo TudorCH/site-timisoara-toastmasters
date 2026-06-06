@@ -38,7 +38,7 @@
       '<div><div style="color:#fff;font-weight:700;font-size:15px;">Toasty</div><div style="color:rgba(242,223,116,.85);font-size:11px;">Asistentul Timișoara Toastmasters</div></div>',
       '<div style="margin-left:auto;display:flex;align-items:center;gap:5px;"><span style="width:8px;height:8px;background:#4ade80;border-radius:50%;display:block;"></span><span style="color:rgba(255,255,255,.55);font-size:11px;">Online</span></div>',
     '</div>',
-    '<div id="toasty-msgs" style="overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px;max-height:220px;min-height:120px;">',
+    '<div id="toasty-msgs" aria-live="polite" aria-label="Mesaje Toasty" style="overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px;max-height:220px;min-height:120px;">',
       '<div style="display:flex;gap:8px;align-items:flex-end;">',
         '<div style="width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#004165,#00537f);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="13" height="13" fill="none" stroke="#F2DF74" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg></div>',
         '<div style="background:#f3f4f6;border-radius:16px 16px 16px 4px;padding:10px 13px;max-width:82%;font-size:13.5px;line-height:1.5;color:#1f2937;">Bună! 👋 Sunt <b>Toasty</b>, asistentul Timișoara Toastmasters.<br>Cu ce te pot ajuta?</div>',

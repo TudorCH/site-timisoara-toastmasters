@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>if ('scrollRestoration' in history) history.scrollRestoration = 'manual';</script>
   <title>Galerie Foto Toastmasters Timișoara | Momente din Club</title>
   <meta name="description" content="Imagini din ședințele și evenimentele Timișoara Toastmasters – cel mai vechi club de vorbit în public din România. Vino ca invitat miercuri seară." />
   <!-- UPDATE: replace placeholder URL with actual production domain -->
@@ -83,6 +84,20 @@
     .cat-tab { transition: all .25s ease; color: #6b7280; }
     .cat-tab.active { background: #004165 !important; color: white !important; }
     .cat-tab.active span { color: white !important; }
+
+    /* ── gallery image shimmer ── */
+    @keyframes shimmer {
+      0%   { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+    .img-shimmer-card {
+      background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.4s infinite linear;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .img-shimmer-card { animation: none; background: #e5e7eb; }
+    }
 
     /* Lightbox */
     #lightbox {
@@ -340,25 +355,59 @@
   </div>
 </div>
 
-<!-- ════════════════════ FOOTER ════════════════════ -->
 <!-- ════════════════════ CTA ════════════════════ -->
-<section class="py-14 lg:py-20 bg-primary">
-  <div class="max-w-2xl mx-auto px-5 text-center">
+<section class="py-14 lg:py-24 bg-primary relative overflow-hidden">
+  <div class="absolute top-[-40px] right-[-80px] w-80 h-80 rounded-full border border-gold/8 pointer-events-none" aria-hidden="true"></div>
+  <div class="absolute bottom-[-60px] left-[-50px] w-72 h-72 rounded-full border border-white/5 pointer-events-none" aria-hidden="true"></div>
+  <div class="max-w-3xl mx-auto px-5 text-center relative z-10">
     <div class="badge-light mb-5 inline-flex">Vino și tu</div>
-    <h2 class="font-heading text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">
-      Participarea ca invitat e gratuită
+    <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
+      Prima ședință e gratuită.<br/>
+      <span class="text-gold">Mereu.</span>
     </h2>
-    <p class="text-white/70 text-lg mb-8 leading-relaxed">
+    <p class="text-white/65 text-lg mb-8 leading-relaxed max-w-xl mx-auto">
       Miercuri seară la Cowork The Office, Timișoara.<br class="hidden sm:block"/>
-      Vino să vezi cum funcționează — zero presiune, zero obligații.
+      Zero presiune. Zero obligații.
     </p>
+    <!-- Stats strip -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-4 mb-8 py-6 border-t border-b border-white/10">
+      <div class="text-center">
+        <div class="text-2xl sm:text-3xl font-bold text-white">17+</div>
+        <div class="text-white/50 text-xs sm:text-sm mt-0.5">ani de activitate</div>
+      </div>
+      <div class="text-center">
+        <div class="text-2xl sm:text-3xl font-bold text-white">30+</div>
+        <div class="text-white/50 text-xs sm:text-sm mt-0.5">premii de excelență</div>
+      </div>
+      <div class="text-center">
+        <div class="text-2xl sm:text-3xl font-bold text-gold">4.9★</div>
+        <div class="text-white/50 text-xs sm:text-sm mt-0.5">rating Google</div>
+      </div>
+      <div class="text-center">
+        <div class="text-2xl sm:text-3xl font-bold text-white">14.000+</div>
+        <div class="text-white/50 text-xs sm:text-sm mt-0.5">cluburi TI global</div>
+      </div>
+    </div>
     <a href="contact.html"
        class="inline-flex items-center gap-2 bg-maroon hover:bg-maroon-light text-white font-bold px-8 py-4 rounded-full text-base transition-all duration-200 hover:scale-105 shadow-lg shadow-maroon/30">
       Hai și tu la o ședință
       <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
     </a>
+    <!-- Social proof -->
+    <div class="flex flex-wrap justify-center items-center gap-x-5 gap-y-2 mt-6 text-white/40 text-xs sm:text-sm">
+      <div class="flex items-center gap-1.5">
+        <img src="logo.png" alt="" class="h-3.5 w-auto opacity-45" aria-hidden="true" />
+        Afiliat din 2008
+      </div>
+      <span class="hidden sm:inline">·</span>
+      <span>#1 Club în România</span>
+      <span class="hidden sm:inline">·</span>
+      <span>Rețeaua globală Toastmasters International</span>
+    </div>
   </div>
 </section>
+
+<!-- ════════════════════ FOOTER ════════════════════ -->
 
 <footer class="bg-[#002d47] border-t border-white/5 pt-16 pb-8">
   <div class="max-w-7xl mx-auto px-5 lg:px-8">
@@ -761,12 +810,14 @@ function renderCards(panel, items) {
     const count    = item.photos.length;
     const location = item.location || 'Timișoara';
     return `
-      <div class="gal-card group card-hover rounded-2xl overflow-hidden cursor-pointer shadow-md"
+      <div class="gal-card group card-hover rounded-2xl overflow-hidden cursor-pointer shadow-md img-shimmer-card"
            onclick="openAlbum('${panel}',${idx})" style="aspect-ratio:4/3;">
         <div class="relative w-full h-full">
           <img src="${mainSrc}" alt="${item.title}"
                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                decoding="async"
+               loading="lazy"
+               onload="this.closest('.img-shimmer-card').classList.remove('img-shimmer-card')"
                onerror="this.src='${PLACEHOLDER}'" />
 
           <!-- Gradient: dark top + dark bottom, clear middle -->
@@ -1099,6 +1150,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const emptyEl = document.getElementById('empty-state');
   emptyEl.classList.toggle('hidden', galleryData.sedinte.length > 0);
 
+  // Hide tabs with no content
+  if (!galleryData.socializare.length) {
+    const tabSoc = document.getElementById('tab-social');
+    if (tabSoc) tabSoc.style.display = 'none';
+  }
+
   // Init carousel arrow/dot states after DOM renders
   setTimeout(() => {
     ['sedinte', 'concursuri'].forEach(p => {
@@ -1126,6 +1183,29 @@ document.addEventListener('DOMContentLoaded', () => {
 <script src="search.js"></script>
 <script src="cookie-banner.js"></script>
 <!-- ════════════════════ TOASTY CHATBOT ════════════════════ -->
+<!-- Back to top -->
+<button id="btt-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})"
+  aria-label="Înapoi sus"
+  class="fixed bottom-20 right-4 z-40 w-11 h-11 rounded-full bg-primary text-white shadow-lg
+         flex items-center justify-center opacity-0 pointer-events-none"
+  style="transition:opacity .3s ease,transform .3s ease;">
+  <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/>
+  </svg>
+</button>
+<script>
+(function(){
+  var btt = document.getElementById('btt-btn');
+  if (!btt) return;
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 400) {
+      btt.style.opacity = '1'; btt.style.pointerEvents = 'auto';
+    } else {
+      btt.style.opacity = '0'; btt.style.pointerEvents = 'none';
+    }
+  }, { passive: true });
+})();
+</script>
 <script src="toasty.js"></script>
 <script type="application/ld+json">
 {

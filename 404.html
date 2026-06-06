@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>if ('scrollRestoration' in history) history.scrollRestoration = 'manual';</script>
+  <title>Pagina nu a fost găsită | Timișoara Toastmasters</title>
+  <meta name="robots" content="noindex" />
+  <link rel="icon" type="image/png" href="logo.png" />
+  <link rel="apple-touch-icon" href="logo.png" />
+  <link rel="stylesheet" href="output.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@400;500&display=swap" /></noscript>
+  <style>
+    @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+    body { font-family: 'Inter', sans-serif; }
+    .font-heading { font-family: 'Plus Jakarta Sans', sans-serif; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up { animation: fadeUp .5s ease forwards; }
+    .fade-up-2 { animation: fadeUp .5s ease .15s both; }
+    .fade-up-3 { animation: fadeUp .5s ease .3s both; }
+    @media (prefers-reduced-motion: reduce) {
+      .fade-up, .fade-up-2, .fade-up-3 { animation: none; opacity: 1; }
+    }
+  </style>
+</head>
+<body class="bg-primary min-h-screen flex flex-col items-center justify-center px-5 text-center">
+
+  <!-- Decorative rings -->
+  <div class="fixed top-0 right-0 w-96 h-96 rounded-full border border-white/5 pointer-events-none"></div>
+  <div class="fixed bottom-0 left-0 w-64 h-64 rounded-full border border-gold/10 pointer-events-none"></div>
+
+  <div class="max-w-lg w-full fade-up">
+    <!-- Logo -->
+    <a href="/" class="inline-flex items-center gap-3 mb-10">
+      <img src="logo.png" alt="Timișoara Toastmasters" class="h-10 w-auto" />
+      <div class="text-left">
+        <div class="text-white font-bold text-sm uppercase tracking-wide leading-tight">Timișoara Toastmasters</div>
+        <div class="text-gold text-[10px] font-semibold tracking-wide">"Where Leaders Are Made!"</div>
+      </div>
+    </a>
+
+    <!-- 404 number -->
+    <div class="font-heading font-extrabold text-gold leading-none mb-4"
+         style="font-size: clamp(6rem, 20vw, 9rem); opacity: .9;">404</div>
+
+    <!-- Message -->
+    <h1 class="font-heading font-bold text-white text-2xl sm:text-3xl mb-3 fade-up-2">
+      Pagina nu a fost găsită
+    </h1>
+    <p class="text-white/70 text-base leading-relaxed mb-8 fade-up-2">
+      Discursul pe care îl cauți nu e aici.<br class="hidden sm:block" />
+      Dar poate găsești ceva mai bun pe pagina principală.
+    </p>
+
+    <!-- Actions -->
+    <div class="flex flex-col sm:flex-row gap-3 justify-center fade-up-3">
+      <a href="/"
+         class="bg-maroon hover:bg-maroon-light text-white font-semibold px-8 py-3.5 rounded-full
+                transition-all duration-200 hover:scale-105 shadow-lg shadow-maroon/30">
+        Înapoi acasă
+      </a>
+      <a href="contact.html"
+         class="border border-white/30 hover:border-gold text-white hover:text-gold font-semibold
+                px-8 py-3.5 rounded-full transition-all duration-200">
+        Înscrie-te ca invitat
+      </a>
+    </div>
+  </div>
+
+  <!-- Quick links -->
+  <nav class="mt-12 flex flex-wrap justify-center gap-x-8 gap-y-2 text-white/50 text-sm fade-up-3" aria-label="Navigare rapidă">
+    <a href="/"            class="hover:text-gold transition-colors">Acasă</a>
+    <a href="despre-noi.html" class="hover:text-gold transition-colors">Despre noi</a>
+    <a href="galerie.html" class="hover:text-gold transition-colors">Galerie</a>
+    <a href="contact.html" class="hover:text-gold transition-colors">Contact</a>
+  </nav>
+
+</body>
+</html>
