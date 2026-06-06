@@ -8,10 +8,11 @@
   css.textContent = [
     '@keyframes ttsPulse{0%,100%{box-shadow:0 4px 20px rgba(119,36,50,.5)}50%{box-shadow:0 4px 28px rgba(119,36,50,.85),0 0 0 7px rgba(119,36,50,.15)}}',
     '@keyframes ttsSpin{to{transform:rotate(360deg)}}',
-    '#tts-btn{all:unset;position:fixed!important;bottom:24px!important;left:24px!important;z-index:2147483646!important;width:48px;height:48px;border-radius:50%;cursor:pointer;background:linear-gradient(135deg,#772432,#9a2f40);box-shadow:0 4px 20px rgba(119,36,50,.45);display:flex!important;align-items:center;justify-content:center;transition:background .25s,box-shadow .2s;}',
-    '#tts-btn:focus-visible{outline:3px solid #F2DF74!important;outline-offset:3px!important;}',
-    '#tts-btn:hover{box-shadow:0 6px 28px rgba(119,36,50,.6);}',
-    '#tts-btn.tts-speaking{animation:ttsPulse 1.5s ease-in-out infinite;}',
+    '#tts-btn{all:unset;position:fixed!important;bottom:24px!important;left:24px!important;z-index:2147483646!important;width:48px;height:48px;border-radius:50%;cursor:pointer;background:linear-gradient(135deg,#772432,#9a2f40);box-shadow:0 4px 20px rgba(119,36,50,.45);display:flex!important;align-items:center;justify-content:center;transition:opacity .3s ease,background .25s,box-shadow .2s;opacity:0.45;}',
+    '#tts-btn:focus-visible{outline:3px solid #F2DF74!important;outline-offset:3px!important;opacity:1;}',
+    '#tts-btn:hover{box-shadow:0 6px 28px rgba(119,36,50,.6);opacity:1;}',
+    '#tts-btn.tts-speaking{animation:ttsPulse 1.5s ease-in-out infinite;opacity:1;}',
+    '#tts-btn.tts-loading{opacity:1;}',
     '#tts-btn .tts-spin{animation:ttsSpin .9s linear infinite;transform-origin:center;}',
     /* tooltip */
     '#tts-btn::after{content:attr(data-tip);position:absolute;left:60px;bottom:50%;transform:translateY(50%);background:rgba(0,0,0,.82);color:#fff;font-family:Inter,sans-serif;font-size:12px;white-space:nowrap;padding:5px 10px;border-radius:6px;pointer-events:none;opacity:0;transition:opacity .2s ease;}',
@@ -52,8 +53,8 @@
   var FIRST_CHUNK = 650;
   var CHUNK = 2800;
 
-  function setIdle()    { state='idle';     btn.innerHTML=iSpeak;  btn.classList.remove('tts-speaking'); btn.setAttribute('aria-label','Citește pagina cu voce (Alt+T)'); btn.setAttribute('data-tip','Citește pagina (Alt+T)'); }
-  function setLoading() { state='loading';  btn.innerHTML=iLoad;   btn.classList.remove('tts-speaking'); btn.setAttribute('aria-label','Se încarcă audio…');              btn.setAttribute('data-tip','Se încarcă…'); }
+  function setIdle()    { state='idle';     btn.innerHTML=iSpeak;  btn.classList.remove('tts-speaking','tts-loading'); btn.setAttribute('aria-label','Citește pagina cu voce (Alt+T)'); btn.setAttribute('data-tip','Citește pagina (Alt+T)'); }
+  function setLoading() { state='loading';  btn.innerHTML=iLoad;   btn.classList.remove('tts-speaking'); btn.classList.add('tts-loading'); btn.setAttribute('aria-label','Se încarcă audio…'); btn.setAttribute('data-tip','Se încarcă…'); }
   function setSpeaking(){ state='speaking'; btn.innerHTML=iPause;  btn.classList.add('tts-speaking');    btn.setAttribute('aria-label','Pauză citire (Alt+T)');            btn.setAttribute('data-tip','Pauză (Alt+T)'); }
   function setPaused()  { state='paused';   btn.innerHTML=iPlay;   btn.classList.remove('tts-speaking'); btn.setAttribute('aria-label','Continuă citirea (Alt+T)');         btn.setAttribute('data-tip','Continuă (Alt+T)'); }
 
