@@ -114,10 +114,11 @@
   }
 
   function fetchChunk(text) {
+    var lang = localStorage.getItem('tmt_lang') || 'ro';
     return fetch('/api/tts', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ text: text })
+      body: JSON.stringify({ text: text, lang: lang })
     }).then(function(r) {
       if (!r.ok) throw new Error('TTS ' + r.status);
       return r.blob();

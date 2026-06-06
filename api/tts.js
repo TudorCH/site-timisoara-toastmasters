@@ -1,7 +1,7 @@
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).end();
 
-  const { text } = req.body || {};
+  const { text, lang } = req.body || {};
   if (!text || typeof text !== 'string' || !text.trim())
     return res.status(400).json({ error: 'text required' });
 
@@ -10,12 +10,16 @@ module.exports = async function handler(req, res) {
 
   if (!key) return res.status(500).json({ error: 'TTS not configured' });
 
+  const isEn  = lang === 'en';
+  const xmlLang = isEn ? 'en-US' : 'ro-RO';
+  const voice   = isEn ? 'en-US-JennyNeural' : 'ro-RO-AlinaNeural';
+
   const safe = text.slice(0, 9000)
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;');
 
-  const ssml = `<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='ro-RO'><voice name='ro-RO-EmilNeural'>${safe}</voice></speak>`;
+  const ssml = `<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='${xmlLang}'><voice name='${voice}'>${safe}</voice></speak>`;
 
   try {
     const azRes = await fetch(
