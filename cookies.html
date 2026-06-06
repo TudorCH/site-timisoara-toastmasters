@@ -155,119 +155,101 @@
 <section class="py-14 lg:py-20">
   <div class="max-w-3xl mx-auto px-5 lg:px-8 prose">
 
-    <div class="info-box">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-      <span>Această pagină descrie exact ce date stocăm în browserul tău, de ce și cum le poți gestiona. Nu folosim cookie-uri de publicitate sau urmărire.</span>
+    <!-- Summary cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10 not-prose">
+      <div class="rounded-2xl border border-gray-100 bg-gray-50 p-5 flex flex-col gap-2">
+        <div class="w-9 h-9 rounded-full bg-green-100 flex items-center justify-center">
+          <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        </div>
+        <div class="font-semibold text-gray-800 text-sm">Fără reclame sau tracking</div>
+        <div class="text-gray-500 text-xs leading-relaxed">Nu folosim Google Analytics, Facebook Pixel sau alte instrumente de urmărire.</div>
+      </div>
+      <div class="rounded-2xl border border-gray-100 bg-gray-50 p-5 flex flex-col gap-2">
+        <div class="w-9 h-9 rounded-full bg-blue-100 flex items-center justify-center">
+          <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <div class="font-semibold text-gray-800 text-sm">Date minime, scop clar</div>
+        <div class="text-gray-500 text-xs leading-relaxed">Stocăm doar preferințele tale de bază direct în browserul tău, nu pe serverele noastre.</div>
+      </div>
+      <div class="rounded-2xl border border-gray-100 bg-gray-50 p-5 flex flex-col gap-2">
+        <div class="w-9 h-9 rounded-full bg-purple-100 flex items-center justify-center">
+          <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+        </div>
+        <div class="font-semibold text-gray-800 text-sm">Tu controlezi totul</div>
+        <div class="text-gray-500 text-xs leading-relaxed">Poți șterge sau reseta preferințele oricând, direct din browser sau de pe această pagină.</div>
+      </div>
     </div>
 
     <!-- 1 -->
-    <h2>1. Ce sunt cookie-urile și localStorage?</h2>
-    <p>Cookie-urile sunt fișiere mici salvate de browser atunci când vizitezi un site. <strong>localStorage</strong> este o tehnologie similară, parte din standardul web, care stochează date exclusiv în browserul tău fără a le trimite automat la server la fiecare cerere.</p>
-    <p>Site-ul <strong>timisoaratoastmasters.ro</strong> folosește în principal localStorage pentru preferințele tale. Niciun cookie de tracking, publicitate sau analiză comportamentală nu este instalat.</p>
-
-    <!-- 2 -->
-    <h2>2. Ce stocăm în browserul tău</h2>
-    <p>Mai jos sunt descrise toate cheile localStorage folosite de acest site:</p>
+    <h2>1. Ce stocăm în browserul tău</h2>
+    <p>Site-ul salvează trei lucruri mici direct în browserul tău (nu pe serverele noastre). Nimeni altcineva nu le vede.</p>
 
     <div class="tm-table-wrap">
       <table>
         <thead>
           <tr>
-            <th>Cheie localStorage</th>
-            <th>Scop</th>
-            <th>Categorie</th>
-            <th>Expiră</th>
+            <th>Ce stocăm</th>
+            <th>De ce</th>
+            <th>Durată</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><code>tm-cookies-v3</code></td>
-            <td>Reține alegerea ta din banner-ul de consimțământ cookies (valori posibile: <em>all</em> sau <em>essential</em>)</td>
-            <td>Esențial</td>
-            <td>Permanent (până la ștergere manuală)</td>
+            <td><strong>Preferința cookies</strong></td>
+            <td>Să nu-ți mai afișăm bannerul după ce ai ales</td>
+            <td>Până când ștergi datele din browser</td>
           </tr>
           <tr>
-            <td><code>tm-lang</code></td>
-            <td>Reține preferința de limbă selectată (română sau engleză) pe pagina Despre noi</td>
-            <td>Funcțional</td>
-            <td>Permanent (până la ștergere manuală)</td>
+            <td><strong>Preferința de limbă</strong></td>
+            <td>Să-ți amintim că preferi română sau engleză pe pagina Despre noi</td>
+            <td>Până când ștergi datele din browser</td>
           </tr>
           <tr>
-            <td><code>tm_registrations</code></td>
-            <td>Stochează înregistrările completate prin formularul de contact, exclusiv local în browserul tău. Datele nu sunt transmise automat nicăieri.</td>
-            <td>Funcțional</td>
-            <td>Permanent (până la ștergere manuală sau export CSV)</td>
+            <td><strong>Datele din formularul de contact</strong></td>
+            <td>Backup local al cererii tale de vizită, exclusiv în browserul tău</td>
+            <td>Până când ștergi datele din browser</td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <p>Nu folosim cookies de sesiune, de autentificare, de publicitate sau de analiză comportamentală (ex. Google Analytics, Facebook Pixel, Hotjar).</p>
+    <p>Nu instalăm cookie-uri de sesiune, autentificare, publicitate sau analiză comportamentală.</p>
+
+    <!-- 2 -->
+    <h2>2. Servicii externe</h2>
+    <p>Când vizitezi site-ul, browserul tău se conectează automat la câteva servicii externe necesare funcționării:</p>
+    <ul>
+      <li><strong>Google Fonts</strong> — încarcă fonturile vizuale ale site-ului. Google poate înregistra adresa IP a browserului tău. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Politica Google</a>.</li>
+      <li><strong>Toasty (chatbot AI)</strong> — când scrii un mesaj asistentului nostru, textul este trimis securizat către Anthropic Claude pentru a genera răspunsul. Conversația nu este salvată după ce închizi pagina. <a href="https://www.anthropic.com/privacy" target="_blank" rel="noopener noreferrer">Politica Anthropic</a>.</li>
+      <li><strong>Cloudinary</strong> — găzduiește imaginile din galerie. Servește fotografiile optimizat, fără a stoca date despre tine.</li>
+      <li><strong>Google Maps</strong> — linkul către locația noastră te duce pe Google Maps. Se deschide doar dacă dai click, nu automat.</li>
+    </ul>
+    <p>Linkurile către rețelele noastre sociale (Facebook, Instagram, LinkedIn, WhatsApp) nu instalează nimic pe site-ul nostru. Odată ce le accesezi, se aplică politicile acelor platforme.</p>
 
     <!-- 3 -->
-    <h2>3. Servicii externe încărcate pe site</h2>
-    <p>Unele resurse tehnice sunt încărcate de pe servere externe. Prin simpla vizitare a site-ului, browserul tău realizează conexiuni către:</p>
-
-    <h3>Tailwind CSS CDN</h3>
-    <p>Framework-ul de stilizare vizuală al site-ului (Tailwind CSS) este inclus direct în fișierele site-ului, fără a încărca resurse externe de la CDN-uri terțe.</p>
-
-    <h3>Google Fonts</h3>
-    <p>Fonturile <em>Plus Jakarta Sans</em> și <em>Inter</em> sunt încărcate de pe <code>fonts.googleapis.com</code> și <code>fonts.gstatic.com</code>. Google poate înregistra adresa IP a browserului tău la încărcarea acestor fișiere. Detalii: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">politica de confidențialitate Google</a>.</p>
-
-    <h3>Asistentul virtual Toasty (AI Chatbot)</h3>
-    <p>Butonul de chat din colțul paginii este alimentat de <strong>Anthropic Claude</strong> (API extern). Când trimiți un mesaj prin Toasty, textul conversației este transmis securizat către serverele Anthropic pentru generarea răspunsului. Istoricul conversației este păstrat temporar <strong>doar în memoria sesiunii curente</strong> (în variabilele JavaScript ale paginii) și se șterge automat la închiderea paginii sau a tab-ului - nu este salvat în localStorage sau în altă parte. Detalii: <a href="https://www.anthropic.com/privacy" target="_blank" rel="noopener noreferrer">politica de confidențialitate Anthropic</a>.</p>
-
-    <h3>Google Maps</h3>
-    <p>Pe pagina Contact există un link către locația clubului pe Google Maps (<code>maps.app.goo.gl</code>). Accesarea acestui link te redirecționează către platforma Google, unde se aplică politica lor de confidențialitate. Linkul nu se deschide automat fără acțiunea ta.</p>
+    <h2 id="gdpr">3. Drepturile tale (GDPR)</h2>
+    <p>Conform Regulamentului European GDPR (UE 2016/679), ai aceste drepturi în relație cu datele tale personale:</p>
+    <ul>
+      <li><strong>Acces</strong> — poți solicita ce date deținem despre tine</li>
+      <li><strong>Ștergere</strong> — poți cere ștergerea datelor tale</li>
+      <li><strong>Rectificare</strong> — poți cere corectarea datelor incorecte</li>
+      <li><strong>Portabilitate</strong> — poți cere datele într-un format standard</li>
+      <li><strong>Opoziție</strong> — poți refuza prelucrarea datelor tale</li>
+    </ul>
+    <p>Datele stocate local (preferințe, formularul de contact) se află exclusiv în browserul tău — le poți șterge oricând din setările browserului, fără să ne contactezi.</p>
 
     <!-- 4 -->
-    <h2>4. Rețele sociale</h2>
-    <p>Site-ul conține linkuri către paginile oficiale ale clubului pe:</p>
+    <h2>4. Cum îți resetezi preferințele</h2>
+    <p>Vrei să revezi bannerul de cookies sau să ștergi tot ce am salvat? Apasă butonul de mai jos sau șterge datele din setările browserului:</p>
     <ul>
-      <li><strong>Facebook</strong> - facebook.com/timisoara.toastmasters</li>
-      <li><strong>Instagram</strong> - instagram.com/timisoaratoastmasters</li>
-      <li><strong>LinkedIn</strong> - linkedin.com/company/toastmasters-timisoara</li>
-      <li><strong>WhatsApp</strong> - grup comunitate club</li>
+      <li><strong>Chrome / Edge:</strong> Setări → Confidențialitate → Șterge datele de navigare → Date din site-uri</li>
+      <li><strong>Firefox:</strong> Setări → Confidențialitate → Șterge datele → Date din site-uri web</li>
+      <li><strong>Safari:</strong> Preferințe → Confidențialitate → Gestionează datele site-urilor</li>
     </ul>
-    <p>Aceste linkuri nu instalează cookie-uri pe site-ul nostru. Odată ce le accesezi, intri sub incidența politicilor de confidențialitate ale respectivelor platforme. Nu avem control asupra cookie-urilor lor.</p>
 
     <!-- 5 -->
-    <h2>5. Cum îți gestionezi preferințele</h2>
-
-    <h3>Resetarea consimțământului cookies</h3>
-    <p>Dacă dorești să modifici alegerea făcută în banner-ul de consimțământ, poți șterge cheia <code>tm-cookies-v3</code> din localStorage. Banner-ul va reapărea la următoarea vizită.</p>
-    <p>Pași în Chrome/Edge: <em>F12 - Application - Local Storage - timisoaratoastmasters.ro - selectează cheia - Delete</em>.</p>
-
-    <h3>Ștergerea tuturor datelor stocate local</h3>
-    <p>Poți șterge orice date stocate de site-ul nostru din setările browserului:</p>
-    <ul>
-      <li><strong>Chrome/Edge:</strong> Setări - Confidențialitate - Șterge datele de navigare - Date din site-uri stocate</li>
-      <li><strong>Firefox:</strong> Setări - Confidențialitate - Șterge datele - Date din site-uri web</li>
-      <li><strong>Safari:</strong> Preferințe - Confidențialitate - Gestionează datele site-urilor web</li>
-    </ul>
-
-    <h3>Blocarea stocării locale</h3>
-    <p>Poți configura browserul să blocheze complet localStorage pentru orice site. Rețineți că aceasta poate afecta funcționarea preferinței de limbă.</p>
-
-    <!-- 6 -->
-    <h2 id="gdpr">6. Drepturile tale (GDPR)</h2>
-    <p>În conformitate cu Regulamentul General privind Protecția Datelor (GDPR - UE 2016/679), ai următoarele drepturi:</p>
-    <ul>
-      <li><strong>Dreptul de acces</strong> - poți solicita oricând ce date deținem despre tine</li>
-      <li><strong>Dreptul la ștergere</strong> - poți solicita ștergerea datelor tale</li>
-      <li><strong>Dreptul la portabilitate</strong> - poți solicita datele într-un format structurat</li>
-      <li><strong>Dreptul de opoziție</strong> - poți refuza prelucrarea datelor tale</li>
-      <li><strong>Dreptul la rectificare</strong> - poți solicita corectarea datelor incorecte</li>
-    </ul>
-    <p>Întrucât datele din formularul de contact sunt stocate exclusiv local în browserul tău (nu pe serverele noastre), exercitarea acestor drepturi revine în mare parte controlului direct pe care îl ai asupra browserului tău.</p>
-
-    <!-- 7 -->
-    <h2>7. Modificări ale politicii</h2>
-    <p>Ne rezervăm dreptul de a actualiza această politică pe măsură ce site-ul evoluează. Orice modificare va fi reflectată în data de actualizare din antetul paginii. Continuarea utilizării site-ului după publicarea modificărilor constituie acceptarea acestora.</p>
-
-    <!-- 8 -->
-    <h2>8. Contact</h2>
-    <p>Pentru orice întrebare legată de această politică sau de datele tale, ne poți contacta prin <a href="contact.html">formularul de contact</a> sau pe oricare dintre paginile noastre de social media.</p>
+    <h2>5. Contact</h2>
+    <p>Întrebări despre datele tale? Scrie-ne prin <a href="contact.html">formularul de contact</a> sau pe oricare pagină de social media.</p>
     <p><strong>Timișoara Toastmasters Club</strong><br/>
     Cowork The Office, Et. 2, Clădirea BCR, Calea Aradului nr. 11, Timișoara</p>
 
