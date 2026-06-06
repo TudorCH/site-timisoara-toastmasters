@@ -358,13 +358,17 @@
 
 <!-- ════════════════ MOBILE SECTION NAV (lg:hidden) ════════════ -->
 <nav class="lg:hidden sticky top-16 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm">
-  <div class="flex flex-wrap justify-center gap-2 px-4 py-2.5">
-    <a href="#mission-section"  class="text-[11px] font-semibold px-3 py-1.5 rounded-full bg-primary/8 text-primary whitespace-nowrap">Misiune</a>
-    <a href="#val-section"      class="text-[11px] font-semibold px-3 py-1.5 rounded-full bg-gray-100 text-gray-600 whitespace-nowrap">Valori</a>
-    <a href="#story-section"    class="text-[11px] font-semibold px-3 py-1.5 rounded-full bg-gray-100 text-gray-600 whitespace-nowrap">Club</a>
-    <a href="#section-eve"      class="text-[11px] font-semibold px-3 py-1.5 rounded-full bg-gray-100 text-gray-600 whitespace-nowrap">Structura</a>
-    <a href="#benefits-section" class="text-[11px] font-semibold px-3 py-1.5 rounded-full bg-gray-100 text-gray-600 whitespace-nowrap">Beneficii</a>
-    <a href="#conducere"        class="text-[11px] font-semibold px-3 py-1.5 rounded-full bg-gray-100 text-gray-600 whitespace-nowrap">Conducere</a>
+  <div class="relative">
+    <div class="flex overflow-x-auto gap-2 px-4 py-2.5 scrollbar-hide">
+      <a href="#mission-section"  class="flex-shrink-0 text-[11px] font-semibold px-3 py-1.5 rounded-full bg-primary/8 text-primary whitespace-nowrap">Misiune</a>
+      <a href="#val-section"      class="flex-shrink-0 text-[11px] font-semibold px-3 py-1.5 rounded-full bg-gray-100 text-gray-600 whitespace-nowrap">Valori</a>
+      <a href="#story-section"    class="flex-shrink-0 text-[11px] font-semibold px-3 py-1.5 rounded-full bg-gray-100 text-gray-600 whitespace-nowrap">Club</a>
+      <a href="#section-eve"      class="flex-shrink-0 text-[11px] font-semibold px-3 py-1.5 rounded-full bg-gray-100 text-gray-600 whitespace-nowrap">Structura</a>
+      <a href="#benefits-section" class="flex-shrink-0 text-[11px] font-semibold px-3 py-1.5 rounded-full bg-gray-100 text-gray-600 whitespace-nowrap">Beneficii</a>
+      <a href="#conducere"        class="flex-shrink-0 text-[11px] font-semibold px-3 py-1.5 rounded-full bg-gray-100 text-gray-600 whitespace-nowrap">Conducere</a>
+    </div>
+    <!-- fade hint: signals more content to the right -->
+    <div class="pointer-events-none absolute right-0 top-0 h-full w-10 bg-gradient-to-l from-white/95 to-transparent"></div>
   </div>
 </nav>
 
