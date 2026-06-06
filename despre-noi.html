@@ -1580,10 +1580,10 @@
 <!-- Back to top -->
 <button id="btt-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})"
   aria-label="Înapoi sus"
-  class="fixed bottom-6 z-40 w-11 h-11 rounded-full bg-primary text-white shadow-lg
+  class="fixed bottom-6 left-5 z-40 w-9 h-9 rounded-full text-white shadow-lg
          flex items-center justify-center opacity-0 pointer-events-none"
-  style="left:50%;transform:translateX(-50%);transition:opacity .3s ease,transform .3s ease;">
-  <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+  style="background:#772432;transition:opacity .3s ease,transform .3s ease;">
+  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
     <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/>
   </svg>
 </button>
@@ -1591,13 +1591,16 @@
 (function(){
   var btt = document.getElementById('btt-btn');
   if (!btt) return;
-  window.addEventListener('scroll', function() {
-    if (window.scrollY > 400) {
-      btt.style.opacity = '1'; btt.style.pointerEvents = 'auto';
-    } else {
-      btt.style.opacity = '0'; btt.style.pointerEvents = 'none';
-    }
-  }, { passive: true });
+  var nearFooter = false, ttsActive = false;
+  function upd() {
+    var show = window.scrollY > 400 && !nearFooter && !ttsActive;
+    btt.style.opacity = show ? '1' : '0';
+    btt.style.pointerEvents = show ? 'auto' : 'none';
+  }
+  window.addEventListener('scroll', upd, { passive: true });
+  var ft = document.querySelector('footer');
+  if (ft) new IntersectionObserver(function(e){ nearFooter = e[0].isIntersecting; upd(); }, { threshold: 0.1 }).observe(ft);
+  new MutationObserver(function(){ ttsActive = !!document.getElementById('tts-float'); upd(); }).observe(document.body, { childList: true });
 })();
 </script>
 </body>
