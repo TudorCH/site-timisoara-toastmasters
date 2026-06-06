@@ -1900,9 +1900,9 @@
 <!-- Back to top -->
 <button id="btt-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})"
   aria-label="Înapoi sus"
-  class="fixed bottom-6 left-5 z-40 w-9 h-9 rounded-full text-white shadow-lg
+  class="fixed z-40 w-9 h-9 rounded-full text-white shadow-lg
          flex items-center justify-center opacity-0 pointer-events-none"
-  style="background:#772432;transition:opacity .3s ease,transform .3s ease;">
+  style="background:#772432;bottom:84px;right:16px;transition:opacity .3s ease,transform .3s ease;">
   <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
     <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/>
   </svg>
@@ -1911,16 +1911,32 @@
 (function(){
   var btt = document.getElementById('btt-btn');
   if (!btt) return;
-  var nearFooter = false, ttsActive = false;
+  if (window.innerWidth >= 640) { btt.style.bottom = '100px'; btt.style.right = '28px'; }
+  window.addEventListener('resize', function() {
+    btt.style.bottom = window.innerWidth >= 640 ? '100px' : '84px';
+    btt.style.right  = window.innerWidth >= 640 ? '28px'  : '16px';
+  });
+  var nearFooter = false, ttsActive = false, toastyOpen = false;
   function upd() {
-    var show = window.scrollY > 400 && !nearFooter && !ttsActive;
+    var show = window.scrollY > 400 && !nearFooter && !ttsActive && !toastyOpen;
     btt.style.opacity = show ? '1' : '0';
     btt.style.pointerEvents = show ? 'auto' : 'none';
   }
   window.addEventListener('scroll', upd, { passive: true });
   var ft = document.querySelector('footer');
   if (ft) new IntersectionObserver(function(e){ nearFooter = e[0].isIntersecting; upd(); }, { threshold: 0.1 }).observe(ft);
-  new MutationObserver(function(){ ttsActive = !!document.getElementById('tts-float'); upd(); }).observe(document.body, { childList: true });
+  new MutationObserver(function(muts){
+    ttsActive = !!document.getElementById('tts-float');
+    muts.forEach(function(m){
+      m.addedNodes.forEach(function(n){
+        if (n.id === 'toasty-btn') {
+          new MutationObserver(function(){ toastyOpen = n.classList.contains('open'); upd(); })
+            .observe(n, { attributes: true, attributeFilter: ['class'] });
+        }
+      });
+    });
+    upd();
+  }).observe(document.body, { childList: true });
 })();
 </script>
 </body>
