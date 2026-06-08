@@ -478,19 +478,19 @@
     </div>
     <div class="mt-8 lg:mt-14 grid grid-cols-2 md:grid-cols-4 gap-4">
       <div class="rounded-2xl p-5 sm:p-7 text-center card-hover flex flex-col items-center justify-center" style="background:#772432">
-        <div class="font-heading text-2xl sm:text-4xl lg:text-5xl font-bold text-white mb-1 sm:mb-2">17+</div>
+        <div class="font-heading text-2xl sm:text-4xl lg:text-5xl font-bold text-white mb-1 sm:mb-2"><span class="stat-num" data-target="17" data-suffix="+">17+</span></div>
         <div class="stat-label text-white/75 text-[10px] sm:text-xs lg:text-sm font-medium uppercase tracking-wide leading-tight"><span class="hidden md:inline" data-i18n="achiev-s1-short">ani</span><span class="md:hidden" data-i18n="achiev-s1">Ani de activitate</span></div>
       </div>
       <div class="rounded-2xl p-5 sm:p-7 text-center card-hover flex flex-col items-center justify-center" style="background:#772432">
-        <div class="font-heading text-2xl sm:text-4xl lg:text-5xl font-bold text-white mb-1 sm:mb-2">200+</div>
+        <div class="font-heading text-2xl sm:text-4xl lg:text-5xl font-bold text-white mb-1 sm:mb-2"><span class="stat-num" data-target="200" data-suffix="+">200+</span></div>
         <div class="stat-label text-white/75 text-[10px] sm:text-xs lg:text-sm font-medium uppercase tracking-wide leading-tight"><span class="hidden md:inline" data-i18n="achiev-s2-short">membri</span><span class="md:hidden" data-i18n="achiev-s2">Membri de-a lungul timpului</span></div>
       </div>
       <div class="rounded-2xl p-5 sm:p-7 text-center card-hover flex flex-col items-center justify-center" style="background:#772432">
-        <div class="font-heading text-2xl sm:text-4xl lg:text-5xl font-bold text-white mb-1 sm:mb-2">1.200+</div>
+        <div class="font-heading text-2xl sm:text-4xl lg:text-5xl font-bold text-white mb-1 sm:mb-2"><span class="stat-num" data-target="1200" data-suffix="+" data-sep="1">1.200+</span></div>
         <div class="stat-label text-white/75 text-[10px] sm:text-xs lg:text-sm font-medium uppercase tracking-wide leading-tight"><span class="hidden md:inline" data-i18n="achiev-s3-short">discursuri</span><span class="md:hidden" data-i18n="achiev-s3">Discursuri susținute</span></div>
       </div>
       <div class="rounded-2xl p-5 sm:p-7 text-center card-hover flex flex-col items-center justify-center" style="background:#772432">
-        <div class="font-heading text-2xl sm:text-4xl lg:text-5xl font-bold text-white mb-1 sm:mb-2">30+</div>
+        <div class="font-heading text-2xl sm:text-4xl lg:text-5xl font-bold text-white mb-1 sm:mb-2"><span class="stat-num" data-target="30" data-suffix="+">30+</span></div>
         <div class="stat-label text-white/75 text-[10px] sm:text-xs lg:text-sm font-medium uppercase tracking-wide leading-tight"><span class="hidden md:inline" data-i18n="achiev-s4-short">premii</span><span class="md:hidden" data-i18n="achiev-s4">Premii de excelență</span></div>
       </div>
     </div>
@@ -641,7 +641,7 @@
           <div class="flip-back p-5 lg:p-6 gap-2" style="background:#772432">
             <h3 class="font-bold text-white text-sm lg:text-base leading-snug" data-i18n="ben-c2-tag">Experiență reală</h3>
             <ul class="text-white/80 text-[10px] sm:text-xs lg:text-sm text-left space-y-0.5 sm:space-y-1 w-full" data-i18n="ben-c2-desc">
-              <li class="flex items-start gap-1"><span class="text-white/60 flex-shrink-0">·</span>Moderezi, evaluezi, cronometrezi</li>
+              <li class="flex items-start gap-1"><span class="text-white/60 flex-shrink-0">·</span>Moderezi și evaluezi</li>
               <li class="flex items-start gap-1"><span class="text-white/60 flex-shrink-0">·</span>Roluri reale la fiecare ședință</li>
               <li class="flex items-start gap-1"><span class="text-white/60 flex-shrink-0">·</span>Competențe direct aplicabile</li>
             </ul>
@@ -1482,6 +1482,32 @@
 </script>
 <script src="search.js"></script>
 <script src="cookie-banner.js"></script>
+<script>
+(function(){
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var nums = document.querySelectorAll('.stat-num');
+  if (!nums.length || reduced) return;
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (!entry.isIntersecting) return;
+      obs.unobserve(entry.target);
+      var el = entry.target;
+      var target = parseInt(el.dataset.target, 10);
+      var suffix = el.dataset.suffix || '';
+      var useSep = !!el.dataset.sep;
+      var dur = 1400, start = performance.now();
+      (function tick(now){
+        var p = Math.min((now - start) / dur, 1);
+        p = 1 - Math.pow(1 - p, 3);
+        var val = Math.round(target * p);
+        el.textContent = (useSep ? val.toLocaleString('ro-RO') : String(val)) + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+      })(start);
+    });
+  }, { threshold: 0.4 });
+  nums.forEach(function(n){ obs.observe(n); });
+})();
+</script>
 <!-- ════════════════════ TOASTY CHATBOT ════════════════════ -->
 <script src="i18n.js"></script>
 <script src="tts.js"></script>
