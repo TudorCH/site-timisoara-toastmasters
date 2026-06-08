@@ -44,6 +44,15 @@
       .card-hover { transition: none; }
     }
     #form-card, #contact-section { scroll-margin-top: 4.5rem; }
+    #cal-card  { order:1; }
+    #form-card { order:2; }
+    #map-card  { order:3; }
+    @media (min-width:768px) {
+      #contact-grid { grid-template-rows: auto auto; }
+      #cal-card  { grid-column:1; grid-row:1; order:unset; }
+      #map-card  { grid-column:1; grid-row:2; order:unset; }
+      #form-card { grid-column:2; grid-row:1 / span 2; order:unset; }
+    }
     .gradient-hero { background: linear-gradient(135deg, #002d47 0%, #004165 55%, #003555 100%); }
     .gradient-dark { background: linear-gradient(135deg, #002d47 0%, #004165 100%); }
     .nav-link { position: relative; }
@@ -211,13 +220,10 @@
   <div class="max-w-7xl mx-auto px-5 lg:px-8">
 
     <!-- 2-col: (Calendar + Hartă) + Formular -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-8 lg:gap-12">
-
-      <!-- Coloana stânga: Calendar + Hartă stacked -->
-      <div class="flex flex-col gap-6">
+    <div id="contact-grid" class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-8 lg:gap-12">
 
         <!-- Calendar card -->
-        <div class="overflow-hidden rounded-2xl border border-gray-100 shadow-sm flex flex-col bg-white">
+        <div id="cal-card" class="overflow-hidden rounded-2xl border border-gray-100 shadow-sm flex flex-col bg-white">
 
           <!-- Header cu navigare lună -->
           <div class="bg-maroon px-4 py-3 flex items-center justify-between">
@@ -261,10 +267,14 @@
                 <!-- Locatie -->
                 <div class="flex items-center gap-2">
                   <svg class="w-3.5 h-3.5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                  <a href="https://maps.app.goo.gl/xf5mo1xVjvU79gQo8" target="_blank" class="text-xs text-maroon hover:underline">Cowork The Office, Et. 2, Calea Aradului nr.11</a>
+                  <a href="https://maps.app.goo.gl/xf5mo1xVjvU79gQo8" target="_blank" class="text-xs text-maroon hover:underline">Cowork The Office, Et. 2<span class="hidden sm:inline">, Calea Aradului nr.11</span></a>
+                </div>
+                <!-- Limba -->
+                <div class="flex items-center gap-2">
+                  <span id="cal-lang-flag" class="flex-shrink-0"></span>
+                  <span id="cal-lang-text" class="text-xs font-bold text-gray-700"></span>
                 </div>
               </div>
-              <span id="cal-detail-lang" class="flex-shrink-0 text-xs font-bold px-3 py-1 rounded-full mt-0.5"></span>
             </div>
           </div>
 
@@ -284,7 +294,7 @@
         </div><!-- /calendar card -->
 
         <!-- Hartă -->
-        <div class="overflow-hidden rounded-2xl shadow-sm border border-gray-100">
+        <div id="map-card" class="overflow-hidden rounded-2xl shadow-sm border border-gray-100">
           <div class="bg-maroon px-5 py-4 flex items-center gap-2">
             <svg class="w-4 h-4 text-white/80 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
             <span class="text-white font-bold text-base">Unde ne găsești?</span>
@@ -310,8 +320,6 @@
             </a>
           </div>
         </div><!-- /harta -->
-
-      </div><!-- /coloana stanga -->
 
       <script>
       (function () {
@@ -400,16 +408,17 @@
           render();
 
           const panel  = document.getElementById('cal-detail');
-          const dateEl = document.getElementById('cal-detail-date');
-          const langEl = document.getElementById('cal-detail-lang');
+          const dateEl    = document.getElementById('cal-detail-date');
+          const langText  = document.getElementById('cal-lang-text');
+          const langFlag  = document.getElementById('cal-lang-flag');
           const d   = new Date(YR, month, day);
           const str = d.toLocaleDateString('ro-RO', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
           const dateStr = str.charAt(0).toUpperCase() + str.slice(1);
           dateEl.textContent = dateStr;
-          const flagSpanRO = `<span style="display:inline-block;width:14px;height:14px;border-radius:50%;background:linear-gradient(to right,#002B7F 33%,#FCD116 33% 66%,#CE1126 66%);vertical-align:middle;margin-right:5px"></span>`;
-          const flagSpanEN = `<span style="display:inline-block;width:14px;height:14px;border-radius:50%;overflow:hidden;vertical-align:middle;margin-right:5px"><svg width="14" height="14" viewBox="0 0 22 22"><rect width="22" height="22" fill="#012169"/><path d="M0 0L22 22M22 0L0 22" stroke="white" stroke-width="6"/><path d="M0 0L22 22M22 0L0 22" stroke="#C8102E" stroke-width="3.5"/><rect x="9" y="0" width="4" height="22" fill="white"/><rect x="0" y="9" width="22" height="4" fill="white"/><rect x="10" y="0" width="2" height="22" fill="#C8102E"/><rect x="0" y="10" width="22" height="2" fill="#C8102E"/></svg></span>`;
-          langEl.innerHTML = lang === 'EN' ? flagSpanEN + 'Ședință EN' : flagSpanRO + 'Ședință RO';
-          langEl.className = 'flex-shrink-0 text-xs font-bold px-3 py-1 rounded-full bg-white text-gray-700';
+          const roFlag = `<span style="display:inline-block;width:14px;height:14px;border-radius:50%;background:linear-gradient(to right,#002B7F 33%,#FCD116 33% 66%,#CE1126 66%)"></span>`;
+          const enFlag = `<span style="display:inline-block;width:14px;height:14px;border-radius:50%;overflow:hidden"><svg width="14" height="14" viewBox="0 0 22 22"><rect width="22" height="22" fill="#012169"/><path d="M0 0L22 22M22 0L0 22" stroke="white" stroke-width="6"/><path d="M0 0L22 22M22 0L0 22" stroke="#C8102E" stroke-width="3.5"/><rect x="9" y="0" width="4" height="22" fill="white"/><rect x="0" y="9" width="22" height="4" fill="white"/><rect x="10" y="0" width="2" height="22" fill="#C8102E"/><rect x="0" y="10" width="22" height="2" fill="#C8102E"/></svg></span>`;
+          langText.textContent = lang === 'EN' ? 'Ședință în limba engleză' : 'Ședință în limba română';
+          langFlag.innerHTML   = lang === 'EN' ? enFlag : roFlag;
           panel.classList.remove('hidden');
 
           const cta     = document.getElementById('cal-cta');
