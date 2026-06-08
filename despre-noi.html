@@ -514,7 +514,7 @@
     <!-- Step selectors -->
     <div class="relative mb-2">
       <div class="absolute top-7 sm:top-9 lg:top-12 left-7 sm:left-[36px] lg:left-12 right-7 sm:right-[36px] lg:right-12 h-0.5 bg-gray-200" style="z-index:0">
-        <div id="eve-bar" class="h-full bg-gradient-to-r from-primary via-maroon to-gold transition-[width] duration-500 ease-in-out" style="width:0%"></div>
+        <div id="eve-bar" class="h-full transition-[width] duration-500 ease-in-out" style="width:0%;background:linear-gradient(to right,#772432,#004165,#F2DF74)"></div>
       </div>
       <div class="flex justify-between relative" style="z-index:1">
 
@@ -562,12 +562,12 @@
 
       <div id="eve-panel-0" class="eve-panel absolute inset-x-0 flex justify-center" style="opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .35s ease,transform .35s ease">
         <div class="bg-white border border-gray-100 rounded-2xl shadow-lg px-4 sm:px-8 py-4 sm:py-6 flex gap-4 sm:gap-6 items-start w-full">
-          <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-2xl bg-primary/10 flex-shrink-0 flex items-center justify-center">
-            <svg class="w-5 h-5 sm:w-7 sm:h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg>
+          <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-2xl bg-maroon/10 flex-shrink-0 flex items-center justify-center">
+            <svg class="w-5 h-5 sm:w-7 sm:h-7 text-maroon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg>
           </div>
           <div>
-            <div class="text-[10px] font-bold uppercase tracking-widest text-primary mb-1">Prima Parte</div>
-            <h3 class="font-heading font-bold text-primary text-base sm:text-xl mb-1 sm:mb-2">Discursuri pregătite</h3>
+            <div class="text-[10px] font-bold uppercase tracking-widest text-maroon mb-1">Prima Parte</div>
+            <h3 class="font-heading font-bold text-maroon text-base sm:text-xl mb-1 sm:mb-2">Discursuri pregătite</h3>
             <p class="text-gray-500 text-sm sm:text-base leading-relaxed">Membrii susțin discursuri pregătite din programul Pathways, fiecare cu obiective clare de comunicare și structură bine definită. De la discursuri introductive la prezentări complexe cu date și argumente.</p>
           </div>
         </div>
@@ -575,11 +575,11 @@
 
       <div id="eve-panel-1" class="eve-panel absolute inset-x-0 flex justify-center" style="opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .35s ease,transform .35s ease">
         <div class="bg-white border border-gray-100 rounded-2xl shadow-lg px-4 sm:px-8 py-4 sm:py-6 flex gap-4 sm:gap-6 items-start w-full">
-          <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-2xl bg-maroon/10 flex-shrink-0 flex items-center justify-center">
-            <svg class="w-5 h-5 sm:w-7 sm:h-7 text-maroon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-2xl bg-primary/10 flex-shrink-0 flex items-center justify-center">
+            <svg class="w-5 h-5 sm:w-7 sm:h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
           </div>
           <div>
-            <div class="text-[10px] font-bold uppercase tracking-widest text-maroon mb-1">A doua parte</div>
+            <div class="text-[10px] font-bold uppercase tracking-widest text-primary mb-1">A doua parte</div>
             <h3 class="font-heading font-bold text-primary text-base sm:text-xl mb-1 sm:mb-2">Discursuri Improvizate</h3>
             <p class="text-gray-500 text-sm sm:text-base leading-relaxed">Primești un subiect și ai 1–2 minute să vorbești despre el. Excelent pentru a-ți dezvolta gândirea rapidă și spontaneitatea în fața unui public.</p>
           </div>
@@ -1375,7 +1375,7 @@
   // ══════════════ VALORI TOGGLE (mobile) ══════════════
 
   // ══════════════ EVE JOURNEY ══════════════
-  const EVE_COLORS = ['#004165', '#772432', '#F2DF74'];
+  const EVE_COLORS = ['#772432', '#004165', '#F2DF74'];
   const EVE_PCTS   = [0, 50, 100];
   let eveActive = -1;
 
@@ -1391,15 +1391,15 @@
       const icon   = node.querySelector('.eve-icon');
       const label  = node.querySelector('.eve-label');
       if (j < i) {
-        circle.style.cssText += `;background:#004165;border-color:#004165;transform:scale(1);box-shadow:0 4px 14px rgba(0,65,101,0.28)`;
+        circle.style.cssText += `;background:#772432;border-color:#772432;transform:scale(1);box-shadow:0 4px 14px rgba(119,36,50,0.28)`;
         icon.style.color = 'white'; icon.style.stroke = 'white';
-        label.style.color = '#004165'; label.style.fontWeight = '700';
+        label.style.color = '#772432'; label.style.fontWeight = '700';
       } else if (j === i) {
         const c = EVE_COLORS[i];
         circle.style.cssText += `;background:${c};border-color:${c};transform:scale(1.18);box-shadow:0 0 0 7px ${c}22,0 8px 24px ${c}40`;
         icon.style.color  = j === 2 ? '#004165' : 'white';
         icon.style.stroke = j === 2 ? '#004165' : 'white';
-        label.style.color = '#004165'; label.style.fontWeight = '800';
+        label.style.color = EVE_COLORS[j]; label.style.fontWeight = '800';
       } else {
         circle.style.cssText += `;background:white;border-color:#e5e7eb;transform:scale(1);box-shadow:0 1px 4px rgba(0,0,0,0.08)`;
         icon.style.color  = '#9ca3af'; icon.style.stroke = '#9ca3af';
