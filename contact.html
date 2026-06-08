@@ -77,7 +77,7 @@
         <img src="logo.png" alt="Toastmasters International" width="40" height="40" class="h-8 sm:h-10 w-auto object-contain flex-shrink-0" />
         <div>
           <div class="text-white font-bold text-sm sm:text-base leading-tight uppercase tracking-wide">Timișoara Toastmasters</div>
-          <div class="text-gold text-[10px] sm:text-[11px] font-semibold tracking-wide leading-tight">"Where Leaders Are Made!"</div>
+          <div class="text-gold text-[10px] sm:text-[11px] font-semibold tracking-wide leading-tight">Where Leaders Are Made!</div>
         </div>
       </a>
 
@@ -107,11 +107,11 @@
         <!-- Language + TTS -->
         <div class="flex items-center gap-1.5">
           <div class="flex items-center bg-white/10 rounded-full p-0.5">
-            <button data-lang="ro" onclick="setLang('ro')" class="lang-btn active" aria-pressed="true">RO</button>
-            <button data-lang="en" onclick="setLang('en')" class="lang-btn" aria-pressed="false">EN</button>
+            <button data-lang="ro" onclick="setLang('ro')" class="lang-btn active" aria-pressed="true" aria-label="Română"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;background:linear-gradient(to right,#002B7F 33%,#FCD116 33% 66%,#CE1126 66%)"></span></button>
+            <button data-lang="en" onclick="setLang('en')" class="lang-btn" aria-pressed="false" aria-label="English"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;overflow:hidden"><svg width="22" height="22" viewBox="0 0 22 22"><rect width="22" height="22" fill="#012169"/><path d="M0 0L22 22M22 0L0 22" stroke="white" stroke-width="6"/><path d="M0 0L22 22M22 0L0 22" stroke="#C8102E" stroke-width="3.5"/><rect x="9" y="0" width="4" height="22" fill="white"/><rect x="0" y="9" width="22" height="4" fill="white"/><rect x="10" y="0" width="2" height="22" fill="#C8102E"/><rect x="0" y="10" width="22" height="2" fill="#C8102E"/></svg></span></button>
           </div>
           <button id="tts-nav-btn" data-tts-btn aria-label="Citește pagina (Alt+T)" aria-keyshortcuts="Alt+T"
-                  class="text-white/60 hover:text-white p-1.5 rounded-full hover:bg-white/10 transition-colors">
+                  class="text-white/80 hover:text-white p-1.5 rounded-full bg-white/15 hover:bg-white/25 transition-colors">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
           </button>
         </div>
@@ -174,8 +174,8 @@
         <div class="flex items-center gap-3 px-4 py-2 mt-1 border-t border-white/10">
           <span class="text-white/40 text-xs" data-i18n="nav-util-label">Limbă:</span>
           <div class="flex items-center bg-white/10 rounded-full p-0.5">
-            <button data-lang="ro" onclick="setLang('ro')" class="lang-btn active" aria-pressed="true">RO</button>
-            <button data-lang="en" onclick="setLang('en')" class="lang-btn" aria-pressed="false">EN</button>
+            <button data-lang="ro" onclick="setLang('ro')" class="lang-btn active" aria-pressed="true" aria-label="Română"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;background:linear-gradient(to right,#002B7F 33%,#FCD116 33% 66%,#CE1126 66%)"></span></button>
+            <button data-lang="en" onclick="setLang('en')" class="lang-btn" aria-pressed="false" aria-label="English"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;overflow:hidden"><svg width="22" height="22" viewBox="0 0 22 22"><rect width="22" height="22" fill="#012169"/><path d="M0 0L22 22M22 0L0 22" stroke="white" stroke-width="6"/><path d="M0 0L22 22M22 0L0 22" stroke="#C8102E" stroke-width="3.5"/><rect x="9" y="0" width="4" height="22" fill="white"/><rect x="0" y="9" width="22" height="4" fill="white"/><rect x="10" y="0" width="2" height="22" fill="#C8102E"/><rect x="0" y="10" width="22" height="2" fill="#C8102E"/></svg></span></button>
           </div>
           <button id="tts-mob-btn" data-tts-btn aria-label="Citește pagina (Alt+T)"
                   class="text-white/60 hover:text-white p-1.5 rounded-full hover:bg-white/10 transition-colors ml-auto">
@@ -220,33 +220,35 @@
         <div class="overflow-hidden rounded-2xl border border-gray-100 shadow-sm flex flex-col bg-white">
 
           <!-- Header cu navigare lună -->
-          <div class="bg-primary px-4 py-3 flex items-center justify-between">
-            <button id="cal-prev" onclick="calNav(-1)"
-              class="w-11 h-11 flex items-center justify-center rounded-full text-white/70 hover:text-white hover:bg-white/10 transition-colors disabled:opacity-30 disabled:cursor-not-allowed">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
-              </svg>
-            </button>
-            <div class="text-center">
-              <div id="cal-month-label" class="text-white font-semibold text-sm"></div>
-              <div class="flex items-center justify-center gap-3 mt-0.5 text-[10px] text-white/60">
-                <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-white/30 inline-block"></span>RO</span>
-                <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-gold inline-block"></span>EN</span>
-              </div>
+          <div class="bg-maroon px-4 py-3 flex items-center justify-between">
+            <!-- Stânga: navigare + lună/an -->
+            <div class="flex items-center gap-1">
+              <button id="cal-prev" onclick="calNav(-1)"
+                class="w-8 h-8 flex items-center justify-center rounded-full text-white/70 hover:text-white hover:bg-white/10 transition-colors disabled:opacity-30 disabled:cursor-not-allowed">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+              </button>
+              <div id="cal-month-label" class="text-white font-bold text-base px-1"></div>
+              <button id="cal-next" onclick="calNav(1)"
+                class="w-8 h-8 flex items-center justify-center rounded-full text-white/70 hover:text-white hover:bg-white/10 transition-colors disabled:opacity-30 disabled:cursor-not-allowed">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+              </button>
             </div>
-            <button id="cal-next" onclick="calNav(1)"
-              class="w-11 h-11 flex items-center justify-center rounded-full text-white/70 hover:text-white hover:bg-white/10 transition-colors disabled:opacity-30 disabled:cursor-not-allowed">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
-              </svg>
-            </button>
+            <!-- Dreapta: legende sesiuni -->
+            <div class="flex items-center gap-3">
+              <span class="flex items-center gap-1.5 text-white text-xs font-bold">
+                <span style="display:inline-block;width:18px;height:18px;border-radius:50%;background:linear-gradient(to right,#002B7F 33%,#FCD116 33% 66%,#CE1126 66%)"></span>RO
+              </span>
+              <span class="flex items-center gap-1.5 text-white text-xs font-bold">
+                <span style="display:inline-block;width:18px;height:18px;border-radius:50%;overflow:hidden"><svg width="18" height="18" viewBox="0 0 22 22"><rect width="22" height="22" fill="#012169"/><path d="M0 0L22 22M22 0L0 22" stroke="white" stroke-width="6"/><path d="M0 0L22 22M22 0L0 22" stroke="#C8102E" stroke-width="3.5"/><rect x="9" y="0" width="4" height="22" fill="white"/><rect x="0" y="9" width="22" height="4" fill="white"/><rect x="10" y="0" width="2" height="22" fill="#C8102E"/><rect x="0" y="10" width="22" height="2" fill="#C8102E"/></svg></span>EN
+              </span>
+            </div>
           </div>
 
           <!-- Detail panel -->
-          <div id="cal-detail" class="hidden border-b border-gray-100 bg-primary/5 px-4 py-3">
+          <div id="cal-detail" class="hidden border-b border-gray-100 bg-maroon/5 px-4 py-3">
             <div class="flex items-center justify-between gap-3">
               <div>
-                <div id="cal-detail-date" class="font-bold text-primary text-sm capitalize"></div>
+                <div id="cal-detail-date" class="font-bold text-maroon text-sm capitalize"></div>
                 <div class="text-gray-500 text-xs mt-0.5">19:30 – 21:00 &nbsp;·&nbsp;
                   <a href="https://maps.app.goo.gl/xf5mo1xVjvU79gQo8" target="_blank"
                      class="text-maroon hover:underline">Cowork The Office, Et. 2</a>
@@ -332,7 +334,7 @@
           let html = '';
           html += `<div class="grid grid-cols-7 mb-1">`;
           DAYS.forEach((d, i) => {
-            html += `<div class="text-center text-[10px] font-semibold py-1 ${i===2?'text-primary':'text-gray-300'}">${d}</div>`;
+            html += `<div class="text-center text-[10px] font-semibold py-1 ${i===2?'text-maroon':'text-gray-500'}">${d}</div>`;
           });
           html += `</div><div class="grid grid-cols-7 gap-y-1">`;
 
@@ -346,18 +348,23 @@
             const isSel   = sel && sel.month===m && sel.day===day;
 
             if (isWed) {
-              let cls;
-              if (isSel)       cls = lang==='EN' ? 'bg-amber-400 text-white font-bold' : 'bg-primary text-white font-bold';
-              else if (isPast) cls = lang==='EN' ? 'bg-amber-50 text-amber-300 font-semibold' : 'bg-primary/8 text-primary/30 font-semibold';
-              else             cls = lang==='EN'
-                ? 'bg-amber-100 text-amber-700 font-bold hover:bg-amber-200 transition-colors'
-                : 'bg-primary/10 text-primary font-bold hover:bg-primary/20 transition-colors';
+              let cls, sty='';
+              if (isSel) {
+                cls = lang==='EN' ? 'bg-amber-400 text-white font-bold' : 'text-white font-bold';
+                if (lang==='RO') sty = 'background:#772432';
+              } else if (isPast) {
+                cls = lang==='EN' ? 'bg-amber-50 text-amber-300 font-semibold' : 'text-maroon/40 font-semibold';
+                if (lang==='RO') sty = 'background:rgba(119,36,50,.07)';
+              } else {
+                cls = lang==='EN' ? 'bg-amber-100 text-amber-700 font-bold hover:bg-amber-200 transition-colors' : 'text-maroon font-bold transition-colors';
+                if (lang==='RO') sty = 'background:rgba(119,36,50,.18)';
+              }
               const _ariaDate = new Date(YR, m, day).toLocaleDateString('ro-RO', {weekday:'long', day:'numeric', month:'long'});
               html += `<div class="flex items-center justify-center">
-                <button class="w-11 h-11 rounded-full text-xs ${cls}" onclick="calSel(${m},${day},'${lang}')" aria-label="${_ariaDate}, ședință ${lang}">${day}</button>
+                <button class="w-11 h-11 rounded-full text-sm ${cls}" style="${sty}" onclick="calSel(${m},${day},'${lang}')" aria-label="${_ariaDate}, ședință ${lang}">${day}</button>
               </div>`;
             } else {
-              const cls = isToday ? 'text-maroon font-bold' : isPast ? 'text-gray-200' : 'text-gray-400';
+              const cls = isToday ? 'text-primary font-bold' : isPast ? 'text-gray-300' : 'text-gray-600';
               html += `<div class="flex items-center justify-center h-9"><span class="text-xs ${cls}">${day}</span></div>`;
             }
           }
@@ -385,17 +392,17 @@
           const str = d.toLocaleDateString('ro-RO', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
           const dateStr = str.charAt(0).toUpperCase() + str.slice(1);
           dateEl.textContent = dateStr;
-          langEl.textContent = lang === 'EN' ? 'Ședință EN' : 'Ședință RO';
-          langEl.className   = lang === 'EN'
-            ? 'flex-shrink-0 text-xs font-bold px-3 py-1 rounded-full bg-amber-100 text-amber-700'
-            : 'flex-shrink-0 text-xs font-bold px-3 py-1 rounded-full bg-primary/10 text-primary';
+          const flagSpanRO = `<span style="display:inline-block;width:14px;height:14px;border-radius:50%;background:linear-gradient(to right,#002B7F 33%,#FCD116 33% 66%,#CE1126 66%);vertical-align:middle;margin-right:5px"></span>`;
+          const flagSpanEN = `<span style="display:inline-block;width:14px;height:14px;border-radius:50%;overflow:hidden;vertical-align:middle;margin-right:5px"><svg width="14" height="14" viewBox="0 0 22 22"><rect width="22" height="22" fill="#012169"/><path d="M0 0L22 22M22 0L0 22" stroke="white" stroke-width="6"/><path d="M0 0L22 22M22 0L0 22" stroke="#C8102E" stroke-width="3.5"/><rect x="9" y="0" width="4" height="22" fill="white"/><rect x="0" y="9" width="22" height="4" fill="white"/><rect x="10" y="0" width="2" height="22" fill="#C8102E"/><rect x="0" y="10" width="22" height="2" fill="#C8102E"/></svg></span>`;
+          langEl.innerHTML = lang === 'EN' ? flagSpanEN + 'Ședință EN' : flagSpanRO + 'Ședință RO';
+          langEl.className = 'flex-shrink-0 text-xs font-bold px-3 py-1 rounded-full bg-white text-gray-700';
           panel.classList.remove('hidden');
 
           const cta     = document.getElementById('cal-cta');
           const ctaTxt  = document.getElementById('cal-cta-text');
           const shortDate = d.toLocaleDateString('ro-RO', { day:'numeric', month:'long' });
           ctaTxt.textContent = 'Vreau să vin pe ' + shortDate;
-          cta.className = 'w-full flex items-center justify-center gap-2 bg-gold hover:bg-gold-light text-primary font-semibold text-sm px-6 py-3 rounded-xl transition-all duration-300 shadow-md shadow-gold/20 hover:scale-[1.02] pointer-events-auto cursor-pointer';
+          cta.className = 'w-full flex items-center justify-center gap-2 bg-primary hover:bg-primary-light text-white font-semibold text-sm px-6 py-3 rounded-xl transition-all duration-300 shadow-md shadow-primary/20 hover:scale-[1.02] pointer-events-auto cursor-pointer';
 
           const formField = document.getElementById('form-sedinta');
           if (formField) formField.value = dateStr + (lang === 'EN' ? ' (EN)' : ' (RO)');
@@ -429,30 +436,33 @@
       </script>
 
       <!-- Coloana dreapta: Formular -->
-      <div id="form-card" class="bg-white rounded-3xl p-5 sm:p-8 shadow-sm border border-gray-100">
-        <h3 class="font-heading text-2xl font-bold text-primary mb-6" data-i18n="ct-form-h3">Înscrie-te ca invitat</h3>
+      <div id="form-card" class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100">
+        <div class="bg-maroon px-5 sm:px-8 py-4 flex items-center">
+          <h3 class="font-heading text-base sm:text-lg font-bold text-white" data-i18n="ct-form-h3">Înscrie-te ca invitat</h3>
+        </div>
+        <div class="p-5 sm:p-8">
         <form id="contact-form" onsubmit="submitForm(event)" class="space-y-3 sm:space-y-5">
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             <div>
               <label for="ct-prenume" class="block text-sm font-medium text-gray-700 mb-1.5"><span data-i18n="ct-prenume">Prenume</span> <span class="text-maroon" aria-hidden="true">*</span></label>
               <input id="ct-prenume" type="text" placeholder="Ion" required autocomplete="given-name"
-                class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/60 focus:border-primary transition-all" />
+                class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-gray-400 transition-all" />
             </div>
             <div>
               <label for="ct-nume" class="block text-sm font-medium text-gray-700 mb-1.5" data-i18n="ct-nome">Nume</label>
               <input id="ct-nume" type="text" placeholder="Popescu" autocomplete="family-name"
-                class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/60 focus:border-primary transition-all" />
+                class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-gray-400 transition-all" />
             </div>
           </div>
           <div>
             <label for="ct-email" class="block text-sm font-medium text-gray-700 mb-1.5"><span data-i18n="ct-email">Email</span> <span class="text-maroon" aria-hidden="true">*</span></label>
             <input id="ct-email" type="email" placeholder="ion.popescu@email.com" required autocomplete="email"
-              class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/60 focus:border-primary transition-all" />
+              class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-gray-400 transition-all" />
           </div>
           <div>
             <label for="ct-telefon" class="block text-sm font-medium text-gray-700 mb-1.5"><span data-i18n="ct-tel">Telefon</span> <span class="text-gray-400" data-i18n="ct-optional">(opțional)</span></label>
             <input id="ct-telefon" type="tel" placeholder="+40 7XX XXX XXX" autocomplete="tel"
-              class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/60 focus:border-primary transition-all" />
+              class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-gray-400 transition-all" />
           </div>
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1.5">
@@ -461,24 +471,24 @@
             </label>
             <div class="relative">
               <input id="form-sedinta" type="text" readonly placeholder="Selectează o dată din calendar…"
-                class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm bg-gray-50 text-primary font-medium cursor-default focus:outline-none" />
+                class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm bg-gray-50 text-gray-800 font-medium cursor-default focus:outline-none" />
               <svg class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
             </div>
           </div>
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1.5" data-i18n="ct-mesaj">Mesaj</label>
             <textarea rows="3" placeholder="Sunt interesat să vin ca invitat la o ședință…"
-              class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/60 focus:border-primary transition-all resize-none"></textarea>
+              class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-gray-400 transition-all resize-none"></textarea>
           </div>
           <button type="submit" id="form-submit-btn"
-            class="w-full bg-gold hover:bg-gold-light text-primary font-semibold py-3.5 rounded-xl text-sm
-                   transition-all duration-200 hover:scale-[1.02] shadow-md shadow-gold/20">
+            class="w-full bg-primary hover:bg-primary-light text-white font-semibold py-3.5 rounded-xl text-sm
+                   transition-all duration-200 hover:scale-[1.02] shadow-md shadow-primary/20">
             <span data-i18n="ct-submit">Rezervă-mi locul</span>
           </button>
           <p id="form-error" role="alert" aria-live="assertive" class="hidden text-sm text-red-600 text-center bg-red-50 rounded-xl py-2.5 px-4">
             A apărut o eroare. Încearcă din nou sau scrie-ne pe <a href="https://www.facebook.com/timisoara.toastmasters" target="_blank" class="font-semibold underline">Facebook</a>.
           </p>
-          <p class="text-xs text-gray-400 text-center">Prin trimitere accepți <a href="cookies.html" class="text-maroon hover:underline">Politica de confidențialitate</a></p>
+          <p class="text-xs text-gray-400 text-center mt-2">Prin trimitere accepți<br/><a href="cookies.html" class="text-maroon hover:underline">Politica de confidențialitate</a></p>
         </form>
         <div id="form-success" role="status" aria-live="polite" class="hidden text-center py-8">
           <div class="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -486,6 +496,7 @@
           </div>
           <h4 class="font-semibold text-primary text-lg mb-2" data-i18n="ct-ok-h">Mulțumim!</h4>
           <p class="text-gray-500 text-sm" data-i18n="ct-ok-p">Cineva din echipa noastră te contactează în 24–48 de ore cu toate detaliile.</p>
+        </div>
         </div>
       </div>
 

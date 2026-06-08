@@ -121,7 +121,7 @@
         <img src="logo.png" alt="Toastmasters International" width="40" height="40" class="h-8 sm:h-10 w-auto object-contain flex-shrink-0" />
         <div>
           <div class="text-white font-bold text-sm sm:text-base leading-tight uppercase tracking-wide">Timișoara Toastmasters</div>
-          <div class="text-gold text-[10px] sm:text-[11px] font-semibold tracking-wide leading-tight">"Where Leaders Are Made!"</div>
+          <div class="text-gold text-[10px] sm:text-[11px] font-semibold tracking-wide leading-tight">Where Leaders Are Made!</div>
         </div>
       </a>
 
@@ -151,11 +151,11 @@
         <!-- Language + TTS -->
         <div class="flex items-center gap-1.5">
           <div class="flex items-center bg-white/10 rounded-full p-0.5">
-            <button data-lang="ro" onclick="setLang('ro')" class="lang-btn active" aria-pressed="true">RO</button>
-            <button data-lang="en" onclick="setLang('en')" class="lang-btn" aria-pressed="false">EN</button>
+            <button data-lang="ro" onclick="setLang('ro')" class="lang-btn active" aria-pressed="true" aria-label="Română"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;background:linear-gradient(to right,#002B7F 33%,#FCD116 33% 66%,#CE1126 66%)"></span></button>
+            <button data-lang="en" onclick="setLang('en')" class="lang-btn" aria-pressed="false" aria-label="English"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;overflow:hidden"><svg width="22" height="22" viewBox="0 0 22 22"><rect width="22" height="22" fill="#012169"/><path d="M0 0L22 22M22 0L0 22" stroke="white" stroke-width="6"/><path d="M0 0L22 22M22 0L0 22" stroke="#C8102E" stroke-width="3.5"/><rect x="9" y="0" width="4" height="22" fill="white"/><rect x="0" y="9" width="22" height="4" fill="white"/><rect x="10" y="0" width="2" height="22" fill="#C8102E"/><rect x="0" y="10" width="22" height="2" fill="#C8102E"/></svg></span></button>
           </div>
           <button id="tts-nav-btn" data-tts-btn aria-label="Citește pagina (Alt+T)" aria-keyshortcuts="Alt+T"
-                  class="text-white/60 hover:text-white p-1.5 rounded-full hover:bg-white/10 transition-colors">
+                  class="text-white/80 hover:text-white p-1.5 rounded-full bg-white/15 hover:bg-white/25 transition-colors">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
           </button>
         </div>
@@ -218,8 +218,8 @@
         <div class="flex items-center gap-3 px-4 py-2 mt-1 border-t border-white/10">
           <span class="text-white/40 text-xs" data-i18n="nav-util-label">Limbă:</span>
           <div class="flex items-center bg-white/10 rounded-full p-0.5">
-            <button data-lang="ro" onclick="setLang('ro')" class="lang-btn active" aria-pressed="true">RO</button>
-            <button data-lang="en" onclick="setLang('en')" class="lang-btn" aria-pressed="false">EN</button>
+            <button data-lang="ro" onclick="setLang('ro')" class="lang-btn active" aria-pressed="true" aria-label="Română"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;background:linear-gradient(to right,#002B7F 33%,#FCD116 33% 66%,#CE1126 66%)"></span></button>
+            <button data-lang="en" onclick="setLang('en')" class="lang-btn" aria-pressed="false" aria-label="English"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;overflow:hidden"><svg width="22" height="22" viewBox="0 0 22 22"><rect width="22" height="22" fill="#012169"/><path d="M0 0L22 22M22 0L0 22" stroke="white" stroke-width="6"/><path d="M0 0L22 22M22 0L0 22" stroke="#C8102E" stroke-width="3.5"/><rect x="9" y="0" width="4" height="22" fill="white"/><rect x="0" y="9" width="22" height="4" fill="white"/><rect x="10" y="0" width="2" height="22" fill="#C8102E"/><rect x="0" y="10" width="22" height="2" fill="#C8102E"/></svg></span></button>
           </div>
           <button id="tts-mob-btn" data-tts-btn aria-label="Citește pagina (Alt+T)"
                   class="text-white/60 hover:text-white p-1.5 rounded-full hover:bg-white/10 transition-colors ml-auto">
@@ -377,57 +377,6 @@
     <p id="lb-counter" class="text-white/35 text-xs mt-1 font-mono"></p>
   </div>
 </div>
-
-<!-- ════════════════════ CTA ════════════════════ -->
-<section class="py-14 lg:py-24 bg-primary relative overflow-hidden">
-  <div class="absolute top-[-40px] right-[-80px] w-80 h-80 rounded-full border border-gold/8 pointer-events-none" aria-hidden="true"></div>
-  <div class="absolute bottom-[-60px] left-[-50px] w-72 h-72 rounded-full border border-white/5 pointer-events-none" aria-hidden="true"></div>
-  <div class="max-w-3xl mx-auto px-5 text-center relative z-10">
-    <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight" data-i18n="gal-cta-h2">
-      Prima ședință e gratuită.<br/>
-      <span class="text-gold">Mereu.</span>
-    </h2>
-    <p class="text-white/65 text-lg mb-8 leading-relaxed max-w-xl mx-auto" data-i18n="gal-cta-p">
-      Miercuri seară la Cowork The Office, Timișoara.<br class="hidden sm:block"/>
-      Zero presiune. Zero obligații.
-    </p>
-    <!-- Stats strip -->
-    <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-4 mb-8 py-6 border-t border-b border-white/10">
-      <div class="text-center">
-        <div class="text-2xl sm:text-3xl font-bold text-white">17+</div>
-        <div class="text-white/50 text-xs sm:text-sm mt-0.5">ani de activitate</div>
-      </div>
-      <div class="text-center">
-        <div class="text-2xl sm:text-3xl font-bold text-white">30+</div>
-        <div class="text-white/50 text-xs sm:text-sm mt-0.5">premii de excelență</div>
-      </div>
-      <div class="text-center">
-        <div class="text-2xl sm:text-3xl font-bold text-gold">4.9★</div>
-        <div class="text-white/50 text-xs sm:text-sm mt-0.5">rating Google</div>
-      </div>
-      <div class="text-center">
-        <div class="text-2xl sm:text-3xl font-bold text-white">14.000+</div>
-        <div class="text-white/50 text-xs sm:text-sm mt-0.5">cluburi TM global</div>
-      </div>
-    </div>
-    <a href="contact.html"
-       class="inline-flex items-center gap-2 bg-gold hover:bg-gold-light text-primary font-bold px-8 py-4 rounded-full text-base transition-all duration-200 hover:scale-105 shadow-lg shadow-gold/30">
-      <span data-i18n="gal-cta-btn">Hai și tu la o ședință</span>
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-    </a>
-    <!-- Social proof -->
-    <div class="flex flex-wrap justify-center items-center gap-x-5 gap-y-2 mt-6 text-white/40 text-xs sm:text-sm">
-      <div class="flex items-center gap-1.5">
-        <img src="logo.png" alt="" class="h-3.5 w-auto opacity-45" aria-hidden="true" />
-        Afiliat din 2008
-      </div>
-      <span class="hidden sm:inline">·</span>
-      <span>#1 Club în România</span>
-      <span class="hidden sm:inline">·</span>
-      <span>Rețeaua globală Toastmasters International</span>
-    </div>
-  </div>
-</section>
 
 <!-- ════════════════════ FOOTER ════════════════════ -->
 

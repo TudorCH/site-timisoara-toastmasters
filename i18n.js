@@ -6,11 +6,11 @@
   /* ── Inject CSS for lang buttons ── */
   var css = document.createElement('style');
   css.textContent =
-    '.lang-btn{padding:3px 10px;border-radius:999px;font-size:11px;font-weight:600;' +
-    'color:rgba(255,255,255,.5);transition:all .2s ease;cursor:pointer;' +
-    'background:transparent;border:none;line-height:1.4;}' +
-    '.lang-btn:hover{color:rgba(255,255,255,.85);}' +
-    '.lang-btn.active{background:white;color:#004165;font-weight:700;}';
+    '.lang-btn{padding:3px;border-radius:50%;transition:all .2s ease;cursor:pointer;' +
+    'background:transparent;border:2px solid transparent;opacity:0.5;line-height:0;' +
+    'display:inline-flex;align-items:center;justify-content:center;}' +
+    '.lang-btn:hover{opacity:0.85;}' +
+    '.lang-btn.active{border-color:rgba(255,255,255,.9);opacity:1;box-shadow:0 0 0 1px rgba(255,255,255,.2);}';
   document.head.appendChild(css);
 
   /* ── English translations (RO is already in the HTML) ── */

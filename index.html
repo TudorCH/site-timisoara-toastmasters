@@ -226,7 +226,7 @@
         <img src="logo.png" alt="Toastmasters International" width="40" height="40" class="h-8 sm:h-10 w-auto object-contain flex-shrink-0" />
         <div>
           <div class="text-white font-bold text-sm sm:text-base leading-tight uppercase tracking-wide">Timișoara Toastmasters</div>
-          <div class="text-gold text-[10px] sm:text-[11px] font-semibold tracking-wide leading-tight">"Where Leaders Are Made!"</div>
+          <div class="text-gold text-[10px] sm:text-[11px] font-semibold tracking-wide leading-tight">Where Leaders Are Made!</div>
         </div>
       </a>
 
@@ -256,11 +256,11 @@
         <!-- Language + TTS -->
         <div class="flex items-center gap-1.5">
           <div class="flex items-center bg-white/10 rounded-full p-0.5">
-            <button data-lang="ro" onclick="setLang('ro')" class="lang-btn active" aria-pressed="true">RO</button>
-            <button data-lang="en" onclick="setLang('en')" class="lang-btn" aria-pressed="false">EN</button>
+            <button data-lang="ro" onclick="setLang('ro')" class="lang-btn active" aria-pressed="true" aria-label="Română"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;background:linear-gradient(to right,#002B7F 33%,#FCD116 33% 66%,#CE1126 66%)"></span></button>
+            <button data-lang="en" onclick="setLang('en')" class="lang-btn" aria-pressed="false" aria-label="English"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;overflow:hidden"><svg width="22" height="22" viewBox="0 0 22 22"><rect width="22" height="22" fill="#012169"/><path d="M0 0L22 22M22 0L0 22" stroke="white" stroke-width="6"/><path d="M0 0L22 22M22 0L0 22" stroke="#C8102E" stroke-width="3.5"/><rect x="9" y="0" width="4" height="22" fill="white"/><rect x="0" y="9" width="22" height="4" fill="white"/><rect x="10" y="0" width="2" height="22" fill="#C8102E"/><rect x="0" y="10" width="22" height="2" fill="#C8102E"/></svg></span></button>
           </div>
           <button id="tts-nav-btn" data-tts-btn aria-label="Citește pagina (Alt+T)" aria-keyshortcuts="Alt+T"
-                  class="text-white/60 hover:text-white p-1.5 rounded-full hover:bg-white/10 transition-colors">
+                  class="text-white/80 hover:text-white p-1.5 rounded-full bg-white/15 hover:bg-white/25 transition-colors">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
           </button>
         </div>
@@ -323,8 +323,8 @@
         <div class="flex items-center gap-3 px-4 py-2 mt-1 border-t border-white/10">
           <span class="text-white/40 text-xs" data-i18n="nav-util-label">Limbă:</span>
           <div class="flex items-center bg-white/10 rounded-full p-0.5">
-            <button data-lang="ro" onclick="setLang('ro')" class="lang-btn active" aria-pressed="true">RO</button>
-            <button data-lang="en" onclick="setLang('en')" class="lang-btn" aria-pressed="false">EN</button>
+            <button data-lang="ro" onclick="setLang('ro')" class="lang-btn active" aria-pressed="true" aria-label="Română"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;background:linear-gradient(to right,#002B7F 33%,#FCD116 33% 66%,#CE1126 66%)"></span></button>
+            <button data-lang="en" onclick="setLang('en')" class="lang-btn" aria-pressed="false" aria-label="English"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;overflow:hidden"><svg width="22" height="22" viewBox="0 0 22 22"><rect width="22" height="22" fill="#012169"/><path d="M0 0L22 22M22 0L0 22" stroke="white" stroke-width="6"/><path d="M0 0L22 22M22 0L0 22" stroke="#C8102E" stroke-width="3.5"/><rect x="9" y="0" width="4" height="22" fill="white"/><rect x="0" y="9" width="22" height="4" fill="white"/><rect x="10" y="0" width="2" height="22" fill="#C8102E"/><rect x="0" y="10" width="22" height="2" fill="#C8102E"/></svg></span></button>
           </div>
           <button id="tts-mob-btn" data-tts-btn aria-label="Citește pagina (Alt+T)"
                   class="text-white/60 hover:text-white p-1.5 rounded-full hover:bg-white/10 transition-colors ml-auto">
@@ -1684,6 +1684,17 @@
   const JRN_COLORS = ['#004165','#772432','#772432','#5c1a25','#F2DF74'];
   const JRN_PCTS   = [0, 25, 50, 75, 100];
   let jrnActive = -1;
+  let jrnAutoTimer = null;
+  let jrnVisible = false;
+
+  function jrnScheduleNext() {
+    clearTimeout(jrnAutoTimer);
+    if (!jrnVisible) return;
+    jrnAutoTimer = setTimeout(() => {
+      const next = (jrnActive + 1) % JRN_PCTS.length;
+      jrnSelect(next);
+    }, 10000);
+  }
 
   function jrnSelect(idx) {
     if (jrnActive === idx) return;
@@ -1739,16 +1750,21 @@
         container.style.minHeight = (activePanel.scrollHeight + 32) + 'px';
       });
     }
+
+    jrnScheduleNext();
   }
 
-  // Auto-trigger step 1 when section enters viewport
+  // Start/stop auto-cycle based on section visibility
   const jrnSect = document.getElementById('journey-section');
   if (jrnSect) {
     const jrnObs = new IntersectionObserver(entries => {
       entries.forEach(e => {
-        if (e.isIntersecting && jrnActive === -1) {
-          setTimeout(() => jrnSelect(0), 350);
-          jrnObs.disconnect();
+        jrnVisible = e.isIntersecting;
+        if (e.isIntersecting) {
+          if (jrnActive === -1) setTimeout(() => jrnSelect(0), 350);
+          else jrnScheduleNext();
+        } else {
+          clearTimeout(jrnAutoTimer);
         }
       });
     }, { threshold: 0.3 });

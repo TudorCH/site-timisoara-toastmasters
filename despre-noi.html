@@ -193,7 +193,7 @@
         <img src="logo.png" alt="Toastmasters International" width="40" height="40" class="h-8 sm:h-10 w-auto object-contain flex-shrink-0" />
         <div>
           <div class="text-white font-bold text-sm sm:text-base leading-tight uppercase tracking-wide">Timișoara Toastmasters</div>
-          <div class="text-gold text-[10px] sm:text-[11px] font-semibold tracking-wide leading-tight">"Where Leaders Are Made!"</div>
+          <div class="text-gold text-[10px] sm:text-[11px] font-semibold tracking-wide leading-tight">Where Leaders Are Made!</div>
         </div>
       </a>
 
@@ -223,11 +223,11 @@
         <!-- Language + TTS -->
         <div class="flex items-center gap-1.5">
           <div class="flex items-center bg-white/10 rounded-full p-0.5">
-            <button data-lang="ro" onclick="setLang('ro')" class="lang-btn active" aria-pressed="true">RO</button>
-            <button data-lang="en" onclick="setLang('en')" class="lang-btn" aria-pressed="false">EN</button>
+            <button data-lang="ro" onclick="setLang('ro')" class="lang-btn active" aria-pressed="true" aria-label="Română"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;background:linear-gradient(to right,#002B7F 33%,#FCD116 33% 66%,#CE1126 66%)"></span></button>
+            <button data-lang="en" onclick="setLang('en')" class="lang-btn" aria-pressed="false" aria-label="English"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;overflow:hidden"><svg width="22" height="22" viewBox="0 0 22 22"><rect width="22" height="22" fill="#012169"/><path d="M0 0L22 22M22 0L0 22" stroke="white" stroke-width="6"/><path d="M0 0L22 22M22 0L0 22" stroke="#C8102E" stroke-width="3.5"/><rect x="9" y="0" width="4" height="22" fill="white"/><rect x="0" y="9" width="22" height="4" fill="white"/><rect x="10" y="0" width="2" height="22" fill="#C8102E"/><rect x="0" y="10" width="22" height="2" fill="#C8102E"/></svg></span></button>
           </div>
           <button id="tts-nav-btn" data-tts-btn aria-label="Citește pagina (Alt+T)" aria-keyshortcuts="Alt+T"
-                  class="text-white/60 hover:text-white p-1.5 rounded-full hover:bg-white/10 transition-colors">
+                  class="text-white/80 hover:text-white p-1.5 rounded-full bg-white/15 hover:bg-white/25 transition-colors">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
           </button>
         </div>
@@ -290,8 +290,8 @@
         <div class="flex items-center gap-3 px-4 py-2 mt-1 border-t border-white/10">
           <span class="text-white/40 text-xs" data-i18n="nav-util-label">Limbă:</span>
           <div class="flex items-center bg-white/10 rounded-full p-0.5">
-            <button data-lang="ro" onclick="setLang('ro')" class="lang-btn active" aria-pressed="true">RO</button>
-            <button data-lang="en" onclick="setLang('en')" class="lang-btn" aria-pressed="false">EN</button>
+            <button data-lang="ro" onclick="setLang('ro')" class="lang-btn active" aria-pressed="true" aria-label="Română"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;background:linear-gradient(to right,#002B7F 33%,#FCD116 33% 66%,#CE1126 66%)"></span></button>
+            <button data-lang="en" onclick="setLang('en')" class="lang-btn" aria-pressed="false" aria-label="English"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;overflow:hidden"><svg width="22" height="22" viewBox="0 0 22 22"><rect width="22" height="22" fill="#012169"/><path d="M0 0L22 22M22 0L0 22" stroke="white" stroke-width="6"/><path d="M0 0L22 22M22 0L0 22" stroke="#C8102E" stroke-width="3.5"/><rect x="9" y="0" width="4" height="22" fill="white"/><rect x="0" y="9" width="22" height="4" fill="white"/><rect x="10" y="0" width="2" height="22" fill="#C8102E"/><rect x="0" y="10" width="22" height="2" fill="#C8102E"/></svg></span></button>
           </div>
           <button id="tts-mob-btn" data-tts-btn aria-label="Citește pagina (Alt+T)"
                   class="text-white/60 hover:text-white p-1.5 rounded-full hover:bg-white/10 transition-colors ml-auto">
@@ -400,7 +400,7 @@
       Misiunea unui club Toastmasters
     </h2>
     <p class="text-gray-600 text-lg leading-relaxed text-center" data-i18n="mission-text">
-      Misiunea unui club Toastmasters este de a oferi o experiență de învățare într-un mediu pozitiv și de suport reciproc, prin intermediul căruia fiecare membru să își dezvolte abilitățile de comunicare și de leadership, toate acestea ducând la dezvoltarea personală, profesională și la creșterea încrederii în sine.
+      „Misiunea unui club Toastmasters este de a oferi o experiență de învățare într-un mediu pozitiv și de suport reciproc, prin intermediul căruia fiecare membru să își dezvolte abilitățile de comunicare și de leadership, toate acestea ducând la dezvoltarea personală, profesională și la creșterea încrederii în sine."
     </p>
     <p class="mt-4 text-sm text-gray-400 font-medium text-center" data-i18n="mission-source">Toastmasters International</p>
   </div>
@@ -1026,7 +1026,7 @@
          data-i18n="cta-btn1">
         Rezervă-ți locul →
       </a>
-      <a href="index.html#schedule"
+      <a href="contact.html#main-content"
          class="bg-white/10 hover:bg-white/20 border border-white/30 text-white font-semibold px-8 py-4
                 rounded-full text-lg transition-all duration-200"
          data-i18n="cta-btn2">
@@ -1180,7 +1180,7 @@
       'hero-pill':          '<span class="text-gold font-bold">Miercuri, 19:30–21:00</span>&nbsp;·&nbsp; Cowork The Office, Timișoara&nbsp;·&nbsp;<span class="text-white/70">intrare liberă pentru vizitatori</span>',
       'mission-badge':       'Misiunea noastră',
       'mission-h2':         'Misiunea unui club Toastmasters',
-      'mission-text':       'Misiunea unui club Toastmasters este de a oferi o experiență de învățare într-un mediu pozitiv și de suport reciproc, prin intermediul căruia fiecare membru să își dezvolte abilitățile de comunicare și de leadership, toate acestea ducând la dezvoltarea personală, profesională și la creșterea încrederii în sine.',
+      'mission-text':       '„Misiunea unui club Toastmasters este de a oferi o experiență de învățare într-un mediu pozitiv și de suport reciproc, prin intermediul căruia fiecare membru să își dezvolte abilitățile de comunicare și de leadership, toate acestea ducând la dezvoltarea personală, profesională și la creșterea încrederii în sine."',
       'mission-source':     'Toastmasters International',
       'tm-badge':           'Rețeaua globală',
       'tm-h2':              'Parte dintr-o mișcare globală<br/>de peste 100 de ani',
@@ -1280,7 +1280,7 @@
       'hero-pill':          '<span class="text-gold font-bold">Wednesday, 7:30–9:00 PM</span>&nbsp;·&nbsp; Cowork The Office, Timișoara&nbsp;·&nbsp;<span class="text-white/70">free entry for visitors</span>',
       'mission-badge':       'Our Mission',
       'mission-h2':         'The Mission of a Toastmasters Club',
-      'mission-text':       'The mission of a Toastmasters club is to provide a learning experience in a positive, mutually supportive environment where every member has the opportunity to develop communication and leadership skills, leading to greater self-confidence and personal and professional growth.',
+      'mission-text':       '“The mission of a Toastmasters club is to provide a learning experience in a positive, mutually supportive environment where every member has the opportunity to develop communication and leadership skills, leading to greater self-confidence and personal and professional growth.”',
       'mission-source':     'Toastmasters International',
       'tm-badge':           'The Global Network',
       'tm-h2':              'Part of a Global Movement<br/>Over 100 Years Strong',
