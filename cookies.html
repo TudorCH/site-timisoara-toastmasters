@@ -17,7 +17,7 @@
     .gradient-hero { background: linear-gradient(135deg, #002d47 0%, #004165 55%, #003555 100%); }
     .nav-link { position: relative; }
     .nav-link::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:2px; background:#F2DF74; transition:width .3s ease; }
-    .nav-link:hover::after { width:100%; }
+    .nav-link:hover::after, .nav-link.nav-active::after { width:100%; }
     #mobile-menu { transition:all .3s ease; }
 
     /* ── Prose ── */
@@ -101,10 +101,10 @@
         </div>
       </a>
       <div class="hidden lg:flex items-center gap-6">
-        <a href="index.html"      class="nav-link text-white/80 hover:text-white text-sm font-medium transition-colors">Acasă</a>
-        <a href="despre-noi.html" class="nav-link text-white/80 hover:text-white text-sm font-medium transition-colors">Despre noi</a>
-        <a href="galerie.html"    class="nav-link text-white/80 hover:text-white text-sm font-medium transition-colors">Galerie</a>
-        <a href="contact.html"    class="nav-link text-white/80 hover:text-white text-sm font-medium transition-colors">Contact</a>
+        <a href="index.html"      class="nav-link text-white/70 hover:text-gold text-sm font-medium transition-colors">Acasă</a>
+        <a href="despre-noi.html" class="nav-link text-white/70 hover:text-gold text-sm font-medium transition-colors">Despre noi</a>
+        <a href="galerie.html"    class="nav-link text-white/70 hover:text-gold text-sm font-medium transition-colors">Galerie</a>
+        <a href="contact.html"    class="nav-link text-white/70 hover:text-gold text-sm font-medium transition-colors">Contact</a>
         <a href="contact.html" class="ml-1 bg-maroon hover:bg-maroon-light text-white font-semibold px-5 py-2 rounded-full text-sm transition-all duration-200 hover:scale-105 shadow-md shadow-maroon/30">
           Hai la o ședință
         </a>
@@ -119,10 +119,10 @@
     </div>
     <div id="mobile-menu" class="hidden lg:hidden border-t border-white/10 pt-4 pb-5">
       <div class="flex flex-col gap-1">
-        <a href="index.html"      class="text-white/80 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium">Acasă</a>
-        <a href="despre-noi.html" class="text-white/80 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium">Despre noi</a>
-        <a href="galerie.html"    class="text-white/80 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium">Galerie</a>
-        <a href="contact.html"    class="text-white/80 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium">Contact</a>
+        <a href="index.html"      class="text-white/70 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors">Acasă</a>
+        <a href="despre-noi.html" class="text-white/70 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors">Despre noi</a>
+        <a href="galerie.html"    class="text-white/70 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors">Galerie</a>
+        <a href="contact.html"    class="text-white/70 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors">Contact</a>
         <div class="pt-2 px-4">
           <a href="contact.html" class="block w-full bg-maroon text-white font-semibold px-5 py-3 rounded-full text-sm text-center">
             Hai la o ședință →

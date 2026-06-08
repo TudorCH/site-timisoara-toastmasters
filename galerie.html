@@ -45,7 +45,7 @@
 
     .nav-link { position: relative; }
     .nav-link::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:2px; background:#F2DF74; transition:width .3s ease; }
-    .nav-link:hover::after { width:100%; }
+    .nav-link:hover::after, .nav-link.nav-active::after { width:100%; }
     .search-input:focus { outline:none; box-shadow:0 0 0 2px rgba(242,223,116,.4); }
 
     .badge {
@@ -127,10 +127,10 @@
 
       <!-- Desktop nav + search -->
       <div class="hidden lg:flex items-center gap-6">
-        <a href="index.html"         class="nav-link text-white/80 hover:text-white text-sm font-medium transition-colors" data-i18n="nav-home">Acasă</a>
-        <a href="despre-noi.html"    class="nav-link text-white/80 hover:text-white text-sm font-medium transition-colors" data-i18n="nav-about">Despre noi</a>
-        <a href="galerie.html"       class="nav-link text-gold text-sm font-semibold transition-colors" data-i18n="nav-gallery">Galerie</a>
-        <a href="contact.html" class="nav-link text-white/80 hover:text-white text-sm font-medium transition-colors" data-i18n="nav-contact">Contact</a>
+        <a href="index.html"         class="nav-link text-white/70 hover:text-gold text-sm font-medium transition-colors" data-i18n="nav-home">Acasă</a>
+        <a href="despre-noi.html"    class="nav-link text-white/70 hover:text-gold text-sm font-medium transition-colors" data-i18n="nav-about">Despre noi</a>
+        <a href="galerie.html"       class="nav-link nav-active text-white text-sm font-bold transition-colors" data-i18n="nav-gallery">Galerie</a>
+        <a href="contact.html" class="nav-link text-white/70 hover:text-gold text-sm font-medium transition-colors" data-i18n="nav-contact">Contact</a>
 
         <!-- Search bar -->
         <div class="relative ml-2">
@@ -210,10 +210,10 @@
     <!-- Mobile menu -->
     <div id="mobile-menu" class="hidden lg:hidden border-t border-white/10 pt-4 pb-5">
       <div class="flex flex-col gap-1">
-        <a href="index.html"         onclick="closeMobile()" class="text-white/80 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors" data-i18n="nav-home">Acasă</a>
-        <a href="despre-noi.html"    onclick="closeMobile()" class="text-white/80 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors" data-i18n="nav-about">Despre noi</a>
-        <a href="galerie.html"       onclick="closeMobile()" class="text-gold bg-white/5 rounded-xl px-4 py-3 text-sm font-semibold" data-i18n="nav-gallery">Galerie</a>
-        <a href="contact.html" onclick="closeMobile()" class="text-white/80 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors" data-i18n="nav-contact">Contact</a>
+        <a href="index.html"         onclick="closeMobile()" class="text-white/70 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors" data-i18n="nav-home">Acasă</a>
+        <a href="despre-noi.html"    onclick="closeMobile()" class="text-white/70 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors" data-i18n="nav-about">Despre noi</a>
+        <a href="galerie.html"       onclick="closeMobile()" class="nav-active text-white bg-white/10 rounded-xl px-4 py-3 text-sm font-bold transition-colors" data-i18n="nav-gallery">Galerie</a>
+        <a href="contact.html" onclick="closeMobile()" class="text-white/70 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors" data-i18n="nav-contact">Contact</a>
         <!-- Language + TTS row -->
         <div class="flex items-center gap-3 px-4 py-2 mt-1 border-t border-white/10">
           <span class="text-white/40 text-xs" data-i18n="nav-util-label">Limbă:</span>

@@ -9,7 +9,9 @@
       "mcp__Claude_Preview__preview_start",
       "Bash(gh auth *)",
       "Bash(git commit -m ' *)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(npx skills *)",
+      "PowerShell(npx skills add https://github.com/juliusbrussee/caveman --skill caveman)"
     ]
   }
 }
