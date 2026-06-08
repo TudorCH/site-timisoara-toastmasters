@@ -1495,7 +1495,7 @@
       var target = parseInt(el.dataset.target, 10);
       var suffix = el.dataset.suffix || '';
       var useSep = !!el.dataset.sep;
-      var dur = 1400, start = performance.now();
+      var dur = 800, start = performance.now();
       (function tick(now){
         var p = Math.min((now - start) / dur, 1);
         p = 1 - Math.pow(1 - p, 3);
