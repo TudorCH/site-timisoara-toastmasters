@@ -10,7 +10,8 @@
     'background:transparent;border:2px solid transparent;opacity:0.5;line-height:0;' +
     'display:inline-flex;align-items:center;justify-content:center;}' +
     '.lang-btn:hover{opacity:0.85;}' +
-    '.lang-btn.active{border-color:rgba(255,255,255,.9);opacity:1;box-shadow:0 0 0 1px rgba(255,255,255,.2);}';
+    '.lang-btn.active{border-color:rgba(255,255,255,.9);opacity:1;box-shadow:0 0 0 1px rgba(255,255,255,.2);}' +
+    '.footer-link:hover,.footer-link:active{color:#F2DF74!important;}';
   document.head.appendChild(css);
 
   /* ── English translations (RO is already in the HTML) ── */
