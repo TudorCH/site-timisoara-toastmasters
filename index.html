@@ -686,7 +686,10 @@
     <!-- CTA: centrat, lat, sub carduri -->
     <div class="flex justify-center mt-6">
       <a href="galerie.html"
-         class="group inline-flex items-center gap-3 bg-white border-2 border-maroon text-maroon hover:bg-maroon hover:text-white font-semibold px-6 sm:px-12 py-3 sm:py-3.5 rounded-2xl transition-all duration-300 hover:scale-105 shadow-sm hover:shadow-lg hover:shadow-maroon/20 text-sm sm:text-base">
+         class="group inline-flex items-center gap-3 font-semibold px-6 sm:px-12 py-3 sm:py-3.5 rounded-2xl transition-all duration-300 hover:scale-105 shadow-sm text-sm sm:text-base"
+         style="background:white;border:2px solid #772432;color:#772432"
+         onmouseover="this.style.background='#772432';this.style.color='white'"
+         onmouseout="this.style.background='white';this.style.color='#772432'">
         <span data-i18n="idx-gal-cta">Vezi toată galeria</span>
         <svg class="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
       </a>
@@ -870,7 +873,8 @@
 
       <div class="flex justify-center mt-8">
         <a href="https://www.facebook.com/timisoara.toastmasters/reviews?locale=ro_RO" target="_blank"
-           class="inline-flex items-center gap-2 border border-[#004165]/30 text-gray-600 font-semibold text-sm px-6 py-3 rounded-full hover:bg-[#004165]/5 transition-colors">
+           class="inline-flex items-center gap-2 text-gray-600 font-semibold text-sm px-6 py-3 rounded-full transition-colors"
+           style="border:1.5px solid #004165">
           <svg class="w-4 h-4" fill="#004165" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
           <span data-i18n="idx-rev-fb-cta">Vezi toate recenziile pe Facebook</span>
         </a>
