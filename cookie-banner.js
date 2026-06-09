@@ -31,7 +31,9 @@
     '#tm-bar{flex-direction:column;align-items:stretch;gap:12px;padding:16px 16px 14px;}' +
     '#tm-text-long{display:none;}' +
     '#tm-text-short{display:block;font-size:13px;line-height:1.6;color:rgba(255,255,255,.75);}' +
-    '#tm-text-short a{color:#F2DF74;font-weight:600;text-decoration:underline;text-underline-offset:2px;}' +
+    '#tm-text-short a{display:inline-block;color:#002d47;background:#F2DF74;font-weight:700;font-size:11.5px;padding:2px 9px;border-radius:999px;text-decoration:none;margin-left:4px;vertical-align:middle;}' +
+    '@keyframes tm-cta-pulse{0%{box-shadow:0 0 0 0 rgba(242,223,116,.7)}70%{box-shadow:0 0 0 10px rgba(242,223,116,0)}100%{box-shadow:0 0 0 0 rgba(242,223,116,0)}}' +
+    '.tm-cta-active{animation:tm-cta-pulse .7s ease 2;}' +
     '#tm-actions{width:100%;justify-content:stretch;}' +
     '#tm-settings{display:none;}' +
     '#tm-ess,#tm-ok{flex:1;text-align:center;}' +
@@ -43,7 +45,7 @@
   bar.innerHTML =
     '<div id="tm-text">' +
       '<span id="tm-text-long">Folosim date stocate local în browserul tău și servicii terțe de bază. Nu folosim trackere de urmărire sau publicitate.<br>Apasă <strong style="color:#fff;">Acceptă</strong> pentru toate funcționalitățile sau <strong style="color:#fff;">Respinge</strong> pentru cele esențiale. <a href="cookies.html">Politică cookies</a></span>' +
-      '<span id="tm-text-short">Folosim cookies funcționale. Fără tracking sau publicitate. <a href="cookies.html">Detalii</a></span>' +
+      '<span id="tm-text-short">Folosim cookies funcționale. Fără tracking sau publicitate. <a href="cookies.html">Află mai multe</a></span>' +
     '</div>' +
     '<div id="tm-actions">' +
       '<button id="tm-settings">Setări cookies</button>' +
@@ -59,7 +61,13 @@
   function dismiss(v) {
     localStorage.setItem(KEY, v);
     bar.classList.remove('in');
-    setTimeout(function () { bar.remove(); }, 380);
+    setTimeout(function () {
+      bar.remove();
+      document.querySelectorAll('a[href="contact.html"].bg-gold').forEach(function (el) {
+        el.classList.add('tm-cta-active');
+        setTimeout(function () { el.classList.remove('tm-cta-active'); }, 1500);
+      });
+    }, 380);
   }
 
   document.getElementById('tm-ok').addEventListener('click', function () { dismiss('all'); });
