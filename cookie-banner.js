@@ -68,31 +68,20 @@
 
   /* ── Scroll trigger ── */
   var trigger = document.getElementById('hero-stats');
-  if (trigger && 'IntersectionObserver' in window) {
-    var seen = false;
-    var obs = new IntersectionObserver(function (entries) {
-      if (entries[0].isIntersecting) {
-        seen = true;
-      } else if (seen) {
-        showBar();
-        obs.disconnect();
-      }
-    }, { threshold: 0 });
-    obs.observe(trigger);
-  } else {
-    /* alte pagini: apare dupa primul scroll sau dupa 3s */
-    var shown = false;
-    function onScroll() {
-      if (shown) return;
-      if (window.scrollY > 20) {
-        shown = true;
-        showBar();
-        window.removeEventListener('scroll', onScroll);
-      }
+  var shown = false;
+
+  function checkShow() {
+    if (shown) return;
+    var ready = trigger
+      ? trigger.getBoundingClientRect().bottom < 0
+      : window.scrollY > 20;
+    if (ready) {
+      shown = true;
+      showBar();
+      window.removeEventListener('scroll', checkShow);
     }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    setTimeout(function () {
-      if (!shown) { shown = true; showBar(); }
-    }, 3000);
   }
+
+  window.addEventListener('scroll', checkShow, { passive: true });
+  checkShow();
 })();
