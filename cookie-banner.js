@@ -20,6 +20,7 @@
     '#tm-text-short{display:none;}' +
 
     '#tm-actions{display:flex;align-items:center;gap:8px;flex-shrink:0;}' +
+    '#tm-more{display:none;}' +
     '#tm-settings{background:transparent;border:none;color:rgba(255,255,255,.45);font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;text-decoration:underline;text-underline-offset:2px;padding:4px 2px;white-space:nowrap;transition:color .2s;}' +
     '#tm-settings:hover{color:#F2DF74;}' +
     '#tm-ess{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.35);border-radius:999px;padding:9px 18px;font-size:12.5px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap;transition:all .2s;}' +
@@ -27,16 +28,18 @@
     '#tm-ok{background:#772432;color:#fff;border:none;border-radius:999px;padding:9px 20px;font-size:12.5px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap;transition:background .2s;}' +
     '#tm-ok:hover{background:#8c2b3b;}' +
 
-    '@media(max-width:700px){' +
-    '#tm-bar{flex-direction:column;align-items:stretch;gap:12px;padding:16px 16px 14px;}' +
-    '#tm-text-long{display:none;}' +
-    '#tm-text-short{display:block;font-size:13px;line-height:1.6;color:rgba(255,255,255,.75);}' +
-    '#tm-text-short a{display:inline-block;color:#002d47;background:#F2DF74;font-weight:700;font-size:11px;padding:2px 10px;border-radius:999px;text-decoration:none;margin-top:8px;}' +
     '@keyframes tm-cta-pulse{0%{box-shadow:0 0 0 0 rgba(242,223,116,.7)}70%{box-shadow:0 0 0 10px rgba(242,223,116,0)}100%{box-shadow:0 0 0 0 rgba(242,223,116,0)}}' +
     '.tm-cta-active{animation:tm-cta-pulse .7s ease 2;}' +
-    '#tm-actions{width:100%;justify-content:stretch;}' +
+
+    '@media(max-width:700px){' +
+    '#tm-bar{flex-direction:column;align-items:stretch;gap:10px;padding:16px 16px 14px;}' +
+    '#tm-text-long{display:none;}' +
+    '#tm-text-short{display:block;font-size:13px;line-height:1.4;color:rgba(255,255,255,.85);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}' +
+    '#tm-actions{width:100%;gap:6px;}' +
     '#tm-settings{display:none;}' +
-    '#tm-ess,#tm-ok{flex:1;text-align:center;}' +
+    '#tm-more{display:flex;flex:1;align-items:center;justify-content:center;color:#F2DF74;border:1.5px solid rgba(242,223,116,.35);border-radius:999px;padding:9px 8px;font-size:11.5px;font-weight:600;text-decoration:none;white-space:nowrap;font-family:Inter,sans-serif;transition:border-color .2s;}' +
+    '#tm-more:hover{border-color:rgba(242,223,116,.7);}' +
+    '#tm-ess,#tm-ok{flex:1;text-align:center;padding:9px 8px;font-size:11.5px;}' +
     '}';
   document.head.appendChild(style);
 
@@ -45,12 +48,13 @@
   bar.innerHTML =
     '<div id="tm-text">' +
       '<span id="tm-text-long">Folosim date stocate local în browserul tău și servicii terțe de bază. Nu folosim trackere de urmărire sau publicitate.<br>Apasă <strong style="color:#fff;">Acceptă</strong> pentru toate funcționalitățile sau <strong style="color:#fff;">Respinge</strong> pentru cele esențiale. <a href="cookies.html">Politică cookies</a></span>' +
-      '<span id="tm-text-short">Folosim cookies funcționale. Fără tracking sau publicitate.<br><a href="cookies.html">Află mai multe</a></span>' +
+      '<span id="tm-text-short">Folosim cookie-uri esențiale, fără elemente de tracking.</span>' +
     '</div>' +
     '<div id="tm-actions">' +
+      '<a id="tm-more" href="cookies.html">Află mai multe</a>' +
       '<button id="tm-settings">Setări cookies</button>' +
-      '<button id="tm-ess">Respinge</button>' +
       '<button id="tm-ok">Acceptă</button>' +
+      '<button id="tm-ess">Respinge</button>' +
     '</div>';
   document.body.appendChild(bar);
 
@@ -74,7 +78,6 @@
   document.getElementById('tm-ess').addEventListener('click', function () { dismiss('essential'); });
   document.getElementById('tm-settings').addEventListener('click', function () { window.location.href = 'cookies.html'; });
 
-  /* ── Scroll trigger ── */
   var trigger = document.getElementById('hero-stats');
   var shown = false;
 
