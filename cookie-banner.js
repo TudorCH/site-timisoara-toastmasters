@@ -23,15 +23,23 @@
     '#tm-ok{background:#772432;color:#fff;border:none;border-radius:999px;padding:9px 20px;font-size:12.5px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap;transition:background .2s;}' +
     '#tm-ok:hover{background:#8c2b3b;}' +
     '@media(max-width:700px){' +
-    '#tm-bar{flex-direction:column;align-items:flex-start;gap:14px;padding:18px 20px;}' +
+    '#tm-bar{flex-direction:column;align-items:flex-start;gap:12px;padding:16px 18px;}' +
     '#tm-actions{width:100%;justify-content:flex-end;}' +
-    '}';
+    '#tm-text-long{display:none;}' +
+    '#tm-text-short{display:block;}' +
+    '}' +
+    '@media(min-width:701px){#tm-text-short{display:none;}}' +
+    '#tm-text-short{font-size:13px;line-height:1.6;color:rgba(255,255,255,.75);}' +
+    '#tm-text-short a{color:#F2DF74;font-weight:600;text-decoration:underline;text-underline-offset:2px;}';
   document.head.appendChild(style);
 
   var bar = document.createElement('div');
   bar.id = 'tm-bar';
   bar.innerHTML =
-    '<div id="tm-text">Folosim date stocate local în browserul tău și servicii terțe de bază. Nu folosim trackere de urmărire sau publicitate.<br>Apasă <strong style="color:#fff;">Acceptă</strong> pentru toate funcționalitățile sau <strong style="color:#fff;">Respinge</strong> pentru cele esențiale. <a href="cookies.html">Politică cookies</a></div>' +
+    '<div id="tm-text">' +
+      '<span id="tm-text-long">Folosim date stocate local în browserul tău și servicii terțe de bază. Nu folosim trackere de urmărire sau publicitate.<br>Apasă <strong style="color:#fff;">Acceptă</strong> pentru toate funcționalitățile sau <strong style="color:#fff;">Respinge</strong> pentru cele esențiale. <a href="cookies.html">Politică cookies</a></span>' +
+      '<span id="tm-text-short">Folosim cookies funcționale. Fără tracking sau publicitate. <a href="cookies.html">Detalii</a></span>' +
+    '</div>' +
     '<div id="tm-actions">' +
       '<button id="tm-settings">Setări cookies</button>' +
       '<button id="tm-ess">Respinge</button>' +
