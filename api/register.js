@@ -108,6 +108,51 @@ module.exports = async function handler(req, res) {
       return res.status(500).json({ error: 'Email error', detail: err });
     }
 
+    const confirmHtml = `
+<!DOCTYPE html>
+<html lang="ro">
+<head><meta charset="UTF-8"/></head>
+<body style="font-family:Inter,Arial,sans-serif;background:#f4f6f8;margin:0;padding:24px;">
+  <div style="max-width:520px;margin:0 auto;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.08);">
+    <div style="background:#004165;padding:20px 24px;">
+      <div style="color:#fff;font-size:17px;font-weight:700;">Timișoara Toastmasters</div>
+      <div style="color:#F2DF74;font-size:12px;margin-top:2px;">Confirmare înregistrare</div>
+    </div>
+    <div style="padding:28px 24px;">
+      <p style="margin:0 0 12px;color:#374151;font-size:15px;">Bună ${escapeHtml(prenume.trim())},</p>
+      <p style="margin:0 0 20px;color:#374151;font-size:15px;">Am primit cererea ta și te vom contacta în <strong>24–48 de ore</strong> cu toate detaliile.</p>
+      <div style="background:#f0f7ff;border-radius:10px;padding:16px 20px;margin-bottom:20px;">
+        <div style="color:#004165;font-weight:700;font-size:13px;margin-bottom:10px;">DETALII ȘEDINȚĂ</div>
+        <div style="color:#374151;font-size:14px;line-height:1.8;">
+          📅 <strong>Miercuri</strong>, 19:30–21:00<br/>
+          📍 <strong>Cowork The Office</strong>, Timișoara<br/>
+          🎟️ Intrare <strong>liberă</strong> pentru vizitatori
+          ${sedinta ? `<br/>📌 Data selectată: <strong>${escapeHtml(sedinta)}</strong>` : ''}
+        </div>
+      </div>
+      <p style="margin:0;color:#6b7280;font-size:13px;">Ai întrebări? Scrie-ne pe <a href="https://www.facebook.com/timisoara.toastmasters" style="color:#004165;">Facebook</a> sau răspunde direct la acest email.</p>
+    </div>
+    <div style="padding:12px 24px;background:#f8f9fa;font-size:11px;color:#9ca3af;text-align:center;">
+      timisoaratoastmasters.ro · ${dataTrimisat}
+    </div>
+  </div>
+</body>
+</html>`;
+
+    await fetch('https://api.resend.com/emails', {
+      method:  'POST',
+      headers: {
+        'Authorization': `Bearer ${apiKey}`,
+        'Content-Type':  'application/json',
+      },
+      body: JSON.stringify({
+        from:    fromEmail,
+        to:      [email.trim()],
+        subject: 'Ne vedem miercuri! Confirmare vizită Timișoara Toastmasters',
+        html:    confirmHtml,
+      }),
+    }).catch(err => console.error('Confirm email error:', err));
+
     return res.status(200).json({ ok: true });
 
   } catch (err) {
