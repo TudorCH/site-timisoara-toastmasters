@@ -470,7 +470,7 @@
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             <div>
               <label for="ct-prenume" class="block text-sm font-medium text-gray-700 mb-1.5"><span data-i18n="ct-prenume">Prenume</span> <span class="text-maroon" aria-hidden="true">*</span></label>
-              <input id="ct-prenume" type="text" placeholder="Ion" required autocomplete="given-name"
+              <input id="ct-prenume" type="text" placeholder="Ion" required aria-required="true" autocomplete="given-name"
                 class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-gray-400 transition-all" />
             </div>
             <div>
@@ -481,7 +481,7 @@
           </div>
           <div>
             <label for="ct-email" class="block text-sm font-medium text-gray-700 mb-1.5"><span data-i18n="ct-email">Email</span> <span class="text-maroon" aria-hidden="true">*</span></label>
-            <input id="ct-email" type="email" placeholder="ion.popescu@email.com" required autocomplete="email"
+            <input id="ct-email" type="email" placeholder="ion.popescu@email.com" required aria-required="true" autocomplete="email"
               class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-gray-400 transition-all" />
           </div>
           <div>
@@ -502,7 +502,7 @@
           </div>
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1.5" data-i18n="ct-mesaj">Mesaj</label>
-            <textarea rows="3" placeholder="Sunt interesat să vin ca invitat la o ședință…"
+            <textarea rows="3" placeholder="Sunt interesat să vin ca invitat la o ședință…" maxlength="1000"
               class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-gray-400 transition-all resize-none"></textarea>
           </div>
           <button type="submit" id="form-submit-btn"
@@ -645,11 +645,15 @@
     document.getElementById('form-error')?.classList.add('hidden');
 
     try {
+      const ctrl = new AbortController();
+      const t = setTimeout(() => ctrl.abort(), 10000);
       const res = await fetch('/api/register', {
         method:  'POST',
         headers: { 'Content-Type': 'application/json' },
         body:    JSON.stringify(reg),
+        signal:  ctrl.signal,
       });
+      clearTimeout(t);
       if (!res.ok) throw new Error('api-error');
       try {
         const list = JSON.parse(localStorage.getItem('tm_registrations') || '[]');

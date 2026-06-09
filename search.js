@@ -62,7 +62,13 @@
 
   // ── Search logic ────────────────────────────────────
 
+  var _searchTimer = null;
   function liveSearch(q, source) {
+    clearTimeout(_searchTimer);
+    _searchTimer = setTimeout(function() { _liveSearch(q, source); }, 180);
+  }
+
+  function _liveSearch(q, source) {
     source = source || 'desktop';
     const ddId = source === 'mobile' ? 'mobile-search-dropdown' : 'search-dropdown';
     const dd = document.getElementById(ddId);
