@@ -2,12 +2,8 @@
   "buildCommand": "npm install && npm run build:css",
   "outputDirectory": ".",
   "functions": {
-    "api/chat.js": {
+    "api/*.js": {
       "memory": 256,
-      "maxDuration": 10
-    },
-    "api/register.js": {
-      "memory": 128,
       "maxDuration": 10
     }
   }
