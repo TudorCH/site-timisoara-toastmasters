@@ -31,7 +31,7 @@
     '#tm-bar{flex-direction:column;align-items:stretch;gap:12px;padding:16px 16px 14px;}' +
     '#tm-text-long{display:none;}' +
     '#tm-text-short{display:block;font-size:13px;line-height:1.6;color:rgba(255,255,255,.75);}' +
-    '#tm-text-short a{display:inline-block;color:#002d47;background:#F2DF74;font-weight:700;font-size:11.5px;padding:2px 9px;border-radius:999px;text-decoration:none;margin-left:4px;vertical-align:middle;}' +
+    '#tm-text-short a{display:inline-block;color:#002d47;background:#F2DF74;font-weight:700;font-size:11px;padding:2px 10px;border-radius:999px;text-decoration:none;margin-top:8px;}' +
     '@keyframes tm-cta-pulse{0%{box-shadow:0 0 0 0 rgba(242,223,116,.7)}70%{box-shadow:0 0 0 10px rgba(242,223,116,0)}100%{box-shadow:0 0 0 0 rgba(242,223,116,0)}}' +
     '.tm-cta-active{animation:tm-cta-pulse .7s ease 2;}' +
     '#tm-actions{width:100%;justify-content:stretch;}' +
@@ -45,7 +45,7 @@
   bar.innerHTML =
     '<div id="tm-text">' +
       '<span id="tm-text-long">Folosim date stocate local în browserul tău și servicii terțe de bază. Nu folosim trackere de urmărire sau publicitate.<br>Apasă <strong style="color:#fff;">Acceptă</strong> pentru toate funcționalitățile sau <strong style="color:#fff;">Respinge</strong> pentru cele esențiale. <a href="cookies.html">Politică cookies</a></span>' +
-      '<span id="tm-text-short">Folosim cookies funcționale. Fără tracking sau publicitate. <a href="cookies.html">Află mai multe</a></span>' +
+      '<span id="tm-text-short">Folosim cookies funcționale. Fără tracking sau publicitate.<br><a href="cookies.html">Află mai multe</a></span>' +
     '</div>' +
     '<div id="tm-actions">' +
       '<button id="tm-settings">Setări cookies</button>' +
