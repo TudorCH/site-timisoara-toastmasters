@@ -7,28 +7,36 @@
 
   var style = document.createElement('style');
   style.textContent =
-    '#tm-bar{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);z-index:99999;' +
-    'background:#fff;border-radius:999px;box-shadow:0 4px 24px rgba(0,0,0,.15);' +
-    'display:inline-flex;align-items:center;gap:10px;padding:8px 8px 8px 18px;' +
-    'font-family:Inter,sans-serif;font-size:13px;color:#374151;white-space:nowrap;' +
-    'opacity:0;transition:opacity .3s ease,transform .3s ease;border:1px solid rgba(0,0,0,.07);}' +
-    '#tm-bar.in{opacity:1;transform:translateX(-50%) translateY(0);}' +
-    '#tm-bar span a{color:#004165;font-weight:600;text-decoration:underline;margin-left:4px;}' +
-    '#tm-ok{background:#772432;color:#fff;border:none;border-radius:999px;padding:8px 16px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;transition:background .2s;white-space:nowrap;}' +
+    '#tm-bar{position:fixed;bottom:16px;left:16px;right:16px;z-index:99999;' +
+    'background:#002d47;border-radius:14px;border:1px solid rgba(255,255,255,.1);' +
+    'box-shadow:0 8px 32px rgba(0,0,0,.35);' +
+    'padding:20px 28px;display:flex;align-items:center;gap:28px;' +
+    'font-family:Inter,sans-serif;transform:translateY(calc(100% + 20px));transition:transform .35s ease;}' +
+    '#tm-bar.in{transform:translateY(0);}' +
+    '#tm-text{flex:1;font-size:13px;line-height:1.65;color:rgba(255,255,255,.75);}' +
+    '#tm-text a{color:#F2DF74;font-weight:600;text-decoration:underline;text-underline-offset:2px;}' +
+    '#tm-actions{display:flex;align-items:center;gap:10px;flex-shrink:0;}' +
+    '#tm-settings{background:transparent;border:none;color:rgba(255,255,255,.5);font-size:12.5px;font-weight:600;cursor:pointer;font-family:inherit;text-decoration:underline;text-underline-offset:2px;padding:4px 2px;white-space:nowrap;transition:color .2s;}' +
+    '#tm-settings:hover{color:#F2DF74;}' +
+    '#tm-ess{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.35);border-radius:999px;padding:9px 18px;font-size:12.5px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap;transition:all .2s;}' +
+    '#tm-ess:hover{border-color:#fff;background:rgba(255,255,255,.08);}' +
+    '#tm-ok{background:#772432;color:#fff;border:none;border-radius:999px;padding:9px 20px;font-size:12.5px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap;transition:background .2s;}' +
     '#tm-ok:hover{background:#8c2b3b;}' +
-    '#tm-ess{background:transparent;color:#6b7280;border:none;padding:8px 10px;font-size:12px;cursor:pointer;font-family:inherit;transition:color .2s;white-space:nowrap;}' +
-    '#tm-ess:hover{color:#004165;}' +
-    '@media(max-width:600px){#tm-bar{bottom:16px;max-width:calc(100vw - 32px);border-radius:16px;flex-wrap:wrap;white-space:normal;padding:12px 14px;gap:8px;}' +
-    '#tm-bar span{flex:1 1 100%;}' +
-    '#tm-ok,#tm-ess{flex:1;text-align:center;}}';
+    '@media(max-width:700px){' +
+    '#tm-bar{flex-direction:column;align-items:flex-start;gap:14px;padding:18px 20px;}' +
+    '#tm-actions{width:100%;justify-content:flex-end;}' +
+    '}';
   document.head.appendChild(style);
 
   var bar = document.createElement('div');
   bar.id = 'tm-bar';
   bar.innerHTML =
-    '<span>🍪 Folosim cookies esențiale.<a href="cookies.html">Află mai mult</a></span>' +
-    '<button id="tm-ok">Acceptă</button>' +
-    '<button id="tm-ess">Respinge</button>';
+    '<div id="tm-text">Folosim date stocate local în browserul tău și servicii terțe de bază. Nu folosim trackere de urmărire sau publicitate.<br>Apasă <strong style="color:#fff;">Acceptă</strong> pentru toate funcționalitățile sau <strong style="color:#fff;">Respinge</strong> pentru cele esențiale. <a href="cookies.html">Politică cookies</a></div>' +
+    '<div id="tm-actions">' +
+      '<button id="tm-settings">Setări cookies</button>' +
+      '<button id="tm-ess">Respinge</button>' +
+      '<button id="tm-ok">Acceptă</button>' +
+    '</div>';
   document.body.appendChild(bar);
 
   setTimeout(function () { bar.classList.add('in'); }, 80);
@@ -36,9 +44,10 @@
   function dismiss(v) {
     localStorage.setItem(KEY, v);
     bar.classList.remove('in');
-    setTimeout(function () { bar.remove(); }, 320);
+    setTimeout(function () { bar.remove(); }, 380);
   }
 
-  document.getElementById('tm-ok').addEventListener('click',  function () { dismiss('all'); });
+  document.getElementById('tm-ok').addEventListener('click', function () { dismiss('all'); });
   document.getElementById('tm-ess').addEventListener('click', function () { dismiss('essential'); });
+  document.getElementById('tm-settings').addEventListener('click', function () { window.location.href = 'cookies.html'; });
 })();
