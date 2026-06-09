@@ -84,7 +84,7 @@
     var shown = false;
     function onScroll() {
       if (shown) return;
-      if (window.scrollY > 50) {
+      if (window.scrollY > 20) {
         shown = true;
         showBar();
         window.removeEventListener('scroll', onScroll);
