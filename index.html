@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script>if ('scrollRestoration' in history) history.scrollRestoration = 'manual';</script>
-  <link rel="preload" as="image" href="Images/background-header.jpg" fetchpriority="high" />
+  <link rel="preload" as="image" href="Images/background-header.webp" fetchpriority="high" type="image/webp" />
   <title>Vorbit în Public Timișoara | Timișoara Toastmasters</title>
   <meta name="description" content="Primul club Toastmasters din România, activ de 17 ani. Ședințe miercuri seară în Timișoara – vorbit în public, leadership, feedback. Intrare gratuită ca invitat." />
   <!-- UPDATE: replace placeholder URL with actual production domain -->
@@ -198,6 +198,7 @@
     /* ── hero background (Ken Burns zoom) ── */
     .hero-bg-zoom {
       background-image: url('Images/background-header.jpg');
+      background-image: image-set(url('Images/background-header.webp') type('image/webp'), url('Images/background-header.jpg') type('image/jpeg'));
       background-size: cover;
       background-position: center top;
       will-change: transform;
