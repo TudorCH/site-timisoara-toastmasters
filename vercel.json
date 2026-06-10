@@ -1,6 +1,9 @@
 {
   "buildCommand": "npm install && npm run build:css",
   "outputDirectory": ".",
+  "rewrites": [
+    { "source": "/", "destination": "/home.html" }
+  ],
   "functions": {
     "api/*.js": {
       "memory": 256,

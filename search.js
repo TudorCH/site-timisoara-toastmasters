@@ -5,11 +5,11 @@
 
   // Static cross-page index
   const STATIC = [
-    { label: 'Acasă',                  url: 'index.html',                  q: 'acasa toastmasters timisoara club discursuri public speaking vorbit homepage' },
-    { label: 'De ce Toastmasters',     url: 'index.html#de-ce',            q: 'de ce comunicare vorbit public impact emotii leadership networking beneficii avantaje' },
-    { label: 'Parcursul tău',          url: 'index.html#journey-section',  q: 'calatorie cum functioneaza pathways roluri discurs evaluare progres invitat membru pasi inceput' },
+    { label: 'Acasă',                  url: 'home.html',                  q: 'acasa toastmasters timisoara club discursuri public speaking vorbit homepage' },
+    { label: 'De ce Toastmasters',     url: 'home.html#de-ce',            q: 'de ce comunicare vorbit public impact emotii leadership networking beneficii avantaje' },
+    { label: 'Parcursul tău',          url: 'home.html#journey-section',  q: 'calatorie cum functioneaza pathways roluri discurs evaluare progres invitat membru pasi inceput' },
     { label: 'Galerie Foto',           url: 'galerie.html',                q: 'galerie foto poze fotografii sedinte concursuri events socializare imagini' },
-    { label: 'Testimoniale & Recenzii',url: 'index.html#testimoniale',     q: 'recenzii opinii testimoniale feedback membri pareri facebook google reviews' },
+    { label: 'Testimoniale & Recenzii',url: 'home.html#testimoniale',     q: 'recenzii opinii testimoniale feedback membri pareri facebook google reviews' },
     { label: 'Program & Înscriere',    url: 'contact.html',                q: 'sedinte program calendar orar agenda urmatoarea sedinta miercuri inscriere formular inregistrare rezerva loc' },
     { label: 'Despre noi',             url: 'despre-noi.html',             q: 'despre noi toastmasters misiune viziune poveste valori integritate respect serviciu excelenta istorie' },
     { label: 'Beneficii membre',       url: 'despre-noi.html',             q: 'beneficii ce castig ce invat vorbire incredere feedback pathways leadership networking competitii crestere personala' },
@@ -26,7 +26,7 @@
   let idx = STATIC.map(e => ({ label: e.label, url: e.url, text: e.q }));
 
   function buildIndex() {
-    const page = (window.location.pathname.split('/').pop() || 'index.html');
+    const page = (window.location.pathname.split('/').pop() || 'home.html');
 
     const labelMap = {
       'de-ce':           'De ce Toastmasters',
@@ -116,12 +116,12 @@
 
     if (url.startsWith('http')) { window.open(url, '_blank', 'noopener,noreferrer'); return; }
 
-    const page       = window.location.pathname.split('/').pop() || 'index.html';
+    const page       = window.location.pathname.split('/').pop() || 'home.html';
     const parts      = url.split('#');
-    const targetPage = parts[0] || 'index.html';
+    const targetPage = parts[0] || 'home.html';
     const hash       = parts[1];
 
-    if (page === targetPage || (page === '' && targetPage === 'index.html')) {
+    if (page === targetPage || (page === '' && targetPage === 'home.html')) {
       if (hash) {
         const el = document.getElementById(hash);
         if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
