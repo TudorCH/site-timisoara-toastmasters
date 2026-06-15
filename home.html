@@ -384,12 +384,17 @@
         <span class="block whitespace-nowrap" data-i18n="idx-hero-line1">Vorbit în public</span>
         <span class="block text-gold whitespace-nowrap" data-i18n="idx-hero-line2">în Timișoara</span>
       </h1>
-      <p class="hero-desc text-white/90 text-lg md:text-xl leading-relaxed mb-6 sm:mb-10 max-w-xl animate-in"
+      <p class="hero-desc text-white/90 text-lg md:text-xl leading-relaxed mb-4 max-w-xl animate-in"
          style="animation-delay:.3s; text-shadow: 0 1px 6px rgba(0,0,0,0.5);"
          data-i18n="idx-hero-desc">
         În fiecare miercuri seară, oameni din Timișoara se adună să vorbească, să primească
         feedback sincer și să crească. Participarea ca invitat e gratuită.
       </p>
+      <!-- Next meeting countdown -->
+      <div class="flex items-center gap-2.5 mb-6 sm:mb-10 animate-in" style="animation-delay:.35s">
+        <span class="w-2 h-2 rounded-full bg-gold flex-shrink-0 animate-pulse"></span>
+        <span class="text-white/80 text-sm sm:text-base">Următoarea ședință · <span id="meeting-when" class="text-gold font-semibold"></span></span>
+      </div>
       <div class="flex flex-col sm:flex-row gap-4 animate-in" style="animation-delay:.4s">
         <a href="#contact"
            class="cta-pulse bg-gold hover:bg-gold-light text-primary font-bold px-8 py-4 rounded-full text-base
@@ -2094,6 +2099,55 @@
     });
     upd();
   }).observe(document.body, { childList: true });
+})();
+</script>
+<script>
+(function () {
+  function nextMeetingText() {
+    var now   = new Date();
+    var tz    = 'Europe/Bucharest';
+    var parts = new Intl.DateTimeFormat('en', {
+      timeZone: tz, year: 'numeric', month: 'numeric', day: 'numeric',
+      hour: 'numeric', minute: 'numeric', hourCycle: 'h23'
+    }).formatToParts(now);
+    var get = function (t) {
+      var p = parts.find(function (x) { return x.type === t; });
+      return p ? parseInt(p.value, 10) : 0;
+    };
+    var h  = get('hour');
+    var m  = get('minute');
+    var wd = { Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6 }[
+      new Intl.DateTimeFormat('en', { timeZone: tz, weekday: 'short' }).format(now)
+    ];
+
+    var months = ['Ianuarie','Februarie','Martie','Aprilie','Mai','Iunie',
+                  'Iulie','August','Septembrie','Octombrie','Noiembrie','Decembrie'];
+
+    // days offset to next Wednesday (0 = today is Wed and meeting not done)
+    var offset = (wd === 3 && h < 20) ? 0 : (3 - wd + 7) % 7 || 7;
+
+    // target date = Romania local date + offset days (UTC midnight is safe here)
+    var target = new Date(Date.UTC(get('year'), get('month') - 1, get('day') + offset));
+    var tp = new Intl.DateTimeFormat('en', { timeZone: tz, month: 'numeric', day: 'numeric' }).formatToParts(target);
+    var tget = function (t) { var p = tp.find(function (x) { return x.type === t; }); return p ? parseInt(p.value, 10) : 0; };
+    var dateStr = 'Miercuri, ' + tget('day') + ' ' + months[tget('month') - 1];
+
+    if (wd === 3) {
+      if (h < 12)      return 'astăzi, ora 19:30';
+      if (h >= 20)     return dateStr + ' · în 7 zile';
+      var mins = (19 * 60 + 30) - (h * 60 + m);
+      if (mins <= 0)   return 'în curs';
+      if (mins < 60)   return 'în mai puțin de o oră';
+      var hr = Math.floor(mins / 60);
+      return 'în ' + hr + (hr === 1 ? ' oră' : ' ore');
+    }
+
+    if (offset === 1) return 'mâine, ora 19:30';
+    return dateStr + ' · în ' + offset + ' zile';
+  }
+
+  var el = document.getElementById('meeting-when');
+  if (el) el.textContent = nextMeetingText();
 })();
 </script>
 </body>

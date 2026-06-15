@@ -78,21 +78,5 @@
   document.getElementById('tm-ess').addEventListener('click', function () { dismiss('essential'); });
   document.getElementById('tm-settings').addEventListener('click', function () { window.location.href = 'cookies.html'; });
 
-  var trigger = document.getElementById('hero-stats');
-  var shown = false;
-
-  function checkShow() {
-    if (shown) return;
-    var ready = trigger
-      ? trigger.getBoundingClientRect().bottom < 0
-      : window.scrollY > 20;
-    if (ready) {
-      shown = true;
-      showBar();
-      window.removeEventListener('scroll', checkShow);
-    }
-  }
-
-  window.addEventListener('scroll', checkShow, { passive: true });
-  checkShow();
+  setTimeout(showBar, 2000);
 })();
