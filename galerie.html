@@ -104,11 +104,115 @@
     /* Lightbox */
     #lightbox {
       display: none; position: fixed; inset: 0;
-      background: rgba(0,0,0,.92); z-index: 1000;
-      align-items: center; justify-content: center;
+      background: rgba(0,0,0,.94); z-index: 1000;
+      flex-direction: column; align-items: center; justify-content: center;
+      animation: lbFadeIn .18s ease;
     }
+    @keyframes lbFadeIn { from { opacity:0 } to { opacity:1 } }
     #lightbox.open { display: flex; }
-    #lb-img { transition: opacity .25s ease; }
+
+    /* Main image wrapper */
+    #lb-img-wrap {
+      position: relative; display: flex; align-items: center; justify-content: center;
+      width: 100%; flex: 1; min-height: 0; overflow: hidden;
+    }
+    #lb-img-a, #lb-img-b {
+      position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+      transition: opacity .22s ease;
+    }
+    #lb-img-a img, #lb-img-b img {
+      max-height: calc(100vh - 160px); max-width: calc(100vw - 100px);
+      object-fit: contain; border-radius: 6px; box-shadow: 0 8px 40px rgba(0,0,0,.6);
+      display: block;
+    }
+    @media (max-width: 640px) {
+      #lb-img-a img, #lb-img-b img {
+        max-height: calc(100vh - 180px); max-width: 100vw; border-radius: 3px;
+      }
+    }
+
+    /* Spinner */
+    #lb-spinner {
+      position: absolute; inset: 0; display: none;
+      align-items: center; justify-content: center; pointer-events: none;
+    }
+    #lb-spinner.show { display: flex; }
+    .lb-spin {
+      width: 36px; height: 36px; border: 3px solid rgba(255,255,255,.15);
+      border-top-color: #fff; border-radius: 50%;
+      animation: spin .7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Top bar */
+    #lb-topbar {
+      position: absolute; top: 0; left: 0; right: 0;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 16px; z-index: 10;
+      background: linear-gradient(to bottom, rgba(0,0,0,.7) 0%, transparent 100%);
+    }
+    #lb-counter {
+      font-size: 13px; font-weight: 600; color: rgba(255,255,255,.85);
+      background: rgba(0,0,0,.45); padding: 4px 12px; border-radius: 999px;
+      font-variant-numeric: tabular-nums; letter-spacing: .02em;
+    }
+    #lb-album-title {
+      font-size: 13px; font-weight: 500; color: rgba(255,255,255,.65);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      max-width: 260px;
+    }
+
+    /* Prev / Next */
+    .lb-nav {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 48px; height: 48px; border-radius: 50%;
+      background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.18);
+      color: #fff; cursor: pointer; z-index: 10;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .15s, transform .15s;
+      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+    }
+    .lb-nav:hover { background: rgba(255,255,255,.24); }
+    .lb-nav:active { transform: translateY(-50%) scale(.92); }
+    #lb-prev-btn { left: 12px; }
+    #lb-next-btn { right: 12px; }
+    @media (max-width: 640px) {
+      .lb-nav { width: 40px; height: 40px; }
+      #lb-prev-btn { left: 6px; }
+      #lb-next-btn { right: 6px; }
+    }
+
+    /* Thumbnail strip */
+    #lb-thumbs-wrap {
+      width: 100%; padding: 10px 0 12px; flex-shrink: 0;
+      background: linear-gradient(to top, rgba(0,0,0,.75) 0%, transparent 100%);
+    }
+    #lb-thumbs {
+      display: flex; gap: 6px; overflow-x: auto; padding: 0 16px;
+      scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    #lb-thumbs::-webkit-scrollbar { display: none; }
+    .lb-thumb {
+      flex-shrink: 0; width: 56px; height: 40px;
+      border-radius: 5px; overflow: hidden; cursor: pointer;
+      scroll-snap-align: center; border: 2px solid transparent;
+      opacity: .55; transition: opacity .15s, border-color .15s;
+    }
+    .lb-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .lb-thumb.active { opacity: 1; border-color: #fff; }
+    .lb-thumb:hover { opacity: .85; }
+    @media (max-width: 640px) {
+      .lb-thumb { width: 46px; height: 34px; }
+    }
+
+    /* Caption */
+    #lb-caption {
+      font-size: 12px; color: rgba(255,255,255,.5);
+      text-align: center; min-height: 0; padding: 0 16px 2px;
+      font-style: italic;
+    }
+
     .social-btn:hover { background:rgba(242,223,116,.3) !important; }
     .social-btn:active { background:rgba(242,223,116,.6) !important; }
   </style>
@@ -358,28 +462,41 @@
 
 <!-- ════════════════════ LIGHTBOX ════════════════════ -->
 <div id="lightbox" role="dialog" aria-modal="true" aria-label="Vizualizare fotografie">
-  <!-- Close -->
-  <button id="lb-close-btn" onclick="closeLightbox()" aria-label="Închide"
-    class="absolute top-4 right-4 text-white/70 hover:text-white z-10 w-11 h-11 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors">
-    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
-  </button>
-  <!-- Prev -->
-  <button onclick="lbPrev()" id="lb-prev-btn" aria-label="Fotografie anterioară"
-    class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white z-10 w-12 h-12 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors">
-    <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
-  </button>
-  <!-- Next -->
-  <button onclick="lbNext()" id="lb-next-btn" aria-label="Fotografie următoare"
-    class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white z-10 w-12 h-12 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors">
-    <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-  </button>
-  <!-- Image area -->
-  <div class="flex flex-col items-center max-w-4xl w-full px-4 sm:px-8 md:px-16">
-    <p id="lb-album-title" class="text-white/80 text-sm font-semibold text-center mb-3 hidden"></p>
-    <img id="lb-img" src="" alt="" class="max-h-[75vh] max-w-full object-contain rounded-xl shadow-2xl" />
-    <p id="lb-caption" class="text-white/60 text-sm mt-4 text-center min-h-[1.4rem] italic"></p>
-    <p id="lb-counter" class="text-white/35 text-xs mt-1 font-mono"></p>
+
+  <!-- Top bar: counter left, title center, close right -->
+  <div id="lb-topbar">
+    <span id="lb-counter"></span>
+    <span id="lb-album-title"></span>
+    <button id="lb-close-btn" onclick="closeLightbox()" aria-label="Închide"
+      style="width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;cursor:pointer;transition:background .15s;flex-shrink:0"
+      onmouseover="this.style.background='rgba(255,255,255,.22)'" onmouseout="this.style.background='rgba(255,255,255,.12)'">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
   </div>
+
+  <!-- Image area -->
+  <div id="lb-img-wrap">
+    <div id="lb-img-a"><img src="" alt="" /></div>
+    <div id="lb-img-b" style="opacity:0"><img src="" alt="" /></div>
+    <div id="lb-spinner"><div class="lb-spin"></div></div>
+
+    <!-- Prev / Next -->
+    <button class="lb-nav" id="lb-prev-btn" onclick="lbPrev()" aria-label="Fotografie anterioară">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+    </button>
+    <button class="lb-nav" id="lb-next-btn" onclick="lbNext()" aria-label="Fotografie următoare">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+    </button>
+  </div>
+
+  <!-- Caption -->
+  <p id="lb-caption"></p>
+
+  <!-- Thumbnail strip -->
+  <div id="lb-thumbs-wrap">
+    <div id="lb-thumbs" role="listbox" aria-label="Toate fotografiile"></div>
+  </div>
+
 </div>
 
 <!-- ════════════════════ FOOTER ════════════════════ -->
@@ -1103,9 +1220,11 @@ function socSlide(dir) { socGoTo(socPos + dir); }
 
 // ════════════════ LIGHTBOX ════════════════
 
-let lbPhotos      = [];
-let lbIdx         = 0;
-let lbAlbumTitle  = '';
+let lbPhotos     = [];
+let lbIdx        = 0;
+let lbAlbumTitle = '';
+let lbTrigger    = null;
+let lbActive     = 'a';   // which img slot is currently visible
 
 function openAlbum(panel, albumIdx) {
   const items  = panel === 'sedinte' ? galleryData.sedinte : galleryData.concursuri;
@@ -1117,75 +1236,117 @@ function openAlbum(panel, albumIdx) {
 }
 
 function openSocPhoto(idx) {
-  lbPhotos = galleryData.socializare;
-  lbIdx    = idx;
+  lbPhotos     = galleryData.socializare;
+  lbAlbumTitle = '';
+  lbIdx        = idx;
   showLb();
 }
 
-let lbTrigger = null;
-
 function showLb() {
   lbTrigger = document.activeElement;
-  const lb = document.getElementById('lightbox');
-  lb.classList.add('open');
+  document.getElementById('lightbox').classList.add('open');
   document.body.style.overflow = 'hidden';
-  const titleEl = document.getElementById('lb-album-title');
-  if (lbAlbumTitle) {
-    titleEl.textContent = lbAlbumTitle;
-    titleEl.classList.remove('hidden');
-  } else {
-    titleEl.textContent = '';
-    titleEl.classList.add('hidden');
-  }
-  updateLb();
-  setTimeout(() => { document.getElementById('lb-close-btn').focus(); }, 50);
+  document.getElementById('lb-album-title').textContent = lbAlbumTitle;
+  buildThumbs();
+  // Reset both slots
+  lbActive = 'a';
+  document.getElementById('lb-img-a').style.opacity = '1';
+  document.getElementById('lb-img-b').style.opacity = '0';
+  loadIntoSlot('a', lbIdx, true);
+  updateLbMeta();
+  setTimeout(() => document.getElementById('lb-close-btn').focus(), 50);
 }
 
-// Preîncarcă poza adiacentă în fundal (fără să o afișeze)
-function preloadLb(idx) {
-  const p = lbPhotos[(idx + lbPhotos.length) % lbPhotos.length];
-  if (!p) return;
-  const pre = new Image();
-  pre.src = cldUrl(p.src, 1200);
+function buildThumbs() {
+  const container = document.getElementById('lb-thumbs');
+  container.innerHTML = lbPhotos.map((p, i) => {
+    const url = cldUrl(p.src, 120);
+    return `<div class="lb-thumb${i === lbIdx ? ' active' : ''}" role="option" aria-selected="${i === lbIdx}" tabindex="0"
+      onclick="lbGoTo(${i})" onkeydown="if(event.key==='Enter'||event.key===' ')lbGoTo(${i})">
+      <img src="${url}" alt="" loading="lazy" decoding="async" />
+    </div>`;
+  }).join('');
 }
 
-function updateLb() {
-  const p   = lbPhotos[lbIdx];
-  const img = document.getElementById('lb-img');
-  img.style.opacity = '0';
-  setTimeout(() => {
-    img.src = cldUrl(p.src, 1200) || PLACEHOLDER;
-    img.onerror = () => { img.src = PLACEHOLDER; };
-    img.style.opacity = '1';
-  }, 80);
-  document.getElementById('lb-caption').textContent = p.caption || '';
-  document.getElementById('lb-counter').textContent = lbPhotos.length > 1 ? `${lbIdx + 1} / ${lbPhotos.length}` : '';
-  document.getElementById('lb-prev-btn').style.visibility = lbPhotos.length > 1 ? 'visible' : 'hidden';
-  document.getElementById('lb-next-btn').style.visibility = lbPhotos.length > 1 ? 'visible' : 'hidden';
-  // Preîncarcă poza următoare și cea anterioară
+function updateThumbs() {
+  const thumbs = document.querySelectorAll('.lb-thumb');
+  thumbs.forEach((t, i) => {
+    const active = i === lbIdx;
+    t.classList.toggle('active', active);
+    t.setAttribute('aria-selected', active);
+  });
+  // Scroll active thumb into view
+  const active = thumbs[lbIdx];
+  if (active) active.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+}
+
+function loadIntoSlot(slot, idx, instant) {
+  const p     = lbPhotos[idx];
+  const el    = document.getElementById('lb-img-' + slot);
+  const img   = el.querySelector('img');
+  const spinner = document.getElementById('lb-spinner');
+
+  spinner.classList.add('show');
+  img.onload  = () => { spinner.classList.remove('show'); };
+  img.onerror = () => { spinner.classList.remove('show'); img.src = PLACEHOLDER; };
+  img.alt     = p.caption || '';
+  img.src     = cldUrl(p.src, 1400) || PLACEHOLDER;
+}
+
+function updateLbMeta() {
+  document.getElementById('lb-caption').textContent = lbPhotos[lbIdx]?.caption || '';
+  document.getElementById('lb-counter').textContent =
+    lbPhotos.length > 1 ? `${lbIdx + 1} / ${lbPhotos.length}` : '';
+  const multi = lbPhotos.length > 1;
+  document.getElementById('lb-prev-btn').style.visibility = multi ? 'visible' : 'hidden';
+  document.getElementById('lb-next-btn').style.visibility = multi ? 'visible' : 'hidden';
+}
+
+function lbGoTo(newIdx) {
+  if (newIdx === lbIdx) return;
+  lbIdx = (newIdx + lbPhotos.length) % lbPhotos.length;
+  const next = lbActive === 'a' ? 'b' : 'a';
+  // Pre-position next slot behind current
+  document.getElementById('lb-img-' + next).style.opacity = '0';
+  loadIntoSlot(next, lbIdx, false);
+  // Crossfade after a tick
+  requestAnimationFrame(() => {
+    document.getElementById('lb-img-' + lbActive).style.opacity = '0';
+    document.getElementById('lb-img-' + next).style.opacity     = '1';
+    lbActive = next;
+  });
+  updateLbMeta();
+  updateThumbs();
+  // Preload neighbours
   preloadLb(lbIdx + 1);
   preloadLb(lbIdx - 1);
 }
 
-function lbPrev() { lbIdx = (lbIdx - 1 + lbPhotos.length) % lbPhotos.length; updateLb(); }
-function lbNext() { lbIdx = (lbIdx + 1) % lbPhotos.length; updateLb(); }
+function lbPrev() { lbGoTo(lbIdx - 1); }
+function lbNext() { lbGoTo(lbIdx + 1); }
+
+function preloadLb(idx) {
+  const p = lbPhotos[(idx + lbPhotos.length) % lbPhotos.length];
+  if (!p) return;
+  new Image().src = cldUrl(p.src, 1400);
+}
 
 function closeLightbox() {
   document.getElementById('lightbox').classList.remove('open');
   document.body.style.overflow = '';
-  if (lbTrigger && typeof lbTrigger.focus === 'function') lbTrigger.focus();
+  if (lbTrigger?.focus) lbTrigger.focus();
   lbTrigger = null;
 }
 
-// Keyboard navigation + focus trap
+// Keyboard
 document.addEventListener('keydown', e => {
   const lb = document.getElementById('lightbox');
   if (!lb.classList.contains('open')) return;
-  if (e.key === 'ArrowLeft')  lbPrev();
-  if (e.key === 'ArrowRight') lbNext();
+  if (e.key === 'ArrowLeft')  { e.preventDefault(); lbPrev(); }
+  if (e.key === 'ArrowRight') { e.preventDefault(); lbNext(); }
   if (e.key === 'Escape')     { closeLightbox(); return; }
   if (e.key === 'Tab') {
-    const focusable = Array.from(lb.querySelectorAll('button:not([disabled])'));
+    const focusable = Array.from(lb.querySelectorAll('button:not([disabled]),[tabindex="0"]'));
     if (!focusable.length) { e.preventDefault(); return; }
     const first = focusable[0], last = focusable[focusable.length - 1];
     if (e.shiftKey) { if (document.activeElement === first) { e.preventDefault(); last.focus(); } }
@@ -1193,10 +1354,21 @@ document.addEventListener('keydown', e => {
   }
 });
 
-// Click outside image to close
+// Click backdrop to close
 document.getElementById('lightbox').addEventListener('click', e => {
-  if (e.target === document.getElementById('lightbox')) closeLightbox();
+  if (e.target.id === 'lightbox') closeLightbox();
 });
+
+// Touch swipe
+(function() {
+  const lb = document.getElementById('lightbox');
+  let tx = 0;
+  lb.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+  lb.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - tx;
+    if (Math.abs(dx) > 48) dx < 0 ? lbNext() : lbPrev();
+  }, { passive: true });
+})();
 
 // Touch swipe in lightbox
 let lbTouchX = 0;
