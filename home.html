@@ -260,7 +260,7 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z"/>
           </svg>
-          <div id="search-dropdown"
+          <div id="search-dropdown" aria-live="polite" aria-label="Rezultate căutare"
                class="hidden absolute top-full right-0 mt-2 w-72 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden z-50">
           </div>
         </div>
@@ -318,7 +318,7 @@
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z"/>
         </svg>
-        <div id="mobile-search-dropdown"
+        <div id="mobile-search-dropdown" aria-live="polite" aria-label="Rezultate căutare"
              class="hidden absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden z-50">
         </div>
       </div>
@@ -437,7 +437,7 @@
 </section>
 
 <!-- ════════════════════ DE CE COMUNICARE ════════════════════ -->
-<div id="main-content" style="position:relative;top:-4.5rem;visibility:hidden"></div>
+<div id="main-content" tabindex="-1" style="position:relative;top:-4.5rem;visibility:hidden"></div>
 <section id="de-ce" class="py-14 lg:py-24 bg-white scroll-fade">
   <div class="max-w-7xl mx-auto px-5 lg:px-8">
     <div class="text-center mb-8 md:mb-16">
@@ -1431,7 +1431,7 @@
     <div class="space-y-3">
 
       <div class="faq-item">
-        <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between gap-4 text-left px-5 py-4 bg-gray-50 hover:bg-gray-100 rounded-2xl transition-colors duration-200 font-semibold text-gray-800 text-sm sm:text-base">
+        <button onclick="toggleAccordion(this)" aria-expanded="false" class="w-full flex items-center justify-between gap-4 text-left px-5 py-4 bg-gray-50 hover:bg-gray-100 rounded-2xl transition-colors duration-200 font-semibold text-gray-800 text-sm sm:text-base">
           <span class="flex items-center gap-3 flex-1 min-w-0"><span class="font-bold text-[11px] tracking-widest flex-shrink-0 w-5 text-right" style="color:#772432">01</span><span data-i18n="idx-faq-q1">Cât costă prima ședință?</span></span>
           <svg class="acc-arrow w-5 h-5 text-gray-400 flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
         </button>
@@ -1441,7 +1441,7 @@
       </div>
 
       <div class="faq-item">
-        <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between gap-4 text-left px-5 py-4 bg-gray-50 hover:bg-gray-100 rounded-2xl transition-colors duration-200 font-semibold text-gray-800 text-sm sm:text-base">
+        <button onclick="toggleAccordion(this)" aria-expanded="false" class="w-full flex items-center justify-between gap-4 text-left px-5 py-4 bg-gray-50 hover:bg-gray-100 rounded-2xl transition-colors duration-200 font-semibold text-gray-800 text-sm sm:text-base">
           <span class="flex items-center gap-3 flex-1 min-w-0"><span class="font-bold text-[11px] tracking-widest flex-shrink-0 w-5 text-right" style="color:#772432">02</span><span data-i18n="idx-faq-q2">Unde și când se țin ședințele?</span></span>
           <svg class="acc-arrow w-5 h-5 text-gray-400 flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
         </button>
@@ -1451,7 +1451,7 @@
       </div>
 
       <div class="faq-item">
-        <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between gap-4 text-left px-5 py-4 bg-gray-50 hover:bg-gray-100 rounded-2xl transition-colors duration-200 font-semibold text-gray-800 text-sm sm:text-base">
+        <button onclick="toggleAccordion(this)" aria-expanded="false" class="w-full flex items-center justify-between gap-4 text-left px-5 py-4 bg-gray-50 hover:bg-gray-100 rounded-2xl transition-colors duration-200 font-semibold text-gray-800 text-sm sm:text-base">
           <span class="flex items-center gap-3 flex-1 min-w-0"><span class="font-bold text-[11px] tracking-widest flex-shrink-0 w-5 text-right" style="color:#772432">03</span><span data-i18n="idx-faq-q3">Trebuie să am experiență în vorbit în public?</span></span>
           <svg class="acc-arrow w-5 h-5 text-gray-400 flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
         </button>
@@ -1461,7 +1461,7 @@
       </div>
 
       <div class="faq-item">
-        <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between gap-4 text-left px-5 py-4 bg-gray-50 hover:bg-gray-100 rounded-2xl transition-colors duration-200 font-semibold text-gray-800 text-sm sm:text-base">
+        <button onclick="toggleAccordion(this)" aria-expanded="false" class="w-full flex items-center justify-between gap-4 text-left px-5 py-4 bg-gray-50 hover:bg-gray-100 rounded-2xl transition-colors duration-200 font-semibold text-gray-800 text-sm sm:text-base">
           <span class="flex items-center gap-3 flex-1 min-w-0"><span class="font-bold text-[11px] tracking-widest flex-shrink-0 w-5 text-right" style="color:#772432">04</span><span data-i18n="idx-faq-q4">Câte persoane participă la o ședință?</span></span>
           <svg class="acc-arrow w-5 h-5 text-gray-400 flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
         </button>
@@ -1471,7 +1471,7 @@
       </div>
 
       <div class="faq-item">
-        <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between gap-4 text-left px-5 py-4 bg-gray-50 hover:bg-gray-100 rounded-2xl transition-colors duration-200 font-semibold text-gray-800 text-sm sm:text-base">
+        <button onclick="toggleAccordion(this)" aria-expanded="false" class="w-full flex items-center justify-between gap-4 text-left px-5 py-4 bg-gray-50 hover:bg-gray-100 rounded-2xl transition-colors duration-200 font-semibold text-gray-800 text-sm sm:text-base">
           <span class="flex items-center gap-3 flex-1 min-w-0"><span class="font-bold text-[11px] tracking-widest flex-shrink-0 w-5 text-right" style="color:#772432">05</span><span data-i18n="idx-faq-q5">Trebuie să mă înscriu în avans?</span></span>
           <svg class="acc-arrow w-5 h-5 text-gray-400 flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
         </button>
@@ -1649,9 +1649,11 @@
     document.querySelectorAll('.accordion-content').forEach(c => c.classList.remove('open'));
     document.querySelectorAll('.acc-arrow').forEach(a => a.style.transform = '');
     document.querySelectorAll('.faq-item').forEach(f => f.classList.remove('faq-open'));
+    document.querySelectorAll('.faq-item button').forEach(b => b.setAttribute('aria-expanded', 'false'));
     if (!isOpen) {
       content.classList.add('open');
       arrow.style.transform = 'rotate(180deg)';
+      btn.setAttribute('aria-expanded', 'true');
       const item = btn.closest('.faq-item');
       if (item) item.classList.add('faq-open');
     }

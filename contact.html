@@ -110,7 +110,7 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z"/>
           </svg>
-          <div id="search-dropdown"
+          <div id="search-dropdown" aria-live="polite" aria-label="Rezultate căutare"
                class="hidden absolute top-full right-0 mt-2 w-72 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden z-50">
           </div>
         </div>
@@ -168,7 +168,7 @@
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z"/>
         </svg>
-        <div id="mobile-search-dropdown"
+        <div id="mobile-search-dropdown" aria-live="polite" aria-label="Rezultate căutare"
              class="hidden absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden z-50">
         </div>
       </div>
@@ -218,7 +218,7 @@
 </div>
 
 <!-- ════════════════════ PROGRAM & CONTACT ════════════════════ -->
-<section id="main-content" class="py-14 lg:py-20 bg-gray-50">
+<section id="main-content" tabindex="-1" class="py-14 lg:py-20 bg-gray-50">
   <div class="max-w-7xl mx-auto px-5 lg:px-8">
 
     <!-- 2-col: (Calendar + Hartă) + Formular -->
@@ -510,12 +510,12 @@
                    transition-all duration-200 hover:scale-[1.02] shadow-md shadow-primary/20">
             <span data-i18n="ct-submit">Rezervă-mi locul</span>
           </button>
-          <p id="form-error" role="alert" aria-live="assertive" class="hidden text-sm text-red-600 text-center bg-red-50 rounded-xl py-2.5 px-4">
+          <p id="form-error" role="alert" aria-live="assertive" tabindex="-1" class="hidden text-sm text-red-600 text-center bg-red-50 rounded-xl py-2.5 px-4">
             A apărut o eroare. Încearcă din nou sau scrie-ne pe <a href="https://www.facebook.com/timisoara.toastmasters" target="_blank" class="font-semibold underline">Facebook</a>.
           </p>
           <p class="text-xs text-gray-400 text-center mt-2">Prin trimitere accepți<br/><a href="cookies.html" class="text-maroon hover:underline">Politica de confidențialitate</a></p>
         </form>
-        <div id="form-success" role="status" aria-live="polite" class="hidden text-center py-8">
+        <div id="form-success" role="status" aria-live="polite" tabindex="-1" class="hidden text-center py-8">
           <div class="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-4">
             <svg class="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
           </div>
@@ -661,11 +661,14 @@
         localStorage.setItem('tm_registrations', JSON.stringify(list));
       } catch (_) {}
       document.getElementById('contact-form').classList.add('hidden');
-      document.getElementById('form-success').classList.remove('hidden');
+      const succ = document.getElementById('form-success');
+      succ.classList.remove('hidden');
+      succ.focus();
     } catch (_) {
       btn.disabled = false;
       btn.textContent = origText;
-      document.getElementById('form-error')?.classList.remove('hidden');
+      const err = document.getElementById('form-error');
+      if (err) { err.classList.remove('hidden'); err.focus(); }
     }
   }
 </script>
