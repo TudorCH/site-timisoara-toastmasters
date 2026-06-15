@@ -29,6 +29,13 @@
     '#tts-kar .tw{display:inline;border-radius:3px;padding:0 1px;transition:background .08s,color .08s;}',
     '#tts-kar .tw.cur{background:rgba(242,223,116,.3);color:#F2DF74;font-weight:600;}',
 
+    /* close button — top-right of panel, above controls */
+    '#tts-kar-close{position:absolute;top:.3rem;right:.45rem;z-index:2;' +
+      'background:rgba(255,255,255,.1)!important;border:1px solid rgba(255,255,255,.15)!important;color:rgba(255,255,255,.6)!important;' +
+      'font-size:.75rem;width:1.6rem;height:1.6rem;border-radius:9999px;cursor:pointer;display:flex;align-items:center;justify-content:center;' +
+      'transition:background .15s,color .15s;}',
+    '#tts-kar-close:hover{background:rgba(255,255,255,.22)!important;color:#fff!important;}',
+
     /* controls row */
     '#tts-kar-ctrl{display:flex;align-items:center;justify-content:center;gap:.35rem;padding:.3rem .75rem .6rem;position:relative;}',
     '#tts-kar-ctrl button{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.75);' +
@@ -39,10 +46,7 @@
     '#tts-kar-ctrl .kc-md{width:2.4rem;height:2.4rem;font-size:.95rem;}',
     '#tts-kar-ctrl .kc-pp{width:2.6rem;height:2.6rem;background:rgba(242,223,116,.15)!important;border-color:rgba(242,223,116,.35)!important;color:#F2DF74!important;}',
     '#tts-kar-ctrl .kc-pp:hover{background:rgba(242,223,116,.28)!important;}',
-    '#tts-kar-close{position:absolute;right:.6rem;top:50%;transform:translateY(-50%);' +
-      'background:none!important;border:none!important;color:rgba(255,255,255,.35)!important;' +
-      'font-size:1.1rem;width:1.8rem;height:1.8rem;cursor:pointer;display:flex;align-items:center;justify-content:center;}',
-    '#tts-kar-close:hover{color:rgba(255,255,255,.7)!important;}',
+    '#tts-kar-ctrl .kc-spd{font-size:.6rem;font-weight:700;letter-spacing:-.3px;min-width:2.2rem;padding:0 .3rem;}',
     '#tts-kar-chunk{position:absolute;left:.75rem;top:50%;transform:translateY(-50%);' +
       'font-size:.65rem;color:rgba(255,255,255,.35);letter-spacing:.03em;pointer-events:none;}'
   ].join('');
@@ -87,8 +91,8 @@
   var karWeights = []; // cumulative char-fraction per word (0..1)
   var karIdx     = -1;
   var rafId      = null;
-  /* small start offset: first ~0.25 s is usually silence/envelope */
-  var START_OFFSET = 0.22;
+  var karSpeed   = 1;   // playback rate: 0.75 | 1 | 1.25
+  var START_OFFSET = 0.20;
 
   /* ── Float button ── */
   var floatBtn = null;
@@ -152,16 +156,17 @@
     karPanel.id = 'tts-kar';
     karPanel.setAttribute('aria-hidden', 'true');
     karPanel.innerHTML =
+      '<button id="tts-kar-close" aria-label="Oprește citirea">✕</button>' +
       '<div id="tts-kar-prog"><div id="tts-kar-bar"></div></div>' +
       '<div id="tts-kar-text"></div>' +
       '<div id="tts-kar-ctrl">' +
         '<span id="tts-kar-chunk"></span>' +
-        '<button class="kc-sm" id="kc-prev" title="Chunk anterior" aria-label="Secțiune anterioară">' + iPrev + '</button>' +
+        '<button class="kc-sm" id="kc-prev" title="Secțiune anterioară" aria-label="Secțiune anterioară">' + iPrev + '</button>' +
         '<button class="kc-sm" id="kc-rew"  title="-10s" aria-label="Înapoi 10 secunde"><span style="font-size:.6rem;font-weight:700;letter-spacing:-.5px">-10s</span></button>' +
         '<button class="kc-pp kc-md" id="kc-pp" aria-label="Pauză">' + iPause + '</button>' +
         '<button class="kc-sm" id="kc-fwd"  title="+10s" aria-label="Înainte 10 secunde"><span style="font-size:.6rem;font-weight:700;letter-spacing:-.5px">+10s</span></button>' +
-        '<button class="kc-sm" id="kc-next" title="Chunk următor" aria-label="Secțiune următoare">' + iNext + '</button>' +
-        '<button id="tts-kar-close" aria-label="Oprește citirea">' + iClose + '</button>' +
+        '<button class="kc-sm" id="kc-next" title="Secțiune următoare" aria-label="Secțiune următoare">' + iNext + '</button>' +
+        '<button class="kc-sm kc-spd" id="kc-spd" aria-label="Viteză redare">1×</button>' +
       '</div>';
 
     document.body.appendChild(karPanel);
@@ -188,12 +193,21 @@
       }
     });
     document.getElementById('kc-next').addEventListener('click', function() { triggerSkip('next'); });
+    document.getElementById('kc-spd').addEventListener('click', function() {
+      karSpeed = karSpeed === 1 ? 1.25 : karSpeed === 1.25 ? 0.75 : 1;
+      if (currentAudio) currentAudio.playbackRate = karSpeed;
+      this.textContent = karSpeed + '×';
+    });
     document.getElementById('tts-kar-close').addEventListener('click', function() {
       aborted = true;
       if (currentAudio) currentAudio.pause();
       announce('Citire anulată.');
       setIdle();
     });
+
+    /* lift Toasty above karaoke bar */
+    var tb = document.getElementById('toasty-btn');
+    if (tb) tb.style.setProperty('bottom', '8rem', 'important');
 
     floatBottom();
   }
@@ -202,6 +216,9 @@
     stopKarTick();
     if (karPanel) { karPanel.remove(); karPanel = null; }
     karWords = []; karWeights = []; karIdx = -1;
+    /* restore Toasty position */
+    var tb = document.getElementById('toasty-btn');
+    if (tb) tb.style.removeProperty('bottom');
     floatBottom();
   }
 
@@ -339,6 +356,7 @@
   function playUrl(url) {
     return new Promise(function(resolve) {
       currentAudio = new Audio(url);
+      currentAudio.playbackRate = karSpeed;
       currentAudio.onended = resolve;
       currentAudio.onerror = resolve;
       currentAudio.play().catch(resolve);
@@ -443,9 +461,30 @@
     wireButtons();
   }
 
-  /* ── Alt+T shortcut ── */
+  /* ── Keyboard shortcuts ── */
   document.addEventListener('keydown', function(e) {
-    if (e.altKey && (e.key === 't' || e.key === 'T')) { e.preventDefault(); toggleNav(); }
+    /* Alt+T: start/stop */
+    if (e.altKey && (e.key === 't' || e.key === 'T')) { e.preventDefault(); toggleNav(); return; }
+
+    /* Space/←/→ only when TTS active and focus not on an input/button */
+    if (state === 'idle') return;
+    var tag = (document.activeElement || {}).tagName || '';
+    if (['INPUT','TEXTAREA','SELECT','BUTTON'].includes(tag)) return;
+
+    if (e.key === ' ' || e.key === 'Spacebar') {
+      e.preventDefault();
+      toggleFloat();
+    } else if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      if (currentAudio) currentAudio.currentTime = Math.max(0, currentAudio.currentTime - 10);
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      if (currentAudio) {
+        var d = currentAudio.duration;
+        if (d && currentAudio.currentTime + 10 < d) currentAudio.currentTime += 10;
+        else triggerSkip('next');
+      }
+    }
   });
 
   window.addEventListener('beforeunload', function() {
