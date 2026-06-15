@@ -1,0 +1,14 @@
+{
+  "name": "Timișoara Toastmasters",
+  "short_name": "TM Timișoara",
+  "description": "Primul club Toastmasters din România – vorbit în public și leadership.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#004165",
+  "theme_color": "#004165",
+  "lang": "ro",
+  "icons": [
+    { "src": "/logo.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/logo.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
