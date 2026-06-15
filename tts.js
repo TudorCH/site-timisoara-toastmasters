@@ -22,11 +22,15 @@
       'background:rgba(0,24,38,.96);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);' +
       'color:rgba(255,255,255,.82);border-top:1px solid rgba(242,223,116,.18);' +
       'transition:opacity .3s;}',
-    '#tts-kar-close{position:absolute;top:.3rem;right:.45rem;z-index:2;' +
+    '#tts-kar-close,#tts-kar-toggle{position:absolute;top:.3rem;z-index:2;' +
       'background:rgba(255,255,255,.1)!important;border:1px solid rgba(255,255,255,.15)!important;color:rgba(255,255,255,.6)!important;' +
-      'font-size:.75rem;width:1.6rem;height:1.6rem;border-radius:9999px;cursor:pointer;display:flex;align-items:center;justify-content:center;' +
+      'font-size:.75rem;border-radius:9999px;cursor:pointer;display:flex;align-items:center;justify-content:center;' +
       'transition:background .15s,color .15s;}',
-    '#tts-kar-close:hover{background:rgba(255,255,255,.22)!important;color:#fff!important;}',
+    '#tts-kar-close{right:.45rem;width:1.6rem;height:1.6rem;}',
+    '#tts-kar-toggle{right:2.35rem;width:1.6rem;height:1.6rem;font-size:.55rem;letter-spacing:-.5px;}',
+    '#tts-kar-close:hover,#tts-kar-toggle:hover{background:rgba(255,255,255,.22)!important;color:#fff!important;}',
+    '#tts-kar.kar-min #tts-kar-text{display:none;}',
+    '#tts-kar.kar-min #tts-kar-sentence{display:none!important;}',
     '#tts-kar-prog{height:3px;background:rgba(255,255,255,.1);}',
     '#tts-kar-bar{height:100%;background:#F2DF74;width:0%;transition:width .35s linear;}',
 
@@ -40,8 +44,6 @@
     '#tts-kar .tw{display:inline;border-radius:3px;padding:0 1px;transition:background .08s,color .08s;}',
     '#tts-kar .tw.cur{background:rgba(242,223,116,.3);color:#F2DF74;font-weight:600;}',
 
-    /* auto-collapse state — hide text on desktop after timeout */
-    '#tts-kar.kar-min #tts-kar-text{display:none;}',
 
     /* controls */
     '#tts-kar-ctrl{display:flex;align-items:center;justify-content:center;gap:.35rem;padding:.3rem .75rem .6rem;position:relative;}',
@@ -109,8 +111,7 @@
   var karIdx      = -1;
   var karSentIdx  = -1;
   var rafId       = null;
-  var collapseTimer = null;
-  var START_OFFSET  = 0.20;
+  var START_OFFSET = 0.20;
   var karSpeed      = parseFloat(localStorage.getItem('tts_spd') || '1');
 
   /* ── Float button ── */
@@ -119,7 +120,12 @@
   function floatBottom() {
     if (!floatBtn) return;
     if (!karPanel) { floatBtn.style.bottom = '1.5rem'; return; }
-    floatBtn.style.bottom = window.innerWidth < 640 ? '4.5rem' : '7.5rem';
+    var min = karPanel.classList.contains('kar-min');
+    if (window.innerWidth < 640) {
+      floatBtn.style.bottom = min ? '3.5rem' : '4.5rem';
+    } else {
+      floatBtn.style.bottom = min ? '3.5rem' : '7.5rem';
+    }
   }
 
   function createFloat() {
@@ -149,24 +155,8 @@
     });
   }
 
-  /* ── Auto-collapse (desktop only) ── */
-  function scheduleCollapse() {
-    if (window.innerWidth < 640) return;
-    clearTimeout(collapseTimer);
-    collapseTimer = setTimeout(function() {
-      if (karPanel) karPanel.classList.add('kar-min');
-    }, 5000);
-  }
-
-  function cancelCollapse() {
-    clearTimeout(collapseTimer);
-    if (karPanel) karPanel.classList.remove('kar-min');
-    scheduleCollapse();
-  }
-
   function setIdle() {
     state = 'idle';
-    clearTimeout(collapseTimer);
     setNavActive(false);
     removeFloat();
     removeKaraoke();
@@ -177,15 +167,12 @@
     updateFloat(iPause, 'tts-speaking');
     updateKarCtrlPP(true);
     startKarTick();
-    scheduleCollapse();
   }
   function setPaused() {
     state = 'paused';
     updateFloat(iPlay);
     updateKarCtrlPP(false);
     stopKarTick();
-    clearTimeout(collapseTimer);
-    if (karPanel) karPanel.classList.remove('kar-min');
   }
 
   /* ── Karaoke panel ── */
@@ -196,6 +183,7 @@
     karPanel.setAttribute('aria-hidden', 'true');
     karPanel.innerHTML =
       '<button id="tts-kar-close" aria-label="Oprește citirea">✕</button>' +
+      '<button id="tts-kar-toggle" aria-label="Arată/ascunde text" title="Arată/ascunde text">▼</button>' +
       '<div id="tts-kar-prog"><div id="tts-kar-bar"></div></div>' +
       '<div id="tts-kar-sentence"></div>' +
       '<div id="tts-kar-text"></div>' +
@@ -216,7 +204,7 @@
 
     document.getElementById('kc-rew').addEventListener('click', function() {
       if (currentAudio) currentAudio.currentTime = Math.max(0, currentAudio.currentTime - 10);
-      cancelCollapse();
+
     });
     document.getElementById('kc-fwd').addEventListener('click', function() {
       if (currentAudio) {
@@ -224,29 +212,35 @@
         if (d && currentAudio.currentTime + 10 < d) currentAudio.currentTime += 10;
         else triggerSkip('next');
       }
-      cancelCollapse();
+
     });
     document.getElementById('kc-prev').addEventListener('click', function() {
       if (currentAudio && currentAudio.currentTime > 3) currentAudio.currentTime = 0;
       else triggerSkip('prev');
-      cancelCollapse();
+
     });
     document.getElementById('kc-next').addEventListener('click', function() {
       triggerSkip('next');
-      cancelCollapse();
+
     });
     document.getElementById('kc-spd').addEventListener('click', function() {
       karSpeed = karSpeed === 1 ? 1.25 : karSpeed === 1.25 ? 0.75 : 1;
       if (currentAudio) currentAudio.playbackRate = karSpeed;
       this.textContent = karSpeed + '×';
       localStorage.setItem('tts_spd', karSpeed);
-      cancelCollapse();
+
     });
     document.getElementById('tts-kar-close').addEventListener('click', function() {
       aborted = true;
       if (currentAudio) currentAudio.pause();
       announce('Citire anulată.');
       setIdle();
+    });
+    document.getElementById('tts-kar-toggle').addEventListener('click', function() {
+      var min = karPanel.classList.toggle('kar-min');
+      this.textContent = min ? '▲' : '▼';
+      this.setAttribute('aria-label', min ? 'Arată text' : 'Ascunde text');
+      floatBottom();
     });
 
     /* ── swipe gestures (mobile) ── */
@@ -271,8 +265,6 @@
     }, { passive: true });
 
     /* reset collapse timer on any interaction */
-    karPanel.addEventListener('touchstart', cancelCollapse, { passive: true });
-    karPanel.addEventListener('mousedown', cancelCollapse);
 
     /* lift Toasty above bar */
     var tb = document.getElementById('toasty-btn');
@@ -282,7 +274,6 @@
   }
 
   function removeKaraoke() {
-    clearTimeout(collapseTimer);
     stopKarTick();
     if (karPanel) { karPanel.remove(); karPanel = null; }
     karWords = []; karWeights = []; karSentences = []; karRawWords = [];
