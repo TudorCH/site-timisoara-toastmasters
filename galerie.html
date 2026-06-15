@@ -463,15 +463,27 @@
 <!-- ════════════════════ LIGHTBOX ════════════════════ -->
 <div id="lightbox" role="dialog" aria-modal="true" aria-label="Vizualizare fotografie">
 
-  <!-- Top bar: counter left, title center, close right -->
+  <!-- Top bar: counter left, title center, actions right -->
   <div id="lb-topbar">
     <span id="lb-counter"></span>
     <span id="lb-album-title"></span>
-    <button id="lb-close-btn" onclick="closeLightbox()" aria-label="Închide"
-      style="width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;cursor:pointer;transition:background .15s;flex-shrink:0"
-      onmouseover="this.style.background='rgba(255,255,255,.22)'" onmouseout="this.style.background='rgba(255,255,255,.12)'">
-      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
-    </button>
+    <div style="display:flex;gap:8px;flex-shrink:0">
+      <!-- Fullscreen -->
+      <button id="lb-fs-btn" onclick="lbToggleFullscreen()" aria-label="Ecran întreg"
+        style="width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;cursor:pointer;transition:background .15s"
+        onmouseover="this.style.background='rgba(255,255,255,.22)'" onmouseout="this.style.background='rgba(255,255,255,.12)'">
+        <!-- expand icon (default) -->
+        <svg class="lb-fs-expand" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 3H5a2 2 0 00-2 2v3m18 0V5a2 2 0 00-2-2h-3m0 18h3a2 2 0 002-2v-3M3 16v3a2 2 0 002 2h3"/></svg>
+        <!-- compress icon (when fullscreen) -->
+        <svg class="lb-fs-compress" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" style="display:none"><path stroke-linecap="round" stroke-linejoin="round" d="M8 3v3a2 2 0 01-2 2H3m18 0h-3a2 2 0 01-2-2V3m0 18v-3a2 2 0 012-2h3M3 16h3a2 2 0 012 2v3"/></svg>
+      </button>
+      <!-- Close -->
+      <button id="lb-close-btn" onclick="closeLightbox()" aria-label="Închide"
+        style="width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;cursor:pointer;transition:background .15s"
+        onmouseover="this.style.background='rgba(255,255,255,.22)'" onmouseout="this.style.background='rgba(255,255,255,.12)'">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
   </div>
 
   <!-- Image area -->
@@ -1223,39 +1235,104 @@ function socSlide(dir) { socGoTo(socPos + dir); }
 let lbPhotos     = [];
 let lbIdx        = 0;
 let lbAlbumTitle = '';
+let lbPanel      = '';   // 'sedinte' | 'concursuri' | 'soc'
+let lbAlbumIdx   = 0;
 let lbTrigger    = null;
-let lbActive     = 'a';   // which img slot is currently visible
+let lbActive     = 'a';
+let lbIgnoreHash = false;
 
-function openAlbum(panel, albumIdx) {
+// ── Hash helpers ─────────────────────────────────────────────────────────────
+
+function lbBuildHash() {
+  return lbPanel === 'soc'
+    ? `#lb-soc-${lbIdx}`
+    : `#lb-${lbPanel}-${lbAlbumIdx}-${lbIdx}`;
+}
+
+function lbPushHash()    { location.hash = lbBuildHash().slice(1); }
+function lbReplaceHash() { history.replaceState(null, '', lbBuildHash()); }
+
+function lbClearHash() {
+  if (location.hash.startsWith('#lb-')) {
+    lbIgnoreHash = true;
+    history.replaceState(null, '', location.pathname + location.search);
+    setTimeout(() => { lbIgnoreHash = false; }, 60);
+  }
+}
+
+function parseLbHash() {
+  const hash = location.hash;
+  if (!hash.startsWith('#lb-')) return;
+  const parts = hash.slice(4).split('-');
+  if (parts[0] === 'soc') {
+    const idx = parseInt(parts[1]);
+    if (!isNaN(idx) && idx < galleryData.socializare.length) {
+      lbPhotos = galleryData.socializare; lbAlbumTitle = '';
+      lbPanel  = 'soc'; lbAlbumIdx = 0; lbIdx = idx;
+      showLb(false);
+    }
+  } else {
+    const panel    = parts[0];
+    const albumIdx = parseInt(parts[1]);
+    const photoIdx = parseInt(parts[2]) || 0;
+    const data     = panel === 'sedinte' ? galleryData.sedinte : galleryData.concursuri;
+    if (data && !isNaN(albumIdx) && albumIdx < data.length) {
+      lbPhotos     = data[albumIdx].photos;
+      lbAlbumTitle = data[albumIdx].title || '';
+      lbPanel      = panel; lbAlbumIdx = albumIdx; lbIdx = photoIdx;
+      showLb(false);
+    }
+  }
+}
+
+window.addEventListener('hashchange', () => {
+  if (lbIgnoreHash) return;
+  const isOpen = document.getElementById('lightbox').classList.contains('open');
+  if (location.hash.startsWith('#lb-')) {
+    parseLbHash();
+  } else if (isOpen) {
+    closeLightboxDOM();   // back button cleared hash → close without touching hash
+  }
+});
+
+// ── Open ─────────────────────────────────────────────────────────────────────
+
+function openAlbum(panel, albumIdx, startIdx) {
   const items  = panel === 'sedinte' ? galleryData.sedinte : galleryData.concursuri;
   const album  = items[albumIdx];
   lbPhotos     = album.photos;
   lbAlbumTitle = album.title || '';
-  lbIdx        = 0;
-  showLb();
+  lbPanel      = panel;
+  lbAlbumIdx   = albumIdx;
+  lbIdx        = startIdx || 0;
+  showLb(true);
 }
 
 function openSocPhoto(idx) {
   lbPhotos     = galleryData.socializare;
   lbAlbumTitle = '';
+  lbPanel      = 'soc';
+  lbAlbumIdx   = 0;
   lbIdx        = idx;
-  showLb();
+  showLb(true);
 }
 
-function showLb() {
+function showLb(pushHash) {
   lbTrigger = document.activeElement;
   document.getElementById('lightbox').classList.add('open');
   document.body.style.overflow = 'hidden';
   document.getElementById('lb-album-title').textContent = lbAlbumTitle;
   buildThumbs();
-  // Reset both slots
   lbActive = 'a';
   document.getElementById('lb-img-a').style.opacity = '1';
   document.getElementById('lb-img-b').style.opacity = '0';
   loadIntoSlot('a', lbIdx, true);
   updateLbMeta();
+  if (pushHash) lbPushHash();
   setTimeout(() => document.getElementById('lb-close-btn').focus(), 50);
 }
+
+// ── Thumbnails ────────────────────────────────────────────────────────────────
 
 function buildThumbs() {
   const container = document.getElementById('lb-thumbs');
@@ -1275,26 +1352,26 @@ function updateThumbs() {
     t.classList.toggle('active', active);
     t.setAttribute('aria-selected', active);
   });
-  // Scroll active thumb into view
   const active = thumbs[lbIdx];
   if (active) active.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
 }
 
-function loadIntoSlot(slot, idx, instant) {
-  const p     = lbPhotos[idx];
-  const el    = document.getElementById('lb-img-' + slot);
-  const img   = el.querySelector('img');
-  const spinner = document.getElementById('lb-spinner');
+// ── Image loading ─────────────────────────────────────────────────────────────
 
+function loadIntoSlot(slot, idx) {
+  const p       = lbPhotos[idx];
+  const img     = document.getElementById('lb-img-' + slot).querySelector('img');
+  const spinner = document.getElementById('lb-spinner');
   spinner.classList.add('show');
-  img.onload  = () => { spinner.classList.remove('show'); };
+  img.onload  = () => spinner.classList.remove('show');
   img.onerror = () => { spinner.classList.remove('show'); img.src = PLACEHOLDER; };
   img.alt     = p.caption || '';
   img.src     = cldUrl(p.src, 1400) || PLACEHOLDER;
 }
 
 function updateLbMeta() {
-  document.getElementById('lb-caption').textContent = lbPhotos[lbIdx]?.caption || '';
+  document.getElementById('lb-caption').textContent =
+    lbPhotos[lbIdx]?.caption || '';
   document.getElementById('lb-counter').textContent =
     lbPhotos.length > 1 ? `${lbIdx + 1} / ${lbPhotos.length}` : '';
   const multi = lbPhotos.length > 1;
@@ -1302,14 +1379,14 @@ function updateLbMeta() {
   document.getElementById('lb-next-btn').style.visibility = multi ? 'visible' : 'hidden';
 }
 
+// ── Navigation ────────────────────────────────────────────────────────────────
+
 function lbGoTo(newIdx) {
   if (newIdx === lbIdx) return;
   lbIdx = (newIdx + lbPhotos.length) % lbPhotos.length;
   const next = lbActive === 'a' ? 'b' : 'a';
-  // Pre-position next slot behind current
   document.getElementById('lb-img-' + next).style.opacity = '0';
-  loadIntoSlot(next, lbIdx, false);
-  // Crossfade after a tick
+  loadIntoSlot(next, lbIdx);
   requestAnimationFrame(() => {
     document.getElementById('lb-img-' + lbActive).style.opacity = '0';
     document.getElementById('lb-img-' + next).style.opacity     = '1';
@@ -1317,7 +1394,7 @@ function lbGoTo(newIdx) {
   });
   updateLbMeta();
   updateThumbs();
-  // Preload neighbours
+  lbReplaceHash();
   preloadLb(lbIdx + 1);
   preloadLb(lbIdx - 1);
 }
@@ -1327,24 +1404,56 @@ function lbNext() { lbGoTo(lbIdx + 1); }
 
 function preloadLb(idx) {
   const p = lbPhotos[(idx + lbPhotos.length) % lbPhotos.length];
-  if (!p) return;
-  new Image().src = cldUrl(p.src, 1400);
+  if (p) new Image().src = cldUrl(p.src, 1400);
 }
 
-function closeLightbox() {
+// ── Close ─────────────────────────────────────────────────────────────────────
+
+function closeLightboxDOM() {
   document.getElementById('lightbox').classList.remove('open');
   document.body.style.overflow = '';
+  lbExitFullscreen();
   if (lbTrigger?.focus) lbTrigger.focus();
   lbTrigger = null;
 }
 
-// Keyboard
+function closeLightbox() {
+  closeLightboxDOM();
+  lbClearHash();
+}
+
+// ── Fullscreen ────────────────────────────────────────────────────────────────
+
+function lbToggleFullscreen() {
+  if (document.fullscreenElement) {
+    document.exitFullscreen?.();
+  } else {
+    document.getElementById('lightbox').requestFullscreen?.();
+  }
+}
+
+function lbExitFullscreen() {
+  if (document.fullscreenElement) document.exitFullscreen?.();
+}
+
+document.addEventListener('fullscreenchange', () => {
+  const isFs = !!document.fullscreenElement;
+  const btn  = document.getElementById('lb-fs-btn');
+  if (!btn) return;
+  btn.setAttribute('aria-label', isFs ? 'Ieși din ecran întreg' : 'Ecran întreg');
+  btn.querySelector('.lb-fs-expand').style.display   = isFs ? 'none' : '';
+  btn.querySelector('.lb-fs-compress').style.display = isFs ? '' : 'none';
+});
+
+// ── Keyboard ──────────────────────────────────────────────────────────────────
+
 document.addEventListener('keydown', e => {
   const lb = document.getElementById('lightbox');
   if (!lb.classList.contains('open')) return;
   if (e.key === 'ArrowLeft')  { e.preventDefault(); lbPrev(); }
   if (e.key === 'ArrowRight') { e.preventDefault(); lbNext(); }
-  if (e.key === 'Escape')     { closeLightbox(); return; }
+  if (e.key === 'f' || e.key === 'F') lbToggleFullscreen();
+  if (e.key === 'Escape') { closeLightbox(); return; }
   if (e.key === 'Tab') {
     const focusable = Array.from(lb.querySelectorAll('button:not([disabled]),[tabindex="0"]'));
     if (!focusable.length) { e.preventDefault(); return; }
@@ -1354,29 +1463,24 @@ document.addEventListener('keydown', e => {
   }
 });
 
-// Click backdrop to close
+// ── Backdrop click + touch swipe ──────────────────────────────────────────────
+
 document.getElementById('lightbox').addEventListener('click', e => {
   if (e.target.id === 'lightbox') closeLightbox();
 });
 
-// Touch swipe
 (function() {
   const lb = document.getElementById('lightbox');
   let tx = 0;
   lb.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
-  lb.addEventListener('touchend', e => {
+  lb.addEventListener('touchend',   e => {
     const dx = e.changedTouches[0].clientX - tx;
     if (Math.abs(dx) > 48) dx < 0 ? lbNext() : lbPrev();
   }, { passive: true });
 })();
 
-// Touch swipe in lightbox
-let lbTouchX = 0;
-document.getElementById('lightbox').addEventListener('touchstart', e => { lbTouchX = e.touches[0].clientX; }, { passive: true });
-document.getElementById('lightbox').addEventListener('touchend',   e => {
-  const dx = e.changedTouches[0].clientX - lbTouchX;
-  if (Math.abs(dx) > 40) dx < 0 ? lbNext() : lbPrev();
-}, { passive: true });
+// ── Deep-link on page load ────────────────────────────────────────────────────
+if (location.hash.startsWith('#lb-')) parseLbHash();
 
 // ════════════════ CATEGORY TABS ════════════════
 
