@@ -24,7 +24,10 @@ module.exports = async function handler(req, res) {
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-  const { prenume, nume, email, telefon, sedinta, mesaj } = req.body || {};
+  const { prenume, nume, email, telefon, sedinta, mesaj, _hp } = req.body || {};
+
+  /* honeypot: bots fill hidden field, humans leave it empty */
+  if (_hp) return res.status(200).json({ ok: true });
 
   if (!prenume || !prenume.trim()) {
     return res.status(400).json({ error: 'Prenumele este obligatoriu.' });

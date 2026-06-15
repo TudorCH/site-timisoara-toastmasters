@@ -17,42 +17,50 @@
     '[data-tts-btn].tts-nav-active{color:#F2DF74!important;}',
     '#tts-live{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;}',
 
-    /* karaoke panel */
+    /* panel */
     '#tts-kar{position:fixed;bottom:0;left:0;right:0;z-index:9990;' +
       'background:rgba(0,24,38,.96);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);' +
-      'color:rgba(255,255,255,.82);' +
-      'border-top:1px solid rgba(242,223,116,.18);' +
+      'color:rgba(255,255,255,.82);border-top:1px solid rgba(242,223,116,.18);' +
       'transition:opacity .3s;}',
-    '#tts-kar-prog{height:3px;background:rgba(255,255,255,.1);}',
-    '#tts-kar-bar{height:100%;background:#F2DF74;width:0%;transition:width .35s linear;}',
-    '#tts-kar-text{padding:.6rem 1rem .3rem;font-size:.8rem;line-height:1.75;word-break:break-word;min-height:2.8rem;}',
-    '#tts-kar .tw{display:inline;border-radius:3px;padding:0 1px;transition:background .08s,color .08s;}',
-    '#tts-kar .tw.cur{background:rgba(242,223,116,.3);color:#F2DF74;font-weight:600;}',
-
-    /* close button — top-right of panel */
     '#tts-kar-close{position:absolute;top:.3rem;right:.45rem;z-index:2;' +
       'background:rgba(255,255,255,.1)!important;border:1px solid rgba(255,255,255,.15)!important;color:rgba(255,255,255,.6)!important;' +
       'font-size:.75rem;width:1.6rem;height:1.6rem;border-radius:9999px;cursor:pointer;display:flex;align-items:center;justify-content:center;' +
       'transition:background .15s,color .15s;}',
     '#tts-kar-close:hover{background:rgba(255,255,255,.22)!important;color:#fff!important;}',
+    '#tts-kar-prog{height:3px;background:rgba(255,255,255,.1);}',
+    '#tts-kar-bar{height:100%;background:#F2DF74;width:0%;transition:width .35s linear;}',
 
-    /* controls row */
+    /* full text (desktop) */
+    '#tts-kar-text{padding:.6rem 1rem .3rem;font-size:.8rem;line-height:1.75;word-break:break-word;min-height:2.8rem;}',
+
+    /* sentence (mobile only — hidden on desktop) */
+    '#tts-kar-sentence{display:none;padding:.45rem .85rem .2rem;font-size:.78rem;line-height:1.6;word-break:break-word;}',
+
+    /* word spans */
+    '#tts-kar .tw{display:inline;border-radius:3px;padding:0 1px;transition:background .08s,color .08s;}',
+    '#tts-kar .tw.cur{background:rgba(242,223,116,.3);color:#F2DF74;font-weight:600;}',
+
+    /* auto-collapse state — hide text on desktop after timeout */
+    '#tts-kar.kar-min #tts-kar-text{display:none;}',
+
+    /* controls */
     '#tts-kar-ctrl{display:flex;align-items:center;justify-content:center;gap:.35rem;padding:.3rem .75rem .6rem;position:relative;}',
     '#tts-kar-ctrl button{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.75);' +
       'border-radius:9999px;cursor:pointer;display:flex;align-items:center;justify-content:center;' +
       'transition:background .15s,color .15s;}',
     '#tts-kar-ctrl button:hover{background:rgba(255,255,255,.18);color:#fff;}',
     '#tts-kar-ctrl .kc-sm{width:2rem;height:2rem;}',
-    '#tts-kar-ctrl .kc-md{width:2.4rem;height:2.4rem;font-size:.95rem;}',
+    '#tts-kar-ctrl .kc-md{width:2.4rem;height:2.4rem;}',
     '#tts-kar-ctrl .kc-pp{width:2.6rem;height:2.6rem;background:rgba(242,223,116,.15)!important;border-color:rgba(242,223,116,.35)!important;color:#F2DF74!important;}',
     '#tts-kar-ctrl .kc-pp:hover{background:rgba(242,223,116,.28)!important;}',
     '#tts-kar-ctrl .kc-spd{font-size:.6rem;font-weight:700;letter-spacing:-.3px;min-width:2.2rem;padding:0 .3rem;}',
     '#tts-kar-chunk{position:absolute;left:.75rem;top:50%;transform:translateY(-50%);' +
       'font-size:.65rem;color:rgba(255,255,255,.35);letter-spacing:.03em;pointer-events:none;}',
 
-    /* mobile: compact — hide text, smaller buttons, tighter padding */
+    /* mobile: hide full text, show sentence, smaller controls */
     '@media(max-width:639px){' +
-      '#tts-kar-text{display:none;}' +
+      '#tts-kar-text{display:none!important;}' +
+      '#tts-kar-sentence{display:block;}' +
       '#tts-kar-close{top:.25rem;right:.35rem;width:1.4rem;height:1.4rem;font-size:.65rem;}' +
       '#tts-kar-ctrl{gap:.25rem;padding:.25rem .5rem .4rem;}' +
       '#tts-kar-ctrl .kc-sm{width:1.75rem;height:1.75rem;}' +
@@ -69,9 +77,6 @@
   var iLoad  = '<svg class="tts-spin" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 2a10 10 0 0 1 10 10" opacity=".9"/><path d="M12 2a10 10 0 0 0-10 10" opacity=".3"/></svg>';
   var iPrev  = '<svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><polygon points="19 20 9 12 19 4 19 20"/><rect x="5" y="4" width="3" height="16" rx="1"/></svg>';
   var iNext  = '<svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><polygon points="5 4 15 12 5 20 5 4"/><rect x="16" y="4" width="3" height="16" rx="1"/></svg>';
-  var iRew   = '<svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><polygon points="13 19 2 12 13 5 13 19"/><polygon points="22 19 11 12 22 5 22 19"/></svg>';
-  var iFwd   = '<svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><polygon points="11 5 22 12 11 19 11 5"/><polygon points="2 5 13 12 2 19 2 5"/></svg>';
-  var iClose = '✕';
 
   /* ── Live region ── */
   var live = document.createElement('div');
@@ -89,21 +94,24 @@
   var FIRST_CHUNK  = 650;
   var CHUNK        = 2800;
 
-  /* ── Queue state ── */
+  /* ── Queue ── */
   var allChunks   = [];
   var totalChunks = 0;
   var chunkIndex  = 0;
-  /* 'none'|'next'|'prev'|'restart' — resolved after playUrl resolves */
-  var skipCmd = 'none';
+  var skipCmd     = 'none';
 
-  /* ── Karaoke state ── */
-  var karPanel   = null;
-  var karWords   = [];
-  var karWeights = []; // cumulative char-fraction per word (0..1)
-  var karIdx     = -1;
-  var rafId      = null;
-  var karSpeed   = 1;   // playback rate: 0.75 | 1 | 1.25
-  var START_OFFSET = 0.20;
+  /* ── Karaoke ── */
+  var karPanel    = null;
+  var karWords    = [];
+  var karWeights  = [];
+  var karSentences = [];  // [{start, end}] word index ranges per sentence
+  var karRawWords  = [];  // raw word strings for sentence rebuild
+  var karIdx      = -1;
+  var karSentIdx  = -1;
+  var rafId       = null;
+  var collapseTimer = null;
+  var START_OFFSET  = 0.20;
+  var karSpeed      = parseFloat(localStorage.getItem('tts_spd') || '1');
 
   /* ── Float button ── */
   var floatBtn = null;
@@ -111,8 +119,7 @@
   function floatBottom() {
     if (!floatBtn) return;
     if (!karPanel) { floatBtn.style.bottom = '1.5rem'; return; }
-    /* mobile: panel is ~48px (just controls), desktop: ~120px (text + controls) */
-    floatBtn.style.bottom = window.innerWidth < 640 ? '4rem' : '7.5rem';
+    floatBtn.style.bottom = window.innerWidth < 640 ? '4.5rem' : '7.5rem';
   }
 
   function createFloat() {
@@ -142,24 +149,43 @@
     });
   }
 
+  /* ── Auto-collapse (desktop only) ── */
+  function scheduleCollapse() {
+    if (window.innerWidth < 640) return;
+    clearTimeout(collapseTimer);
+    collapseTimer = setTimeout(function() {
+      if (karPanel) karPanel.classList.add('kar-min');
+    }, 5000);
+  }
+
+  function cancelCollapse() {
+    clearTimeout(collapseTimer);
+    if (karPanel) karPanel.classList.remove('kar-min');
+    scheduleCollapse();
+  }
+
   function setIdle() {
     state = 'idle';
+    clearTimeout(collapseTimer);
     setNavActive(false);
     removeFloat();
     removeKaraoke();
   }
-  function setLoading()  { state = 'loading';  updateFloat(iLoad,  'tts-loading'); }
+  function setLoading()  { state = 'loading'; updateFloat(iLoad, 'tts-loading'); }
   function setSpeaking() {
     state = 'speaking';
     updateFloat(iPause, 'tts-speaking');
     updateKarCtrlPP(true);
     startKarTick();
+    scheduleCollapse();
   }
   function setPaused() {
     state = 'paused';
     updateFloat(iPlay);
     updateKarCtrlPP(false);
     stopKarTick();
+    clearTimeout(collapseTimer);
+    if (karPanel) karPanel.classList.remove('kar-min');
   }
 
   /* ── Karaoke panel ── */
@@ -171,45 +197,50 @@
     karPanel.innerHTML =
       '<button id="tts-kar-close" aria-label="Oprește citirea">✕</button>' +
       '<div id="tts-kar-prog"><div id="tts-kar-bar"></div></div>' +
+      '<div id="tts-kar-sentence"></div>' +
       '<div id="tts-kar-text"></div>' +
       '<div id="tts-kar-ctrl">' +
         '<span id="tts-kar-chunk"></span>' +
-        '<button class="kc-sm" id="kc-prev" title="Secțiune anterioară" aria-label="Secțiune anterioară">' + iPrev + '</button>' +
-        '<button class="kc-sm" id="kc-rew"  title="-10s" aria-label="Înapoi 10 secunde"><span style="font-size:.6rem;font-weight:700;letter-spacing:-.5px">-10s</span></button>' +
+        '<button class="kc-sm" id="kc-prev" aria-label="Secțiune anterioară">' + iPrev + '</button>' +
+        '<button class="kc-sm" id="kc-rew"  aria-label="Înapoi 10 secunde"><span style="font-size:.6rem;font-weight:700;letter-spacing:-.5px">-10s</span></button>' +
         '<button class="kc-pp kc-md" id="kc-pp" aria-label="Pauză">' + iPause + '</button>' +
-        '<button class="kc-sm" id="kc-fwd"  title="+10s" aria-label="Înainte 10 secunde"><span style="font-size:.6rem;font-weight:700;letter-spacing:-.5px">+10s</span></button>' +
-        '<button class="kc-sm" id="kc-next" title="Secțiune următoare" aria-label="Secțiune următoare">' + iNext + '</button>' +
-        '<button class="kc-sm kc-spd" id="kc-spd" aria-label="Viteză redare">1×</button>' +
+        '<button class="kc-sm" id="kc-fwd"  aria-label="Înainte 10 secunde"><span style="font-size:.6rem;font-weight:700;letter-spacing:-.5px">+10s</span></button>' +
+        '<button class="kc-sm" id="kc-next" aria-label="Secțiune următoare">' + iNext + '</button>' +
+        '<button class="kc-sm kc-spd" id="kc-spd" aria-label="Viteză redare">' + karSpeed + '×</button>' +
       '</div>';
 
     document.body.appendChild(karPanel);
 
+    /* ── control listeners ── */
     document.getElementById('kc-pp').addEventListener('click', toggleFloat);
+
     document.getElementById('kc-rew').addEventListener('click', function() {
       if (currentAudio) currentAudio.currentTime = Math.max(0, currentAudio.currentTime - 10);
+      cancelCollapse();
     });
     document.getElementById('kc-fwd').addEventListener('click', function() {
       if (currentAudio) {
         var d = currentAudio.duration;
-        if (d && currentAudio.currentTime + 10 < d) {
-          currentAudio.currentTime += 10;
-        } else {
-          triggerSkip('next');
-        }
+        if (d && currentAudio.currentTime + 10 < d) currentAudio.currentTime += 10;
+        else triggerSkip('next');
       }
+      cancelCollapse();
     });
     document.getElementById('kc-prev').addEventListener('click', function() {
-      if (currentAudio && currentAudio.currentTime > 3) {
-        currentAudio.currentTime = 0;
-      } else {
-        triggerSkip('prev');
-      }
+      if (currentAudio && currentAudio.currentTime > 3) currentAudio.currentTime = 0;
+      else triggerSkip('prev');
+      cancelCollapse();
     });
-    document.getElementById('kc-next').addEventListener('click', function() { triggerSkip('next'); });
+    document.getElementById('kc-next').addEventListener('click', function() {
+      triggerSkip('next');
+      cancelCollapse();
+    });
     document.getElementById('kc-spd').addEventListener('click', function() {
       karSpeed = karSpeed === 1 ? 1.25 : karSpeed === 1.25 ? 0.75 : 1;
       if (currentAudio) currentAudio.playbackRate = karSpeed;
       this.textContent = karSpeed + '×';
+      localStorage.setItem('tts_spd', karSpeed);
+      cancelCollapse();
     });
     document.getElementById('tts-kar-close').addEventListener('click', function() {
       aborted = true;
@@ -218,7 +249,32 @@
       setIdle();
     });
 
-    /* lift Toasty above karaoke bar */
+    /* ── swipe gestures (mobile) ── */
+    var swipeX = 0, swipeY = 0;
+    karPanel.addEventListener('touchstart', function(e) {
+      swipeX = e.touches[0].clientX;
+      swipeY = e.touches[0].clientY;
+    }, { passive: true });
+    karPanel.addEventListener('touchend', function(e) {
+      var dx = e.changedTouches[0].clientX - swipeX;
+      var dy = e.changedTouches[0].clientY - swipeY;
+      if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
+      if (dx < 0) { /* swipe left = forward 10s */
+        if (currentAudio) {
+          var d = currentAudio.duration;
+          if (d && currentAudio.currentTime + 10 < d) currentAudio.currentTime += 10;
+          else triggerSkip('next');
+        }
+      } else { /* swipe right = back 10s */
+        if (currentAudio) currentAudio.currentTime = Math.max(0, currentAudio.currentTime - 10);
+      }
+    }, { passive: true });
+
+    /* reset collapse timer on any interaction */
+    karPanel.addEventListener('touchstart', cancelCollapse, { passive: true });
+    karPanel.addEventListener('mousedown', cancelCollapse);
+
+    /* lift Toasty above bar */
     var tb = document.getElementById('toasty-btn');
     if (tb) tb.style.setProperty('bottom', window.innerWidth < 640 ? '4.5rem' : '8rem', 'important');
 
@@ -226,10 +282,11 @@
   }
 
   function removeKaraoke() {
+    clearTimeout(collapseTimer);
     stopKarTick();
     if (karPanel) { karPanel.remove(); karPanel = null; }
-    karWords = []; karWeights = []; karIdx = -1;
-    /* restore Toasty position */
+    karWords = []; karWeights = []; karSentences = []; karRawWords = [];
+    karIdx = -1; karSentIdx = -1;
     var tb = document.getElementById('toasty-btn');
     if (tb) tb.style.removeProperty('bottom');
     floatBottom();
@@ -255,7 +312,7 @@
     if (el) el.textContent = (chunkIndex + 1) + ' / ' + totalChunks;
   }
 
-  /* ── Word weights (char-length-based for realistic timing) ── */
+  /* ── Build char-weighted fractions per word ── */
   function buildWeights(words) {
     var total = words.reduce(function(s, w) { return s + w.length + 1; }, 0);
     var cum = 0;
@@ -266,21 +323,65 @@
     });
   }
 
+  /* ── Build sentence ranges from word array ── */
+  function buildSentences(words) {
+    var sents = [];
+    var start = 0;
+    words.forEach(function(w, i) {
+      if (/[.!?]$/.test(w) || i === words.length - 1) {
+        sents.push({ start: start, end: i });
+        start = i + 1;
+      }
+    });
+    if (start <= words.length - 1) sents.push({ start: start, end: words.length - 1 });
+    return sents;
+  }
+
+  function esc(w) { return w.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  /* ── Render sentence div (mobile) with highlight spans ── */
+  function renderSentence(sentIdx, highlightWordIdx) {
+    var sentEl = document.getElementById('tts-kar-sentence');
+    if (!sentEl || !karSentences.length) return;
+    var sent = karSentences[sentIdx];
+    if (!sent) return;
+    sentEl.innerHTML = karRawWords.slice(sent.start, sent.end + 1).map(function(w, i) {
+      var gi = sent.start + i;
+      return '<span class="tw' + (gi === highlightWordIdx ? ' cur' : '') + '" data-i="' + gi + '">' + esc(w) + '</span>';
+    }).join(' ');
+  }
+
+  /* ── Update only the highlight within the sentence div ── */
+  function updateSentenceHighlight(wordIdx) {
+    var sentEl = document.getElementById('tts-kar-sentence');
+    if (!sentEl) return;
+    sentEl.querySelectorAll('.tw').forEach(function(sp) {
+      sp.classList.toggle('cur', parseInt(sp.getAttribute('data-i')) === wordIdx);
+    });
+  }
+
   function setKarChunk(text) {
     if (!karPanel) return;
     var wordsEl = document.getElementById('tts-kar-text');
     if (!wordsEl) return;
     var raw = text.trim().split(/\s+/);
     wordsEl.innerHTML = raw.map(function(w) {
-      return '<span class="tw">' + w.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') + '</span>';
+      return '<span class="tw">' + esc(w) + '</span>';
     }).join(' ');
-    karWords   = Array.from(wordsEl.querySelectorAll('.tw'));
-    karWeights = buildWeights(raw);
-    karIdx     = -1;
+    karWords      = Array.from(wordsEl.querySelectorAll('.tw'));
+    karWeights    = buildWeights(raw);
+    karSentences  = buildSentences(raw);
+    karRawWords   = raw;
+    karIdx        = -1;
+    karSentIdx    = -1;
+
+    /* init mobile sentence display */
+    if (karSentences.length) renderSentence(0, -1);
+
     updateKarChunkLabel();
   }
 
-  /* ── Animation tick (char-weighted estimation) ── */
+  /* ── Animation tick ── */
   function karTick() {
     if (!currentAudio || !karWords.length) return;
     var t = Math.max(0, currentAudio.currentTime - START_OFFSET);
@@ -289,7 +390,6 @@
     if (d && d > 0) {
       var progress = Math.min(t / (d - START_OFFSET), 1);
 
-      /* find last word whose cumulative fraction <= progress */
       var idx = 0;
       for (var k = 0; k < karWeights.length; k++) {
         if (karWeights[k] <= progress) idx = k;
@@ -297,18 +397,30 @@
       }
 
       if (idx !== karIdx) {
+        /* update full-text highlight */
         if (karIdx >= 0 && karWords[karIdx]) karWords[karIdx].classList.remove('cur');
         if (karWords[idx]) karWords[idx].classList.add('cur');
         karIdx = idx;
+
+        /* update sentence display (mobile) */
+        var newSentIdx = 0;
+        for (var s = 0; s < karSentences.length; s++) {
+          if (karSentences[s].start <= idx) newSentIdx = s;
+          else break;
+        }
+        if (newSentIdx !== karSentIdx) {
+          karSentIdx = newSentIdx;
+          renderSentence(newSentIdx, idx);
+        } else {
+          updateSentenceHighlight(idx);
+        }
       }
 
-      /* global progress bar */
+      /* progress bar */
       var bar = document.getElementById('tts-kar-bar');
       if (bar) {
-        var global = totalChunks > 0
-          ? ((chunkIndex + progress) / totalChunks) * 100
-          : progress * 100;
-        bar.style.width = global.toFixed(1) + '%';
+        var glob = totalChunks > 0 ? ((chunkIndex + progress) / totalChunks) * 100 : progress * 100;
+        bar.style.width = glob.toFixed(1) + '%';
       }
     }
 
@@ -361,9 +473,7 @@
     }).then(function(r) {
       if (!r.ok) throw new Error('TTS ' + r.status);
       return r.blob();
-    }).then(function(blob) {
-      return URL.createObjectURL(blob);
-    });
+    }).then(function(blob) { return URL.createObjectURL(blob); });
   }
 
   function playUrl(url) {
@@ -385,14 +495,12 @@
 
     createKaraoke();
     announce('Se încarcă audio, vă rugăm așteptați.');
-
     var prefetch = fetchChunk(chunks[0]);
 
     var i = 0;
     while (i < chunks.length) {
       if (aborted) break;
       if (i === 0) setLoading();
-
       chunkIndex = i;
 
       var url;
@@ -400,8 +508,6 @@
       catch(e) { announce('Eroare la încărcarea audio. Verificați conexiunea.'); setIdle(); return; }
 
       if (aborted) { URL.revokeObjectURL(url); break; }
-
-      /* prefetch next while current plays */
       prefetch = (i + 1 < chunks.length) ? fetchChunk(chunks[i + 1]) : Promise.resolve(null);
 
       setKarChunk(chunks[i]);
@@ -411,13 +517,11 @@
       await playUrl(url);
       URL.revokeObjectURL(url);
 
-      /* handle skip commands */
       if (!aborted) {
-        var cmd = skipCmd;
-        skipCmd = 'none';
+        var cmd = skipCmd; skipCmd = 'none';
         if (cmd === 'next') {
           i = Math.min(i + 1, chunks.length - 1);
-          if (i + 1 < chunks.length) prefetch = fetchChunk(chunks[i]);
+          if (i < chunks.length) prefetch = fetchChunk(chunks[i]);
           else { setIdle(); return; }
         } else if (cmd === 'prev') {
           i = Math.max(0, i - 1);
@@ -448,17 +552,13 @@
   /* ── Float toggle ── */
   function toggleFloat() {
     if (state === 'loading') {
-      aborted = true;
-      announce('Citire anulată.');
-      setIdle();
+      aborted = true; announce('Citire anulată.'); setIdle();
     } else if (state === 'speaking') {
       if (currentAudio) currentAudio.pause();
-      announce('Pauză.');
-      setPaused();
+      announce('Pauză.'); setPaused();
     } else if (state === 'paused') {
       if (currentAudio) currentAudio.play();
-      announce('Continuă citirea.');
-      setSpeaking();
+      announce('Continuă citirea.'); setSpeaking();
     }
   }
 
@@ -476,17 +576,12 @@
 
   /* ── Keyboard shortcuts ── */
   document.addEventListener('keydown', function(e) {
-    /* Alt+T: start/stop */
     if (e.altKey && (e.key === 't' || e.key === 'T')) { e.preventDefault(); toggleNav(); return; }
-
-    /* Space/←/→ only when TTS active and focus not on an input/button */
     if (state === 'idle') return;
     var tag = (document.activeElement || {}).tagName || '';
     if (['INPUT','TEXTAREA','SELECT','BUTTON'].includes(tag)) return;
-
     if (e.key === ' ' || e.key === 'Spacebar') {
-      e.preventDefault();
-      toggleFloat();
+      e.preventDefault(); toggleFloat();
     } else if (e.key === 'ArrowLeft') {
       e.preventDefault();
       if (currentAudio) currentAudio.currentTime = Math.max(0, currentAudio.currentTime - 10);
