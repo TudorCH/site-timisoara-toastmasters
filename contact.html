@@ -6,7 +6,6 @@
   <script>if ('scrollRestoration' in history) history.scrollRestoration = 'manual';</script>
   <title>Înscrie-te ca Invitat | Timișoara Toastmasters</title>
   <meta name="description" content="Înscrie-te ca invitat gratuit la Timișoara Toastmasters. Ședințe miercuri 19:30–21:00, Cowork The Office. Alege o dată și te contactăm în 24 de ore." />
-  <!-- UPDATE: replace placeholder URL with actual production domain -->
   <link rel="canonical" href="https://timisoaratoastmasters.ro/contact.html" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://timisoaratoastmasters.ro/contact.html" />
@@ -701,10 +700,15 @@
 </script>
 <script src="search.js"></script>
 <script src="cookie-banner.js"></script>
-<!-- ════════════════════ TOASTY CHATBOT ════════════════════ -->
 <script src="i18n.js"></script>
-<script src="tts.js"></script>
-<script src="toasty.js"></script>
+<script>
+(function(){
+  var done=false;
+  function load(){if(done)return;done=true;['tts.js','toasty.js'].forEach(function(s){var el=document.createElement('script');el.src=s;document.body.appendChild(el);});}
+  ['scroll','click','touchstart','keydown'].forEach(function(e){window.addEventListener(e,load,{once:true,passive:true});});
+  setTimeout(load,3000);
+})();
+</script>
 <script>
 (function(){
   var ua = navigator.userAgent||navigator.vendor||window.opera;

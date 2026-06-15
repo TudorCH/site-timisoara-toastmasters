@@ -6,23 +6,22 @@
   <script>if ('scrollRestoration' in history) history.scrollRestoration = 'manual';</script>
   <title>Galerie Foto Toastmasters Timișoara | Momente din Club</title>
   <meta name="description" content="Imagini din ședințele și evenimentele Timișoara Toastmasters – cel mai vechi club de vorbit în public din România. Vino ca invitat miercuri seară." />
-  <!-- UPDATE: replace placeholder URL with actual production domain -->
   <link rel="canonical" href="https://timisoaratoastmasters.ro/galerie.html" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://timisoaratoastmasters.ro/galerie.html" />
   <meta property="og:site_name" content="Timișoara Toastmasters" />
   <meta property="og:title" content="Galerie Foto Toastmasters Timișoara" />
   <meta property="og:description" content="Imagini din ședințele și evenimentele Timișoara Toastmasters. Peste 17 ani de momente capturate." />
-  <meta property="og:image" content="https://timisoaratoastmasters.ro/Images/background-header.jpg" />
+  <meta property="og:image" content="https://res.cloudinary.com/dnxcej0q5/image/upload/w_1200,h_630,c_fill,q_auto,f_jpg/IMG_2954_bxhgge" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Ședință Timișoara Toastmasters" />
+  <meta property="og:image:alt" content="Ședință Timișoara Toastmasters – galerie foto" />
   <meta property="og:locale" content="ro_RO" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Galerie Foto Toastmasters Timișoara" />
   <meta name="twitter:description" content="Imagini din ședințele și evenimentele Timișoara Toastmasters. 17 ani de momente." />
-  <meta name="twitter:image" content="https://timisoaratoastmasters.ro/Images/background-header.jpg" />
-  <meta name="twitter:image:alt" content="Ședință Timișoara Toastmasters" />
+  <meta name="twitter:image" content="https://res.cloudinary.com/dnxcej0q5/image/upload/w_1200,h_630,c_fill,q_auto,f_jpg/IMG_2954_bxhgge" />
+  <meta name="twitter:image:alt" content="Ședință Timișoara Toastmasters – galerie foto" />
   <!-- Geo / Local SEO -->
   <meta name="geo.region" content="RO-TM" />
   <meta name="geo.placename" content="Timișoara, România" />
@@ -1672,10 +1671,15 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 <script src="search.js"></script>
 <script src="cookie-banner.js"></script>
-<!-- ════════════════════ TOASTY CHATBOT ════════════════════ -->
 <script src="i18n.js"></script>
-<script src="tts.js"></script>
-<script src="toasty.js"></script>
+<script>
+(function(){
+  var done=false;
+  function load(){if(done)return;done=true;['tts.js','toasty.js'].forEach(function(s){var el=document.createElement('script');el.src=s;document.body.appendChild(el);});}
+  ['scroll','click','touchstart','keydown'].forEach(function(e){window.addEventListener(e,load,{once:true,passive:true});});
+  setTimeout(load,3000);
+})();
+</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",

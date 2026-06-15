@@ -6,7 +6,6 @@
   <script>if ('scrollRestoration' in history) history.scrollRestoration = 'manual';</script>
   <title>Public Speaking în Timișoara | Timișoara Toastmasters</title>
   <meta name="description" content="Primul club Toastmasters din România – 17 ani, 200+ membri, 1.200+ discursuri. Valori, echipă și structura unei ședințe. Vino miercuri seară în Timișoara." />
-  <!-- UPDATE: replace placeholder URL with actual production domain -->
   <link rel="canonical" href="https://timisoaratoastmasters.ro/despre-noi.html" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://timisoaratoastmasters.ro/despre-noi.html" />
@@ -1560,10 +1559,15 @@
   nums.forEach(function(n){ obs.observe(n); });
 })();
 </script>
-<!-- ════════════════════ TOASTY CHATBOT ════════════════════ -->
 <script src="i18n.js"></script>
-<script src="tts.js"></script>
-<script src="toasty.js"></script>
+<script>
+(function(){
+  var done=false;
+  function load(){if(done)return;done=true;['tts.js','toasty.js'].forEach(function(s){var el=document.createElement('script');el.src=s;document.body.appendChild(el);});}
+  ['scroll','click','touchstart','keydown'].forEach(function(e){window.addEventListener(e,load,{once:true,passive:true});});
+  setTimeout(load,3000);
+})();
+</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",

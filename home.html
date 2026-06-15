@@ -7,7 +7,6 @@
   <link rel="preload" as="image" href="Images/background-header.webp" fetchpriority="high" type="image/webp" />
   <title>Vorbit în Public Timișoara | Timișoara Toastmasters</title>
   <meta name="description" content="Primul club Toastmasters din România, activ de 17 ani. Ședințe miercuri seară în Timișoara – vorbit în public, leadership, feedback. Intrare gratuită ca invitat." />
-  <!-- UPDATE: replace placeholder URL with actual production domain -->
   <link rel="canonical" href="https://timisoaratoastmasters.ro/" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://timisoaratoastmasters.ro/" />
@@ -1958,10 +1957,15 @@
 </script>
 <script src="search.js"></script>
 <script src="cookie-banner.js"></script>
-<!-- ════════════════════ TOASTY CHATBOT ════════════════════ -->
 <script src="i18n.js"></script>
-<script src="tts.js"></script>
-<script src="toasty.js"></script>
+<script>
+(function(){
+  var done=false;
+  function load(){if(done)return;done=true;['tts.js','toasty.js'].forEach(function(s){var el=document.createElement('script');el.src=s;document.body.appendChild(el);});}
+  ['scroll','click','touchstart','keydown'].forEach(function(e){window.addEventListener(e,load,{once:true,passive:true});});
+  setTimeout(load,3000);
+})();
+</script>
 <script>
 (function(){
   var ua = navigator.userAgent||navigator.vendor||window.opera;
