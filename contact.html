@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ro">
 <head>
   <meta charset="UTF-8" />
@@ -49,11 +49,18 @@
     #cal-card  { order:1; }
     #form-card { order:2; }
     #map-card  { order:3; }
+    @keyframes field-ping {
+      0%   { box-shadow: 0 0 0 0 rgba(0,65,101,.45); }
+      70%  { box-shadow: 0 0 0 9px rgba(0,65,101,0); }
+      100% { box-shadow: 0 0 0 0 rgba(0,65,101,0); }
+    }
+    .field-flash { animation: field-ping .9s ease-out; }
+    .ct-input:focus { outline:none; box-shadow:0 0 0 3px rgba(0,65,101,.18); border-color:#004165; }
     @media (min-width:768px) {
       #contact-grid { grid-template-rows: auto auto; }
       #cal-card  { grid-column:1; grid-row:1; order:unset; }
       #map-card  { grid-column:1; grid-row:2; order:unset; }
-      #form-card { grid-column:2; grid-row:1 / span 2; order:unset; }
+      #form-card { grid-column:2; grid-row:1 / span 2; order:unset; align-self:start; position:sticky; top:5.5rem; }
     }
     .gradient-hero { background: linear-gradient(135deg, #002d47 0%, #004165 55%, #003555 100%); }
     .gradient-dark { background: linear-gradient(135deg, #002d47 0%, #004165 100%); }
@@ -432,7 +439,15 @@
           cta.className = 'w-full flex items-center justify-center gap-2 bg-primary hover:bg-primary-light text-white font-semibold text-sm px-6 py-3 rounded-xl transition-all duration-300 shadow-md shadow-primary/20 hover:scale-[1.02] pointer-events-auto cursor-pointer';
 
           const formField = document.getElementById('form-sedinta');
-          if (formField) formField.value = dateStr + (lang === 'EN' ? ' (EN)' : ' (RO)');
+          if (formField) {
+            formField.value = dateStr + (lang === 'EN' ? ' (EN)' : ' (RO)');
+            formField.classList.remove('field-flash');
+            void formField.offsetWidth;
+            formField.classList.add('field-flash');
+            if (window.innerWidth < 768) {
+              setTimeout(() => document.getElementById('form-card').scrollIntoView({ behavior:'smooth', block:'start' }), 80);
+            }
+          }
         };
 
         window.calScrollToForm = function() {
@@ -475,23 +490,23 @@
             <div>
               <label for="ct-prenume" class="block text-sm font-medium text-gray-700 mb-1.5"><span data-i18n="ct-prenume">Prenume</span> <span class="text-maroon" aria-hidden="true">*</span></label>
               <input id="ct-prenume" type="text" placeholder="Ion" required aria-required="true" autocomplete="given-name"
-                class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-gray-400 transition-all" />
+                class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm ct-input transition-all" />
             </div>
             <div>
               <label for="ct-nume" class="block text-sm font-medium text-gray-700 mb-1.5" data-i18n="ct-nome">Nume</label>
               <input id="ct-nume" type="text" placeholder="Popescu" autocomplete="family-name"
-                class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-gray-400 transition-all" />
+                class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm ct-input transition-all" />
             </div>
           </div>
           <div>
             <label for="ct-email" class="block text-sm font-medium text-gray-700 mb-1.5"><span data-i18n="ct-email">Email</span> <span class="text-maroon" aria-hidden="true">*</span></label>
             <input id="ct-email" type="email" placeholder="ion.popescu@email.com" required aria-required="true" autocomplete="email"
-              class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-gray-400 transition-all" />
+              class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm ct-input transition-all" />
           </div>
           <div>
             <label for="ct-telefon" class="block text-sm font-medium text-gray-700 mb-1.5"><span data-i18n="ct-tel">Telefon</span> <span class="text-gray-400" data-i18n="ct-optional">(opțional)</span></label>
             <input id="ct-telefon" type="tel" placeholder="+40 7XX XXX XXX" autocomplete="tel"
-              class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-gray-400 transition-all" />
+              class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm ct-input transition-all" />
           </div>
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1.5">
@@ -507,13 +522,20 @@
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1.5" data-i18n="ct-mesaj">Mesaj</label>
             <textarea rows="3" placeholder="Sunt interesat să vin ca invitat la o ședință…" maxlength="1000"
-              class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-gray-400 transition-all resize-none"></textarea>
+              class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm ct-input transition-all resize-none"></textarea>
           </div>
           <button type="submit" id="form-submit-btn"
             class="w-full bg-primary hover:bg-primary-light text-white font-semibold py-3.5 rounded-xl text-sm
                    transition-all duration-200 hover:scale-[1.02] shadow-md shadow-primary/20">
             <span data-i18n="ct-submit">Rezervă-mi locul</span>
           </button>
+          <div class="flex items-center justify-center gap-2 flex-wrap pt-1">
+            <span class="flex items-center gap-1 text-xs text-gray-400"><svg class="w-3.5 h-3.5 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>Gratuit ca invitat</span>
+            <span class="text-gray-200 text-xs">·</span>
+            <span class="flex items-center gap-1 text-xs text-gray-400"><svg class="w-3.5 h-3.5 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>Fără angajament</span>
+            <span class="text-gray-200 text-xs">·</span>
+            <span class="flex items-center gap-1 text-xs text-gray-400"><svg class="w-3.5 h-3.5 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>Răspuns în 24h</span>
+          </div>
           <p id="form-error" role="alert" aria-live="assertive" tabindex="-1" class="hidden text-sm text-red-600 text-center bg-red-50 rounded-xl py-2.5 px-4">
             A apărut o eroare. Încearcă din nou sau scrie-ne pe <a href="https://www.facebook.com/timisoara.toastmasters" target="_blank" class="font-semibold underline">Facebook</a>.
           </p>
