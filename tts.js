@@ -29,7 +29,7 @@
     '#tts-kar .tw{display:inline;border-radius:3px;padding:0 1px;transition:background .08s,color .08s;}',
     '#tts-kar .tw.cur{background:rgba(242,223,116,.3);color:#F2DF74;font-weight:600;}',
 
-    /* close button — top-right of panel, above controls */
+    /* close button — top-right of panel */
     '#tts-kar-close{position:absolute;top:.3rem;right:.45rem;z-index:2;' +
       'background:rgba(255,255,255,.1)!important;border:1px solid rgba(255,255,255,.15)!important;color:rgba(255,255,255,.6)!important;' +
       'font-size:.75rem;width:1.6rem;height:1.6rem;border-radius:9999px;cursor:pointer;display:flex;align-items:center;justify-content:center;' +
@@ -48,7 +48,18 @@
     '#tts-kar-ctrl .kc-pp:hover{background:rgba(242,223,116,.28)!important;}',
     '#tts-kar-ctrl .kc-spd{font-size:.6rem;font-weight:700;letter-spacing:-.3px;min-width:2.2rem;padding:0 .3rem;}',
     '#tts-kar-chunk{position:absolute;left:.75rem;top:50%;transform:translateY(-50%);' +
-      'font-size:.65rem;color:rgba(255,255,255,.35);letter-spacing:.03em;pointer-events:none;}'
+      'font-size:.65rem;color:rgba(255,255,255,.35);letter-spacing:.03em;pointer-events:none;}',
+
+    /* mobile: compact — hide text, smaller buttons, tighter padding */
+    '@media(max-width:639px){' +
+      '#tts-kar-text{display:none;}' +
+      '#tts-kar-close{top:.25rem;right:.35rem;width:1.4rem;height:1.4rem;font-size:.65rem;}' +
+      '#tts-kar-ctrl{gap:.25rem;padding:.25rem .5rem .4rem;}' +
+      '#tts-kar-ctrl .kc-sm{width:1.75rem;height:1.75rem;}' +
+      '#tts-kar-ctrl .kc-md{width:2rem;height:2rem;}' +
+      '#tts-kar-ctrl .kc-pp{width:2.25rem;height:2.25rem;}' +
+      '#tts-kar-chunk{font-size:.58rem;}' +
+    '}'
   ].join('');
   document.head.appendChild(css);
 
@@ -99,7 +110,9 @@
 
   function floatBottom() {
     if (!floatBtn) return;
-    floatBtn.style.bottom = karPanel ? '7.5rem' : '1.5rem';
+    if (!karPanel) { floatBtn.style.bottom = '1.5rem'; return; }
+    /* mobile: panel is ~48px (just controls), desktop: ~120px (text + controls) */
+    floatBtn.style.bottom = window.innerWidth < 640 ? '4rem' : '7.5rem';
   }
 
   function createFloat() {
@@ -207,7 +220,7 @@
 
     /* lift Toasty above karaoke bar */
     var tb = document.getElementById('toasty-btn');
-    if (tb) tb.style.setProperty('bottom', '8rem', 'important');
+    if (tb) tb.style.setProperty('bottom', window.innerWidth < 640 ? '4.5rem' : '8rem', 'important');
 
     floatBottom();
   }
