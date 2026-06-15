@@ -117,33 +117,30 @@
       position: relative; display: flex; align-items: center; justify-content: center;
       width: 100%; flex: 1; min-height: 0; overflow: hidden;
     }
-    #lb-img-a, #lb-img-b {
+    /* Image slots */
+    .lb-slot {
       position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
-      transition: opacity .22s ease;
+      transition: opacity .22s ease; overflow: hidden;
     }
-    #lb-img-a img, #lb-img-b img {
+    /* LQIP blurred background */
+    .lb-lqip {
+      position: absolute; inset: -8%;
+      background-size: cover; background-position: center;
+      filter: blur(28px);
+      transition: opacity .3s ease;
+    }
+    /* Full-res image, fades in on load */
+    .lb-full {
+      position: relative; z-index: 1;
       max-height: calc(100vh - 160px); max-width: calc(100vw - 100px);
-      object-fit: contain; border-radius: 6px; box-shadow: 0 8px 40px rgba(0,0,0,.6);
+      object-fit: contain; border-radius: 6px; box-shadow: 0 8px 40px rgba(0,0,0,.55);
       display: block;
+      opacity: 0; transition: opacity .35s ease;
     }
+    .lb-full.loaded { opacity: 1; }
     @media (max-width: 640px) {
-      #lb-img-a img, #lb-img-b img {
-        max-height: calc(100vh - 180px); max-width: 100vw; border-radius: 3px;
-      }
+      .lb-full { max-height: calc(100vh - 180px); max-width: 100vw; border-radius: 3px; }
     }
-
-    /* Spinner */
-    #lb-spinner {
-      position: absolute; inset: 0; display: none;
-      align-items: center; justify-content: center; pointer-events: none;
-    }
-    #lb-spinner.show { display: flex; }
-    .lb-spin {
-      width: 36px; height: 36px; border: 3px solid rgba(255,255,255,.15);
-      border-top-color: #fff; border-radius: 50%;
-      animation: spin .7s linear infinite;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
 
     /* Top bar */
     #lb-topbar {
@@ -469,6 +466,12 @@
     <span id="lb-counter"></span>
     <span id="lb-album-title"></span>
     <div style="display:flex;gap:8px;flex-shrink:0">
+      <!-- Download -->
+      <button id="lb-dl-btn" onclick="lbDownload()" aria-label="Descarcă fotografia"
+        style="width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;cursor:pointer;transition:background .15s"
+        onmouseover="this.style.background='rgba(255,255,255,.22)'" onmouseout="this.style.background='rgba(255,255,255,.12)'">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3"/></svg>
+      </button>
       <!-- Fullscreen -->
       <button id="lb-fs-btn" onclick="lbToggleFullscreen()" aria-label="Ecran întreg"
         style="width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;cursor:pointer;transition:background .15s"
@@ -489,9 +492,8 @@
 
   <!-- Image area -->
   <div id="lb-img-wrap">
-    <div id="lb-img-a"><img src="" alt="" /></div>
-    <div id="lb-img-b" style="opacity:0"><img src="" alt="" /></div>
-    <div id="lb-spinner"><div class="lb-spin"></div></div>
+    <div id="lb-img-a" class="lb-slot"><div class="lb-lqip"></div><img class="lb-full" src="" alt="" /></div>
+    <div id="lb-img-b" class="lb-slot" style="opacity:0"><div class="lb-lqip"></div><img class="lb-full" src="" alt="" /></div>
 
     <!-- Prev / Next -->
     <button class="lb-nav" id="lb-prev-btn" onclick="lbPrev()" aria-label="Fotografie anterioară">
@@ -1359,14 +1361,32 @@ function updateThumbs() {
 
 // ── Image loading ─────────────────────────────────────────────────────────────
 
+function cldLqip(src) {
+  if (!src) return '';
+  if (src.startsWith('http') && !src.includes('res.cloudinary.com')) return '';
+  if (src.includes('res.cloudinary.com'))
+    return src.replace('/upload/', '/upload/w_40,q_5,e_blur:2000,f_auto/');
+  return `${CLD_BASE}/w_40,q_5,e_blur:2000,f_auto/${src}`;
+}
+
 function loadIntoSlot(slot, idx) {
-  const p       = lbPhotos[idx];
-  const img     = document.getElementById('lb-img-' + slot).querySelector('img');
-  const spinner = document.getElementById('lb-spinner');
-  spinner.classList.add('show');
-  img.onload  = () => spinner.classList.remove('show');
-  img.onerror = () => { spinner.classList.remove('show'); img.src = PLACEHOLDER; };
+  const p    = lbPhotos[idx];
+  const el   = document.getElementById('lb-img-' + slot);
+  const lqip = el.querySelector('.lb-lqip');
+  const img  = el.querySelector('.lb-full');
+
+  // Reset full-res opacity so LQIP shows first
+  img.classList.remove('loaded');
+  img.src = '';
+
+  // LQIP: tiny blurred version appears instantly
+  const lqipUrl = cldLqip(p.src);
+  lqip.style.backgroundImage = lqipUrl ? `url(${lqipUrl})` : '';
+
+  // Full-res: fade in on load
   img.alt     = p.caption || '';
+  img.onload  = () => img.classList.add('loaded');
+  img.onerror = () => { img.src = PLACEHOLDER; img.classList.add('loaded'); };
   img.src     = cldUrl(p.src, 1400) || PLACEHOLDER;
 }
 
@@ -1435,6 +1455,23 @@ function lbToggleFullscreen() {
 
 function lbExitFullscreen() {
   if (document.fullscreenElement) document.exitFullscreen?.();
+}
+
+function lbDownload() {
+  const p   = lbPhotos[lbIdx];
+  if (!p) return;
+  const src = p.src;
+  let url;
+  if (src.includes('res.cloudinary.com')) {
+    url = src.replace('/upload/', '/upload/fl_attachment/');
+  } else if (src.startsWith('http')) {
+    url = src;
+  } else {
+    url = `${CLD_BASE}/fl_attachment/${src}`;
+  }
+  const a = document.createElement('a');
+  a.href = url; a.download = ''; a.target = '_blank';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
 }
 
 document.addEventListener('fullscreenchange', () => {
