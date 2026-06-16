@@ -168,10 +168,10 @@
 
     /* ── CTA primary button glow pulse ── */
     @keyframes ctaGlow {
-      0%, 100% { box-shadow: 0 4px 14px rgba(242,223,116,.25); }
-      50%       { box-shadow: 0 6px 22px rgba(242,223,116,.38), 0 0 0 5px rgba(242,223,116,.06); }
+      0%, 100% { filter: drop-shadow(0 4px 14px rgba(242,223,116,.35)); }
+      50%       { filter: drop-shadow(0 6px 22px rgba(242,223,116,.6)); }
     }
-    .cta-pulse { animation: ctaGlow 2.8s ease-in-out infinite; }
+    .cta-pulse { animation: ctaGlow 2.8s ease-in-out infinite; will-change: filter; }
 
     /* ── de ce noi cards: border accent on hover ── */
     .de-ce-card { transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease !important; }
@@ -411,7 +411,7 @@
       <!-- Social proof strip -->
       <div class="flex flex-nowrap items-center justify-between sm:justify-start sm:gap-x-5 gap-y-2 mt-5">
         <div class="proof-item flex items-center gap-2 text-white/75 text-sm sm:text-base">
-          <img src="logo.png" alt="" class="h-3.5 w-auto opacity-55" aria-hidden="true" />
+          <img src="logo.png" alt="" width="14" height="14" class="h-3.5 w-auto opacity-55" aria-hidden="true" />
           <span data-i18n="idx-proof1">Afiliat din 2008</span>
         </div>
         <span class="text-white/25 hidden sm:inline">·</span>
@@ -741,9 +741,9 @@
 
     const grid = document.getElementById('teaser-grid');
     grid.innerHTML = recent.map(function(ev) {
-      const imgSrc = cldUrl(ev.src, 800);
+      const imgSrc = cldUrl(ev.src, 400);
       return '<a href="galerie.html" class="group block rounded-2xl overflow-hidden shadow-sm border border-gray-100 bg-white card-hover flex-shrink-0 w-[82vw] sm:w-auto snap-center sm:snap-align-none" style="aspect-ratio:4/3; position:relative;">' +
-        '<img src="' + imgSrc + '" alt="' + ev.title + '" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" decoding="async" loading="lazy" />' +
+        '<img src="' + imgSrc + '" alt="' + ev.title + '" width="400" height="300" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" decoding="async" loading="lazy" />' +
         '<div class="absolute inset-0" style="background:linear-gradient(to top, rgba(0,30,50,0.82) 0%, rgba(0,30,50,0.35) 45%, transparent 100%);"></div>' +
         '<div class="absolute bottom-0 left-0 right-0 p-4">' +
           '<div class="text-white font-semibold text-sm leading-tight mb-2">' + ev.title + '</div>' +
