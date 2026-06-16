@@ -23,7 +23,8 @@
     { label: 'Cost & taxe membre',     url: 'contact.html',                q: 'cost pret taxa cat costa bani membership fee gratuit prima vizita' },
   ];
 
-  let idx = STATIC.map(e => ({ label: e.label, url: e.url, text: e.q }));
+  // Pre-lowercase labels at build time — avoid re-computing each search
+  let idx = STATIC.map(e => ({ label: e.label, url: e.url, ll: e.label.toLowerCase(), text: e.q }));
 
   function buildIndex() {
     const page = (window.location.pathname.split('/').pop() || 'home.html');
@@ -44,19 +45,19 @@
       if (idx.some(i => i.url === url)) return;
       const heading = sec.querySelector('h1,h2,h3');
       const label   = labelMap[sec.id] || (heading ? heading.textContent.trim() : sec.id);
-      const text    = (sec.textContent || '').toLowerCase().replace(/\s+/g, ' ');
-      if (text.length > 10) idx.push({ label, url, text });
+      // Cap at 400 chars — enough for keyword matching, avoids multi-KB includes() on every search
+      const text    = (sec.textContent || '').toLowerCase().replace(/\s+/g, ' ').slice(0, 400);
+      if (text.length > 10) idx.push({ label, url, ll: label.toLowerCase(), text });
     });
 
     // Index board member cards
     document.querySelectorAll('#conducere .leader-card').forEach(card => {
       const name = card.querySelector('.font-semibold')?.textContent?.trim() || '';
       const role = card.querySelector('.text-maroon')?.textContent?.trim() || '';
-      if (name) idx.push({
-        label: name + (role ? ' · ' + role : ''),
-        url:   page + '#conducere',
-        text:  (name + ' ' + role).toLowerCase()
-      });
+      if (name) {
+        const combined = (name + ' ' + role).toLowerCase();
+        idx.push({ label: name + (role ? ' · ' + role : ''), url: page + '#conducere', ll: combined, text: combined });
+      }
     });
   }
 
@@ -65,7 +66,11 @@
   var _searchTimer = null;
   function liveSearch(q, source) {
     clearTimeout(_searchTimer);
-    _searchTimer = setTimeout(function() { _liveSearch(q, source); }, 180);
+    // Hide stale results immediately so the bar feels instant
+    var ddId = (source === 'mobile') ? 'mobile-search-dropdown' : 'search-dropdown';
+    var dd = document.getElementById(ddId);
+    if (dd && q.trim().length < 2) dd.classList.add('hidden');
+    _searchTimer = setTimeout(function() { _liveSearch(q, source); }, 80);
   }
 
   function _liveSearch(q, source) {
@@ -77,15 +82,23 @@
     if (q.length < 2) { dd.classList.add('hidden'); return; }
 
     const words = q.split(/\s+/).filter(w => w.length >= 2);
-    const scored = idx.map(item => {
-      const ll = item.label.toLowerCase();
-      let score = 0;
-      words.forEach(w => { if (ll.includes(w)) score += 4; if (item.text.includes(w)) score += 1; });
-      return { ...item, score };
-    }).filter(i => i.score > 0);
 
+    // Single pass: score and dedupe without creating new objects per item
     const best = new Map();
-    scored.forEach(i => { if (!best.has(i.url) || i.score > best.get(i.url).score) best.set(i.url, i); });
+    for (var i = 0; i < idx.length; i++) {
+      const item = idx[i];
+      var score = 0;
+      for (var j = 0; j < words.length; j++) {
+        const w = words[j];
+        if (item.ll.includes(w)) score += 4;
+        if (item.text.includes(w)) score += 1;
+      }
+      if (score > 0) {
+        const cur = best.get(item.url);
+        if (!cur || score > cur.score) best.set(item.url, { label: item.label, url: item.url, score });
+      }
+    }
+
     const hits = Array.from(best.values()).sort((a, b) => b.score - a.score).slice(0, 7);
 
     if (!hits.length) {
@@ -155,7 +168,10 @@
   window.closeSearch = closeSearch;
   window.siteGoTo    = siteGoTo;
 
-  if (document.readyState === 'loading') {
+  // Non-blocking: build DOM index during idle time
+  if (window.requestIdleCallback) {
+    requestIdleCallback(buildIndex);
+  } else if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', buildIndex);
   } else {
     buildIndex();
