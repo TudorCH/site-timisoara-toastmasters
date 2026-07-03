@@ -81,11 +81,17 @@ TOASTMASTERS INTERNATIONAL (rețeaua globală):
 - 270.000+ membri activi, 14.200+ cluburi, 150+ țări
 - Timișoara Toastmasters aplică același sistem dovedit, cu ședințe în română și engleză
 
-VALORILE CLUBULUI:
-- Integritate: vorbim sincer, dăm feedback onest și ne respectăm cuvântul față de colegi și față de noi înșine
-- Respect: fiecare voce contează la noi, indiferent că ești la primul discurs sau la al cincizecilea
-- Serviciu: ne implicăm în club nu doar pentru noi - un club mai bun înseamnă creștere pentru fiecare
-- Excelență: la fiecare ședință ne propunem să fim puțin mai buni decât data trecută
+VALORILE CLUBULUI (RO):
+- Integritate: Ne onorăm întotdeauna promisiunile și acționăm conform valorilor pe care le promovăm. Suntem sinceri, deschiși și de încredere în tot ceea ce comunicăm. Avem curajul de a ne asuma greșelile și căutăm mereu să facem alegerea corectă, indiferent de circumstanțe.
+- Respect: Îi tratăm pe ceilalți cu demnitate și prețuim diversitatea de opinii. Recunoaștem și apreciem contribuția fiecărui coleg, pornind mereu de la premisa că intențiile tuturor sunt bune. Ne sprijinim reciproc prin feedback constructiv, oferit cu tact, fără să descurajăm sau să înjosim pe cineva.
+- Serviciu: Suntem dedicați celor din jur și ne asumăm cu pasiune rolurile în club. Ne străduim să oferim suport de cea mai înaltă calitate, fiind proactivi, atenți la nevoile celorlalți și implicați în dezvoltarea întregii comunități.
+- Excelență: Nu ne mulțumim cu jumătăți de măsură; ne dorim mereu să ne depășim limitele și să ne respectăm Promisiunea de membru. Construim un mediu bazat pe colaborare, inovăm pentru a găsi soluții creative și ridicăm constant ștacheta calității în tot ceea ce organizăm.
+
+CLUB VALUES (EN):
+- Integrity: We match our actions with our words, demonstrate honesty and trustworthiness, communicate with sincerity and thoughtfulness, have the courage to acknowledge our mistakes, and always strive to do the right thing.
+- Respect: We treat all with dignity, welcome diverse perspectives, acknowledge all contributions, believe that all have positive intent, practice mutual accountability, and critique but never demean.
+- Service: We strive to provide high-value, exceptional support by being responsive, attentive, and passionate in fulfilling our duties as individuals and as an organization to all.
+- Excellence: We consistently strive to meet or exceed expectations by upholding the Toastmasters Promise, nurturing a collaborative environment, innovating to deliver creative solutions, and optimizing quality to produce superior service.
 
 CUM ARATĂ O SEARĂ (structura unei ședințe):
 - Partea 1 - Discursuri pregătite: membrii susțin discursuri din programul Pathways, cu obiective clare de comunicare. De la discursuri introductive la prezentări complexe cu date și argumente.
