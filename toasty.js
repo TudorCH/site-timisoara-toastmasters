@@ -110,11 +110,15 @@
   document.head.appendChild(style);
 
   /* ── Icons ── */
-  /* Chat bubble — FAB only */
+  /* Speech bubble + mic inside — FAB icon */
   function iconChat(size) {
-    return '<svg width="' + size + '" height="' + size + '" viewBox="0 0 24 24" fill="none"' +
-      ' stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
-      '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>';
+    return '<svg width="' + size + '" height="' + size + '" viewBox="0 0 24 24">' +
+      '<path fill="rgba(255,255,255,.92)" d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>' +
+      '<rect x="10.5" y="5.5" width="3" height="5.5" rx="1.5" fill="#002d47"/>' +
+      '<path fill="none" stroke="#002d47" stroke-width="1.5" stroke-linecap="round" d="M9.5 10.8a2.5 2.5 0 0 0 5 0"/>' +
+      '<line x1="12" y1="13.3" x2="12" y2="14.8" stroke="#002d47" stroke-width="1.5" stroke-linecap="round"/>' +
+      '<line x1="10.5" y1="14.8" x2="13.5" y2="14.8" stroke="#002d47" stroke-width="1.5" stroke-linecap="round"/>' +
+      '</svg>';
   }
 
   /* fix 4: Microphone — header + bot message avatars (on-brand for public speaking) */
@@ -226,9 +230,9 @@
       ' autocomplete="off" inputmode="text" aria-label="Mesajul tău"',
       ' onkeydown="if(event.key===\'Enter\'&&!event.shiftKey){event.preventDefault();toastySendInput();}">',
       '<button id="ty-send" onclick="toastySendInput()" aria-label="Trimite mesaj">',
-        '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white"',
-        ' stroke-width="2" stroke-linecap="round" stroke-linejoin="round">',
-        '<path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>',
+        '<svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="white">',
+        '<path d="M120-160v-640l760 320-760 320Zm80-120 474-200-474-200v140l240 60-240 60v140Zm0 0v-400 400Z"/>',
+        '</svg>',
       '</button>',
     '</div>'
 
