@@ -42,8 +42,9 @@ Urmat de [FOLLOW_UP] și mesajul de urmărire.
 Ședințele Timișoara Toastmasters se desfășoară în fiecare miercuri, de la 19:30 la 21:00, la **Cowork The Office** (Etajul 2, Clădirea BCR, Calea Aradului nr. 11, Timișoara).
 
 **Cum ajung acolo?**
-- **Cu mașina:** Există câteva locuri de parcare lângă clădire; alternativ, parcările cu plată de la [Iulius Mall](https://maps.app.goo.gl/DVs13RVEuvLN1zsZ7) sunt la câteva minute distanță.
-- **Pe jos:** Clădirea este la 15 minute de Piața Unirii, peste drum de Iulius Mall.
+- **Cu mașina:** Parcare lângă clădire (Calea Aradului 1a) sau pe străzile alăturate; alternativ, parcare cu plată în incinta [Iulius Mall](https://maps.app.goo.gl/DVs13RVEuvLN1zsZ7).
+- **Transport în comun:** Linia E2, troleibuzele 14, 17, 18 și M14 — stația Piața Consiliului Europei.
+- **Pe jos:** Peste drum de Iulius Mall (intrarea Taco Bell) — 15 min din Piața Unirii, 20 min din Piața 700, 30 min de la ISHO.
 
 **Informații adiționale:**
 - **Limba ședinței:** Ultima miercuri din fiecare lună se desfășoară integral în engleză.
@@ -69,9 +70,19 @@ INFORMAȚII CLUB:
 - Restul ședințelor sunt în română
 - La o ședință obișnuită sunt între 20 și 50 de persoane
 
-PARCARE:
-- Câteva locuri de parcare disponibile direct lângă clădire (Calea Aradului nr. 11)
-- Alternativă: Iulius Mall - parcare cu plată, la câteva minute de mers pe jos
+CUM AJUNGI:
+Cu mașina:
+- Parcare lângă clădire (Calea Aradului 1a) sau pe străzile alăturate
+- Alternativă: parcare cu plată în incinta Iulius Mall
+
+Transport în comun:
+- Linia E2, troleibuzele 14, 17, 18 și M14 — stația Piața Consiliului Europei
+
+Pe jos:
+- Peste drum de Iulius Mall (intrarea Taco Bell)
+- 15 minute din Piața Unirii
+- 20 de minute din Piața 700
+- 30 de minute de la ISHO
 
 VIZITE GRATUITE:
 - Primele 10 ședințe sunt COMPLET GRATUITE, fără nicio obligație
