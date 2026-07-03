@@ -126,6 +126,39 @@
       '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>';
   }
 
+  /* ── Language (follows the site's RO/EN toggle, key set by i18n.js) ── */
+  function tyLang() { return localStorage.getItem('tmt_lang') === 'en' ? 'en' : 'ro'; }
+  var TY_T = {
+    ro: {
+      fabLabel: 'Deschide chat Toasty', dialogLabel: 'Chat Toasty', closeLabel: 'Închide chat',
+      status: 'Online · răspunde instant',
+      welcomeTitle: 'Bună! Sunt <strong>Toasty</strong>, asistentul tău Toastmasters.',
+      welcomeSub: 'Cu ce te pot ajuta?',
+      chips: ['Pot veni gratuit?', 'Când și unde sunt ședințele?', 'Cât costă să devin membru?'],
+      hint: 'Sau scrie direct mai jos',
+      placeholder: 'Întreabă despre ședințe, costuri...',
+      inputLabel: 'Mesajul tău', sendLabel: 'Trimite mesaj',
+      genericError: 'Ne pare rău, a apărut o eroare.',
+      timeoutError: 'Răspunsul a durat prea mult.',
+      connError: 'Eroare de conexiune.',
+      retry: 'Încearcă din nou.',
+    },
+    en: {
+      fabLabel: 'Open Toasty chat', dialogLabel: 'Toasty chat', closeLabel: 'Close chat',
+      status: 'Online · replies instantly',
+      welcomeTitle: 'Hi! I\'m <strong>Toasty</strong>, your Toastmasters assistant.',
+      welcomeSub: 'How can I help?',
+      chips: ['Can I come for free?', 'When and where are the meetings?', 'How much does membership cost?'],
+      hint: 'Or type directly below',
+      placeholder: 'Ask about meetings, costs...',
+      inputLabel: 'Your message', sendLabel: 'Send message',
+      genericError: 'Sorry, an error occurred.',
+      timeoutError: 'The response took too long.',
+      connError: 'Connection error.',
+      retry: 'Try again.',
+    },
+  };
+
   /* ── Overlay ── */
   var ov = document.createElement('div');
   ov.id = 'ty-ov';
@@ -134,7 +167,7 @@
   /* ── FAB ── */
   var fab = document.createElement('button');
   fab.id = 'ty-fab';
-  fab.setAttribute('aria-label', 'Deschide chat Toasty');
+  fab.setAttribute('aria-label', TY_T[tyLang()].fabLabel);
   fab.setAttribute('aria-controls', 'ty-win');
   fab.setAttribute('aria-expanded', 'false');
   fab.innerHTML = iconChat(24);
@@ -145,7 +178,7 @@
   win.id = 'ty-win';
   win.setAttribute('role', 'dialog');
   win.setAttribute('aria-modal', 'true');
-  win.setAttribute('aria-label', 'Chat Toasty');
+  win.setAttribute('aria-label', TY_T[tyLang()].dialogLabel);
   win.innerHTML = [
 
     /* Header — fix 4: mic icon in avatar, fix 7: plain close button */
@@ -162,12 +195,12 @@
         '<div style="color:#fff;font-weight:700;font-size:15px;line-height:1.2;">Toasty</div>',
         '<div style="display:flex;align-items:center;gap:5px;margin-top:4px;">',
           '<span style="width:6px;height:6px;background:#4ade80;border-radius:50%;flex-shrink:0;"></span>',
-          '<span style="color:rgba(255,255,255,.68);font-size:12px;font-weight:500;">Online · răspunde instant</span>',
+          '<span id="ty-status" style="color:rgba(255,255,255,.68);font-size:12px;font-weight:500;"></span>',
         '</div>',
       '</div>',
 
       /* fix 7: plain icon only, hover reveals fill */
-      '<button id="ty-hdr-close" onclick="toastyClose()" aria-label="Închide chat">',
+      '<button id="ty-hdr-close" onclick="toastyClose()" aria-label="">',
         '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white"',
         ' stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>',
       '</button>',
@@ -181,31 +214,31 @@
         '<div style="background:rgba(255,255,255,.88);border-radius:4px 16px 16px 16px;',
         'border:1px solid rgba(0,83,127,.1);',
         'padding:12px 15px;max-width:88%;font-size:14px;line-height:1.65;color:#0f2942;">',
-          'Bună! Sunt <strong>Toasty</strong>, asistentul tău Toastmasters.',
-          '<div style="color:#3a6a85;font-size:13px;font-weight:500;margin-top:5px;">Cu ce te pot ajuta?</div>',
+          '<span id="ty-welcome-title"></span>',
+          '<div id="ty-welcome-sub" style="color:#3a6a85;font-size:13px;font-weight:500;margin-top:5px;"></div>',
         '</div>',
       '</div>',
 
       '<div id="ty-chips" style="display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:2px 0 4px 4px;">',
-        '<button class="ty-chip" onclick="toastySend(\'Pot veni gratuit?\')">',
+        '<button class="ty-chip" data-chip="0">',
           '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>',
-          'Pot veni gratuit?',
+          '<span class="ty-chip-label"></span>',
         '</button>',
-        '<button class="ty-chip" onclick="toastySend(\'Când și unde sunt ședințele?\')">',
+        '<button class="ty-chip" data-chip="1">',
           '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>',
-          'Când și unde sunt ședințele?',
+          '<span class="ty-chip-label"></span>',
         '</button>',
-        '<button class="ty-chip" onclick="toastySend(\'Cât costă să devin membru?\')">',
+        '<button class="ty-chip" data-chip="2">',
           '<svg width="14" height="14" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true"><path d="M856-390 570-104q-12 12-27 18t-30 6q-15 0-30-6t-27-18L103-457q-11-11-17-25.5T80-513v-287q0-33 23.5-56.5T160-880h287q16 0 31 6.5t26 17.5l352 353q12 12 17.5 27t5.5 30q0 15-5.5 29.5T856-390ZM513-160l286-286-353-354H160v286l353 354ZM260-640q25 0 42.5-17.5T320-700q0-25-17.5-42.5T260-760q-25 0-42.5 17.5T200-700q0 25 17.5 42.5T260-640Zm220 160Z"/></svg>',
-          'Cât costă să devin membru?',
+          '<span class="ty-chip-label"></span>',
         '</button>',
       '</div>',
 
       /* fix 2: hint fills dead zone, disappears on first message */
       '<div id="ty-hint" style="flex:1;display:flex;align-items:flex-end;',
       'justify-content:center;padding-bottom:10px;pointer-events:none;">',
-        '<span style="font-size:11.5px;color:rgba(0,65,101,.38);letter-spacing:.02em;',
-        'font-weight:500;">Sau scrie direct mai jos</span>',
+        '<span id="ty-hint-text" style="font-size:11.5px;color:rgba(0,65,101,.38);letter-spacing:.02em;',
+        'font-weight:500;"></span>',
       '</div>',
 
     '</div>',
@@ -214,10 +247,10 @@
     '<div style="padding:12px 14px max(16px,env(safe-area-inset-bottom));',
     'display:flex;gap:8px;align-items:center;',
     'flex-shrink:0;background:linear-gradient(135deg,#00537f 0%,#004165 55%,#002d47 100%);">',
-      '<input id="ty-inp" type="text" placeholder="Întreabă despre ședințe, costuri..."',
-      ' autocomplete="off" inputmode="text" aria-label="Mesajul tău"',
+      '<input id="ty-inp" type="text" placeholder=""',
+      ' autocomplete="off" inputmode="text" aria-label=""',
       ' onkeydown="if(event.key===\'Enter\'&&!event.shiftKey){event.preventDefault();toastySendInput();}">',
-      '<button id="ty-send" onclick="toastySendInput()" aria-label="Trimite mesaj">',
+      '<button id="ty-send" onclick="toastySendInput()" aria-label="">',
         '<svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="white">',
         '<path d="M120-160v-640l760 320-760 320Zm80-120 474-200-474-200v140l240 60-240 60v140Zm0 0v-400 400Z"/>',
         '</svg>',
@@ -226,6 +259,47 @@
 
   ].join('');
   document.body.appendChild(win);
+
+  /* ── Apply current language to all widget text, live-updates on site toggle ── */
+  function applyTyLang() {
+    var t = TY_T[tyLang()];
+    fab.setAttribute('aria-label', t.fabLabel);
+    win.setAttribute('aria-label', t.dialogLabel);
+    var closeBtn = document.getElementById('ty-hdr-close');
+    if (closeBtn) closeBtn.setAttribute('aria-label', t.closeLabel);
+    var status = document.getElementById('ty-status');
+    if (status) status.textContent = t.status;
+    var wt = document.getElementById('ty-welcome-title');
+    if (wt) wt.innerHTML = t.welcomeTitle;
+    var ws = document.getElementById('ty-welcome-sub');
+    if (ws) ws.textContent = t.welcomeSub;
+    document.querySelectorAll('.ty-chip').forEach(function (btn) {
+      var idx = Number(btn.dataset.chip);
+      var label = btn.querySelector('.ty-chip-label');
+      if (label) label.textContent = t.chips[idx];
+    });
+    var hint = document.getElementById('ty-hint-text');
+    if (hint) hint.textContent = t.hint;
+    var inp = document.getElementById('ty-inp');
+    if (inp) { inp.placeholder = t.placeholder; inp.setAttribute('aria-label', t.inputLabel); }
+    var send = document.getElementById('ty-send');
+    if (send) send.setAttribute('aria-label', t.sendLabel);
+  }
+  applyTyLang();
+
+  /* Live-update when the site's RO/EN toggle is used (window.setLang set by i18n.js) */
+  var _tyOrigSetLang = window.setLang;
+  window.setLang = function (lang) {
+    if (typeof _tyOrigSetLang === 'function') _tyOrigSetLang(lang);
+    applyTyLang();
+  };
+
+  document.querySelectorAll('.ty-chip').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var idx = Number(btn.dataset.chip);
+      window.toastySend(TY_T[tyLang()].chips[idx]);
+    });
+  });
 
   /* ── State ── */
   var isOpen = false, isLoading = false, history = [];
@@ -335,13 +409,13 @@
     fetch('/api/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ messages: history }),
+      body: JSON.stringify({ messages: history, lang: tyLang() }),
       signal: ctrl.signal
     })
     .then(function (r) { clearTimeout(timeoutId); return r.json(); })
     .then(function (d) {
       hideTyping(tid);
-      var reply = d.reply || 'Ne pare rău, a apărut o eroare.';
+      var reply = d.reply || TY_T[tyLang()].genericError;
       /* split [FOLLOW_UP] into two separate bubbles */
       var parts = reply.split(/\[FOLLOW_UP\]/);
       var main   = parts[0].trim();
@@ -366,8 +440,8 @@
       isLoading = false;
       if (sendBtn) sendBtn.classList.remove('loading');
       var msg = (err && err.name === 'AbortError')
-        ? 'Răspunsul a durat prea mult.'
-        : 'Eroare de conexiune.';
+        ? TY_T[tyLang()].timeoutError
+        : TY_T[tyLang()].connError;
       addErrorMsg(msg, txt);
     });
   };
@@ -403,7 +477,7 @@
 
     var btn = document.createElement('button');
     btn.className = 'ty-retry';
-    btn.textContent = 'Încearcă din nou.';
+    btn.textContent = TY_T[tyLang()].retry;
     btn.addEventListener('click', function () {
       row.remove();
       history.pop();

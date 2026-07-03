@@ -431,10 +431,14 @@ module.exports = async function handler(req, res) {
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-  const { messages } = req.body || {};
+  const { messages, lang } = req.body || {};
   if (!messages || !Array.isArray(messages)) {
     return res.status(400).json({ error: 'Invalid request' });
   }
+
+  const langHint = lang === 'en'
+    ? '\n\nCONTEXT SITE: Utilizatorul navighează site-ul în limba ENGLEZĂ (a apăsat toggle-ul EN). Dacă mesajul lui e ambiguu sau scurt, răspunde în engleză implicit. Dacă mesajul e clar scris în altă limbă, respectă limba mesajului.'
+    : '';
 
   async function callClaude(msgs) {
     const response = await fetch('https://api.anthropic.com/v1/messages', {
@@ -447,7 +451,7 @@ module.exports = async function handler(req, res) {
       body: JSON.stringify({
         model: 'claude-haiku-4-5-20251001',
         max_tokens: 700,
-        system: SYSTEM_PROMPT,
+        system: SYSTEM_PROMPT + langHint,
         messages: msgs,
         tools: TOOLS,
       }),
