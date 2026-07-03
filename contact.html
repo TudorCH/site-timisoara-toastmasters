@@ -89,7 +89,8 @@
     .transport-pill-lg { font-family: inherit; display: inline-flex; align-items: center; border-radius: 9999px; padding: .35rem .95rem; font-weight: 700; font-size: .9375rem; line-height:1; color:#fff; cursor:pointer; border:none; transition: filter .15s, transform .15s }
     .transport-pill-lg:hover { filter: brightness(1.15); transform: scale(1.06) }
     #bus-route-panel { position:absolute; inset:0; background:#fff; padding:1.25rem; z-index:10; opacity:0; pointer-events:none; transition:opacity .18s; overflow-y:auto; }
-    .bt-strip { margin-bottom:10px; }
+    .bt-strip { overflow-x:auto; margin-bottom:10px; scrollbar-width:none; -ms-overflow-style:none; }
+    .bt-strip::-webkit-scrollbar { display:none; }
     #bus-route-panel.visible { opacity:1; pointer-events:auto }
     .bt-stop { display:flex; align-items:center; gap:9px; padding:4px 0; font-size:.78rem; color:#4b5563; position:relative }
     .bt-stop.bt-here { color:#004165; font-weight:700 }
@@ -647,22 +648,22 @@
                     const arrow = `<svg style="width:9px;height:9px;color:${color};flex-shrink:0;margin-right:3px;margin-top:1px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></svg>`;
                     const n = stops.length;
                     const cols = stops.map((s, i) => {
+                      const first = i === 0;
                       const last = i === n - 1;
                       const dot = last
                         ? `<div style="width:11px;height:11px;border-radius:50%;background:#004165;outline:3px solid rgba(0,65,101,.2);outline-offset:1px;flex-shrink:0"></div>`
                         : `<div style="width:8px;height:8px;border-radius:50%;background:#d1d5db;flex-shrink:0"></div>`;
-                      const dotRow = `<div style="height:11px;display:flex;align-items:center;justify-content:center">${dot}</div>`;
+                      const dotRow = `<div style="display:flex;align-items:center;width:100%">
+                        <div style="flex:1;height:2px;background:${first?'transparent':'#e5e7eb'}"></div>
+                        ${dot}
+                        <div style="flex:1;height:2px;background:${last?'transparent':'#e5e7eb'}"></div>
+                      </div>`;
                       const lbl = `<span style="font-size:.6rem;text-align:center;line-height:1.2;margin-top:4px;word-break:keep-all;overflow-wrap:normal;${last?'color:#004165;font-weight:700;':'color:#6b7280;'}">${s}</span>`;
-                      return `<div style="display:flex;flex-direction:column;align-items:center;flex:1;min-width:0;position:relative;z-index:1">${dotRow}${lbl}</div>`;
+                      return `<div style="display:flex;flex-direction:column;align-items:center;flex:1 0 46px;min-width:46px">${dotRow}${lbl}</div>`;
                     }).join('');
-                    const half = 50 / n;
-                    const line = `<div style="position:absolute;top:5px;left:${half}%;right:${half}%;height:2px;background:#e5e7eb;z-index:0"></div>`;
                     return `<div class="bt-strip"><div style="display:flex;align-items:flex-start">
                       <div style="display:flex;align-items:center;flex-shrink:0;padding-top:1px">${arrow}</div>
-                      <div style="position:relative;display:flex;flex:1;min-width:0">
-                        ${line}
-                        ${cols}
-                      </div>
+                      ${cols}
                     </div></div>`;
                   }
                   return `<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
