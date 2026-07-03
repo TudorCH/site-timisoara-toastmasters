@@ -357,10 +357,16 @@ async function getTravelEstimate(origin) {
     });
     const el = driving.rows?.[0]?.elements?.[0];
     if (el && el.status === 'OK') {
+      const durationSec = (el.duration_in_traffic || el.duration).value;
       result.driving_duration = (el.duration_in_traffic || el.duration).text;
       result.distance_km = Math.round((el.distance.value / 1000) * 10) / 10;
-      result.rideshare_price_low = Math.round(result.distance_km * 2.5);
-      result.rideshare_price_high = Math.round(result.distance_km * 3.5);
+
+      // Preț = Tarif de bază + (km x tarif/km) + (min x tarif/min), minim 8 lei cursa.
+      const durationMin = durationSec / 60;
+      const priceLow  = 2   + result.distance_km * 2   + durationMin * 0.35;
+      const priceHigh = 3   + result.distance_km * 3   + durationMin * 0.5;
+      result.rideshare_price_low  = Math.max(8, Math.round(priceLow));
+      result.rideshare_price_high = Math.max(8, Math.round(priceHigh));
     } else {
       console.error('[travel-estimate] driving element not OK:', JSON.stringify(el));
     }
