@@ -44,7 +44,14 @@
       .animate-in { animation: none; opacity: 1; transform: none; }
       .scroll-fade { transition: none; opacity: 1; transform: none; }
       .card-hover { transition: none; }
+      .cta-pulse  { animation: none; }
     }
+    /* ── CTA primary button glow pulse ── */
+    @keyframes ctaGlow {
+      0%, 100% { filter: drop-shadow(0 4px 14px rgba(242,223,116,.35)); }
+      50%       { filter: drop-shadow(0 6px 22px rgba(242,223,116,.6)); }
+    }
+    .cta-pulse { animation: ctaGlow 2.8s ease-in-out infinite; will-change: filter; }
     .gradient-hero { background: linear-gradient(135deg, #002d47 0%, #004165 55%, #003555 100%); }
     #hero-mobile  { display: block; }
     @media (min-width: 1024px) { #hero-mobile  { display: none;  } }
@@ -311,10 +318,10 @@
        class="absolute inset-x-0 bottom-0 w-full h-full object-cover" style="top:32px;object-position:center top" />
   <div class="absolute inset-x-0 bottom-0" style="height:85%;background:linear-gradient(to top,#002d47 0%,#002d47 30%,rgba(0,45,71,.95) 55%,rgba(0,55,85,.6) 72%,rgba(0,65,101,.2) 88%,transparent 100%)"></div>
   <div class="absolute left-0 right-0 z-10 px-5 pb-10" style="bottom:32px">
-    <h1 class="font-heading text-4xl font-bold text-white leading-tight mb-6" data-i18n="hero-h1">
+    <h1 class="font-heading text-4xl font-bold text-white leading-tight mb-4" data-i18n="hero-h1">
     Primul club Toastmasters<br/><span class="text-gold">din România</span>
     </h1>
-    <div class="flex flex-col gap-3">
+    <div class="flex flex-col gap-2">
       <div class="flex items-center gap-3">
         <svg class="w-5 h-5 text-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
         <span class="text-white/90 text-base font-medium" data-i18n="hero-d1">Miercuri 19:30–21:00</span>
@@ -327,6 +334,20 @@
         <svg class="w-5 h-5 text-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/><path d="M13 5v2M13 17v2M13 11v2"/></svg>
         <span class="text-white/90 text-base font-medium" data-i18n="hero-d3">Intrare liberă</span>
       </div>
+    </div>
+    <div class="flex flex-col sm:flex-row gap-2 mt-4">
+      <a href="contact.html"
+         class="cta-pulse bg-gold hover:bg-gold-light text-primary font-bold px-8 py-3.5 rounded-full text-base
+                transition-all duration-200 hover:scale-105 text-center shadow-lg shadow-gold/30"
+         data-i18n="cta-btn1">
+        Rezervă-ți locul →
+      </a>
+      <a href="contact.html#main-content"
+         class="border border-white/50 hover:border-gold text-white hover:text-gold font-semibold
+                px-8 py-3.5 rounded-full text-base transition-all duration-200 text-center backdrop-blur-sm"
+         data-i18n="cta-btn2">
+        Vezi programul ședințelor
+      </a>
     </div>
   </div>
 </section>
@@ -343,15 +364,15 @@
          class="w-full h-full object-cover" style="object-position:center top" />
   </div>
 
-  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-24 lg:py-32 relative z-10">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-16 lg:py-20 relative z-10">
     <div class="max-w-3xl">
-      <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-8 animate-in"
+      <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6 animate-in"
           style="animation-delay:.1s"
           data-i18n="hero-h1">
      Primul club<br/>Toastmasters<br/><span class="text-gold">din România</span>
       </h1>
 
-      <div class="flex flex-col gap-4 animate-in" style="animation-delay:.3s">
+      <div class="flex flex-col gap-3 animate-in" style="animation-delay:.3s">
         <div class="flex items-center gap-3">
           <svg class="w-5 h-5 text-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
@@ -370,6 +391,21 @@
           </svg>
           <span class="text-white/90 text-base font-medium">Intrare liberă</span>
         </div>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-3 mt-6 animate-in" style="animation-delay:.4s">
+        <a href="contact.html"
+           class="cta-pulse bg-gold hover:bg-gold-light text-primary font-bold px-8 py-3.5 rounded-full text-base
+                  transition-all duration-200 hover:scale-105 text-center shadow-lg shadow-gold/30"
+           data-i18n="cta-btn1">
+          Rezervă-ți locul →
+        </a>
+        <a href="contact.html#main-content"
+           class="border border-white/50 hover:border-gold text-white hover:text-gold font-semibold
+                  px-8 py-3.5 rounded-full text-base transition-all duration-200 text-center backdrop-blur-sm"
+           data-i18n="cta-btn2">
+          Vezi programul ședințelor
+        </a>
       </div>
     </div>
   </div>
@@ -1026,62 +1062,6 @@
         </div>
       </div>
 
-    </div>
-  </div>
-</section>
-
-<div class="section-divider mx-auto max-w-5xl"></div>
-
-<!-- ════════════════════ CTA ════════════════════ -->
-<section class="gradient-hero py-10 lg:py-20 scroll-fade relative overflow-hidden">
-  <div class="absolute top-[-60px] right-[-80px] w-96 h-96 rounded-full border border-gold/10 pointer-events-none"></div>
-  <div class="absolute bottom-[-40px] left-20 w-64 h-64 rounded-full border border-white/5 pointer-events-none"></div>
-
-  <div class="max-w-3xl mx-auto px-5 lg:px-8 text-center relative z-10">
-    <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight"
-        data-i18n="cta-h2">
-      Vino ca invitat la<br/><span class="text-gold">o ședință</span>
-    </h2>
-
-    <p class="text-white/75 text-base sm:text-xl leading-relaxed mb-10 max-w-xl mx-auto text-center" data-i18n="cta-p">
-      Poți veni gratuit ca invitat, să observi, să participi dacă vrei și să decizi
-      singur dacă Toastmasters e pentru tine.
-    </p>
-
-    <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <a href="contact.html"
-         class="bg-gold hover:bg-gold-light text-primary font-bold px-8 py-4 rounded-full text-lg
-                transition-all duration-200 hover:scale-105 shadow-xl shadow-gold/30"
-         data-i18n="cta-btn1">
-        Rezervă-ți locul →
-      </a>
-      <a href="contact.html#main-content"
-         class="bg-white/10 hover:bg-white/20 border border-white/30 text-white font-semibold px-8 py-4
-                rounded-full text-lg transition-all duration-200"
-         data-i18n="cta-btn2">
-        Vezi programul ședințelor
-      </a>
-    </div>
-
-    <div class="mt-10 flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center items-center">
-      <div class="flex items-center gap-2 text-white/70 text-sm">
-        <svg class="w-4 h-4 text-gold" fill="currentColor" viewBox="0 0 20 20">
-          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
-        </svg>
-        <span data-i18n="cta-chip1">Miercuri, 19:30–21:00</span>
-      </div>
-      <div class="flex items-center gap-2 text-white/70 text-sm">
-        <svg class="w-4 h-4 text-gold" fill="currentColor" viewBox="0 0 20 20">
-          <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
-        </svg>
-        <span data-i18n="cta-chip2">Cowork The Office, Timișoara</span>
-      </div>
-      <div class="flex items-center gap-2 text-white/70 text-sm">
-        <svg class="w-4 h-4 text-gold" fill="currentColor" viewBox="0 0 20 20">
-          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-        </svg>
-        <span data-i18n="cta-chip3">Gratuit pentru vizitatori</span>
-      </div>
     </div>
   </div>
 </section>
