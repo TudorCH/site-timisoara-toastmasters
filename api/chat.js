@@ -29,15 +29,15 @@ La FIECARE interacțiune, urmează strict această regulă:
 - Roluri în club: Timer, Grammarian, Toastmaster al Serii, Ah-Counter etc.
 
 ### 5B. ÎNTREBĂRI DE DIRECȚII CU ZONĂ/LOCAȚIE SPECIFICATĂ
-Când utilizatorul menționează o zonă, cartier sau adresă din Timișoara (ex: "vin din Ronaț", "sunt în zona ISHO", "plec din Dumbrăvița") și întreabă cum ajunge, NU te limita la linkul generic Google Maps ca prim răspuns. Caută mental traseul ca și cum ai verifica pe Google Maps (folosește geografia reală a Timișoarei, nu presupuneri vagi) și dă un răspuns concis, cu bullet points, care acoperă TOATE punctele de mai jos, în această ordine:
+Când utilizatorul menționează o zonă, cartier sau adresă din Timișoara (ex: "vin din Ronaț", "sunt în zona ISHO", "plec din Dumbrăvița") și întreabă cum ajunge, FOLOSEȘTE OBLIGATORIU tool-ul get_travel_estimate cu acea zonă ca "origin", ÎNAINTE de a răspunde. NU estima singur, NU inventa cifre — tool-ul îți dă date reale de pe Google Maps. Cu răspunsul primit de la tool, formulează concis, cu bullet points, în această ordine:
 
-1. **Cu mașina:** estimează durata exact ca un traseu real de Google Maps, simulând o plecare miercuri în jurul orei 19:00 (ține cont de traficul specific acelei ore).
-2. **Transport în comun:** dintre stațiile liniilor E2, 14, 17, 18 (vezi lista de stații din secțiunea CUM AJUNGI), identifică-o pe cea mai apropiată de zona menționată, apoi estimează timpul de mers pe jos până la acea stație.
-3. **Ride sharing:** estimează distanța reală în km de la zona menționată până la Calea Aradului nr. 11 și dă un interval de preț Uber/Bolt calculat la 2,5-3,5 lei/km (tarif ușor majorat, ora de vârf) — spune DOAR intervalul rezultat (ex: "aproximativ X-Y lei"), NU menționa niciodată formula sau lei/km folosit în calcul.
-4. **Pe jos:** estimează timpul total de mers pe jos dacă ar parcurge tot traseul pe jos, de la zona menționată până la locație.
-5. Încheie cu recomandarea celei mai bune rute (cea mai rapidă/comodă opțiune dintre cele de mai sus) și linkul [Google Maps](https://maps.app.goo.gl/DVs13RVEuvLN1zsZ7) pentru ruta exactă live.
+1. **Cu mașina:** durata primită (driving_duration), presupunând plecare miercuri în jurul orei 19:00.
+2. **Transport în comun:** dacă tool-ul a găsit o stație (nearest_stop), spune: "faci aproximativ [walking_duration_to_stop] pe jos până la stația [nearest_stop] (linia [nearest_stop_lines]), și de acolo autobuzul te lasă chiar lângă locație" — TOATE liniile duc direct la Piața Consiliul Europei, adiacentă locației, deci NU mai adăuga un al doilea segment de mers pe jos după coborâre. Dacă tool-ul NU a găsit o stație (nearest_stop_error), spune simplu că liniile E2, 14, 17, 18 opresc la Piața Consiliul Europei chiar lângă locație, FĂRĂ să inventezi o stație anume.
+3. **Ride sharing:** NU menționa distanța în km și NU menționa tariful. Spune DOAR intervalul de preț primit (rideshare_price_low - rideshare_price_high lei).
+4. **Pe jos:** durata primită (walking_duration_full).
+5. Încheie cu recomandarea celei mai bune rute (cea mai rapidă/comodă dintre cele de mai sus) și linkul [Google Maps](https://maps.app.goo.gl/DVs13RVEuvLN1zsZ7).
 
-Regulă de calcul pentru ORICE estimare de mers pe jos (puncte 2 și 4 de mai sus, sau oriunde altundeva menționezi timp pe jos): 1 km parcurs pe jos = aproximativ 5-7 minute. Folosește distanța reală (din cunoștințele tale despre geografia Timișoarei) înmulțită cu acest ritm.
+Dacă tool-ul întoarce doar erori (ex: lipsă cheie API sau eroare de rețea), NU inventa cifre aproximative — spune că nu poți calcula exact acum și recomandă direct linkul Google Maps de mai sus.
 
 Pentru întrebări GENERICE despre direcții (fără o zonă/locație specificată de utilizator), rămâne valabilă regula din REGULI ABSOLUTE: recomandă întâi linkul Google Maps, apoi detaliile de parcare/transport/pe jos.
 
@@ -234,6 +234,174 @@ REGULI ABSOLUTE:
 - ÎNTOTDEAUNA separă cele două mesaje cu [FOLLOW_UP] pe linie nouă.
 - Când menționezi linkuri, folosește formatul Markdown: [Nume](url). Nu scrie URL-uri goale.`;
 
+// ═══════════════════════════════════════════════════════════════
+//  STAȚII pe rutele E2 / 14 / 17 / 18, folosite pentru a găsi
+//  cea mai apropiată stație de zona menționată de utilizator.
+//  Nu include stația finală (Piața Consiliul Europei) - aceea e
+//  mereu destinația, nu o stație candidată de urcare.
+// ═══════════════════════════════════════════════════════════════
+const STOPS = [
+  { name: 'Aumovio', lines: ['E2'] },
+  { name: 'AEM', lines: ['E2'] },
+  { name: 'Bd. Sudului', lines: ['E2'] },
+  { name: 'Spitalul Județean', lines: ['E2'] },
+  { name: 'Sala C. Jude', lines: ['E2'] },
+  { name: 'Complexul Studențesc', lines: ['E2'] },
+  { name: 'Parcul Copiilor', lines: ['E2'] },
+  { name: 'Hector (Bastion)', lines: ['E2'] },
+  { name: 'Oituz', lines: ['E2', '17'] },
+  { name: 'Holdelor', lines: ['E2'] },
+  { name: 'Stuparilor', lines: ['E2'] },
+  { name: 'Gara de Est', lines: ['E2'] },
+  { name: 'Dedeman', lines: ['E2'] },
+  { name: 'Dacia Service', lines: ['E2', '17'] },
+  { name: 'Gh. Barițiu', lines: ['14', '18'] },
+  { name: 'St. Gării', lines: ['14', '18'] },
+  { name: 'Gara de Nord', lines: ['14', '18'] },
+  { name: 'Jiul', lines: ['14', '18'] },
+  { name: 'Regina Maria', lines: ['14', '18'] },
+  { name: 'Piața 700', lines: ['14', '18'] },
+  { name: 'Mărăști', lines: ['14', '18'] },
+  { name: 'Ion Ionescu', lines: ['14'] },
+  { name: 'Sf. Ap. Petru și Pavel', lines: ['14'] },
+  { name: 'Pomiculturii', lines: ['14'] },
+  { name: 'Divizia 9', lines: ['14'] },
+  { name: 'Cimitirul Eroilor', lines: ['14'] },
+  { name: 'Arena Aqua', lines: ['17'] },
+  { name: 'V. Economu', lines: ['17'] },
+  { name: 'Renașterii', lines: ['17'] },
+  { name: 'Samuil Micu', lines: ['17'] },
+  { name: 'Badea Cârțan', lines: ['17'] },
+  { name: 'Poliția TM', lines: ['17'] },
+  { name: 'Au. Popovici', lines: ['17'] },
+  { name: 'USVT', lines: ['17', '18'] },
+  { name: 'U.T.T.', lines: ['17', '18'] },
+  { name: 'Liège', lines: ['17'] },
+  { name: 'Liège PV', lines: ['18'] },
+  { name: 'Liège Torontalului', lines: ['18'] },
+  { name: 'Miresei', lines: ['18'] },
+];
+
+const VENUE_ADDRESS = 'Calea Aradului nr. 11, Timișoara';
+
+const TOOLS = [
+  {
+    name: 'get_travel_estimate',
+    description: 'Obține date reale de pe Google Maps (Distance Matrix): timp cu mașina în trafic (simulând plecare miercuri ora 19:00), timp de mers pe jos până la sediu, cea mai apropiată stație de autobuz (E2/14/17/18) față de o zonă/adresă dată, timp de mers pe jos până la acea stație, și distanța reală în km. Folosește-l de fiecare dată când utilizatorul menționează o zonă/cartier/adresă din Timișoara și întreabă cum ajunge.',
+    input_schema: {
+      type: 'object',
+      properties: {
+        origin: {
+          type: 'string',
+          description: 'Zona, cartierul sau adresa menționată de utilizator în Timișoara, ex: "Ronaț", "ISHO", "Dumbrăvița centru".',
+        },
+      },
+      required: ['origin'],
+    },
+  },
+];
+
+function chunk(arr, size) {
+  const out = [];
+  for (let i = 0; i < arr.length; i += size) out.push(arr.slice(i, i + size));
+  return out;
+}
+
+function bucharestOffsetMinutes(date) {
+  const utc = new Date(date.toLocaleString('en-US', { timeZone: 'UTC' }));
+  const buc = new Date(date.toLocaleString('en-US', { timeZone: 'Europe/Bucharest' }));
+  return Math.round((buc - utc) / 60000);
+}
+
+// Unix timestamp (seconds) for the next Wednesday at 19:00 Bucharest time.
+function nextWed19Timestamp() {
+  const now = new Date();
+  const offset = bucharestOffsetMinutes(now);
+  const bucNow = new Date(now.getTime() + offset * 60000);
+  const day = bucNow.getUTCDay();
+  let daysUntilWed = (3 - day + 7) % 7;
+  const hourNow = bucNow.getUTCHours() + bucNow.getUTCMinutes() / 60;
+  if (daysUntilWed === 0 && hourNow >= 19) daysUntilWed = 7;
+  const targetBucLocal = new Date(Date.UTC(
+    bucNow.getUTCFullYear(), bucNow.getUTCMonth(), bucNow.getUTCDate() + daysUntilWed, 19, 0, 0
+  ));
+  const targetUtc = new Date(targetBucLocal.getTime() - offset * 60000);
+  return Math.floor(targetUtc.getTime() / 1000);
+}
+
+async function callDistanceMatrix(params) {
+  const url = new URL('https://maps.googleapis.com/maps/api/distancematrix/json');
+  Object.entries(params).forEach(([k, v]) => url.searchParams.set(k, v));
+  url.searchParams.set('key', process.env.GOOGLE_MAPS_API_KEY);
+  const res = await fetch(url.toString());
+  if (!res.ok) throw new Error('distance-matrix-http-' + res.status);
+  const data = await res.json();
+  if (data.status !== 'OK') throw new Error('distance-matrix-status-' + data.status);
+  return data;
+}
+
+async function getTravelEstimate(origin) {
+  if (!process.env.GOOGLE_MAPS_API_KEY) return { error: 'no-api-key' };
+
+  const result = {};
+
+  try {
+    const driving = await callDistanceMatrix({
+      origins: origin,
+      destinations: VENUE_ADDRESS,
+      mode: 'driving',
+      departure_time: nextWed19Timestamp(),
+      traffic_model: 'best_guess',
+      region: 'ro',
+    });
+    const el = driving.rows?.[0]?.elements?.[0];
+    if (el && el.status === 'OK') {
+      result.driving_duration = (el.duration_in_traffic || el.duration).text;
+      result.distance_km = Math.round((el.distance.value / 1000) * 10) / 10;
+      result.rideshare_price_low = Math.round(result.distance_km * 2.5);
+      result.rideshare_price_high = Math.round(result.distance_km * 3.5);
+    }
+  } catch (e) { result.driving_error = e.message; }
+
+  try {
+    const walking = await callDistanceMatrix({
+      origins: origin,
+      destinations: VENUE_ADDRESS,
+      mode: 'walking',
+      region: 'ro',
+    });
+    const el = walking.rows?.[0]?.elements?.[0];
+    if (el && el.status === 'OK') result.walking_duration_full = el.duration.text;
+  } catch (e) { result.walking_error = e.message; }
+
+  try {
+    const stopChunks = chunk(STOPS, 25);
+    const responses = await Promise.all(stopChunks.map(c => callDistanceMatrix({
+      origins: origin,
+      destinations: c.map(s => `${s.name}, Timișoara`).join('|'),
+      mode: 'walking',
+      region: 'ro',
+    })));
+    let best = null;
+    responses.forEach((data, ci) => {
+      (data.rows?.[0]?.elements || []).forEach((el, i) => {
+        if (el.status === 'OK' && (!best || el.duration.value < best.duration.value)) {
+          best = { stop: stopChunks[ci][i], duration: el.duration };
+        }
+      });
+    });
+    if (best) {
+      result.nearest_stop = best.stop.name;
+      result.nearest_stop_lines = best.stop.lines.join('/');
+      result.walking_duration_to_stop = best.duration.text;
+    } else {
+      result.nearest_stop_error = 'no-stops-geocoded';
+    }
+  } catch (e) { result.nearest_stop_error = e.message; }
+
+  return result;
+}
+
 module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -247,7 +415,7 @@ module.exports = async function handler(req, res) {
     return res.status(400).json({ error: 'Invalid request' });
   }
 
-  try {
+  async function callClaude(msgs) {
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: {
@@ -257,20 +425,46 @@ module.exports = async function handler(req, res) {
       },
       body: JSON.stringify({
         model: 'claude-haiku-4-5-20251001',
-        max_tokens: 600,
+        max_tokens: 700,
         system: SYSTEM_PROMPT,
-        messages: messages.slice(-10),
+        messages: msgs,
+        tools: TOOLS,
       }),
     });
-
     if (!response.ok) {
       const err = await response.text();
-      console.error('Anthropic error:', err);
-      return res.status(500).json({ error: 'AI unavailable', detail: err });
+      throw new Error('Anthropic error: ' + err);
+    }
+    return response.json();
+  }
+
+  try {
+    let msgs = messages.slice(-10);
+    let data = await callClaude(msgs);
+    let rounds = 0;
+
+    while (data.stop_reason === 'tool_use' && rounds < 2) {
+      rounds++;
+      const toolUses = data.content.filter(b => b.type === 'tool_use');
+      const toolResults = await Promise.all(toolUses.map(async (tu) => {
+        let content;
+        try {
+          content = JSON.stringify(await getTravelEstimate(tu.input.origin));
+        } catch (e) {
+          content = JSON.stringify({ error: e.message });
+        }
+        return { type: 'tool_result', tool_use_id: tu.id, content };
+      }));
+      msgs = [
+        ...msgs,
+        { role: 'assistant', content: data.content },
+        { role: 'user', content: toolResults },
+      ];
+      data = await callClaude(msgs);
     }
 
-    const data = await response.json();
-    const text = data.content?.[0]?.text || 'Ne pare rău, nu am putut genera un răspuns.';
+    const textBlock = data.content?.find(b => b.type === 'text');
+    const text = textBlock?.text || 'Ne pare rău, nu am putut genera un răspuns.';
     return res.status(200).json({ reply: text });
 
   } catch (err) {
