@@ -301,6 +301,14 @@ const TOOLS = [
   },
 ];
 
+// Pe jos: 10-15 minute per km, aplicat pe distanța reală din Distance Matrix.
+function walkMinutesRange(distanceMeters) {
+  const km = distanceMeters / 1000;
+  const low  = Math.round(km * 10);
+  const high = Math.round(km * 15);
+  return low === high ? `${low} min` : `${low}-${high} min`;
+}
+
 function chunk(arr, size) {
   const out = [];
   for (let i = 0; i < arr.length; i += size) out.push(arr.slice(i, i + size));
@@ -380,7 +388,7 @@ async function getTravelEstimate(origin) {
       region: 'ro',
     });
     const el = walking.rows?.[0]?.elements?.[0];
-    if (el && el.status === 'OK') result.walking_duration_full = el.duration.text;
+    if (el && el.status === 'OK') result.walking_duration_full = walkMinutesRange(el.distance.value);
     else console.error('[travel-estimate] walking element not OK:', JSON.stringify(el));
   } catch (e) { result.walking_error = e.message; console.error('[travel-estimate] walking error:', e.message); }
 
@@ -395,15 +403,15 @@ async function getTravelEstimate(origin) {
     let best = null;
     responses.forEach((data, ci) => {
       (data.rows?.[0]?.elements || []).forEach((el, i) => {
-        if (el.status === 'OK' && (!best || el.duration.value < best.duration.value)) {
-          best = { stop: stopChunks[ci][i], duration: el.duration };
+        if (el.status === 'OK' && (!best || el.distance.value < best.distance.value)) {
+          best = { stop: stopChunks[ci][i], distance: el.distance };
         }
       });
     });
     if (best) {
       result.nearest_stop = best.stop.name;
       result.nearest_stop_lines = best.stop.lines.join('/');
-      result.walking_duration_to_stop = best.duration.text;
+      result.walking_duration_to_stop = walkMinutesRange(best.distance.value);
     } else {
       result.nearest_stop_error = 'no-stops-geocoded';
       console.error('[travel-estimate] no stops geocoded OK');
