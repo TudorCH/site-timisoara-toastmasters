@@ -157,15 +157,13 @@
           'Cu ce te pot ajuta?',
         '</div>',
       '</div>',
-    '</div>',
-
-    /* Chips */
-    '<div id="ty-chips" style="padding:8px 14px 12px;display:flex;flex-wrap:wrap;gap:8px;',
-    'flex-shrink:0;border-top:1px solid #eef4f8;">',
-      '<button class="ty-chip" onclick="toastySend(\'Când sunt ședințele?\')">Ședințe</button>',
-      '<button class="ty-chip" onclick="toastySend(\'Cum mă pot înscrie?\')">Înscriere</button>',
-      '<button class="ty-chip" onclick="toastySend(\'Pot veni gratuit?\')">Cost</button>',
-      '<button class="ty-chip" onclick="toastySend(\'Unde se țin ședințele?\')">Locație</button>',
+      /* Chips inline below welcome bubble, aligned with bubble (avatar 28px + gap 8px = 36px) */
+      '<div id="ty-chips" style="display:flex;flex-direction:column;align-items:flex-start;gap:6px;padding:6px 0 4px 36px;">',
+        '<button class="ty-chip" onclick="toastySend(\'Când sunt ședințele?\')">Când sunt ședințele?</button>',
+        '<button class="ty-chip" onclick="toastySend(\'Cum mă pot înscrie?\')">Cum mă pot înscrie?</button>',
+        '<button class="ty-chip" onclick="toastySend(\'Pot veni gratuit?\')">Pot veni gratuit?</button>',
+        '<button class="ty-chip" onclick="toastySend(\'Unde se țin ședințele?\')">Unde se țin ședințele?</button>',
+      '</div>',
     '</div>',
 
     /* fix 6: safe-area-inset-bottom pe padding */
