@@ -82,6 +82,12 @@
     .scroll-fade.visible { opacity:1; transform:translateY(0); }
     .social-btn:hover { background:rgba(242,223,116,.3) !important; }
     .social-btn:active { background:rgba(242,223,116,.6) !important; }
+    /* Pill helpers: ensure pills use the site's fonts and consistent sizing */
+    .loc-pill, .transport-pill { font-family: inherit; display: inline-flex; align-items: center; gap: .35rem; border-radius: 9999px; padding: .125rem .5rem; font-weight: 600; font-size: .6875rem; line-height:1 }
+    .loc-pill svg, .transport-pill svg { width: 14px; height: 14px; flex: 0 0 14px }
+    .transport-pill--orange { background:#fb923c; color:#fff }
+    .transport-pill--violet { background:#6b21a8; color:#fff }
+    .loc-pill--maroon { background:#772432; color:#fff }
   </style>
 </head>
 <body class="font-sans bg-white text-gray-900 antialiased">
@@ -564,12 +570,14 @@
           <!-- Mașina -->
           <div class="p-5 space-y-2.5">
             <div class="flex items-center gap-2">
-              <svg class="w-4 h-4 text-gray-600 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zm10 0a2 2 0 11-4 0 2 2 0 014 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M13 6H5l-3 7v4h2m8-11l2 7h4l2-4H13z"/></svg>
+              <div class="w-4 flex-shrink-0 flex items-center justify-center">
+                <svg class="w-4 h-4 text-gray-600" viewBox="0 -960 960 960" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M240-200v40q0 17-11.5 28.5T200-120h-40q-17 0-28.5-11.5T120-160v-320l84-240q6-18 21.5-29t34.5-11h440q19 0 34.5 11t21.5 29l84 240v320q0 17-11.5 28.5T800-120h-40q-17 0-28.5-11.5T720-160v-40H240Zm-8-360h496l-42-120H274l-42 120Zm-32 80v200-200Zm100 160q25 0 42.5-17.5T360-380q0-25-17.5-42.5T300-440q-25 0-42.5 17.5T240-380q0 25 17.5 42.5T300-320Zm360 0q25 0 42.5-17.5T720-380q0-25-17.5-42.5T660-440q-25 0-42.5 17.5T600-380q0 25 17.5 42.5T660-320Zm-460 40h560v-200H200v200Z"/></svg>
+              </div>
               <span class="text-sm font-semibold text-gray-800">Cu Mașina</span>
             </div>
-            <div class="flex items-start gap-2 pl-6">
-              <div class="w-5 h-5 rounded bg-blue-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                <span class="text-[10px] font-black text-blue-600 leading-none">P</span>
+            <div class="flex items-start gap-2 ml-6">
+              <div class="w-5 h-5 rounded-full bg-primary flex items-center justify-center flex-shrink-0 mt-0.5 text-white font-bold text-xs">
+                <span class="leading-none">P</span>
               </div>
               <p class="text-xs text-gray-500 leading-relaxed">Lângă Clădire (Calea Aradului 1A) sau cu plată în incinta Iulius Mall</p>
             </div>
@@ -578,44 +586,45 @@
           <!-- Transport în comun -->
           <div class="p-5 space-y-2.5">
             <div class="flex items-center gap-2">
-              <svg class="w-4 h-4 text-gray-600 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="15" rx="2"/><path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M8 19v2m8-2v2M8 7h.01M16 7h.01"/></svg>
+              <div class="w-4 flex-shrink-0 flex items-center justify-center">
+                <svg class="w-4 h-4 text-gray-600" viewBox="0 -960 960 960" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M280-240h320q33 0 56.5-23.5T680-320v-120H200v120q0 33 23.5 56.5T280-240Zm62.5-57.5Q360-315 360-340t-17.5-42.5Q325-400 300-400t-42.5 17.5Q240-365 240-340t17.5 42.5Q275-280 300-280t42.5-17.5Zm280 0Q640-315 640-340t-17.5-42.5Q605-400 580-400t-42.5 17.5Q520-365 520-340t17.5 42.5Q555-280 580-280t42.5-17.5ZM200-80q-17 0-28.5-11.5T160-120v-82q-18-20-29-44.5T120-300v-380q0-83 77-121.5T440-840q26 0 49 .5t44 2.5q-7 19-10 38.5t-3 40.5q-17-1-36.5-1.5T442-760q-87 0-144 10t-80 30h305q4 19 11 39t18 41H200v120h443l117 105v115q0 29-11 53.5T720-202v82q0 17-11.5 28.5T680-80h-40q-17 0-28.5-11.5T600-120v-40H280v40q0 17-11.5 28.5T240-80h-40Zm531.5-651.5Q720-743 720-760t11.5-28.5Q743-800 760-800t28.5 11.5Q800-777 800-760t-11.5 28.5Q777-720 760-720t-28.5-11.5Zm99.5-98q29 30.5 29 73.5 0 32-24.5 70.5T761-600q-51-48-76-86t-25-70q0-43 29-73.5t71-30.5q42 0 71 30.5ZM760-520q81-69 120.5-127.5T920-756q0 68-46.5-116T760-920q-67 0-113.5 48T600-756q0 50 39.5 108.5T760-520Zm-560 80h480-480Zm323-280H218h305Zm237-40Z"/></svg>
+              </div>
               <span class="text-sm font-semibold text-gray-800">Transport în Comun</span>
             </div>
-            <div class="flex items-center gap-2 pl-6 flex-wrap">
-              <svg class="w-3.5 h-3.5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-              <span class="text-xs text-gray-500">Stația Piața Consiliul Europei</span>
-              <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold bg-orange-500 text-white">E2</span>
-              <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold bg-violet-600 text-white">14</span>
-              <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold bg-violet-600 text-white">17</span>
-              <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold bg-violet-600 text-white">18</span>
+            <div class="flex items-center gap-1.5 pl-6 flex-wrap">
+              <span class="flex items-center gap-1 text-xs text-gray-500 mr-0.5">
+                <svg class="w-3.5 h-3.5 text-gray-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M280-240h320q33 0 56.5-23.5T680-320v-120H200v120q0 33 23.5 56.5T280-240Zm62.5-57.5Q360-315 360-340t-17.5-42.5Q325-400 300-400t-42.5 17.5Q240-365 240-340t17.5 42.5Q275-280 300-280t42.5-17.5Zm280 0Q640-315 640-340t-17.5-42.5Q605-400 580-400t-42.5 17.5Q520-365 520-340t17.5 42.5Q555-280 580-280t42.5-17.5ZM200-80q-17 0-28.5-11.5T160-120v-82q-18-20-29-44.5T120-300v-380q0-83 77-121.5T440-840q26 0 49 .5t44 2.5q-7 19-10 38.5t-3 40.5q-17-1-36.5-1.5T442-760q-87 0-144 10t-80 30h305q4 19 11 39t18 41H200v120h443l117 105v115q0 29-11 53.5T720-202v82q0 17-11.5 28.5T680-80h-40q-17 0-28.5-11.5T600-120v-40H280v40q0 17-11.5 28.5T240-80h-40Zm531.5-651.5Q720-743 720-760t11.5-28.5Q743-800 760-800t28.5 11.5Q800-777 800-760t-11.5 28.5Q777-720 760-720t-28.5-11.5Zm99.5-98q29 30.5 29 73.5 0 32-24.5 70.5T761-600q-51-48-76-86t-25-70q0-43 29-73.5t71-30.5q42 0 71 30.5ZM760-520q81-69 120.5-127.5T920-756q0-68-46.5-116T760-920q-67 0-113.5 48T600-756q0 50 39.5 108.5T760-520Zm-560 80h480-480Zm323-280H218h305Zm237-40Z"/></svg>
+                Stația Piața Consiliul Europei
+              </span>
+              <span class="transport-pill transport-pill--orange">E2</span>
+              <span class="transport-pill transport-pill--violet">14</span>
+              <span class="transport-pill transport-pill--violet">17</span>
+              <span class="transport-pill transport-pill--violet">18</span>
+              <span class="transport-pill transport-pill--violet">M14</span>
             </div>
           </div>
 
           <!-- Pe jos -->
           <div class="p-5 space-y-2.5">
             <div class="flex items-center gap-2">
-              <svg class="w-4 h-4 text-gray-600 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="4" r="2" fill="currentColor" stroke="none"/><path stroke-linecap="round" stroke-linejoin="round" d="M8 22l2-6 2 3h0l2-3 2 6M9 11l3-2 3 2M9 11l-1-3m7 3l1-3"/></svg>
+              <svg class="w-4 h-4 text-gray-600 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M520-40v-240l-84-80-40 176-276-56 16-80 192 40 64-324-72 28v136h-80v-188l158-68q35-15 51.5-19.5T480-720q21 0 39 11t29 29l40 64q26 42 70.5 69T760-520v80q-66 0-123.5-27.5T540-540l-24 120 84 80v300h-80Zm-36.5-723.5Q460-787 460-820t23.5-56.5Q507-900 540-900t56.5 23.5Q620-853 620-820t-23.5 56.5Q573-740 540-740t-56.5-23.5Z"/></svg>
               <span class="text-sm font-semibold text-gray-800">Pe Jos</span>
             </div>
             <div class="flex items-center gap-1.5 pl-6 flex-wrap">
               <svg class="w-3.5 h-3.5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline stroke-linecap="round" stroke-linejoin="round" points="12 6 12 12 16 14"/></svg>
               <span class="text-xs text-gray-500">Peste drum de</span>
-              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-700 border border-gray-200">
-                <svg class="w-2.5 h-2.5 text-maroon flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              <span class="loc-pill loc-pill--maroon">
+                <svg class="w-2.5 h-2.5 flex-shrink-0 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
                 Iulius Town
               </span>
               <span class="text-xs text-gray-400">·</span>
               <span class="text-xs text-gray-500">15 min din</span>
-              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-700 border border-gray-200">
-                <svg class="w-2.5 h-2.5 text-maroon flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              <span class="loc-pill loc-pill--maroon">
+                <svg class="w-2.5 h-2.5 flex-shrink-0 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
                 Piața Unirii
               </span>
-              <span class="text-xs text-gray-400">·</span>
-              <span class="text-xs text-gray-500">30 min din</span>
-              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-700 border border-gray-200">
-                <svg class="w-2.5 h-2.5 text-maroon flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                Campusul Studențesc
-              </span>
+
+              <!-- Campusul Studențesc removed to keep items inline -->
             </div>
           </div>
 
@@ -629,9 +638,9 @@
 </section>
 
 <!-- ════════════════════ FOOTER ════════════════════ -->
-<footer class="bg-[#002d47] border-t border-white/5 pt-8 pb-5 lg:pt-16 lg:pb-8">
+<footer class="bg-[#002d47] border-t border-white/5 pt-8 pb-5 lg:pt-24 lg:pb-12">
   <div class="max-w-7xl mx-auto px-5 lg:px-8">
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-10 pb-7 lg:pb-12 border-b border-white/10">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-10 lg:gap-12 items-start pb-5 lg:pb-12 border-b border-white/10">
 
       <div class="col-span-2 lg:col-span-2">
         <div class="flex items-center gap-3 mb-3 lg:mb-5">
@@ -641,7 +650,7 @@
             <div class="text-gold text-[10px] font-semibold tracking-widest uppercase">CLUB</div>
           </div>
         </div>
-        <p class="hidden md:block text-white/50 text-sm leading-relaxed max-w-xs mb-6" data-i18n="footer-desc">
+        <p class="hidden md:block text-white/50 text-sm leading-relaxed md:max-w-xl lg:max-w-2xl mb-4 lg:mb-6" data-i18n="footer-desc">
           Clubul Timișoara Toastmasters, un spațiu sigur pentru practică, feedback și
           creștere în comunicare și vorbit în public, parte din rețeaua globală Toastmasters International.
         </p>
@@ -681,7 +690,7 @@
       </div>
     </div>
 
-    <div class="pt-5 lg:pt-8 flex flex-col md:flex-row items-center justify-between gap-2 md:gap-4">
+    <div class="pt-5 lg:pt-10 flex flex-col md:flex-row items-center justify-between gap-2 md:gap-4">
       <p class="text-white/50 text-xs" data-i18n="footer-copyright">© 2026 Timișoara Toastmasters Club. Toate drepturile rezervate.</p>
       <p class="text-white/50 text-xs flex items-center gap-1.5">
         <span data-i18n="footer-network">Parte din rețeaua globală</span> <span class="text-gold/60">Toastmasters International</span>
@@ -806,3 +815,4 @@
 </script>
 </body>
 </html>
+
