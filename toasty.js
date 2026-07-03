@@ -42,17 +42,28 @@
     'radial-gradient(ellipse 90%  60% at 108% 98%, rgba(0,65,101,.28)  0%,transparent 52%),',
     'radial-gradient(ellipse 100% 55% at -5% 98%,  rgba(0,130,205,.20) 0%,transparent 52%),',
     '#fff;',
-    'border-left:1px solid rgba(0,45,71,.12);',
+    /* blue outline unifies header + footer, left corners rounded on mobile */
+    'border:1.5px solid rgba(0,83,127,.45);border-radius:16px 0 0 16px;overflow:hidden;',
     'z-index:2147483646!important;display:flex;flex-direction:column;',
     'transform:translateX(100%);',
     'transition:transform .18s cubic-bezier(.4,0,1,1);',
-    'box-shadow:-3px 0 32px rgba(0,45,71,.18);',
+    'box-shadow:-4px 0 32px rgba(0,21,42,.2);',
     'font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif;pointer-events:none;}',
     '#ty-win.on{transform:translateX(0);pointer-events:auto;transition:transform .3s cubic-bezier(.4,0,.2,1);}',
+    /* Desktop: floating popup, all corners rounded */
     '@media(min-width:768px){',
-    '#ty-win{top:' + NAV_H + 'px!important;height:calc(100dvh - ' + NAV_H + 'px)!important;',
-    'box-shadow:-3px 0 32px rgba(0,45,71,.2),0 4px 16px rgba(0,45,71,.1);}}',
-    '@media(max-width:479px){#ty-win{width:100vw;border-left:none;}}',
+    '#ty-win{',
+    'top:auto!important;bottom:96px!important;right:28px!important;',
+    'height:580px!important;width:380px;max-width:calc(100vw - 56px);',
+    'border-radius:16px;',
+    'transform:scale(.92) translateY(16px)!important;opacity:0;',
+    'transition:transform .18s ease-in,opacity .18s ease-in;',
+    'box-shadow:0 8px 40px rgba(0,21,42,.22),0 0 0 1.5px rgba(0,83,127,.45);}',
+    '#ty-win.on{transform:scale(1) translateY(0)!important;opacity:1;',
+    'transition:transform .3s cubic-bezier(.34,1.3,.64,1),opacity .22s ease-out;}',
+    '#ty-ov{background:transparent!important;}}',
+    /* full-screen mobile: no right border visible, remove right radius */
+    '@media(max-width:479px){#ty-win{width:100vw;border-radius:0;border-left:none;border-right:none;}}',
 
     /* Close button — fix 10: CSS hover instead of inline onmouseover */
     '#ty-hdr-close{all:unset;width:36px;height:36px;border-radius:50%;',
@@ -77,23 +88,24 @@
     '.ty-chip:hover{border-color:#00537f;color:#00537f;background:#f0f7fa;}',
     '.ty-chip:focus-visible{outline:2px solid #00537f;outline-offset:2px;}',
 
-    /* fix 1: font-size 16px prevents iOS auto-zoom; fix 4: focus ring already has box-shadow */
-    '#ty-inp{flex:1;border:1.5px solid #dde6ee;border-radius:12px;',
+    /* Input on dark gradient bar — white text, frosted glass field */
+    '#ty-inp{flex:1;border:1.5px solid rgba(255,255,255,.25);border-radius:12px;',
     'padding:12px 16px;font-size:16px;outline:none;',
-    'font-family:inherit;color:#0f2942;background:#f4f8fb;',
+    'font-family:inherit;color:#fff;background:rgba(255,255,255,.13);',
     'transition:border-color .15s,background .15s,box-shadow .15s;min-height:44px;}',
-    '#ty-inp:focus{border-color:#00537f;background:#fff;box-shadow:0 0 0 3px rgba(0,83,127,.12);}',
-    '#ty-inp::placeholder{color:#8faab8;}',
+    '#ty-inp:focus{border-color:rgba(255,255,255,.55);background:rgba(255,255,255,.2);',
+    'box-shadow:0 0 0 3px rgba(255,255,255,.1);}',
+    '#ty-inp::placeholder{color:rgba(255,255,255,.5);}',
 
-    /* fix 5: send disabled visual during loading; fix 8: touch-action; fix 4: focus ring */
-    '#ty-send{all:unset;width:44px;height:44px;min-width:44px;border-radius:12px;background:#002d47;',
+    /* Send button — semi-transparent white matching header close button */
+    '#ty-send{all:unset;width:44px;height:44px;min-width:44px;border-radius:12px;',
+    'background:rgba(255,255,255,.18);border:1.5px solid rgba(255,255,255,.25);',
     'display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;',
     'touch-action:manipulation;',
-    'transition:background .15s,transform .1s,box-shadow .15s,opacity .2s;',
-    'box-shadow:0 2px 8px rgba(0,45,71,.35);}',
-    '#ty-send:hover{background:#004165;box-shadow:0 4px 14px rgba(0,65,101,.45);}',
+    'transition:background .15s,transform .1s,border-color .15s,opacity .2s;}',
+    '#ty-send:hover{background:rgba(255,255,255,.28);border-color:rgba(255,255,255,.4);}',
     '#ty-send:active{transform:scale(.94);}',
-    '#ty-send:focus-visible{outline:2px solid #00537f;outline-offset:2px;}',
+    '#ty-send:focus-visible{outline:2px solid rgba(255,255,255,.8);outline-offset:2px;}',
     '#ty-send.loading{opacity:.4;pointer-events:none;cursor:not-allowed;}'
   ].join('');
   document.head.appendChild(style);
@@ -183,8 +195,8 @@
 
     /* fix 6: safe-area-inset-bottom pe padding */
     '<div style="padding:12px 14px max(16px,env(safe-area-inset-bottom));',
-    'border-top:1px solid #dde6ee;display:flex;gap:8px;align-items:center;',
-    'flex-shrink:0;background:#fff;">',
+    'display:flex;gap:8px;align-items:center;',
+    'flex-shrink:0;background:linear-gradient(135deg,#00537f 0%,#004165 55%,#002d47 100%);">',
       '<input id="ty-inp" type="text" placeholder="Scrie un mesaj…"',
       ' autocomplete="off" inputmode="text" aria-label="Mesajul tău"',
       ' onkeydown="if(event.key===\'Enter\'&&!event.shiftKey){event.preventDefault();toastySendInput();}">',
@@ -203,12 +215,14 @@
   var isOpen = false, isLoading = false, history = [];
 
   /* ── Open / Close ── */
+  function isMobile() { return window.innerWidth < 768; }
+
   window.toastyClose = function () {
     isOpen = false;
     fab.classList.remove('gone');
     win.classList.remove('on');
     ov.classList.remove('on');
-    document.body.style.overflow = '';
+    if (isMobile()) document.body.style.overflow = '';
   };
 
   fab.addEventListener('click', function () {
@@ -216,7 +230,7 @@
     fab.classList.add('gone');
     win.classList.add('on');
     ov.classList.add('on');
-    document.body.style.overflow = 'hidden';
+    if (isMobile()) document.body.style.overflow = 'hidden';
     setTimeout(function () {
       var inp = document.getElementById('ty-inp');
       if (inp) inp.focus();
