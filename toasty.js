@@ -110,26 +110,20 @@
   document.head.appendChild(style);
 
   /* ── Icons ── */
-  /* Speech bubble + mic inside — FAB icon */
+  /* FAB: filled chat bubble + ? (FAQ signal) */
   function iconChat(size) {
     return '<svg width="' + size + '" height="' + size + '" viewBox="0 0 24 24">' +
       '<path fill="rgba(255,255,255,.92)" d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>' +
-      '<rect x="10.5" y="5.5" width="3" height="5.5" rx="1.5" fill="#002d47"/>' +
-      '<path fill="none" stroke="#002d47" stroke-width="1.5" stroke-linecap="round" d="M9.5 10.8a2.5 2.5 0 0 0 5 0"/>' +
-      '<line x1="12" y1="13.3" x2="12" y2="14.8" stroke="#002d47" stroke-width="1.5" stroke-linecap="round"/>' +
-      '<line x1="10.5" y1="14.8" x2="13.5" y2="14.8" stroke="#002d47" stroke-width="1.5" stroke-linecap="round"/>' +
+      '<text x="12" y="11" text-anchor="middle" dominant-baseline="middle"' +
+      ' fill="#002d47" font-size="13" font-weight="900" font-family="Arial,sans-serif">?</text>' +
       '</svg>';
   }
 
-  /* fix 4: Microphone — header + bot message avatars (on-brand for public speaking) */
-  function iconMic(size, color) {
-    var c = color || 'white';
+  /* Header avatar: stroke chat bubble */
+  function iconChatStroke(size) {
     return '<svg width="' + size + '" height="' + size + '" viewBox="0 0 24 24" fill="none"' +
-      ' stroke="' + c + '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
-      '<path d="M12 2a3 3 0 0 1 3 3v7a3 3 0 0 1-6 0V5a3 3 0 0 1 3-3z"/>' +
-      '<path d="M19 10v2a7 7 0 0 1-14 0v-2"/>' +
-      '<line x1="12" y1="19" x2="12" y2="22"/>' +
-      '<line x1="8" y1="22" x2="16" y2="22"/></svg>';
+      ' stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+      '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>';
   }
 
   /* ── Overlay ── */
@@ -161,7 +155,7 @@
       '<div style="width:40px;height:40px;border-radius:11px;',
       'background:rgba(255,255,255,.15);border:1.5px solid rgba(255,255,255,.22);',
       'display:flex;align-items:center;justify-content:center;flex-shrink:0;">',
-        iconMic(20),
+        iconChatStroke(20),
       '</div>',
 
       '<div style="flex:1;min-width:0;">',
@@ -182,23 +176,17 @@
 
     '<div id="ty-msgs" role="log" aria-live="polite" aria-relevant="additions">',
 
-      /* fix 4: mic avatar, fix 5: no emoji, fix 8: styled CTA question */
+      /* welcome message — no avatar (header already shows identity) */
       '<div style="display:flex;gap:8px;align-items:flex-end;margin-top:4px;">',
-        '<div style="width:28px;height:28px;border-radius:8px;background:#00537f;',
-        'display:flex;align-items:center;justify-content:center;flex-shrink:0;">',
-          iconMic(14),
-        '</div>',
         '<div style="background:rgba(255,255,255,.88);border-radius:4px 16px 16px 16px;',
         'border:1px solid rgba(0,83,127,.1);',
-        'padding:12px 15px;max-width:80%;font-size:14px;line-height:1.65;color:#0f2942;">',
+        'padding:12px 15px;max-width:88%;font-size:14px;line-height:1.65;color:#0f2942;">',
           'Bună! Sunt <strong>Toasty</strong>, asistentul tău Toastmasters.',
-          /* fix 8: CTA question visually distinct */
           '<div style="color:#3a6a85;font-size:13px;font-weight:500;margin-top:5px;">Cu ce te pot ajuta?</div>',
         '</div>',
       '</div>',
 
-      /* fix 3: tighter top padding so chips feel attached to message */
-      '<div id="ty-chips" style="display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:2px 0 4px 36px;">',
+      '<div id="ty-chips" style="display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:2px 0 4px 4px;">',
         '<button class="ty-chip" onclick="toastySend(\'Pot veni gratuit?\')">',
           '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>',
           'Pot veni gratuit?',
@@ -372,26 +360,18 @@
   };
 
   /* ── DOM helpers ── */
-  /* fix 4: mic avatar in messages */
-  function avatarEl() {
-    return '<div style="width:28px;height:28px;border-radius:8px;background:#00537f;' +
-      'display:flex;align-items:center;justify-content:center;flex-shrink:0;">' +
-      iconMic(14) + '</div>';
-  }
-
   function addMsg(role, text) {
     var msgs = document.getElementById('ty-msgs');
     var row  = document.createElement('div');
     var bot  = role === 'bot';
-    row.style.cssText = 'display:flex;gap:8px;align-items:flex-end;' +
-      (bot ? '' : 'flex-direction:row-reverse;');
+    row.style.cssText = 'display:flex;' + (bot ? '' : 'flex-direction:row-reverse;');
     var bubble = '<div style="' +
       (bot
         ? 'background:rgba(255,255,255,.88);border:1px solid rgba(0,83,127,.1);border-radius:4px 16px 16px 16px;color:#0f2942;'
         : 'background:#00537f;border-radius:16px 4px 16px 16px;color:#fff;') +
-      'padding:12px 15px;max-width:80%;font-size:14px;line-height:1.65;">' +
+      'padding:12px 15px;max-width:88%;font-size:14px;line-height:1.65;">' +
       esc(text) + '</div>';
-    row.innerHTML = (bot ? avatarEl() : '') + bubble;
+    row.innerHTML = bubble;
     msgs.appendChild(row);
     msgs.scrollTop = msgs.scrollHeight;
   }
@@ -400,12 +380,12 @@
   function addErrorMsg(msg, retryTxt) {
     var msgs = document.getElementById('ty-msgs');
     var row  = document.createElement('div');
-    row.style.cssText = 'display:flex;gap:8px;align-items:flex-end;';
+    row.style.cssText = 'display:flex;';
 
     var bubble = document.createElement('div');
     bubble.style.cssText = 'background:rgba(255,255,255,.88);border:1px solid rgba(0,83,127,.1);' +
       'border-radius:4px 16px 16px 16px;' +
-      'padding:12px 15px;max-width:80%;font-size:14px;line-height:1.65;color:#0f2942;';
+      'padding:12px 15px;max-width:88%;font-size:14px;line-height:1.65;color:#0f2942;';
     bubble.appendChild(document.createTextNode(msg + ' '));
 
     var btn = document.createElement('button');
@@ -418,7 +398,6 @@
     });
     bubble.appendChild(btn);
 
-    row.innerHTML = avatarEl();
     row.appendChild(bubble);
     msgs.appendChild(row);
     msgs.scrollTop = msgs.scrollHeight;
@@ -429,9 +408,9 @@
     var id   = 'tyt' + Date.now();
     var row  = document.createElement('div');
     row.id   = id;
-    row.style.cssText = 'display:flex;gap:8px;align-items:flex-end;';
+    row.style.cssText = 'display:flex;';
     var dotStyle = 'width:6px;height:6px;background:#8faab8;border-radius:50%;';
-    row.innerHTML = avatarEl() +
+    row.innerHTML =
       '<div style="background:rgba(255,255,255,.88);border:1px solid rgba(0,83,127,.1);' +
       'border-radius:4px 16px 16px 16px;' +
       'padding:14px 15px;display:flex;gap:4px;align-items:center;">' +
