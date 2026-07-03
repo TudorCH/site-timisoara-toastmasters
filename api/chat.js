@@ -349,7 +349,6 @@ async function callDistanceMatrix(params) {
 }
 
 async function getTravelEstimate(origin) {
-  console.log('[travel-estimate] origin =', origin, '| key present =', !!process.env.GOOGLE_MAPS_API_KEY);
   if (!process.env.GOOGLE_MAPS_API_KEY) return { error: 'no-api-key' };
 
   const result = {};
@@ -375,10 +374,8 @@ async function getTravelEstimate(origin) {
       const priceHigh = 3   + result.distance_km * 3   + durationMin * 0.5;
       result.rideshare_price_low  = Math.max(8, Math.round(priceLow));
       result.rideshare_price_high = Math.max(8, Math.round(priceHigh));
-    } else {
-      console.error('[travel-estimate] driving element not OK:', JSON.stringify(el));
     }
-  } catch (e) { result.driving_error = e.message; console.error('[travel-estimate] driving error:', e.message); }
+  } catch (e) { result.driving_error = e.message; }
 
   try {
     const walking = await callDistanceMatrix({
@@ -389,8 +386,7 @@ async function getTravelEstimate(origin) {
     });
     const el = walking.rows?.[0]?.elements?.[0];
     if (el && el.status === 'OK') result.walking_duration_full = walkMinutesRange(el.distance.value);
-    else console.error('[travel-estimate] walking element not OK:', JSON.stringify(el));
-  } catch (e) { result.walking_error = e.message; console.error('[travel-estimate] walking error:', e.message); }
+  } catch (e) { result.walking_error = e.message; }
 
   try {
     const stopChunks = chunk(STOPS, 25);
@@ -414,11 +410,8 @@ async function getTravelEstimate(origin) {
       result.walking_duration_to_stop = walkMinutesRange(best.distance.value);
     } else {
       result.nearest_stop_error = 'no-stops-geocoded';
-      console.error('[travel-estimate] no stops geocoded OK');
     }
-  } catch (e) { result.nearest_stop_error = e.message; console.error('[travel-estimate] stops error:', e.message); }
-
-  console.log('[travel-estimate] result =', JSON.stringify(result));
+  } catch (e) { result.nearest_stop_error = e.message; }
 
   return result;
 }
@@ -467,12 +460,10 @@ module.exports = async function handler(req, res) {
     let msgs = messages.slice(-10);
     let data = await callClaude(msgs);
     let rounds = 0;
-    console.log('[chat] first stop_reason =', data.stop_reason);
 
     while (data.stop_reason === 'tool_use' && rounds < 2) {
       rounds++;
       const toolUses = data.content.filter(b => b.type === 'tool_use');
-      console.log('[chat] tool_use round', rounds, '->', toolUses.map(t => t.input));
       const toolResults = await Promise.all(toolUses.map(async (tu) => {
         let content;
         try {
@@ -488,7 +479,6 @@ module.exports = async function handler(req, res) {
         { role: 'user', content: toolResults },
       ];
       data = await callClaude(msgs);
-      console.log('[chat] stop_reason after tool round', rounds, '=', data.stop_reason);
     }
 
     const textBlock = data.content?.find(b => b.type === 'text');
