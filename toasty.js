@@ -460,7 +460,28 @@
     s = s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     s = s.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
     s = s.replace(/\*(.+?)\*/g, '<em>$1</em>');
-    s = s.replace(/\n/g, '<br>');
+
+    /* render markdown bullet lines (- item) as real HTML list */
+    var lines = s.split('\n');
+    var html = '';
+    var inList = false;
+    for (var i = 0; i < lines.length; i++) {
+      var line = lines[i];
+      var m = line.match(/^[-•]\s+(.+)/);
+      if (m) {
+        if (!inList) {
+          html += '<ul style="margin:6px 0;padding-left:18px;list-style:disc;">';
+          inList = true;
+        }
+        html += '<li style="margin:3px 0;line-height:1.55;">' + m[1] + '</li>';
+      } else {
+        if (inList) { html += '</ul>'; inList = false; }
+        html += (line ? line : '') + (i < lines.length - 1 ? '<br>' : '');
+      }
+    }
+    if (inList) html += '</ul>';
+    s = html;
+
     links.forEach(function (h, i) { s = s.split('\x00L' + i + '\x00').join(h); });
     return s;
   }
