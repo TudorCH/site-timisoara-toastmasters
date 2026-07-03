@@ -28,7 +28,7 @@
     'transition:transform .2s,box-shadow .2s,opacity .2s,visibility .2s;}',
     '#ty-fab:hover{transform:scale(1.09);background:#004165;box-shadow:0 6px 24px rgba(0,65,101,.6);}',
     '#ty-fab:focus-visible{outline:3px solid #00537f;outline-offset:3px;}',
-    '#ty-fab.gone,#ty-fab.no-footer{opacity:0!important;visibility:hidden!important;pointer-events:none!important;}',
+    '#ty-fab.gone,#ty-fab.no-footer,#ty-fab.over-hero{opacity:0!important;visibility:hidden!important;pointer-events:none!important;}',
     '@media(min-width:640px){#ty-fab{bottom:28px!important;right:28px!important;width:56px;height:56px;}}',
 
     /* Panel — fix 1: visible diagonal gradient instead of invisible blobs */
@@ -367,6 +367,18 @@
     }
     window.visualViewport.addEventListener('resize', onVP);
     window.visualViewport.addEventListener('scroll', onVP);
+  }
+
+  /* ── Hero hide — FAB only appears once the user scrolls past the hero ── */
+  var nav = document.querySelector('nav');
+  var heroEl = nav ? nav.nextElementSibling : null;
+  if (heroEl && 'IntersectionObserver' in window) {
+    fab.classList.add('over-hero'); /* start hidden until first observer callback */
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        fab.classList.toggle('over-hero', e.isIntersecting);
+      });
+    }, { threshold: 0.05 }).observe(heroEl);
   }
 
   /* ── Footer hide ── */

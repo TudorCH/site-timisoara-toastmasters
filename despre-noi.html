@@ -115,6 +115,9 @@
       overflow: hidden;
     }
     .flip-back { transform: rotateY(180deg); }
+    .flip-back--scroll { justify-content: flex-start; }
+    .flip-back--scroll h3 { flex-shrink: 0; }
+    .flip-back-scroll-area { flex: 1 1 auto; min-height: 0; width: 100%; overflow-y: auto; }
     /* Corner arrow on all flip-card front faces */
     .flip-front::after {
       content: '';
@@ -309,7 +312,7 @@
 </nav>
 
 <!-- ════════════════════ HERO MOBILE ════════════════════ -->
-<section id="hero-mobile" class="pt-16 relative overflow-hidden" style="height:calc(100dvh - 64px);min-height:520px">
+<section id="hero-mobile" class="pt-16 relative overflow-hidden" style="height:100dvh;min-height:580px">
   <img src="Images/hero-mobile.webp" alt="" aria-hidden="true"
        class="absolute inset-x-0 bottom-0 w-full h-full object-cover" style="top:32px;object-position:center top" />
   <div class="absolute inset-x-0 bottom-0" style="height:85%;background:linear-gradient(to top,#002d47 0%,#002d47 30%,rgba(0,45,71,.95) 55%,rgba(0,55,85,.6) 72%,rgba(0,65,101,.2) 88%,transparent 100%)"></div>
@@ -441,9 +444,11 @@
             <div class="w-12 h-12 lg:w-14 lg:h-14 rounded-2xl flex items-center justify-center flex-shrink-0" style="background:#772432"><svg class="w-6 h-6 lg:w-7 lg:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div>
             <h3 class="font-heading font-bold text-maroon text-2xl sm:text-3xl lg:text-4xl leading-snug" data-i18n="val-v1-title">Integritate</h3>
           </div>
-          <div class="flip-back p-5 lg:p-6 gap-3" style="background:#772432">
+          <div class="flip-back flip-back--scroll p-5 lg:p-6 gap-2" style="background:#772432">
             <h3 class="font-bold text-white text-sm lg:text-base leading-snug" data-i18n="val-v1-title">Integritate</h3>
-            <p class="text-white/80 text-sm leading-relaxed" data-i18n="val-v1-body">Ne onorăm promisiunile și acționăm conform valorilor promovate. Suntem sinceri, deschiși și avem curajul să facem mereu alegerea corectă.</p>
+            <div class="flip-back-scroll-area">
+              <p class="text-white/80 text-sm leading-relaxed" data-i18n="val-v1-body">Ne onorăm promisiunile și acționăm conform valorilor promovate. Suntem sinceri, deschiși și avem curajul să facem mereu alegerea corectă.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -455,9 +460,11 @@
             <div class="w-12 h-12 lg:w-14 lg:h-14 rounded-2xl flex items-center justify-center flex-shrink-0" style="background:#772432"><svg class="w-6 h-6 lg:w-7 lg:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
             <h3 class="font-heading font-bold text-maroon text-2xl sm:text-3xl lg:text-4xl leading-snug" data-i18n="val-v2-title">Respect</h3>
           </div>
-          <div class="flip-back p-5 lg:p-6 gap-3" style="background:#772432">
+          <div class="flip-back flip-back--scroll p-5 lg:p-6 gap-2" style="background:#772432">
             <h3 class="font-bold text-white text-sm lg:text-base leading-snug" data-i18n="val-v2-title">Respect</h3>
-            <p class="text-white/80 text-sm leading-relaxed" data-i18n="val-v2-body">Tratăm pe toți cu demnitate și prețuim diversitatea. Ne sprijinim reciproc cu feedback constructiv, fără să descurajăm sau să înjosim pe nimeni.</p>
+            <div class="flip-back-scroll-area">
+              <p class="text-white/80 text-sm leading-relaxed" data-i18n="val-v2-body">Tratăm pe toți cu demnitate și prețuim diversitatea. Ne sprijinim reciproc cu feedback constructiv, fără să descurajăm sau să înjosim pe nimeni.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -469,9 +476,11 @@
             <div class="w-12 h-12 lg:w-14 lg:h-14 rounded-2xl flex items-center justify-center flex-shrink-0" style="background:#772432"><svg class="w-6 h-6 lg:w-7 lg:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg></div>
             <h3 class="font-heading font-bold text-maroon text-2xl sm:text-3xl lg:text-4xl leading-snug" data-i18n="val-v3-title">Serviciu</h3>
           </div>
-          <div class="flip-back p-5 lg:p-6 gap-3" style="background:#772432">
+          <div class="flip-back flip-back--scroll p-5 lg:p-6 gap-2" style="background:#772432">
             <h3 class="font-bold text-white text-sm lg:text-base leading-snug" data-i18n="val-v3-title">Serviciu</h3>
-            <p class="text-white/80 text-sm leading-relaxed" data-i18n="val-v3-body">Suntem dedicați celor din jur și ne asumăm cu pasiune rolurile în club, proactivi și implicați în nevoile întregii comunități.</p>
+            <div class="flip-back-scroll-area">
+              <p class="text-white/80 text-sm leading-relaxed" data-i18n="val-v3-body">Suntem dedicați celor din jur și ne asumăm cu pasiune rolurile în club, proactivi și implicați în nevoile întregii comunități.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -483,9 +492,11 @@
             <div class="w-12 h-12 lg:w-14 lg:h-14 rounded-2xl flex items-center justify-center flex-shrink-0" style="background:#772432"><svg class="w-6 h-6 lg:w-7 lg:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg></div>
             <h3 class="font-heading font-bold text-maroon text-2xl sm:text-3xl lg:text-4xl leading-snug" data-i18n="val-v4-title">Excelență</h3>
           </div>
-          <div class="flip-back p-5 lg:p-6 gap-3" style="background:#772432">
+          <div class="flip-back flip-back--scroll p-5 lg:p-6 gap-2" style="background:#772432">
             <h3 class="font-bold text-white text-sm lg:text-base leading-snug" data-i18n="val-v4-title">Excelență</h3>
-            <p class="text-white/80 text-sm leading-relaxed" data-i18n="val-v4-body">Nu ne mulțumim cu jumătăți de măsură. Ne depășim limitele, inovăm și ridicăm constant ștacheta calității în tot ceea ce organizăm.</p>
+            <div class="flip-back-scroll-area">
+              <p class="text-white/80 text-sm leading-relaxed" data-i18n="val-v4-body">Nu ne mulțumim cu jumătăți de măsură. Ne depășim limitele, inovăm și ridicăm constant ștacheta calității în tot ceea ce organizăm.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -807,7 +818,7 @@
   <div class="max-w-7xl mx-auto px-5 lg:px-8">
     <div class="text-center mb-8 lg:mb-16">
       <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-maroon mb-5">Cine face parte din conducerea clubului?</h2>
-      <p class="text-gray-500 text-base sm:text-lg max-w-2xl mx-auto text-center whitespace-nowrap overflow-hidden text-ellipsis">Echipa care organizează, coordonează și inspiră clubul în fiecare săptămână.</p>
+      <p class="text-gray-500 text-base sm:text-lg max-w-2xl mx-auto text-center">Echipa care organizează, coordonează și inspiră clubul în fiecare săptămână.</p>
     </div>
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
 
