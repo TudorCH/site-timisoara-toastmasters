@@ -342,10 +342,23 @@
     .then(function (d) {
       hideTyping(tid);
       var reply = d.reply || 'Ne pare rău, a apărut o eroare.';
-      addMsg('bot', reply);
+      /* split [FOLLOW_UP] into two separate bubbles */
+      var parts = reply.split(/\[FOLLOW_UP\]/);
+      var main   = parts[0].trim();
+      var followUp = parts[1] ? parts[1].trim() : '';
+      addMsg('bot', main);
       history.push({ role: 'assistant', content: reply });
       isLoading = false;
       if (sendBtn) sendBtn.classList.remove('loading');
+      if (followUp) {
+        setTimeout(function () {
+          var tid2 = showTyping();
+          setTimeout(function () {
+            hideTyping(tid2);
+            addMsg('bot', followUp);
+          }, 600);
+        }, 400);
+      }
     })
     .catch(function (err) {
       clearTimeout(timeoutId);
