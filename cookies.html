@@ -89,11 +89,15 @@
         </div>
       </a>
       <div class="hidden lg:flex items-center gap-6">
-        <a href="home.html"      class="nav-link text-white/70 hover:text-gold text-sm font-medium transition-colors">Acasă</a>
-        <a href="despre-noi.html" class="nav-link text-white/70 hover:text-gold text-sm font-medium transition-colors">Despre noi</a>
-        <a href="galerie.html"    class="nav-link text-white/70 hover:text-gold text-sm font-medium transition-colors">Galerie</a>
-        <a href="contact.html"    class="nav-link text-white/70 hover:text-gold text-sm font-medium transition-colors">Contact</a>
-        <a href="contact.html" class="ml-1 bg-gold hover:bg-gold-light text-primary font-semibold px-5 py-2 rounded-full text-sm transition-all duration-200 hover:scale-105 shadow-md shadow-gold/30">
+        <a href="home.html"      class="nav-link text-white/70 hover:text-gold text-sm font-medium transition-colors" data-i18n="nav-home">Acasă</a>
+        <a href="despre-noi.html" class="nav-link text-white/70 hover:text-gold text-sm font-medium transition-colors" data-i18n="nav-about">Despre noi</a>
+        <a href="galerie.html"    class="nav-link text-white/70 hover:text-gold text-sm font-medium transition-colors" data-i18n="nav-gallery">Galerie</a>
+        <a href="contact.html"    class="nav-link text-white/70 hover:text-gold text-sm font-medium transition-colors" data-i18n="nav-contact">Contact</a>
+        <div class="flex items-center bg-white/10 rounded-full p-0.5">
+          <button data-lang="ro" onclick="setLang('ro')" class="lang-btn active" aria-pressed="true" aria-label="Română"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;background:linear-gradient(to right,#002B7F 33%,#FCD116 33% 66%,#CE1126 66%)"></span></button>
+          <button data-lang="en" onclick="setLang('en')" class="lang-btn" aria-pressed="false" aria-label="English"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;overflow:hidden"><svg width="22" height="22" viewBox="0 0 22 22"><rect width="22" height="22" fill="#012169"/><path d="M0 0L22 22M22 0L0 22" stroke="white" stroke-width="6"/><path d="M0 0L22 22M22 0L0 22" stroke="#C8102E" stroke-width="3.5"/><rect x="9" y="0" width="4" height="22" fill="white"/><rect x="0" y="9" width="22" height="4" fill="white"/><rect x="10" y="0" width="2" height="22" fill="#C8102E"/><rect x="0" y="10" width="22" height="2" fill="#C8102E"/></svg></span></button>
+        </div>
+        <a href="contact.html" class="ml-1 bg-gold hover:bg-gold-light text-primary font-semibold px-5 py-2 rounded-full text-sm transition-all duration-200 hover:scale-105 shadow-md shadow-gold/30" data-i18n="nav-cta">
           Hai la o ședință
         </a>
       </div>
@@ -108,13 +112,20 @@
     </div>
     <div id="mobile-menu" class="hidden lg:hidden border-t border-white/10 pt-4 pb-5">
       <div class="flex flex-col gap-1">
-        <a href="home.html"      class="text-white/70 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors">Acasă</a>
-        <a href="despre-noi.html" class="text-white/70 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors">Despre noi</a>
-        <a href="galerie.html"    class="text-white/70 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors">Galerie</a>
-        <a href="contact.html"    class="text-white/70 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors">Contact</a>
+        <a href="home.html"      class="text-white/70 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors" data-i18n="nav-home">Acasă</a>
+        <a href="despre-noi.html" class="text-white/70 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors" data-i18n="nav-about">Despre noi</a>
+        <a href="galerie.html"    class="text-white/70 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors" data-i18n="nav-gallery">Galerie</a>
+        <a href="contact.html"    class="text-white/70 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors" data-i18n="nav-contact">Contact</a>
+        <div class="flex items-center gap-3 px-4 py-2 mt-1 border-t border-white/10">
+          <span class="text-white/40 text-xs" data-i18n="nav-util-label">Limbă:</span>
+          <div class="flex items-center bg-white/10 rounded-full p-0.5">
+            <button data-lang="ro" onclick="setLang('ro')" class="lang-btn active" aria-pressed="true" aria-label="Română"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;background:linear-gradient(to right,#002B7F 33%,#FCD116 33% 66%,#CE1126 66%)"></span></button>
+            <button data-lang="en" onclick="setLang('en')" class="lang-btn" aria-pressed="false" aria-label="English"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;overflow:hidden"><svg width="22" height="22" viewBox="0 0 22 22"><rect width="22" height="22" fill="#012169"/><path d="M0 0L22 22M22 0L0 22" stroke="white" stroke-width="6"/><path d="M0 0L22 22M22 0L0 22" stroke="#C8102E" stroke-width="3.5"/><rect x="9" y="0" width="4" height="22" fill="white"/><rect x="0" y="9" width="22" height="4" fill="white"/><rect x="10" y="0" width="2" height="22" fill="#C8102E"/><rect x="0" y="10" width="22" height="2" fill="#C8102E"/></svg></span></button>
+          </div>
+        </div>
         <div class="pt-2 px-4">
           <a href="contact.html" class="block w-full bg-gold text-primary font-semibold px-5 py-3 rounded-full text-sm text-center">
-            Hai la o ședință →
+            <span data-i18n="nav-cta">Hai la o ședință</span> →
           </a>
         </div>
       </div>
@@ -125,11 +136,11 @@
 <!-- ════════════════════ HERO ════════════════════ -->
 <section class="gradient-hero pt-16">
   <div class="max-w-3xl mx-auto px-5 lg:px-8 py-8 sm:py-11">
-    <h1 class="font-heading text-3xl sm:text-4xl font-bold text-white leading-tight mb-2">
+    <h1 class="font-heading text-3xl sm:text-4xl font-bold text-white leading-tight mb-2" data-i18n="ck-hero-h1">
       Politică <span class="text-gold">legală</span>
     </h1>
-    <p class="text-white/60 text-sm font-medium mb-3">Cookies &nbsp;·&nbsp; GDPR &nbsp;·&nbsp; Confidențialitate</p>
-    <p class="text-white/40 text-xs">Ultima actualizare: <strong class="text-white/55">iunie 2026</strong> &nbsp;·&nbsp; Timișoara Toastmasters Club</p>
+    <p class="text-white/60 text-sm font-medium mb-3" data-i18n="ck-hero-tags">Cookies &nbsp;·&nbsp; GDPR &nbsp;·&nbsp; Confidențialitate</p>
+    <p class="text-white/40 text-xs" data-i18n="ck-hero-updated">Ultima actualizare: <strong class="text-white/55">iunie 2026</strong> &nbsp;·&nbsp; Timișoara Toastmasters Club</p>
   </div>
 </section>
 
@@ -139,119 +150,119 @@
   <div class="bg-white rounded-2xl shadow-sm border border-gray-100 px-6 sm:px-10 py-10 prose">
 
     <!-- 1 -->
-    <h2 id="politica-cookies">1. Ce sunt cookie-urile?</h2>
-    <p>Cookie-urile sunt fișiere mici de text stocate pe dispozitivul tău când vizitezi un site web. Ele permit site-ului să îți rețină preferințele, să funcționeze corect și, în unele cazuri, să colecteze informații statistice despre utilizare.</p>
-    <p>Pe lângă cookie-urile clasice (stocate în browser), site-ul nostru folosește și <strong>localStorage</strong>, un mecanism similar, tot în browserul tău, care nu expiră automat și nu este trimis la server la fiecare cerere. Datele din localStorage sunt accesibile exclusiv browserului tău, pe dispozitivul tău.</p>
-    <p>Continuând navigarea pe <strong>timisoaratoastmasters.ro</strong>, ești de acord cu utilizarea elementelor de stocare descrise în această politică. Dacă nu ești de acord, poți șterge aceste date oricând din setările browserului sau poți refuza bannerul de consimțământ.</p>
+    <h2 id="politica-cookies" data-i18n="ck-1-h2">1. Ce sunt cookie-urile?</h2>
+    <p data-i18n="ck-1-p1">Cookie-urile sunt fișiere mici de text stocate pe dispozitivul tău când vizitezi un site web. Ele permit site-ului să îți rețină preferințele, să funcționeze corect și, în unele cazuri, să colecteze informații statistice despre utilizare.</p>
+    <p data-i18n="ck-1-p2">Pe lângă cookie-urile clasice (stocate în browser), site-ul nostru folosește și <strong>localStorage</strong>, un mecanism similar, tot în browserul tău, care nu expiră automat și nu este trimis la server la fiecare cerere. Datele din localStorage sunt accesibile exclusiv browserului tău, pe dispozitivul tău.</p>
+    <p data-i18n="ck-1-p3">Continuând navigarea pe <strong>timisoaratoastmasters.ro</strong>, ești de acord cu utilizarea elementelor de stocare descrise în această politică. Dacă nu ești de acord, poți șterge aceste date oricând din setările browserului sau poți refuza bannerul de consimțământ.</p>
 
     <!-- 2 -->
-    <h2>2. Ce stocăm în browserul tău</h2>
-    <p>Site-ul Timișoara Toastmasters nu utilizează cookie-uri de urmărire, publicitate sau analiză comportamentală. Stocăm exclusiv date funcționale, direct în browserul tău, fără a le transmite pe serverele noastre.</p>
+    <h2 data-i18n="ck-2-h2">2. Ce stocăm în browserul tău</h2>
+    <p data-i18n="ck-2-p1">Site-ul Timișoara Toastmasters nu utilizează cookie-uri de urmărire, publicitate sau analiză comportamentală. Stocăm exclusiv date funcționale, direct în browserul tău, fără a le transmite pe serverele noastre.</p>
 
     <div class="tm-table-wrap">
       <table>
         <thead>
           <tr>
-            <th>Cheie (localStorage)</th>
-            <th>Tip</th>
-            <th>Scop</th>
-            <th>Durată</th>
+            <th data-i18n="ck-table-key">Cheie (localStorage)</th>
+            <th data-i18n="ck-table-type">Tip</th>
+            <th data-i18n="ck-table-purpose">Scop</th>
+            <th data-i18n="ck-table-duration">Durată</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td><code>tm-cookies-v3</code></td>
-            <td>Funcțional</td>
-            <td>Reține dacă ai acceptat sau refuzat bannerul de cookies, pentru a nu-ți mai fi afișat la fiecare vizită</td>
-            <td>Permanent (până la ștergere manuală)</td>
+            <td data-i18n="ck-table-functional">Funcțional</td>
+            <td data-i18n="ck-row1-purpose">Reține dacă ai acceptat sau refuzat bannerul de cookies, pentru a nu-ți mai fi afișat la fiecare vizită</td>
+            <td data-i18n="ck-table-permanent">Permanent (până la ștergere manuală)</td>
           </tr>
           <tr>
             <td><code>tm-cookie-consent</code></td>
-            <td>Funcțional</td>
-            <td>Valoarea consimțământului tău (acceptat / refuzat), folosită pentru a activa sau dezactiva funcționalitățile opționale</td>
-            <td>Permanent (până la ștergere manuală)</td>
+            <td data-i18n="ck-table-functional">Funcțional</td>
+            <td data-i18n="ck-row2-purpose">Valoarea consimțământului tău (acceptat / refuzat), folosită pentru a activa sau dezactiva funcționalitățile opționale</td>
+            <td data-i18n="ck-table-permanent">Permanent (până la ștergere manuală)</td>
           </tr>
           <tr>
             <td><code>tm-lang</code></td>
-            <td>Funcțional</td>
-            <td>Preferința de limbă selectată pe pagina Despre noi (română / engleză), pentru a o reține la vizite ulterioare</td>
-            <td>Permanent (până la ștergere manuală)</td>
+            <td data-i18n="ck-table-functional">Funcțional</td>
+            <td data-i18n="ck-row3-purpose">Preferința de limbă selectată pe site (română / engleză), pentru a o reține la vizite ulterioare</td>
+            <td data-i18n="ck-table-permanent">Permanent (până la ștergere manuală)</td>
           </tr>
           <tr>
             <td><code>tm-contact-*</code></td>
-            <td>Funcțional</td>
-            <td>Backup local al datelor introduse în formularul de contact, exclusiv în browserul tău, pentru a nu pierde informațiile în caz de eroare</td>
-            <td>Permanent (până la ștergere manuală sau trimiterea formularului)</td>
+            <td data-i18n="ck-table-functional">Funcțional</td>
+            <td data-i18n="ck-row4-purpose">Backup local al datelor introduse în formularul de contact, exclusiv în browserul tău, pentru a nu pierde informațiile în caz de eroare</td>
+            <td data-i18n="ck-row4-duration">Permanent (până la ștergere manuală sau trimiterea formularului)</td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <p>Nu instalăm cookie-uri de sesiune, autentificare, publicitate, remarketing sau analiză comportamentală de niciun fel.</p>
+    <p data-i18n="ck-2-p2">Nu instalăm cookie-uri de sesiune, autentificare, publicitate, remarketing sau analiză comportamentală de niciun fel.</p>
 
     <!-- 3 -->
-    <h2 id="confidentialitate">3. Servicii terțe</h2>
-    <p>Când vizitezi site-ul, browserul tău se poate conecta automat la câteva servicii externe necesare funcționării tehnice a site-ului. Aceste servicii pot stoca propriile cookie-uri, asupra cărora nu avem control direct.</p>
+    <h2 id="confidentialitate" data-i18n="ck-3-h2">3. Servicii terțe</h2>
+    <p data-i18n="ck-3-p1">Când vizitezi site-ul, browserul tău se poate conecta automat la câteva servicii externe necesare funcționării tehnice a site-ului. Aceste servicii pot stoca propriile cookie-uri, asupra cărora nu avem control direct.</p>
 
-    <h3>Google Fonts</h3>
-    <p>Folosim Google Fonts pentru a afișa fonturile vizuale ale site-ului (<em>Plus Jakarta Sans</em> și <em>Inter</em>). Când pagina se încarcă, browserul tău face o cerere către serverele Google, care poate înregistra adresa ta IP. Nu avem acces la aceste date. Consultă <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Politica de confidențialitate Google</a> pentru detalii.</p>
+    <h3 data-i18n="ck-3-gf-h3">Google Fonts</h3>
+    <p data-i18n="ck-3-gf-p">Folosim Google Fonts pentru a afișa fonturile vizuale ale site-ului (<em>Plus Jakarta Sans</em> și <em>Inter</em>). Când pagina se încarcă, browserul tău face o cerere către serverele Google, care poate înregistra adresa ta IP. Nu avem acces la aceste date. Consultă <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Politica de confidențialitate Google</a> pentru detalii.</p>
 
-    <h3>Toasty, Asistent AI (Anthropic Claude)</h3>
-    <p>Site-ul include un asistent conversațional numit Toasty. Când scrii un mesaj, textul este transmis securizat către API-ul Anthropic Claude pentru generarea răspunsului. Conversația nu este salvată pe serverele noastre după ce închizi sesiunea. Timișoara Toastmasters nu este operatorul de date pentru procesarea efectuată de Anthropic. Consultă <a href="https://www.anthropic.com/privacy" target="_blank" rel="noopener noreferrer">Politica de confidențialitate Anthropic</a>.</p>
+    <h3 data-i18n="ck-3-toasty-h3">Toasty, Asistent AI (Anthropic Claude)</h3>
+    <p data-i18n="ck-3-toasty-p">Site-ul include un asistent conversațional numit Toasty. Când scrii un mesaj, textul este transmis securizat către API-ul Anthropic Claude pentru generarea răspunsului. Conversația nu este salvată pe serverele noastre după ce închizi sesiunea. Timișoara Toastmasters nu este operatorul de date pentru procesarea efectuată de Anthropic. Consultă <a href="https://www.anthropic.com/privacy" target="_blank" rel="noopener noreferrer">Politica de confidențialitate Anthropic</a>.</p>
 
-    <h3>Cloudinary</h3>
-    <p>Imaginile din galeria foto sunt găzduite pe Cloudinary, un serviciu de gestionare a media. Cloudinary servește imaginile optimizat și nu stochează date personale despre vizitatori. Consultă <a href="https://cloudinary.com/privacy" target="_blank" rel="noopener noreferrer">Politica Cloudinary</a>.</p>
+    <h3 data-i18n="ck-3-cloud-h3">Cloudinary</h3>
+    <p data-i18n="ck-3-cloud-p">Imaginile din galeria foto sunt găzduite pe Cloudinary, un serviciu de gestionare a media. Cloudinary servește imaginile optimizat și nu stochează date personale despre vizitatori. Consultă <a href="https://cloudinary.com/privacy" target="_blank" rel="noopener noreferrer">Politica Cloudinary</a>.</p>
 
-    <h3>Rețele sociale</h3>
-    <p>Butoanele din footer (Instagram, Facebook, LinkedIn, WhatsApp) sunt simple linkuri externe. Acestea <strong>nu</strong> instalează cookie-uri sau trackere pe site-ul nostru. Odată ce accesezi una dintre aceste platforme, se aplică politicile lor de confidențialitate:</p>
+    <h3 data-i18n="ck-3-social-h3">Rețele sociale</h3>
+    <p data-i18n="ck-3-social-p">Butoanele din footer (Instagram, Facebook, LinkedIn, WhatsApp) sunt simple linkuri externe. Acestea <strong>nu</strong> instalează cookie-uri sau trackere pe site-ul nostru. Odată ce accesezi una dintre aceste platforme, se aplică politicile lor de confidențialitate:</p>
     <ul>
-      <li><a href="https://privacycenter.instagram.com/policy" target="_blank" rel="noopener noreferrer">Politica Instagram</a></li>
-      <li><a href="https://www.facebook.com/privacy/policy" target="_blank" rel="noopener noreferrer">Politica Facebook / Meta</a></li>
-      <li><a href="https://www.linkedin.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">Politica LinkedIn</a></li>
-      <li><a href="https://www.whatsapp.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">Politica WhatsApp</a></li>
+      <li><a href="https://privacycenter.instagram.com/policy" target="_blank" rel="noopener noreferrer" data-i18n="ck-3-social-li1">Politica Instagram</a></li>
+      <li><a href="https://www.facebook.com/privacy/policy" target="_blank" rel="noopener noreferrer" data-i18n="ck-3-social-li2">Politica Facebook / Meta</a></li>
+      <li><a href="https://www.linkedin.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer" data-i18n="ck-3-social-li3">Politica LinkedIn</a></li>
+      <li><a href="https://www.whatsapp.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer" data-i18n="ck-3-social-li4">Politica WhatsApp</a></li>
     </ul>
 
     <!-- 4 -->
-    <h2 id="gdpr">4. Drepturile tale (GDPR)</h2>
-    <p>Conform <a href="https://legislatie.just.ro/Public/DetaliiDocumentAfis/201834" target="_blank" rel="noopener noreferrer">Regulamentului European GDPR (UE 2016/679)</a>, ai următoarele drepturi în legătură cu datele tale personale:</p>
+    <h2 id="gdpr" data-i18n="ck-4-h2">4. Drepturile tale (GDPR)</h2>
+    <p data-i18n="ck-4-p1">Conform <a href="https://legislatie.just.ro/Public/DetaliiDocumentAfis/201834" target="_blank" rel="noopener noreferrer">Regulamentului European GDPR (UE 2016/679)</a>, ai următoarele drepturi în legătură cu datele tale personale:</p>
     <ul>
-      <li><strong>Dreptul de acces:</strong> poți solicita o copie a datelor pe care le deținem despre tine</li>
-      <li><strong>Dreptul la ștergere:</strong> poți cere eliminarea datelor tale personale</li>
-      <li><strong>Dreptul la rectificare:</strong> poți cere corectarea datelor inexacte</li>
-      <li><strong>Dreptul la portabilitate:</strong> poți solicita datele într-un format structurat, standard</li>
-      <li><strong>Dreptul la opoziție:</strong> poți refuza prelucrarea datelor tale în anumite circumstanțe</li>
-      <li><strong>Dreptul de a retrage consimțământul:</strong> poți revoca oricând consimțământul acordat, fără ca aceasta să afecteze prelucrările anterioare</li>
+      <li data-i18n="ck-4-li1"><strong>Dreptul de acces:</strong> poți solicita o copie a datelor pe care le deținem despre tine</li>
+      <li data-i18n="ck-4-li2"><strong>Dreptul la ștergere:</strong> poți cere eliminarea datelor tale personale</li>
+      <li data-i18n="ck-4-li3"><strong>Dreptul la rectificare:</strong> poți cere corectarea datelor inexacte</li>
+      <li data-i18n="ck-4-li4"><strong>Dreptul la portabilitate:</strong> poți solicita datele într-un format structurat, standard</li>
+      <li data-i18n="ck-4-li5"><strong>Dreptul la opoziție:</strong> poți refuza prelucrarea datelor tale în anumite circumstanțe</li>
+      <li data-i18n="ck-4-li6"><strong>Dreptul de a retrage consimțământul:</strong> poți revoca oricând consimțământul acordat, fără ca aceasta să afecteze prelucrările anterioare</li>
     </ul>
-    <p>Datele stocate local (preferințe de cookies, limbă, formular) se află <strong>exclusiv în browserul tău</strong>, nu pe serverele noastre. Le poți șterge oricând direct din browser, fără să ne contactezi.</p>
-    <p>Pentru orice solicitare legată de datele personale transmise prin formularul de contact, ne poți scrie la adresa din secțiunea 6.</p>
+    <p data-i18n="ck-4-p2">Datele stocate local (preferințe de cookies, limbă, formular) se află <strong>exclusiv în browserul tău</strong>, nu pe serverele noastre. Le poți șterge oricând direct din browser, fără să ne contactezi.</p>
+    <p data-i18n="ck-4-p3">Pentru orice solicitare legată de datele personale transmise prin formularul de contact, ne poți scrie la adresa din secțiunea 6.</p>
 
     <!-- 5 -->
-    <h2>5. Cum îți gestionezi preferințele</h2>
-    <p>Poți șterge oricând toate datele stocate de site din setările browserului tău:</p>
+    <h2 data-i18n="ck-5-h2">5. Cum îți gestionezi preferințele</h2>
+    <p data-i18n="ck-5-p1">Poți șterge oricând toate datele stocate de site din setările browserului tău:</p>
     <ul>
-      <li><strong>Chrome / Edge:</strong> Setări → Confidențialitate și securitate → Șterge datele de navigare → Date despre site-uri și cookie-uri</li>
-      <li><strong>Firefox:</strong> Setări → Confidențialitate și securitate → Cookie-uri și date despre site-uri → Șterge datele</li>
-      <li><strong>Safari:</strong> Preferințe → Confidențialitate → Gestionează datele site-urilor → Elimină toate</li>
-      <li><strong>Samsung Internet:</strong> Setări → Confidențialitate → Șterge datele de navigare → Cookie-uri și date site</li>
+      <li data-i18n="ck-5-li1"><strong>Chrome / Edge:</strong> Setări → Confidențialitate și securitate → Șterge datele de navigare → Date despre site-uri și cookie-uri</li>
+      <li data-i18n="ck-5-li2"><strong>Firefox:</strong> Setări → Confidențialitate și securitate → Cookie-uri și date despre site-uri → Șterge datele</li>
+      <li data-i18n="ck-5-li3"><strong>Safari:</strong> Preferințe → Confidențialitate → Gestionează datele site-urilor → Elimină toate</li>
+      <li data-i18n="ck-5-li4"><strong>Samsung Internet:</strong> Setări → Confidențialitate → Șterge datele de navigare → Cookie-uri și date site</li>
     </ul>
-    <p>Dacă dezactivezi stocarea locală, bannerul de cookies va reapărea la fiecare vizită, iar preferința de limbă nu va fi reținută.</p>
+    <p data-i18n="ck-5-p2">Dacă dezactivezi stocarea locală, bannerul de cookies va reapărea la fiecare vizită, iar preferința de limbă nu va fi reținută.</p>
 
     <!-- 6 -->
-    <h2>6. Contact</h2>
-    <p>Pentru întrebări despre această politică sau despre datele tale personale, ne poți contacta prin:</p>
+    <h2 data-i18n="ck-6-h2">6. Contact</h2>
+    <p data-i18n="ck-6-p1">Pentru întrebări despre această politică sau despre datele tale personale, ne poți contacta prin:</p>
     <ul>
-      <li><a href="contact.html">Formularul de contact</a> de pe site</li>
-      <li>Paginile noastre de social media (Instagram, Facebook, LinkedIn)</li>
+      <li><a href="contact.html" data-i18n="ck-6-li1">Formularul de contact</a> <span data-i18n="ck-6-li1b">de pe site</span></li>
+      <li data-i18n="ck-6-li2">Paginile noastre de social media (Instagram, Facebook, LinkedIn)</li>
     </ul>
     <p><strong>Timișoara Toastmasters Club</strong><br/>
     Cowork The Office, Et. 2, Clădirea BCR, Calea Aradului nr. 11, Timișoara, România</p>
-    <p>Această politică poate fi actualizată periodic. Data ultimei modificări este afișată în antetul paginii.</p>
+    <p data-i18n="ck-6-p2">Această politică poate fi actualizată periodic. Data ultimei modificări este afișată în antetul paginii.</p>
 
     <!-- Back link -->
     <div class="mt-10 pt-6 border-t border-gray-100">
       <a href="home.html" class="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-primary transition-colors font-medium">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
-        Înapoi la pagina principală
+        <span data-i18n="ck-back-link">Înapoi la pagina principală</span>
       </a>
     </div>
 
@@ -291,30 +302,31 @@
         </div>
       </div>
       <div>
-        <p class="text-white font-semibold text-sm mb-3 lg:mb-5 uppercase tracking-wider">Pagini utile</p>
+        <p class="text-white font-semibold text-sm mb-3 lg:mb-5 uppercase tracking-wider" data-i18n="footer-nav-title">Pagini utile</p>
         <ul class="space-y-2 lg:space-y-3">
-          <li><a href="home.html"      class="footer-link text-white/50 text-sm transition-colors">Acasă</a></li>
-          <li><a href="despre-noi.html" class="footer-link text-white/50 text-sm transition-colors">Despre noi</a></li>
-          <li><a href="galerie.html"    class="footer-link text-white/50 text-sm transition-colors">Galerie</a></li>
-          <li><a href="contact.html"    class="footer-link text-white/50 text-sm transition-colors">Contact</a></li>
+          <li><a href="home.html"      class="footer-link text-white/50 text-sm transition-colors" data-i18n="footer-nav-home">Acasă</a></li>
+          <li><a href="despre-noi.html" class="footer-link text-white/50 text-sm transition-colors" data-i18n="footer-nav-about">Despre noi</a></li>
+          <li><a href="galerie.html"    class="footer-link text-white/50 text-sm transition-colors" data-i18n="footer-nav-gallery">Galerie</a></li>
+          <li><a href="contact.html"    class="footer-link text-white/50 text-sm transition-colors" data-i18n="footer-nav-contact">Contact</a></li>
         </ul>
       </div>
       <div>
-        <p class="text-white font-semibold text-sm mb-3 lg:mb-5 uppercase tracking-wider">Legal</p>
+        <p class="text-white font-semibold text-sm mb-3 lg:mb-5 uppercase tracking-wider" data-i18n="footer-legal-title">Legal</p>
         <ul class="space-y-2 lg:space-y-3">
-          <li><a href="cookies.html#politica-cookies" class="text-gold text-sm font-semibold">Politică cookies</a></li>
-          <li><a href="cookies.html#confidentialitate" class="footer-link text-white/50 text-sm transition-colors">Politică confidențialitate</a></li>
-          <li><a href="cookies.html#gdpr" class="footer-link text-white/50 text-sm transition-colors">GDPR</a></li>
+          <li><a href="cookies.html#politica-cookies" class="text-gold text-sm font-semibold" data-i18n="footer-legal-cookies">Politică cookies</a></li>
+          <li><a href="cookies.html#confidentialitate" class="footer-link text-white/50 text-sm transition-colors" data-i18n="footer-legal-privacy">Politică confidențialitate</a></li>
+          <li><a href="cookies.html#gdpr" class="footer-link text-white/50 text-sm transition-colors" data-i18n="footer-legal-gdpr">GDPR</a></li>
         </ul>
       </div>
     </div>
     <div class="pt-4 lg:pt-5 flex flex-col md:flex-row items-center justify-between gap-2 md:gap-4">
-      <p class="text-white/50 text-xs">© 2026 Timișoara Toastmasters Club. Toate drepturile rezervate.</p>
-      <p class="text-white/50 text-xs">Parte din rețeaua globală <span class="text-gold/60">Toastmasters International</span></p>
+      <p class="text-white/50 text-xs" data-i18n="footer-copyright">© 2026 Timișoara Toastmasters Club. Toate drepturile rezervate.</p>
+      <p class="text-white/50 text-xs"><span data-i18n="footer-network">Parte din rețeaua globală</span> <span class="text-gold/60">Toastmasters International</span></p>
     </div>
   </div>
 </footer>
 
+<script src="i18n.js"></script>
 <script src="cookie-banner.js"></script>
 </body>
 </html>

@@ -369,7 +369,8 @@
     window.visualViewport.addEventListener('scroll', onVP);
   }
 
-  /* ── Hero hide — FAB only appears once the user scrolls past the hero ── */
+  /* ── Hero hide — FAB reappears as soon as the hero no longer overlaps
+     the FAB's own corner of the screen, not only once fully scrolled away ── */
   var nav = document.querySelector('nav');
   var heroEl = nav ? nav.nextElementSibling : null;
   if (heroEl && 'IntersectionObserver' in window) {
@@ -378,7 +379,7 @@
       entries.forEach(function (e) {
         fab.classList.toggle('over-hero', e.isIntersecting);
       });
-    }, { threshold: 0.05 }).observe(heroEl);
+    }, { threshold: 0, rootMargin: '0px 0px -90px 0px' }).observe(heroEl);
   }
 
   /* ── Footer hide ── */
