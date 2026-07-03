@@ -31,15 +31,10 @@
     '#ty-fab.gone,#ty-fab.no-footer{opacity:0!important;visibility:hidden!important;pointer-events:none!important;}',
     '@media(min-width:640px){#ty-fab{bottom:28px!important;right:28px!important;width:56px;height:56px;}}',
 
-    /* Panel */
+    /* Panel — fix 1: visible diagonal gradient instead of invisible blobs */
     '#ty-win{position:fixed!important;top:0!important;right:0!important;',
     'height:100%;height:100dvh;width:380px;max-width:100vw;',
-    'background:',
-    'radial-gradient(ellipse 110% 55% at -5% 5%,  rgba(0,170,230,.30) 0%,transparent 52%),',
-    'radial-gradient(ellipse 80%  90% at 108% 0%,  rgba(0,100,175,.24) 0%,transparent 52%),',
-    'radial-gradient(ellipse 90%  60% at 108% 98%, rgba(0,65,101,.28)  0%,transparent 52%),',
-    'radial-gradient(ellipse 100% 55% at -5% 98%,  rgba(0,130,205,.20) 0%,transparent 52%),',
-    '#fff;',
+    'background:linear-gradient(155deg,#ddeef8 0%,#eaf4fb 28%,#f4f9fd 60%,#ffffff 100%);',
     'border:1.5px solid rgba(0,83,127,.45);border-radius:16px 0 0 16px;overflow:hidden;',
     'z-index:2147483646!important;display:flex;flex-direction:column;',
     'transform:translateX(100%);',
@@ -48,7 +43,7 @@
     'font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif;pointer-events:none;}',
     '#ty-win.on{transform:translateX(0);pointer-events:auto;transition:transform .3s cubic-bezier(.4,0,.2,1);}',
 
-    /* Desktop popup — fix 6: max-height so it doesn't clip on short viewports */
+    /* Desktop popup */
     '@media(min-width:768px){',
     '#ty-win{',
     'top:auto!important;bottom:96px!important;right:28px!important;',
@@ -63,11 +58,11 @@
 
     '@media(max-width:479px){#ty-win{width:100vw;border-radius:0;border-left:none;border-right:none;}}',
 
-    /* fix 1: Close button 44×44px (was 36px — below HIG minimum) */
+    /* fix 7: Close button — no fill circle, just icon + hover */
     '#ty-hdr-close{all:unset;width:44px;height:44px;border-radius:50%;',
-    'background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;',
+    'display:flex;align-items:center;justify-content:center;',
     'cursor:pointer;flex-shrink:0;transition:background .15s;touch-action:manipulation;}',
-    '#ty-hdr-close:hover{background:rgba(255,255,255,.26);}',
+    '#ty-hdr-close:hover{background:rgba(255,255,255,.18);}',
     '#ty-hdr-close:focus-visible{outline:2px solid rgba(255,255,255,.85);outline-offset:2px;}',
 
     /* Messages */
@@ -77,13 +72,13 @@
     '#ty-msgs::-webkit-scrollbar-track{background:transparent;}',
     '#ty-msgs::-webkit-scrollbar-thumb{background:rgba(0,45,71,.15);border-radius:99px;}',
 
-    /* Chips — fix 7: :active press feedback, fix 9: gap 8px */
-    '.ty-chip{cursor:pointer;border:1.5px solid #dde6ee;border-radius:999px;',
-    'padding:11px 16px;font-size:13px;color:#0f2942;background:rgba(255,255,255,.85);',
+    /* Chips */
+    '.ty-chip{cursor:pointer;border:1.5px solid rgba(0,83,127,.2);border-radius:999px;',
+    'padding:10px 16px;font-size:13px;color:#0f2942;background:rgba(255,255,255,.75);',
     'font-family:inherit;font-weight:500;min-height:44px;touch-action:manipulation;',
     'display:inline-flex;align-items:center;gap:6px;',
     'transition:border-color .15s,color .15s,background .15s,transform .1s,opacity .1s;white-space:nowrap;}',
-    '.ty-chip:hover{border-color:#00537f;color:#00537f;background:#f0f7fa;}',
+    '.ty-chip:hover{border-color:#00537f;color:#00537f;background:rgba(255,255,255,.95);}',
     '.ty-chip:active{transform:scale(.96);opacity:.82;}',
     '.ty-chip:focus-visible{outline:2px solid #00537f;outline-offset:2px;}',
 
@@ -96,8 +91,8 @@
     'box-shadow:0 0 0 3px rgba(255,255,255,.1);}',
     '#ty-inp::placeholder{color:rgba(255,255,255,.5);}',
 
-    /* Send button — fix 10: stroke standardized to 2px in HTML */
-    '#ty-send{all:unset;width:44px;height:44px;min-width:44px;border-radius:12px;',
+    /* fix 6: Send button circular (matches pill chips) */
+    '#ty-send{all:unset;width:44px;height:44px;min-width:44px;border-radius:50%;',
     'background:rgba(255,255,255,.18);border:1.5px solid rgba(255,255,255,.25);',
     'display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;',
     'touch-action:manipulation;',
@@ -114,11 +109,23 @@
   ].join('');
   document.head.appendChild(style);
 
-  /* ── Chat icon SVG — fix 10: stroke-width unified to 2 ── */
+  /* ── Icons ── */
+  /* Chat bubble — FAB only */
   function iconChat(size) {
     return '<svg width="' + size + '" height="' + size + '" viewBox="0 0 24 24" fill="none"' +
       ' stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
       '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>';
+  }
+
+  /* fix 4: Microphone — header + bot message avatars (on-brand for public speaking) */
+  function iconMic(size, color) {
+    var c = color || 'white';
+    return '<svg width="' + size + '" height="' + size + '" viewBox="0 0 24 24" fill="none"' +
+      ' stroke="' + c + '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+      '<path d="M12 2a3 3 0 0 1 3 3v7a3 3 0 0 1-6 0V5a3 3 0 0 1 3-3z"/>' +
+      '<path d="M19 10v2a7 7 0 0 1-14 0v-2"/>' +
+      '<line x1="12" y1="19" x2="12" y2="22"/>' +
+      '<line x1="8" y1="22" x2="16" y2="22"/></svg>';
   }
 
   /* ── Overlay ── */
@@ -126,7 +133,7 @@
   ov.id = 'ty-ov';
   document.body.appendChild(ov);
 
-  /* ── FAB — fix 4: aria-expanded + aria-controls ── */
+  /* ── FAB ── */
   var fab = document.createElement('button');
   fab.id = 'ty-fab';
   fab.setAttribute('aria-label', 'Deschide chat Toasty');
@@ -143,14 +150,14 @@
   win.setAttribute('aria-label', 'Chat Toasty');
   win.innerHTML = [
 
-    /* Header */
+    /* Header — fix 4: mic icon in avatar, fix 7: plain close button */
     '<div style="background:linear-gradient(135deg,#00537f 0%,#004165 55%,#002d47 100%);',
     'padding:16px 18px;display:flex;align-items:center;gap:12px;flex-shrink:0;min-height:68px;">',
 
       '<div style="width:40px;height:40px;border-radius:11px;',
       'background:rgba(255,255,255,.15);border:1.5px solid rgba(255,255,255,.22);',
       'display:flex;align-items:center;justify-content:center;flex-shrink:0;">',
-        iconChat(20),
+        iconMic(20),
       '</div>',
 
       '<div style="flex:1;min-width:0;">',
@@ -161,7 +168,7 @@
         '</div>',
       '</div>',
 
-      /* fix 1: 44px, fix 10: stroke-width 2 */
+      /* fix 7: plain icon only, hover reveals fill */
       '<button id="ty-hdr-close" onclick="toastyClose()" aria-label="Închide chat">',
         '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white"',
         ' stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>',
@@ -170,19 +177,24 @@
     '</div>',
 
     '<div id="ty-msgs" role="log" aria-live="polite" aria-relevant="additions">',
+
+      /* fix 4: mic avatar, fix 5: no emoji, fix 8: styled CTA question */
       '<div style="display:flex;gap:8px;align-items:flex-end;margin-top:4px;">',
         '<div style="width:28px;height:28px;border-radius:8px;background:#00537f;',
         'display:flex;align-items:center;justify-content:center;flex-shrink:0;">',
-          iconChat(14),
+          iconMic(14),
         '</div>',
-        '<div style="background:#eef4f8;border-radius:4px 16px 16px 16px;',
+        '<div style="background:rgba(255,255,255,.88);border-radius:4px 16px 16px 16px;',
+        'border:1px solid rgba(0,83,127,.1);',
         'padding:12px 15px;max-width:80%;font-size:14px;line-height:1.65;color:#0f2942;">',
-          'Bună! 👋 Sunt <strong>Toasty</strong>, asistentul tău Toastmasters.<br>',
-          'Cu ce te pot ajuta?',
+          'Bună! Sunt <strong>Toasty</strong>, asistentul tău Toastmasters.',
+          /* fix 8: CTA question visually distinct */
+          '<div style="color:#3a6a85;font-size:13px;font-weight:500;margin-top:5px;">Cu ce te pot ajuta?</div>',
         '</div>',
       '</div>',
-      /* fix 9: gap 8px */
-      '<div id="ty-chips" style="display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:6px 0 4px 36px;">',
+
+      /* fix 3: tighter top padding so chips feel attached to message */
+      '<div id="ty-chips" style="display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:2px 0 4px 36px;">',
         '<button class="ty-chip" onclick="toastySend(\'Pot veni gratuit?\')">',
           '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>',
           'Pot veni gratuit?',
@@ -196,15 +208,23 @@
           'Cât costă să devin membru?',
         '</button>',
       '</div>',
+
+      /* fix 2: hint fills dead zone, disappears on first message */
+      '<div id="ty-hint" style="flex:1;display:flex;align-items:flex-end;',
+      'justify-content:center;padding-bottom:10px;pointer-events:none;">',
+        '<span style="font-size:11.5px;color:rgba(0,65,101,.38);letter-spacing:.02em;',
+        'font-weight:500;">Sau scrie direct mai jos</span>',
+      '</div>',
+
     '</div>',
 
+    /* fix 9: more descriptive placeholder, fix 6: send btn now circular via CSS */
     '<div style="padding:12px 14px max(16px,env(safe-area-inset-bottom));',
     'display:flex;gap:8px;align-items:center;',
     'flex-shrink:0;background:linear-gradient(135deg,#00537f 0%,#004165 55%,#002d47 100%);">',
-      '<input id="ty-inp" type="text" placeholder="Scrie un mesaj…"',
+      '<input id="ty-inp" type="text" placeholder="Întreabă despre ședințe, costuri..."',
       ' autocomplete="off" inputmode="text" aria-label="Mesajul tău"',
       ' onkeydown="if(event.key===\'Enter\'&&!event.shiftKey){event.preventDefault();toastySendInput();}">',
-      /* fix 10: stroke-width 2 */
       '<button id="ty-send" onclick="toastySendInput()" aria-label="Trimite mesaj">',
         '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white"',
         ' stroke-width="2" stroke-linecap="round" stroke-linejoin="round">',
@@ -217,7 +237,7 @@
 
   /* ── State ── */
   var isOpen = false, isLoading = false, history = [];
-  var lastFocus = null; /* fix 3: restore focus on close */
+  var lastFocus = null;
 
   /* ── Helpers ── */
   function isMobile() { return window.innerWidth < 768; }
@@ -228,18 +248,18 @@
     fab.classList.remove('gone');
     win.classList.remove('on');
     ov.classList.remove('on');
-    fab.setAttribute('aria-expanded', 'false'); /* fix 4 */
+    fab.setAttribute('aria-expanded', 'false');
     if (isMobile()) document.body.style.overflow = '';
-    if (lastFocus && lastFocus.focus) lastFocus.focus(); /* fix 3 */
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
   };
 
   fab.addEventListener('click', function () {
-    lastFocus = document.activeElement; /* fix 3 */
+    lastFocus = document.activeElement;
     isOpen = true;
     fab.classList.add('gone');
     win.classList.add('on');
     ov.classList.add('on');
-    fab.setAttribute('aria-expanded', 'true'); /* fix 4 */
+    fab.setAttribute('aria-expanded', 'true');
     if (isMobile()) document.body.style.overflow = 'hidden';
     setTimeout(function () {
       var inp = document.getElementById('ty-inp');
@@ -249,7 +269,7 @@
 
   ov.addEventListener('click', window.toastyClose);
 
-  /* fix 2: focus trap + Escape */
+  /* Focus trap + Escape */
   document.addEventListener('keydown', function (e) {
     if (!isOpen) return;
     if (e.key === 'Escape') { window.toastyClose(); return; }
@@ -306,15 +326,17 @@
   window.toastySend = function (txt) {
     if (isLoading) return;
     var chips   = document.getElementById('ty-chips');
+    var hint    = document.getElementById('ty-hint');
     var sendBtn = document.getElementById('ty-send');
     if (chips) chips.style.display = 'none';
+    if (hint)  hint.style.display  = 'none'; /* fix 2: remove dead zone hint */
     addMsg('user', txt);
     history.push({ role: 'user', content: txt });
     isLoading = true;
     if (sendBtn) sendBtn.classList.add('loading');
     var tid = showTyping();
 
-    /* fix 5: 30s timeout via AbortController */
+    /* 30s timeout via AbortController */
     var ctrl = new AbortController();
     var timeoutId = setTimeout(function () { ctrl.abort(); }, 30000);
 
@@ -338,7 +360,6 @@
       hideTyping(tid);
       isLoading = false;
       if (sendBtn) sendBtn.classList.remove('loading');
-      /* fix 8: retry button in error message */
       var msg = (err && err.name === 'AbortError')
         ? 'Răspunsul a durat prea mult.'
         : 'Eroare de conexiune.';
@@ -347,10 +368,11 @@
   };
 
   /* ── DOM helpers ── */
+  /* fix 4: mic avatar in messages */
   function avatarEl() {
     return '<div style="width:28px;height:28px;border-radius:8px;background:#00537f;' +
       'display:flex;align-items:center;justify-content:center;flex-shrink:0;">' +
-      iconChat(14) + '</div>';
+      iconMic(14) + '</div>';
   }
 
   function addMsg(role, text) {
@@ -361,7 +383,7 @@
       (bot ? '' : 'flex-direction:row-reverse;');
     var bubble = '<div style="' +
       (bot
-        ? 'background:#eef4f8;border-radius:4px 16px 16px 16px;color:#0f2942;'
+        ? 'background:rgba(255,255,255,.88);border:1px solid rgba(0,83,127,.1);border-radius:4px 16px 16px 16px;color:#0f2942;'
         : 'background:#00537f;border-radius:16px 4px 16px 16px;color:#fff;') +
       'padding:12px 15px;max-width:80%;font-size:14px;line-height:1.65;">' +
       esc(text) + '</div>';
@@ -370,14 +392,15 @@
     msgs.scrollTop = msgs.scrollHeight;
   }
 
-  /* fix 8: error message with inline retry button */
+  /* Retry button in error bubble */
   function addErrorMsg(msg, retryTxt) {
     var msgs = document.getElementById('ty-msgs');
     var row  = document.createElement('div');
     row.style.cssText = 'display:flex;gap:8px;align-items:flex-end;';
 
     var bubble = document.createElement('div');
-    bubble.style.cssText = 'background:#eef4f8;border-radius:4px 16px 16px 16px;' +
+    bubble.style.cssText = 'background:rgba(255,255,255,.88);border:1px solid rgba(0,83,127,.1);' +
+      'border-radius:4px 16px 16px 16px;' +
       'padding:12px 15px;max-width:80%;font-size:14px;line-height:1.65;color:#0f2942;';
     bubble.appendChild(document.createTextNode(msg + ' '));
 
@@ -386,7 +409,7 @@
     btn.textContent = 'Încearcă din nou.';
     btn.addEventListener('click', function () {
       row.remove();
-      history.pop(); /* remove failed user msg so it's not sent twice */
+      history.pop();
       toastySend(retryTxt);
     });
     bubble.appendChild(btn);
@@ -405,7 +428,8 @@
     row.style.cssText = 'display:flex;gap:8px;align-items:flex-end;';
     var dotStyle = 'width:6px;height:6px;background:#8faab8;border-radius:50%;';
     row.innerHTML = avatarEl() +
-      '<div style="background:#eef4f8;border-radius:4px 16px 16px 16px;' +
+      '<div style="background:rgba(255,255,255,.88);border:1px solid rgba(0,83,127,.1);' +
+      'border-radius:4px 16px 16px 16px;' +
       'padding:14px 15px;display:flex;gap:4px;align-items:center;">' +
       '<span class="ty-dot" style="' + dotStyle + 'animation:tyDot 1.2s infinite"></span>' +
       '<span class="ty-dot" style="' + dotStyle + 'animation:tyDot 1.2s infinite .2s"></span>' +
