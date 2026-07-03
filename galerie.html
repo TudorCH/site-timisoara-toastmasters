@@ -224,6 +224,21 @@
     .scroll-fade { opacity:0; transform:translateY(22px); transition:opacity .55s ease,transform .55s ease; }
     .scroll-fade.visible { opacity:1; transform:none; }
     @media (prefers-reduced-motion:reduce) { .scroll-fade { opacity:1; transform:none; transition:none; } }
+
+    /* ── Desktop: single-viewport app shell, no page scroll to footer ── */
+    @media (min-width:1024px) {
+      html, body { height:100%; overflow:hidden; }
+      #gal-viewport { margin-top:4rem; height:calc(100vh - 4rem); display:flex; flex-direction:column; }
+      #gal-body { flex:1 1 auto; min-height:0; overflow-y:auto; }
+      #gal-viewport footer { flex-shrink:0; }
+      /* hero background matches navbar gradient on desktop */
+      #main-content { background:linear-gradient(135deg,#00537f 0%,#004165 55%,#002d47 100%) !important; padding-top:1.75rem !important; padding-bottom:1.1rem !important; }
+      #main-content h1 { font-size:1.75rem !important; margin-bottom:.35rem !important; }
+      #main-content p { display:block !important; font-size:.85rem !important; }
+      #gal-body { padding-top:.85rem !important; padding-bottom:.85rem !important; }
+      #gal-body .mb-10 { margin-bottom:.85rem !important; }
+      .cat-tab { flex-direction:row !important; gap:.4rem !important; padding-top:.5rem !important; padding-bottom:.5rem !important; }
+    }
   </style>
 </head>
 <body class="font-sans bg-white text-gray-900 antialiased">
@@ -354,6 +369,8 @@
   </div>
 </nav>
 
+<div id="gal-viewport">
+
 <!-- ════════════════════ HERO ════════════════════ -->
 <section id="main-content" tabindex="-1" class="pt-28 pb-14 bg-primary">
   <div class="max-w-3xl mx-auto px-5 text-center">
@@ -367,7 +384,7 @@
 </section>
 
 <!-- ════════════════════ GALLERY BODY ════════════════════ -->
-<section class="py-14 lg:py-20 bg-gray-50">
+<section id="gal-body" class="py-14 bg-gray-50">
   <div class="max-w-6xl mx-auto px-5 lg:px-8">
 
     <!-- Category tabs -->
@@ -533,7 +550,7 @@
 
 <!-- ════════════════════ FOOTER ════════════════════ -->
 
-<footer class="bg-[#002d47] border-t border-white/5 pt-8 pb-5 lg:pt-24 lg:pb-12">
+<footer class="bg-[#002d47] border-t border-white/5 pt-8 pb-5 lg:pt-6 lg:pb-4">
   <div class="max-w-7xl mx-auto px-5 lg:px-8">
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-10 lg:gap-12 items-start pb-5 lg:pb-1 border-b border-white/10">
 
@@ -598,6 +615,8 @@
     </div>
   </div>
 </footer>
+
+</div><!-- /gal-viewport -->
 
 <!-- ════════════════════ JAVASCRIPT ════════════════════ -->
 <script>
