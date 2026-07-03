@@ -89,6 +89,7 @@
     .transport-pill--orange { background:#fb923c; color:#fff }
     .transport-pill--violet { background:#6b21a8; color:#fff }
     .loc-pill--maroon { background:#772432; color:#fff }
+    .loc-pill--park { padding:.4rem .7rem; font-size:.75rem; gap:.45rem; }
   </style>
 </head>
 <body class="font-sans bg-white text-gray-900 antialiased">
@@ -578,16 +579,15 @@
               </div>
               <span class="text-sm font-semibold text-gray-800">Cu Mașina</span>
             </div>
-            <div class="flex items-center gap-1.5 ml-6 flex-wrap">
-              <svg class="w-4 h-4 text-primary flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M13 3H6v18h4v-6h3c3.31 0 6-2.69 6-6s-2.69-6-6-6zm.2 8H10V7h3.2c1.1 0 2 .9 2 2s-.9 2-2 2z"/></svg>
-              <span class="text-xs text-gray-500">Lângă Clădire</span>
-              <a href="https://maps.app.goo.gl/PQoQdrmokS5bJwqj8" target="_blank" rel="noopener" class="loc-pill loc-pill--maroon">
-                <svg class="w-2.5 h-2.5 flex-shrink-0 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            <div class="flex items-center gap-2 ml-6" style="margin-top:3px">
+              <a href="https://maps.app.goo.gl/PQoQdrmokS5bJwqj8" target="_blank" rel="noopener" class="loc-pill loc-pill--park" style="background:#004165;color:#fff">
+                <span style="display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;background:#fff;border-radius:3px;font-weight:900;font-size:9px;flex-shrink:0;color:#004165;line-height:1">P</span>
+                <svg style="width:14px;height:14px;flex-shrink:0" viewBox="0 -960 960 960" fill="currentColor"><path d="M574-618q-12-30-35.5-47T482-682q-18 0-35 5t-31 19l-58-58q14-14 38-25.5t44-14.5v-84h80v82q45 9 79 36.5t51 71.5l-76 32ZM792-56 608-240q-15 15-41 24.5T520-204v84h-80v-86q-56-14-93.5-51T292-350l80-32q12 42 40.5 72t75.5 30q18 0 33-4.5t29-13.5L56-792l56-56 736 736-56 56Z"/></svg>
                 Cl. Aradului 1a
               </a>
-              <span class="text-xs text-gray-500">sau cu plată în incinta</span>
-              <a href="https://maps.app.goo.gl/Zm94u6Sb8i6eiPTZ9" target="_blank" rel="noopener" class="loc-pill loc-pill--maroon">
-                <svg class="w-2.5 h-2.5 flex-shrink-0 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              <a href="https://maps.app.goo.gl/Zm94u6Sb8i6eiPTZ9" target="_blank" rel="noopener" class="loc-pill loc-pill--park" style="background:#004165;color:#fff">
+                <span style="display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;background:#fff;border-radius:3px;font-weight:900;font-size:9px;flex-shrink:0;color:#004165;line-height:1">P</span>
+                <svg style="width:14px;height:14px;flex-shrink:0" viewBox="0 -960 960 960" fill="currentColor"><path d="M441-120v-86q-53-12-91.5-46T293-348l74-30q15 48 44.5 73t77.5 25q41 0 69.5-18.5T587-356q0-35-22-55.5T463-458q-86-27-118-64.5T313-614q0-65 42-101t86-41v-84h80v84q50 8 82.5 36.5T651-650l-74 32q-12-32-34-48t-60-16q-44 0-67 19.5T393-614q0 33 30 52t104 40q69 20 104.5 63.5T667-358q0 71-42 108t-104 46v84h-80Z"/></svg>
                 Iulius Town
               </a>
             </div>
@@ -633,25 +633,23 @@
           </div>
 
           <!-- Ride Sharing -->
-          <div class="p-5 space-y-2.5">
+          <div class="p-5 space-y-3">
             <div class="flex items-center gap-2">
               <svg class="w-4 h-4 text-gray-600 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/></svg>
               <span class="text-sm font-semibold text-gray-800">Ride Sharing</span>
             </div>
-            <div class="flex items-center gap-2.5 pl-6">
+            <div class="flex items-center gap-3 pl-6">
               <a href="https://m.uber.com/ul/?action=setPickup&pickup=my_location&dropoff[latitude]=45.7653976&dropoff[longitude]=21.225036&dropoff[nickname]=Toastmasters%20Timi%C8%99oara"
                  target="_blank" rel="noopener"
-                 class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-bold text-white transition-opacity hover:opacity-80"
-                 style="background:#000000">
-                <svg class="w-3 h-3 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-1.97 9.289c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L6.163 14.37l-2.965-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.658.216z"/></svg>
-                Uber
+                 class="transition-opacity hover:opacity-80"
+                 style="display:inline-flex;align-items:center;border-radius:9999px;background:#000000;padding:.56rem 1.5rem">
+                <svg style="height:15px;width:auto;display:block" viewBox="0 0 155.8 52.3" xmlns="http://www.w3.org/2000/svg"><path fill="white" d="M7.7,31.8V0H0v32.2c0,12.1,8.5,20.1,19.5,20.1c5.4,0,10.1-2.1,13.6-5.7v4.8h7.6V0H33v31.8c0,8.2-5.5,13.7-12.6,13.7C13.2,45.4,7.7,40.1,7.7,31.8z M48.3,51.5h7.3v-4.7c3.4,3.5,8.2,5.6,13.4,5.6c11,0,19.7-8.7,19.7-19.6c0-10.9-8.7-19.6-19.7-19.6c-5.2,0-9.9,2.1-13.3,5.6V0h-7.4V51.5z M55.6,32.8c0-7.3,5.8-13,12.9-13c7.1,0,12.9,5.7,12.9,13c0,7.2-5.8,13-12.9,13C61.3,45.8,55.6,40,55.6,32.8z M93.1,32.7c0,11.2,8.7,19.6,19.9,19.6c6.8,0,12.4-3,16.2-8l-5.4-4c-2.8,3.7-6.5,5.5-10.8,5.5c-6.3,0-11.4-4.6-12.4-10.7h30.5v-2.4c0-11.2-7.9-19.5-18.7-19.5C101.4,13.2,93.1,22.1,93.1,32.7z M112.2,19.7c5.5,0,10.1,3.8,11.4,9.6h-22.9C102.1,23.5,106.7,19.7,112.2,19.7z M155.8,20.6v-6.9h-2.6c-4.1,0-7.1,1.9-9,4.9V14H137v37.5h7.4V30.1c0-5.8,3.5-9.6,8.4-9.6H155.8z"/></svg>
               </a>
               <a href="https://bolt.eu/ro/cities/timisoara/?lat=45.7653976&lng=21.225036"
                  target="_blank" rel="noopener"
-                 class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-bold text-white transition-opacity hover:opacity-80"
-                 style="background:#34D186">
-                <svg class="w-3 h-3 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5C3.9 3 3 3.9 3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l7.59-7.59L21 8l-9 9z"/></svg>
-                Bolt
+                 class="transition-opacity hover:opacity-80"
+                 style="display:inline-flex;align-items:center;border-radius:9999px;background:#34D186;padding:.4rem 1.5rem">
+                <svg style="height:20px;width:auto;display:block" viewBox="0 0 111.9 65" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" fill="white" d="M30.4,23c4.4-7.1,2.2-16.4-4.8-20.8C23.2,0.8,20.5,0,17.7,0H0v48.9h19.9c8.3,0,15-6.8,15-15.1C34.9,29.7,33.3,25.9,30.4,23z M11.4,11.5h6.3c2,0,3.6,1.6,3.6,3.6c0,2-1.6,3.6-3.6,3.6h-6.3V11.5z M19.9,37.4h-8.5v-7.2h8.5c2,0,3.6,1.6,3.6,3.6C23.5,35.8,21.9,37.4,19.9,37.4z M90,0v48.9H78.6V2.4L90,0z M56.8,13.9c-9.7,0-17.6,7.9-17.6,17.7c0,9.8,7.9,17.7,17.6,17.7c9.7,0,17.6-7.9,17.6-17.7C74.3,21.8,66.5,13.9,56.8,13.9z M56.8,37.4c-3.2,0-5.7-2.6-5.7-5.7c0-3.2,2.5-5.7,5.7-5.7c3.2,0,5.7,2.6,5.7,5.7C62.5,34.8,59.9,37.4,56.8,37.4z M62.5,59.3c0,3.2-2.6,5.7-5.7,5.7c-3.1,0-5.7-2.6-5.7-5.7c0-3.2,2.6-5.7,5.7-5.7C59.9,53.5,62.5,56.1,62.5,59.3z M111.8,14.5V26h-5.7v9c0,2.7,0.9,4.7,3.2,4.7c0.9,0,1.7-0.1,2.5-0.3v8.5c-1.7,0.9-3.6,1.4-5.6,1.4h-0.1c-0.1,0-0.1,0-0.2,0c-0.1,0-0.1,0-0.2,0h-0.1l-0.2,0C99.1,49,94.7,45,94.7,37.9v0v0V26V8.2l11.4-2.4v8.8H111.8z"/></svg>
               </a>
             </div>
           </div>
