@@ -196,7 +196,7 @@
           'Când și unde sunt ședințele?',
         '</button>',
         '<button class="ty-chip" onclick="toastySend(\'Cât costă să devin membru?\')">',
-          '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg>',
+          '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l-2 3h4l-2-3z"/><path d="M10 5h4"/><path d="M6 13a6 6 0 1 0 12 0 6 6 0 0 0-12 0z"/><path d="M9.5 8.5C9.5 7 10.5 6 12 6s2.5 1 2.5 2.5"/></svg>',
           'Cât costă să devin membru?',
         '</button>',
       '</div>',
