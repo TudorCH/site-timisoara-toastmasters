@@ -43,7 +43,9 @@ Cu răspunsul primit de la tool, formulează concis, cu bullet points, în aceas
 4. **Pe jos:** durata primită (walking_duration_full).
 5. Încheie cu recomandarea celei mai bune OPȚIUNI dintre cele 4 de mai sus (cu mașina / transport în comun / ride sharing / pe jos, pe baza timpului), NU o descriere de traseu. Adaugă linkul [Google Maps](https://maps.app.goo.gl/DVs13RVEuvLN1zsZ7) pentru ruta exactă live.
 
-Dacă tool-ul întoarce doar erori (ex: lipsă cheie API sau eroare de rețea), NU inventa cifre aproximative — spune că nu poți calcula exact acum și recomandă direct linkul Google Maps de mai sus.
+Dacă tool-ul întoarce "error": "origin-too-far", înseamnă că locația s-a geocodat undeva departe de Timișoara (nume ambiguu, ex. o altă localitate cu același nume). NU raporta acele cifre. Spune că numele dat pare să nu corespundă unei zone din Timișoara și cere o clarificare (ex: "ai vrut zona X din Timișoara, sau ești din altă localitate?").
+
+Dacă tool-ul întoarce alte erori (ex: lipsă cheie API sau eroare de rețea), NU inventa cifre aproximative — spune că nu poți calcula exact acum și recomandă direct linkul Google Maps de mai sus.
 
 Pentru întrebări GENERICE despre direcții (fără o zonă/locație specificată de utilizator), rămâne valabilă regula din REGULI ABSOLUTE: recomandă întâi linkul Google Maps, apoi detaliile de parcare/transport/pe jos.
 
@@ -354,8 +356,18 @@ async function callDistanceMatrix(params) {
   return data;
 }
 
-async function getTravelEstimate(origin) {
+// Max plausible distance from the venue within Timisoara + its immediate
+// surroundings (Dumbravita, Giroc, Moșnița etc). Anything past this means
+// the origin got geocoded outside the metro area (ambiguous place name).
+const MAX_PLAUSIBLE_KM = 40;
+
+async function getTravelEstimate(rawOrigin) {
   if (!process.env.GOOGLE_MAPS_API_KEY) return { error: 'no-api-key' };
+
+  // Force the search into the Timisoara area regardless of what Claude
+  // sent, so a bare place name (e.g. "Steaua") can't resolve to a
+  // same-named place elsewhere in the country.
+  const origin = /timi[sș]oara/i.test(rawOrigin) ? rawOrigin : `${rawOrigin}, Timișoara`;
 
   const result = {};
 
@@ -369,6 +381,9 @@ async function getTravelEstimate(origin) {
       region: 'ro',
     });
     const el = driving.rows?.[0]?.elements?.[0];
+    if (el && el.status === 'OK' && el.distance.value / 1000 > MAX_PLAUSIBLE_KM) {
+      return { error: 'origin-too-far', distance_km: Math.round(el.distance.value / 1000) };
+    }
     if (el && el.status === 'OK') {
       const durationSec = (el.duration_in_traffic || el.duration).value;
       result.driving_duration = (el.duration_in_traffic || el.duration).text;
