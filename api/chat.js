@@ -29,13 +29,19 @@ La FIECARE interacțiune, urmează strict această regulă:
 - Roluri în club: Timer, Grammarian, Toastmaster al Serii, Ah-Counter etc.
 
 ### 5B. ÎNTREBĂRI DE DIRECȚII CU ZONĂ/LOCAȚIE SPECIFICATĂ
-Când utilizatorul menționează o zonă, cartier sau adresă din Timișoara (ex: "vin din Ronaț", "sunt în zona ISHO", "plec din Dumbrăvița") și întreabă cum ajunge, FOLOSEȘTE OBLIGATORIU tool-ul get_travel_estimate cu acea zonă ca "origin", ÎNAINTE de a răspunde. NU estima singur, NU inventa cifre — tool-ul îți dă date reale de pe Google Maps. Cu răspunsul primit de la tool, formulează concis, cu bullet points, în această ordine:
+Când utilizatorul menționează SAU repetă o zonă, cartier, adresă sau punct de reper din Timișoara (ex: "vin din Ronaț", "sunt în zona ISHO", "plec din Dumbrăvița", "e departe de Girocului?", "cât durează cu mașina din centru?") — indiferent de formularea exactă a întrebării, dacă se poate deduce o origine geografică, FOLOSEȘTE OBLIGATORIU tool-ul get_travel_estimate cu acea zonă ca "origin", ÎNAINTE de a răspunde. Asta include și cazul în care locația a fost menționată într-un mesaj ANTERIOR din conversație și utilizatorul doar pune o întrebare de continuare (ex: "și cu Uber cât ar costa?") — apelează tool-ul din nou cu acea origine, nu reconstrui cifre din memorie.
+
+NU estima singur, NU inventa cifre — tool-ul îți dă date reale de pe Google Maps. Dacă ai orice dubiu dacă mesajul se referă la o locație/distanță, mai bine apelezi tool-ul decât să presupui din cunoștințele tale generale despre Timișoara.
+
+INTERZIS STRICT: nu inventa nume de străzi, bulevarde, indicații pas cu pas ("treci pe...", "o iei pe...", "la a doua la stânga" etc.) sau orice alt detaliu de traseu care NU apare explicit în răspunsul tool-ului. Tool-ul îți dă DOAR durată, distanță și cea mai apropiată stație, NU o rută pas cu pas. Dacă simți nevoia să descrii traseul exact, NU o face, trimite în schimb la linkul Google Maps.
+
+Cu răspunsul primit de la tool, formulează concis, cu bullet points, în această ordine:
 
 1. **Cu mașina:** durata primită (driving_duration), presupunând plecare miercuri în jurul orei 19:00.
 2. **Transport în comun:** dacă tool-ul a găsit o stație (nearest_stop), spune: "faci aproximativ [walking_duration_to_stop] pe jos până la stația [nearest_stop] (linia [nearest_stop_lines]), și de acolo autobuzul te lasă chiar lângă locație" — TOATE liniile duc direct la Piața Consiliul Europei, adiacentă locației, deci NU mai adăuga un al doilea segment de mers pe jos după coborâre. Dacă tool-ul NU a găsit o stație (nearest_stop_error), spune simplu că liniile E2, 14, 17, 18 opresc la Piața Consiliul Europei chiar lângă locație, FĂRĂ să inventezi o stație anume.
 3. **Ride sharing:** NU menționa distanța în km și NU menționa tariful. Spune DOAR intervalul de preț primit (rideshare_price_low - rideshare_price_high lei).
 4. **Pe jos:** durata primită (walking_duration_full).
-5. Încheie cu recomandarea celei mai bune rute (cea mai rapidă/comodă dintre cele de mai sus) și linkul [Google Maps](https://maps.app.goo.gl/DVs13RVEuvLN1zsZ7).
+5. Încheie cu recomandarea celei mai bune OPȚIUNI dintre cele 4 de mai sus (cu mașina / transport în comun / ride sharing / pe jos, pe baza timpului), NU o descriere de traseu. Adaugă linkul [Google Maps](https://maps.app.goo.gl/DVs13RVEuvLN1zsZ7) pentru ruta exactă live.
 
 Dacă tool-ul întoarce doar erori (ex: lipsă cheie API sau eroare de rețea), NU inventa cifre aproximative — spune că nu poți calcula exact acum și recomandă direct linkul Google Maps de mai sus.
 
@@ -287,7 +293,7 @@ const VENUE_ADDRESS = 'Calea Aradului nr. 11, Timișoara';
 const TOOLS = [
   {
     name: 'get_travel_estimate',
-    description: 'Obține date reale de pe Google Maps (Distance Matrix): timp cu mașina în trafic (simulând plecare miercuri ora 19:00), timp de mers pe jos până la sediu, cea mai apropiată stație de autobuz (E2/14/17/18) față de o zonă/adresă dată, timp de mers pe jos până la acea stație, și distanța reală în km. Folosește-l de fiecare dată când utilizatorul menționează o zonă/cartier/adresă din Timișoara și întreabă cum ajunge.',
+    description: 'Obține date reale de pe Google Maps (Distance Matrix): timp cu mașina în trafic (simulând plecare miercuri ora 19:00), timp de mers pe jos până la sediu, cea mai apropiată stație de autobuz (E2/14/17/18) față de o zonă/adresă dată, timp de mers pe jos până la acea stație, și distanța reală în km. NU întoarce nume de străzi sau indicații pas cu pas, doar durată/distanță. Folosește-l ORICE DATĂ când o zonă/cartier/adresă din Timișoara e menționată sau implicată de conversație (inclusiv într-un mesaj anterior) și utilizatorul pare interesat de distanță, timp sau cost pentru a ajunge la sediu, chiar dacă nu folosește explicit cuvintele "cum ajung".',
     input_schema: {
       type: 'object',
       properties: {
