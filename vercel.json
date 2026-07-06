@@ -1,9 +1,19 @@
 {
   "buildCommand": "npm install && npm run build:css",
-  "cleanUrls": true,
   "outputDirectory": ".",
+  "redirects": [
+    { "source": "/home.html",       "destination": "/",          "permanent": true },
+    { "source": "/contact.html",    "destination": "/contact",   "permanent": true },
+    { "source": "/galerie.html",    "destination": "/galerie",   "permanent": true },
+    { "source": "/despre-noi.html", "destination": "/despre-noi","permanent": true },
+    { "source": "/cookies.html",    "destination": "/cookies",   "permanent": true }
+  ],
   "rewrites": [
-    { "source": "/", "destination": "/home.html" }
+    { "source": "/",           "destination": "/home.html"      },
+    { "source": "/contact",    "destination": "/contact.html"   },
+    { "source": "/galerie",    "destination": "/galerie.html"   },
+    { "source": "/despre-noi", "destination": "/despre-noi.html"},
+    { "source": "/cookies",    "destination": "/cookies.html"   }
   ],
   "functions": {
     "api/*.js": {
