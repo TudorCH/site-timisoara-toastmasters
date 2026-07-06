@@ -47,11 +47,11 @@
   bar.id = 'tm-bar';
   bar.innerHTML =
     '<div id="tm-text">' +
-      '<span id="tm-text-long">Folosim date stocate local în browserul tău și servicii terțe de bază. Nu folosim trackere de urmărire sau publicitate.<br>Apasă <strong style="color:#fff;">Acceptă</strong> pentru toate funcționalitățile sau <strong style="color:#fff;">Respinge</strong> pentru cele esențiale. <a href="cookies.html">Politică cookies</a></span>' +
+      '<span id="tm-text-long">Folosim date stocate local în browserul tău și servicii terțe de bază. Nu folosim trackere de urmărire sau publicitate.<br>Apasă <strong style="color:#fff;">Acceptă</strong> pentru toate funcționalitățile sau <strong style="color:#fff;">Respinge</strong> pentru cele esențiale. <a href="cookies">Politică cookies</a></span>' +
       '<span id="tm-text-short">Folosim cookie-uri esențiale, fără elemente de tracking.</span>' +
     '</div>' +
     '<div id="tm-actions">' +
-      '<a id="tm-more" href="cookies.html">Află mai multe</a>' +
+      '<a id="tm-more" href="cookies">Află mai multe</a>' +
       '<button id="tm-settings">Setări cookies</button>' +
       '<button id="tm-ok">Acceptă</button>' +
       '<button id="tm-ess">Respinge</button>' +
@@ -67,7 +67,7 @@
     bar.classList.remove('in');
     setTimeout(function () {
       bar.remove();
-      document.querySelectorAll('a[href="contact.html"].bg-gold').forEach(function (el) {
+      document.querySelectorAll('a[href="contact"].bg-gold').forEach(function (el) {
         el.classList.add('tm-cta-active');
         setTimeout(function () { el.classList.remove('tm-cta-active'); }, 1500);
       });

@@ -266,9 +266,9 @@
       <!-- Desktop nav + search -->
       <div class="hidden lg:flex items-center gap-6">
         <a href="#"        class="nav-link nav-active text-white font-bold text-sm transition-colors" data-i18n="nav-home">Acasă</a>
-        <a href="despre-noi.html" class="nav-link text-white/70 hover:text-gold text-sm font-medium transition-colors" data-i18n="nav-about">Despre noi</a>
-        <a href="galerie.html"  class="nav-link text-white/70 hover:text-gold text-sm font-medium transition-colors" data-i18n="nav-gallery">Galerie</a>
-        <a href="contact.html" class="nav-link text-white/70 hover:text-gold text-sm font-medium transition-colors" data-i18n="nav-contact">Contact</a>
+        <a href="despre-noi" class="nav-link text-white/70 hover:text-gold text-sm font-medium transition-colors" data-i18n="nav-about">Despre noi</a>
+        <a href="galerie"  class="nav-link text-white/70 hover:text-gold text-sm font-medium transition-colors" data-i18n="nav-gallery">Galerie</a>
+        <a href="contact" class="nav-link text-white/70 hover:text-gold text-sm font-medium transition-colors" data-i18n="nav-contact">Contact</a>
 
         <!-- Search bar -->
         <div class="relative ml-2">
@@ -298,7 +298,7 @@
           </button>
         </div>
 
-        <a href="contact.html"
+        <a href="contact"
            class="ml-1 bg-gold hover:bg-gold-light text-primary font-semibold px-5 py-2 rounded-full text-sm
                   transition-all duration-200 hover:scale-105 shadow-md shadow-gold/30">
           <span data-i18n="nav-cta">Hai și tu la o ședință</span>
@@ -349,9 +349,9 @@
     <div id="mobile-menu" class="hidden lg:hidden border-t border-white/10 pt-4 pb-5 overflow-hidden">
       <div class="flex flex-col gap-1">
         <a href="#"        onclick="closeMobile()" class="nav-active text-white bg-white/10 rounded-xl px-4 py-3 text-sm font-bold transition-colors" data-i18n="nav-home">Acasă</a>
-        <a href="despre-noi.html" onclick="closeMobile()" class="text-white/70 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors" data-i18n="nav-about">Despre noi</a>
-        <a href="galerie.html" onclick="closeMobile()" class="text-white/70 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors" data-i18n="nav-gallery">Galerie</a>
-        <a href="contact.html" onclick="closeMobile()" class="text-white/70 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors" data-i18n="nav-contact">Contact</a>
+        <a href="despre-noi" onclick="closeMobile()" class="text-white/70 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors" data-i18n="nav-about">Despre noi</a>
+        <a href="galerie" onclick="closeMobile()" class="text-white/70 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors" data-i18n="nav-gallery">Galerie</a>
+        <a href="contact" onclick="closeMobile()" class="text-white/70 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors" data-i18n="nav-contact">Contact</a>
         <!-- Language + TTS row -->
         <div class="flex items-center gap-3 px-4 py-2 mt-1 border-t border-white/10">
           <span class="text-white/40 text-xs" data-i18n="nav-util-label">Limbă:</span>
@@ -365,7 +365,7 @@
           </button>
         </div>
         <div class="pt-2 px-4">
-          <a href="contact.html" onclick="closeMobile()"
+          <a href="contact" onclick="closeMobile()"
              class="block w-full bg-gold text-primary font-semibold px-5 py-3 rounded-full text-sm text-center shadow-md">
             <span data-i18n="nav-cta">Hai și tu la o ședință</span>
           </a>
@@ -713,7 +713,7 @@
 
     <!-- CTA: centrat, lat, sub carduri -->
     <div class="flex justify-center mt-6">
-      <a href="galerie.html"
+      <a href="galerie"
          class="group inline-flex items-center gap-3 font-semibold px-6 sm:px-12 py-3 sm:py-3.5 rounded-2xl transition-all duration-300 hover:scale-105 shadow-sm text-sm sm:text-base"
          style="background:white;border:2px solid #772432;color:#772432"
          onmouseover="this.style.background='#772432';this.style.color='white'"
@@ -762,7 +762,7 @@
     const grid = document.getElementById('teaser-grid');
     grid.innerHTML = recent.map(function(ev) {
       const imgSrc = cldUrl(ev.src, 400);
-      return '<a href="galerie.html" class="group block rounded-2xl overflow-hidden shadow-sm border border-gray-100 bg-white card-hover flex-shrink-0 w-[82vw] sm:w-auto snap-center sm:snap-align-none" style="aspect-ratio:4/3; position:relative;">' +
+      return '<a href="galerie" class="group block rounded-2xl overflow-hidden shadow-sm border border-gray-100 bg-white card-hover flex-shrink-0 w-[82vw] sm:w-auto snap-center sm:snap-align-none" style="aspect-ratio:4/3; position:relative;">' +
         '<img src="' + imgSrc + '" alt="' + ev.title + '" width="400" height="300" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" decoding="async" loading="lazy" />' +
         '<div class="absolute inset-0" style="background:linear-gradient(to top, rgba(0,30,50,0.82) 0%, rgba(0,30,50,0.35) 45%, transparent 100%);"></div>' +
         '<div class="absolute bottom-0 left-0 right-0 p-4">' +
@@ -1526,7 +1526,7 @@
           <p id="form-error" role="alert" aria-live="assertive" tabindex="-1" class="hidden text-sm text-red-600 text-center bg-red-50 rounded-xl py-2.5 px-4">
             A apărut o eroare. Încearcă din nou sau scrie-ne pe <a href="https://www.facebook.com/timisoara.toastmasters" target="_blank" class="font-semibold underline">Facebook</a>.
           </p>
-          <p class="text-xs text-gray-400 text-center mt-2">Prin trimitere accepți <a href="cookies.html" class="text-maroon hover:underline">Politica de confidențialitate</a></p>
+          <p class="text-xs text-gray-400 text-center mt-2">Prin trimitere accepți <a href="cookies" class="text-maroon hover:underline">Politica de confidențialitate</a></p>
         </form>
         <div id="form-success" role="status" aria-live="polite" tabindex="-1" class="hidden text-center py-8">
           <div class="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -1846,19 +1846,19 @@
       <div>
         <p class="text-white font-semibold text-sm mb-3 lg:mb-5 uppercase tracking-wider" data-i18n="footer-nav-title">Pagini utile</p>
         <ul class="space-y-2 lg:space-y-3">
-          <li><a href="home.html"      class="text-gold text-sm font-medium" data-i18n="footer-nav-home">Acasă</a></li>
-          <li><a href="despre-noi.html" class="footer-link text-white/50 text-sm transition-colors" data-i18n="footer-nav-about">Despre noi</a></li>
-          <li><a href="galerie.html"    class="footer-link text-white/50 text-sm transition-colors" data-i18n="footer-nav-gallery">Galerie</a></li>
-          <li><a href="contact.html"    class="footer-link text-white/50 text-sm transition-colors" data-i18n="footer-nav-contact">Contact</a></li>
+          <li><a href="/"      class="text-gold text-sm font-medium" data-i18n="footer-nav-home">Acasă</a></li>
+          <li><a href="despre-noi" class="footer-link text-white/50 text-sm transition-colors" data-i18n="footer-nav-about">Despre noi</a></li>
+          <li><a href="galerie"    class="footer-link text-white/50 text-sm transition-colors" data-i18n="footer-nav-gallery">Galerie</a></li>
+          <li><a href="contact"    class="footer-link text-white/50 text-sm transition-colors" data-i18n="footer-nav-contact">Contact</a></li>
         </ul>
       </div>
 
       <div>
         <p class="text-white font-semibold text-sm mb-3 lg:mb-5 uppercase tracking-wider" data-i18n="footer-legal-title">Legal</p>
         <ul class="space-y-2 lg:space-y-3">
-          <li><a href="cookies.html#politica-cookies" class="footer-link text-white/50 text-sm transition-colors" data-i18n="footer-legal-cookies">Politică cookies</a></li>
-          <li><a href="cookies.html#confidentialitate" class="footer-link text-white/50 text-sm transition-colors" data-i18n="footer-legal-privacy">Politică confidențialitate</a></li>
-          <li><a href="cookies.html#gdpr" class="footer-link text-white/50 text-sm transition-colors" data-i18n="footer-legal-gdpr">GDPR</a></li>
+          <li><a href="cookies#politica-cookies" class="footer-link text-white/50 text-sm transition-colors" data-i18n="footer-legal-cookies">Politică cookies</a></li>
+          <li><a href="cookies#confidentialitate" class="footer-link text-white/50 text-sm transition-colors" data-i18n="footer-legal-privacy">Politică confidențialitate</a></li>
+          <li><a href="cookies#gdpr" class="footer-link text-white/50 text-sm transition-colors" data-i18n="footer-legal-gdpr">GDPR</a></li>
         </ul>
       </div>
     </div>
@@ -2227,7 +2227,7 @@
     "@type": "Event",
     "name": "Ședință Timișoara Toastmasters",
     "description": "Ședință săptămânală de vorbit în public și leadership. Discursuri pregătite, improvizații și feedback constructiv. Intrare liberă ca invitat.",
-    "url": "https://timisoaratoastmasters.ro/contact.html",
+    "url": "https://timisoaratoastmasters.ro/contact",
     "eventSchedule": {
       "@type": "Schedule",
       "byDay": "https://schema.org/Wednesday",

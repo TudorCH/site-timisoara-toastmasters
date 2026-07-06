@@ -1,5 +1,6 @@
 {
   "buildCommand": "npm install && npm run build:css",
+  "cleanUrls": true,
   "outputDirectory": ".",
   "rewrites": [
     { "source": "/", "destination": "/home.html" }

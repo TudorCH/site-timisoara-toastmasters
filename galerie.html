@@ -6,9 +6,9 @@
   <script>if ('scrollRestoration' in history) history.scrollRestoration = 'manual';</script>
   <title>Galerie Foto Toastmasters Timișoara | Momente din Club</title>
   <meta name="description" content="Imagini din ședințele și evenimentele Timișoara Toastmasters – cel mai vechi club de vorbit în public din România. Vino ca invitat miercuri seară." />
-  <link rel="canonical" href="https://timisoaratoastmasters.ro/galerie.html" />
+  <link rel="canonical" href="https://timisoaratoastmasters.ro/galerie" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://timisoaratoastmasters.ro/galerie.html" />
+  <meta property="og:url" content="https://timisoaratoastmasters.ro/galerie" />
   <meta property="og:site_name" content="Timișoara Toastmasters" />
   <meta property="og:title" content="Galerie Foto Toastmasters Timișoara" />
   <meta property="og:description" content="Imagini din ședințele și evenimentele Timișoara Toastmasters. Peste 17 ani de momente capturate." />
@@ -249,7 +249,7 @@
   <div class="max-w-7xl mx-auto px-4 lg:px-8">
     <div class="flex items-center justify-between h-16">
 
-      <a href="home.html" class="flex items-center gap-3 flex-shrink-0">
+      <a href="/" class="flex items-center gap-3 flex-shrink-0">
         <img src="logo.webp" alt="Toastmasters International" width="40" height="40" class="h-8 sm:h-10 w-auto object-contain flex-shrink-0" />
         <div>
           <div class="text-white font-bold text-sm sm:text-base leading-tight uppercase tracking-wide">Timișoara Toastmasters</div>
@@ -259,10 +259,10 @@
 
       <!-- Desktop nav + search -->
       <div class="hidden lg:flex items-center gap-6">
-        <a href="home.html"         class="nav-link text-white/70 hover:text-gold text-sm font-medium transition-colors" data-i18n="nav-home">Acasă</a>
-        <a href="despre-noi.html"    class="nav-link text-white/70 hover:text-gold text-sm font-medium transition-colors" data-i18n="nav-about">Despre noi</a>
-        <a href="galerie.html"       class="nav-link nav-active text-white text-sm font-bold transition-colors" data-i18n="nav-gallery">Galerie</a>
-        <a href="contact.html" class="nav-link text-white/70 hover:text-gold text-sm font-medium transition-colors" data-i18n="nav-contact">Contact</a>
+        <a href="/"         class="nav-link text-white/70 hover:text-gold text-sm font-medium transition-colors" data-i18n="nav-home">Acasă</a>
+        <a href="despre-noi"    class="nav-link text-white/70 hover:text-gold text-sm font-medium transition-colors" data-i18n="nav-about">Despre noi</a>
+        <a href="galerie"       class="nav-link nav-active text-white text-sm font-bold transition-colors" data-i18n="nav-gallery">Galerie</a>
+        <a href="contact" class="nav-link text-white/70 hover:text-gold text-sm font-medium transition-colors" data-i18n="nav-contact">Contact</a>
 
         <!-- Search bar -->
         <div class="relative ml-2">
@@ -292,7 +292,7 @@
           </button>
         </div>
 
-        <a href="contact.html"
+        <a href="contact"
            class="ml-1 bg-gold hover:bg-gold-light text-primary font-semibold px-5 py-2 rounded-full text-sm
                   transition-all duration-200 hover:scale-105 shadow-md shadow-gold/30">
           <span data-i18n="nav-cta">Hai și tu la o ședință</span>
@@ -342,10 +342,10 @@
     <!-- Mobile menu -->
     <div id="mobile-menu" class="hidden lg:hidden border-t border-white/10 pt-4 pb-5">
       <div class="flex flex-col gap-1">
-        <a href="home.html"         onclick="closeMobile()" class="text-white/70 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors" data-i18n="nav-home">Acasă</a>
-        <a href="despre-noi.html"    onclick="closeMobile()" class="text-white/70 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors" data-i18n="nav-about">Despre noi</a>
-        <a href="galerie.html"       onclick="closeMobile()" class="nav-active text-white bg-white/10 rounded-xl px-4 py-3 text-sm font-bold transition-colors" data-i18n="nav-gallery">Galerie</a>
-        <a href="contact.html" onclick="closeMobile()" class="text-white/70 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors" data-i18n="nav-contact">Contact</a>
+        <a href="/"         onclick="closeMobile()" class="text-white/70 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors" data-i18n="nav-home">Acasă</a>
+        <a href="despre-noi"    onclick="closeMobile()" class="text-white/70 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors" data-i18n="nav-about">Despre noi</a>
+        <a href="galerie"       onclick="closeMobile()" class="nav-active text-white bg-white/10 rounded-xl px-4 py-3 text-sm font-bold transition-colors" data-i18n="nav-gallery">Galerie</a>
+        <a href="contact" onclick="closeMobile()" class="text-white/70 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors" data-i18n="nav-contact">Contact</a>
         <!-- Language + TTS row -->
         <div class="flex items-center gap-3 px-4 py-2 mt-1 border-t border-white/10">
           <span class="text-white/40 text-xs" data-i18n="nav-util-label">Limbă:</span>
@@ -359,7 +359,7 @@
           </button>
         </div>
         <div class="pt-2 px-4">
-          <a href="contact.html" onclick="closeMobile()"
+          <a href="contact" onclick="closeMobile()"
              class="block w-full bg-gold text-primary font-semibold px-5 py-3 rounded-full text-sm text-center shadow-md">
             <span data-i18n="nav-cta">Hai și tu la o ședință</span> →
           </a>
@@ -585,19 +585,19 @@
       <div>
         <p class="text-white font-semibold text-sm mb-3 lg:mb-5 uppercase tracking-wider" data-i18n="footer-nav-title">Pagini utile</p>
         <ul class="space-y-2 lg:space-y-3">
-          <li><a href="home.html"         class="footer-link text-white/50 text-sm transition-colors" data-i18n="footer-nav-home">Acasă</a></li>
-          <li><a href="despre-noi.html"    class="footer-link text-white/50 text-sm transition-colors" data-i18n="footer-nav-about">Despre noi</a></li>
-          <li><a href="galerie.html"       class="text-gold text-sm" data-i18n="footer-nav-gallery">Galerie</a></li>
-          <li><a href="contact.html" class="footer-link text-white/50 text-sm transition-colors" data-i18n="footer-nav-contact">Contact</a></li>
+          <li><a href="/"         class="footer-link text-white/50 text-sm transition-colors" data-i18n="footer-nav-home">Acasă</a></li>
+          <li><a href="despre-noi"    class="footer-link text-white/50 text-sm transition-colors" data-i18n="footer-nav-about">Despre noi</a></li>
+          <li><a href="galerie"       class="text-gold text-sm" data-i18n="footer-nav-gallery">Galerie</a></li>
+          <li><a href="contact" class="footer-link text-white/50 text-sm transition-colors" data-i18n="footer-nav-contact">Contact</a></li>
         </ul>
       </div>
 
       <div>
         <p class="text-white font-semibold text-sm mb-3 lg:mb-5 uppercase tracking-wider" data-i18n="footer-legal-title">Legal</p>
         <ul class="space-y-2 lg:space-y-3">
-          <li><a href="cookies.html#politica-cookies" class="footer-link text-white/50 text-sm transition-colors" data-i18n="footer-legal-cookies">Politică cookies</a></li>
-          <li><a href="cookies.html#confidentialitate" class="footer-link text-white/50 text-sm transition-colors" data-i18n="footer-legal-privacy">Politică confidențialitate</a></li>
-          <li><a href="cookies.html#gdpr" class="footer-link text-white/50 text-sm transition-colors" data-i18n="footer-legal-gdpr">GDPR</a></li>
+          <li><a href="cookies#politica-cookies" class="footer-link text-white/50 text-sm transition-colors" data-i18n="footer-legal-cookies">Politică cookies</a></li>
+          <li><a href="cookies#confidentialitate" class="footer-link text-white/50 text-sm transition-colors" data-i18n="footer-legal-privacy">Politică confidențialitate</a></li>
+          <li><a href="cookies#gdpr" class="footer-link text-white/50 text-sm transition-colors" data-i18n="footer-legal-gdpr">GDPR</a></li>
         </ul>
       </div>
     </div>
@@ -1714,7 +1714,7 @@ document.addEventListener('DOMContentLoaded', () => {
   "@type": "BreadcrumbList",
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "Acasă", "item": "https://timisoaratoastmasters.ro/" },
-    { "@type": "ListItem", "position": 2, "name": "Galerie", "item": "https://timisoaratoastmasters.ro/galerie.html" }
+    { "@type": "ListItem", "position": 2, "name": "Galerie", "item": "https://timisoaratoastmasters.ro/galerie" }
   ]
 }
 </script>
