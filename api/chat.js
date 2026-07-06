@@ -212,7 +212,7 @@ CONTACT & SOCIAL:
 
 ECHIPA DE CONDUCERE (sezon curent):
 - Robert Cernea - Președinte
-- Olga Culeac - Vicepreședinte Educație
+- Olga Lancea - Vicepreședinte Educație
 - Ionuț Cornean - Vicepreședinte Membri
 - Lavinia Borza - Vicepreședinte Relații Publice
 - Tudor Chiu - Secretar
