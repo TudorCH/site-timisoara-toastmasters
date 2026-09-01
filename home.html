@@ -759,21 +759,47 @@
       }
     ];
 
+    const MONTHS_RO = ['ianuarie','februarie','martie','aprilie','mai','iunie','iulie','august','septembrie','octombrie','noiembrie','decembrie'];
+    const MONTHS_EN = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    const TITLE_EN  = { 'Alegeri Board 2026': 'Board Elections 2026' };
+    function translateEventTitle(title, lang) {
+      if (lang !== 'en') return title;
+      if (TITLE_EN[title]) return TITLE_EN[title];
+      const m = title.match(/^Ședința din (\d+) ([A-Za-zăâîșțĂÂÎȘȚ]+) (\d{4})$/);
+      if (m) {
+        const mi = MONTHS_RO.indexOf(m[2].toLowerCase());
+        if (mi > -1) return 'Meeting - ' + m[1] + ' ' + MONTHS_EN[mi] + ' ' + m[3];
+      }
+      return title;
+    }
+
     const grid = document.getElementById('teaser-grid');
-    grid.innerHTML = recent.map(function(ev) {
-      const imgSrc = cldUrl(ev.src, 400);
-      return '<a href="galerie" class="group block rounded-2xl overflow-hidden shadow-sm border border-gray-100 bg-white card-hover flex-shrink-0 w-[82vw] sm:w-auto snap-center sm:snap-align-none" style="aspect-ratio:4/3; position:relative;">' +
-        '<img src="' + imgSrc + '" alt="' + ev.title + '" width="400" height="300" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" decoding="async" loading="lazy" />' +
-        '<div class="absolute inset-0" style="background:linear-gradient(to top, rgba(0,30,50,0.82) 0%, rgba(0,30,50,0.35) 45%, transparent 100%);"></div>' +
-        '<div class="absolute bottom-0 left-0 right-0 p-4">' +
-          '<div class="text-white font-semibold text-sm leading-tight mb-2">' + ev.title + '</div>' +
-          '<div class="inline-flex items-center gap-1 text-white/70 text-xs">' +
-            '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>' +
-            ev.count + ' poze' +
+    function renderTeaser() {
+      const lang = (window.tmtLang && window.tmtLang()) || 'ro';
+      grid.innerHTML = recent.map(function(ev) {
+        const imgSrc = cldUrl(ev.src, 400);
+        const title  = translateEventTitle(ev.title, lang);
+        const countLabel = ev.count + (lang === 'en' ? ' photos' : ' poze');
+        return '<a href="galerie" class="group block rounded-2xl overflow-hidden shadow-sm border border-gray-100 bg-white card-hover flex-shrink-0 w-[82vw] sm:w-auto snap-center sm:snap-align-none" style="aspect-ratio:4/3; position:relative;">' +
+          '<img src="' + imgSrc + '" alt="' + title + '" width="400" height="300" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" decoding="async" loading="lazy" />' +
+          '<div class="absolute inset-0" style="background:linear-gradient(to top, rgba(0,30,50,0.82) 0%, rgba(0,30,50,0.35) 45%, transparent 100%);"></div>' +
+          '<div class="absolute bottom-0 left-0 right-0 p-4">' +
+            '<div class="text-white font-semibold text-sm leading-tight mb-2">' + title + '</div>' +
+            '<div class="inline-flex items-center gap-1 text-white/70 text-xs">' +
+              '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>' +
+              countLabel +
+            '</div>' +
           '</div>' +
-        '</div>' +
-      '</a>';
-    }).join('');
+        '</a>';
+      }).join('');
+    }
+    renderTeaser();
+
+    var _teaserOrigSetLang = window.setLang;
+    window.setLang = function (l) {
+      if (_teaserOrigSetLang) _teaserOrigSetLang(l);
+      renderTeaser();
+    };
 
     // ── Scroll dots indicator (mobile only) — rendered dynamically ──
     var dotsContainer = document.getElementById('teaser-dots');
@@ -1314,9 +1340,16 @@
 
       <script>
       (function () {
-        const MONTHS = ['Ianuarie','Februarie','Martie','Aprilie','Mai','Iunie',
+        const MONTHS_RO = ['Ianuarie','Februarie','Martie','Aprilie','Mai','Iunie',
                         'Iulie','August','Septembrie','Octombrie','Noiembrie','Decembrie'];
-        const DAYS   = ['L','M','M','J','V','S','D'];
+        const MONTHS_EN = ['January','February','March','April','May','June',
+                        'July','August','September','October','November','December'];
+        const DAYS_RO = ['L','M','M','J','V','S','D'];
+        const DAYS_EN = ['M','T','W','T','F','S','S'];
+        function siteLang() { return (window.tmtLang && window.tmtLang()) || 'ro'; }
+        function MONTHS() { return siteLang() === 'en' ? MONTHS_EN : MONTHS_RO; }
+        function DAYS() { return siteLang() === 'en' ? DAYS_EN : DAYS_RO; }
+        function localeTag() { return siteLang() === 'en' ? 'en-US' : 'ro-RO'; }
         const _now = new Date();
         const YR = _now.getFullYear();
         const START_M = _now.getMonth();
@@ -1341,7 +1374,7 @@
           const startDow = mf(firstDay);
 
           // Update month label
-          document.getElementById('cal-month-label').textContent = MONTHS[m] + ' ' + YR;
+          document.getElementById('cal-month-label').textContent = MONTHS()[m] + ' ' + YR;
 
           // Update nav buttons
           document.getElementById('cal-prev').disabled = m <= START_M;
@@ -1350,7 +1383,7 @@
           let html = '';
           // Day headers
           html += `<div class="grid grid-cols-7 mb-1">`;
-          DAYS.forEach((d, i) => {
+          DAYS().forEach((d, i) => {
             html += `<div class="text-center text-[10px] font-semibold py-1 ${i===2?'text-maroon':'text-gray-500'}">${d}</div>`;
           });
           html += `</div><div class="grid grid-cols-7 gap-y-1">`;
@@ -1376,7 +1409,7 @@
                 cls = lang==='EN' ? 'bg-amber-100 text-amber-700 font-bold hover:bg-amber-200 transition-colors' : 'text-maroon font-bold transition-colors';
                 if (lang==='RO') sty = 'background:rgba(119,36,50,.18)';
               }
-              const _ariaDate = new Date(YR, m, day).toLocaleDateString('ro-RO', {weekday:'long', day:'numeric', month:'long'});
+              const _ariaDate = new Date(YR, m, day).toLocaleDateString(localeTag(), {weekday:'long', day:'numeric', month:'long'});
               html += `<div class="flex items-center justify-center">
                 <button class="w-11 h-11 rounded-full text-sm ${cls}" style="${sty}" onclick="calSel(${m},${day},'${lang}')" aria-label="${_ariaDate}, ședință ${lang}">${day}</button>
               </div>`;
@@ -1408,20 +1441,22 @@
           const langText = document.getElementById('cal-lang-text');
           const langFlag = document.getElementById('cal-lang-flag');
           const d   = new Date(YR, month, day);
-          const str = d.toLocaleDateString('ro-RO', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
+          const str = d.toLocaleDateString(localeTag(), { weekday:'long', day:'numeric', month:'long', year:'numeric' });
           const dateStr = str.charAt(0).toUpperCase() + str.slice(1);
           dateEl.textContent = dateStr;
           const roFlag = `<span style="display:inline-block;width:14px;height:14px;border-radius:50%;background:linear-gradient(to right,#002B7F 33%,#FCD116 33% 66%,#CE1126 66%)"></span>`;
           const enFlag = `<span style="display:inline-block;width:14px;height:14px;border-radius:50%;overflow:hidden"><svg width="14" height="14" viewBox="0 0 22 22"><rect width="22" height="22" fill="#012169"/><path d="M0 0L22 22M22 0L0 22" stroke="white" stroke-width="6"/><path d="M0 0L22 22M22 0L0 22" stroke="#C8102E" stroke-width="3.5"/><rect x="9" y="0" width="4" height="22" fill="white"/><rect x="0" y="9" width="22" height="4" fill="white"/><rect x="10" y="0" width="2" height="22" fill="#C8102E"/><rect x="0" y="10" width="22" height="2" fill="#C8102E"/></svg></span>`;
-          langText.textContent = lang === 'EN' ? 'Ședință în limba engleză' : 'Ședință în limba română';
+          langText.textContent = siteLang() === 'en'
+            ? (lang === 'EN' ? 'Meeting in English' : 'Meeting in Romanian')
+            : (lang === 'EN' ? 'Ședință în limba engleză' : 'Ședință în limba română');
           langFlag.innerHTML   = lang === 'EN' ? enFlag : roFlag;
           panel.classList.remove('hidden');
 
           // Aprinde butonul CTA
           const cta     = document.getElementById('cal-cta');
           const ctaTxt  = document.getElementById('cal-cta-text');
-          const shortDate = d.toLocaleDateString('ro-RO', { day:'numeric', month:'long' });
-          ctaTxt.textContent = 'Vreau să vin pe ' + shortDate;
+          const shortDate = d.toLocaleDateString(localeTag(), { day:'numeric', month:'long' });
+          ctaTxt.textContent = (siteLang() === 'en' ? 'I want to come on ' : 'Vreau să vin pe ') + shortDate;
           cta.className = 'w-full flex items-center justify-center gap-2 bg-primary hover:bg-primary-light text-white font-semibold text-sm px-6 py-3 rounded-xl transition-all duration-300 shadow-md shadow-primary/20 hover:scale-[1.02] pointer-events-auto cursor-pointer';
 
           // Pre-completează formularul
@@ -1442,6 +1477,16 @@
             const el = document.getElementById('idx-form-card');
             if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }, 50);
+        };
+
+        var _calOrigSetLang = window.setLang;
+        window.setLang = function (l) {
+          if (_calOrigSetLang) _calOrigSetLang(l);
+          render();
+          if (sel) {
+            const isLastWed = sel.day === lastWed(sel.month);
+            calSel(sel.month, sel.day, isLastWed ? 'EN' : 'RO');
+          }
         };
 
         // Auto-select next upcoming meeting
@@ -2324,8 +2369,13 @@
       new Intl.DateTimeFormat('en', { timeZone: tz, weekday: 'short' }).format(now)
     ];
 
-    var months = ['Ianuarie','Februarie','Martie','Aprilie','Mai','Iunie',
-                  'Iulie','August','Septembrie','Octombrie','Noiembrie','Decembrie'];
+    var lang = (window.tmtLang && window.tmtLang()) || 'ro';
+    var monthsRo = ['Ianuarie','Februarie','Martie','Aprilie','Mai','Iunie',
+                    'Iulie','August','Septembrie','Octombrie','Noiembrie','Decembrie'];
+    var monthsEn = ['January','February','March','April','May','June',
+                    'July','August','September','October','November','December'];
+    var months = lang === 'en' ? monthsEn : monthsRo;
+    var weekdayLabel = lang === 'en' ? 'Wednesday, ' : 'Miercuri, ';
 
     // days offset to next Wednesday (0 = today is Wed and meeting not done)
     var offset = (wd === 3 && h < 20) ? 0 : (3 - wd + 7) % 7 || 7;
@@ -2334,24 +2384,33 @@
     var target = new Date(Date.UTC(get('year'), get('month') - 1, get('day') + offset));
     var tp = new Intl.DateTimeFormat('en', { timeZone: tz, month: 'numeric', day: 'numeric' }).formatToParts(target);
     var tget = function (t) { var p = tp.find(function (x) { return x.type === t; }); return p ? parseInt(p.value, 10) : 0; };
-    var dateStr = 'Miercuri, ' + tget('day') + ' ' + months[tget('month') - 1];
+    var dateStr = weekdayLabel + tget('day') + ' ' + months[tget('month') - 1];
 
     if (wd === 3) {
-      if (h < 12)      return 'astăzi, ora 19:30';
-      if (h >= 20)     return dateStr + ' · în 7 zile';
+      if (h < 12)      return lang === 'en' ? 'today, 19:30' : 'astăzi, ora 19:30';
+      if (h >= 20)     return dateStr + (lang === 'en' ? ' · in 7 days' : ' · în 7 zile');
       var mins = (19 * 60 + 30) - (h * 60 + m);
-      if (mins <= 0)   return 'în curs';
-      if (mins < 60)   return 'în mai puțin de o oră';
+      if (mins <= 0)   return lang === 'en' ? 'in progress' : 'în curs';
+      if (mins < 60)   return lang === 'en' ? 'in less than an hour' : 'în mai puțin de o oră';
       var hr = Math.floor(mins / 60);
-      return 'în ' + hr + (hr === 1 ? ' oră' : ' ore');
+      return lang === 'en'
+        ? 'in ' + hr + (hr === 1 ? ' hour' : ' hours')
+        : 'în ' + hr + (hr === 1 ? ' oră' : ' ore');
     }
 
-    if (offset === 1) return 'mâine, ora 19:30';
-    return dateStr + ' · în ' + offset + ' zile';
+    if (offset === 1) return lang === 'en' ? 'tomorrow, 19:30' : 'mâine, ora 19:30';
+    return dateStr + (lang === 'en' ? ' · in ' + offset + ' days' : ' · în ' + offset + ' zile');
   }
 
   var el = document.getElementById('meeting-when');
-  if (el) el.textContent = nextMeetingText();
+  function renderMeetingWhen() { if (el) el.textContent = nextMeetingText(); }
+  renderMeetingWhen();
+
+  var _mwOrigSetLang = window.setLang;
+  window.setLang = function (lang) {
+    if (_mwOrigSetLang) _mwOrigSetLang(lang);
+    renderMeetingWhen();
+  };
 })();
 </script>
 </body>

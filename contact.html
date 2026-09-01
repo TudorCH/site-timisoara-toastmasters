@@ -359,9 +359,16 @@
 
       <script>
       (function () {
-        const MONTHS = ['Ianuarie','Februarie','Martie','Aprilie','Mai','Iunie',
+        const MONTHS_RO = ['Ianuarie','Februarie','Martie','Aprilie','Mai','Iunie',
                         'Iulie','August','Septembrie','Octombrie','Noiembrie','Decembrie'];
-        const DAYS   = ['L','M','M','J','V','S','D'];
+        const MONTHS_EN = ['January','February','March','April','May','June',
+                        'July','August','September','October','November','December'];
+        const DAYS_RO = ['L','M','M','J','V','S','D'];
+        const DAYS_EN = ['M','T','W','T','F','S','S'];
+        function siteLang() { return (window.tmtLang && window.tmtLang()) || 'ro'; }
+        function MONTHS() { return siteLang() === 'en' ? MONTHS_EN : MONTHS_RO; }
+        function DAYS() { return siteLang() === 'en' ? DAYS_EN : DAYS_RO; }
+        function localeTag() { return siteLang() === 'en' ? 'en-US' : 'ro-RO'; }
         const _now = new Date();
         const YR = _now.getFullYear();
         const START_M = _now.getMonth();
@@ -385,13 +392,13 @@
           const lw       = lastWed(m);
           const startDow = mf(firstDay);
 
-          document.getElementById('cal-month-label').textContent = MONTHS[m] + ' ' + YR;
+          document.getElementById('cal-month-label').textContent = MONTHS()[m] + ' ' + YR;
           document.getElementById('cal-prev').disabled = m <= START_M;
           document.getElementById('cal-next').disabled = m >= END_M;
 
           let html = '';
           html += `<div class="grid grid-cols-7 mb-1">`;
-          DAYS.forEach((d, i) => {
+          DAYS().forEach((d, i) => {
             html += `<div class="text-center text-[10px] font-semibold py-1 ${i===2?'text-maroon':'text-gray-500'}">${d}</div>`;
           });
           html += `</div><div class="grid grid-cols-7 gap-y-1">`;
@@ -417,7 +424,7 @@
                 cls = lang==='EN' ? 'bg-amber-100 text-amber-700 font-bold hover:bg-amber-200 transition-colors' : 'text-maroon font-bold transition-colors';
                 if (lang==='RO') sty = 'background:rgba(119,36,50,.18)';
               }
-              const _ariaDate = new Date(YR, m, day).toLocaleDateString('ro-RO', {weekday:'long', day:'numeric', month:'long'});
+              const _ariaDate = new Date(YR, m, day).toLocaleDateString(localeTag(), {weekday:'long', day:'numeric', month:'long'});
               html += `<div class="flex items-center justify-center">
                 <button class="w-11 h-11 rounded-full text-sm ${cls}" style="${sty}" onclick="calSel(${m},${day},'${lang}')" aria-label="${_ariaDate}, ședință ${lang}">${day}</button>
               </div>`;
@@ -448,19 +455,21 @@
           const langText  = document.getElementById('cal-lang-text');
           const langFlag  = document.getElementById('cal-lang-flag');
           const d   = new Date(YR, month, day);
-          const str = d.toLocaleDateString('ro-RO', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
+          const str = d.toLocaleDateString(localeTag(), { weekday:'long', day:'numeric', month:'long', year:'numeric' });
           const dateStr = str.charAt(0).toUpperCase() + str.slice(1);
           dateEl.textContent = dateStr;
           const roFlag = `<span style="display:inline-block;width:14px;height:14px;border-radius:50%;background:linear-gradient(to right,#002B7F 33%,#FCD116 33% 66%,#CE1126 66%)"></span>`;
           const enFlag = `<span style="display:inline-block;width:14px;height:14px;border-radius:50%;overflow:hidden"><svg width="14" height="14" viewBox="0 0 22 22"><rect width="22" height="22" fill="#012169"/><path d="M0 0L22 22M22 0L0 22" stroke="white" stroke-width="6"/><path d="M0 0L22 22M22 0L0 22" stroke="#C8102E" stroke-width="3.5"/><rect x="9" y="0" width="4" height="22" fill="white"/><rect x="0" y="9" width="22" height="4" fill="white"/><rect x="10" y="0" width="2" height="22" fill="#C8102E"/><rect x="0" y="10" width="22" height="2" fill="#C8102E"/></svg></span>`;
-          langText.textContent = lang === 'EN' ? 'Ședință în limba engleză' : 'Ședință în limba română';
+          langText.textContent = siteLang() === 'en'
+            ? (lang === 'EN' ? 'Meeting in English' : 'Meeting in Romanian')
+            : (lang === 'EN' ? 'Ședință în limba engleză' : 'Ședință în limba română');
           langFlag.innerHTML   = lang === 'EN' ? enFlag : roFlag;
           panel.classList.remove('hidden');
 
           const cta     = document.getElementById('cal-cta');
           const ctaTxt  = document.getElementById('cal-cta-text');
-          const shortDate = d.toLocaleDateString('ro-RO', { day:'numeric', month:'long' });
-          ctaTxt.textContent = 'Vreau să vin pe ' + shortDate;
+          const shortDate = d.toLocaleDateString(localeTag(), { day:'numeric', month:'long' });
+          ctaTxt.textContent = (siteLang() === 'en' ? 'I want to come on ' : 'Vreau să vin pe ') + shortDate;
           cta.className = 'w-full flex items-center justify-center gap-2 bg-primary hover:bg-primary-light text-white font-semibold text-sm px-6 py-3 rounded-xl transition-all duration-300 shadow-md shadow-primary/20 hover:scale-[1.02] pointer-events-auto cursor-pointer';
 
           const formField = document.getElementById('form-sedinta');
@@ -480,6 +489,16 @@
             const el = document.getElementById('form-card');
             if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }, 50);
+        };
+
+        var _calOrigSetLang = window.setLang;
+        window.setLang = function (l) {
+          if (_calOrigSetLang) _calOrigSetLang(l);
+          render();
+          if (sel) {
+            const isLastWed = sel.day === lastWed(sel.month);
+            calSel(sel.month, sel.day, isLastWed ? 'EN' : 'RO');
+          }
         };
 
         // Auto-select next upcoming meeting
