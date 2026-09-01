@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script>if ('scrollRestoration' in history) history.scrollRestoration = 'manual';</script>
-  <title>Despre noi | Timișoara Toastmasters</title>
-  <meta name="description" content="Primul club Toastmasters din România, 17 ani, 200+ membri, 1.200+ discursuri. Valori, echipă și structura unei ședințe. Vino miercuri seară în Timișoara." />
+  <title data-i18n="about-title">Despre noi | Timișoara Toastmasters</title>
+  <meta name="description" content="Primul club Toastmasters din România, 17 ani, 200+ membri, 1.200+ discursuri. Valori, echipă și structura unei ședințe. Vino miercuri seară în Timișoara." data-i18n-content="about-desc" />
   <link rel="canonical" href="https://timisoaratoastmasters.ro/despre-noi" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://timisoaratoastmasters.ro/despre-noi" />
   <meta property="og:site_name" content="Timișoara Toastmasters" />
-  <meta property="og:title" content="Public Speaking în Timișoara | Timișoara Toastmasters" />
-  <meta property="og:description" content="Primul club Toastmasters din România, cu 17 ani de activitate și 200+ membri. Miercuri seară în Timișoara – intrare liberă pentru vizitatori." />
+  <meta property="og:title" content="Public Speaking în Timișoara | Timișoara Toastmasters" data-i18n-content="about-og-title" />
+  <meta property="og:description" content="Primul club Toastmasters din România, cu 17 ani de activitate și 200+ membri. Miercuri seară în Timișoara – intrare liberă pentru vizitatori." data-i18n-content="about-og-desc" />
   <meta property="og:image" content="https://timisoaratoastmasters.ro/Images/background-header.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -183,7 +183,7 @@
   </style>
 </head>
 <body class="font-sans bg-white text-gray-900 antialiased">
-<a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[9999] focus:bg-white focus:text-primary focus:font-semibold focus:px-4 focus:py-2 focus:rounded-lg focus:shadow-lg">Sari la conținut</a>
+<a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[9999] focus:bg-white focus:text-primary focus:font-semibold focus:px-4 focus:py-2 focus:rounded-lg focus:shadow-lg" data-i18n="skip-link">Sari la conținut</a>
 
 <!-- ════════════════════ NAVBAR ════════════════════ -->
 <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 shadow-lg shadow-primary/30" style="background:linear-gradient(135deg,#00537f 0%,#004165 55%,#002d47 100%)">
@@ -208,7 +208,7 @@
 
         <!-- Search bar -->
         <div class="relative ml-2">
-          <input id="search-input" type="text" placeholder="Caută…"
+          <input id="search-input" type="text" placeholder="Caută…" data-i18n-ph="search-ph"
             class="search-input bg-white/10 border border-white/20 text-white placeholder-white/40
                    rounded-full pl-4 pr-9 py-1.5 text-sm w-40 focus:w-52 transition-all duration-300"
             oninput="liveSearch(this.value)" onkeydown="if(event.key==='Escape'){closeSearch()}" autocomplete="off" />
@@ -217,7 +217,7 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z"/>
           </svg>
-          <div id="search-dropdown" aria-live="polite" aria-label="Rezultate căutare"
+          <div id="search-dropdown" aria-live="polite" aria-label="Rezultate căutare" data-i18n-aria="search-results-aria"
                class="hidden absolute top-full right-0 mt-2 w-72 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden z-50">
           </div>
         </div>
@@ -228,7 +228,7 @@
             <button data-lang="ro" onclick="setLang('ro')" class="lang-btn active" aria-pressed="true" aria-label="Română"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;background:linear-gradient(to right,#002B7F 33%,#FCD116 33% 66%,#CE1126 66%)"></span></button>
             <button data-lang="en" onclick="setLang('en')" class="lang-btn" aria-pressed="false" aria-label="English"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;overflow:hidden"><svg width="22" height="22" viewBox="0 0 22 22"><rect width="22" height="22" fill="#012169"/><path d="M0 0L22 22M22 0L0 22" stroke="white" stroke-width="6"/><path d="M0 0L22 22M22 0L0 22" stroke="#C8102E" stroke-width="3.5"/><rect x="9" y="0" width="4" height="22" fill="white"/><rect x="0" y="9" width="22" height="4" fill="white"/><rect x="10" y="0" width="2" height="22" fill="#C8102E"/><rect x="0" y="10" width="22" height="2" fill="#C8102E"/></svg></span></button>
           </div>
-          <button id="tts-nav-btn" data-tts-btn aria-label="Citește pagina (Alt+T)" aria-keyshortcuts="Alt+T"
+          <button id="tts-nav-btn" data-tts-btn aria-label="Citește pagina (Alt+T)" data-i18n-aria="tts-aria" aria-keyshortcuts="Alt+T"
                   class="text-white/80 hover:text-white p-1.5 rounded-full bg-white/15 hover:bg-white/25 transition-colors">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
           </button>
@@ -243,13 +243,13 @@
 
       <!-- Mobile right side: search icon + hamburger -->
       <div class="flex lg:hidden items-center gap-2">
-        <button onclick="toggleSearch()" aria-label="Caută pe site" class="text-white p-2 rounded-full hover:bg-white/10 transition-colors">
+        <button onclick="toggleSearch()" aria-label="Caută pe site" data-i18n-aria="search-open-aria" class="text-white p-2 rounded-full hover:bg-white/10 transition-colors">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z"/>
           </svg>
         </button>
-        <button id="mobile-toggle" onclick="toggleMobile()" aria-label="Deschide meniu" aria-expanded="false" aria-controls="mobile-menu"
+        <button id="mobile-toggle" onclick="toggleMobile()" aria-label="Deschide meniu" data-i18n-aria="menu-open" aria-expanded="false" aria-controls="mobile-menu"
                 class="text-white p-2 rounded-full hover:bg-white/10 transition-colors">
           <svg id="icon-menu"  class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
@@ -264,7 +264,7 @@
     <!-- Mobile search bar (toggled) -->
     <div id="mobile-search" class="hidden pb-3 px-1">
       <div class="relative">
-        <input id="mobile-search-input" type="text" placeholder="Caută pe site…"
+        <input id="mobile-search-input" type="text" placeholder="Caută pe site…" data-i18n-ph="search-ph-mobile"
           class="search-input w-full bg-white/10 border border-white/20 text-white placeholder-white/40
                  rounded-full pl-4 pr-10 py-2 text-sm"
           oninput="liveSearch(this.value,'mobile')"
@@ -275,7 +275,7 @@
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z"/>
         </svg>
-        <div id="mobile-search-dropdown" aria-live="polite" aria-label="Rezultate căutare"
+        <div id="mobile-search-dropdown" aria-live="polite" aria-label="Rezultate căutare" data-i18n-aria="search-results-aria"
              class="hidden absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden z-50">
         </div>
       </div>
@@ -295,7 +295,7 @@
             <button data-lang="ro" onclick="setLang('ro')" class="lang-btn active" aria-pressed="true" aria-label="Română"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;background:linear-gradient(to right,#002B7F 33%,#FCD116 33% 66%,#CE1126 66%)"></span></button>
             <button data-lang="en" onclick="setLang('en')" class="lang-btn" aria-pressed="false" aria-label="English"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;overflow:hidden"><svg width="22" height="22" viewBox="0 0 22 22"><rect width="22" height="22" fill="#012169"/><path d="M0 0L22 22M22 0L0 22" stroke="white" stroke-width="6"/><path d="M0 0L22 22M22 0L0 22" stroke="#C8102E" stroke-width="3.5"/><rect x="9" y="0" width="4" height="22" fill="white"/><rect x="0" y="9" width="22" height="4" fill="white"/><rect x="10" y="0" width="2" height="22" fill="#C8102E"/><rect x="0" y="10" width="22" height="2" fill="#C8102E"/></svg></span></button>
           </div>
-          <button id="tts-mob-btn" data-tts-btn aria-label="Citește pagina (Alt+T)"
+          <button id="tts-mob-btn" data-tts-btn aria-label="Citește pagina (Alt+T)" data-i18n-aria="tts-aria"
                   class="text-white/60 hover:text-white p-1.5 rounded-full hover:bg-white/10 transition-colors ml-auto">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
           </button>
@@ -303,7 +303,7 @@
         <div class="pt-2 px-4">
           <a href="contact" onclick="closeMobile()"
              class="block w-full bg-gold text-primary font-semibold px-5 py-3 rounded-full text-sm text-center shadow-md">
-            Hai și tu la o ședință →
+            <span data-i18n="nav-cta">Hai și tu la o ședință</span> →
           </a>
         </div>
       </div>
@@ -376,19 +376,19 @@
           <svg class="w-5 h-5 text-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
           </svg>
-          <span class="text-white/90 text-base font-medium">Miercuri 19:30–21:00</span>
+          <span class="text-white/90 text-base font-medium" data-i18n="hero-d1">Miercuri 19:30–21:00</span>
         </div>
         <div class="flex items-center gap-3">
           <svg class="w-5 h-5 text-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
           </svg>
-          <span class="text-white/90 text-base font-medium">Cowork The Office, Timișoara</span>
+          <span class="text-white/90 text-base font-medium" data-i18n="hero-d2">Cowork The Office, Timișoara</span>
         </div>
         <div class="flex items-center gap-3">
           <svg class="w-5 h-5 text-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
             <path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/><path d="M13 5v2M13 17v2M13 11v2"/>
           </svg>
-          <span class="text-white/90 text-base font-medium">Intrare liberă</span>
+          <span class="text-white/90 text-base font-medium" data-i18n="hero-d3">Intrare liberă</span>
         </div>
       </div>
 
@@ -438,7 +438,7 @@
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
 
       <!-- 1: Integritate -->
-      <div class="flip-card h-48 sm:h-52 lg:h-56 cursor-pointer select-none" onclick="benFlip(this)" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){benFlip(this);event.preventDefault()}" aria-label="Integritate – apasă pentru detalii">
+      <div class="flip-card h-48 sm:h-52 lg:h-56 cursor-pointer select-none" onclick="benFlip(this)" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){benFlip(this);event.preventDefault()}" aria-label="Integritate – apasă pentru detalii" data-i18n-aria="aria-val-1">
         <div class="flip-inner">
           <div class="flip-front bg-white border border-gray-100 shadow-sm p-5 lg:p-6 gap-3">
             <div class="w-12 h-12 lg:w-14 lg:h-14 rounded-2xl flex items-center justify-center flex-shrink-0" style="background:#772432"><svg class="w-6 h-6 lg:w-7 lg:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div>
@@ -454,7 +454,7 @@
       </div>
 
       <!-- 2: Respect -->
-      <div class="flip-card h-48 sm:h-52 lg:h-56 cursor-pointer select-none" onclick="benFlip(this)" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){benFlip(this);event.preventDefault()}" aria-label="Respect – apasă pentru detalii">
+      <div class="flip-card h-48 sm:h-52 lg:h-56 cursor-pointer select-none" onclick="benFlip(this)" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){benFlip(this);event.preventDefault()}" aria-label="Respect – apasă pentru detalii" data-i18n-aria="aria-val-2">
         <div class="flip-inner">
           <div class="flip-front bg-white border border-gray-100 shadow-sm p-5 lg:p-6 gap-3">
             <div class="w-12 h-12 lg:w-14 lg:h-14 rounded-2xl flex items-center justify-center flex-shrink-0" style="background:#772432"><svg class="w-6 h-6 lg:w-7 lg:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
@@ -470,7 +470,7 @@
       </div>
 
       <!-- 3: Serviciu -->
-      <div class="flip-card h-48 sm:h-52 lg:h-56 cursor-pointer select-none" onclick="benFlip(this)" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){benFlip(this);event.preventDefault()}" aria-label="Serviciu – apasă pentru detalii">
+      <div class="flip-card h-48 sm:h-52 lg:h-56 cursor-pointer select-none" onclick="benFlip(this)" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){benFlip(this);event.preventDefault()}" aria-label="Serviciu – apasă pentru detalii" data-i18n-aria="aria-val-3">
         <div class="flip-inner">
           <div class="flip-front bg-white border border-gray-100 shadow-sm p-5 lg:p-6 gap-3">
             <div class="w-12 h-12 lg:w-14 lg:h-14 rounded-2xl flex items-center justify-center flex-shrink-0" style="background:#772432"><svg class="w-6 h-6 lg:w-7 lg:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg></div>
@@ -486,7 +486,7 @@
       </div>
 
       <!-- 4: Excelență -->
-      <div class="flip-card h-48 sm:h-52 lg:h-56 cursor-pointer select-none" onclick="benFlip(this)" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){benFlip(this);event.preventDefault()}" aria-label="Excelență – apasă pentru detalii">
+      <div class="flip-card h-48 sm:h-52 lg:h-56 cursor-pointer select-none" onclick="benFlip(this)" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){benFlip(this);event.preventDefault()}" aria-label="Excelență – apasă pentru detalii" data-i18n-aria="aria-val-4">
         <div class="flip-inner">
           <div class="flip-front bg-white border border-gray-100 shadow-sm p-5 lg:p-6 gap-3">
             <div class="w-12 h-12 lg:w-14 lg:h-14 rounded-2xl flex items-center justify-center flex-shrink-0" style="background:#772432"><svg class="w-6 h-6 lg:w-7 lg:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg></div>
@@ -564,8 +564,8 @@
             </svg>
           </div>
           <span class="eve-label block text-[11px] sm:text-[11px] lg:text-xs font-bold uppercase tracking-wide text-gray-400 text-center leading-tight transition-all duration-300 w-14 sm:w-20 lg:w-24">
-            <span class="sm:hidden">Pregătite</span>
-            <span class="hidden sm:inline">Discursuri<br>pregătite</span>
+            <span class="sm:hidden" data-i18n="eve-tab1-short">Pregătite</span>
+            <span class="hidden sm:inline" data-i18n="eve-tab1-long">Discursuri<br>pregătite</span>
           </span>
         </button>
 
@@ -576,8 +576,8 @@
             </svg>
           </div>
           <span class="eve-label block text-[11px] sm:text-[11px] lg:text-xs font-bold uppercase tracking-wide text-gray-400 text-center leading-tight transition-all duration-300 w-14 sm:w-20 lg:w-24">
-            <span class="sm:hidden">Improvizate</span>
-            <span class="hidden sm:inline">Discursuri<br>Improvizate</span>
+            <span class="sm:hidden" data-i18n="eve-tab2-short">Improvizate</span>
+            <span class="hidden sm:inline" data-i18n="eve-tab2-long">Discursuri<br>Improvizate</span>
           </span>
         </button>
 
@@ -588,8 +588,8 @@
             </svg>
           </div>
           <span class="eve-label block text-[11px] sm:text-[11px] lg:text-xs font-bold uppercase tracking-wide text-gray-400 text-center leading-tight transition-all duration-300 w-14 sm:w-20 lg:w-24">
-            <span class="sm:hidden">Feedback</span>
-            <span class="hidden sm:inline">Feedback<br>structurat</span>
+            <span class="sm:hidden" data-i18n="eve-tab3-short">Feedback</span>
+            <span class="hidden sm:inline" data-i18n="eve-tab3-long">Feedback<br>structurat</span>
           </span>
         </button>
 
@@ -605,9 +605,9 @@
             <svg class="w-5 h-5 sm:w-7 sm:h-7 text-maroon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg>
           </div>
           <div>
-            <div class="text-[10px] font-bold uppercase tracking-widest text-maroon mb-1">Prima Parte</div>
-            <h3 class="font-heading font-bold text-maroon text-base sm:text-xl mb-1 sm:mb-2">Discursuri pregătite</h3>
-            <p class="text-gray-500 text-sm sm:text-base leading-relaxed">Membrii susțin discursuri pregătite din programul Pathways, fiecare cu obiective clare de comunicare și structură bine definită. De la discursuri introductive la prezentări complexe cu date și argumente.</p>
+            <div class="text-[10px] font-bold uppercase tracking-widest text-maroon mb-1" data-i18n="eve-eyebrow1">Prima Parte</div>
+            <h3 class="font-heading font-bold text-maroon text-base sm:text-xl mb-1 sm:mb-2" data-i18n="eve-panel1-title">Discursuri pregătite</h3>
+            <p class="text-gray-500 text-sm sm:text-base leading-relaxed" data-i18n="eve-panel1-body">Membrii susțin discursuri pregătite din programul Pathways, fiecare cu obiective clare de comunicare și structură bine definită. De la discursuri introductive la prezentări complexe cu date și argumente.</p>
           </div>
         </div>
       </div>
@@ -618,9 +618,9 @@
             <svg class="w-5 h-5 sm:w-7 sm:h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
           </div>
           <div>
-            <div class="text-[10px] font-bold uppercase tracking-widest text-primary mb-1">A doua parte</div>
-            <h3 class="font-heading font-bold text-primary text-base sm:text-xl mb-1 sm:mb-2">Discursuri Improvizate</h3>
-            <p class="text-gray-500 text-sm sm:text-base leading-relaxed">Primești un subiect și ai 1–2 minute să vorbești despre el. Excelent pentru a-ți dezvolta gândirea rapidă și spontaneitatea în fața unui public.</p>
+            <div class="text-[10px] font-bold uppercase tracking-widest text-primary mb-1" data-i18n="eve-eyebrow2">A doua parte</div>
+            <h3 class="font-heading font-bold text-primary text-base sm:text-xl mb-1 sm:mb-2" data-i18n="eve-panel2-title">Discursuri Improvizate</h3>
+            <p class="text-gray-500 text-sm sm:text-base leading-relaxed" data-i18n="eve-panel2-body">Primești un subiect și ai 1–2 minute să vorbești despre el. Excelent pentru a-ți dezvolta gândirea rapidă și spontaneitatea în fața unui public.</p>
           </div>
         </div>
       </div>
@@ -631,9 +631,9 @@
             <svg class="w-5 h-5 sm:w-7 sm:h-7 text-maroon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
           </div>
           <div>
-            <div class="text-[10px] font-bold uppercase tracking-widest text-maroon mb-1">Ultima parte</div>
-            <h3 class="font-heading font-bold text-maroon text-base sm:text-xl mb-1 sm:mb-2">Feedback structurat</h3>
-            <p class="text-gray-500 text-sm sm:text-base leading-relaxed">Fiecare discurs primește feedback detaliat de la un evaluator desemnat: ce a mers bine și ce poate fi îmbunătățit. Un feedback concret, aplicabil chiar de la ședința următoare.</p>
+            <div class="text-[10px] font-bold uppercase tracking-widest text-maroon mb-1" data-i18n="eve-eyebrow3">Ultima parte</div>
+            <h3 class="font-heading font-bold text-maroon text-base sm:text-xl mb-1 sm:mb-2" data-i18n="eve-panel3-title">Feedback structurat</h3>
+            <p class="text-gray-500 text-sm sm:text-base leading-relaxed" data-i18n="eve-panel3-body">Fiecare discurs primește feedback detaliat de la un evaluator desemnat: ce a mers bine și ce poate fi îmbunătățit. Un feedback concret, aplicabil chiar de la ședința următoare.</p>
           </div>
         </div>
       </div>
@@ -653,7 +653,7 @@
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-5">
 
       <!-- 1: Vorbit în public -->
-      <div class="flip-card h-52 sm:h-52 lg:h-56 cursor-pointer select-none" onclick="benFlip(this)" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){benFlip(this);event.preventDefault()}" aria-label="Vorbit în public – apasă pentru detalii">
+      <div class="flip-card h-52 sm:h-52 lg:h-56 cursor-pointer select-none" onclick="benFlip(this)" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){benFlip(this);event.preventDefault()}" aria-label="Vorbit în public – apasă pentru detalii" data-i18n-aria="aria-ben-1">
         <div class="flip-inner">
           <div class="flip-front bg-white border border-gray-100 shadow-sm p-5 lg:p-6 gap-2">
             <div class="w-11 h-11 lg:w-14 lg:h-14 rounded-2xl flex items-center justify-center" style="background:#772432"><svg class="w-5 h-5 lg:w-7 lg:h-7 text-white" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg></div>
@@ -671,7 +671,7 @@
       </div>
 
       <!-- 2: Leadership -->
-      <div class="flip-card h-52 sm:h-52 lg:h-56 cursor-pointer select-none" onclick="benFlip(this)" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){benFlip(this);event.preventDefault()}" aria-label="Leadership – apasă pentru detalii">
+      <div class="flip-card h-52 sm:h-52 lg:h-56 cursor-pointer select-none" onclick="benFlip(this)" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){benFlip(this);event.preventDefault()}" aria-label="Leadership – apasă pentru detalii" data-i18n-aria="aria-ben-2">
         <div class="flip-inner">
           <div class="flip-front bg-white border border-gray-100 shadow-sm p-5 lg:p-6 gap-2">
             <div class="w-11 h-11 lg:w-14 lg:h-14 rounded-2xl flex items-center justify-center" style="background:#772432"><svg class="w-5 h-5 lg:w-7 lg:h-7 text-white" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg></div>
@@ -689,7 +689,7 @@
       </div>
 
       <!-- 3: Feedback -->
-      <div class="flip-card h-52 sm:h-52 lg:h-56 cursor-pointer select-none" onclick="benFlip(this)" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){benFlip(this);event.preventDefault()}" aria-label="Feedback constructiv – apasă pentru detalii">
+      <div class="flip-card h-52 sm:h-52 lg:h-56 cursor-pointer select-none" onclick="benFlip(this)" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){benFlip(this);event.preventDefault()}" aria-label="Feedback constructiv – apasă pentru detalii" data-i18n-aria="aria-ben-3">
         <div class="flip-inner">
           <div class="flip-front bg-white border border-gray-100 shadow-sm p-5 lg:p-6 gap-2">
             <div class="w-11 h-11 lg:w-14 lg:h-14 rounded-2xl flex items-center justify-center" style="background:#772432"><svg class="w-5 h-5 lg:w-7 lg:h-7 text-white" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg></div>
@@ -707,7 +707,7 @@
       </div>
 
       <!-- 4: Pathways -->
-      <div class="flip-card h-52 sm:h-52 lg:h-56 cursor-pointer select-none" onclick="benFlip(this)" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){benFlip(this);event.preventDefault()}" aria-label="Pathways – apasă pentru detalii">
+      <div class="flip-card h-52 sm:h-52 lg:h-56 cursor-pointer select-none" onclick="benFlip(this)" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){benFlip(this);event.preventDefault()}" aria-label="Pathways – apasă pentru detalii" data-i18n-aria="aria-ben-4">
         <div class="flip-inner">
           <div class="flip-front bg-white border border-gray-100 shadow-sm p-5 lg:p-6 gap-2">
             <div class="w-11 h-11 lg:w-14 lg:h-14 rounded-2xl flex items-center justify-center" style="background:#772432"><svg class="w-5 h-5 lg:w-7 lg:h-7 text-white" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg></div>
@@ -726,7 +726,7 @@
 
       <!-- Cards 5-8: hidden on mobile by default, shown via toggle -->
       <!-- 5: Încredere -->
-      <div class="ben-extra hidden lg:block flip-card h-52 sm:h-52 lg:h-56 cursor-pointer select-none" onclick="benFlip(this)" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){benFlip(this);event.preventDefault()}" aria-label="Încredere în sine – apasă pentru detalii">
+      <div class="ben-extra hidden lg:block flip-card h-52 sm:h-52 lg:h-56 cursor-pointer select-none" onclick="benFlip(this)" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){benFlip(this);event.preventDefault()}" aria-label="Încredere în sine – apasă pentru detalii" data-i18n-aria="aria-ben-5">
         <div class="flip-inner">
           <div class="flip-front bg-white border border-gray-100 shadow-sm p-5 lg:p-6 gap-2">
             <div class="w-11 h-11 lg:w-14 lg:h-14 rounded-2xl flex items-center justify-center" style="background:#772432"><svg class="w-5 h-5 lg:w-7 lg:h-7 text-white" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
@@ -744,7 +744,7 @@
       </div>
 
       <!-- 6: Networking -->
-      <div class="ben-extra hidden lg:block flip-card h-52 sm:h-52 lg:h-56 cursor-pointer select-none" onclick="benFlip(this)" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){benFlip(this);event.preventDefault()}" aria-label="Networking – apasă pentru detalii">
+      <div class="ben-extra hidden lg:block flip-card h-52 sm:h-52 lg:h-56 cursor-pointer select-none" onclick="benFlip(this)" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){benFlip(this);event.preventDefault()}" aria-label="Networking – apasă pentru detalii" data-i18n-aria="aria-ben-6">
         <div class="flip-inner">
           <div class="flip-front bg-white border border-gray-100 shadow-sm p-5 lg:p-6 gap-2">
             <div class="w-11 h-11 lg:w-14 lg:h-14 rounded-2xl flex items-center justify-center" style="background:#772432"><svg class="w-5 h-5 lg:w-7 lg:h-7 text-white" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg></div>
@@ -762,7 +762,7 @@
       </div>
 
       <!-- 7: Competiții -->
-      <div class="ben-extra hidden lg:block flip-card h-52 sm:h-52 lg:h-56 cursor-pointer select-none" onclick="benFlip(this)" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){benFlip(this);event.preventDefault()}" aria-label="Competiții – apasă pentru detalii">
+      <div class="ben-extra hidden lg:block flip-card h-52 sm:h-52 lg:h-56 cursor-pointer select-none" onclick="benFlip(this)" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){benFlip(this);event.preventDefault()}" aria-label="Competiții – apasă pentru detalii" data-i18n-aria="aria-ben-7">
         <div class="flip-inner">
           <div class="flip-front bg-white border border-gray-100 shadow-sm p-5 lg:p-6 gap-2">
             <div class="w-11 h-11 lg:w-14 lg:h-14 rounded-2xl flex items-center justify-center" style="background:#772432"><svg class="w-5 h-5 lg:w-7 lg:h-7 text-white" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg></div>
@@ -780,7 +780,7 @@
       </div>
 
       <!-- 8: Creștere personală -->
-      <div class="ben-extra hidden lg:block flip-card h-52 sm:h-52 lg:h-56 cursor-pointer select-none" onclick="benFlip(this)" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){benFlip(this);event.preventDefault()}" aria-label="Creștere personală – apasă pentru detalii">
+      <div class="ben-extra hidden lg:block flip-card h-52 sm:h-52 lg:h-56 cursor-pointer select-none" onclick="benFlip(this)" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){benFlip(this);event.preventDefault()}" aria-label="Creștere personală – apasă pentru detalii" data-i18n-aria="aria-ben-8">
         <div class="flip-inner">
           <div class="flip-front bg-white border border-gray-100 shadow-sm p-5 lg:p-6 gap-2">
             <div class="w-11 h-11 lg:w-14 lg:h-14 rounded-2xl flex items-center justify-center" style="background:#772432"><svg class="w-5 h-5 lg:w-7 lg:h-7 text-white" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg></div>
@@ -802,7 +802,7 @@
     <div class="lg:hidden flex justify-center mt-4">
       <button id="ben-toggle-btn" onclick="toggleBenefits()"
         class="inline-flex items-center gap-2 text-sm font-semibold text-white bg-maroon hover:bg-maroon/90 px-5 py-2.5 rounded-full transition-colors">
-        <span id="ben-toggle-label">Arată toate beneficiile</span>
+        <span id="ben-toggle-label" data-i18n="ben-toggle-label">Arată toate beneficiile</span>
         <svg id="ben-toggle-icon" class="w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
         </svg>
@@ -817,8 +817,8 @@
 <section id="conducere" class="py-12 lg:py-24 bg-gray-50 scroll-fade">
   <div class="max-w-7xl mx-auto px-5 lg:px-8">
     <div class="text-center mb-8 lg:mb-16">
-      <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-maroon mb-5">Cine face parte din conducerea clubului?</h2>
-      <p class="text-gray-500 text-base sm:text-lg max-w-2xl mx-auto text-center">Echipa care organizează, coordonează și inspiră clubul în fiecare săptămână.</p>
+      <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-maroon mb-5" data-i18n="team-h2">Cine face parte din conducerea clubului?</h2>
+      <p class="text-gray-500 text-base sm:text-lg max-w-2xl mx-auto text-center" data-i18n="team-p">Echipa care organizează, coordonează și inspiră clubul în fiecare săptămână.</p>
     </div>
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
 
@@ -827,19 +827,19 @@
           <img src="Profile%20Pictures/robert-cernea-pp.webp" alt="Robert Cernea" class="w-full h-full object-cover" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'text-white font-bold text-lg\'>RC</span>'" loading="lazy" />
         </div>
         <div class="font-semibold text-gray-800 text-sm">Robert Cernea</div>
-        <div class="text-maroon text-xs font-semibold mt-1">Președinte</div>
+        <div class="text-maroon text-xs font-semibold mt-1" data-i18n="role-president">Președinte</div>
         <a href="https://www.linkedin.com/in/robert-cernea/" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="inline-flex items-center justify-center mt-2 w-9 h-9 rounded-full bg-[#0077B5]/10 hover:bg-[#0077B5] text-[#0077B5] hover:text-white transition-colors duration-200">
           <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
         </a>
         <div class="leader-overlay">
           <div class="flex items-center gap-2 sm:gap-3.5 w-full mb-2.5">
             <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden flex-shrink-0 ring-2 ring-white"><img src="Profile%20Pictures/robert-cernea-pp.webp" class="w-full h-full object-cover" alt="Robert Cernea" loading="lazy"/></div>
-            <div class="text-left min-w-0 flex-1"><div class="font-bold text-white text-xs sm:text-sm leading-tight">Robert Cernea</div><div class="text-white/65 text-[10px] sm:text-xs mt-0.5">Președinte</div></div>
+            <div class="text-left min-w-0 flex-1"><div class="font-bold text-white text-xs sm:text-sm leading-tight">Robert Cernea</div><div class="text-white/65 text-[10px] sm:text-xs mt-0.5" data-i18n="role-president">Președinte</div></div>
           </div>
           <ul class="text-white text-xs sm:text-sm text-left space-y-1.5 w-full mb-2 mt-1.5 flex-1 min-h-0 overflow-y-auto" style="overscroll-behavior:contain;-webkit-overflow-scrolling:touch">
-            <li class="flex items-start gap-1.5"><span class="text-white/70 flex-shrink-0">·</span>Conduce și coordonează întâlnirile clubului</li>
-            <li class="flex items-start gap-1.5"><span class="text-white/70 flex-shrink-0">·</span>Dezvoltă echipa de lideri și susține membrii</li>
-            <li class="flex items-start gap-1.5"><span class="text-white/70 flex-shrink-0">·</span>Stabilește direcția strategică și viziunea clubului</li>
+            <li class="flex items-start gap-1.5" data-i18n="team-li-president-1"><span class="text-white/70 flex-shrink-0">·</span>Conduce și coordonează întâlnirile clubului</li>
+            <li class="flex items-start gap-1.5" data-i18n="team-li-president-2"><span class="text-white/70 flex-shrink-0">·</span>Dezvoltă echipa de lideri și susține membrii</li>
+            <li class="flex items-start gap-1.5" data-i18n="team-li-president-3"><span class="text-white/70 flex-shrink-0">·</span>Stabilește direcția strategică și viziunea clubului</li>
           </ul>
           <a href="https://www.linkedin.com/in/robert-cernea/" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="mt-auto flex-shrink-0 w-full flex items-center justify-center gap-2 bg-[#0077B5] hover:bg-[#005885] text-white text-xs font-semibold py-2 rounded-xl transition-colors duration-200 mt-2.5">
             <svg class="w-3.5 h-3.5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
@@ -853,19 +853,19 @@
           <img src="Profile%20Pictures/olga-lancea-pp.webp" alt="Olga Lancea" class="w-full h-full object-cover" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'text-white font-bold text-lg\'>OL</span>'" loading="lazy" />
         </div>
         <div class="font-semibold text-gray-800 text-sm">Olga Lancea</div>
-        <div class="text-maroon text-xs font-semibold mt-1"><span class="sm:hidden">VP Educație</span><span class="hidden sm:inline">Vicepreședinte Educație</span></div>
+        <div class="text-maroon text-xs font-semibold mt-1"><span class="sm:hidden" data-i18n="role-vp-ed-short">VP Educație</span><span class="hidden sm:inline" data-i18n="role-vp-ed-long">Vicepreședinte Educație</span></div>
         <a href="https://www.linkedin.com/in/olga-lancea/" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="inline-flex items-center justify-center mt-2 w-9 h-9 rounded-full bg-[#0077B5]/10 hover:bg-[#0077B5] text-[#0077B5] hover:text-white transition-colors duration-200">
           <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
         </a>
         <div class="leader-overlay">
           <div class="flex items-center gap-2 sm:gap-3.5 w-full mb-2.5">
             <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden flex-shrink-0 ring-2 ring-white"><img src="Profile%20Pictures/olga-lancea-pp.webp" class="w-full h-full object-cover" alt="Olga Lancea" loading="lazy"/></div>
-            <div class="text-left min-w-0 flex-1"><div class="font-bold text-white text-xs sm:text-sm leading-tight">Olga Lancea</div><div class="text-white/65 text-[10px] sm:text-xs mt-0.5">VP Educație</div></div>
+            <div class="text-left min-w-0 flex-1"><div class="font-bold text-white text-xs sm:text-sm leading-tight">Olga Lancea</div><div class="text-white/65 text-[10px] sm:text-xs mt-0.5" data-i18n="role-vp-ed-short">VP Educație</div></div>
           </div>
           <ul class="text-white text-xs sm:text-sm text-left space-y-1.5 w-full mb-2 mt-1.5 flex-1 min-h-0 overflow-y-auto" style="overscroll-behavior:contain;-webkit-overflow-scrolling:touch">
-            <li class="flex items-start gap-1.5"><span class="text-white/70 flex-shrink-0">·</span>Coordonează programul educațional al clubului</li>
-            <li class="flex items-start gap-1.5"><span class="text-white/70 flex-shrink-0">·</span>Planifică discursurile și rolurile din întâlniri</li>
-            <li class="flex items-start gap-1.5"><span class="text-white/70 flex-shrink-0">·</span>Sprijină dezvoltarea și progresul membrilor</li>
+            <li class="flex items-start gap-1.5" data-i18n="team-li-vped-1"><span class="text-white/70 flex-shrink-0">·</span>Coordonează programul educațional al clubului</li>
+            <li class="flex items-start gap-1.5" data-i18n="team-li-vped-2"><span class="text-white/70 flex-shrink-0">·</span>Planifică discursurile și rolurile din întâlniri</li>
+            <li class="flex items-start gap-1.5" data-i18n="team-li-vped-3"><span class="text-white/70 flex-shrink-0">·</span>Sprijină dezvoltarea și progresul membrilor</li>
           </ul>
           <a href="https://www.linkedin.com/in/olga-lancea/" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="mt-auto flex-shrink-0 w-full flex items-center justify-center gap-2 bg-[#0077B5] hover:bg-[#005885] text-white text-xs font-semibold py-2 rounded-xl transition-colors duration-200 mt-2.5">
             <svg class="w-3.5 h-3.5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
@@ -879,19 +879,19 @@
           <img src="Profile%20Pictures/ionut-cornean-pp.webp" alt="Ionuț Cornean" class="w-full h-full object-cover" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'text-white font-bold text-lg\'>IC</span>'" loading="lazy" />
         </div>
         <div class="font-semibold text-gray-800 text-sm">Ionuț Cornean</div>
-        <div class="text-maroon text-xs font-semibold mt-1"><span class="sm:hidden">VP Membri</span><span class="hidden sm:inline">Vicepreședinte Membri</span></div>
+        <div class="text-maroon text-xs font-semibold mt-1"><span class="sm:hidden" data-i18n="role-vp-mem-short">VP Membri</span><span class="hidden sm:inline" data-i18n="role-vp-mem-long">Vicepreședinte Membri</span></div>
         <a href="https://www.linkedin.com/in/ionut-cornean/" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="inline-flex items-center justify-center mt-2 w-9 h-9 rounded-full bg-[#0077B5]/10 hover:bg-[#0077B5] text-[#0077B5] hover:text-white transition-colors duration-200">
           <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
         </a>
         <div class="leader-overlay">
           <div class="flex items-center gap-2 sm:gap-3.5 w-full mb-2.5">
             <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden flex-shrink-0 ring-2 ring-white"><img src="Profile%20Pictures/ionut-cornean-pp.webp" class="w-full h-full object-cover" alt="Ionuț Cornean" loading="lazy"/></div>
-            <div class="text-left min-w-0 flex-1"><div class="font-bold text-white text-xs sm:text-sm leading-tight">Ionuț Cornean</div><div class="text-white/65 text-[10px] sm:text-xs mt-0.5">VP Membri</div></div>
+            <div class="text-left min-w-0 flex-1"><div class="font-bold text-white text-xs sm:text-sm leading-tight">Ionuț Cornean</div><div class="text-white/65 text-[10px] sm:text-xs mt-0.5" data-i18n="role-vp-mem-short">VP Membri</div></div>
           </div>
           <ul class="text-white text-xs sm:text-sm text-left space-y-1.5 w-full mb-2 mt-1.5 flex-1 min-h-0 overflow-y-auto" style="overscroll-behavior:contain;-webkit-overflow-scrolling:touch">
-            <li class="flex items-start gap-1.5"><span class="text-white/70 flex-shrink-0">·</span>Recrutează și integrează membri noi în club</li>
-            <li class="flex items-start gap-1.5"><span class="text-white/70 flex-shrink-0">·</span>Menține contactul cu membrii și le oferă suport</li>
-            <li class="flex items-start gap-1.5"><span class="text-white/70 flex-shrink-0">·</span>Recunoaște contribuțiile și motivează implicarea membrilor</li>
+            <li class="flex items-start gap-1.5" data-i18n="team-li-vpmem-1"><span class="text-white/70 flex-shrink-0">·</span>Recrutează și integrează membri noi în club</li>
+            <li class="flex items-start gap-1.5" data-i18n="team-li-vpmem-2"><span class="text-white/70 flex-shrink-0">·</span>Menține contactul cu membrii și le oferă suport</li>
+            <li class="flex items-start gap-1.5" data-i18n="team-li-vpmem-3"><span class="text-white/70 flex-shrink-0">·</span>Recunoaște contribuțiile și motivează implicarea membrilor</li>
           </ul>
           <a href="https://www.linkedin.com/in/ionut-cornean/" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="mt-auto flex-shrink-0 w-full flex items-center justify-center gap-2 bg-[#0077B5] hover:bg-[#005885] text-white text-xs font-semibold py-2 rounded-xl transition-colors duration-200 mt-2.5">
             <svg class="w-3.5 h-3.5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
@@ -905,19 +905,19 @@
           <img src="Profile%20Pictures/lavinia-borza-pp.webp" alt="Lavinia Borza" class="w-full h-full object-cover" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'text-white font-bold text-lg\'>LB</span>'" loading="lazy" />
         </div>
         <div class="font-semibold text-gray-800 text-sm">Lavinia Borza</div>
-        <div class="text-maroon text-xs font-semibold mt-1"><span class="sm:hidden">VP Relații Publice</span><span class="hidden sm:inline">Vicepreședinte Relații Publice</span></div>
+        <div class="text-maroon text-xs font-semibold mt-1"><span class="sm:hidden" data-i18n="role-vp-pr-short">VP Relații Publice</span><span class="hidden sm:inline" data-i18n="role-vp-pr-long">Vicepreședinte Relații Publice</span></div>
         <a href="https://www.instagram.com/laviniaborza.marketing/" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="inline-flex items-center justify-center mt-2 w-9 h-9 rounded-full bg-[#E1306C]/10 hover:bg-[#E1306C] text-[#E1306C] hover:text-white transition-colors duration-200">
           <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
         </a>
         <div class="leader-overlay">
           <div class="flex items-center gap-2 sm:gap-3.5 w-full mb-2.5">
             <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden flex-shrink-0 ring-2 ring-white"><img src="Profile%20Pictures/lavinia-borza-pp.webp" class="w-full h-full object-cover" alt="Lavinia Borza" loading="lazy"/></div>
-            <div class="text-left min-w-0 flex-1"><div class="font-bold text-white text-xs sm:text-sm leading-tight">Lavinia Borza</div><div class="text-white/65 text-[10px] sm:text-xs mt-0.5">VP Relații Publice</div></div>
+            <div class="text-left min-w-0 flex-1"><div class="font-bold text-white text-xs sm:text-sm leading-tight">Lavinia Borza</div><div class="text-white/65 text-[10px] sm:text-xs mt-0.5" data-i18n="role-vp-pr-short">VP Relații Publice</div></div>
           </div>
           <ul class="text-white text-xs sm:text-sm text-left space-y-1.5 w-full mb-2 mt-1.5 flex-1 min-h-0 overflow-y-auto" style="overscroll-behavior:contain;-webkit-overflow-scrolling:touch">
-            <li class="flex items-start gap-1.5"><span class="text-white/70 flex-shrink-0">·</span>Promovează clubul pe rețelele sociale și în comunitate</li>
-            <li class="flex items-start gap-1.5"><span class="text-white/70 flex-shrink-0">·</span>Dezvoltă parteneriate și relații cu organizații externe</li>
-            <li class="flex items-start gap-1.5"><span class="text-white/70 flex-shrink-0">·</span>Gestionează comunicarea și imaginea publică a clubului</li>
+            <li class="flex items-start gap-1.5" data-i18n="team-li-vppr-1"><span class="text-white/70 flex-shrink-0">·</span>Promovează clubul pe rețelele sociale și în comunitate</li>
+            <li class="flex items-start gap-1.5" data-i18n="team-li-vppr-2"><span class="text-white/70 flex-shrink-0">·</span>Dezvoltă parteneriate și relații cu organizații externe</li>
+            <li class="flex items-start gap-1.5" data-i18n="team-li-vppr-3"><span class="text-white/70 flex-shrink-0">·</span>Gestionează comunicarea și imaginea publică a clubului</li>
           </ul>
           <a href="https://www.instagram.com/laviniaborza.marketing/" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="mt-auto flex-shrink-0 w-full flex items-center justify-center gap-2 hover:opacity-90 text-white text-xs font-semibold py-2 rounded-xl transition-opacity duration-200 mt-2.5" style="background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)">
             <svg class="w-3.5 h-3.5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
@@ -931,19 +931,19 @@
           <img src="Profile%20Pictures/tudor-chiu-pp.webp" alt="Tudor Chiu" class="w-full h-full object-cover" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'text-white font-bold text-lg\'>TC</span>'" loading="lazy" />
         </div>
         <div class="font-semibold text-gray-800 text-sm">Tudor Chiu</div>
-        <div class="text-maroon text-xs font-semibold mt-1">Secretar</div>
+        <div class="text-maroon text-xs font-semibold mt-1" data-i18n="role-secretary">Secretar</div>
         <a href="https://www.linkedin.com/in/tudor-chiu-181b3b182/" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="inline-flex items-center justify-center mt-2 w-9 h-9 rounded-full bg-[#0077B5]/10 hover:bg-[#0077B5] text-[#0077B5] hover:text-white transition-colors duration-200">
           <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
         </a>
         <div class="leader-overlay">
           <div class="flex items-center gap-2 sm:gap-3.5 w-full mb-2.5">
             <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden flex-shrink-0 ring-2 ring-white"><img src="Profile%20Pictures/tudor-chiu-pp.webp" class="w-full h-full object-cover" alt="Tudor Chiu" loading="lazy"/></div>
-            <div class="text-left min-w-0 flex-1"><div class="font-bold text-white text-xs sm:text-sm leading-tight">Tudor Chiu</div><div class="text-white/65 text-[10px] sm:text-xs mt-0.5">Secretar</div></div>
+            <div class="text-left min-w-0 flex-1"><div class="font-bold text-white text-xs sm:text-sm leading-tight">Tudor Chiu</div><div class="text-white/65 text-[10px] sm:text-xs mt-0.5" data-i18n="role-secretary">Secretar</div></div>
           </div>
           <ul class="text-white text-xs sm:text-sm text-left space-y-1.5 w-full mb-2 mt-1.5 flex-1 min-h-0 overflow-y-auto" style="overscroll-behavior:contain;-webkit-overflow-scrolling:touch">
-            <li class="flex items-start gap-1.5"><span class="text-white/70 flex-shrink-0">·</span>Gestionează documentele și procesele verbale ale clubului</li>
-            <li class="flex items-start gap-1.5"><span class="text-white/70 flex-shrink-0">·</span>Păstrează evidența ședințelor și a deciziilor boardului</li>
-            <li class="flex items-start gap-1.5"><span class="text-white/70 flex-shrink-0">·</span>Administrează corespondența și arhiva clubului</li>
+            <li class="flex items-start gap-1.5" data-i18n="team-li-sec-1"><span class="text-white/70 flex-shrink-0">·</span>Gestionează documentele și procesele verbale ale clubului</li>
+            <li class="flex items-start gap-1.5" data-i18n="team-li-sec-2"><span class="text-white/70 flex-shrink-0">·</span>Păstrează evidența ședințelor și a deciziilor boardului</li>
+            <li class="flex items-start gap-1.5" data-i18n="team-li-sec-3"><span class="text-white/70 flex-shrink-0">·</span>Administrează corespondența și arhiva clubului</li>
           </ul>
           <a href="https://www.linkedin.com/in/tudor-chiu-181b3b182/" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="mt-auto flex-shrink-0 w-full flex items-center justify-center gap-2 bg-[#0077B5] hover:bg-[#005885] text-white text-xs font-semibold py-2 rounded-xl transition-colors duration-200 mt-2.5">
             <svg class="w-3.5 h-3.5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
@@ -957,19 +957,19 @@
           <img src="Profile%20Pictures/mihaela-cristina-pp.webp" alt="Cristina Stroia" class="w-full h-full object-cover" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'text-white font-bold text-lg\'>MC</span>'" loading="lazy" />
         </div>
         <div class="font-semibold text-gray-800 text-sm">Cristina Stroia</div>
-        <div class="text-maroon text-xs font-semibold mt-1">Trezorier</div>
+        <div class="text-maroon text-xs font-semibold mt-1" data-i18n="role-treasurer">Trezorier</div>
         <a href="https://www.linkedin.com/in/mihaela-cristina-867092276/" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="inline-flex items-center justify-center mt-2 w-9 h-9 rounded-full bg-[#0077B5]/10 hover:bg-[#0077B5] text-[#0077B5] hover:text-white transition-colors duration-200">
           <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
         </a>
         <div class="leader-overlay">
           <div class="flex items-center gap-2 sm:gap-3.5 w-full mb-2.5">
             <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden flex-shrink-0 ring-2 ring-white"><img src="Profile%20Pictures/mihaela-cristina-pp.webp" class="w-full h-full object-cover" alt="Mihaela Cristina" loading="lazy"/></div>
-            <div class="text-left min-w-0 flex-1"><div class="font-bold text-white text-xs sm:text-sm leading-tight">Cristina Stroia</div><div class="text-white/65 text-[10px] sm:text-xs mt-0.5">Trezorier</div></div>
+            <div class="text-left min-w-0 flex-1"><div class="font-bold text-white text-xs sm:text-sm leading-tight">Cristina Stroia</div><div class="text-white/65 text-[10px] sm:text-xs mt-0.5" data-i18n="role-treasurer">Trezorier</div></div>
           </div>
           <ul class="text-white text-xs sm:text-sm text-left space-y-1.5 w-full mb-2 mt-1.5 flex-1 min-h-0 overflow-y-auto" style="overscroll-behavior:contain;-webkit-overflow-scrolling:touch">
-            <li class="flex items-start gap-1.5"><span class="text-white/70 flex-shrink-0">·</span>Administrează și gestionează finanțele clubului</li>
-            <li class="flex items-start gap-1.5"><span class="text-white/70 flex-shrink-0">·</span>Întocmește bugetul anual și rapoartele financiare</li>
-            <li class="flex items-start gap-1.5"><span class="text-white/70 flex-shrink-0">·</span>Asigură transparența financiară și respectarea procedurilor financiare ale organizației</li>
+            <li class="flex items-start gap-1.5" data-i18n="team-li-tres-1"><span class="text-white/70 flex-shrink-0">·</span>Administrează și gestionează finanțele clubului</li>
+            <li class="flex items-start gap-1.5" data-i18n="team-li-tres-2"><span class="text-white/70 flex-shrink-0">·</span>Întocmește bugetul anual și rapoartele financiare</li>
+            <li class="flex items-start gap-1.5" data-i18n="team-li-tres-3"><span class="text-white/70 flex-shrink-0">·</span>Asigură transparența financiară și respectarea procedurilor financiare ale organizației</li>
           </ul>
           <a href="https://www.linkedin.com/in/mihaela-cristina-867092276/" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="mt-auto flex-shrink-0 w-full flex items-center justify-center gap-2 bg-[#0077B5] hover:bg-[#005885] text-white text-xs font-semibold py-2 rounded-xl transition-colors duration-200 mt-2.5">
             <svg class="w-3.5 h-3.5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
@@ -983,19 +983,19 @@
           <img src="Profile%20Pictures/sergiu-spatar-pp.webp" alt="Sergiu Spătar" class="w-full h-full object-cover" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'text-white font-bold text-lg\'>SS</span>'" loading="lazy" />
         </div>
         <div class="font-semibold text-gray-800 text-sm">Sergiu Spătar</div>
-        <div class="text-maroon text-xs font-semibold mt-1">Sergent</div>
+        <div class="text-maroon text-xs font-semibold mt-1" data-i18n="role-sergeant">Sergent</div>
         <a href="https://www.linkedin.com/in/sergiu-sp%C4%83tar-534947216/" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="inline-flex items-center justify-center mt-2 w-9 h-9 rounded-full bg-[#0077B5]/10 hover:bg-[#0077B5] text-[#0077B5] hover:text-white transition-colors duration-200">
           <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
         </a>
         <div class="leader-overlay">
           <div class="flex items-center gap-2 sm:gap-3.5 w-full mb-2.5">
             <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden flex-shrink-0 ring-2 ring-white"><img src="Profile%20Pictures/sergiu-spatar-pp.webp" class="w-full h-full object-cover" alt="Sergiu Spătar" loading="lazy"/></div>
-            <div class="text-left min-w-0 flex-1"><div class="font-bold text-white text-xs sm:text-sm leading-tight">Sergiu Spătar</div><div class="text-white/65 text-[10px] sm:text-xs mt-0.5">Sergent</div></div>
+            <div class="text-left min-w-0 flex-1"><div class="font-bold text-white text-xs sm:text-sm leading-tight">Sergiu Spătar</div><div class="text-white/65 text-[10px] sm:text-xs mt-0.5" data-i18n="role-sergeant">Sergent</div></div>
           </div>
           <ul class="text-white text-xs sm:text-sm text-left space-y-1.5 w-full mb-2 mt-1.5 flex-1 min-h-0 overflow-y-auto" style="overscroll-behavior:contain;-webkit-overflow-scrolling:touch">
-            <li class="flex items-start gap-1.5"><span class="text-white/70 flex-shrink-0">·</span>Menține ordinea și disciplina în timpul întâlnirilor</li>
-            <li class="flex items-start gap-1.5"><span class="text-white/70 flex-shrink-0">·</span>Asigură desfășurarea fluentă a ședințelor de club</li>
-            <li class="flex items-start gap-1.5"><span class="text-white/70 flex-shrink-0">·</span>Oferă sprijin liderilor de rol și membrilor atunci când este necesar</li>
+            <li class="flex items-start gap-1.5" data-i18n="team-li-serg-1"><span class="text-white/70 flex-shrink-0">·</span>Menține ordinea și disciplina în timpul întâlnirilor</li>
+            <li class="flex items-start gap-1.5" data-i18n="team-li-serg-2"><span class="text-white/70 flex-shrink-0">·</span>Asigură desfășurarea fluentă a ședințelor de club</li>
+            <li class="flex items-start gap-1.5" data-i18n="team-li-serg-3"><span class="text-white/70 flex-shrink-0">·</span>Oferă sprijin liderilor de rol și membrilor atunci când este necesar</li>
           </ul>
           <a href="https://www.linkedin.com/in/sergiu-sp%C4%83tar-534947216/" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="mt-auto flex-shrink-0 w-full flex items-center justify-center gap-2 bg-[#0077B5] hover:bg-[#005885] text-white text-xs font-semibold py-2 rounded-xl transition-colors duration-200 mt-2.5">
             <svg class="w-3.5 h-3.5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
@@ -1009,19 +1009,19 @@
           <img src="Profile%20Pictures/adriana-stamatin-pp.webp" alt="Adriana Stamatin" class="w-full h-full object-cover" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'text-white font-bold text-lg\'>AS</span>'" loading="lazy" />
         </div>
         <div class="font-semibold text-gray-800 text-sm">Adriana Stamatin</div>
-        <div class="text-maroon text-xs font-semibold mt-1">Președinte Precedent</div>
+        <div class="text-maroon text-xs font-semibold mt-1" data-i18n="role-past-president">Președinte Precedent</div>
         <a href="https://www.linkedin.com/in/stamatin-adriana-michaela-57236590/" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="inline-flex items-center justify-center mt-2 w-9 h-9 rounded-full bg-[#0077B5]/10 hover:bg-[#0077B5] text-[#0077B5] hover:text-white transition-colors duration-200">
           <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
         </a>
         <div class="leader-overlay">
           <div class="flex items-center gap-2 sm:gap-3.5 w-full mb-2.5">
             <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden flex-shrink-0 ring-2 ring-white"><img src="Profile%20Pictures/adriana-stamatin-pp.webp" class="w-full h-full object-cover" alt="Adriana Stamatin" loading="lazy"/></div>
-            <div class="text-left min-w-0 flex-1"><div class="font-bold text-white text-xs sm:text-sm leading-tight">Adriana Stamatin</div><div class="text-white/65 text-[10px] sm:text-xs mt-0.5">Fost Președinte</div></div>
+            <div class="text-left min-w-0 flex-1"><div class="font-bold text-white text-xs sm:text-sm leading-tight">Adriana Stamatin</div><div class="text-white/65 text-[10px] sm:text-xs mt-0.5" data-i18n="role-former-president">Fost Președinte</div></div>
           </div>
           <ul class="text-white text-xs sm:text-sm text-left space-y-1.5 w-full mb-2 mt-1.5 flex-1 min-h-0 overflow-y-auto" style="overscroll-behavior:contain;-webkit-overflow-scrolling:touch">
-            <li class="flex items-start gap-1.5"><span class="text-white/70 flex-shrink-0">·</span>Oferă continuitate și consultanță echipei de conducere</li>
-            <li class="flex items-start gap-1.5"><span class="text-white/70 flex-shrink-0">·</span>Susține dezvoltarea strategică pe termen lung a clubului</li>
-            <li class="flex items-start gap-1.5"><span class="text-white/70 flex-shrink-0">·</span>Este mentor și resursă pentru liderii clubului</li>
+            <li class="flex items-start gap-1.5" data-i18n="team-li-past-1"><span class="text-white/70 flex-shrink-0">·</span>Oferă continuitate și consultanță echipei de conducere</li>
+            <li class="flex items-start gap-1.5" data-i18n="team-li-past-2"><span class="text-white/70 flex-shrink-0">·</span>Susține dezvoltarea strategică pe termen lung a clubului</li>
+            <li class="flex items-start gap-1.5" data-i18n="team-li-past-3"><span class="text-white/70 flex-shrink-0">·</span>Este mentor și resursă pentru liderii clubului</li>
           </ul>
           <a href="https://www.linkedin.com/in/stamatin-adriana-michaela-57236590/" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="mt-auto flex-shrink-0 w-full flex items-center justify-center gap-2 bg-[#0077B5] hover:bg-[#005885] text-white text-xs font-semibold py-2 rounded-xl transition-colors duration-200 mt-2.5">
             <svg class="w-3.5 h-3.5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
@@ -1119,14 +1119,14 @@
     const isOpen = !m.classList.toggle('hidden');
     a.classList.toggle('hidden');
     b.classList.toggle('hidden');
-    if (btn) { btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false'); btn.setAttribute('aria-label', isOpen ? 'Închide meniu' : 'Deschide meniu'); }
+    if (btn) { btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false'); btn.setAttribute('aria-label', window.tmtMenuLabel(isOpen)); }
   }
   function closeMobile() {
     const btn = document.getElementById('mobile-toggle');
     document.getElementById('mobile-menu').classList.add('hidden');
     document.getElementById('icon-menu').classList.remove('hidden');
     document.getElementById('icon-close').classList.add('hidden');
-    if (btn) { btn.setAttribute('aria-expanded', 'false'); btn.setAttribute('aria-label', 'Deschide meniu'); }
+    if (btn) { btn.setAttribute('aria-expanded', 'false'); btn.setAttribute('aria-label', window.tmtMenuLabel(false)); }
   }
 
   // ── Scroll shadow ──
@@ -1326,7 +1326,7 @@
 
 <!-- Back to top -->
 <button id="btt-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})"
-  aria-label="Înapoi sus"
+  aria-label="Înapoi sus" data-i18n-aria="back-to-top-aria"
   class="fixed z-40 w-9 h-9 rounded-full text-white shadow-lg
          flex items-center justify-center opacity-0 pointer-events-none"
   style="background:#004165;bottom:84px;right:16px;transition:opacity .3s ease,transform .3s ease;">

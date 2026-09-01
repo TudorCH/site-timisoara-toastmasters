@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script>if ('scrollRestoration' in history) history.scrollRestoration = 'manual';</script>
-  <title>Înscrie-te ca Invitat | Timișoara Toastmasters</title>
-  <meta name="description" content="Înscrie-te ca invitat gratuit la Timișoara Toastmasters. Ședințe miercuri 19:30–21:00, Cowork The Office. Alege o dată și te contactăm în 24 de ore." />
+  <title data-i18n="contact-title">Înscrie-te ca Invitat | Timișoara Toastmasters</title>
+  <meta name="description" content="Înscrie-te ca invitat gratuit la Timișoara Toastmasters. Ședințe miercuri 19:30–21:00, Cowork The Office. Alege o dată și te contactăm în 24 de ore." data-i18n-content="contact-desc" />
   <link rel="canonical" href="https://timisoaratoastmasters.ro/contact" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://timisoaratoastmasters.ro/contact" />
   <meta property="og:site_name" content="Timișoara Toastmasters" />
-  <meta property="og:title" content="Înscrie-te ca Invitat | Timișoara Toastmasters" />
-  <meta property="og:description" content="Vino ca invitat gratuit la o ședință Toastmasters în Timișoara. Miercuri 19:30–21:00 la Cowork The Office." />
+  <meta property="og:title" content="Înscrie-te ca Invitat | Timișoara Toastmasters" data-i18n-content="contact-og-title" />
+  <meta property="og:description" content="Vino ca invitat gratuit la o ședință Toastmasters în Timișoara. Miercuri 19:30–21:00 la Cowork The Office." data-i18n-content="contact-og-desc" />
   <meta property="og:image" content="https://timisoaratoastmasters.ro/Images/background-header.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -109,7 +109,7 @@
   </style>
 </head>
 <body class="font-sans bg-white text-gray-900 antialiased">
-<a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[9999] focus:bg-white focus:text-primary focus:font-semibold focus:px-4 focus:py-2 focus:rounded-lg focus:shadow-lg">Sari la conținut</a>
+<a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[9999] focus:bg-white focus:text-primary focus:font-semibold focus:px-4 focus:py-2 focus:rounded-lg focus:shadow-lg" data-i18n="skip-link">Sari la conținut</a>
 
 <!-- ════════════════════ NAVBAR ════════════════════ -->
 <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 shadow-lg shadow-primary/30" style="background:linear-gradient(135deg,#00537f 0%,#004165 55%,#002d47 100%)">
@@ -134,7 +134,7 @@
 
         <!-- Search bar -->
         <div class="relative ml-2">
-          <input id="search-input" type="text" placeholder="Caută…"
+          <input id="search-input" type="text" placeholder="Caută…" data-i18n-ph="search-ph"
             class="search-input bg-white/10 border border-white/20 text-white placeholder-white/40
                    rounded-full pl-4 pr-9 py-1.5 text-sm w-40 focus:w-52 transition-all duration-300"
             oninput="liveSearch(this.value)" onkeydown="if(event.key==='Escape'){closeSearch()}" autocomplete="off" />
@@ -143,7 +143,7 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z"/>
           </svg>
-          <div id="search-dropdown" aria-live="polite" aria-label="Rezultate căutare"
+          <div id="search-dropdown" aria-live="polite" aria-label="Rezultate căutare" data-i18n-aria="search-results-aria"
                class="hidden absolute top-full right-0 mt-2 w-72 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden z-50">
           </div>
         </div>
@@ -154,7 +154,7 @@
             <button data-lang="ro" onclick="setLang('ro')" class="lang-btn active" aria-pressed="true" aria-label="Română"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;background:linear-gradient(to right,#002B7F 33%,#FCD116 33% 66%,#CE1126 66%)"></span></button>
             <button data-lang="en" onclick="setLang('en')" class="lang-btn" aria-pressed="false" aria-label="English"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;overflow:hidden"><svg width="22" height="22" viewBox="0 0 22 22"><rect width="22" height="22" fill="#012169"/><path d="M0 0L22 22M22 0L0 22" stroke="white" stroke-width="6"/><path d="M0 0L22 22M22 0L0 22" stroke="#C8102E" stroke-width="3.5"/><rect x="9" y="0" width="4" height="22" fill="white"/><rect x="0" y="9" width="22" height="4" fill="white"/><rect x="10" y="0" width="2" height="22" fill="#C8102E"/><rect x="0" y="10" width="22" height="2" fill="#C8102E"/></svg></span></button>
           </div>
-          <button id="tts-nav-btn" data-tts-btn aria-label="Citește pagina (Alt+T)" aria-keyshortcuts="Alt+T"
+          <button id="tts-nav-btn" data-tts-btn aria-label="Citește pagina (Alt+T)" data-i18n-aria="tts-aria" aria-keyshortcuts="Alt+T"
                   class="text-white/80 hover:text-white p-1.5 rounded-full bg-white/15 hover:bg-white/25 transition-colors">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
           </button>
@@ -169,13 +169,13 @@
 
       <!-- Mobile right side: search icon + hamburger -->
       <div class="flex lg:hidden items-center gap-2">
-        <button onclick="toggleSearch()" aria-label="Caută pe site" class="text-white p-2 rounded-full hover:bg-white/10 transition-colors">
+        <button onclick="toggleSearch()" aria-label="Caută pe site" data-i18n-aria="search-open-aria" class="text-white p-2 rounded-full hover:bg-white/10 transition-colors">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z"/>
           </svg>
         </button>
-        <button id="mobile-toggle" onclick="toggleMobile()" aria-label="Deschide meniu" aria-expanded="false" aria-controls="mobile-menu"
+        <button id="mobile-toggle" onclick="toggleMobile()" aria-label="Deschide meniu" data-i18n-aria="menu-open" aria-expanded="false" aria-controls="mobile-menu"
                 class="text-white p-2 rounded-full hover:bg-white/10 transition-colors">
           <svg id="icon-menu"  class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
@@ -190,7 +190,7 @@
     <!-- Mobile search bar (toggled) -->
     <div id="mobile-search" class="hidden pb-3 px-1">
       <div class="relative">
-        <input id="mobile-search-input" type="text" placeholder="Caută pe site…"
+        <input id="mobile-search-input" type="text" placeholder="Caută pe site…" data-i18n-ph="search-ph-mobile"
           class="search-input w-full bg-white/10 border border-white/20 text-white placeholder-white/40
                  rounded-full pl-4 pr-10 py-2 text-sm"
           oninput="liveSearch(this.value,'mobile')"
@@ -201,7 +201,7 @@
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z"/>
         </svg>
-        <div id="mobile-search-dropdown" aria-live="polite" aria-label="Rezultate căutare"
+        <div id="mobile-search-dropdown" aria-live="polite" aria-label="Rezultate căutare" data-i18n-aria="search-results-aria"
              class="hidden absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden z-50">
         </div>
       </div>
@@ -221,7 +221,7 @@
             <button data-lang="ro" onclick="setLang('ro')" class="lang-btn active" aria-pressed="true" aria-label="Română"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;background:linear-gradient(to right,#002B7F 33%,#FCD116 33% 66%,#CE1126 66%)"></span></button>
             <button data-lang="en" onclick="setLang('en')" class="lang-btn" aria-pressed="false" aria-label="English"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;overflow:hidden"><svg width="22" height="22" viewBox="0 0 22 22"><rect width="22" height="22" fill="#012169"/><path d="M0 0L22 22M22 0L0 22" stroke="white" stroke-width="6"/><path d="M0 0L22 22M22 0L0 22" stroke="#C8102E" stroke-width="3.5"/><rect x="9" y="0" width="4" height="22" fill="white"/><rect x="0" y="9" width="22" height="4" fill="white"/><rect x="10" y="0" width="2" height="22" fill="#C8102E"/><rect x="0" y="10" width="22" height="2" fill="#C8102E"/></svg></span></button>
           </div>
-          <button id="tts-mob-btn" data-tts-btn aria-label="Citește pagina (Alt+T)"
+          <button id="tts-mob-btn" data-tts-btn aria-label="Citește pagina (Alt+T)" data-i18n-aria="tts-aria"
                   class="text-white/60 hover:text-white p-1.5 rounded-full hover:bg-white/10 transition-colors ml-auto">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
           </button>
@@ -264,12 +264,12 @@
           <div class="bg-maroon px-4 py-3 flex items-center justify-between">
             <!-- Stânga: navigare + lună/an -->
             <div class="flex items-center gap-1">
-              <button id="cal-prev" onclick="calNav(-1)" aria-label="Luna anterioară"
+              <button id="cal-prev" onclick="calNav(-1)" aria-label="Luna anterioară" data-i18n-aria="cal-prev-month"
                 class="w-8 h-8 flex items-center justify-center rounded-full text-white/70 hover:text-white hover:bg-white/10 transition-colors disabled:opacity-30 disabled:cursor-not-allowed">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
               </button>
               <div id="cal-month-label" class="text-white font-bold text-base px-1"></div>
-              <button id="cal-next" onclick="calNav(1)" aria-label="Luna următoare"
+              <button id="cal-next" onclick="calNav(1)" aria-label="Luna următoare" data-i18n-aria="cal-next-month"
                 class="w-8 h-8 flex items-center justify-center rounded-full text-white/70 hover:text-white hover:bg-white/10 transition-colors disabled:opacity-30 disabled:cursor-not-allowed">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
               </button>
@@ -302,7 +302,7 @@
                 <!-- Locatie -->
                 <div class="flex items-center gap-2">
                   <svg class="w-3.5 h-3.5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                  <a href="https://maps.app.goo.gl/xf5mo1xVjvU79gQo8" target="_blank" class="text-xs text-maroon hover:underline">Cowork The Office, Et. 2<span class="hidden sm:inline">, Calea Aradului nr.11</span></a>
+                  <a href="https://maps.app.goo.gl/xf5mo1xVjvU79gQo8" target="_blank" class="text-xs text-maroon hover:underline" data-i18n="venue-link-full">Cowork The Office, Et. 2<span class="hidden sm:inline">, Calea Aradului nr.11</span></a>
                 </div>
                 <!-- Limba -->
                 <div class="flex items-center gap-2">
@@ -332,7 +332,7 @@
         <div id="map-card" class="overflow-hidden rounded-2xl shadow-sm border border-gray-100">
           <div class="bg-maroon px-5 py-4 flex items-center gap-2">
             <svg class="w-4 h-4 text-white/80 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            <span class="text-white font-bold text-base">Unde ne găsești?</span>
+            <span class="text-white font-bold text-base" data-i18n="find-us-label">Unde ne găsești?</span>
           </div>
           <iframe
             src="https://maps.google.com/maps?q=45.7653976,21.225036&output=embed&z=17&hl=ro"
@@ -340,12 +340,12 @@
             style="border:0; display:block;"
             allowfullscreen="" loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
-            title="Cowork The Office Timișoara">
+            title="Cowork The Office Timișoara" data-i18n-title="venue-iframe-title">
           </iframe>
           <div class="bg-white px-5 py-3.5">
             <div class="mb-3">
-              <div class="font-semibold text-primary text-sm">Cowork The Office, Et. 2</div>
-              <div class="text-gray-400 text-xs mt-0.5">Clădirea BCR, Calea Aradului nr.11, Timișoara</div>
+              <div class="font-semibold text-primary text-sm" data-i18n="venue-name-floor">Cowork The Office, Et. 2</div>
+              <div class="text-gray-400 text-xs mt-0.5" data-i18n="venue-address">Clădirea BCR, Calea Aradului nr.11, Timișoara</div>
             </div>
             <a href="https://maps.app.goo.gl/xf5mo1xVjvU79gQo8" target="_blank"
                class="flex items-center justify-center gap-2 w-full bg-primary hover:bg-primary-light text-white text-sm font-semibold px-4 py-3 rounded-xl transition-colors">
@@ -509,7 +509,7 @@
           <div class="flex items-center gap-2">
             <span class="flex items-center gap-1 text-xs text-white/70"><svg class="w-3 h-3 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Gratuit</span>
             <span class="text-white/30 text-xs">·</span>
-            <span class="flex items-center gap-1 text-xs text-white/70"><svg class="w-3 h-3 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Răspuns în maxim 24h</span>
+            <span class="flex items-center gap-1 text-xs text-white/70"><svg class="w-3 h-3 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span data-i18n="form-response-24h">Răspuns în maxim 24h</span></span>
           </div>
         </div>
         <div class="px-5 pt-3 pb-5 sm:px-8 sm:pt-2 sm:pb-5">
@@ -545,7 +545,7 @@
                 <span class="text-gray-400 font-normal" data-i18n="ct-optional">(opțional)</span>
               </label>
               <div class="relative">
-                <input id="form-sedinta" type="text" readonly placeholder="Alege o dată din calendar"
+                <input id="form-sedinta" type="text" readonly placeholder="Alege o dată din calendar" data-i18n-ph="cal-select-date-ph"
                   class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm bg-gray-50 text-gray-800 font-medium cursor-default focus:outline-none" />
                 <svg class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
               </div>
@@ -553,7 +553,7 @@
           </div>
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1.5" data-i18n="ct-mesaj">Mesaj</label>
-            <textarea rows="2" placeholder="Sunt interesat să vin ca invitat la o ședință…" maxlength="1000"
+            <textarea rows="2" placeholder="Sunt interesat să vin ca invitat la o ședință…" data-i18n-ph="msg-placeholder" maxlength="1000"
               class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm ct-input transition-all resize-none"></textarea>
           </div>
           <button type="submit" id="form-submit-btn"
@@ -561,10 +561,10 @@
                    transition-all duration-200 hover:scale-[1.02] shadow-md shadow-primary/20">
             <span data-i18n="ct-submit">Rezervă-mi locul</span>
           </button>
-          <p id="form-error" role="alert" aria-live="assertive" tabindex="-1" class="hidden text-sm text-red-600 text-center bg-red-50 rounded-xl py-2.5 px-4">
+          <p id="form-error" role="alert" aria-live="assertive" tabindex="-1" class="hidden text-sm text-red-600 text-center bg-red-50 rounded-xl py-2.5 px-4" data-i18n="form-error-msg">
             A apărut o eroare. Încearcă din nou sau scrie-ne pe <a href="https://www.facebook.com/timisoara.toastmasters" target="_blank" class="font-semibold underline">Facebook</a>.
           </p>
-          <p class="text-xs text-gray-400 text-center mt-2">Prin trimitere accepți <a href="cookies" class="text-maroon hover:underline">Politica de confidențialitate</a></p>
+          <p class="text-xs text-gray-400 text-center mt-2" data-i18n="form-privacy-line">Prin trimitere accepți <a href="cookies" class="text-maroon hover:underline">Politica de confidențialitate</a></p>
         </form>
         <div id="form-success" role="status" aria-live="polite" tabindex="-1" class="hidden text-center py-8">
           <div class="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -580,7 +580,7 @@
       <div id="transport-card" class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100">
         <div class="bg-maroon px-5 py-4 flex items-center gap-2">
           <svg class="w-4 h-4 text-white/80 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
-          <span class="text-white font-bold text-base">Cum ajungi la noi</span>
+          <span class="text-white font-bold text-base" data-i18n="how-to-get-here">Cum ajungi la noi</span>
         </div>
         <div class="divide-y divide-gray-100">
 
@@ -590,7 +590,7 @@
               <div class="w-4 flex-shrink-0 flex items-center justify-center">
                 <svg class="w-4 h-4 text-gray-600" viewBox="0 -960 960 960" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M240-200v40q0 17-11.5 28.5T200-120h-40q-17 0-28.5-11.5T120-160v-320l84-240q6-18 21.5-29t34.5-11h440q19 0 34.5 11t21.5 29l84 240v320q0 17-11.5 28.5T800-120h-40q-17 0-28.5-11.5T720-160v-40H240Zm-8-360h496l-42-120H274l-42 120Zm-32 80v200-200Zm100 160q25 0 42.5-17.5T360-380q0-25-17.5-42.5T300-440q-25 0-42.5 17.5T240-380q0 25 17.5 42.5T300-320Zm360 0q25 0 42.5-17.5T720-380q0-25-17.5-42.5T660-440q-25 0-42.5 17.5T600-380q0 25 17.5 42.5T660-320Zm-460 40h560v-200H200v200Z"/></svg>
               </div>
-              <span class="text-sm font-semibold text-gray-800">Cu Mașina</span>
+              <span class="text-sm font-semibold text-gray-800" data-i18n="by-car-label">Cu Mașina</span>
             </div>
             <div class="flex items-center gap-2 ml-6" style="margin-top:5px">
               <a href="https://maps.app.goo.gl/PQoQdrmokS5bJwqj8" target="_blank" rel="noopener" class="loc-pill loc-pill--park" style="background:#004165;color:#fff">
@@ -610,31 +610,31 @@
           <div class="p-5 space-y-2.5">
             <div class="flex items-center gap-2 flex-wrap">
               <svg class="w-4 h-4 text-gray-600 flex-shrink-0" viewBox="0 -960 960 960" fill="currentColor"><path d="M240-120q-17 0-28.5-11.5T200-160v-82q-18-20-29-44.5T160-340v-380q0-83 77-121.5T480-880q172 0 246 37t74 123v380q0 29-11 53.5T760-242v82q0 17-11.5 28.5T720-120h-40q-17 0-28.5-11.5T640-160v-40H320v40q0 17-11.5 28.5T280-120h-40Zm242-640h224-448 224Zm158 280H240h480-80Zm-400-80h480v-120H240v120Zm142.5 222.5Q400-355 400-380t-17.5-42.5Q365-440 340-440t-42.5 17.5Q280-405 280-380t17.5 42.5Q315-320 340-320t42.5-17.5Zm280 0Q680-355 680-380t-17.5-42.5Q645-440 620-440t-42.5 17.5Q560-405 560-380t17.5 42.5Q595-320 620-320t42.5-17.5ZM258-760h448q-15-17-64.5-28.5T482-800q-107 0-156.5 12.5T258-760Zm62 480h320q33 0 56.5-23.5T720-360v-120H240v120q0 33 23.5 56.5T320-280Z"/></svg>
-              <span class="text-sm font-semibold text-gray-800">Transport în Comun</span>
+              <span class="text-sm font-semibold text-gray-800" data-i18n="public-transport-label">Transport în Comun</span>
               <span class="text-gray-300">·</span>
-              <a href="https://maps.app.goo.gl/wrYDGGFdRYe3RBxf6" target="_blank" rel="noopener" class="text-sm font-semibold text-primary hover:underline">Stația Piața Consiliul Europei</a>
+              <a href="https://maps.app.goo.gl/wrYDGGFdRYe3RBxf6" target="_blank" rel="noopener" class="text-sm font-semibold text-primary hover:underline" data-i18n="bus-stop-link">Stația Piața Consiliul Europei</a>
             </div>
             <div class="flex items-center gap-2 flex-wrap pl-6" style="margin-top:5px">
-              <button class="transport-pill-lg" data-line="E2" style="background:#f97316" aria-label="Stații linia E2">E2</button>
-              <button class="transport-pill-lg" data-line="14" style="background:#7c3aed" aria-label="Stații linia 14">14</button>
-              <button class="transport-pill-lg" data-line="17" style="background:#7c3aed" aria-label="Stații linia 17">17</button>
-              <button class="transport-pill-lg" data-line="18" style="background:#7c3aed" aria-label="Stații linia 18">18</button>
+              <button class="transport-pill-lg" data-line="E2" style="background:#f97316" aria-label="Stații linia E2" data-i18n-aria="bus-line-e2-aria">E2</button>
+              <button class="transport-pill-lg" data-line="14" style="background:#7c3aed" aria-label="Stații linia 14" data-i18n-aria="bus-line-14-aria">14</button>
+              <button class="transport-pill-lg" data-line="17" style="background:#7c3aed" aria-label="Stații linia 17" data-i18n-aria="bus-line-17-aria">17</button>
+              <button class="transport-pill-lg" data-line="18" style="background:#7c3aed" aria-label="Stații linia 18" data-i18n-aria="bus-line-18-aria">18</button>
             </div>
 
             <script>
             document.addEventListener('DOMContentLoaded', function(){
               const PCE = 'Consiliul Europei';
               const ROUTES = {
-                'E2': { color:'#f97316', label:'Linia Express 2', url:'https://stpt.ro/E2/',
+                'E2': { color:'#f97316', label:window.tmtStr('Linia Express 2','Express Line 2'), url:'https://stpt.ro/E2/',
                   dir1: ['Aumovio','AEM','Bd. Sudului','Spitalul Județean','Sala C. Jude','Complexul Studențesc','Parcul Copiilor','Hector (Bastion)','Oituz', PCE],
                   dir2: ['Holdelor','Stuparilor','Gara de Est','Dedeman','Dacia Service', PCE] },
-                '14': { color:'#7c3aed', label:'Linia 14 – Troleibuz', url:'https://stpt.ro/14-2/',
+                '14': { color:'#7c3aed', label:window.tmtStr('Linia 14 – Troleibuz','Line 14 – Trolleybus'), url:'https://stpt.ro/14-2/',
                   dir1: ['Gh. Barițiu','St. Gării','Gara de Nord','Jiul','Regina Maria','Piața 700','Mărăști', PCE],
                   dir2: ['Ion Ionescu','Sf. Ap. Petru și Pavel','Pomiculturii','Divizia 9','Cimitirul Eroilor', PCE] },
-                '17': { color:'#7c3aed', label:'Linia 17 – Troleibuz', url:'https://stpt.ro/17-2/',
+                '17': { color:'#7c3aed', label:window.tmtStr('Linia 17 – Troleibuz','Line 17 – Trolleybus'), url:'https://stpt.ro/17-2/',
                   dir1: ['Arena Aqua','V. Economu','Renașterii','Samuil Micu','Badea Cârțan','Poliția TM','Au. Popovici','Oituz', PCE],
                   dir2: ['USVT','U.T.T.','Liège','Dacia Service', PCE] },
-                '18': { color:'#7c3aed', label:'Linia 18 – Troleibuz', url:'https://stpt.ro/18-2/',
+                '18': { color:'#7c3aed', label:window.tmtStr('Linia 18 – Troleibuz','Line 18 – Trolleybus'), url:'https://stpt.ro/18-2/',
                   dir1: ['Gh. Barițiu','St. Gării','Gara de Nord','Jiul','Regina Maria','Piața 700','Mărăști', PCE],
                   dir2: ['USVT','U.T.T.','Liège PV','Liège Torontalului','Miresei', PCE] }
               };
@@ -675,12 +675,12 @@
                         <span style="font-size:.78rem;font-weight:600;color:#374151">${r.label}</span>
                       </div>
                       <button onclick="document.getElementById('bus-route-panel').classList.remove('visible');window._busOpenLine=null"
-                        style="background:none;border:none;cursor:pointer;padding:2px;color:#9ca3af;font-size:1rem;line-height:1" aria-label="Închide">✕</button>
+                        style="background:none;border:none;cursor:pointer;padding:2px;color:#9ca3af;font-size:1rem;line-height:1" aria-label="${window.tmtStr('Închide','Close')}">✕</button>
                     </div>
                     ${renderStrip(r.dir1, r.color)}
                     ${renderStrip(r.dir2, r.color)}
                     <a href="${r.url}" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:5px;margin-top:6px;padding:.5rem;border-radius:.6rem;background:#f3f4f6;color:#374151;font-size:.7rem;font-weight:600;text-decoration:none">
-                      Vezi programul complet
+                      ${window.tmtStr('Vezi programul complet','See full schedule')}
                       <svg style="width:11px;height:11px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H8M17 7V16"/></svg>
                     </a>`;
                 })();
@@ -709,7 +709,7 @@
           <div class="p-5 space-y-2.5">
             <div class="flex items-center gap-2">
               <svg class="w-4 h-4 text-gray-600 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M520-40v-240l-84-80-40 176-276-56 16-80 192 40 64-324-72 28v136h-80v-188l158-68q35-15 51.5-19.5T480-720q21 0 39 11t29 29l40 64q26 42 70.5 69T760-520v80q-66 0-123.5-27.5T540-540l-24 120 84 80v300h-80Zm-36.5-723.5Q460-787 460-820t23.5-56.5Q507-900 540-900t56.5 23.5Q620-853 620-820t-23.5 56.5Q573-740 540-740t-56.5-23.5Z"/></svg>
-              <span class="text-sm font-semibold text-gray-800">Pe Jos</span>
+              <span class="text-sm font-semibold text-gray-800" data-i18n="pe-jos-label">Pe Jos</span>
             </div>
             <div class="pe-jos-grid ml-6" style="margin-top:5px">
               <span class="loc-pill loc-pill--park" style="background:#004165;color:#fff;justify-content:center">Iulius Town · 5 min</span>
@@ -809,7 +809,7 @@
         <span class="relative group">
           <button aria-label="Disclaimer" class="w-3.5 h-3.5 rounded-full border border-white/20 text-white/30 hover:text-white/60 hover:border-white/40 flex items-center justify-center transition-colors leading-none text-[9px] font-bold cursor-default">i</button>
           <span class="pointer-events-none absolute bottom-full right-0 mb-2 w-72 bg-[#001e2f] border border-white/10 text-white/50 text-[10px] leading-relaxed rounded-lg px-3 py-2.5 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-200 shadow-xl z-50">
-            Informațiile de pe acest site sunt destinate exclusiv membrilor Toastmasters, pentru activități Toastmasters. Acestea nu pot fi utilizate pentru solicitări sau distribuirea de materiale și informații non-Toastmasters.
+            <span data-i18n="footer-disclaimer">Informațiile de pe acest site sunt destinate exclusiv membrilor Toastmasters, pentru activități Toastmasters. Acestea nu pot fi utilizate pentru solicitări sau distribuirea de materiale și informații non-Toastmasters.</span>
           </span>
         </span>
       </p>
@@ -832,14 +832,14 @@
     const isOpen = !m.classList.toggle('hidden');
     a.classList.toggle('hidden');
     b.classList.toggle('hidden');
-    if (btn) { btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false'); btn.setAttribute('aria-label', isOpen ? 'Închide meniu' : 'Deschide meniu'); }
+    if (btn) { btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false'); btn.setAttribute('aria-label', window.tmtMenuLabel(isOpen)); }
   }
   function closeMobile() {
     const btn = document.getElementById('mobile-toggle');
     document.getElementById('mobile-menu').classList.add('hidden');
     document.getElementById('icon-menu').classList.remove('hidden');
     document.getElementById('icon-close').classList.add('hidden');
-    if (btn) { btn.setAttribute('aria-expanded', 'false'); btn.setAttribute('aria-label', 'Deschide meniu'); }
+    if (btn) { btn.setAttribute('aria-expanded', 'false'); btn.setAttribute('aria-label', window.tmtMenuLabel(false)); }
   }
   window.addEventListener('scroll', () => {
     document.getElementById('navbar').style.boxShadow =

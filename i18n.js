@@ -281,6 +281,191 @@
     'ck-6-li2':         'Our social media pages (Instagram, Facebook, LinkedIn)',
     'ck-6-p2':          'This policy may be updated periodically. The date of the last change is shown in the page header.',
     'ck-back-link':     'Back to the home page',
+
+    /* ─ Meta / titles ─ */
+    'home-title':      'Public Speaking in Timișoara | Timișoara Toastmasters',
+    'home-desc':       'The first Toastmasters club in Romania, active for 17 years. Wednesday evening meetings in Timișoara: public speaking, leadership, feedback. Free to attend as a guest.',
+    'home-og-title':   'Public Speaking in Timișoara | Timișoara Toastmasters',
+    'home-og-desc':    'The first Toastmasters club in Romania. Join as a free guest on Wednesday evening and practice public speaking with an active community.',
+    'contact-title':   'Join as a Guest | Timișoara Toastmasters',
+    'contact-desc':    'Sign up as a free guest at Timișoara Toastmasters. Meetings Wednesday 19:30-21:00, Cowork The Office. Pick a date and we\'ll contact you within 24 hours.',
+    'contact-og-title':'Join as a Guest | Timișoara Toastmasters',
+    'contact-og-desc': 'Join a free Toastmasters meeting in Timișoara as a guest. Wednesday 19:30-21:00 at Cowork The Office.',
+    'about-title':     'About Us | Timișoara Toastmasters',
+    'about-desc':      'The first Toastmasters club in Romania: 17 years, 200+ members, 1,200+ speeches. Values, team, and meeting structure. Join us on Wednesday evening in Timișoara.',
+    'about-og-title':  'Public Speaking in Timișoara | Timișoara Toastmasters',
+    'about-og-desc':   'The first Toastmasters club in Romania, with 17 years of activity and 200+ members. Wednesday evenings in Timișoara: free entry for visitors.',
+    'gallery-title':   'Photo Gallery Toastmasters Timișoara | Club Moments',
+    'gallery-desc':    'Photos from Timișoara Toastmasters meetings and events, the oldest public speaking club in Romania. Join as a guest on Wednesday evening.',
+    'gallery-og-title':'Photo Gallery Toastmasters Timișoara',
+    'gallery-og-desc': 'Photos from Timișoara Toastmasters meetings and events. Over 17 years of moments captured.',
+    'cookies-title':   'Cookie Policy | Timișoara Toastmasters',
+    'cookies-desc':    'Timișoara Toastmasters cookie, privacy and GDPR policy: what data we store, which third-party services we use, and how to exercise your rights.',
+    'cookies-og-title':'Cookie Policy | Timișoara Toastmasters',
+    'cookies-og-desc': 'Timișoara Toastmasters cookie, privacy and GDPR policy.',
+    '404-title':       'Page Not Found | Timișoara Toastmasters',
+
+    /* ─ Nav / shared extras ─ */
+    'search-ph':          'Search…',
+    'search-ph-mobile':   'Search the site…',
+    'search-results-aria':'Search results',
+    'search-open-aria':   'Search the site',
+    'tts-aria':           'Read the page (Alt+T)',
+    'menu-open':          'Open menu',
+    'menu-close':         'Close menu',
+    'nav-cta-arrow':      'Join a meeting →',
+
+    /* ─ Shared widgets: meeting card / contact form / transport ─ */
+    'next-meeting-label':  'Next meeting ·',
+    'find-us-label':       'Where to find us?',
+    'venue-address':       'BCR Building, Calea Aradului no. 11, Timișoara',
+    'venue-name-floor':    'Cowork The Office, 2nd Floor',
+    'venue-link-full':     'Cowork The Office, 2nd Floor<span class="hidden sm:inline">, Calea Aradului no. 11</span>',
+    'form-response-24h':   'Response within 24h',
+    'form-error-msg':      'An error occurred. Try again or message us on <a href="https://www.facebook.com/timisoara.toastmasters" target="_blank" class="font-semibold underline">Facebook</a>.',
+    'form-privacy-line':   'By submitting you accept our <a href="cookies" class="text-maroon hover:underline">Privacy Policy</a>',
+    'how-to-get-here':     'How to get here',
+    'by-car-label':        'By Car',
+    'public-transport-label': 'Public Transport',
+    'bus-stop-link':       'Piața Consiliul Europei Station',
+    'pe-jos-label':        'On Foot',
+    'bus-route-close':     'Close',
+    'bus-route-schedule':  'See full schedule',
+    'bus-route-e2':        'Express Line 2',
+    'bus-route-14':        'Line 14 – Trolleybus',
+    'bus-route-17':        'Line 17 – Trolleybus',
+    'bus-route-18':        'Line 18 – Trolleybus',
+    'rev-platform-aria':   'Review platform',
+    'rev-stars-aria':      '5 stars',
+    'rev-prev-aria':       'Previous review',
+    'rev-next-aria':       'Next review',
+    'rev-label':           'Review ',
+    'cal-prev-month':      'Previous month',
+    'cal-next-month':      'Next month',
+    'venue-iframe-title':  'Cowork The Office Timișoara',
+    'cal-select-date-ph':  'Select a date from the calendar',
+    'msg-placeholder':     'I\'m interested in coming as a guest to a meeting…',
+    'bus-line-e2-aria':    'E2 line stops',
+    'bus-line-14-aria':    '14 line stops',
+    'bus-line-17-aria':    '17 line stops',
+    'bus-line-18-aria':    '18 line stops',
+    'back-to-top-aria':    'Back to top',
+
+    /* ─ Index: testimonials ─ */
+    'testi-1':  '“Today I attended my first Toastmasters meeting, what a wonderful team. I didn\'t know any of the members, I found the event by chance on Facebook and joined. Now I can honestly say I can\'t wait for the next meetings! Everything was great, I felt wonderful and I also learned a lot. I picked up something from everyone. Highly recommended to anyone interested in growing personally and professionally. I can\'t express how glad I am I didn\'t skip the meeting, I left with a lot of useful information and a different energy and perspective. Thank you so much for everything, Toastmasters!”',
+    'testi-2':  '“Timișoara Toastmasters is the place where I learned it\'s normal to make mistakes, both as a leader and as a public speaker. What matters is persevering to become better, professionally and personally. For me, this is home.”',
+    'testi-3':  '“I warmly recommend it to anyone who wants to grow within a truly great group!”',
+    'testi-4':  '“I\'m grateful for the wonderful people without whom I don\'t know if I would have overcome my biggest fear of public speaking. Here I found the courage and support that helped me grow in the art of speaking.”',
+    'testi-5':  '“If you want a place where you can learn to speak in public, get rid of stage fright and, last but not least, feel like part of a family, this is the right place.”',
+    'testi-6':  '“I really enjoyed the atmosphere and how well everything was organized. I appreciated that newcomers were made to feel welcome and included, including small details like name cards, which made interacting easier. I\'ve already attended a few meetings, both in Romanian and in English, and I like that there\'s always a flow of new people. Every time you get the chance to meet different people and learn something new. I don\'t feel I\'m in a position to suggest improvements because everything seems very well thought out.”',
+    'testi-7':  '“Timișoara Toastmasters Club is the first Toastmasters club founded in Romania. Here I had the chance to meet competent and motivated people. An ideal place for personal and professional development. Toastmasters is the ideal environment where theory meets practice.”',
+    'testi-8':  '“Since joining Toastmasters, I feel I\'ve taken a step closer to my life\'s mission. I\'m confident speaking in public. I\'m learning how to craft speeches with impact, I feel my voice is finally being heard.”',
+    'testi-9':  '“A club where you can practice public speaking every week without worry and without being judged. A place where you meet ambitious new friends, get inspired by their stories, and where volunteering feels right at home.”',
+    'testi-10': '“Timișoara Toastmasters is the place where you develop your communication and leadership skills and end up gaining even more. The atmosphere is friendly, people genuinely support you, and the meetings help you become more self-aware and grow for real. One valuable aspect is the community: here you can expand your network and make friends who stand by you on your growth journey. I recommend it with confidence!”',
+
+    /* ─ Despre noi: meeting structure ─ */
+    'eve-tab1-short':   'Prepared',
+    'eve-tab1-long':    'Prepared<br>Speeches',
+    'eve-tab2-short':   'Impromptu',
+    'eve-tab2-long':    'Impromptu<br>Speeches',
+    'eve-tab3-short':   'Feedback',
+    'eve-tab3-long':    'Structured<br>Feedback',
+    'eve-eyebrow1':     'First Part',
+    'eve-eyebrow2':     'Second Part',
+    'eve-eyebrow3':     'Last Part',
+    'eve-panel1-title': 'Prepared Speeches',
+    'eve-panel1-body':  'Members deliver prepared speeches from the Pathways program, each with clear communication goals and a well-defined structure. From introductory speeches to complex presentations with data and arguments.',
+    'eve-panel2-title': 'Impromptu Speeches',
+    'eve-panel2-body':  'You get a topic and 1–2 minutes to speak about it. Excellent for developing quick thinking and spontaneity in front of an audience.',
+    'eve-panel3-title': 'Structured Feedback',
+    'eve-panel3-body':  'Every speech gets detailed feedback from a designated evaluator: what worked well and what can be improved. Concrete feedback you can apply as soon as the next meeting.',
+
+    /* ─ Despre noi: value / benefit card aria-labels ─ */
+    'aria-val-1': 'Integrity – click for details',
+    'aria-val-2': 'Respect – click for details',
+    'aria-val-3': 'Service – click for details',
+    'aria-val-4': 'Excellence – click for details',
+    'aria-ben-1': 'Public Speaking – click for details',
+    'aria-ben-2': 'Leadership – click for details',
+    'aria-ben-3': 'Constructive Feedback – click for details',
+    'aria-ben-4': 'Pathways – click for details',
+    'aria-ben-5': 'Self-Confidence – click for details',
+    'aria-ben-6': 'Networking – click for details',
+    'aria-ben-7': 'Competitions – click for details',
+    'aria-ben-8': 'Personal Growth – click for details',
+    'ben-toggle-label': 'Show all benefits',
+
+    /* ─ Despre noi: leadership team ─ */
+    'team-h2':   'Who\'s on the club\'s leadership team?',
+    'team-p':    'The team that organizes, coordinates, and inspires the club every week.',
+    'role-president':      'President',
+    'role-vp-ed-short':    'VP Education',
+    'role-vp-ed-long':     'VP of Education',
+    'role-vp-mem-short':   'VP Members',
+    'role-vp-mem-long':    'VP of Members',
+    'role-vp-pr-short':    'VP Public Relations',
+    'role-vp-pr-long':     'VP of Public Relations',
+    'role-secretary':      'Secretary',
+    'role-treasurer':      'Treasurer',
+    'role-sergeant':       'Sergeant at Arms',
+    'role-past-president': 'Immediate Past President',
+    'role-former-president':'Former President',
+    'team-li-president-1': '<span class="text-white/70 flex-shrink-0">·</span>Leads and coordinates the club\'s meetings',
+    'team-li-president-2': '<span class="text-white/70 flex-shrink-0">·</span>Develops the leadership team and supports members',
+    'team-li-president-3': '<span class="text-white/70 flex-shrink-0">·</span>Sets the club\'s strategic direction and vision',
+    'team-li-vped-1':      '<span class="text-white/70 flex-shrink-0">·</span>Coordinates the club\'s educational program',
+    'team-li-vped-2':      '<span class="text-white/70 flex-shrink-0">·</span>Plans speeches and meeting roles',
+    'team-li-vped-3':      '<span class="text-white/70 flex-shrink-0">·</span>Supports members\' development and progress',
+    'team-li-vpmem-1':     '<span class="text-white/70 flex-shrink-0">·</span>Recruits and onboards new members',
+    'team-li-vpmem-2':     '<span class="text-white/70 flex-shrink-0">·</span>Stays in touch with members and offers support',
+    'team-li-vpmem-3':     '<span class="text-white/70 flex-shrink-0">·</span>Recognizes contributions and motivates member involvement',
+    'team-li-vppr-1':      '<span class="text-white/70 flex-shrink-0">·</span>Promotes the club on social media and in the community',
+    'team-li-vppr-2':      '<span class="text-white/70 flex-shrink-0">·</span>Develops partnerships and relationships with external organizations',
+    'team-li-vppr-3':      '<span class="text-white/70 flex-shrink-0">·</span>Manages the club\'s communication and public image',
+    'team-li-sec-1':       '<span class="text-white/70 flex-shrink-0">·</span>Manages the club\'s documents and meeting minutes',
+    'team-li-sec-2':       '<span class="text-white/70 flex-shrink-0">·</span>Keeps records of meetings and board decisions',
+    'team-li-sec-3':       '<span class="text-white/70 flex-shrink-0">·</span>Handles the club\'s correspondence and archive',
+    'team-li-tres-1':      '<span class="text-white/70 flex-shrink-0">·</span>Manages and administers the club\'s finances',
+    'team-li-tres-2':      '<span class="text-white/70 flex-shrink-0">·</span>Prepares the annual budget and financial reports',
+    'team-li-tres-3':      '<span class="text-white/70 flex-shrink-0">·</span>Ensures financial transparency and compliance with the organization\'s financial procedures',
+    'team-li-serg-1':      '<span class="text-white/70 flex-shrink-0">·</span>Maintains order and discipline during meetings',
+    'team-li-serg-2':      '<span class="text-white/70 flex-shrink-0">·</span>Ensures club meetings run smoothly',
+    'team-li-serg-3':      '<span class="text-white/70 flex-shrink-0">·</span>Supports role-takers and members whenever needed',
+    'team-li-past-1':      '<span class="text-white/70 flex-shrink-0">·</span>Provides continuity and guidance to the leadership team',
+    'team-li-past-2':      '<span class="text-white/70 flex-shrink-0">·</span>Supports the club\'s long-term strategic development',
+    'team-li-past-3':      '<span class="text-white/70 flex-shrink-0">·</span>Serves as a mentor and resource for the club\'s leaders',
+
+    /* ─ Galerie ─ */
+    'gal-tab-meetings':       'Meetings',
+    'gal-tab-contests-short': 'Events',
+    'gal-tab-contests-long':  'Events',
+    'gal-tab-social-short':   'Social',
+    'gal-tab-social-long':    'Socializing',
+    'gal-empty':              'Photos will be added soon.',
+    'gal-more-fb':            'More photos on Facebook',
+    'gal-more-ig':            'More photos on Instagram',
+    'gal-event-prev-aria':    'Previous event',
+    'gal-event-next-aria':    'Next event',
+    'gal-view-photo-aria':    'View photo',
+    'gal-fullscreen-aria':        'Fullscreen',
+    'gal-fullscreen-exit-aria':   'Exit fullscreen',
+    'gal-meeting-prev-aria':      'Previous meeting',
+    'gal-meeting-next-aria':      'Next meeting',
+    'gal-photo-prev-aria':        'Previous photo',
+    'gal-photo-next-aria':        'Next photo',
+    'gal-download-aria':          'Download photo',
+    'gal-lightbox-close-aria':    'Close',
+
+    /* ─ Cookies page: address block ─ */
+    'cookies-contact-block': '<strong>Timișoara Toastmasters Club</strong><br/>Cowork The Office, 2nd Floor, BCR Building, Calea Aradului no. 11, Timișoara, Romania',
+
+    /* ─ 404 page ─ */
+    '404-h1':            'Page Not Found',
+    '404-p1':             'The speech you\'re looking for isn\'t here.',
+    '404-p2':             'But maybe you\'ll find something better on the home page.',
+    '404-btn-home':       'Back Home',
+    '404-btn-guest':      'Join as a Guest',
+    '404-quicknav-aria':  'Quick navigation',
   };
 
   /* ── Engine ── */
@@ -326,6 +511,26 @@
         : el.getAttribute('data-orig-aria'));
     });
 
+    /* Title attribute (tooltips) */
+    document.querySelectorAll('[data-i18n-title]').forEach(function (el) {
+      if (!el.hasAttribute('data-orig-title')) {
+        el.setAttribute('data-orig-title', el.getAttribute('title') || '');
+      }
+      el.setAttribute('title', lang === 'en'
+        ? (T[el.dataset.i18nTitle] || el.getAttribute('data-orig-title'))
+        : el.getAttribute('data-orig-title'));
+    });
+
+    /* Meta content (title/description tags) */
+    document.querySelectorAll('[data-i18n-content]').forEach(function (el) {
+      if (!el.hasAttribute('data-orig-content')) {
+        el.setAttribute('data-orig-content', el.getAttribute('content') || '');
+      }
+      el.setAttribute('content', lang === 'en'
+        ? (T[el.dataset.i18nContent] || el.getAttribute('data-orig-content'))
+        : el.getAttribute('data-orig-content'));
+    });
+
     /* Lang button active state */
     document.querySelectorAll('.lang-btn').forEach(function (btn) {
       var active = btn.dataset.lang === lang;
@@ -337,6 +542,17 @@
   window.setLang = function (lang) {
     localStorage.setItem(LANG_KEY, lang);
     applyLang(lang);
+  };
+
+  /* ── Helpers for inline JS that sets text/aria dynamically (menus, carousels) ── */
+  window.tmtLang = function () {
+    return document.documentElement.getAttribute('lang') === 'en' ? 'en' : 'ro';
+  };
+  window.tmtStr = function (ro, en) {
+    return window.tmtLang() === 'en' ? en : ro;
+  };
+  window.tmtMenuLabel = function (isOpen) {
+    return isOpen ? window.tmtStr('Închide meniu', 'Close menu') : window.tmtStr('Deschide meniu', 'Open menu');
   };
 
   function initLang() {
