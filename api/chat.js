@@ -437,8 +437,23 @@ async function getTravelEstimate(rawOrigin) {
   return result;
 }
 
+const ALLOWED_ORIGINS = [
+  'https://timisoaratoastmasters.ro',
+  'https://www.timisoaratoastmasters.ro',
+  'https://site-timisoara-toastmasters1.vercel.app',
+];
+function corsOrigin(req) {
+  const origin = req.headers.origin || '';
+  return ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
+}
+
+const MAX_MESSAGES = 10;
+const MAX_MESSAGE_CHARS = 2000;
+const MAX_TOTAL_CHARS = 8000;
+
 module.exports = async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', corsOrigin(req));
+  res.setHeader('Vary', 'Origin');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
@@ -446,8 +461,22 @@ module.exports = async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
   const { messages, lang } = req.body || {};
-  if (!messages || !Array.isArray(messages)) {
+  if (!messages || !Array.isArray(messages) || !messages.length) {
     return res.status(400).json({ error: 'Invalid request' });
+  }
+  if (messages.length > MAX_MESSAGES * 3) {
+    return res.status(400).json({ error: 'Too many messages' });
+  }
+  let totalChars = 0;
+  for (const m of messages) {
+    const len = typeof m?.content === 'string' ? m.content.length : 0;
+    if (len > MAX_MESSAGE_CHARS) {
+      return res.status(400).json({ error: 'Message too long' });
+    }
+    totalChars += len;
+  }
+  if (totalChars > MAX_TOTAL_CHARS) {
+    return res.status(400).json({ error: 'Conversation too long' });
   }
 
   const langHint = lang === 'en'
@@ -478,7 +507,7 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    let msgs = messages.slice(-10);
+    let msgs = messages.slice(-MAX_MESSAGES);
     let data = await callClaude(msgs);
     let rounds = 0;
 

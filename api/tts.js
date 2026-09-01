@@ -1,4 +1,19 @@
+const ALLOWED_ORIGINS = [
+  'https://timisoaratoastmasters.ro',
+  'https://www.timisoaratoastmasters.ro',
+  'https://site-timisoara-toastmasters1.vercel.app',
+];
+function corsOrigin(req) {
+  const origin = req.headers.origin || '';
+  return ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
+}
+
 module.exports = async function handler(req, res) {
+  res.setHeader('Access-Control-Allow-Origin', corsOrigin(req));
+  res.setHeader('Vary', 'Origin');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).end();
 
   const { text, lang } = req.body || {};

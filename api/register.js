@@ -1,4 +1,12 @@
-const ALLOWED_ORIGIN = 'https://timisoaratoastmasters.ro';
+const ALLOWED_ORIGINS = [
+  'https://timisoaratoastmasters.ro',
+  'https://www.timisoaratoastmasters.ro',
+  'https://site-timisoara-toastmasters1.vercel.app',
+];
+function corsOrigin(req) {
+  const origin = req.headers.origin || '';
+  return ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
+}
 
 function escapeHtml(str) {
   return String(str || '')
@@ -14,9 +22,7 @@ function isValidEmail(email) {
 }
 
 module.exports = async function handler(req, res) {
-  const origin = req.headers.origin || '';
-  const allowedOrigin = origin === ALLOWED_ORIGIN ? ALLOWED_ORIGIN : ALLOWED_ORIGIN;
-  res.setHeader('Access-Control-Allow-Origin', allowedOrigin);
+  res.setHeader('Access-Control-Allow-Origin', corsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   res.setHeader('Vary', 'Origin');
