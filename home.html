@@ -2222,7 +2222,7 @@
   if (url) document.querySelectorAll('a[href*="maps.app.goo.gl"]').forEach(function(el){ el.href = url; });
 })();
 </script>
-<script type="application/ld+json">
+<script type="application/ld+json" id="ld-event-json">
 [
   {
     "@context": "https://schema.org",
@@ -2273,6 +2273,8 @@
     "name": "Ședință Timișoara Toastmasters",
     "description": "Ședință săptămânală de vorbit în public și leadership. Discursuri pregătite, improvizații și feedback constructiv. Intrare liberă ca invitat.",
     "url": "https://timisoaratoastmasters.ro/contact",
+    "startDate": "2026-09-02T19:30:00+03:00",
+    "endDate": "2026-09-02T21:00:00+03:00",
     "eventSchedule": {
       "@type": "Schedule",
       "byDay": "https://schema.org/Wednesday",
@@ -2411,6 +2413,46 @@
     if (_mwOrigSetLang) _mwOrigSetLang(lang);
     renderMeetingWhen();
   };
+})();
+</script>
+<script>
+(function () {
+  // Keeps the Event JSON-LD startDate/endDate pointed at the next upcoming
+  // Wednesday meeting so Google's Event rich-result validator has a concrete
+  // date (eventSchedule alone isn't enough). Falls back to the static date
+  // baked into the JSON if this script doesn't run for some reason.
+  try {
+    var tz  = 'Europe/Bucharest';
+    var now = new Date();
+    var parts = new Intl.DateTimeFormat('en', {
+      timeZone: tz, year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', hourCycle: 'h23'
+    }).formatToParts(now);
+    var get = function (t) { var p = parts.find(function (x) { return x.type === t; }); return p ? parseInt(p.value, 10) : 0; };
+    var wd = { Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6 }[
+      new Intl.DateTimeFormat('en', { timeZone: tz, weekday: 'short' }).format(now)
+    ];
+    var h = get('hour');
+    var offset = (wd === 3 && h < 21) ? 0 : (3 - wd + 7) % 7 || 7;
+    var target = new Date(Date.UTC(get('year'), get('month') - 1, get('day') + offset));
+    var ymd = new Intl.DateTimeFormat('en-CA', { timeZone: tz, year: 'numeric', month: '2-digit', day: '2-digit' }).format(target);
+
+    var tzParts = new Intl.DateTimeFormat('en', { timeZone: tz, timeZoneName: 'shortOffset' }).formatToParts(target);
+    var tzName = (tzParts.find(function (p) { return p.type === 'timeZoneName'; }) || {}).value || 'GMT+2';
+    var m = tzName.match(/GMT([+-]\d+)/);
+    var offH = m ? parseInt(m[1], 10) : 2;
+    var offStr = (offH >= 0 ? '+' : '-') + String(Math.abs(offH)).padStart(2, '0') + ':00';
+
+    var ld = document.getElementById('ld-event-json');
+    if (ld) {
+      var data = JSON.parse(ld.textContent);
+      var ev = data.find(function (x) { return x['@type'] === 'Event'; });
+      if (ev) {
+        ev.startDate = ymd + 'T19:30:00' + offStr;
+        ev.endDate   = ymd + 'T21:00:00' + offStr;
+        ld.textContent = JSON.stringify(data);
+      }
+    }
+  } catch (e) { /* static fallback date in the JSON stays as-is */ }
 })();
 </script>
 </body>
