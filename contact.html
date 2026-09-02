@@ -12,7 +12,7 @@
   <meta property="og:site_name" content="Timișoara Toastmasters" />
   <meta property="og:title" content="Înscrie-te ca Invitat | Timișoara Toastmasters" data-i18n-content="contact-og-title" />
   <meta property="og:description" content="Vino ca invitat gratuit la o ședință Toastmasters în Timișoara. Miercuri 19:30–21:00 la Cowork The Office." data-i18n-content="contact-og-desc" />
-  <meta property="og:image" content="https://timisoaratoastmasters.ro/Images/background-header.jpg" />
+  <meta property="og:image" content="https://timisoaratoastmasters.ro/Images/background-hero.webp" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="Înscrie-te la Timișoara Toastmasters" />
@@ -20,7 +20,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Înscrie-te ca Invitat | Timișoara Toastmasters" />
   <meta name="twitter:description" content="Vino ca invitat gratuit la Timișoara Toastmasters. Miercuri 19:30–21:00." />
-  <meta name="twitter:image" content="https://timisoaratoastmasters.ro/Images/background-header.jpg" />
+  <meta name="twitter:image" content="https://timisoaratoastmasters.ro/Images/background-hero.webp" />
   <meta name="twitter:image:alt" content="Înscrie-te la Timișoara Toastmasters" />
   <!-- Geo / Local SEO -->
   <meta name="geo.region" content="RO-TM" />
@@ -895,11 +895,6 @@
       });
       clearTimeout(t);
       if (!res.ok) throw new Error('api-error');
-      try {
-        const list = JSON.parse(localStorage.getItem('tm_registrations') || '[]');
-        list.push({ ...reg, id: Date.now(), date: new Date().toISOString() });
-        localStorage.setItem('tm_registrations', JSON.stringify(list));
-      } catch (_) {}
       document.getElementById('contact-form').classList.add('hidden');
       const succ = document.getElementById('form-success');
       succ.classList.remove('hidden');

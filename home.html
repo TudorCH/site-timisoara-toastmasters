@@ -13,7 +13,7 @@
   <meta property="og:site_name" content="Timișoara Toastmasters" />
   <meta property="og:title" content="Vorbit în Public Timișoara | Timișoara Toastmasters" data-i18n-content="home-og-title" />
   <meta property="og:description" content="Primul club Toastmasters din România. Vino ca invitat gratuit miercuri seară și exersează vorbitul în public alături de o comunitate activă." data-i18n-content="home-og-desc" />
-  <meta property="og:image" content="https://timisoaratoastmasters.ro/Images/background-header.jpg" />
+  <meta property="og:image" content="https://timisoaratoastmasters.ro/Images/background-hero.webp" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="Ședință Timișoara Toastmasters – vorbit în public" />
@@ -22,7 +22,7 @@
   <meta name="twitter:site" content="@toastmastersti" />
   <meta name="twitter:title" content="Vorbit în Public Timișoara | Toastmasters" />
   <meta name="twitter:description" content="Primul club Toastmasters din România. Vino ca invitat gratuit miercuri seară în Timișoara." />
-  <meta name="twitter:image" content="https://timisoaratoastmasters.ro/Images/background-header.jpg" />
+  <meta name="twitter:image" content="https://timisoaratoastmasters.ro/Images/background-hero.webp" />
   <meta name="twitter:image:alt" content="Ședință Timișoara Toastmasters" />
   <!-- Geo / Local SEO -->
   <meta name="geo.region" content="RO-TM" />
@@ -2002,23 +2002,6 @@
       window.scrollY > 20 ? '0 4px 30px rgba(0,65,101,0.35)' : '';
   });
 
-  // ════════════════════ REGISTRATION DATABASE ════════════════════
-  const DB_KEY = 'tm_registrations';
-
-  function getRegistrations() {
-    try { return JSON.parse(localStorage.getItem(DB_KEY)) || []; }
-    catch { return []; }
-  }
-
-  function saveRegistration(reg) {
-    const list = getRegistrations();
-    reg.id   = Date.now();
-    reg.date = new Date().toISOString();
-    list.push(reg);
-    localStorage.setItem(DB_KEY, JSON.stringify(list));
-    return reg;
-  }
-
   async function submitForm(e) {
     e.preventDefault();
     const form = e.target;
@@ -2049,7 +2032,6 @@
       });
       clearTimeout(t);
       if (!res.ok) throw new Error('api-error');
-      saveRegistration(reg);
       document.getElementById('contact-form').classList.add('hidden');
       const succ = document.getElementById('form-success');
       succ.classList.remove('hidden');
@@ -2232,7 +2214,7 @@
     "description": "Primul club Toastmasters înființat în România. Ședințe săptămânale de vorbit în public și leadership în Timișoara.",
     "url": "https://timisoaratoastmasters.ro/",
     "logo": "https://timisoaratoastmasters.ro/logo.webp",
-    "image": "https://timisoaratoastmasters.ro/Images/background-header.jpg",
+    "image": "https://timisoaratoastmasters.ro/Images/background-hero.webp",
     "priceRange": "€",
     "address": {
       "@type": "PostalAddress",
