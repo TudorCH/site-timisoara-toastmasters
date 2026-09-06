@@ -412,7 +412,7 @@
       <!-- Next meeting countdown -->
       <div class="flex items-center gap-2.5 mb-4 sm:mb-6 animate-in" style="animation-delay:.35s">
         <span class="w-2 h-2 rounded-full flex-shrink-0" style="background-color:#34d399;animation:livePulse 1.5s ease-in-out infinite"></span>
-        <span class="text-white/80 text-sm sm:text-base"><span data-i18n="next-meeting-label">Următoarea ședință ·</span> <span id="meeting-when" class="text-gold font-semibold"></span></span>
+        <span class="text-white/80 text-sm sm:text-base"><span data-i18n="next-meeting-label">Următoarea ședință ·</span> <span class="text-gold font-semibold"><span id="meeting-when-short" class="sm:hidden"></span><span id="meeting-when-long" class="hidden sm:inline"></span></span></span>
       </div>
       <div class="flex flex-col sm:flex-row gap-4 animate-in" style="animation-delay:.4s">
         <a href="#contact"
@@ -2354,11 +2354,14 @@
     ];
 
     var lang = (window.tmtLang && window.tmtLang()) || 'ro';
-    var monthsRo = ['Ianuarie','Februarie','Martie','Aprilie','Mai','Iunie',
-                    'Iulie','August','Septembrie','Octombrie','Noiembrie','Decembrie'];
-    var monthsEn = ['January','February','March','April','May','June',
-                    'July','August','September','October','November','December'];
-    var months = lang === 'en' ? monthsEn : monthsRo;
+    var monthsShortRo = ['Ian','Feb','Mar','Apr','Mai','Iun','Iul','Aug','Sep','Oct','Noi','Dec'];
+    var monthsShortEn = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var monthsLongRo = ['Ianuarie','Februarie','Martie','Aprilie','Mai','Iunie',
+                         'Iulie','August','Septembrie','Octombrie','Noiembrie','Decembrie'];
+    var monthsLongEn = ['January','February','March','April','May','June',
+                         'July','August','September','October','November','December'];
+    var monthsShort = lang === 'en' ? monthsShortEn : monthsShortRo;
+    var monthsLong  = lang === 'en' ? monthsLongEn  : monthsLongRo;
     var weekdayLabel = lang === 'en' ? 'Wednesday, ' : 'Miercuri, ';
 
     // days offset to next Wednesday (0 = today is Wed and meeting not done)
@@ -2368,26 +2371,39 @@
     var target = new Date(Date.UTC(get('year'), get('month') - 1, get('day') + offset));
     var tp = new Intl.DateTimeFormat('en', { timeZone: tz, month: 'numeric', day: 'numeric' }).formatToParts(target);
     var tget = function (t) { var p = tp.find(function (x) { return x.type === t; }); return p ? parseInt(p.value, 10) : 0; };
-    var dateStr = weekdayLabel + tget('day') + ' ' + months[tget('month') - 1];
+    // Short "9 Sep" (mobile, no weekday — every meeting is Wednesday so it's redundant, keeps one line)
+    // vs long "Miercuri, 9 Septembrie" (desktop, has room to spare).
+    var dateStrShort = tget('day') + ' ' + monthsShort[tget('month') - 1];
+    var dateStrLong  = weekdayLabel + tget('day') + ' ' + monthsLong[tget('month') - 1];
 
     if (wd === 3) {
-      if (h < 12)      return lang === 'en' ? 'today, 19:30' : 'astăzi, ora 19:30';
-      if (h >= 20)     return dateStr + (lang === 'en' ? ' · in 7 days' : ' · în 7 zile');
+      if (h < 12)    { var s = lang === 'en' ? 'today, 19:30' : 'astăzi, ora 19:30'; return { short: s, long: s }; }
+      if (h >= 20)   {
+        var suf7 = lang === 'en' ? ' · in 7 days' : ' · în 7 zile';
+        return { short: dateStrShort + suf7, long: dateStrLong + suf7 };
+      }
       var mins = (19 * 60 + 30) - (h * 60 + m);
-      if (mins <= 0)   return lang === 'en' ? 'in progress' : 'în curs';
-      if (mins < 60)   return lang === 'en' ? 'in less than an hour' : 'în mai puțin de o oră';
+      if (mins <= 0) { var s = lang === 'en' ? 'in progress' : 'în curs'; return { short: s, long: s }; }
+      if (mins < 60) { var s = lang === 'en' ? 'in less than an hour' : 'în mai puțin de o oră'; return { short: s, long: s }; }
       var hr = Math.floor(mins / 60);
-      return lang === 'en'
+      var s = lang === 'en'
         ? 'in ' + hr + (hr === 1 ? ' hour' : ' hours')
         : 'în ' + hr + (hr === 1 ? ' oră' : ' ore');
+      return { short: s, long: s };
     }
 
-    if (offset === 1) return lang === 'en' ? 'tomorrow, 19:30' : 'mâine, ora 19:30';
-    return dateStr + (lang === 'en' ? ' · in ' + offset + ' days' : ' · în ' + offset + ' zile');
+    if (offset === 1) { var s = lang === 'en' ? 'tomorrow, 19:30' : 'mâine, ora 19:30'; return { short: s, long: s }; }
+    var suf = lang === 'en' ? ' · in ' + offset + ' days' : ' · în ' + offset + ' zile';
+    return { short: dateStrShort + suf, long: dateStrLong + suf };
   }
 
-  var el = document.getElementById('meeting-when');
-  function renderMeetingWhen() { if (el) el.textContent = nextMeetingText(); }
+  var elShort = document.getElementById('meeting-when-short');
+  var elLong  = document.getElementById('meeting-when-long');
+  function renderMeetingWhen() {
+    var r = nextMeetingText();
+    if (elShort) elShort.textContent = r.short;
+    if (elLong)  elLong.textContent  = r.long;
+  }
   renderMeetingWhen();
 
   var _mwOrigSetLang = window.setLang;
