@@ -42,6 +42,8 @@
     'box-shadow:-4px 0 32px rgba(0,21,42,.2);',
     'font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif;pointer-events:none;}',
     '#ty-win.on{transform:translateX(0);pointer-events:auto;transition:transform .3s cubic-bezier(.4,0,.2,1);}',
+    /* closed mobile panel sits just off-screen; its shadow must not bleed into the page edge */
+    '@media(max-width:767px){#ty-win:not(.on){box-shadow:none;border-color:transparent;}}',
 
     /* Desktop popup */
     '@media(min-width:768px){',
