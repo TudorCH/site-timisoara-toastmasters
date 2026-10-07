@@ -163,7 +163,11 @@
     /* ─ Contact page ─ */
     'ct-hero-badge':  'Schedule & Registration',
     'ct-hero-h1':     'The first meeting is free',
-    'ct-hero-p':      'Choose a date from the calendar and fill in the form. We\'ll contact you within 24 hours with all the details.',
+    'ct-hero-p':      'Pick a date from the calendar and come see what a meeting is like. We\'ll contact you within 24 hours.',
+    'ct-hero-b1':     'Completely free as a guest',
+    'ct-hero-b2':     'You don\'t have to speak',
+    'ct-hero-b3':     'Wednesday, 19:30 – 21:00',
+    'ct-hero-scroll': 'Book your seat below',
     'ct-form-h3':     'Register as a guest',
     'ct-prenume':     'First name',
     'ct-nome':        'Last name',
