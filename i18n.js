@@ -55,6 +55,7 @@
     'idx-hero-desc':   'Every Wednesday evening, people from Timișoara gather to speak, receive honest feedback, and grow.<br class="hidden lg:inline" /> Attendance as a guest is free.',
     'idx-cta1':        'Join a meeting!',
     'idx-cta2':        'See how it works',
+    'idx-hero-cta':    'Join the next meeting',
     'idx-proof1':      'Member since 2008',
     'idx-proof2':      '#1 Club in Romania',
     'idx-stat1':       'years active',
