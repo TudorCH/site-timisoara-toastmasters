@@ -45,7 +45,7 @@
     'footer-aff-title':      'Affiliation & contact',
     'footer-aff-official':   'Official Toastmasters International club',
     'footer-aff-district':   'District 231 · Division F · Area 1',
-    'footer-aff-whatsapp':   'Club WhatsApp community →',
+    'footer-aff-whatsapp':   'Club WhatsApp community',
     'footer-legal-cookies':  'Cookie policy',
     'footer-legal-privacy':  'Privacy',
     'footer-legal-gdpr':     'GDPR',
