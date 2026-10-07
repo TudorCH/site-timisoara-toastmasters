@@ -102,6 +102,8 @@
     .loc-pill, .transport-pill { font-family: inherit; display: inline-flex; align-items: center; gap: .35rem; border-radius: 9999px; padding: .125rem .5rem; font-weight: 600; font-size: .6875rem; line-height:1 }
     .transport-pill-lg { font-family: inherit; display: inline-flex; align-items: center; border-radius: 9999px; padding: .35rem .95rem; font-weight: 700; font-size: .9375rem; line-height:1; color:#fff; cursor:pointer; border:none; transition: filter .15s, transform .15s }
     .transport-pill-lg:hover { filter: brightness(1.15); transform: scale(1.06) }
+    .transport-pill-sm { font-family: inherit; display: inline-flex; align-items: center; justify-content: center; min-width: 1.75rem; border-radius: 9999px; padding: .3rem .55rem; font-weight: 700; font-size: .75rem; line-height:1; color:#fff; background:#004165; cursor:pointer; border:none; transition: filter .15s, transform .15s }
+    .transport-pill-sm:hover { filter: brightness(1.2); transform: scale(1.08) }
     #bus-route-panel { position:absolute; inset:0; background:#fff; padding:1.25rem; z-index:10; opacity:0; pointer-events:none; transition:opacity .18s; overflow-y:auto; }
     .bt-strip { overflow-x:auto; margin-bottom:10px; padding:4px 6px 0 0; scrollbar-width:none; -ms-overflow-style:none; }
     .bt-strip::-webkit-scrollbar { display:none; }
@@ -567,49 +569,112 @@
       </div><!-- /form-card -->
 
       <!-- Transport card -->
-      <div id="transport-card" class="order-4 overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.06)]">
-        <div class="px-5 pt-5 pb-1 flex items-center gap-3">
+      <div id="transport-card" class="order-4 overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.06)] p-5">
+        <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
           <span class="w-9 h-9 rounded-full flex items-center justify-center text-maroon flex-shrink-0" style="background:#f3f5f5;box-shadow:0 0 0 2px #fff,0 0 0 3px #dce2e1"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg></span>
           <h3 class="font-heading font-bold text-gray-900 text-lg" data-i18n="how-to-get-here">Cum ajungi la noi</h3>
+          <p class="w-full sm:w-auto text-xs text-gray-500 sm:before:content-['•'] sm:before:mr-2 sm:before:text-gray-300" data-i18n="transport-address">Zbor Hub, Str. Vasile Alecsandri nr. 1 (lângă Piața Libertății)</p>
         </div>
-        <div class="divide-y divide-gray-100 md:divide-y-0 md:grid md:grid-cols-2 lg:grid-cols-[1fr_1fr_2.3fr]">
+
+        <div class="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-4">
+          <div id="bus-route-panel" class="rounded-xl"><!-- filled by JS --></div>
 
           <!-- Mașina -->
-          <div class="p-5 space-y-2.5">
-            <div class="flex items-center gap-2">
-              <div class="w-4 flex-shrink-0 flex items-center justify-center">
-                <svg class="w-4 h-4 text-gray-600" viewBox="0 -960 960 960" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M240-200v40q0 17-11.5 28.5T200-120h-40q-17 0-28.5-11.5T120-160v-320l84-240q6-18 21.5-29t34.5-11h440q19 0 34.5 11t21.5 29l84 240v320q0 17-11.5 28.5T800-120h-40q-17 0-28.5-11.5T720-160v-40H240Zm-8-360h496l-42-120H274l-42 120Zm-32 80v200-200Zm100 160q25 0 42.5-17.5T360-380q0-25-17.5-42.5T300-440q-25 0-42.5 17.5T240-380q0 25 17.5 42.5T300-320Zm360 0q25 0 42.5-17.5T720-380q0-25-17.5-42.5T660-440q-25 0-42.5 17.5T600-380q0 25 17.5 42.5T660-320Zm-460 40h560v-200H200v200Z"/></svg>
+          <div class="rounded-xl bg-gray-50 border border-gray-100 p-4 flex flex-col">
+            <div class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-full bg-white border border-gray-200 flex items-center justify-center flex-shrink-0"><svg class="w-4 h-4 text-maroon" viewBox="0 -960 960 960" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M240-200v40q0 17-11.5 28.5T200-120h-40q-17 0-28.5-11.5T120-160v-320l84-240q6-18 21.5-29t34.5-11h440q19 0 34.5 11t21.5 29l84 240v320q0 17-11.5 28.5T800-120h-40q-17 0-28.5-11.5T720-160v-40H240Zm-8-360h496l-42-120H274l-42 120Zm-32 80v200-200Zm100 160q25 0 42.5-17.5T360-380q0-25-17.5-42.5T300-440q-25 0-42.5 17.5T240-380q0 25 17.5 42.5T300-320Zm360 0q25 0 42.5-17.5T720-380q0-25-17.5-42.5T660-440q-25 0-42.5 17.5T600-380q0 25 17.5 42.5T660-320Zm-460 40h560v-200H200v200Z"/></svg></span>
+              <div class="min-w-0">
+                <p class="text-sm font-bold text-gray-900" data-i18n="by-car-label">Cu mașina</p>
+                <p class="text-xs text-gray-500" data-i18n="by-car-sub">Parcări publice în apropiere</p>
               </div>
-              <span class="text-sm font-semibold text-gray-800" data-i18n="by-car-label">Cu Mașina</span>
             </div>
-            <p class="text-xs text-gray-400" data-i18n="by-car-sub">Parcări în apropiere</p>
-            <div class="flex items-center gap-2 flex-wrap">
-              <a href="https://maps.app.goo.gl/KpQ5cfczb6wYHihA9" target="_blank" rel="noopener" class="loc-pill loc-pill--park loc-pill--soft">
-                <span style="display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;background:#004165;border-radius:3px;font-weight:900;font-size:9px;flex-shrink:0;color:#fff;line-height:1">P</span>
-                Piața 700
+            <div class="mt-3 space-y-2">
+              <a href="https://maps.app.goo.gl/KpQ5cfczb6wYHihA9" target="_blank" rel="noopener" class="group flex items-center gap-2.5 rounded-lg bg-white border border-gray-200 hover:border-primary px-2.5 py-2 transition-colors">
+                <span class="w-5 h-5 rounded bg-primary text-white text-[10px] font-black flex items-center justify-center flex-shrink-0">P</span>
+                <span class="text-xs font-semibold text-gray-700 group-hover:text-primary">Piața 700</span>
+                <svg class="w-3.5 h-3.5 ml-auto text-gray-300 group-hover:text-primary flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H8M17 7V16"/></svg>
               </a>
-              <a href="https://maps.app.goo.gl/eXEuuDajGUEFrnid8" target="_blank" rel="noopener" class="loc-pill loc-pill--park loc-pill--soft">
-                <span style="display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;background:#004165;border-radius:3px;font-weight:900;font-size:9px;flex-shrink:0;color:#fff;line-height:1">P</span>
-                Str. Paris
+              <a href="https://maps.app.goo.gl/eXEuuDajGUEFrnid8" target="_blank" rel="noopener" class="group flex items-center gap-2.5 rounded-lg bg-white border border-gray-200 hover:border-primary px-2.5 py-2 transition-colors">
+                <span class="w-5 h-5 rounded bg-primary text-white text-[10px] font-black flex items-center justify-center flex-shrink-0">P</span>
+                <span class="text-xs font-semibold text-gray-700 group-hover:text-primary">Strada Paris</span>
+                <svg class="w-3.5 h-3.5 ml-auto text-gray-300 group-hover:text-primary flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H8M17 7V16"/></svg>
               </a>
             </div>
           </div>
 
           <!-- Transport în comun -->
-          <div class="p-5 space-y-2.5 lg:border-l lg:border-gray-100">
-            <div class="flex items-center gap-2">
-              <svg class="w-4 h-4 text-gray-600 flex-shrink-0" viewBox="0 -960 960 960" fill="currentColor"><path d="M240-120q-17 0-28.5-11.5T200-160v-82q-18-20-29-44.5T160-340v-380q0-83 77-121.5T480-880q172 0 246 37t74 123v380q0 29-11 53.5T760-242v82q0 17-11.5 28.5T720-120h-40q-17 0-28.5-11.5T640-160v-40H320v40q0 17-11.5 28.5T280-120h-40Zm242-640h224-448 224Zm158 280H240h480-80Zm-400-80h480v-120H240v120Zm142.5 222.5Q400-355 400-380t-17.5-42.5Q365-440 340-440t-42.5 17.5Q280-405 280-380t17.5 42.5Q315-320 340-320t42.5-17.5Zm280 0Q680-355 680-380t-17.5-42.5Q645-440 620-440t-42.5 17.5Q560-405 560-380t17.5 42.5Q595-320 620-320t42.5-17.5ZM258-760h448q-15-17-64.5-28.5T482-800q-107 0-156.5 12.5T258-760Zm62 480h320q33 0 56.5-23.5T720-360v-120H240v120q0 33 23.5 56.5T320-280Z"/></svg>
-              <span class="text-sm font-semibold text-gray-800" data-i18n="public-transport-label">Transport în Comun</span>
+          <div class="rounded-xl bg-gray-50 border border-gray-100 p-4 flex flex-col">
+            <div class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-full bg-white border border-gray-200 flex items-center justify-center flex-shrink-0"><svg class="w-4 h-4 text-maroon" viewBox="0 -960 960 960" fill="currentColor"><path d="M240-120q-17 0-28.5-11.5T200-160v-82q-18-20-29-44.5T160-340v-380q0-83 77-121.5T480-880q172 0 246 37t74 123v380q0 29-11 53.5T760-242v82q0 17-11.5 28.5T720-120h-40q-17 0-28.5-11.5T640-160v-40H320v40q0 17-11.5 28.5T280-120h-40Zm242-640h224-448 224Zm158 280H240h480-80Zm-400-80h480v-120H240v120Zm142.5 222.5Q400-355 400-380t-17.5-42.5Q365-440 340-440t-42.5 17.5Q280-405 280-380t17.5 42.5Q315-320 340-320t42.5-17.5Zm280 0Q680-355 680-380t-17.5-42.5Q645-440 620-440t-42.5 17.5Q560-405 560-380t17.5 42.5Q595-320 620-320t42.5-17.5ZM258-760h448q-15-17-64.5-28.5T482-800q-107 0-156.5 12.5T258-760Zm62 480h320q33 0 56.5-23.5T720-360v-120H240v120q0 33 23.5 56.5T320-280Z"/></svg></span>
+              <div class="min-w-0">
+                <p class="text-sm font-bold text-gray-900" data-i18n="public-transport-label">Transport în comun</p>
+                <p class="text-xs text-gray-500" data-i18n="transit-hint">Apasă pe o linie pentru traseu</p>
+              </div>
             </div>
-            <p class="text-xs"><a href="https://www.google.com/maps/search/?api=1&query=Pia%C8%9Ba+Libert%C4%83%C8%9Bii+Timi%C8%99oara" target="_blank" rel="noopener" class="text-primary font-medium hover:underline" data-i18n="bus-stop-link">Stația Piața Libertății</a></p>
-            <div class="flex items-center gap-2 flex-wrap">
-              <button class="transport-pill-lg" data-line="1" style="background:#004165" aria-label="Stații linia 1" data-i18n-aria="bus-line-1-aria">1</button>
-              <button class="transport-pill-lg" data-line="2" style="background:#004165" aria-label="Stații linia 2" data-i18n-aria="bus-line-2-aria">2</button>
-              <button class="transport-pill-lg" data-line="14" style="background:#004165" aria-label="Stații linia 14" data-i18n-aria="bus-line-14-aria">14</button>
-              <button class="transport-pill-lg" data-line="18" style="background:#004165" aria-label="Stații linia 18" data-i18n-aria="bus-line-18-aria">18</button>
+            <div class="mt-3 space-y-2">
+              <div class="flex items-center gap-2 rounded-lg bg-white border border-gray-200 px-2.5 py-1.5">
+                <span class="text-xs text-gray-500 w-[4.5rem] flex-shrink-0" data-i18n="tram-label">Tramvai</span>
+                <button class="transport-pill-sm" data-line="1" aria-label="Stații linia 1" data-i18n-aria="bus-line-1-aria">1</button>
+                <button class="transport-pill-sm" data-line="2" aria-label="Stații linia 2" data-i18n-aria="bus-line-2-aria">2</button>
+                <a href="https://www.google.com/maps/search/?api=1&query=Pia%C8%9Ba+Libert%C4%83%C8%9Bii+Timi%C8%99oara" target="_blank" rel="noopener" class="ml-auto text-[11px] text-gray-400 hover:text-primary truncate">Libertății</a>
+              </div>
+              <div class="flex items-center gap-2 rounded-lg bg-white border border-gray-200 px-2.5 py-1.5">
+                <span class="text-xs text-gray-500 w-[4.5rem] flex-shrink-0" data-i18n="trolley-label">Troleibuz</span>
+                <button class="transport-pill-sm" data-line="14" aria-label="Stații linia 14" data-i18n-aria="bus-line-14-aria">14</button>
+                <button class="transport-pill-sm" data-line="18" aria-label="Stații linia 18" data-i18n-aria="bus-line-18-aria">18</button>
+                <a href="https://www.google.com/maps/search/?api=1&query=Pia%C8%9Ba+M%C4%83r%C4%83%C8%99ti+Timi%C8%99oara" target="_blank" rel="noopener" class="ml-auto text-[11px] text-gray-400 hover:text-primary truncate">Mărăști</a>
+              </div>
             </div>
+          </div>
 
-            <script>
+          <!-- Pe jos -->
+          <div class="rounded-xl bg-gray-50 border border-gray-100 p-4 flex flex-col">
+            <div class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-full bg-white border border-gray-200 flex items-center justify-center flex-shrink-0"><svg class="w-4 h-4 text-maroon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M520-40v-240l-84-80-40 176-276-56 16-80 192 40 64-324-72 28v136h-80v-188l158-68q35-15 51.5-19.5T480-720q21 0 39 11t29 29l40 64q26 42 70.5 69T760-520v80q-66 0-123.5-27.5T540-540l-24 120 84 80v300h-80Zm-36.5-723.5Q460-787 460-820t23.5-56.5Q507-900 540-900t56.5 23.5Q620-853 620-820t-23.5 56.5Q573-740 540-740t-56.5-23.5Z"/></svg></span>
+              <div class="min-w-0">
+                <p class="text-sm font-bold text-gray-900" data-i18n="pe-jos-label">Pe jos</p>
+                <p class="text-xs text-gray-500" data-i18n="pe-jos-sub">Din punctele cheie din centru</p>
+              </div>
+            </div>
+            <ul class="mt-3 rounded-lg bg-white border border-gray-200 divide-y divide-gray-100 text-xs">
+              <li class="flex items-center justify-between gap-2 px-2.5 py-1.5"><span class="font-semibold text-gray-700">Piața Unirii</span><span class="text-gray-500">1 min</span></li>
+              <li class="flex items-center justify-between gap-2 px-2.5 py-1.5"><span class="font-semibold text-gray-700">Piața Libertății</span><span class="text-gray-500">1 min</span></li>
+              <li class="flex items-center justify-between gap-2 px-2.5 py-1.5"><span class="font-semibold text-gray-700">Piața Victoriei</span><span class="text-gray-500">3 min</span></li>
+              <li class="flex items-center justify-between gap-2 px-2.5 py-1.5"><span class="font-semibold text-gray-700">UVT</span><span class="text-gray-500">12 min</span></li>
+            </ul>
+          </div>
+
+          <!-- Ride Sharing -->
+          <div class="rounded-xl bg-gray-50 border border-gray-100 p-4 flex flex-col">
+            <div class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-full bg-white border border-gray-200 flex items-center justify-center flex-shrink-0"><svg class="w-4 h-4 text-maroon" viewBox="0 0 24 24" fill="currentColor"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/></svg></span>
+              <div class="min-w-0">
+                <p class="text-sm font-bold text-gray-900">Ride Sharing</p>
+                <p class="text-xs text-gray-500" data-i18n="ride-sub">Setează destinația în aplicație</p>
+              </div>
+            </div>
+            <div class="mt-3 space-y-2">
+              <div class="flex items-center gap-2 rounded-lg bg-white border border-gray-200 px-2.5 py-2 text-xs">
+                <span class="text-gray-500" data-i18n="ride-dest">Destinație:</span>
+                <span class="font-semibold text-gray-700 truncate">Zbor Hub Timișoara</span>
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <a href="https://m.uber.com/ul/?action=setPickup&pickup=my_location&dropoff[formatted_address]=Strada%20Vasile%20Alecsandri%201%2C%20Timi%C8%99oara&dropoff[nickname]=Toastmasters%20Timi%C8%99oara"
+                   target="_blank" rel="noopener" aria-label="Uber"
+                   class="flex items-center justify-center rounded-lg bg-black hover:opacity-85 transition-opacity py-2">
+                  <svg style="height:13px;width:auto;display:block" viewBox="0 0 155.8 52.3" xmlns="http://www.w3.org/2000/svg"><path fill="white" d="M7.7,31.8V0H0v32.2c0,12.1,8.5,20.1,19.5,20.1c5.4,0,10.1-2.1,13.6-5.7v4.8h7.6V0H33v31.8c0,8.2-5.5,13.7-12.6,13.7C13.2,45.4,7.7,40.1,7.7,31.8z M48.3,51.5h7.3v-4.7c3.4,3.5,8.2,5.6,13.4,5.6c11,0,19.7-8.7,19.7-19.6c0-10.9-8.7-19.6-19.7-19.6c-5.2,0-9.9,2.1-13.3,5.6V0h-7.4V51.5z M55.6,32.8c0-7.3,5.8-13,12.9-13c7.1,0,12.9,5.7,12.9,13c0,7.2-5.8,13-12.9,13C61.3,45.8,55.6,40,55.6,32.8z M93.1,32.7c0,11.2,8.7,19.6,19.9,19.6c6.8,0,12.4-3,16.2-8l-5.4-4c-2.8,3.7-6.5,5.5-10.8,5.5c-6.3,0-11.4-4.6-12.4-10.7h30.5v-2.4c0-11.2-7.9-19.5-18.7-19.5C101.4,13.2,93.1,22.1,93.1,32.7z M112.2,19.7c5.5,0,10.1,3.8,11.4,9.6h-22.9C102.1,23.5,106.7,19.7,112.2,19.7z M155.8,20.6v-6.9h-2.6c-4.1,0-7.1,1.9-9,4.9V14H137v37.5h7.4V30.1c0-5.8,3.5-9.6,8.4-9.6H155.8z"/></svg>
+                </a>
+                <a href="https://bolt.eu/ro/cities/timisoara/" target="_blank" rel="noopener" aria-label="Bolt"
+                   class="flex items-center justify-center rounded-lg hover:opacity-85 transition-opacity py-1.5" style="background:#34D186">
+                  <svg style="height:18px;width:auto;display:block" viewBox="0 0 111.9 65" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" fill="white" d="M30.4,23c4.4-7.1,2.2-16.4-4.8-20.8C23.2,0.8,20.5,0,17.7,0H0v48.9h19.9c8.3,0,15-6.8,15-15.1C34.9,29.7,33.3,25.9,30.4,23z M11.4,11.5h6.3c2,0,3.6,1.6,3.6,3.6c0,2-1.6,3.6-3.6,3.6h-6.3V11.5z M19.9,37.4h-8.5v-7.2h8.5c2,0,3.6,1.6,3.6,3.6C23.5,35.8,21.9,37.4,19.9,37.4z M90,0v48.9H78.6V2.4L90,0z M56.8,13.9c-9.7,0-17.6,7.9-17.6,17.7c0,9.8,7.9,17.7,17.6,17.7c9.7,0,17.6-7.9,17.6-17.7C74.3,21.8,66.5,13.9,56.8,13.9z M56.8,37.4c-3.2,0-5.7-2.6-5.7-5.7c0-3.2,2.5-5.7,5.7-5.7c3.2,0,5.7,2.6,5.7,5.7C62.5,34.8,59.9,37.4,56.8,37.4z M62.5,59.3c0,3.2-2.6,5.7-5.7,5.7c-3.1,0-5.7-2.6-5.7-5.7c0-3.2,2.6-5.7,5.7-5.7C59.9,53.5,62.5,56.1,62.5,59.3z M111.8,14.5V26h-5.7v9c0,2.7,0.9,4.7,3.2,4.7c0.9,0,1.7-0.1,2.5-0.3v8.5c-1.7,0.9-3.6,1.4-5.6,1.4h-0.1c-0.1,0-0.1,0-0.2,0c-0.1,0-0.1,0-0.2,0h-0.1l-0.2,0C99.1,49,94.7,45,94.7,37.9v0v0V26V8.2l11.4-2.4v8.8H111.8z"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <script>
             document.addEventListener('DOMContentLoaded', function(){
               const LIB = 'Piața Libertății';
               const MAR = 'Piața Mărăști';
@@ -687,52 +752,6 @@
               document.addEventListener('click', () => hide());
             });
             </script>
-          </div>
-
-          <!-- Pe jos + Ride Sharing — panoul de rută le acoperă -->
-          <div class="md:col-span-2 md:grid md:grid-cols-2 lg:col-span-1 lg:grid-cols-[1.5fr_1fr] lg:border-l lg:border-gray-100" style="position:relative">
-            <div id="bus-route-panel"><!-- filled by JS --></div>
-
-          <!-- Pe jos -->
-          <div class="p-5 space-y-2.5">
-            <div class="flex items-center gap-2">
-              <svg class="w-4 h-4 text-gray-600 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M520-40v-240l-84-80-40 176-276-56 16-80 192 40 64-324-72 28v136h-80v-188l158-68q35-15 51.5-19.5T480-720q21 0 39 11t29 29l40 64q26 42 70.5 69T760-520v80q-66 0-123.5-27.5T540-540l-24 120 84 80v300h-80Zm-36.5-723.5Q460-787 460-820t23.5-56.5Q507-900 540-900t56.5 23.5Q620-853 620-820t-23.5 56.5Q573-740 540-740t-56.5-23.5Z"/></svg>
-              <span class="text-sm font-semibold text-gray-800" data-i18n="pe-jos-label">Pe Jos</span>
-            </div>
-            <p class="text-xs text-gray-400" data-i18n="pe-jos-sub">Distanța până la Zbor Hub</p>
-            <div class="pe-jos-grid">
-              <span class="loc-pill loc-pill--park loc-pill--soft" style="justify-content:center">Piața Unirii · 1 min</span>
-              <span class="loc-pill loc-pill--park loc-pill--soft" style="justify-content:center">Piața Libertății · 1 min</span>
-              <span class="loc-pill loc-pill--park loc-pill--soft" style="justify-content:center">Piața Victoriei · 3 min</span>
-              <span class="loc-pill loc-pill--park loc-pill--soft" style="justify-content:center">UVT · 12 min</span>
-            </div>
-          </div>
-
-          <!-- Ride Sharing -->
-          <div class="p-5 space-y-2.5 border-t border-gray-100 md:border-t-0 lg:border-l">
-            <div class="flex items-center gap-2">
-              <svg class="w-4 h-4 text-gray-600 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/></svg>
-              <span class="text-sm font-semibold text-gray-800">Ride Sharing</span>
-            </div>
-            <p class="text-xs text-gray-400" data-i18n="ride-sub">Comandă direct la adresă</p>
-            <div class="flex items-center gap-3">
-              <a href="https://m.uber.com/ul/?action=setPickup&pickup=my_location&dropoff[formatted_address]=Strada%20Vasile%20Alecsandri%201%2C%20Timi%C8%99oara&dropoff[nickname]=Toastmasters%20Timi%C8%99oara"
-                 target="_blank" rel="noopener"
-                 class="transition-opacity hover:opacity-80"
-                 style="display:inline-flex;align-items:center;border-radius:9999px;background:#000000;padding:.56rem 1.5rem">
-                <svg style="height:15px;width:auto;display:block" viewBox="0 0 155.8 52.3" xmlns="http://www.w3.org/2000/svg"><path fill="white" d="M7.7,31.8V0H0v32.2c0,12.1,8.5,20.1,19.5,20.1c5.4,0,10.1-2.1,13.6-5.7v4.8h7.6V0H33v31.8c0,8.2-5.5,13.7-12.6,13.7C13.2,45.4,7.7,40.1,7.7,31.8z M48.3,51.5h7.3v-4.7c3.4,3.5,8.2,5.6,13.4,5.6c11,0,19.7-8.7,19.7-19.6c0-10.9-8.7-19.6-19.7-19.6c-5.2,0-9.9,2.1-13.3,5.6V0h-7.4V51.5z M55.6,32.8c0-7.3,5.8-13,12.9-13c7.1,0,12.9,5.7,12.9,13c0,7.2-5.8,13-12.9,13C61.3,45.8,55.6,40,55.6,32.8z M93.1,32.7c0,11.2,8.7,19.6,19.9,19.6c6.8,0,12.4-3,16.2-8l-5.4-4c-2.8,3.7-6.5,5.5-10.8,5.5c-6.3,0-11.4-4.6-12.4-10.7h30.5v-2.4c0-11.2-7.9-19.5-18.7-19.5C101.4,13.2,93.1,22.1,93.1,32.7z M112.2,19.7c5.5,0,10.1,3.8,11.4,9.6h-22.9C102.1,23.5,106.7,19.7,112.2,19.7z M155.8,20.6v-6.9h-2.6c-4.1,0-7.1,1.9-9,4.9V14H137v37.5h7.4V30.1c0-5.8,3.5-9.6,8.4-9.6H155.8z"/></svg>
-              </a>
-              <a href="https://bolt.eu/ro/cities/timisoara/"
-                 target="_blank" rel="noopener"
-                 class="transition-opacity hover:opacity-80"
-                 style="display:inline-flex;align-items:center;border-radius:9999px;background:#34D186;padding:.4rem 1.5rem">
-                <svg style="height:20px;width:auto;display:block" viewBox="0 0 111.9 65" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" fill="white" d="M30.4,23c4.4-7.1,2.2-16.4-4.8-20.8C23.2,0.8,20.5,0,17.7,0H0v48.9h19.9c8.3,0,15-6.8,15-15.1C34.9,29.7,33.3,25.9,30.4,23z M11.4,11.5h6.3c2,0,3.6,1.6,3.6,3.6c0,2-1.6,3.6-3.6,3.6h-6.3V11.5z M19.9,37.4h-8.5v-7.2h8.5c2,0,3.6,1.6,3.6,3.6C23.5,35.8,21.9,37.4,19.9,37.4z M90,0v48.9H78.6V2.4L90,0z M56.8,13.9c-9.7,0-17.6,7.9-17.6,17.7c0,9.8,7.9,17.7,17.6,17.7c9.7,0,17.6-7.9,17.6-17.7C74.3,21.8,66.5,13.9,56.8,13.9z M56.8,37.4c-3.2,0-5.7-2.6-5.7-5.7c0-3.2,2.5-5.7,5.7-5.7c3.2,0,5.7,2.6,5.7,5.7C62.5,34.8,59.9,37.4,56.8,37.4z M62.5,59.3c0,3.2-2.6,5.7-5.7,5.7c-3.1,0-5.7-2.6-5.7-5.7c0-3.2,2.6-5.7,5.7-5.7C59.9,53.5,62.5,56.1,62.5,59.3z M111.8,14.5V26h-5.7v9c0,2.7,0.9,4.7,3.2,4.7c0.9,0,1.7-0.1,2.5-0.3v8.5c-1.7,0.9-3.6,1.4-5.6,1.4h-0.1c-0.1,0-0.1,0-0.2,0c-0.1,0-0.1,0-0.2,0h-0.1l-0.2,0C99.1,49,94.7,45,94.7,37.9v0v0V26V8.2l11.4-2.4v8.8H111.8z"/></svg>
-              </a>
-            </div>
-          </div>
-
-          </div><!-- /pe-jos+ride-sharing wrapper -->
-        </div>
       </div><!-- /transport-card -->
 
     </div>
