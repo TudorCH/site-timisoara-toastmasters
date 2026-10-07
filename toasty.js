@@ -371,15 +371,19 @@
 
   /* ── Hero hide — FAB reappears as soon as the hero no longer overlaps
      the FAB's own corner of the screen, not only once fully scrolled away ── */
-  var nav = document.querySelector('nav');
-  var heroEl = nav ? nav.nextElementSibling : null;
-  if (heroEl && 'IntersectionObserver' in window) {
+  /* Dark full-screen heroes only; pages with a light hero keep the button visible.
+     Mobile and desktop heroes are separate elements, the hidden one never intersects. */
+  var heroEls = document.querySelectorAll('.hero-section, #hero-mobile, #hero-desktop');
+  if (heroEls.length && 'IntersectionObserver' in window) {
+    var heroHits = new Map();
     fab.classList.add('over-hero'); /* start hidden until first observer callback */
-    new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        fab.classList.toggle('over-hero', e.isIntersecting);
-      });
-    }, { threshold: 0, rootMargin: '0px 0px -90px 0px' }).observe(heroEl);
+    var heroObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { heroHits.set(e.target, e.isIntersecting); });
+      var over = false;
+      heroHits.forEach(function (v) { if (v) over = true; });
+      fab.classList.toggle('over-hero', over);
+    }, { threshold: 0, rootMargin: '0px 0px -90px 0px' });
+    heroEls.forEach(function (el) { heroObs.observe(el); });
   }
 
   /* ── Footer hide ── */
