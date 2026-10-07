@@ -38,7 +38,6 @@
     'footer-nav-contact':    'Contact',
     'footer-where-title':    'Where & when',
     'footer-where-venue':    'Zbor Hub, 2nd floor',
-    'footer-where-area':     'Liberty Square, Timișoara',
     'footer-when-day':       'Every Wednesday',
     'footer-free-title':     'Free entry',
     'footer-free-text':      'Guests are always welcome',
