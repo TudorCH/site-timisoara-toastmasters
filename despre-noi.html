@@ -51,7 +51,7 @@
     }
     .cta-pulse { animation: ctaGlow 2.8s ease-in-out infinite; will-change: filter; }
     .gradient-hero { background: linear-gradient(135deg, #002d47 0%, #004165 55%, #003555 100%); }
-    #hero-mobile  { display: block; }
+    #hero-mobile  { display: flex; }
     @media (min-width: 1024px) { #hero-mobile  { display: none;  } }
     #hero-desktop { display: none;  }
     @media (min-width: 1024px) { #hero-desktop { display: flex; flex-direction: column; justify-content: center; min-height: 100vh; min-height: 100dvh; } }
@@ -316,40 +316,30 @@
 
 
 <!-- ════════════════════ HERO MOBILE ════════════════════ -->
-<section id="hero-mobile" class="pt-16 relative overflow-hidden" style="height:100dvh;min-height:580px">
+<section id="hero-mobile" class="lg:hidden pt-16 relative overflow-hidden flex flex-col justify-end" style="min-height:100svh;background:#002d47">
   <img src="Images/hero-mobile.webp" alt="" aria-hidden="true"
-       class="absolute inset-x-0 bottom-0 w-full h-full object-cover" style="top:32px;object-position:center top" />
-  <div class="absolute inset-x-0 bottom-0" style="height:85%;background:linear-gradient(to top,#002d47 0%,#002d47 30%,rgba(0,45,71,.95) 55%,rgba(0,55,85,.6) 72%,rgba(0,65,101,.2) 88%,transparent 100%)"></div>
-  <div class="absolute left-0 right-0 z-10 px-5 pb-10" style="bottom:32px">
-    <h1 class="font-heading text-4xl font-bold text-white leading-tight mb-4" data-i18n="hero-h1">
-    Primul club Toastmasters<br/><span class="text-gold">din România</span>
+       class="absolute inset-x-0 top-16 w-full object-cover" style="height:62svh;object-position:center top" fetchpriority="high" />
+  <div class="absolute inset-x-0 top-16" style="height:62svh;background:linear-gradient(to bottom,rgba(0,45,71,0) 0%,rgba(0,45,71,0) 40%,rgba(0,45,71,.7) 72%,#002d47 100%)"></div>
+
+  <div class="relative z-10 w-full max-w-xl mx-auto px-5 pb-8 text-center">
+    <h1 class="font-heading font-bold text-white leading-[1.05] mb-4 text-[2.4rem] sm:text-5xl text-balance" style="text-shadow:0 2px 24px rgba(0,0,0,.35)" data-i18n="hero-h1">
+      Primul club Toastmasters<br/><span class="text-gold">din România</span>
     </h1>
-    <div class="flex flex-col gap-2">
-      <div class="flex items-center gap-3">
-        <svg class="w-5 h-5 text-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        <span class="text-white/90 text-base font-medium" data-i18n="hero-d1">Miercuri 19:30–21:00</span>
-      </div>
-      <div class="flex items-center gap-3">
-        <svg class="w-5 h-5 text-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        <span class="text-white/90 text-base font-medium" data-i18n="hero-d2">Zbor Hub, Timișoara</span>
-      </div>
-      <div class="flex items-center gap-3">
-        <svg class="w-5 h-5 text-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/><path d="M13 5v2M13 17v2M13 11v2"/></svg>
-        <span class="text-white/90 text-base font-medium" data-i18n="hero-d3">Intrare liberă</span>
-      </div>
-    </div>
-    <div class="flex flex-col sm:flex-row gap-2 mt-4">
-      <a href="contact"
-         class="cta-pulse bg-gold hover:bg-gold-light text-primary font-bold px-8 py-3.5 rounded-full text-base
-                transition-all duration-200 hover:scale-105 text-center shadow-lg shadow-gold/30"
-         data-i18n="cta-btn1">
-        Rezervă-ți locul →
+
+    <p class="flex flex-wrap justify-center items-center gap-x-2.5 gap-y-1 text-white/80 text-sm sm:text-base font-medium mb-6">
+      <span data-i18n="hero-d1">Miercuri 19:30–21:00</span>
+      <span class="w-1 h-1 rounded-full bg-white/40" aria-hidden="true"></span>
+      <span data-i18n="hero-d2">Zbor Hub, Timișoara</span>
+      <span class="basis-full text-gold" data-i18n="hero-d3">Intrare liberă</span>
+    </p>
+
+    <div class="flex flex-col items-center gap-1">
+      <a href="contact" class="nav-cta w-full sm:w-auto inline-flex items-center justify-center gap-2 text-primary font-bold px-8 py-3.5 rounded-full text-base">
+        <span data-i18n="nav-cta">Hai și tu la o ședință</span>
       </a>
-      <a href="contact#main-content"
-         class="border border-white/50 hover:border-gold text-white hover:text-gold font-semibold
-                px-8 py-3.5 rounded-full text-base transition-all duration-200 text-center backdrop-blur-sm"
-         data-i18n="cta-btn2">
-        Vezi programul ședințelor
+      <a href="contact#main-content" class="inline-flex items-center gap-1.5 text-white/85 hover:text-gold font-semibold px-4 py-2.5 text-[15px] transition-colors">
+        <span data-i18n="cta-btn2">Vezi programul ședințelor</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
       </a>
     </div>
   </div>
@@ -544,9 +534,9 @@
         Primul club Toastmasters din România
       </h2>
       <div class="space-y-4 text-gray-600 text-base sm:text-lg leading-relaxed">
-        <p class="text-center lg:text-left" data-i18n="achiev-p1">Timișoara Toastmasters este primul club Toastmasters înființat în România. A început cu un grup de oameni care credeau că abilitatea de a vorbi clar și convingător se poate învăța, iar cel mai bun mod e practica, nu teoria.</p>
-        <p class="text-center lg:text-left" data-i18n="achiev-p2">17 ani mai târziu, peste 200 de membri au trecut prin club. Unii au vorbit pentru prima dată în public la noi. Alții au ajuns să conducă echipe, să prezinte la conferințe sau să devină traineri de succes.</p>
-        <p class="text-center lg:text-left" data-i18n="achiev-p3">Fie că ești la primul discurs sau ai ani de experiență în spate, <strong class="text-maroon">locul tău este aici.</strong></p>
+        <p class="text-left" data-i18n="achiev-p1">Timișoara Toastmasters este primul club Toastmasters înființat în România. A început cu un grup de oameni care credeau că abilitatea de a vorbi clar și convingător se poate învăța, iar cel mai bun mod e practica, nu teoria.</p>
+        <p class="text-left" data-i18n="achiev-p2">17 ani mai târziu, peste 200 de membri au trecut prin club. Unii au vorbit pentru prima dată în public la noi. Alții au ajuns să conducă echipe, să prezinte la conferințe sau să devină traineri de succes.</p>
+        <p class="text-left" data-i18n="achiev-p3">Fie că ești la primul discurs sau ai ani de experiență în spate, <strong class="text-maroon">locul tău este aici.</strong></p>
       </div>
     </div>
     <div class="grid grid-cols-2 gap-4 sm:gap-5">
@@ -585,9 +575,9 @@
       </h2>
     </div>
     <div class="grid md:grid-cols-3 gap-5 lg:gap-8">
-      <div class="relative rounded-2xl border border-gray-100 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.06)] p-6 lg:p-7 text-left">
-        <div class="flex items-center justify-between mb-5">
-          <div class="w-14 h-14 rounded-full flex items-center justify-center text-maroon" style="background:#f3f5f5;box-shadow:0 0 0 3px #fff, 0 0 0 5px #dce2e1">
+      <div class="relative rounded-2xl border border-gray-100 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.06)] p-5 lg:p-7 text-left">
+        <div class="flex items-center justify-between mb-3 lg:mb-5">
+          <div class="w-11 h-11 lg:w-14 lg:h-14 rounded-full flex items-center justify-center text-maroon" style="background:#f3f5f5;box-shadow:0 0 0 3px #fff, 0 0 0 5px #dce2e1">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg>
           </div>
         </div>
@@ -596,9 +586,9 @@
         <p class="text-gray-500 text-sm lg:text-[15px] leading-relaxed" data-i18n="eve-panel1-body">Membrii susțin discursuri pregătite din programul Pathways, fiecare cu obiective clare de comunicare și structură bine definită. De la discursuri introductive la prezentări complexe cu date și argumente.</p>
         <div class="hidden md:flex absolute top-1/2 -right-[22px] lg:-right-[26px] -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-white border border-gray-100 shadow-sm items-center justify-center text-maroon"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></div>
       </div>
-      <div class="relative rounded-2xl border border-gray-100 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.06)] p-6 lg:p-7 text-left">
-        <div class="flex items-center justify-between mb-5">
-          <div class="w-14 h-14 rounded-full flex items-center justify-center text-maroon" style="background:#f3f5f5;box-shadow:0 0 0 3px #fff, 0 0 0 5px #dce2e1">
+      <div class="relative rounded-2xl border border-gray-100 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.06)] p-5 lg:p-7 text-left">
+        <div class="flex items-center justify-between mb-3 lg:mb-5">
+          <div class="w-11 h-11 lg:w-14 lg:h-14 rounded-full flex items-center justify-center text-maroon" style="background:#f3f5f5;box-shadow:0 0 0 3px #fff, 0 0 0 5px #dce2e1">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
           </div>
         </div>
@@ -607,9 +597,9 @@
         <p class="text-gray-500 text-sm lg:text-[15px] leading-relaxed" data-i18n="eve-panel2-body">Primești un subiect și ai 1–2 minute să vorbești despre el. Excelent pentru a-ți dezvolta gândirea rapidă și spontaneitatea în fața unui public.</p>
         <div class="hidden md:flex absolute top-1/2 -right-[22px] lg:-right-[26px] -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-white border border-gray-100 shadow-sm items-center justify-center text-maroon"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></div>
       </div>
-      <div class="relative rounded-2xl border border-gray-100 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.06)] p-6 lg:p-7 text-left">
-        <div class="flex items-center justify-between mb-5">
-          <div class="w-14 h-14 rounded-full flex items-center justify-center text-maroon" style="background:#f3f5f5;box-shadow:0 0 0 3px #fff, 0 0 0 5px #dce2e1">
+      <div class="relative rounded-2xl border border-gray-100 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.06)] p-5 lg:p-7 text-left">
+        <div class="flex items-center justify-between mb-3 lg:mb-5">
+          <div class="w-11 h-11 lg:w-14 lg:h-14 rounded-full flex items-center justify-center text-maroon" style="background:#f3f5f5;box-shadow:0 0 0 3px #fff, 0 0 0 5px #dce2e1">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
           </div>
         </div>
@@ -800,7 +790,7 @@
     </div>
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
 
-      <div class="leader-card flex flex-col items-center text-center px-3 pt-5 pb-4 sm:px-6 sm:pt-7 sm:pb-5 rounded-2xl border border-gray-100 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.06)] cursor-pointer min-h-[250px] sm:min-h-[330px]" onclick="leaderToggle(this)">
+      <div class="leader-card flex flex-col items-center text-center px-3 pt-5 pb-4 sm:px-6 sm:pt-7 sm:pb-5 rounded-2xl border border-gray-100 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.06)] cursor-pointer min-h-[220px] sm:min-h-[330px]" onclick="leaderToggle(this)">
         <div class="w-24 h-24 sm:w-32 sm:h-32 rounded-full mx-auto mb-4 sm:mb-5 overflow-hidden bg-gray-100" style="box-shadow:0 0 0 4px #fff, 0 0 0 7px #dce2e1, 0 6px 18px rgba(0,0,0,.06)">
           <img src="Profile%20Pictures/robert-cernea-pp.webp" alt="Robert Cernea" class="w-full h-full object-cover" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'text-white font-bold text-lg\'>RC</span>'" loading="lazy" />
         </div>
@@ -827,7 +817,7 @@
         </div>
       </div>
 
-      <div class="leader-card flex flex-col items-center text-center px-3 pt-5 pb-4 sm:px-6 sm:pt-7 sm:pb-5 rounded-2xl border border-gray-100 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.06)] cursor-pointer min-h-[250px] sm:min-h-[330px]" onclick="leaderToggle(this)">
+      <div class="leader-card flex flex-col items-center text-center px-3 pt-5 pb-4 sm:px-6 sm:pt-7 sm:pb-5 rounded-2xl border border-gray-100 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.06)] cursor-pointer min-h-[220px] sm:min-h-[330px]" onclick="leaderToggle(this)">
         <div class="w-24 h-24 sm:w-32 sm:h-32 rounded-full mx-auto mb-4 sm:mb-5 overflow-hidden bg-gray-100" style="box-shadow:0 0 0 4px #fff, 0 0 0 7px #dce2e1, 0 6px 18px rgba(0,0,0,.06)">
           <img src="Profile%20Pictures/olga-lancea-pp.webp" alt="Olga Lancea" class="w-full h-full object-cover" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'text-white font-bold text-lg\'>OL</span>'" loading="lazy" />
         </div>
@@ -854,7 +844,7 @@
         </div>
       </div>
 
-      <div class="leader-card flex flex-col items-center text-center px-3 pt-5 pb-4 sm:px-6 sm:pt-7 sm:pb-5 rounded-2xl border border-gray-100 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.06)] cursor-pointer min-h-[250px] sm:min-h-[330px]" onclick="leaderToggle(this)">
+      <div class="leader-card flex flex-col items-center text-center px-3 pt-5 pb-4 sm:px-6 sm:pt-7 sm:pb-5 rounded-2xl border border-gray-100 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.06)] cursor-pointer min-h-[220px] sm:min-h-[330px]" onclick="leaderToggle(this)">
         <div class="w-24 h-24 sm:w-32 sm:h-32 rounded-full mx-auto mb-4 sm:mb-5 overflow-hidden bg-gray-100" style="box-shadow:0 0 0 4px #fff, 0 0 0 7px #dce2e1, 0 6px 18px rgba(0,0,0,.06)">
           <img src="Profile%20Pictures/ionut-cornean-pp.webp" alt="Ionuț Cornean" class="w-full h-full object-cover" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'text-white font-bold text-lg\'>IC</span>'" loading="lazy" />
         </div>
@@ -881,7 +871,7 @@
         </div>
       </div>
 
-      <div class="leader-card flex flex-col items-center text-center px-3 pt-5 pb-4 sm:px-6 sm:pt-7 sm:pb-5 rounded-2xl border border-gray-100 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.06)] cursor-pointer min-h-[250px] sm:min-h-[330px]" onclick="leaderToggle(this)">
+      <div class="leader-card flex flex-col items-center text-center px-3 pt-5 pb-4 sm:px-6 sm:pt-7 sm:pb-5 rounded-2xl border border-gray-100 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.06)] cursor-pointer min-h-[220px] sm:min-h-[330px]" onclick="leaderToggle(this)">
         <div class="w-24 h-24 sm:w-32 sm:h-32 rounded-full mx-auto mb-4 sm:mb-5 overflow-hidden bg-gray-100" style="box-shadow:0 0 0 4px #fff, 0 0 0 7px #dce2e1, 0 6px 18px rgba(0,0,0,.06)">
           <img src="Profile%20Pictures/lavinia-borza-pp.webp" alt="Lavinia Borza" class="w-full h-full object-cover" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'text-white font-bold text-lg\'>LB</span>'" loading="lazy" />
         </div>
@@ -908,7 +898,7 @@
         </div>
       </div>
 
-      <div class="leader-card flex flex-col items-center text-center px-3 pt-5 pb-4 sm:px-6 sm:pt-7 sm:pb-5 rounded-2xl border border-gray-100 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.06)] cursor-pointer min-h-[250px] sm:min-h-[330px]" onclick="leaderToggle(this)">
+      <div class="leader-card flex flex-col items-center text-center px-3 pt-5 pb-4 sm:px-6 sm:pt-7 sm:pb-5 rounded-2xl border border-gray-100 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.06)] cursor-pointer min-h-[220px] sm:min-h-[330px]" onclick="leaderToggle(this)">
         <div class="w-24 h-24 sm:w-32 sm:h-32 rounded-full mx-auto mb-4 sm:mb-5 overflow-hidden bg-gray-100" style="box-shadow:0 0 0 4px #fff, 0 0 0 7px #dce2e1, 0 6px 18px rgba(0,0,0,.06)">
           <img src="Profile%20Pictures/tudor-chiu-pp.webp" alt="Tudor Chiu" class="w-full h-full object-cover" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'text-white font-bold text-lg\'>TC</span>'" loading="lazy" />
         </div>
@@ -935,7 +925,7 @@
         </div>
       </div>
 
-      <div class="leader-card flex flex-col items-center text-center px-3 pt-5 pb-4 sm:px-6 sm:pt-7 sm:pb-5 rounded-2xl border border-gray-100 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.06)] cursor-pointer min-h-[250px] sm:min-h-[330px]" onclick="leaderToggle(this)">
+      <div class="leader-card flex flex-col items-center text-center px-3 pt-5 pb-4 sm:px-6 sm:pt-7 sm:pb-5 rounded-2xl border border-gray-100 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.06)] cursor-pointer min-h-[220px] sm:min-h-[330px]" onclick="leaderToggle(this)">
         <div class="w-24 h-24 sm:w-32 sm:h-32 rounded-full mx-auto mb-4 sm:mb-5 overflow-hidden bg-gray-100" style="box-shadow:0 0 0 4px #fff, 0 0 0 7px #dce2e1, 0 6px 18px rgba(0,0,0,.06)">
           <img src="Profile%20Pictures/mihaela-cristina-pp.webp" alt="Cristina Stroia" class="w-full h-full object-cover" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'text-white font-bold text-lg\'>MC</span>'" loading="lazy" />
         </div>
@@ -962,7 +952,7 @@
         </div>
       </div>
 
-      <div class="leader-card flex flex-col items-center text-center px-3 pt-5 pb-4 sm:px-6 sm:pt-7 sm:pb-5 rounded-2xl border border-gray-100 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.06)] cursor-pointer min-h-[250px] sm:min-h-[330px]" onclick="leaderToggle(this)">
+      <div class="leader-card flex flex-col items-center text-center px-3 pt-5 pb-4 sm:px-6 sm:pt-7 sm:pb-5 rounded-2xl border border-gray-100 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.06)] cursor-pointer min-h-[220px] sm:min-h-[330px]" onclick="leaderToggle(this)">
         <div class="w-24 h-24 sm:w-32 sm:h-32 rounded-full mx-auto mb-4 sm:mb-5 overflow-hidden bg-gray-100" style="box-shadow:0 0 0 4px #fff, 0 0 0 7px #dce2e1, 0 6px 18px rgba(0,0,0,.06)">
           <img src="Profile%20Pictures/sergiu-spatar-pp.webp" alt="Sergiu Spătar" class="w-full h-full object-cover" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'text-white font-bold text-lg\'>SS</span>'" loading="lazy" />
         </div>
@@ -989,7 +979,7 @@
         </div>
       </div>
 
-      <div class="leader-card flex flex-col items-center text-center px-3 pt-5 pb-4 sm:px-6 sm:pt-7 sm:pb-5 rounded-2xl border border-gray-100 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.06)] cursor-pointer min-h-[250px] sm:min-h-[330px]" onclick="leaderToggle(this)">
+      <div class="leader-card flex flex-col items-center text-center px-3 pt-5 pb-4 sm:px-6 sm:pt-7 sm:pb-5 rounded-2xl border border-gray-100 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.06)] cursor-pointer min-h-[220px] sm:min-h-[330px]" onclick="leaderToggle(this)">
         <div class="w-24 h-24 sm:w-32 sm:h-32 rounded-full mx-auto mb-4 sm:mb-5 overflow-hidden bg-gray-100" style="box-shadow:0 0 0 4px #fff, 0 0 0 7px #dce2e1, 0 6px 18px rgba(0,0,0,.06)">
           <img src="Profile%20Pictures/adriana-stamatin-pp.webp" alt="Adriana Stamatin" class="w-full h-full object-cover" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'text-white font-bold text-lg\'>AS</span>'" loading="lazy" />
         </div>
