@@ -119,6 +119,7 @@
     /* ─ Index: Reviews ─ */
     'idx-rev-badge':   'Reviews',
     'idx-rev-h2':      'What do people who visited us say?',
+    'idx-rev-p':      'Stories from our members and guests, after their first speeches and months of practice.',
     'idx-rev-fb-cta':  'See all reviews on Facebook',
     'idx-rev-g-cta':   'See all reviews on Google',
 
@@ -577,9 +578,20 @@
     });
   }
 
+  /* Page scripts that ran before this file may have wrapped setLang to re-render
+     their own widgets (calendar, gallery, reviews); keep them and call them after
+     the language is applied. */
+  var pageHooks = window.setLang;
+  function runPageHooks(lang) {
+    if (typeof pageHooks === 'function') {
+      try { pageHooks(lang); } catch (e) { /* a broken widget must not block the switch */ }
+    }
+  }
+
   window.setLang = function (lang) {
     localStorage.setItem(LANG_KEY, lang);
     applyLang(lang);
+    runPageHooks(lang);
   };
 
   /* ── Helpers for inline JS that sets text/aria dynamically (menus, carousels) ── */
@@ -594,7 +606,9 @@
   };
 
   function initLang() {
-    applyLang(localStorage.getItem(LANG_KEY) || 'ro');
+    var lang = localStorage.getItem(LANG_KEY) || 'ro';
+    applyLang(lang);
+    runPageHooks(lang);
   }
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initLang);
