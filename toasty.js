@@ -393,6 +393,84 @@
     }, { threshold: 0.05 }).observe(footer);
   }
 
+  /* ── Teaser bubble: tells visitors the assistant exists, once per session ── */
+  var TEASER_KEY = 'ty_teaser_seen';
+  var TEASER_T = {
+    ro: { title: 'Ai o întrebare?', text: 'Întreabă-l pe Toasty despre ședințe, costuri sau cum ajungi la noi.', close: 'Închide' },
+    en: { title: 'Got a question?', text: 'Ask Toasty about meetings, costs or how to get here.', close: 'Close' },
+  };
+  function teaserSeen() { try { return sessionStorage.getItem(TEASER_KEY) === '1'; } catch (e) { return false; } }
+  function markTeaserSeen() { try { sessionStorage.setItem(TEASER_KEY, '1'); } catch (e) {} }
+
+  var teaserCss = document.createElement('style');
+  teaserCss.textContent = [
+    '#ty-teaser{position:fixed;right:16px;bottom:84px;z-index:2147483646;max-width:min(270px,calc(100vw - 32px));',
+    'background:#fff;color:#0f2942;border-radius:16px 16px 4px 16px;padding:12px 34px 12px 14px;cursor:pointer;',
+    'box-shadow:0 8px 28px rgba(0,21,42,.18),0 0 0 1px rgba(0,83,127,.12);font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif;',
+    'opacity:0;transform:translateY(8px) scale(.97);transform-origin:bottom right;pointer-events:none;transition:opacity .25s,transform .25s;}',
+    '#ty-teaser.on{opacity:1;transform:none;pointer-events:auto;}',
+    '#ty-teaser b{display:block;font-size:14px;margin-bottom:2px;color:#004165;}',
+    '#ty-teaser span{display:block;font-size:13px;line-height:1.45;color:#3a5a72;}',
+    '#ty-teaser-x{all:unset;position:absolute;top:6px;right:6px;width:24px;height:24px;border-radius:50%;cursor:pointer;',
+    'display:flex;align-items:center;justify-content:center;color:#7a93a8;}',
+    '#ty-teaser-x:hover{background:#eef4f8;color:#004165;}',
+    '#ty-teaser-x:focus-visible{outline:2px solid #00537f;outline-offset:1px;}',
+    '@media(min-width:640px){#ty-teaser{right:28px;bottom:96px;}}',
+    '@media(prefers-reduced-motion:reduce){#ty-teaser{transition:none;}}',
+  ].join('');
+  document.head.appendChild(teaserCss);
+
+  var teaser = document.createElement('div');
+  teaser.id = 'ty-teaser';
+  teaser.setAttribute('role', 'status');
+  teaser.innerHTML = '<b></b><span></span><button id="ty-teaser-x" type="button">' +
+    '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>';
+  document.body.appendChild(teaser);
+  var teaserX = document.getElementById('ty-teaser-x');
+
+  function applyTeaserLang() {
+    var t = TEASER_T[tyLang()];
+    teaser.querySelector('b').textContent = t.title;
+    teaser.querySelector('span').textContent = t.text;
+    teaserX.setAttribute('aria-label', t.close);
+  }
+  applyTeaserLang();
+  var _tyTeaserSetLang = window.setLang;
+  window.setLang = function (lang) {
+    if (typeof _tyTeaserSetLang === 'function') _tyTeaserSetLang(lang);
+    applyTeaserLang();
+  };
+
+  function fabVisible() {
+    return !fab.classList.contains('gone') && !fab.classList.contains('no-footer') && !fab.classList.contains('over-hero');
+  }
+  function hideTeaser() {
+    teaser.classList.remove('on');
+    markTeaserSeen();
+    clearInterval(teaserTimer);
+  }
+  teaser.addEventListener('click', function (e) {
+    hideTeaser();
+    if (e.target.closest('#ty-teaser-x')) return;
+    fab.click();
+  });
+  fab.addEventListener('click', hideTeaser);
+
+  /* show after the button has been on screen for a few seconds; hide if it goes away */
+  var visibleFor = 0, shownFor = 0, teaserTimer = null;
+  if (!teaserSeen()) {
+    teaserTimer = setInterval(function () {
+      if (isOpen) { hideTeaser(); return; }
+      var on = teaser.classList.contains('on');
+      if (!fabVisible()) { if (on) teaser.classList.remove('on'); return; }
+      if (on) {
+        if (++shownFor >= 15) hideTeaser();
+      } else if (++visibleFor >= 4) {
+        teaser.classList.add('on');
+      }
+    }, 1000);
+  }
+
   /* ── Send ── */
   window.toastySendInput = function () {
     var inp = document.getElementById('ty-inp');
