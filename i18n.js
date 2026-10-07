@@ -27,9 +27,6 @@
     'skip-link':       'Skip to content',
 
     /* ─ Footer ─ */
-    'footer-cta-title':      'Want to see what a live meeting is like?',
-    'footer-cta-text':       'Attending as a guest is completely free, open to everyone and with no obligations.',
-    'footer-cta-btn':        'Join the next meeting →',
     'footer-nav-title':      'Navigation',
     'footer-nav-home':       'Home',
     'footer-nav-about':      'About us',
