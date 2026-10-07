@@ -316,36 +316,39 @@
 
 
 <!-- ════════════════════ HERO MOBILE ════════════════════ -->
-<section id="hero-mobile" class="pt-16 relative overflow-hidden" style="height:100dvh;min-height:580px">
-  <div id="hero-slider-m" class="absolute inset-x-0 bottom-0 w-full overflow-hidden" style="top:32px" aria-hidden="true">
-    <img src="Images/hero-mobile.webp" alt="" class="hero-slide is-active" style="object-position:center top" />
-    <img src="https://res.cloudinary.com/dnxcej0q5/image/upload/w_880,h_1100,c_fill,g_auto,q_auto,f_auto/IMG_2583_mjclxi" alt="" class="hero-slide" style="object-position:center top" loading="lazy" />
-    <img src="https://res.cloudinary.com/dnxcej0q5/image/upload/w_880,h_1100,c_fill,g_auto,q_auto,f_auto/IMG_2985_rk0z30" alt="" class="hero-slide" style="object-position:center top" loading="lazy" />
-    <img src="https://res.cloudinary.com/dnxcej0q5/image/upload/w_880,h_1100,c_fill,g_auto,q_auto,f_auto/IMG_0995_gpr80l" alt="" class="hero-slide" style="object-position:center top" loading="lazy" />
-    <img src="https://res.cloudinary.com/dnxcej0q5/image/upload/w_880,h_1100,c_fill,g_auto,q_auto,f_auto/IMG_2266_mvqvde" alt="" class="hero-slide" style="object-position:center top" loading="lazy" />
-    <img src="https://res.cloudinary.com/dnxcej0q5/image/upload/w_880,h_1100,c_fill,g_auto,q_auto,f_auto/696971441_1374827881121585_1234612732339358811_n_xb6evn" alt="" class="hero-slide" style="object-position:center top" loading="lazy" />
-    <img src="https://res.cloudinary.com/dnxcej0q5/image/upload/w_880,h_1100,c_fill,g_auto,q_auto,f_auto/IMG_2600_qcmg3o" alt="" class="hero-slide" style="object-position:center top" loading="lazy" />
-  </div>
-  <div class="absolute inset-x-0 bottom-0" style="height:85%;background:linear-gradient(to top,#002d47 0%,#002d47 30%,rgba(0,45,71,.95) 55%,rgba(0,55,85,.6) 72%,rgba(0,65,101,.2) 88%,transparent 100%)"></div>
-  <div class="absolute left-0 right-0 z-10 px-5 pb-10" style="bottom:32px">
-    <h1 class="font-heading text-4xl font-bold text-white leading-tight mb-4" data-i18n="hero-h1">
+<section id="hero-mobile" class="gradient-hero relative overflow-hidden pt-20 pb-8" style="min-height:100svh">
+  <div class="px-5 flex flex-col justify-center gap-6" style="min-height:calc(100svh - 7rem)">
+    <div id="hero-slider-m" class="relative w-full rounded-3xl overflow-hidden shadow-2xl shadow-black/40 bg-primary-dark" style="height:min(40svh,420px)">
+        <img src="Images/hero-mobile.webp" alt="" class="hero-slide is-active" style="object-position:center top" />
+        <img src="https://res.cloudinary.com/dnxcej0q5/image/upload/w_880,h_1100,c_fill,g_auto,q_auto,f_auto/IMG_2583_mjclxi" alt="" class="hero-slide" style="object-position:center top" loading="lazy" />
+        <img src="https://res.cloudinary.com/dnxcej0q5/image/upload/w_880,h_1100,c_fill,g_auto,q_auto,f_auto/IMG_2985_rk0z30" alt="" class="hero-slide" style="object-position:center top" loading="lazy" />
+        <img src="https://res.cloudinary.com/dnxcej0q5/image/upload/w_880,h_1100,c_fill,g_auto,q_auto,f_auto/IMG_0995_gpr80l" alt="" class="hero-slide" style="object-position:center top" loading="lazy" />
+        <img src="https://res.cloudinary.com/dnxcej0q5/image/upload/w_880,h_1100,c_fill,g_auto,q_auto,f_auto/IMG_2266_mvqvde" alt="" class="hero-slide" style="object-position:center top" loading="lazy" />
+        <img src="https://res.cloudinary.com/dnxcej0q5/image/upload/w_880,h_1100,c_fill,g_auto,q_auto,f_auto/696971441_1374827881121585_1234612732339358811_n_xb6evn" alt="" class="hero-slide" style="object-position:center top" loading="lazy" />
+        <img src="https://res.cloudinary.com/dnxcej0q5/image/upload/w_880,h_1100,c_fill,g_auto,q_auto,f_auto/IMG_2600_qcmg3o" alt="" class="hero-slide" style="object-position:center top" loading="lazy" />
+      <div class="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/40 to-transparent pointer-events-none"></div>
+      <div class="absolute left-1/2 -translate-x-1/2 bottom-4 flex gap-1.5 z-10"><button type="button" class="hero-dot is-active" aria-label="Poza 1"></button><button type="button" class="hero-dot" aria-label="Poza 2"></button><button type="button" class="hero-dot" aria-label="Poza 3"></button><button type="button" class="hero-dot" aria-label="Poza 4"></button><button type="button" class="hero-dot" aria-label="Poza 5"></button><button type="button" class="hero-dot" aria-label="Poza 6"></button><button type="button" class="hero-dot" aria-label="Poza 7"></button></div>
+    </div>
+    <div class="absolute inset-x-0 bottom-0" style="height:85%;background:linear-gradient(to top,#002d47 0%,#002d47 30%,rgba(0,45,71,.95) 55%,rgba(0,55,85,.6) 72%,rgba(0,65,101,.2) 88%,transparent 100%)"></div>
+    <div class="relative z-10 text-center">
+    <h1 class="font-heading text-[2.25rem] font-bold text-white leading-tight mb-4 text-balance" data-i18n="hero-h1">
     Primul club Toastmasters<br/><span class="text-gold">din România</span>
     </h1>
-    <div class="flex flex-col gap-2">
-      <div class="flex items-center gap-3">
+    <div class="flex flex-wrap justify-center gap-x-5 gap-y-2">
+      <div class="flex items-center gap-2">
         <svg class="w-5 h-5 text-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        <span class="text-white/90 text-base font-medium" data-i18n="hero-d1">Miercuri 19:30–21:00</span>
+        <span class="text-white/90 text-[15px] font-medium" data-i18n="hero-d1">Miercuri 19:30–21:00</span>
       </div>
-      <div class="flex items-center gap-3">
+      <div class="flex items-center gap-2">
         <svg class="w-5 h-5 text-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        <span class="text-white/90 text-base font-medium" data-i18n="hero-d2">Zbor Hub, Timișoara</span>
+        <span class="text-white/90 text-[15px] font-medium" data-i18n="hero-d2">Zbor Hub, Timișoara</span>
       </div>
-      <div class="flex items-center gap-3">
+      <div class="flex items-center gap-2">
         <svg class="w-5 h-5 text-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/><path d="M13 5v2M13 17v2M13 11v2"/></svg>
-        <span class="text-white/90 text-base font-medium" data-i18n="hero-d3">Intrare liberă</span>
+        <span class="text-white/90 text-[15px] font-medium" data-i18n="hero-d3">Intrare liberă</span>
       </div>
     </div>
-    <div class="flex flex-col sm:flex-row gap-2 mt-4">
+    <div class="flex flex-col sm:flex-row sm:justify-center gap-2 mt-5">
       <a href="contact"
          class="cta-pulse bg-gold hover:bg-gold-light text-primary font-bold px-8 py-3.5 rounded-full text-base
                 transition-all duration-200 hover:scale-105 text-center shadow-lg shadow-gold/30"
@@ -359,6 +362,7 @@
         Vezi programul ședințelor
       </a>
     </div>
+  </div>
   </div>
 </section>
 
@@ -1237,15 +1241,22 @@
   // ══════════════ HERO SLIDER (mobile) ══════════════
   (function () {
     var slider = document.getElementById('hero-slider-m');
-    if (!slider || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!slider) return;
     var slides = slider.querySelectorAll('.hero-slide');
-    var cur = 0;
-    setInterval(function () {
-      if (window.innerWidth >= 1024 || document.hidden) return;
-      slides[cur].classList.remove('is-active');
-      cur = (cur + 1) % slides.length;
-      slides[cur].classList.add('is-active');
-    }, 4000);
+    var dots = slider.querySelectorAll('.hero-dot');
+    var cur = 0, timer = null;
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function show(i) {
+      slides[cur].classList.remove('is-active'); dots[cur].classList.remove('is-active');
+      cur = (i + slides.length) % slides.length;
+      slides[cur].classList.add('is-active'); dots[cur].classList.add('is-active');
+    }
+    function start() {
+      if (reduce || timer) return;
+      timer = setInterval(function () { if (window.innerWidth < 1024 && !document.hidden) show(cur + 1); }, 4000);
+    }
+    dots.forEach(function (d, i) { d.addEventListener('click', function () { clearInterval(timer); timer = null; show(i); start(); }); });
+    start();
   })();
 
   // ══════════════ BENEFICII TOGGLE (mobile) ══════════════
