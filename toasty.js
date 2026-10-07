@@ -396,26 +396,26 @@
   /* ── Teaser bubble: tells visitors the assistant exists, once per session ── */
   var TEASER_KEY = 'ty_teaser_seen';
   var TEASER_T = {
-    ro: { title: 'Ai o întrebare?', text: 'Întreabă-l pe Toasty despre ședințe, costuri sau cum ajungi la noi.', close: 'Închide' },
-    en: { title: 'Got a question?', text: 'Ask Toasty about meetings, costs or how to get here.', close: 'Close' },
+    ro: { title: 'Ai o întrebare?', text: 'Întreabă-l pe Toasty, asistentul clubului.', close: 'Închide' },
+    en: { title: 'Got a question?', text: 'Ask Toasty, the club\'s assistant.', close: 'Close' },
   };
   function teaserSeen() { try { return sessionStorage.getItem(TEASER_KEY) === '1'; } catch (e) { return false; } }
   function markTeaserSeen() { try { sessionStorage.setItem(TEASER_KEY, '1'); } catch (e) {} }
 
   var teaserCss = document.createElement('style');
   teaserCss.textContent = [
-    '#ty-teaser{position:fixed;right:16px;bottom:84px;z-index:2147483646;max-width:min(270px,calc(100vw - 32px));',
-    'background:#fff;color:#0f2942;border-radius:16px 16px 4px 16px;padding:12px 34px 12px 14px;cursor:pointer;',
+    '#ty-teaser{position:fixed;right:16px;bottom:82px;z-index:2147483646;max-width:200px;',
+    'background:#fff;color:#0f2942;border-radius:14px 14px 4px 14px;padding:9px 28px 9px 12px;cursor:pointer;',
     'box-shadow:0 8px 28px rgba(0,21,42,.18),0 0 0 1px rgba(0,83,127,.12);font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif;',
     'opacity:0;transform:translateY(8px) scale(.97);transform-origin:bottom right;pointer-events:none;transition:opacity .25s,transform .25s;}',
     '#ty-teaser.on{opacity:1;transform:none;pointer-events:auto;}',
-    '#ty-teaser b{display:block;font-size:14px;margin-bottom:2px;color:#004165;}',
-    '#ty-teaser span{display:block;font-size:13px;line-height:1.45;color:#3a5a72;}',
-    '#ty-teaser-x{all:unset;position:absolute;top:6px;right:6px;width:24px;height:24px;border-radius:50%;cursor:pointer;',
+    '#ty-teaser b{display:block;font-size:13px;margin-bottom:1px;color:#004165;}',
+    '#ty-teaser span{display:block;font-size:12px;line-height:1.4;color:#3a5a72;}',
+    '#ty-teaser-x{all:unset;position:absolute;top:4px;right:4px;width:22px;height:22px;border-radius:50%;cursor:pointer;',
     'display:flex;align-items:center;justify-content:center;color:#7a93a8;}',
     '#ty-teaser-x:hover{background:#eef4f8;color:#004165;}',
     '#ty-teaser-x:focus-visible{outline:2px solid #00537f;outline-offset:1px;}',
-    '@media(min-width:640px){#ty-teaser{right:28px;bottom:96px;}}',
+    '@media(min-width:640px){#ty-teaser{right:28px;bottom:96px;max-width:250px;padding:12px 34px 12px 14px;border-radius:16px 16px 4px 16px;}#ty-teaser b{font-size:14px;}#ty-teaser span{font-size:13px;}}',
     '@media(prefers-reduced-motion:reduce){#ty-teaser{transition:none;}}',
   ].join('');
   document.head.appendChild(teaserCss);
