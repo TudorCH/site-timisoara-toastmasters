@@ -40,8 +40,6 @@
     'footer-where-venue':    'Zbor Hub, 2nd floor',
     'footer-where-area':     'Liberty Square, Timișoara',
     'footer-when-day':       'Every Wednesday',
-    'footer-lang-title':     'Romanian & English',
-    'footer-lang-text':      'Meetings alternate between languages',
     'footer-free-title':     'Free entry',
     'footer-free-text':      'Guests are always welcome',
     'footer-aff-title':      'Affiliation & contact',
