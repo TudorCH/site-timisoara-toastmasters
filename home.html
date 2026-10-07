@@ -401,9 +401,11 @@
 
 <!-- ════════════════════ HERO ════════════════════ -->
 <section class="hero-section lg:hidden relative overflow-hidden flex flex-col justify-end pt-16" style="min-height:100svh;background:#002d47">
-  <img src="Images/background-hero.webp" alt="" aria-hidden="true" class="absolute inset-0 w-full h-full object-cover" style="object-position:center 18%" fetchpriority="high" />
-  <!-- Navy overlay: light over the group photo, dark behind the copy -->
-  <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(0,30,50,.45) 0%,rgba(0,35,58,.12) 22%,rgba(0,35,58,.35) 42%,rgba(0,30,50,.86) 60%,rgba(0,25,42,.97) 100%)"></div>
+  <!-- Group photo framed under the nav (the wide photo would be cropped to a sliver at full height) -->
+  <div class="absolute inset-x-0 top-16 overflow-hidden" style="height:52svh" aria-hidden="true">
+    <img src="Images/background-hero.webp" alt="" class="w-full h-full object-cover" style="object-position:50% 30%" fetchpriority="high" />
+    <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(0,35,58,.15) 0%,rgba(0,35,58,0) 35%,rgba(0,45,71,.55) 70%,#002d47 100%)"></div>
+  </div>
 
   <div class="relative z-10 w-full max-w-xl mx-auto px-5 pb-7 text-center">
     <h1 class="font-heading font-bold text-white leading-[1.05] mb-4 text-[2.5rem] sm:text-5xl animate-in" style="animation-delay:.1s;text-shadow:0 2px 24px rgba(0,0,0,.35)">
