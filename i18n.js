@@ -177,6 +177,17 @@
 
     /* ─ Contact page ─ */
     'ct-hero-badge':  'Schedule & Registration',
+    'blog-title':       'Blog | Timișoara Toastmasters',
+    'blog-eyebrow':     'Articles & ideas',
+    'blog-h1':          'Thoughts, techniques and stories from the stage',
+    'blog-p':           'Practical resources on public speaking, leadership and our members\' experiences.',
+    'blog-demo-title':  'Sample articles.',
+    'blog-demo-text':   'The blog is being prepared and the cards below only show how it will look. The first real articles are coming soon.',
+    'blog-filters-aria':'Categories',
+    'blog-empty':       'No articles in this category yet.',
+    'blog-cta-title':   'You learn best by practising',
+    'blog-cta-text':    'Come as a guest to a meeting on Wednesday evening. Attending is free.',
+    'blog-cta-btn':     'Pick a meeting',
     'ct-hero-h1':     'The first meeting is free',
     'ct-hero-p':      'Pick a date from the calendar and come see what a meeting is like. We\'ll contact you within 24 hours.',
     'ct-hero-b1':     'Completely free as a guest',

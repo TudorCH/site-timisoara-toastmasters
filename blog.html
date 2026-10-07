@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>if ('scrollRestoration' in history) history.scrollRestoration = 'manual';</script>
+  <title data-i18n="blog-title">Blog | Timișoara Toastmasters</title>
+  <meta name="description" content="Articole despre vorbitul în public, leadership și viața clubului Timișoara Toastmasters." />
+  <meta name="robots" content="noindex, follow" />
+  <link rel="canonical" href="https://timisoaratoastmasters.ro/blog" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://timisoaratoastmasters.ro/blog" />
+  <meta property="og:site_name" content="Timișoara Toastmasters" />
+  <meta property="og:title" content="Blog | Timișoara Toastmasters" />
+  <meta property="og:description" content="Articole despre vorbitul în public, leadership și viața clubului." />
+  <meta property="og:image" content="https://timisoaratoastmasters.ro/Images/background-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Înscrie-te la Timișoara Toastmasters" />
+  <meta property="og:locale" content="ro_RO" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Blog | Timișoara Toastmasters" />
+  <meta name="twitter:description" content="Articole despre vorbitul în public, leadership și viața clubului." />
+  <meta name="twitter:image" content="https://timisoaratoastmasters.ro/Images/background-hero.webp" />
+  <meta name="twitter:image:alt" content="Înscrie-te la Timișoara Toastmasters" />
+  <!-- Geo / Local SEO -->
+  <meta name="geo.region" content="RO-TM" />
+  <meta name="geo.placename" content="Timișoara, România" />
+  <link rel="icon" type="image/webp" href="logo.webp" />
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#004165" />
+  <link rel="apple-touch-icon" href="logo.png" />
+  <link rel="stylesheet" href="output.css" />
+  <link rel="preconnect" href="https://res.cloudinary.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" /></noscript>
+
+  <style>
+    html { background: #002d47; }
+    .scrollbar-hide { -ms-overflow-style:none; scrollbar-width:none; }
+    .scrollbar-hide::-webkit-scrollbar { display:none; }
+    @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+    @media (prefers-reduced-motion: reduce) {
+      .scroll-fade { transition: none; opacity: 1; transform: none; }
+      .card-hover { transition: none; }
+    }
+    .gradient-hero { background: linear-gradient(135deg, #002d47 0%, #004165 55%, #003555 100%); }
+    .gradient-dark { background: linear-gradient(135deg, #002d47 0%, #004165 100%); }
+    .nav-link { position: relative; }
+    .nav-link::after {
+      content:''; position:absolute; bottom:-2px; left:0;
+      width:0; height:2px; background:#F2DF74; transition:width .3s ease;
+    }
+    .nav-link:hover::after, .nav-link.nav-active::after { width:100%; }
+    .nav-cta {
+      background: linear-gradient(180deg, #f8ea9a 0%, #F2DF74 55%, #e9d25a 100%);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.6), 0 2px 8px rgba(242,223,116,.25);
+      transition: box-shadow .25s, transform .2s;
+    }
+    .nav-cta:hover {
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.6), 0 0 0 4px rgba(242,223,116,.18), 0 6px 18px rgba(242,223,116,.4);
+      transform: translateY(-1px);
+    }
+    @media (min-width: 1024px) {
+      .nav-pill {
+        background: rgba(0,45,71,.9);
+        -webkit-backdrop-filter: blur(16px) saturate(140%); backdrop-filter: blur(16px) saturate(140%);
+        box-shadow: 0 10px 30px rgba(0,20,35,.35), inset 0 1px 0 rgba(255,255,255,.08);
+      }
+    }
+    .badge {
+      display:inline-flex; align-items:center; gap:6px;
+      background:rgba(119,36,50,.12); color:#772432;
+      border:1px solid rgba(119,36,50,.25);
+      border-radius:999px; padding:4px 14px; font-size:13px; font-weight:600;
+    }
+    #mobile-menu { transition:all .3s ease; }
+    .search-input:focus { outline:none; box-shadow:0 0 0 2px rgba(242,223,116,.4); }
+    .scroll-fade { opacity:0; transform:translateY(22px); transition:opacity .4s ease, transform .4s ease; }
+    .scroll-fade.visible { opacity:1; transform:translateY(0); }
+    .social-btn:hover { background:rgba(242,223,116,.3) !important; }
+    .social-btn:active { background:rgba(242,223,116,.6) !important; }
+    /* Pill helpers: ensure pills use the site's fonts and consistent sizing */
+    .loc-pill, .transport-pill { font-family: inherit; display: inline-flex; align-items: center; gap: .35rem; border-radius: 9999px; padding: .125rem .5rem; font-weight: 600; font-size: .6875rem; line-height:1 }
+    .transport-pill-lg { font-family: inherit; display: inline-flex; align-items: center; border-radius: 9999px; padding: .35rem .95rem; font-weight: 700; font-size: .9375rem; line-height:1; color:#fff; cursor:pointer; border:none; transition: filter .15s, transform .15s }
+    .transport-pill-lg:hover { filter: brightness(1.15); transform: scale(1.06) }
+    .transport-pill-sm { font-family: inherit; display: inline-flex; align-items: center; justify-content: center; min-width: 1.75rem; border-radius: 9999px; padding: .3rem .55rem; font-weight: 700; font-size: .75rem; line-height:1; color:#fff; background:#004165; cursor:pointer; border:none; transition: filter .15s, transform .15s }
+    .transport-pill-sm:hover { filter: brightness(1.2); transform: scale(1.08) }
+    #bus-route-panel { position:absolute; inset:0; background:#fff; padding:1.25rem; z-index:10; opacity:0; pointer-events:none; transition:opacity .18s; overflow-y:auto; }
+    .bt-strip { overflow-x:auto; margin-bottom:10px; padding:4px 6px 0 0; scrollbar-width:none; -ms-overflow-style:none; }
+    .bt-strip::-webkit-scrollbar { display:none; }
+    #bus-route-panel.visible { opacity:1; pointer-events:auto }
+    .bt-stop { display:flex; align-items:center; gap:9px; padding:4px 0; font-size:.78rem; color:#4b5563; position:relative }
+    .bt-stop.bt-here { color:#004165; font-weight:700 }
+    .bt-dot { width:9px; height:9px; border-radius:50%; background:#d1d5db; flex-shrink:0; position:relative; z-index:1 }
+    .bt-stop.bt-here .bt-dot { background:#004165; width:11px; height:11px; box-shadow:0 0 0 3px rgba(0,65,101,.2) }
+    .bt-line-wrap { position:relative; padding-left:4px }
+    .bt-line-wrap::before { content:''; position:absolute; left:8px; top:0; bottom:0; width:2px; background:#e5e7eb; z-index:0 }
+    .loc-pill svg, .transport-pill svg { width: 14px; height: 14px; flex: 0 0 14px }
+    .transport-pill--orange { background:#fb923c; color:#fff }
+    .transport-pill--violet { background:#6b21a8; color:#fff }
+    .loc-pill--maroon { background:#772432; color:#fff }
+    .loc-pill--park { padding:.4rem .7rem; font-size:.75rem; gap:.45rem; }
+    .loc-pill--soft { background:#f3f5f5; color:#1f2937; border:1px solid #e3e8e8; }
+    a.loc-pill--soft:hover { border-color:#004165; color:#004165; }
+    .pe-jos-grid { display:grid; grid-template-columns:1fr 1fr; gap:.5rem; }
+    .pe-jos-grid .loc-pill { width:100%; }
+    @media (min-width:640px) { .pe-jos-grid { display:flex; flex-wrap:wrap; } .pe-jos-grid .loc-pill { width:auto; } }
+  </style>
+</head>
+<body class="font-sans bg-white text-gray-900 antialiased">
+<a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[9999] focus:bg-white focus:text-primary focus:font-semibold focus:px-4 focus:py-2 focus:rounded-lg focus:shadow-lg" data-i18n="skip-link">Sari la conținut</a>
+
+<!-- ════════════════════ NAVBAR ════════════════════ -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 shadow-lg shadow-primary/30 lg:top-4 lg:px-6 lg:shadow-none lg:!bg-none" style="background:linear-gradient(135deg,#00537f 0%,#004165 55%,#002d47 100%)">
+  <div class="nav-pill max-w-7xl mx-auto px-4 lg:max-w-6xl lg:pl-3 lg:pr-2.5 lg:rounded-full lg:border lg:border-white/15">
+    <div class="flex items-center justify-between h-16">
+
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-3 lg:gap-2.5 flex-shrink-0">
+        <img src="logo.webp" alt="Toastmasters International" width="40" height="40" class="h-8 sm:h-10 lg:h-9 w-auto object-contain flex-shrink-0" />
+        <div>
+          <div class="text-white font-bold text-sm sm:text-base lg:text-[13px] leading-tight uppercase tracking-wide lg:tracking-normal whitespace-nowrap">Timișoara Toastmasters</div>
+          <div class="text-gold text-[10px] sm:text-[11px] lg:text-[10px] lg:text-gold/80 font-semibold tracking-wide leading-tight">Where Leaders Are Made!</div>
+        </div>
+      </a>
+
+      <!-- Desktop links -->
+      <div class="hidden lg:flex flex-1 items-center justify-center gap-5 xl:gap-7 whitespace-nowrap">
+        <a href="/"         class="nav-link text-white/70 hover:text-gold text-sm font-medium transition-colors" data-i18n="nav-home">Acasă</a>
+        <a href="despre-noi"    class="nav-link text-white/70 hover:text-gold text-sm font-medium transition-colors" data-i18n="nav-about">Despre noi</a>
+        <a href="galerie"       class="nav-link text-white/70 hover:text-gold text-sm font-medium transition-colors" data-i18n="nav-gallery">Galerie</a>
+        <a href="blog"          class="nav-link nav-active text-white text-sm font-bold transition-colors" data-i18n="nav-blog">Blog</a>
+        <a href="contact" class="nav-link text-white/70 hover:text-gold text-sm font-medium transition-colors" data-i18n="nav-contact">Contact</a>
+      </div>
+
+      <!-- Desktop utilities: search · language · read aloud | CTA -->
+      <div class="hidden lg:flex items-center gap-3 whitespace-nowrap">
+        <div class="flex items-center gap-1 rounded-full bg-white/10 border border-white/10 p-1">
+          <button type="button" onclick="openSearchModal()" aria-label="Caută pe site (Ctrl+K)" data-i18n-aria="search-open-aria" aria-keyshortcuts="Control+K"
+                  class="w-8 h-8 flex items-center justify-center rounded-full text-white/75 hover:text-white hover:bg-white/10 transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z"/></svg>
+          </button>
+          <span class="w-px h-5 bg-white/15" aria-hidden="true"></span>
+          <div class="flex items-center">
+            <button data-lang="ro" onclick="setLang('ro')" class="lang-btn active" aria-pressed="true" aria-label="Română"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;background:linear-gradient(to right,#002B7F 33%,#FCD116 33% 66%,#CE1126 66%)"></span></button>
+            <button data-lang="en" onclick="setLang('en')" class="lang-btn" aria-pressed="false" aria-label="English"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;overflow:hidden"><svg width="22" height="22" viewBox="0 0 22 22"><rect width="22" height="22" fill="#012169"/><path d="M0 0L22 22M22 0L0 22" stroke="white" stroke-width="6"/><path d="M0 0L22 22M22 0L0 22" stroke="#C8102E" stroke-width="3.5"/><rect x="9" y="0" width="4" height="22" fill="white"/><rect x="0" y="9" width="22" height="4" fill="white"/><rect x="10" y="0" width="2" height="22" fill="#C8102E"/><rect x="0" y="10" width="22" height="2" fill="#C8102E"/></svg></span></button>
+          </div>
+          <span class="w-px h-5 bg-white/15" aria-hidden="true"></span>
+          <button id="tts-nav-btn" data-tts-btn aria-label="Citește pagina (Alt+T)" data-i18n-aria="tts-aria" aria-keyshortcuts="Alt+T"
+                  class="w-8 h-8 flex items-center justify-center rounded-full text-white/75 hover:text-white hover:bg-white/10 transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+          </button>
+        </div>
+        <a href="contact"
+           class="nav-cta group inline-flex items-center gap-1.5 text-primary font-bold pl-4 pr-3 xl:pl-[18px] xl:pr-3.5 py-2 rounded-full text-[13px]">
+          <span data-i18n="nav-cta">Hai și tu la o ședință</span>
+          <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6l6 6-6 6"/></svg>
+        </a>
+      </div>
+
+      <!-- Mobile right side: search icon + hamburger -->
+      <div class="flex lg:hidden items-center gap-2">
+        <button onclick="toggleSearch()" aria-label="Caută pe site" data-i18n-aria="search-open-aria" class="text-white p-2 rounded-full hover:bg-white/10 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z"/>
+          </svg>
+        </button>
+        <button id="mobile-toggle" onclick="toggleMobile()" aria-label="Deschide meniu" data-i18n-aria="menu-open" aria-expanded="false" aria-controls="mobile-menu"
+                class="text-white p-2 rounded-full hover:bg-white/10 transition-colors">
+          <svg id="icon-menu"  class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+          <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile search bar (toggled) -->
+    <div id="mobile-search" class="hidden pb-3 px-1">
+      <div class="relative">
+        <input id="mobile-search-input" type="text" placeholder="Caută pe site…" data-i18n-ph="search-ph-mobile"
+          class="search-input w-full bg-white/10 border border-white/20 text-white placeholder-white/40
+                 rounded-full pl-4 pr-10 py-2 text-sm"
+          oninput="liveSearch(this.value,'mobile')"
+          onkeydown="if(event.key==='Escape'){closeSearch()}"
+          autocomplete="off" />
+        <svg class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/50 pointer-events-none"
+             fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z"/>
+        </svg>
+        <div id="mobile-search-dropdown" aria-live="polite" aria-label="Rezultate căutare" data-i18n-aria="search-results-aria"
+             class="hidden absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden z-50">
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden lg:hidden border-t border-white/10 pt-4 pb-5 overflow-hidden">
+      <div class="flex flex-col gap-1">
+        <a href="/"         onclick="closeMobile()" class="text-white/70 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors" data-i18n="nav-home">Acasă</a>
+        <a href="despre-noi"    onclick="closeMobile()" class="text-white/70 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors" data-i18n="nav-about">Despre noi</a>
+        <a href="galerie"       onclick="closeMobile()" class="text-white/70 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors" data-i18n="nav-gallery">Galerie</a>
+        <a href="blog"          onclick="closeMobile()" class="nav-active text-white bg-white/10 rounded-xl px-4 py-3 text-sm font-bold transition-colors" data-i18n="nav-blog">Blog</a>
+        <a href="contact" onclick="closeMobile()" class="text-white/70 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors" data-i18n="nav-contact">Contact</a>
+        <!-- Language + TTS row -->
+        <div class="flex items-center gap-3 px-4 py-2 mt-1 border-t border-white/10">
+          <span class="text-white/40 text-xs" data-i18n="nav-util-label">Limbă:</span>
+          <div class="flex items-center bg-white/10 rounded-full p-0.5">
+            <button data-lang="ro" onclick="setLang('ro')" class="lang-btn active" aria-pressed="true" aria-label="Română"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;background:linear-gradient(to right,#002B7F 33%,#FCD116 33% 66%,#CE1126 66%)"></span></button>
+            <button data-lang="en" onclick="setLang('en')" class="lang-btn" aria-pressed="false" aria-label="English"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;overflow:hidden"><svg width="22" height="22" viewBox="0 0 22 22"><rect width="22" height="22" fill="#012169"/><path d="M0 0L22 22M22 0L0 22" stroke="white" stroke-width="6"/><path d="M0 0L22 22M22 0L0 22" stroke="#C8102E" stroke-width="3.5"/><rect x="9" y="0" width="4" height="22" fill="white"/><rect x="0" y="9" width="22" height="4" fill="white"/><rect x="10" y="0" width="2" height="22" fill="#C8102E"/><rect x="0" y="10" width="22" height="2" fill="#C8102E"/></svg></span></button>
+          </div>
+          <button id="tts-mob-btn" data-tts-btn aria-label="Citește pagina (Alt+T)" data-i18n-aria="tts-aria"
+                  class="text-white/60 hover:text-white p-1.5 rounded-full hover:bg-white/10 transition-colors ml-auto">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+          </button>
+        </div>
+        <div class="pt-2 px-4">
+          <a href="contact" onclick="closeMobile()"
+             class="block w-full bg-gold text-primary font-semibold px-5 py-3 rounded-full text-sm text-center shadow-md">
+            <span data-i18n="nav-cta">Hai și tu la o ședință</span> →
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Search modal (desktop) -->
+<div id="search-modal" class="hidden fixed inset-0 z-[60]" role="dialog" aria-modal="true" aria-label="Caută pe site" data-i18n-aria="search-open-aria">
+  <div class="absolute inset-0 bg-primary-dark/60 backdrop-blur-sm" onclick="closeSearchModal()"></div>
+  <div class="relative max-w-xl mx-auto mt-28 px-4">
+    <div class="bg-white rounded-2xl shadow-2xl overflow-hidden">
+      <div class="flex items-center gap-3 px-5">
+        <svg class="w-5 h-5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z"/></svg>
+        <input id="search-input" type="text" placeholder="Caută pe site…" data-i18n-ph="search-ph-mobile" aria-label="Caută pe site"
+               class="flex-1 py-4 text-base text-gray-900 placeholder-gray-400 bg-transparent outline-none"
+               oninput="liveSearch(this.value)" autocomplete="off" />
+        <kbd class="text-[11px] font-semibold text-gray-400 border border-gray-200 rounded-md px-1.5 py-0.5">Esc</kbd>
+      </div>
+      <div id="search-dropdown" aria-live="polite" aria-label="Rezultate căutare" data-i18n-aria="search-results-aria"
+           class="hidden border-t border-gray-100 max-h-[60vh] overflow-y-auto"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════ HERO BLOG ════════════════════ -->
+<div class="bg-gray-50 pt-24 lg:pt-28 pb-2 px-5 lg:px-8 text-center">
+  <div class="max-w-3xl mx-auto">
+    <span class="inline-block rounded-full bg-maroon/5 border border-maroon/15 text-maroon text-[11px] font-bold uppercase tracking-[.12em] px-4 py-1.5 mb-4" data-i18n="blog-eyebrow">Articole &amp; idei</span>
+    <h1 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-primary-dark tracking-tight mb-3 leading-tight" data-i18n="blog-h1">
+      Gânduri, tehnici și povești de pe scenă
+    </h1>
+    <p class="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed" data-i18n="blog-p">
+      Resurse practice despre vorbitul în public, leadership și experiențele membrilor noștri.
+    </p>
+  </div>
+</div>
+
+<!-- ════════════════════ ARTICOLE ════════════════════ -->
+<section id="main-content" tabindex="-1" class="pt-6 pb-14 lg:pb-20 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8">
+
+    <!-- Notă: articole demonstrative -->
+    <div class="flex items-start gap-3 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 sm:px-5 mb-6 max-w-3xl mx-auto" role="note">
+      <svg class="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <p class="text-sm text-amber-900 leading-relaxed">
+        <strong data-i18n="blog-demo-title">Articole demonstrative.</strong>
+        <span data-i18n="blog-demo-text">Blogul e în pregătire, iar cardurile de mai jos arată doar cum va arăta. Primele articole reale apar în curând.</span>
+      </p>
+    </div>
+
+    <!-- Categorii -->
+    <div id="blog-filters" class="flex sm:flex-wrap sm:justify-center gap-2 mb-8 overflow-x-auto -mx-5 px-5 sm:mx-0 sm:px-0 pb-1 scrollbar-hide" role="tablist" aria-label="Categorii" data-i18n-aria="blog-filters-aria"></div>
+
+    <!-- Articol recomandat -->
+    <article id="blog-featured" class="mb-6 lg:mb-8"></article>
+
+    <!-- Grid articole -->
+    <div id="blog-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6"></div>
+    <p id="blog-empty" class="hidden text-center text-gray-500 py-10" data-i18n="blog-empty">Încă nu avem articole în această categorie.</p>
+
+    <!-- Îndemn -->
+    <div class="mt-12 lg:mt-16 rounded-2xl bg-white border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.06)] px-6 py-6 sm:px-10 sm:py-8 flex flex-col md:flex-row md:items-center md:justify-between gap-5 text-center md:text-left">
+      <div>
+        <p class="font-heading font-bold text-primary text-xl sm:text-2xl" data-i18n="blog-cta-title">Cel mai bine înveți exersând</p>
+        <p class="text-gray-500 text-sm sm:text-base mt-1" data-i18n="blog-cta-text">Vino ca invitat la o ședință, miercuri seara. Participarea e gratuită.</p>
+      </div>
+      <a href="contact" class="shrink-0 inline-flex items-center justify-center gap-2 rounded-xl bg-maroon hover:bg-maroon-light text-white font-bold text-sm px-6 py-3.5 transition-colors">
+        <span data-i18n="blog-cta-btn">Alege o ședință</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    const CLD = 'https://res.cloudinary.com/dnxcej0q5/image/upload/';
+    const img = (id, w) => CLD + 'w_' + w + ',q_auto,f_auto/' + id;
+
+    const CATS = [
+      { id: 'all',      ro: 'Toate',                   en: 'All' },
+      { id: 'ghiduri',  ro: 'Ghiduri & tehnici',       en: 'Guides & techniques' },
+      { id: 'povesti',  ro: 'Povești de membri',       en: 'Member stories' },
+      { id: 'evenimente', ro: 'Evenimente & concursuri', en: 'Events & contests' },
+      { id: 'club',     ro: 'Despre club',             en: 'About the club' },
+    ];
+
+    // Articole DEMONSTRATIVE: titluri și rezumate de exemplu, fără autori reali.
+    const POSTS = [
+      { cat: 'ghiduri', min: 5, photo: 'IMG_5826_q84dxk', featured: true,
+        ro: { t: 'Primele 60 de secunde pe scenă: cum transformi tracul în energie', x: 'Tracul nu dispare complet, dar poate fi ancorat: o respirație controlată, câteva priviri spre fețe prietenoase și o primă frază pe care o știi pe de rost.' },
+        en: { t: 'The first 60 seconds on stage: turning nerves into energy', x: 'Stage fright never fully goes away, but you can anchor it: controlled breathing, a few glances at friendly faces and an opening line you know by heart.' } },
+      { cat: 'ghiduri', min: 3, photo: 'IMG_5522_gomrtv',
+        ro: { t: 'Table Topics: trei structuri simple pentru răspunsuri improvizate', x: 'Trecut–prezent–viitor, problemă–soluție–beneficiu sau o poveste scurtă. Alegi una și ai un început, un mijloc și un final.' },
+        en: { t: 'Table Topics: three simple structures for impromptu answers', x: 'Past–present–future, problem–solution–benefit or a short story. Pick one and you have a beginning, a middle and an end.' } },
+      { cat: 'ghiduri', min: 4, photo: 'IMG_4926_r5b20v',
+        ro: { t: 'Cum oferi un feedback care chiar ajută', x: 'Ce a mers bine, ce poate fi îmbunătățit și cum anume. O evaluare bună e specifică, sinceră și te face să vrei să revii pe scenă.' },
+        en: { t: 'How to give feedback that actually helps', x: 'What worked, what could be better and how exactly. A good evaluation is specific, honest and makes you want to get back on stage.' } },
+      { cat: 'povesti', min: 4, photo: 'IMG_4694_iti5mm',
+        ro: { t: 'Primul meu discurs: ce aș vrea să fi știut înainte', x: 'De la emoțiile din seara dinainte la aplauzele de la final: ce contează cu adevărat la primul discurs și ce poți lăsa deoparte.' },
+        en: { t: 'My first speech: what I wish I had known', x: 'From the nerves the night before to the applause at the end: what really matters in your first speech and what you can let go.' } },
+      { cat: 'evenimente', min: 5, photo: '684918986_1362854235652283_8692383011814902506_n_ieuoij.jpg',
+        ro: { t: 'Din culisele unui concurs național de discursuri', x: 'Cum arată pregătirea, ce se întâmplă în spatele scenei și ce rămâne după, indiferent de clasament.' },
+        en: { t: 'Behind the scenes of a national speech contest', x: 'What the preparation looks like, what happens backstage and what stays with you afterwards, whatever the ranking.' } },
+      { cat: 'club', min: 3, photo: 'IMG_4416_fauxu4',
+        ro: { t: 'Cine ce face într-o ședință Toastmasters', x: 'Toastmasterul serii, evaluatorii, cronometrorul, gramaticianul: un ghid rapid al rolurilor, ca să știi la ce să te uiți prima dată.' },
+        en: { t: 'Who does what in a Toastmasters meeting', x: 'The Toastmaster of the evening, the evaluators, the timer, the grammarian: a quick guide to the roles, so you know what to look for the first time.' } },
+    ];
+
+    let active = 'all';
+    const lang = () => (window.tmtLang && window.tmtLang()) || 'ro';
+    const T = (ro, en) => lang() === 'en' ? en : ro;
+    const catLabel = id => { const c = CATS.find(c => c.id === id); return c ? c[lang()] : id; };
+    const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+
+    const demo = () => `<span class="inline-flex items-center rounded-md bg-amber-100 text-amber-800 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5">${T('Exemplu', 'Sample')}</span>`;
+    const author = () => `
+      <div class="flex items-center gap-2.5 min-w-0">
+        <span class="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center flex-shrink-0">
+          <img src="logo.webp" alt="" class="w-5 h-5 object-contain" />
+        </span>
+        <span class="min-w-0">
+          <span class="block text-xs font-semibold text-gray-900 truncate">${T('Echipa clubului', 'Club team')}</span>
+        </span>
+      </div>`;
+    const soon = cls => `<span class="${cls} inline-flex items-center gap-1.5 text-xs font-bold text-gray-400" title="${T('Articolul apare în curând', 'Coming soon')}">${T('În curând', 'Coming soon')}</span>`;
+
+    function render() {
+      document.getElementById('blog-filters').innerHTML = CATS.map(c => {
+        const on = c.id === active;
+        return `<button type="button" role="tab" aria-selected="${on}" onclick="blogFilter('${c.id}')"
+          class="flex-shrink-0 whitespace-nowrap rounded-full px-4 py-2 text-sm font-semibold transition-colors ${on ? 'bg-primary text-white shadow-sm' : 'bg-white text-gray-600 border border-gray-200 hover:border-primary/40 hover:text-primary'}">${c[lang()]}</button>`;
+      }).join('');
+
+      const list = POSTS.filter(p => active === 'all' || p.cat === active);
+      const feat = active === 'all' ? list.find(p => p.featured) : null;
+      const rest = list.filter(p => p !== feat);
+
+      const fEl = document.getElementById('blog-featured');
+      fEl.classList.toggle('hidden', !feat);
+      if (feat) {
+        const d = feat[lang()];
+        fEl.innerHTML = `
+          <div class="grid lg:grid-cols-[5fr_7fr] rounded-2xl overflow-hidden bg-white border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.06)]">
+            <div class="relative min-h-[220px] sm:min-h-[280px]">
+              <img src="${img(feat.photo, 900)}" alt="" class="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" />
+              <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/50 to-transparent"></div>
+              <span class="absolute top-4 left-4 rounded-full bg-gold text-primary-dark text-[10px] font-extrabold uppercase tracking-wider px-3 py-1">${T('Recomandat', 'Featured')}</span>
+            </div>
+            <div class="p-6 sm:p-8 lg:p-10 flex flex-col">
+              <div class="flex flex-wrap items-center gap-2 text-xs font-bold uppercase tracking-wider text-maroon">
+                <span>${catLabel(feat.cat)}</span><span class="text-gray-300">•</span><span class="text-gray-500">${feat.min} min ${T('lectură', 'read')}</span>${demo()}
+              </div>
+              <h2 class="font-heading font-extrabold text-primary-dark text-2xl sm:text-3xl leading-tight mt-3">${esc(d.t)}</h2>
+              <p class="text-gray-500 text-base leading-relaxed mt-3">${esc(d.x)}</p>
+              <div class="mt-auto pt-6 flex items-center justify-between gap-4">
+                ${author()}
+                <span class="inline-flex items-center rounded-xl border border-gray-200 bg-gray-50 text-gray-400 text-sm font-bold px-4 py-2.5">${T('În curând', 'Coming soon')}</span>
+              </div>
+            </div>
+          </div>`;
+      }
+
+      document.getElementById('blog-grid').innerHTML = rest.map(p => {
+        const d = p[lang()];
+        return `
+          <article class="flex flex-col rounded-2xl overflow-hidden bg-white border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.06)]">
+            <div class="relative" style="aspect-ratio:16/9">
+              <img src="${img(p.photo, 600)}" alt="" class="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" />
+              <span class="absolute bottom-3 left-3 rounded-md bg-white/95 text-maroon text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 shadow-sm">${catLabel(p.cat)}</span>
+            </div>
+            <div class="p-5 flex flex-col flex-1">
+              <div class="flex items-center gap-2 text-[11px] font-semibold text-gray-400 mb-2">${p.min} min ${T('lectură', 'read')} ${demo()}</div>
+              <h3 class="font-heading font-bold text-gray-900 text-lg leading-snug">${esc(d.t)}</h3>
+              <p class="text-gray-500 text-sm leading-relaxed mt-2 mb-5">${esc(d.x)}</p>
+              <div class="mt-auto pt-4 flex items-center justify-between gap-3 border-t border-gray-100">
+                ${author()}
+                ${soon('flex-shrink-0')}
+              </div>
+            </div>
+          </article>`;
+      }).join('');
+
+      document.getElementById('blog-empty').classList.toggle('hidden', list.length > 0);
+    }
+
+    window.blogFilter = function (id) { active = id; render(); };
+
+    var _blogOrigSetLang = window.setLang;
+    window.setLang = function (l) {
+      if (_blogOrigSetLang) _blogOrigSetLang(l);
+      render();
+    };
+
+    render();
+  })();
+  </script>
+</section>
+
+<!-- ════════════════════ FOOTER ════════════════════ -->
+<footer class="bg-gradient-to-b from-[#002d47] to-[#001a2a] border-t border-white/5 pt-8 pb-6 lg:pt-14 lg:pb-6">
+  <div class="max-w-7xl mx-auto px-5 lg:px-8">
+    <div class="grid grid-cols-2 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,0.7fr)_minmax(0,0.95fr)_minmax(0,1.25fr)] gap-x-6 gap-y-6 lg:gap-10 items-start lg:items-stretch pb-8 border-b border-white/10">
+
+      <!-- Brand -->
+      <div class="col-span-2 lg:col-span-1 flex flex-col items-center text-center lg:items-start lg:text-left">
+        <div class="flex items-center gap-3 mb-4 sm:mb-4">
+          <img src="logo.webp" alt="Toastmasters" width="48" height="48" class="h-12 w-auto object-contain" />
+          <div>
+            <div class="text-white font-bold text-lg leading-tight">Timișoara Toastmasters</div>
+            <div class="text-gold text-[10px] font-semibold tracking-widest uppercase">Where Leaders Are Made</div>
+          </div>
+        </div>
+        <p class="hidden sm:block text-white/50 text-sm leading-relaxed max-w-sm mb-4" data-i18n="footer-desc">
+          Primul club Toastmasters fondat în România. Un spațiu sigur pentru practică săptămânală, feedback sincer și comunicare de impact.
+        </p>
+        <div class="flex flex-wrap justify-center gap-2.5 lg:mt-auto">
+          <a href="https://www.instagram.com/timisoaratoastmasters/" target="_blank" rel="noopener" class="w-10 h-10 rounded-xl bg-white/[.06] social-btn flex items-center justify-center transition-colors" title="Instagram" aria-label="Instagram">
+            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="https://www.facebook.com/timisoara.toastmasters/?locale=ro_RO" target="_blank" rel="noopener" class="w-10 h-10 rounded-xl bg-white/[.06] social-btn flex items-center justify-center transition-colors" title="Facebook" aria-label="Facebook">
+            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/company/toastmasters-timisoara/posts/?feedView=all" target="_blank" rel="noopener" class="w-10 h-10 rounded-xl bg-white/[.06] social-btn flex items-center justify-center transition-colors" title="LinkedIn" aria-label="LinkedIn">
+            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="https://chat.whatsapp.com/B7t3hyfuaZFIu7dw23QIRH" target="_blank" rel="noopener" class="w-10 h-10 rounded-xl bg-white/[.06] social-btn flex items-center justify-center transition-colors" title="WhatsApp" aria-label="WhatsApp">
+            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </a>
+          <!-- TODO: link TikTok -->
+          <a href="#" class="w-10 h-10 rounded-xl bg-white/[.06] social-btn flex items-center justify-center transition-colors" title="TikTok" aria-label="TikTok">
+            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+          </a>
+          <!-- TODO: link YouTube -->
+          <a href="#" class="w-10 h-10 rounded-xl bg-white/[.06] social-btn flex items-center justify-center transition-colors" title="YouTube" aria-label="YouTube">
+            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Navigare -->
+      <div class="col-span-2 lg:col-span-1 lg:flex lg:flex-col">
+        <p class="hidden lg:block text-white/90 font-bold text-xs mb-4 uppercase tracking-widest" data-i18n="footer-nav-title">Navigare</p>
+        <ul class="flex flex-wrap justify-center gap-x-5 gap-y-2 lg:justify-start lg:flex-1 lg:flex-col lg:flex-nowrap lg:justify-between lg:gap-3">
+          <li><a href="/" class="footer-link text-white/50 text-sm transition-colors" data-i18n="footer-nav-home">Acasă</a></li>
+          <li><a href="despre-noi" class="footer-link text-white/50 text-sm transition-colors" data-i18n="footer-nav-about">Despre noi</a></li>
+          <li><a href="blog" class="text-gold text-sm font-semibold" data-i18n="footer-nav-blog">Blog</a></li>
+          <li><a href="galerie" class="footer-link text-white/50 text-sm transition-colors" data-i18n="footer-nav-gallery">Galerie</a></li>
+          <li><a href="contact" class="footer-link text-white/50 text-sm transition-colors" data-i18n="footer-nav-contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact compact (mobil) -->
+      <div class="footer-mobile-info col-span-2 lg:hidden -mt-3 flex flex-col items-center gap-1.5 text-sm text-center">
+        <a href="mailto:toastmasterstimisoara1@gmail.com" class="flex items-center gap-2.5">
+          <svg class="w-4 h-4 text-sky-300 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          <span class="text-sky-300 font-semibold">toastmasterstimisoara1@gmail.com</span>
+        </a>
+        <p class="text-white/35 text-xs"><span data-i18n="footer-aff-district">District 231 · Divizia F · Aria 1</span> · Club #1269633</p>
+      </div>
+
+      <!-- Unde & Când -->
+      <div class="hidden lg:flex lg:flex-col">
+        <p class="text-white/90 font-bold text-xs mb-4 uppercase tracking-widest" data-i18n="footer-where-title">Unde &amp; când</p>
+        <div class="footer-where-rows grid grid-cols-2 gap-x-4 gap-y-4 lg:flex-1 lg:flex lg:flex-col lg:justify-between lg:gap-4">
+        <a href="https://maps.google.com/?q=Strada+Vasile+Alecsandri+1,+Timi%C8%99oara" target="_blank" rel="noopener" class="group col-span-2 flex gap-3">
+            <svg class="w-4 h-4 mt-0.5 text-gold shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <span>
+              <span class="block text-white text-sm font-semibold group-hover:text-gold transition-colors" data-i18n="footer-where-venue">Zbor Hub, etaj 2</span>
+              <span class="block text-white/50 text-sm">Str. Vasile Alecsandri nr. 1</span>
+            </span>
+          </a>
+          <div class="flex gap-3">
+            <svg class="w-4 h-4 mt-0.5 text-gold shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span>
+              <span class="block text-white text-sm font-semibold" data-i18n="footer-when-day">În fiecare miercuri</span>
+              <span class="block text-white/50 text-sm">19:30 – 21:00</span>
+            </span>
+          </div>
+          <div class="flex gap-3">
+            <svg class="w-4 h-4 mt-0.5 text-gold shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z"/></svg>
+            <span>
+              <span class="block text-white text-sm font-semibold" data-i18n="footer-free-title">Intrare gratuită</span>
+              <span class="block text-white/50 text-sm" data-i18n="footer-free-text">Invitații sunt mereu bineveniți</span>
+            </span>
+          </div>
+      </div>
+      </div>
+
+      <!-- Afiliere & Contact -->
+      <div class="hidden lg:flex lg:flex-col">
+        <p class="text-white/90 font-bold text-xs mb-4 uppercase tracking-widest" data-i18n="footer-aff-title">Afiliere &amp; contact</p>
+        <p class="text-white/50 text-sm" data-i18n="footer-aff-official">Club oficial Toastmasters International</p>
+        <p class="text-white/35 text-xs mt-1 mb-4 lg:mb-5">
+          <span data-i18n="footer-aff-district">District 231 · Divizia F · Aria 1</span> ·
+          <a href="https://www.toastmasters.org/Find-a-Club/01269633" target="_blank" rel="noopener" class="footer-link transition-colors">Club #1269633</a>
+        </p>
+        <a href="mailto:toastmasterstimisoara1@gmail.com" class="lg:mt-auto flex items-center gap-2.5 w-full max-w-sm rounded-xl bg-white/[.05] border border-white/10 hover:border-gold/40 px-4 py-3 mb-2.5 transition-colors group">
+          <svg class="w-4 h-4 text-sky-300 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          <span class="text-sky-300 text-[13px] font-semibold truncate group-hover:text-gold transition-colors">toastmasterstimisoara1@gmail.com</span>
+        </a>
+        <a href="https://chat.whatsapp.com/B7t3hyfuaZFIu7dw23QIRH" target="_blank" rel="noopener" class="hidden lg:flex items-center gap-2.5 w-full max-w-sm rounded-xl bg-emerald-500/10 border border-emerald-500/25 hover:border-emerald-400/60 px-4 py-3 transition-colors">
+          <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+          <span class="text-emerald-400 text-[13px] font-semibold" data-i18n="footer-aff-whatsapp">Comunitatea WhatsApp a clubului</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Subsol -->
+    <div class="pt-5 flex flex-col-reverse md:flex-row items-center justify-between gap-3 md:gap-4 text-center">
+      <p class="text-white/40 text-xs flex flex-wrap items-center justify-center gap-1.5">
+        <span data-i18n="footer-copyright">© 2026 Timișoara Toastmasters. Toate drepturile rezervate.</span>
+        <span class="relative group">
+          <button aria-label="Disclaimer" class="w-3.5 h-3.5 rounded-full border border-white/20 text-white/30 hover:text-white/60 hover:border-white/40 flex items-center justify-center transition-colors leading-none text-[9px] font-bold cursor-default">i</button>
+          <span class="pointer-events-none absolute bottom-full right-0 md:right-auto md:left-0 mb-2 w-64 sm:w-72 bg-[#001e2f] border border-white/10 text-white/50 text-[10px] leading-relaxed rounded-lg px-3 py-2.5 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-200 shadow-xl z-50 text-left">
+            <span data-i18n="footer-disclaimer">Informațiile de pe acest site sunt destinate exclusiv membrilor Toastmasters, pentru activități Toastmasters. Acestea nu pot fi utilizate pentru solicitări sau distribuirea de materiale și informații non-Toastmasters.</span>
+          </span>
+        </span>
+      </p>
+      <nav class="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-xs" aria-label="Legal">
+        <a href="cookies#politica-cookies" class="footer-link text-white/40 transition-colors" data-i18n="footer-legal-cookies">Politică cookies</a>
+        <span class="w-1 h-1 rounded-full bg-white/20" aria-hidden="true"></span>
+        <a href="cookies#confidentialitate" class="footer-link text-white/40 transition-colors" data-i18n="footer-legal-privacy">Confidențialitate</a>
+        <span class="w-1 h-1 rounded-full bg-white/20" aria-hidden="true"></span>
+        <a href="cookies#gdpr" class="footer-link text-white/40 transition-colors" data-i18n="footer-legal-gdpr">GDPR</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<!-- ════════════════════ JAVASCRIPT ════════════════════ -->
+<script>
+  function toggleSearch() {
+    const s = document.getElementById('mobile-search');
+    s.classList.toggle('hidden');
+    if (!s.classList.contains('hidden')) document.getElementById('mobile-search-input').focus();
+  }
+  function toggleMobile() {
+    const m   = document.getElementById('mobile-menu');
+    const a   = document.getElementById('icon-menu');
+    const b   = document.getElementById('icon-close');
+    const btn = document.getElementById('mobile-toggle');
+    const isOpen = !m.classList.toggle('hidden');
+    a.classList.toggle('hidden');
+    b.classList.toggle('hidden');
+    if (btn) { btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false'); btn.setAttribute('aria-label', window.tmtMenuLabel(isOpen)); }
+  }
+  function closeMobile() {
+    const btn = document.getElementById('mobile-toggle');
+    document.getElementById('mobile-menu').classList.add('hidden');
+    document.getElementById('icon-menu').classList.remove('hidden');
+    document.getElementById('icon-close').classList.add('hidden');
+    if (btn) { btn.setAttribute('aria-expanded', 'false'); btn.setAttribute('aria-label', window.tmtMenuLabel(false)); }
+  }
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').style.boxShadow =
+      window.scrollY > 20 && window.innerWidth < 1024 ? '0 4px 30px rgba(0,65,101,0.35)' : '';
+  });
+
+</script>
+<script src="search.js"></script>
+<script src="cookie-banner.js"></script>
+<script src="i18n.js"></script>
+<script>
+(function(){
+  var done=false;
+  function load(){if(done)return;done=true;['tts.js','toasty.js'].forEach(function(s){var el=document.createElement('script');el.src=s;document.body.appendChild(el);});}
+  ['scroll','click','touchstart','keydown'].forEach(function(e){window.addEventListener(e,load,{once:true,passive:true});});
+  setTimeout(load,3000);
+})();
+</script>
+<script>
+(function(){
+  var ua = navigator.userAgent||navigator.vendor||window.opera;
+  var url;
+  if (/iPad|iPhone|iPod/.test(ua) && !window.MSStream)
+    url = null;
+  else if (/android/i.test(ua))
+    url = null;
+  if (url) document.querySelectorAll('a[href*="maps.app.goo.gl"]').forEach(function(el){ el.href = url; });
+})();
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Acasă", "item": "https://timisoaratoastmasters.ro/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://timisoaratoastmasters.ro/blog" }
+  ]
+}
+</script>
+</body>
+</html>
+
+
+
+
