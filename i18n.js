@@ -42,6 +42,8 @@
     'footer-when-day':       'Every Wednesday',
     'footer-lang-title':     'Romanian & English',
     'footer-lang-text':      'Meetings alternate between languages',
+    'footer-free-title':     'Free entry',
+    'footer-free-text':      'Guests are always welcome',
     'footer-aff-title':      'Affiliation & contact',
     'footer-aff-official':   'Official Toastmasters International club',
     'footer-aff-district':   'District 231 · Division F · Area 1',
