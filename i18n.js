@@ -40,6 +40,8 @@
     'footer-where-venue':    'Zbor Hub, 2nd floor',
     'footer-where-area':     'Liberty Square, Timișoara',
     'footer-when-day':       'Every Wednesday',
+    'footer-lang-title':     'Romanian & English',
+    'footer-lang-text':      'Meetings alternate between languages',
     'footer-aff-title':      'Affiliation & contact',
     'footer-aff-official':   'Official Toastmasters International club',
     'footer-aff-district':   'District 231 · Division F · Area 1',
