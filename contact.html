@@ -557,7 +557,7 @@
               class="w-full border border-gray-200 bg-gray-50 focus:bg-white rounded-xl px-4 py-3 text-sm ct-input transition-all resize-none"></textarea>
           </div>
           <button type="submit" id="form-submit-btn"
-            class="nav-cta w-full inline-flex items-center justify-center gap-2.5 text-primary font-bold py-4 rounded-xl text-base shadow-sm hover:scale-[1.01] transition-all">
+            class="w-full inline-flex items-center justify-center gap-2.5 bg-maroon hover:bg-maroon-light active:bg-maroon-dark text-white font-bold py-4 rounded-xl text-base shadow-md shadow-maroon/20 hover:shadow-lg hover:shadow-maroon/25 hover:scale-[1.01] disabled:opacity-70 disabled:hover:scale-100 transition-all">
             <span data-i18n="ct-submit">Rezervă-mi locul</span>
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6l6 6-6 6"/></svg>
           </button>
@@ -943,7 +943,7 @@
       _hp:     document.getElementById('ct-website')?.value || '',
     };
 
-    const origText = btn.textContent;
+    const origHTML = btn.innerHTML;
     btn.disabled = true;
     btn.textContent = 'Se trimite…';
     document.getElementById('form-error')?.classList.add('hidden');
@@ -965,7 +965,7 @@
       succ.focus();
     } catch (_) {
       btn.disabled = false;
-      btn.textContent = origText;
+      btn.innerHTML = origHTML;
       const err = document.getElementById('form-error');
       if (err) { err.classList.remove('hidden'); err.focus(); }
     }
