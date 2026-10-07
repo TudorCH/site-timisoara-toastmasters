@@ -51,9 +51,7 @@
     }
     .cta-pulse { animation: ctaGlow 2.8s ease-in-out infinite; will-change: filter; }
     .gradient-hero { background: linear-gradient(135deg, #002d47 0%, #004165 55%, #003555 100%); }
-    #hero-mobile  { display: flex; }
-    @media (min-width: 1024px) { #hero-mobile  { display: none;  } }
-    #hero-desktop { display: none;  }
+    #hero-desktop { display: flex; flex-direction: column; }
     @media (min-width: 1024px) { #hero-desktop { display: flex; flex-direction: column; justify-content: center; min-height: 100vh; min-height: 100dvh; } }
     .gradient-dark { background: linear-gradient(135deg, #002d47 0%, #004165 100%); }
     .card-hover { transition: transform .3s ease, box-shadow .3s ease; }
@@ -315,48 +313,19 @@
 </div>
 
 
-<!-- ════════════════════ HERO MOBILE ════════════════════ -->
-<section id="hero-mobile" class="lg:hidden pt-16 relative overflow-hidden flex flex-col justify-end" style="min-height:100svh;background:#002d47">
-  <img src="Images/hero-mobile.webp" alt="" aria-hidden="true"
-       class="absolute inset-x-0 top-16 w-full object-cover" style="height:62svh;object-position:center top" fetchpriority="high" />
-  <div class="absolute inset-x-0 top-16" style="height:62svh;background:linear-gradient(to bottom,rgba(0,45,71,0) 0%,rgba(0,45,71,0) 40%,rgba(0,45,71,.7) 72%,#002d47 100%)"></div>
-
-  <div class="relative z-10 w-full max-w-xl mx-auto px-5 pb-8 text-center">
-    <h1 class="font-heading font-bold text-white leading-[1.05] mb-4 text-[2.4rem] sm:text-5xl text-balance" style="text-shadow:0 2px 24px rgba(0,0,0,.35)" data-i18n="hero-h1">
-      Primul club Toastmasters<br/><span class="text-gold">din România</span>
-    </h1>
-
-    <p class="flex flex-wrap justify-center items-center gap-x-2.5 gap-y-1 text-white/80 text-sm sm:text-base font-medium mb-6">
-      <span data-i18n="hero-d1">Miercuri 19:30–21:00</span>
-      <span class="w-1 h-1 rounded-full bg-white/40" aria-hidden="true"></span>
-      <span data-i18n="hero-d2">Zbor Hub, Timișoara</span>
-      <span class="basis-full text-gold" data-i18n="hero-d3">Intrare liberă</span>
-    </p>
-
-    <div class="flex flex-col items-center gap-1">
-      <a href="contact" class="nav-cta w-full sm:w-auto inline-flex items-center justify-center gap-2 text-primary font-bold px-8 py-3.5 rounded-full text-base">
-        <span data-i18n="nav-cta">Hai și tu la o ședință</span>
-      </a>
-      <a href="contact#main-content" class="inline-flex items-center gap-1.5 text-white/85 hover:text-gold font-semibold px-4 py-2.5 text-[15px] transition-colors">
-        <span data-i18n="cta-btn2">Vezi programul ședințelor</span>
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-      </a>
-    </div>
-  </div>
-</section>
 
 <!-- ════════════════════ HERO DESKTOP ════════════════════ -->
-<section id="hero-desktop" class="gradient-hero pt-16 lg:pt-24 relative overflow-hidden">
-  <div class="absolute top-20 right-[-80px] w-[500px] h-[500px] rounded-full border border-gold/8 pointer-events-none"></div>
-  <div class="absolute top-40 right-20 w-80 h-80 rounded-full border border-white/5 pointer-events-none"></div>
-  <div class="absolute bottom-0 left-[-60px] w-96 h-96 rounded-full border border-gold/5 pointer-events-none"></div>
+<section id="hero-desktop" class="gradient-hero pt-20 lg:pt-24 relative overflow-hidden">
+  <div class="hidden lg:block absolute top-20 right-[-80px] w-[500px] h-[500px] rounded-full border border-gold/8 pointer-events-none"></div>
+  <div class="hidden lg:block absolute top-40 right-20 w-80 h-80 rounded-full border border-white/5 pointer-events-none"></div>
+  <div class="hidden lg:block absolute bottom-0 left-[-60px] w-96 h-96 rounded-full border border-gold/5 pointer-events-none"></div>
 
-  <div class="w-full max-w-7xl mx-auto px-5 lg:px-8 py-8 xl:py-10 relative z-10 grid grid-cols-12 gap-5">
+  <div class="w-full max-w-7xl mx-auto px-5 lg:px-8 pt-6 pb-10 lg:py-8 xl:py-10 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-5">
 
-    <div class="col-span-7 flex flex-col justify-between gap-8">
+    <div class="max-lg:contents lg:col-span-7 lg:flex lg:flex-col lg:justify-between lg:gap-8">
       <!-- Intro -->
-      <div class="pr-6 animate-in" style="animation-delay:.1s">
-        <h1 class="font-heading text-[2.75rem] xl:text-[3.25rem] font-bold text-white leading-[1.08] mb-5" data-i18n="hero-h1">Primul club Toastmasters<br/><span class="text-gold">din România</span></h1>
+      <div class="max-lg:order-1 lg:pr-6 animate-in" style="animation-delay:.1s">
+        <h1 class="font-heading text-[2.3rem] sm:text-[2.75rem] xl:text-[3.25rem] font-bold text-white leading-[1.08] mb-5" data-i18n="hero-h1">Primul club Toastmasters<br/><span class="text-gold">din România</span></h1>
           <p class="text-white/75 text-base xl:text-[17px] leading-relaxed mb-6" data-i18n="achiev-p1">Timișoara Toastmasters este primul club Toastmasters înființat în România. A început cu un grup de oameni care credeau că abilitatea de a vorbi clar și convingător se poate învăța, iar cel mai bun mod e practica, nu teoria.</p>
         <div class="flex flex-wrap gap-x-7 gap-y-2 mb-6">
             <div class="flex items-center gap-2.5">
@@ -372,14 +341,14 @@
               <span class="text-white/90 text-[15px] font-medium" data-i18n="hero-d3">Intrare liberă</span>
             </div>
         </div>
-        <div class="flex gap-3">
+        <div class="flex flex-col sm:flex-row gap-3">
           <a href="contact" class="cta-pulse bg-gold hover:bg-gold-light text-primary font-bold px-8 py-3.5 rounded-full text-base transition-all duration-200 hover:scale-105 text-center shadow-lg shadow-gold/30" data-i18n="cta-btn1">Rezervă-ți locul →</a>
           <a href="contact#main-content" class="border border-white/50 hover:border-gold text-white hover:text-gold font-semibold px-8 py-3.5 rounded-full text-base transition-all duration-200 text-center backdrop-blur-sm" data-i18n="cta-btn2">Vezi programul ședințelor</a>
         </div>
       </div>
 
       <!-- Mission -->
-      <figure class="rounded-3xl border border-white/10 bg-white/[0.06] backdrop-blur-sm relative overflow-hidden p-7 flex flex-col animate-in" style="animation-delay:.35s">
+      <figure class="max-lg:order-3 rounded-3xl border border-white/10 bg-white/[0.06] backdrop-blur-sm relative overflow-hidden p-6 lg:p-7 flex flex-col animate-in" style="animation-delay:.35s">
         <svg class="absolute top-5 right-6 w-12 h-12 text-gold/30" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.983 3v7.391c0 5.704-3.731 9.57-8.983 10.609l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849h-4v-10h9.983zm14.017 0v7.391c0 5.704-3.748 9.571-9 10.609l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849h-3.983v-10h9.983z"/></svg>
         <div class="text-gold text-[11px] font-semibold uppercase tracking-wider mb-3" data-i18n="mission-h2">Care este misiunea unui club Toastmasters?</div>
         <blockquote class="flex-1"><p class="text-white/85 text-[15px] 2xl:text-base leading-relaxed pr-10" data-i18n="mission-text">„Misiunea unui club Toastmasters este de a oferi o experiență de învățare într-un mediu pozitiv și de suport reciproc, prin intermediul căruia fiecare membru să își dezvolte abilitățile de comunicare și de leadership, toate acestea ducând la dezvoltarea personală, profesională și la creșterea încrederii în sine.”</p></blockquote>
@@ -391,8 +360,8 @@
     </div>
 
     <!-- Slider -->
-    <div class="col-span-5 flex flex-col gap-4 pl-4 pr-6 xl:pl-6 xl:pr-10 animate-in" style="animation-delay:.25s">
-      <div id="hero-slider" class="relative w-full flex-1 min-h-0 rounded-3xl overflow-hidden shadow-2xl shadow-black/40 bg-primary-dark">
+    <div class="max-lg:order-2 lg:col-span-5 flex flex-col gap-4 lg:pl-4 lg:pr-6 xl:pl-6 xl:pr-10 animate-in" style="animation-delay:.25s">
+      <div id="hero-slider" class="relative w-full flex-1 min-h-0 max-lg:flex-none max-lg:aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl shadow-black/40 bg-primary-dark">
         <img src="Images/hero-mobile.webp" alt="Membru Timișoara Toastmasters vorbind pe scenă" class="hero-slide is-active" style="object-position:center 20%" />
         <img src="https://res.cloudinary.com/dnxcej0q5/image/upload/w_880,h_1100,c_fill,g_auto,q_auto,f_auto/IMG_2583_mjclxi" alt="Ședință Timișoara Toastmasters" class="hero-slide" loading="lazy" />
         <img src="https://res.cloudinary.com/dnxcej0q5/image/upload/w_880,h_1100,c_fill,g_auto,q_auto,f_auto/IMG_2985_rk0z30" alt="Ședință Timișoara Toastmasters" class="hero-slide" loading="lazy" />
@@ -429,37 +398,11 @@
 
 <!-- ════════════════════ MISIUNEA NOASTRĂ ════════════════════ -->
 <div id="main-content" tabindex="-1"></div>
-<section id="mission-section" class="py-10 bg-white scroll-fade lg:hidden">
-  <div class="max-w-6xl mx-auto px-5 lg:px-8">
-    <div class="relative overflow-hidden rounded-3xl border px-6 py-10 sm:px-10 lg:px-14 lg:py-14" style="background:#f3f5f5;border-color:#e3e8e8">
-      <svg class="absolute -top-4 right-6 lg:right-12 w-32 h-32 lg:w-48 lg:h-48 text-primary/[0.07] pointer-events-none" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.983 3v7.391c0 5.704-3.731 9.57-8.983 10.609l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849h-4v-10h9.983zm14.017 0v7.391c0 5.704-3.748 9.571-9 10.609l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849h-3.983v-10h9.983z"/></svg>
-      <div class="relative grid lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] gap-6 lg:gap-14 items-center">
-        <div>
-          <div class="w-12 h-1 rounded-full bg-maroon mb-5"></div>
-          <h2 class="font-heading text-3xl md:text-4xl font-bold text-primary leading-tight" data-i18n="mission-h2">
-            Care este misiunea unui club Toastmasters?
-          </h2>
-        </div>
-        <figure>
-          <blockquote>
-            <p class="font-heading text-gray-800 text-lg sm:text-xl lg:text-2xl font-medium leading-relaxed" data-i18n="mission-text">
-              „Misiunea unui club Toastmasters este de a oferi o experiență de învățare într-un mediu pozitiv și de suport reciproc, prin intermediul căruia fiecare membru să își dezvolte abilitățile de comunicare și de leadership, toate acestea ducând la dezvoltarea personală, profesională și la creșterea încrederii în sine.”
-            </p>
-          </blockquote>
-          <figcaption class="mt-6 flex items-center gap-3">
-            <img src="logo.webp" alt="" width="36" height="36" class="w-9 h-9 object-contain" loading="lazy" />
-            <span class="text-sm text-gray-500 font-semibold" data-i18n="mission-source">Toastmasters International</span>
-          </figcaption>
-        </figure>
-      </div>
-    </div>
-  </div>
-</section>
 
 <div class="section-divider mx-auto max-w-5xl lg:hidden"></div>
 
 <!-- ════════════════════ VALORI ════════════════════ -->
-<section id="val-section" class="py-10 lg:py-20 bg-gray-50 lg:bg-white scroll-fade">
+<section id="val-section" class="py-10 lg:py-20 bg-white scroll-fade">
   <div class="max-w-7xl mx-auto px-5 lg:px-8">
     <div class="text-center mb-8 lg:mb-14">
       <h2 class="font-heading text-3xl md:text-4xl font-bold text-primary mb-4" data-i18n="val-h2">
@@ -526,43 +469,6 @@
 
 <div class="section-divider mx-auto max-w-5xl"></div>
 
-<!-- ════════════════════ POVESTEA NOASTRĂ ════════════════════ -->
-<section id="story-section" class="py-10 lg:py-20 bg-white scroll-fade lg:hidden">
-  <div class="max-w-6xl mx-auto px-5 lg:px-8 grid lg:grid-cols-2 gap-8 lg:gap-14 items-center">
-    <div class="text-center lg:text-left">
-      <h2 class="font-heading text-3xl md:text-4xl font-bold text-primary mb-6 leading-tight" data-i18n="achiev-h2">
-        Primul club Toastmasters din România
-      </h2>
-      <div class="space-y-4 text-gray-600 text-base sm:text-lg leading-relaxed">
-        <p class="text-left" data-i18n="achiev-p1">Timișoara Toastmasters este primul club Toastmasters înființat în România. A început cu un grup de oameni care credeau că abilitatea de a vorbi clar și convingător se poate învăța, iar cel mai bun mod e practica, nu teoria.</p>
-        <p class="text-left" data-i18n="achiev-p2">17 ani mai târziu, peste 200 de membri au trecut prin club. Unii au vorbit pentru prima dată în public la noi. Alții au ajuns să conducă echipe, să prezinte la conferințe sau să devină traineri de succes.</p>
-        <p class="text-left" data-i18n="achiev-p3">Fie că ești la primul discurs sau ai ani de experiență în spate, <strong class="text-maroon">locul tău este aici.</strong></p>
-      </div>
-    </div>
-    <div class="grid grid-cols-2 gap-4 sm:gap-5">
-        <div class="rounded-2xl border border-gray-100 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.06)] px-3 py-5 sm:p-6 text-center flex flex-col items-center card-hover">
-          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center text-maroon mb-3 sm:mb-4" style="background:#f3f5f5;box-shadow:0 0 0 3px #fff, 0 0 0 5px #dce2e1"><svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div>
-          <div class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-primary leading-none mb-2"><span class="stat-num" data-target="17" data-suffix="+">17+</span></div>
-          <div class="stat-label text-gray-500 text-[10px] sm:text-xs font-semibold uppercase tracking-wide leading-tight"><span class="hidden md:inline" data-i18n="achiev-s1-short">ani</span><span class="md:hidden" data-i18n="achiev-s1">Ani de activitate</span></div>
-        </div>
-        <div class="rounded-2xl border border-gray-100 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.06)] px-3 py-5 sm:p-6 text-center flex flex-col items-center card-hover">
-          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center text-maroon mb-3 sm:mb-4" style="background:#f3f5f5;box-shadow:0 0 0 3px #fff, 0 0 0 5px #dce2e1"><svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
-          <div class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-primary leading-none mb-2"><span class="stat-num" data-target="200" data-suffix="+">200+</span></div>
-          <div class="stat-label text-gray-500 text-[10px] sm:text-xs font-semibold uppercase tracking-wide leading-tight"><span class="hidden md:inline" data-i18n="achiev-s2-short">membri</span><span class="md:hidden" data-i18n="achiev-s2">Membri de-a lungul timpului</span></div>
-        </div>
-        <div class="rounded-2xl border border-gray-100 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.06)] px-3 py-5 sm:p-6 text-center flex flex-col items-center card-hover">
-          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center text-maroon mb-3 sm:mb-4" style="background:#f3f5f5;box-shadow:0 0 0 3px #fff, 0 0 0 5px #dce2e1"><svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg></div>
-          <div class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-primary leading-none mb-2"><span class="stat-num" data-target="1200" data-suffix="+" data-sep="1">1.200+</span></div>
-          <div class="stat-label text-gray-500 text-[10px] sm:text-xs font-semibold uppercase tracking-wide leading-tight"><span class="hidden md:inline" data-i18n="achiev-s3-short">discursuri</span><span class="md:hidden" data-i18n="achiev-s3">Discursuri susținute</span></div>
-        </div>
-        <div class="rounded-2xl border border-gray-100 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.06)] px-3 py-5 sm:p-6 text-center flex flex-col items-center card-hover">
-          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center text-maroon mb-3 sm:mb-4" style="background:#f3f5f5;box-shadow:0 0 0 3px #fff, 0 0 0 5px #dce2e1"><svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 01-.982-3.172M9.497 14.25a7.454 7.454 0 00.981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 007.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 002.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492a46.32 46.32 0 012.916.52 6.003 6.003 0 01-5.395 4.972m0 0a6.726 6.726 0 01-2.749 1.35m0 0a6.772 6.772 0 01-3.044 0"/></svg></div>
-          <div class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-primary leading-none mb-2"><span class="stat-num" data-target="30" data-suffix="+">30+</span></div>
-          <div class="stat-label text-gray-500 text-[10px] sm:text-xs font-semibold uppercase tracking-wide leading-tight"><span class="hidden md:inline" data-i18n="achiev-s4-short">premii</span><span class="md:hidden" data-i18n="achiev-s4">Premii de excelență</span></div>
-        </div>
-    </div>
-  </div>
-</section>
 
 <div class="section-divider mx-auto max-w-5xl lg:hidden"></div>
 
@@ -1192,7 +1098,7 @@
     card.classList.toggle('leader-open');
   }
 
-  // ══════════════ HERO SLIDER (desktop) ══════════════
+  // ══════════════ HERO SLIDER ══════════════
   (function () {
     var slider = document.getElementById('hero-slider');
     if (!slider) return;
@@ -1213,8 +1119,7 @@
     dots.forEach(function (d, i) { d.addEventListener('click', function () { stop(); show(i); start(); }); });
     slider.addEventListener('mouseenter', stop);
     slider.addEventListener('mouseleave', start);
-    // Only run while the desktop hero is visible
-    if (window.innerWidth >= 1024) start();
+    start();
   })();
 
   // ══════════════ BENEFICII TOGGLE (mobile) ══════════════
