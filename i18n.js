@@ -348,6 +348,7 @@
     'bus-stop-link':       'Piața Libertății Station',
     'pe-jos-label':        'On Foot',
     'meeting-lang-ro':     'Meeting in Romanian',
+    'meeting-lang-en':     'Meeting in English',
     'bus-route-close':     'Close',
     'bus-route-schedule':  'See full schedule',
     'bus-route-1':         'Line 1 – Tram',

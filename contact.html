@@ -288,12 +288,26 @@
         <div id="cal-card" class="order-1 overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.06)] flex flex-col p-5">
 
           <!-- Card header -->
-          <div class="flex items-center gap-3">
-            <span class="w-9 h-9 rounded-full flex items-center justify-center text-maroon flex-shrink-0" style="background:#f3f5f5;box-shadow:0 0 0 2px #fff,0 0 0 3px #dce2e1"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
-            <h3 class="font-heading font-bold text-gray-900 text-lg" data-i18n="ct-cal-h3">Alege data ședinței</h3>
+          <div class="flex items-center justify-between gap-3">
+            <div class="flex items-center gap-3 min-w-0">
+              <span class="w-9 h-9 rounded-full flex items-center justify-center text-maroon flex-shrink-0" style="background:#f3f5f5;box-shadow:0 0 0 2px #fff,0 0 0 3px #dce2e1"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
+              <h3 class="font-heading font-bold text-gray-900 text-lg truncate" data-i18n="ct-cal-h3">Alege data ședinței</h3>
+            </div>
+            <!-- Navigare lună -->
+            <div class="flex items-center flex-shrink-0">
+              <button id="cal-prev" type="button" onclick="calNav(-1)" aria-label="Luna anterioară" data-i18n-aria="cal-prev-month"
+                class="w-8 h-8 flex items-center justify-center rounded-full text-gray-500 hover:text-primary hover:bg-gray-100 transition-colors disabled:opacity-25 disabled:cursor-not-allowed disabled:hover:bg-transparent">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+              </button>
+              <div id="cal-month-label" class="text-gray-900 font-bold text-sm text-center min-w-[7.5rem]" aria-live="polite"></div>
+              <button id="cal-next" type="button" onclick="calNav(1)" aria-label="Luna următoare" data-i18n-aria="cal-next-month"
+                class="w-8 h-8 flex items-center justify-center rounded-full text-gray-500 hover:text-primary hover:bg-gray-100 transition-colors disabled:opacity-25 disabled:cursor-not-allowed disabled:hover:bg-transparent">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+              </button>
+            </div>
           </div>
 
-          <!-- Următoarele miercuri -->
+          <!-- Miercurile din luna afișată -->
           <div id="cal-dates" class="grid grid-cols-4 gap-2 sm:gap-3 mt-4" role="radiogroup" aria-labelledby="cal-dates-label"></div>
           <span id="cal-dates-label" class="sr-only" data-i18n="ct-cal-h3">Alege data ședinței</span>
 
@@ -303,9 +317,13 @@
               <svg class="w-3.5 h-3.5 text-maroon flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
               <span>19:30 – 21:00</span>
             </span>
-            <span class="inline-flex items-center gap-2 rounded-full bg-gray-50 border border-gray-200/90 px-3 py-1.5 text-xs font-semibold text-gray-700">
+            <span id="cal-lang-ro" class="inline-flex items-center gap-2 rounded-full bg-gray-50 border border-gray-200/90 px-3 py-1.5 text-xs font-semibold text-gray-700">
               <span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:linear-gradient(to right,#002B7F 33%,#FCD116 33% 66%,#CE1126 66%)" class="flex-shrink-0"></span>
               <span data-i18n="meeting-lang-ro">Ședință în limba română</span>
+            </span>
+            <span id="cal-lang-en" class="hidden inline-flex items-center gap-2 rounded-full bg-primary/5 border border-primary/25 px-3 py-1.5 text-xs font-semibold text-primary">
+              <svg class="flex-shrink-0 rounded-full" width="12" height="12" viewBox="0 0 22 22" aria-hidden="true"><rect width="22" height="22" fill="#012169"/><path d="M0 0L22 22M22 0L0 22" stroke="white" stroke-width="6"/><path d="M0 0L22 22M22 0L0 22" stroke="#C8102E" stroke-width="3.5"/><rect x="9" y="0" width="4" height="22" fill="white"/><rect x="0" y="9" width="22" height="4" fill="white"/><rect x="10" y="0" width="2" height="22" fill="#C8102E"/><rect x="0" y="10" width="22" height="2" fill="#C8102E"/></svg>
+              <span data-i18n="meeting-lang-en">Ședință în limba engleză</span>
             </span>
             <span class="inline-flex items-center gap-2 rounded-full bg-gray-50 border border-gray-200/90 px-3 py-1.5 text-xs font-semibold text-gray-700 max-w-full">
               <svg class="w-3.5 h-3.5 text-maroon flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -353,47 +371,84 @@
 
       <script>
       (function () {
-        const COUNT = 4;
+        const MONTHS_AHEAD = 6;
         function siteLang() { return (window.tmtLang && window.tmtLang()) || 'ro'; }
         function localeTag() { return siteLang() === 'en' ? 'en-US' : 'ro-RO'; }
 
-        // următoarele COUNT miercuri, începând de azi
-        function upcoming() {
-          const d = new Date(); d.setHours(0,0,0,0);
-          d.setDate(d.getDate() + ((3 - d.getDay() + 7) % 7));
+        const today = new Date(); today.setHours(0,0,0,0);
+
+        // toate miercurile dintr-o lună (offset = luni față de luna curentă)
+        function wednesdays(offset) {
+          const d = new Date(today.getFullYear(), today.getMonth() + offset, 1);
+          const month = d.getMonth();
+          d.setDate(1 + ((3 - d.getDay() + 7) % 7));
           const out = [];
-          for (let i = 0; i < COUNT; i++) { out.push(new Date(d)); d.setDate(d.getDate() + 7); }
+          while (d.getMonth() === month) { out.push(new Date(d)); d.setDate(d.getDate() + 7); }
           return out;
         }
+        // ultima miercuri din lună e ședința în limba engleză
+        function isEnglish(d) {
+          const next = new Date(d); next.setDate(d.getDate() + 7);
+          return next.getMonth() !== d.getMonth();
+        }
 
-        const dates = upcoming();
-        let sel = 0;
+        // prima lună care mai are ședințe viitoare
+        let first = 0;
+        while (!wednesdays(first).some(d => d >= today)) first++;
+        let view = first;
+        let sel = wednesdays(first).find(d => d >= today);
 
         function render() {
           const lt = localeTag();
-          document.getElementById('cal-dates').innerHTML = dates.map((d, i) => {
-            const on = i === sel;
-            const wd  = d.toLocaleDateString(lt, { weekday: 'short' }).replace('.', '');
-            const mon = d.toLocaleDateString(lt, { month: 'short' }).replace('.', '');
-            const aria = d.toLocaleDateString(lt, { weekday: 'long', day: 'numeric', month: 'long' });
-            const cls = on
-              ? 'bg-maroon border-maroon text-white shadow-md shadow-maroon/20'
-              : 'bg-white border-gray-200 text-gray-700 hover:border-maroon/40 hover:bg-maroon/5';
-            return `<button type="button" role="radio" aria-checked="${on}" aria-label="${aria}" onclick="calSel(${i})"
+          const days = wednesdays(view);
+          const label = new Date(today.getFullYear(), today.getMonth() + view, 1)
+            .toLocaleDateString(lt, { month: 'long', year: 'numeric' });
+          document.getElementById('cal-month-label').textContent = label.charAt(0).toUpperCase() + label.slice(1);
+          document.getElementById('cal-prev').disabled = view <= first;
+          document.getElementById('cal-next').disabled = view >= first + MONTHS_AHEAD;
+
+          const grid = document.getElementById('cal-dates');
+          grid.classList.toggle('grid-cols-4', days.length === 4);
+          grid.classList.toggle('grid-cols-5', days.length === 5);
+          grid.innerHTML = days.map(d => {
+            const past = d < today;
+            const on   = sel && d.getTime() === sel.getTime();
+            const en   = isEnglish(d);
+            const wd   = d.toLocaleDateString(lt, { weekday: 'short' }).replace('.', '');
+            const aria = d.toLocaleDateString(lt, { weekday: 'long', day: 'numeric', month: 'long' })
+              + (en ? (siteLang() === 'en' ? ', meeting in English' : ', ședință în limba engleză') : '');
+            const cls = on   ? 'bg-maroon border-maroon text-white shadow-md shadow-maroon/20'
+                      : past ? 'bg-gray-50 border-gray-100 text-gray-300 cursor-not-allowed'
+                      : en   ? 'bg-primary/5 border-primary/25 text-gray-700 hover:border-primary/50'
+                      :        'bg-white border-gray-200 text-gray-700 hover:border-maroon/40 hover:bg-maroon/5';
+            const sub = en
+              ? `<span class="mt-0.5 rounded-full px-1.5 text-[9px] font-extrabold tracking-wider ${on ? 'bg-white/20 text-white' : past ? 'text-gray-300' : 'bg-primary text-white'}">EN</span>`
+              : `<span class="text-[11px] font-semibold ${on ? 'text-white/85' : past ? 'text-gray-300' : 'text-maroon'}">${d.toLocaleDateString(lt, { month: 'short' }).replace('.', '')}</span>`;
+            return `<button type="button" role="radio" aria-checked="${!!on}" aria-label="${aria}" ${past ? 'disabled' : `onclick="calSel(${d.getTime()})"`}
               class="flex flex-col items-center justify-center rounded-xl border py-2.5 transition-all ${cls}">
-              <span class="text-[10px] font-bold uppercase tracking-wider ${on ? 'text-white/75' : 'text-gray-400'}">${wd}</span>
+              <span class="text-[10px] font-bold uppercase tracking-wider ${on ? 'text-white/75' : past ? 'text-gray-300' : 'text-gray-400'}">${wd}</span>
               <span class="font-heading text-xl font-extrabold leading-tight">${d.getDate()}</span>
-              <span class="text-[11px] font-semibold ${on ? 'text-white/85' : 'text-maroon'}">${mon}</span>
+              ${sub}
             </button>`;
           }).join('');
         }
 
-        window.calSel = function (i, silent) {
-          sel = i;
+        window.calNav = function (dir) {
+          const next = view + dir;
+          if (next < first || next > first + MONTHS_AHEAD) return;
+          view = next;
           render();
-          const d = dates[i];
+        };
+
+        window.calSel = function (ts, silent) {
+          sel = new Date(ts);
+          const d = sel;
+          const en = isEnglish(d);
+          render();
+          document.getElementById('cal-lang-ro').classList.toggle('hidden', en);
+          document.getElementById('cal-lang-en').classList.toggle('hidden', !en);
           const str = d.toLocaleDateString(localeTag(), { weekday:'long', day:'numeric', month:'long', year:'numeric' });
-          const dateStr = str.charAt(0).toUpperCase() + str.slice(1);
+          const dateStr = str.charAt(0).toUpperCase() + str.slice(1) + (en ? ' (EN)' : '');
 
           const cta    = document.getElementById('cal-cta');
           const ctaTxt = document.getElementById('cal-cta-text');
@@ -426,12 +481,12 @@
         var _calOrigSetLang = window.setLang;
         window.setLang = function (l) {
           if (_calOrigSetLang) _calOrigSetLang(l);
-          calSel(sel, true);
+          calSel(sel.getTime(), true);
         };
 
         // Selectează automat următoarea ședință (formularul e sub acest script)
         render();
-        document.addEventListener('DOMContentLoaded', () => calSel(0, true));
+        document.addEventListener('DOMContentLoaded', () => calSel(sel.getTime(), true));
       })();
       </script>
 
