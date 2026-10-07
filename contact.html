@@ -56,11 +56,11 @@
     .field-flash { animation: field-ping .9s ease-out; }
     .ct-input:focus { outline:none; box-shadow:0 0 0 3px rgba(0,65,101,.18); border-color:#004165; }
     @media (min-width:768px) {
-      #contact-grid { grid-template-rows: auto auto; }
+      #contact-grid { grid-template-rows: auto 1fr auto; }
       #cal-card       { grid-column:1; grid-row:1; order:unset; }
       #map-card       { grid-column:1; grid-row:2; order:unset; }
-      #form-card      { grid-column:2; grid-row:1; order:unset; }
-      #transport-card { grid-column:2; grid-row:2; order:unset; }
+      #form-card      { grid-column:2; grid-row:1 / span 2; order:unset; }
+      #transport-card { grid-column:1 / -1; grid-row:3; order:unset; }
     }
     .gradient-hero { background: linear-gradient(135deg, #002d47 0%, #004165 55%, #003555 100%); }
     .gradient-dark { background: linear-gradient(135deg, #002d47 0%, #004165 100%); }
@@ -281,68 +281,40 @@
 <section id="main-content" tabindex="-1" class="py-14 lg:py-20 bg-gray-50">
   <div class="max-w-7xl mx-auto px-5 lg:px-8">
 
-    <!-- 2-col: (Calendar + Hartă) + Formular -->
+    <!-- 2-col: (Dată + Hartă) + Formular, transport dedesubt -->
     <div id="contact-grid" class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 lg:gap-8">
 
         <!-- Calendar card -->
-        <div id="cal-card" class="order-1 overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.06)] flex flex-col">
+        <div id="cal-card" class="order-1 overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.06)] flex flex-col p-5">
 
-          <!-- Detail panel -->
           <!-- Card header -->
-          <div class="px-5 pt-5 flex items-center gap-3">
+          <div class="flex items-center gap-3">
             <span class="w-9 h-9 rounded-full flex items-center justify-center text-maroon flex-shrink-0" style="background:#f3f5f5;box-shadow:0 0 0 2px #fff,0 0 0 3px #dce2e1"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
             <h3 class="font-heading font-bold text-gray-900 text-lg" data-i18n="ct-cal-h3">Alege data ședinței</h3>
           </div>
 
-          <!-- Selected meeting summary -->
-          <div id="cal-detail" class="hidden mx-5 mt-4 rounded-2xl bg-gray-50 border border-gray-100 p-3 sm:p-3.5 flex items-center gap-3.5 sm:gap-4">
-            <div class="w-16 sm:w-[4.5rem] rounded-2xl bg-maroon text-white flex flex-col items-center justify-center flex-shrink-0 shadow-sm py-2 px-1 text-center select-none" style="min-height:74px">
-              <span id="cal-detail-mon" class="text-[10px] sm:text-[11px] font-extrabold uppercase tracking-widest text-white/80 leading-none"></span>
-              <span id="cal-detail-day" class="font-heading text-2xl sm:text-[1.75rem] font-extrabold leading-none my-1"></span>
-              <span id="cal-detail-year" class="text-[10px] sm:text-[11px] font-semibold text-white/75 leading-none"></span>
-            </div>
-            <div id="cal-detail-date" class="hidden" aria-hidden="true"></div>
-            <div class="min-w-0 flex-1 flex flex-col justify-center gap-2">
-              <div class="flex flex-wrap items-center gap-2">
-                <span class="inline-flex items-center gap-2 rounded-full bg-white border border-gray-200/90 shadow-sm px-3 py-1.5 text-xs font-semibold text-gray-700">
-                  <svg class="w-3.5 h-3.5 text-maroon flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-                  <span>19:30 – 21:00</span>
-                </span>
-                <span class="inline-flex items-center gap-2 rounded-full bg-white border border-gray-200/90 shadow-sm px-3 py-1.5 text-xs font-semibold text-gray-700">
-                  <span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:linear-gradient(to right,#002B7F 33%,#FCD116 33% 66%,#CE1126 66%)" class="flex-shrink-0"></span>
-                  <span data-i18n="meeting-lang-ro">Ședință în limba română</span>
-                </span>
-              </div>
-              <div class="flex items-center">
-                <span class="inline-flex items-center gap-2 rounded-full bg-white border border-gray-200/90 shadow-sm px-3 py-1.5 text-xs font-semibold text-gray-700 max-w-full">
-                  <svg class="w-3.5 h-3.5 text-maroon flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                  <a href="https://www.google.com/maps/search/?api=1&query=Zbor+Hub%2C+Strada+Vasile+Alecsandri+1%2C+Timi%C8%99oara" target="_blank" class="hover:text-maroon hover:underline transition-colors truncate" data-i18n="venue-link-full">Zbor Hub, Et. 2<span class="hidden sm:inline">, Str. Vasile Alecsandri nr. 1</span></a>
-                </span>
-              </div>
-            </div>
+          <!-- Următoarele miercuri -->
+          <div id="cal-dates" class="grid grid-cols-4 gap-2 sm:gap-3 mt-4" role="radiogroup" aria-labelledby="cal-dates-label"></div>
+          <span id="cal-dates-label" class="sr-only" data-i18n="ct-cal-h3">Alege data ședinței</span>
+
+          <!-- Detalii ședință -->
+          <div class="flex flex-wrap items-center gap-2 mt-4">
+            <span class="inline-flex items-center gap-2 rounded-full bg-gray-50 border border-gray-200/90 px-3 py-1.5 text-xs font-semibold text-gray-700">
+              <svg class="w-3.5 h-3.5 text-maroon flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              <span>19:30 – 21:00</span>
+            </span>
+            <span class="inline-flex items-center gap-2 rounded-full bg-gray-50 border border-gray-200/90 px-3 py-1.5 text-xs font-semibold text-gray-700">
+              <span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:linear-gradient(to right,#002B7F 33%,#FCD116 33% 66%,#CE1126 66%)" class="flex-shrink-0"></span>
+              <span data-i18n="meeting-lang-ro">Ședință în limba română</span>
+            </span>
+            <span class="inline-flex items-center gap-2 rounded-full bg-gray-50 border border-gray-200/90 px-3 py-1.5 text-xs font-semibold text-gray-700 max-w-full">
+              <svg class="w-3.5 h-3.5 text-maroon flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span class="truncate" data-i18n="venue-name-floor">Zbor Hub, Et. 2</span>
+            </span>
           </div>
 
-          <!-- Header cu navigare lună -->
-          <div class="px-4 pt-4 pb-1 mt-1 flex items-center justify-between">
-            <!-- Navigare + lună/an -->
-            <div class="flex items-center gap-1">
-              <button id="cal-prev" onclick="calNav(-1)" aria-label="Luna anterioară" data-i18n-aria="cal-prev-month"
-                class="w-8 h-8 flex items-center justify-center rounded-full text-gray-400 hover:text-primary hover:bg-gray-100 transition-colors disabled:opacity-30 disabled:cursor-not-allowed">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
-              </button>
-              <div id="cal-month-label" class="text-gray-900 font-bold text-base px-1"></div>
-              <button id="cal-next" onclick="calNav(1)" aria-label="Luna următoare" data-i18n-aria="cal-next-month"
-                class="w-8 h-8 flex items-center justify-center rounded-full text-gray-400 hover:text-primary hover:bg-gray-100 transition-colors disabled:opacity-30 disabled:cursor-not-allowed">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-              </button>
-            </div>
-          </div>
-
-          <!-- Calendar grid -->
-          <div class="px-4 pt-3 pb-1" id="cal-months"></div>
-
-          <!-- CTA calendar -->
-          <div class="px-4 pt-1 mt-auto md:hidden" style="padding-bottom:22px">
+          <!-- CTA calendar (mobil) -->
+          <div class="pt-4 md:hidden">
             <a id="cal-cta" href="#form-card"
                onclick="calScrollToForm()"
                class="w-full flex items-center justify-center gap-2.5 border-2 border-dashed border-gray-200 text-gray-400 font-semibold text-sm px-6 py-3 rounded-xl transition-all duration-300 cursor-not-allowed pointer-events-none">
@@ -350,149 +322,81 @@
               <span id="cal-cta-text" data-i18n="ct-cal-default">Selectează o dată mai întâi</span>
             </a>
           </div>
-
-          <p class="hidden md:flex items-center justify-center gap-2 text-xs text-gray-500 px-4 pb-5 pt-2 mt-auto">
-            <svg class="w-3.5 h-3.5 text-maroon flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path stroke-linecap="round" d="M12 16v-4M12 8h.01"/></svg>
-            <span data-i18n="ct-cal-hint">Ședințele au loc în fiecare miercuri. Data aleasă apare automat în formular.</span>
-          </p>
         </div><!-- /calendar card -->
 
         <!-- Hartă -->
-        <div id="map-card" class="order-3 overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.06)] p-5">
-          <div class="flex items-center gap-3 mb-1">
-            <span class="w-9 h-9 rounded-full flex items-center justify-center text-maroon flex-shrink-0" style="background:#f3f5f5;box-shadow:0 0 0 2px #fff,0 0 0 3px #dce2e1"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
-            <h3 class="font-heading font-bold text-gray-900 text-lg" data-i18n="find-us-label">Unde ne găsești?</h3>
-          </div>
-          <div class="relative rounded-xl overflow-hidden mt-4" style="height:230px">
+        <div id="map-card" class="order-3 overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.06)] flex flex-col">
+          <div class="relative flex-1 overflow-hidden" style="min-height:170px">
             <iframe
               src="https://maps.google.com/maps?q=Strada+Vasile+Alecsandri+1,+Timi%C8%99oara&output=embed&z=17&hl=ro"
-              style="border:0; display:block; margin-top:-65px; height:295px; width:100%"
+              style="border:0; display:block; position:absolute; left:0; top:-65px; width:100%; height:calc(100% + 65px)"
               allowfullscreen="" loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
               title="Zbor Hub Timișoara" data-i18n-title="venue-iframe-title">
             </iframe>
           </div>
-          <div class="pt-4">
-            <div class="mb-3">
-              <div class="font-semibold text-primary text-sm" data-i18n="venue-name-floor">Zbor Hub, Et. 2</div>
-              <div class="text-gray-400 text-xs mt-0.5" data-i18n="venue-address">Strada Vasile Alecsandri nr. 1, Timișoara</div>
+          <div class="px-5 py-4 flex items-center justify-between gap-4">
+            <div class="flex items-center gap-3 min-w-0">
+              <span class="w-9 h-9 rounded-full flex items-center justify-center text-maroon flex-shrink-0" style="background:#f3f5f5;box-shadow:0 0 0 2px #fff,0 0 0 3px #dce2e1"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+              <div class="min-w-0">
+                <div class="font-semibold text-primary text-sm" data-i18n="venue-name-floor">Zbor Hub, Et. 2</div>
+                <div class="text-gray-400 text-xs mt-0.5 truncate" data-i18n="venue-address">Strada Vasile Alecsandri nr. 1, Timișoara</div>
+              </div>
             </div>
-            <a href="https://www.google.com/maps/search/?api=1&query=Zbor+Hub%2C+Strada+Vasile+Alecsandri+1%2C+Timi%C8%99oara" target="_blank"
-               class="flex items-center justify-center gap-2 w-full border border-gray-200 bg-gray-50 hover:bg-white hover:border-primary text-primary text-sm font-semibold px-4 py-3 rounded-xl transition-colors">
-              <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <a href="https://www.google.com/maps/search/?api=1&query=Zbor+Hub%2C+Strada+Vasile+Alecsandri+1%2C+Timi%C8%99oara" target="_blank" rel="noopener"
+               class="flex-shrink-0 inline-flex items-center gap-1.5 border border-gray-200 bg-gray-50 hover:bg-white hover:border-primary text-primary text-xs font-semibold px-3.5 py-2.5 rounded-xl transition-colors">
               <span data-i18n="ct-maps">Deschide în Maps</span>
               <svg class="w-3.5 h-3.5 opacity-70 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
             </a>
-
           </div>
         </div><!-- /harta -->
 
       <script>
       (function () {
-        const MONTHS_RO = ['Ianuarie','Februarie','Martie','Aprilie','Mai','Iunie',
-                        'Iulie','August','Septembrie','Octombrie','Noiembrie','Decembrie'];
-        const MONTHS_EN = ['January','February','March','April','May','June',
-                        'July','August','September','October','November','December'];
-        const DAYS_RO = ['L','M','M','J','V','S','D'];
-        const DAYS_EN = ['M','T','W','T','F','S','S'];
+        const COUNT = 4;
         function siteLang() { return (window.tmtLang && window.tmtLang()) || 'ro'; }
-        function MONTHS() { return siteLang() === 'en' ? MONTHS_EN : MONTHS_RO; }
-        function DAYS() { return siteLang() === 'en' ? DAYS_EN : DAYS_RO; }
         function localeTag() { return siteLang() === 'en' ? 'en-US' : 'ro-RO'; }
-        const _now = new Date();
-        const YR = _now.getFullYear();
-        const START_M = _now.getMonth();
-        const END_M = 11;
 
-        function lastWed(month) {
-          const last = new Date(YR, month + 1, 0);
-          const diff = (last.getDay() - 3 + 7) % 7;
-          return last.getDate() - diff;
+        // următoarele COUNT miercuri, începând de azi
+        function upcoming() {
+          const d = new Date(); d.setHours(0,0,0,0);
+          d.setDate(d.getDate() + ((3 - d.getDay() + 7) % 7));
+          const out = [];
+          for (let i = 0; i < COUNT; i++) { out.push(new Date(d)); d.setDate(d.getDate() + 7); }
+          return out;
         }
-        function mf(date) { return (date.getDay() + 6) % 7; }
 
-        let curMonth = START_M;
-        let sel = null;
+        const dates = upcoming();
+        let sel = 0;
 
         function render() {
-          const m = curMonth;
-          const today = new Date(); today.setHours(0,0,0,0);
-          const firstDay = new Date(YR, m, 1);
-          const daysInMo = new Date(YR, m + 1, 0).getDate();
-          const lw       = lastWed(m);
-          const startDow = mf(firstDay);
-
-          document.getElementById('cal-month-label').textContent = MONTHS()[m] + ' ' + YR;
-          document.getElementById('cal-prev').disabled = m <= START_M;
-          document.getElementById('cal-next').disabled = m >= END_M;
-
-          let html = '';
-          html += `<div class="grid grid-cols-7 mb-1">`;
-          DAYS().forEach((d, i) => {
-            html += `<div class="text-center text-[10px] font-semibold py-1 ${i===2?'text-maroon':'text-gray-500'}">${d}</div>`;
-          });
-          html += `</div><div class="grid grid-cols-7 gap-y-1">`;
-
-          for (let b = 0; b < startDow; b++) html += `<div></div>`;
-          for (let day = 1; day <= daysInMo; day++) {
-            const d = new Date(YR, m, day); d.setHours(0,0,0,0);
-            const isWed   = d.getDay() === 3;
-            const isPast  = d < today;
-            const isToday = d.getTime() === today.getTime();
-            const isSel   = sel && sel.month===m && sel.day===day;
-
-            if (isWed) {
-              let cls, sty='';
-              if (isSel) {
-                cls = 'text-white font-bold shadow-sm';
-                sty = 'background:#772432';
-              } else if (isPast) {
-                cls = 'text-maroon/40 font-semibold';
-                sty = 'background:rgba(119,36,50,.07)';
-              } else {
-                cls = 'text-maroon font-bold hover:brightness-95 transition-all';
-                sty = 'background:rgba(119,36,50,.18)';
-              }
-              const _ariaDate = new Date(YR, m, day).toLocaleDateString(localeTag(), {weekday:'long', day:'numeric', month:'long'});
-              html += `<div class="flex items-center justify-center">
-                <button class="w-11 h-11 rounded-full text-sm ${cls}" style="${sty}" onclick="calSel(${m},${day})" aria-label="${_ariaDate}">${day}</button>
-              </div>`;
-            } else {
-              const cls = isToday ? 'text-primary font-bold' : isPast ? 'text-gray-300' : 'text-gray-600';
-              html += `<div class="flex items-center justify-center h-9"><span class="text-xs ${cls}">${day}</span></div>`;
-            }
-          }
-          html += `</div>`;
-          document.getElementById('cal-months').innerHTML = html;
+          const lt = localeTag();
+          document.getElementById('cal-dates').innerHTML = dates.map((d, i) => {
+            const on = i === sel;
+            const wd  = d.toLocaleDateString(lt, { weekday: 'short' }).replace('.', '');
+            const mon = d.toLocaleDateString(lt, { month: 'short' }).replace('.', '');
+            const aria = d.toLocaleDateString(lt, { weekday: 'long', day: 'numeric', month: 'long' });
+            const cls = on
+              ? 'bg-maroon border-maroon text-white shadow-md shadow-maroon/20'
+              : 'bg-white border-gray-200 text-gray-700 hover:border-maroon/40 hover:bg-maroon/5';
+            return `<button type="button" role="radio" aria-checked="${on}" aria-label="${aria}" onclick="calSel(${i})"
+              class="flex flex-col items-center justify-center rounded-xl border py-2.5 transition-all ${cls}">
+              <span class="text-[10px] font-bold uppercase tracking-wider ${on ? 'text-white/75' : 'text-gray-400'}">${wd}</span>
+              <span class="font-heading text-xl font-extrabold leading-tight">${d.getDate()}</span>
+              <span class="text-[11px] font-semibold ${on ? 'text-white/85' : 'text-maroon'}">${mon}</span>
+            </button>`;
+          }).join('');
         }
 
-        window.calNav = function(dir) {
-          const next = curMonth + dir;
-          if (next < START_M || next > END_M) return;
-          curMonth = next;
-          sel = null;
-          document.getElementById('cal-detail').classList.add('hidden');
+        window.calSel = function (i, silent) {
+          sel = i;
           render();
-        };
-
-        window.calSel = function(month, day, silent) {
-          sel = { month, day };
-          render();
-
-          const panel     = document.getElementById('cal-detail');
-          const dateEl    = document.getElementById('cal-detail-date');
-          const d   = new Date(YR, month, day);
+          const d = dates[i];
           const str = d.toLocaleDateString(localeTag(), { weekday:'long', day:'numeric', month:'long', year:'numeric' });
           const dateStr = str.charAt(0).toUpperCase() + str.slice(1);
-          if (dateEl) dateEl.textContent = dateStr;
-          document.getElementById('cal-detail-day').textContent = day;
-          document.getElementById('cal-detail-mon').textContent = d.toLocaleDateString(localeTag(), { month: 'short' }).replace('.', '');
-          const yrEl = document.getElementById('cal-detail-year');
-          if (yrEl) yrEl.textContent = d.getFullYear();
-          panel.classList.remove('hidden');
 
-          const cta     = document.getElementById('cal-cta');
-          const ctaTxt  = document.getElementById('cal-cta-text');
+          const cta    = document.getElementById('cal-cta');
+          const ctaTxt = document.getElementById('cal-cta-text');
           const shortDate = d.toLocaleDateString(localeTag(), { day:'numeric', month:'long' });
           ctaTxt.textContent = (siteLang() === 'en' ? 'I want to come on ' : 'Vreau să vin pe ') + shortDate;
           cta.className = 'w-full flex items-center justify-center gap-2.5 bg-primary hover:bg-primary-light text-white font-semibold text-sm px-6 py-3 rounded-xl transition-all duration-300 shadow-md shadow-primary/20 hover:scale-[1.02] pointer-events-auto cursor-pointer';
@@ -522,30 +426,12 @@
         var _calOrigSetLang = window.setLang;
         window.setLang = function (l) {
           if (_calOrigSetLang) _calOrigSetLang(l);
-          render();
-          if (sel) {
-            calSel(sel.month, sel.day, true);
-          }
+          calSel(sel, true);
         };
 
-        // Auto-select next upcoming meeting
-        (function autoSelect() {
-          const today = new Date(); today.setHours(0,0,0,0);
-          for (let m = START_M; m <= END_M; m++) {
-            const days = new Date(YR, m + 1, 0).getDate();
-            for (let day = 1; day <= days; day++) {
-              const d = new Date(YR, m, day); d.setHours(0,0,0,0);
-              if (d.getDay() === 3 && d >= today) {
-                curMonth = m;
-                calSel(m, day, true);
-                // form is below this script: fill it once the page is parsed
-                document.addEventListener('DOMContentLoaded', () => calSel(m, day, true));
-                return;
-              }
-            }
-          }
-          render();
-        })();
+        // Selectează automat următoarea ședință (formularul e sub acest script)
+        render();
+        document.addEventListener('DOMContentLoaded', () => calSel(0, true));
       })();
       </script>
 
@@ -631,7 +517,7 @@
           <span class="w-9 h-9 rounded-full flex items-center justify-center text-maroon flex-shrink-0" style="background:#f3f5f5;box-shadow:0 0 0 2px #fff,0 0 0 3px #dce2e1"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg></span>
           <h3 class="font-heading font-bold text-gray-900 text-lg" data-i18n="how-to-get-here">Cum ajungi la noi</h3>
         </div>
-        <div class="divide-y divide-gray-100">
+        <div class="divide-y divide-gray-100 md:divide-y-0 md:grid md:grid-cols-2 lg:grid-cols-[1fr_1fr_2.3fr]">
 
           <!-- Mașina -->
           <div class="p-5 space-y-2.5">
@@ -749,7 +635,7 @@
           </div>
 
           <!-- Pe jos + Ride Sharing — panoul de rută le acoperă -->
-          <div style="position:relative">
+          <div class="md:col-span-2 md:grid md:grid-cols-2 lg:col-span-1 lg:grid-cols-[1.5fr_1fr]" style="position:relative">
             <div id="bus-route-panel"><!-- filled by JS --></div>
 
           <!-- Pe jos -->
@@ -767,7 +653,7 @@
           </div>
 
           <!-- Ride Sharing -->
-          <div class="p-5 space-y-3 border-t border-gray-100">
+          <div class="p-5 space-y-3 border-t border-gray-100 md:border-t-0">
             <div class="flex items-center gap-2">
               <svg class="w-4 h-4 text-gray-600 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/></svg>
               <span class="text-sm font-semibold text-gray-800">Ride Sharing</span>
