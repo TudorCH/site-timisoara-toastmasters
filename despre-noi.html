@@ -25,8 +25,6 @@
   <!-- Geo / Local SEO -->
   <meta name="geo.region" content="RO-TM" />
   <meta name="geo.placename" content="Timișoara, România" />
-  <meta name="geo.position" content="45.7653976;21.225036" />
-  <meta name="ICBM" content="45.7653976, 21.225036" />
   <link rel="icon" type="image/webp" href="logo.webp" />
   <link rel="manifest" href="/manifest.json" />
   <meta name="theme-color" content="#004165" />
@@ -67,6 +65,15 @@
       width:0; height:2px; background:#F2DF74; transition:width .3s ease;
     }
     .nav-link:hover::after, .nav-link.nav-active::after { width:100%; }
+    .nav-cta {
+      background: linear-gradient(180deg, #f8ea9a 0%, #F2DF74 55%, #e9d25a 100%);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.6), 0 2px 8px rgba(242,223,116,.25);
+      transition: box-shadow .25s, transform .2s;
+    }
+    .nav-cta:hover {
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.6), 0 0 0 4px rgba(242,223,116,.18), 0 6px 18px rgba(242,223,116,.4);
+      transform: translateY(-1px);
+    }
     @media (min-width: 1024px) {
       .nav-pill {
         background: rgba(0,45,71,.9);
@@ -176,56 +183,45 @@
     <div class="flex items-center justify-between h-16">
 
       <!-- Logo -->
-      <a href="/" class="flex items-center gap-3 flex-shrink-0">
-        <img src="logo.webp" alt="Toastmasters International" width="40" height="40" class="h-8 sm:h-10 w-auto object-contain flex-shrink-0" />
+      <a href="/" class="flex items-center gap-3 lg:gap-2.5 flex-shrink-0">
+        <img src="logo.webp" alt="Toastmasters International" width="40" height="40" class="h-8 sm:h-10 lg:h-9 w-auto object-contain flex-shrink-0" />
         <div>
-          <div class="text-white font-bold text-sm sm:text-base lg:text-sm xl:text-base leading-tight uppercase tracking-wide whitespace-nowrap">Timișoara Toastmasters</div>
-          <div class="text-gold text-[10px] sm:text-[11px] font-semibold tracking-wide leading-tight">Where Leaders Are Made!</div>
+          <div class="text-white font-bold text-sm sm:text-base lg:text-[13px] leading-tight uppercase tracking-wide lg:tracking-normal whitespace-nowrap">Timișoara Toastmasters</div>
+          <div class="text-gold text-[10px] sm:text-[11px] lg:text-[10px] lg:text-gold/80 font-semibold tracking-wide leading-tight">Where Leaders Are Made!</div>
         </div>
       </a>
 
-      <!-- Desktop nav + search -->
-      <div class="hidden lg:flex items-center gap-4 xl:gap-6 whitespace-nowrap">
-        <span class="hidden xl:block w-px h-7 bg-white/15" aria-hidden="true"></span>
+      <!-- Desktop links -->
+      <div class="hidden lg:flex flex-1 items-center justify-center gap-5 xl:gap-7 whitespace-nowrap">
         <a href="/"         class="nav-link text-white/70 hover:text-gold text-sm font-medium transition-colors" data-i18n="nav-home">Acasă</a>
         <a href="despre-noi"    class="nav-link nav-active text-white text-sm font-bold transition-colors" data-i18n="nav-about">Despre noi</a>
         <a href="galerie"       class="nav-link text-white/70 hover:text-gold text-sm font-medium transition-colors" data-i18n="nav-gallery">Galerie</a>
+        <a href="blog"          class="nav-link text-white/70 hover:text-gold text-sm font-medium transition-colors" data-i18n="nav-blog">Blog</a>
         <a href="contact" class="nav-link text-white/70 hover:text-gold text-sm font-medium transition-colors" data-i18n="nav-contact">Contact</a>
+      </div>
 
-        <span class="hidden xl:block w-px h-7 bg-white/15" aria-hidden="true"></span>
-
-        <!-- Search bar: icon that expands on focus -->
-        <div class="relative">
-          <input id="search-input" type="text" placeholder="Caută…" data-i18n-ph="search-ph" aria-label="Caută pe site"
-            class="search-input bg-white/10 hover:bg-white/15 border border-white/15 text-white placeholder-transparent focus:placeholder-white/40
-                   rounded-full pl-9 pr-3 py-1.5 text-sm w-9 focus:w-48 cursor-pointer focus:cursor-text transition-all duration-300"
-            oninput="liveSearch(this.value)" onkeydown="if(event.key==='Escape'){closeSearch()}" autocomplete="off" />
-          <svg class="absolute left-[10px] top-1/2 -translate-y-1/2 w-4 h-4 text-white/70 pointer-events-none"
-               fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z"/>
-          </svg>
-          <div id="search-dropdown" aria-live="polite" aria-label="Rezultate căutare" data-i18n-aria="search-results-aria"
-               class="hidden absolute top-full right-0 mt-2 w-72 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden z-50">
-          </div>
-        </div>
-
-        <!-- Language + TTS -->
-        <div class="flex items-center gap-1.5">
-          <div class="flex items-center bg-white/10 rounded-full p-0.5">
+      <!-- Desktop utilities: search · language · read aloud | CTA -->
+      <div class="hidden lg:flex items-center gap-3 whitespace-nowrap">
+        <div class="flex items-center gap-1 rounded-full bg-white/10 border border-white/10 p-1">
+          <button type="button" onclick="openSearchModal()" aria-label="Caută pe site (Ctrl+K)" data-i18n-aria="search-open-aria" aria-keyshortcuts="Control+K"
+                  class="w-8 h-8 flex items-center justify-center rounded-full text-white/75 hover:text-white hover:bg-white/10 transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z"/></svg>
+          </button>
+          <span class="w-px h-5 bg-white/15" aria-hidden="true"></span>
+          <div class="flex items-center">
             <button data-lang="ro" onclick="setLang('ro')" class="lang-btn active" aria-pressed="true" aria-label="Română"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;background:linear-gradient(to right,#002B7F 33%,#FCD116 33% 66%,#CE1126 66%)"></span></button>
             <button data-lang="en" onclick="setLang('en')" class="lang-btn" aria-pressed="false" aria-label="English"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;overflow:hidden"><svg width="22" height="22" viewBox="0 0 22 22"><rect width="22" height="22" fill="#012169"/><path d="M0 0L22 22M22 0L0 22" stroke="white" stroke-width="6"/><path d="M0 0L22 22M22 0L0 22" stroke="#C8102E" stroke-width="3.5"/><rect x="9" y="0" width="4" height="22" fill="white"/><rect x="0" y="9" width="22" height="4" fill="white"/><rect x="10" y="0" width="2" height="22" fill="#C8102E"/><rect x="0" y="10" width="22" height="2" fill="#C8102E"/></svg></span></button>
           </div>
+          <span class="w-px h-5 bg-white/15" aria-hidden="true"></span>
           <button id="tts-nav-btn" data-tts-btn aria-label="Citește pagina (Alt+T)" data-i18n-aria="tts-aria" aria-keyshortcuts="Alt+T"
-                  class="text-white/80 hover:text-white p-1.5 rounded-full bg-white/15 hover:bg-white/25 transition-colors">
+                  class="w-8 h-8 flex items-center justify-center rounded-full text-white/75 hover:text-white hover:bg-white/10 transition-colors">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
           </button>
         </div>
-
         <a href="contact"
-           class="bg-gold hover:bg-gold-light text-primary font-semibold px-3.5 xl:px-4 py-1.5 rounded-full text-[13px]
-                  transition-all duration-200 hover:scale-105 shadow-sm shadow-gold/20">
+           class="nav-cta group inline-flex items-center gap-1.5 text-primary font-bold pl-4 pr-3 xl:pl-[18px] xl:pr-3.5 py-2 rounded-full text-[13px]">
           <span data-i18n="nav-cta">Hai și tu la o ședință</span>
+          <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6l6 6-6 6"/></svg>
         </a>
       </div>
 
@@ -275,6 +271,7 @@
         <a href="/"         onclick="closeMobile()" class="text-white/70 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors" data-i18n="nav-home">Acasă</a>
         <a href="despre-noi"    onclick="closeMobile()" class="nav-active text-white bg-white/10 rounded-xl px-4 py-3 text-sm font-bold transition-colors" data-i18n="nav-about">Despre noi</a>
         <a href="galerie"       onclick="closeMobile()" class="text-white/70 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors" data-i18n="nav-gallery">Galerie</a>
+        <a href="blog"          onclick="closeMobile()" class="text-white/70 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors" data-i18n="nav-blog">Blog</a>
         <a href="contact" onclick="closeMobile()" class="text-white/70 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors" data-i18n="nav-contact">Contact</a>
         <!-- Language + TTS row -->
         <div class="flex items-center gap-3 px-4 py-2 mt-1 border-t border-white/10">
@@ -299,6 +296,25 @@
   </div>
 </nav>
 
+<!-- Search modal (desktop) -->
+<div id="search-modal" class="hidden fixed inset-0 z-[60]" role="dialog" aria-modal="true" aria-label="Caută pe site" data-i18n-aria="search-open-aria">
+  <div class="absolute inset-0 bg-primary-dark/60 backdrop-blur-sm" onclick="closeSearchModal()"></div>
+  <div class="relative max-w-xl mx-auto mt-28 px-4">
+    <div class="bg-white rounded-2xl shadow-2xl overflow-hidden">
+      <div class="flex items-center gap-3 px-5">
+        <svg class="w-5 h-5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z"/></svg>
+        <input id="search-input" type="text" placeholder="Caută pe site…" data-i18n-ph="search-ph-mobile" aria-label="Caută pe site"
+               class="flex-1 py-4 text-base text-gray-900 placeholder-gray-400 bg-transparent outline-none"
+               oninput="liveSearch(this.value)" autocomplete="off" />
+        <kbd class="text-[11px] font-semibold text-gray-400 border border-gray-200 rounded-md px-1.5 py-0.5">Esc</kbd>
+      </div>
+      <div id="search-dropdown" aria-live="polite" aria-label="Rezultate căutare" data-i18n-aria="search-results-aria"
+           class="hidden border-t border-gray-100 max-h-[60vh] overflow-y-auto"></div>
+    </div>
+  </div>
+</div>
+
+
 <!-- ════════════════════ HERO MOBILE ════════════════════ -->
 <section id="hero-mobile" class="pt-16 relative overflow-hidden" style="height:100dvh;min-height:580px">
   <img src="Images/hero-mobile.webp" alt="" aria-hidden="true"
@@ -315,7 +331,7 @@
       </div>
       <div class="flex items-center gap-3">
         <svg class="w-5 h-5 text-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        <span class="text-white/90 text-base font-medium" data-i18n="hero-d2">Cowork The Office, Timișoara</span>
+        <span class="text-white/90 text-base font-medium" data-i18n="hero-d2">Zbor Hub, Timișoara</span>
       </div>
       <div class="flex items-center gap-3">
         <svg class="w-5 h-5 text-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/><path d="M13 5v2M13 17v2M13 11v2"/></svg>
@@ -359,7 +375,7 @@
             </div>
             <div class="flex items-center gap-2.5">
               <svg class="w-5 h-5 text-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              <span class="text-white/90 text-[15px] font-medium" data-i18n="hero-d2">Cowork The Office, Timișoara</span>
+              <span class="text-white/90 text-[15px] font-medium" data-i18n="hero-d2">Zbor Hub, Timișoara</span>
             </div>
             <div class="flex items-center gap-2.5">
               <svg class="w-5 h-5 text-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/><path d="M13 5v2M13 17v2M13 11v2"/></svg>

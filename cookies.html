@@ -29,6 +29,22 @@
     .nav-link { position: relative; }
     .nav-link::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:2px; background:#F2DF74; transition:width .3s ease; }
     .nav-link:hover::after, .nav-link.nav-active::after { width:100%; }
+    .nav-cta {
+      background: linear-gradient(180deg, #f8ea9a 0%, #F2DF74 55%, #e9d25a 100%);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.6), 0 2px 8px rgba(242,223,116,.25);
+      transition: box-shadow .25s, transform .2s;
+    }
+    .nav-cta:hover {
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.6), 0 0 0 4px rgba(242,223,116,.18), 0 6px 18px rgba(242,223,116,.4);
+      transform: translateY(-1px);
+    }
+    @media (min-width: 1024px) {
+      .nav-pill {
+        background: rgba(0,45,71,.9);
+        -webkit-backdrop-filter: blur(16px) saturate(140%); backdrop-filter: blur(16px) saturate(140%);
+        box-shadow: 0 10px 30px rgba(0,20,35,.35), inset 0 1px 0 rgba(255,255,255,.08);
+      }
+    }
     #mobile-menu { transition:all .3s ease; }
 
     /* ── Prose ── */
@@ -86,54 +102,117 @@
 <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[9999] focus:bg-white focus:text-primary focus:font-semibold focus:px-4 focus:py-2 focus:rounded-lg focus:shadow-lg" data-i18n="skip-link">Sari la conținut</a>
 
 <!-- ════════════════════ NAVBAR ════════════════════ -->
-<nav class="fixed top-0 left-0 right-0 z-50 shadow-lg shadow-primary/30" style="background:linear-gradient(135deg,#00537f 0%,#004165 55%,#002d47 100%)">
-  <div class="max-w-7xl mx-auto px-4 lg:px-8">
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 shadow-lg shadow-primary/30 lg:top-4 lg:px-6 lg:shadow-none lg:!bg-none" style="background:linear-gradient(135deg,#00537f 0%,#004165 55%,#002d47 100%)">
+  <div class="nav-pill max-w-7xl mx-auto px-4 lg:max-w-6xl lg:pl-3 lg:pr-2.5 lg:rounded-full lg:border lg:border-white/15">
     <div class="flex items-center justify-between h-16">
-      <a href="/" class="flex items-center gap-3 flex-shrink-0">
-        <img src="logo.webp" alt="Toastmasters International" class="h-8 sm:h-10 w-auto object-contain flex-shrink-0" />
+
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-3 lg:gap-2.5 flex-shrink-0">
+        <img src="logo.webp" alt="Toastmasters International" width="40" height="40" class="h-8 sm:h-10 lg:h-9 w-auto object-contain flex-shrink-0" />
         <div>
-          <div class="text-white font-bold text-sm sm:text-base leading-tight uppercase tracking-wide">Timișoara Toastmasters</div>
-          <div class="text-gold text-[10px] sm:text-[11px] font-semibold tracking-wide leading-tight">Where Leaders Are Made!</div>
+          <div class="text-white font-bold text-sm sm:text-base lg:text-[13px] leading-tight uppercase tracking-wide lg:tracking-normal whitespace-nowrap">Timișoara Toastmasters</div>
+          <div class="text-gold text-[10px] sm:text-[11px] lg:text-[10px] lg:text-gold/80 font-semibold tracking-wide leading-tight">Where Leaders Are Made!</div>
         </div>
       </a>
-      <div class="hidden lg:flex items-center gap-6">
-        <a href="/"      class="nav-link text-white/70 hover:text-gold text-sm font-medium transition-colors" data-i18n="nav-home">Acasă</a>
-        <a href="despre-noi" class="nav-link text-white/70 hover:text-gold text-sm font-medium transition-colors" data-i18n="nav-about">Despre noi</a>
-        <a href="galerie"    class="nav-link text-white/70 hover:text-gold text-sm font-medium transition-colors" data-i18n="nav-gallery">Galerie</a>
-        <a href="contact"    class="nav-link text-white/70 hover:text-gold text-sm font-medium transition-colors" data-i18n="nav-contact">Contact</a>
-        <div class="flex items-center bg-white/10 rounded-full p-0.5">
-          <button data-lang="ro" onclick="setLang('ro')" class="lang-btn active" aria-pressed="true" aria-label="Română"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;background:linear-gradient(to right,#002B7F 33%,#FCD116 33% 66%,#CE1126 66%)"></span></button>
-          <button data-lang="en" onclick="setLang('en')" class="lang-btn" aria-pressed="false" aria-label="English"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;overflow:hidden"><svg width="22" height="22" viewBox="0 0 22 22"><rect width="22" height="22" fill="#012169"/><path d="M0 0L22 22M22 0L0 22" stroke="white" stroke-width="6"/><path d="M0 0L22 22M22 0L0 22" stroke="#C8102E" stroke-width="3.5"/><rect x="9" y="0" width="4" height="22" fill="white"/><rect x="0" y="9" width="22" height="4" fill="white"/><rect x="10" y="0" width="2" height="22" fill="#C8102E"/><rect x="0" y="10" width="22" height="2" fill="#C8102E"/></svg></span></button>
+
+      <!-- Desktop links -->
+      <div class="hidden lg:flex flex-1 items-center justify-center gap-5 xl:gap-7 whitespace-nowrap">
+        <a href="/"         class="nav-link text-white/70 hover:text-gold text-sm font-medium transition-colors" data-i18n="nav-home">Acasă</a>
+        <a href="despre-noi"    class="nav-link text-white/70 hover:text-gold text-sm font-medium transition-colors" data-i18n="nav-about">Despre noi</a>
+        <a href="galerie"       class="nav-link text-white/70 hover:text-gold text-sm font-medium transition-colors" data-i18n="nav-gallery">Galerie</a>
+        <a href="blog"          class="nav-link text-white/70 hover:text-gold text-sm font-medium transition-colors" data-i18n="nav-blog">Blog</a>
+        <a href="contact" class="nav-link text-white/70 hover:text-gold text-sm font-medium transition-colors" data-i18n="nav-contact">Contact</a>
+      </div>
+
+      <!-- Desktop utilities: search · language · read aloud | CTA -->
+      <div class="hidden lg:flex items-center gap-3 whitespace-nowrap">
+        <div class="flex items-center gap-1 rounded-full bg-white/10 border border-white/10 p-1">
+          <button type="button" onclick="openSearchModal()" aria-label="Caută pe site (Ctrl+K)" data-i18n-aria="search-open-aria" aria-keyshortcuts="Control+K"
+                  class="w-8 h-8 flex items-center justify-center rounded-full text-white/75 hover:text-white hover:bg-white/10 transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z"/></svg>
+          </button>
+          <span class="w-px h-5 bg-white/15" aria-hidden="true"></span>
+          <div class="flex items-center">
+            <button data-lang="ro" onclick="setLang('ro')" class="lang-btn active" aria-pressed="true" aria-label="Română"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;background:linear-gradient(to right,#002B7F 33%,#FCD116 33% 66%,#CE1126 66%)"></span></button>
+            <button data-lang="en" onclick="setLang('en')" class="lang-btn" aria-pressed="false" aria-label="English"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;overflow:hidden"><svg width="22" height="22" viewBox="0 0 22 22"><rect width="22" height="22" fill="#012169"/><path d="M0 0L22 22M22 0L0 22" stroke="white" stroke-width="6"/><path d="M0 0L22 22M22 0L0 22" stroke="#C8102E" stroke-width="3.5"/><rect x="9" y="0" width="4" height="22" fill="white"/><rect x="0" y="9" width="22" height="4" fill="white"/><rect x="10" y="0" width="2" height="22" fill="#C8102E"/><rect x="0" y="10" width="22" height="2" fill="#C8102E"/></svg></span></button>
+          </div>
+          <span class="w-px h-5 bg-white/15" aria-hidden="true"></span>
+          <button id="tts-nav-btn" data-tts-btn aria-label="Citește pagina (Alt+T)" data-i18n-aria="tts-aria" aria-keyshortcuts="Alt+T"
+                  class="w-8 h-8 flex items-center justify-center rounded-full text-white/75 hover:text-white hover:bg-white/10 transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+          </button>
         </div>
-        <a href="contact" class="ml-1 bg-gold hover:bg-gold-light text-primary font-semibold px-5 py-2 rounded-full text-sm transition-all duration-200 hover:scale-105 shadow-md shadow-gold/30" data-i18n="nav-cta">
-          Hai la o ședință
+        <a href="contact"
+           class="nav-cta group inline-flex items-center gap-1.5 text-primary font-bold pl-4 pr-3 xl:pl-[18px] xl:pr-3.5 py-2 rounded-full text-[13px]">
+          <span data-i18n="nav-cta">Hai și tu la o ședință</span>
+          <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6l6 6-6 6"/></svg>
         </a>
       </div>
-      <div class="flex lg:hidden items-center">
-        <button onclick="var o=this.getAttribute('aria-expanded')==='true';this.setAttribute('aria-expanded',o?'false':'true');this.setAttribute('aria-label',window.tmtMenuLabel(!o));document.getElementById('mobile-menu').classList.toggle('hidden');document.getElementById('icon-menu').classList.toggle('hidden');document.getElementById('icon-close').classList.toggle('hidden');"
-                aria-label="Deschide meniu" data-i18n-aria="menu-open" aria-expanded="false" aria-controls="mobile-menu"
+
+      <!-- Mobile right side: search icon + hamburger -->
+      <div class="flex lg:hidden items-center gap-2">
+        <button onclick="toggleSearch()" aria-label="Caută pe site" data-i18n-aria="search-open-aria" class="text-white p-2 rounded-full hover:bg-white/10 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z"/>
+          </svg>
+        </button>
+        <button id="mobile-toggle" onclick="toggleMobile()" aria-label="Deschide meniu" data-i18n-aria="menu-open" aria-expanded="false" aria-controls="mobile-menu"
                 class="text-white p-2 rounded-full hover:bg-white/10 transition-colors">
-          <svg id="icon-menu"  class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-          <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          <svg id="icon-menu"  class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+          <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
         </button>
       </div>
     </div>
-    <div id="mobile-menu" class="hidden lg:hidden border-t border-white/10 pt-4 pb-5">
+
+    <!-- Mobile search bar (toggled) -->
+    <div id="mobile-search" class="hidden pb-3 px-1">
+      <div class="relative">
+        <input id="mobile-search-input" type="text" placeholder="Caută pe site…" data-i18n-ph="search-ph-mobile"
+          class="search-input w-full bg-white/10 border border-white/20 text-white placeholder-white/40
+                 rounded-full pl-4 pr-10 py-2 text-sm"
+          oninput="liveSearch(this.value,'mobile')"
+          onkeydown="if(event.key==='Escape'){closeSearch()}"
+          autocomplete="off" />
+        <svg class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/50 pointer-events-none"
+             fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z"/>
+        </svg>
+        <div id="mobile-search-dropdown" aria-live="polite" aria-label="Rezultate căutare" data-i18n-aria="search-results-aria"
+             class="hidden absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden z-50">
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden lg:hidden border-t border-white/10 pt-4 pb-5 overflow-hidden">
       <div class="flex flex-col gap-1">
-        <a href="/"      class="text-white/70 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors" data-i18n="nav-home">Acasă</a>
-        <a href="despre-noi" class="text-white/70 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors" data-i18n="nav-about">Despre noi</a>
-        <a href="galerie"    class="text-white/70 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors" data-i18n="nav-gallery">Galerie</a>
-        <a href="contact"    class="text-white/70 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors" data-i18n="nav-contact">Contact</a>
+        <a href="/"         onclick="closeMobile()" class="text-white/70 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors" data-i18n="nav-home">Acasă</a>
+        <a href="despre-noi"    onclick="closeMobile()" class="text-white/70 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors" data-i18n="nav-about">Despre noi</a>
+        <a href="galerie"       onclick="closeMobile()" class="text-white/70 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors" data-i18n="nav-gallery">Galerie</a>
+        <a href="blog"          onclick="closeMobile()" class="text-white/70 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors" data-i18n="nav-blog">Blog</a>
+        <a href="contact" onclick="closeMobile()" class="text-white/70 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors" data-i18n="nav-contact">Contact</a>
+        <!-- Language + TTS row -->
         <div class="flex items-center gap-3 px-4 py-2 mt-1 border-t border-white/10">
           <span class="text-white/40 text-xs" data-i18n="nav-util-label">Limbă:</span>
           <div class="flex items-center bg-white/10 rounded-full p-0.5">
             <button data-lang="ro" onclick="setLang('ro')" class="lang-btn active" aria-pressed="true" aria-label="Română"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;background:linear-gradient(to right,#002B7F 33%,#FCD116 33% 66%,#CE1126 66%)"></span></button>
             <button data-lang="en" onclick="setLang('en')" class="lang-btn" aria-pressed="false" aria-label="English"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;overflow:hidden"><svg width="22" height="22" viewBox="0 0 22 22"><rect width="22" height="22" fill="#012169"/><path d="M0 0L22 22M22 0L0 22" stroke="white" stroke-width="6"/><path d="M0 0L22 22M22 0L0 22" stroke="#C8102E" stroke-width="3.5"/><rect x="9" y="0" width="4" height="22" fill="white"/><rect x="0" y="9" width="22" height="4" fill="white"/><rect x="10" y="0" width="2" height="22" fill="#C8102E"/><rect x="0" y="10" width="22" height="2" fill="#C8102E"/></svg></span></button>
           </div>
+          <button id="tts-mob-btn" data-tts-btn aria-label="Citește pagina (Alt+T)" data-i18n-aria="tts-aria"
+                  class="text-white/60 hover:text-white p-1.5 rounded-full hover:bg-white/10 transition-colors ml-auto">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+          </button>
         </div>
         <div class="pt-2 px-4">
-          <a href="contact" class="block w-full bg-gold text-primary font-semibold px-5 py-3 rounded-full text-sm text-center">
-            <span data-i18n="nav-cta">Hai la o ședință</span> →
+          <a href="contact" onclick="closeMobile()"
+             class="block w-full bg-gold text-primary font-semibold px-5 py-3 rounded-full text-sm text-center shadow-md">
+            <span data-i18n="nav-cta">Hai și tu la o ședință</span> →
           </a>
         </div>
       </div>
@@ -141,8 +220,26 @@
   </div>
 </nav>
 
+<!-- Search modal (desktop) -->
+<div id="search-modal" class="hidden fixed inset-0 z-[60]" role="dialog" aria-modal="true" aria-label="Caută pe site" data-i18n-aria="search-open-aria">
+  <div class="absolute inset-0 bg-primary-dark/60 backdrop-blur-sm" onclick="closeSearchModal()"></div>
+  <div class="relative max-w-xl mx-auto mt-28 px-4">
+    <div class="bg-white rounded-2xl shadow-2xl overflow-hidden">
+      <div class="flex items-center gap-3 px-5">
+        <svg class="w-5 h-5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z"/></svg>
+        <input id="search-input" type="text" placeholder="Caută pe site…" data-i18n-ph="search-ph-mobile" aria-label="Caută pe site"
+               class="flex-1 py-4 text-base text-gray-900 placeholder-gray-400 bg-transparent outline-none"
+               oninput="liveSearch(this.value)" autocomplete="off" />
+        <kbd class="text-[11px] font-semibold text-gray-400 border border-gray-200 rounded-md px-1.5 py-0.5">Esc</kbd>
+      </div>
+      <div id="search-dropdown" aria-live="polite" aria-label="Rezultate căutare" data-i18n-aria="search-results-aria"
+           class="hidden border-t border-gray-100 max-h-[60vh] overflow-y-auto"></div>
+    </div>
+  </div>
+</div>
+
 <!-- ════════════════════ HERO ════════════════════ -->
-<section class="gradient-hero pt-16">
+<section class="gradient-hero pt-16 lg:pt-24">
   <div class="max-w-3xl mx-auto px-5 lg:px-8 py-8 sm:py-11">
     <h1 class="font-heading text-3xl sm:text-4xl font-bold text-white leading-tight mb-2" data-i18n="ck-hero-h1">
       Politică <span class="text-gold">legală</span>
@@ -263,7 +360,7 @@
       <li data-i18n="ck-6-li2">Paginile noastre de social media (Instagram, Facebook, LinkedIn)</li>
     </ul>
     <p data-i18n="cookies-contact-block"><strong>Timișoara Toastmasters Club</strong><br/>
-    Cowork The Office, Et. 2, Clădirea BCR, Calea Aradului nr. 11, Timișoara, România</p>
+    Zbor Hub, Et. 2, Strada Vasile Alecsandri nr. 1, Timișoara, România</p>
     <p data-i18n="ck-6-p2">Această politică poate fi actualizată periodic. Data ultimei modificări este afișată în antetul paginii.</p>
 
     <!-- Back link -->
@@ -334,6 +431,40 @@
   </div>
 </footer>
 
+<script src="search.js"></script>
+<script>
+  function toggleSearch() {
+    const s = document.getElementById('mobile-search');
+    s.classList.toggle('hidden');
+    if (!s.classList.contains('hidden')) document.getElementById('mobile-search-input').focus();
+  }
+  function toggleMobile() {
+    const m = document.getElementById('mobile-menu');
+    const btn = document.getElementById('mobile-toggle');
+    const isOpen = !m.classList.toggle('hidden');
+    document.getElementById('icon-menu').classList.toggle('hidden');
+    document.getElementById('icon-close').classList.toggle('hidden');
+    if (btn) { btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false'); if (window.tmtMenuLabel) btn.setAttribute('aria-label', window.tmtMenuLabel(isOpen)); }
+  }
+  function closeMobile() {
+    const btn = document.getElementById('mobile-toggle');
+    document.getElementById('mobile-menu').classList.add('hidden');
+    document.getElementById('icon-menu').classList.remove('hidden');
+    document.getElementById('icon-close').classList.add('hidden');
+    if (btn) { btn.setAttribute('aria-expanded', 'false'); if (window.tmtMenuLabel) btn.setAttribute('aria-label', window.tmtMenuLabel(false)); }
+  }
+  // Desktop uses a floating pill with its own shadow
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').style.boxShadow =
+      window.scrollY > 20 && window.innerWidth < 1024 ? '0 4px 30px rgba(0,65,101,0.35)' : '';
+  });
+  (function(){
+    var done=false;
+    function load(){if(done)return;done=true;var el=document.createElement('script');el.src='tts.js';document.body.appendChild(el);}
+    ['scroll','click','touchstart','keydown'].forEach(function(e){window.addEventListener(e,load,{once:true,passive:true});});
+    setTimeout(load,3000);
+  })();
+</script>
 <script src="i18n.js"></script>
 <script src="cookie-banner.js"></script>
 </body>

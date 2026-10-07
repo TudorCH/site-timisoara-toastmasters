@@ -13,3 +13,8 @@ package-lock.json
 # OS files
 .DS_Store
 Thumbs.db
+
+# Local env / Vercel
+.env*.local
+.env
+.vercel/

@@ -15,7 +15,7 @@
     { label: 'Beneficii membre',       url: 'despre-noi.html',             q: 'beneficii ce castig ce invat vorbire incredere feedback pathways leadership networking competitii crestere personala' },
     { label: 'O seară tipică',         url: 'despre-noi.html#section-eve', q: 'sedinta seara discursuri improvizate table topics feedback roluri toastmaster cum arata structura' },
     { label: 'Conducere & Echipă',     url: 'despre-noi.html#conducere',   q: 'conducere echipa board presedinte secretar vice lider trezorier sergent robert olga ionut tudor mihaela lavinia sergiu adriana' },
-    { label: 'Contact',                url: 'contact.html',                q: 'contact adresa harta locatie directii cowork office calea aradului timisoara' },
+    { label: 'Contact',                url: 'contact.html',                q: 'contact adresa harta locatie directii zbor hub vasile alecsandri timisoara' },
     { label: 'Vino ca invitat',        url: 'contact.html',                q: 'vino invitat gratuit prima sedinta inscriere vizita cum ajung rezervare' },
     { label: 'WhatsApp grup',          url: 'https://chat.whatsapp.com/B7t3hyfuaZFIu7dw23QIRH', q: 'whatsapp grup chat mesaj comunitate' },
     { label: 'Facebook',               url: 'https://www.facebook.com/timisoara.toastmasters', q: 'facebook social media pagina urmareste' },
@@ -118,6 +118,7 @@
 
   function siteGoTo(url, source) {
     closeSearch();
+    closeSearchModal();
     ['search-input', 'mobile-search-input'].forEach(id => {
       const el = document.getElementById(id);
       if (el) el.value = '';
@@ -160,13 +161,36 @@
     }
   });
 
+  // ── Search modal (desktop pages that have #search-modal) ──
+  function openSearchModal() {
+    const modal = document.getElementById('search-modal');
+    if (!modal) return;
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    const input = document.getElementById('search-input');
+    if (input) { input.focus(); input.select(); if (input.value) liveSearch(input.value); }
+  }
+
+  function closeSearchModal() {
+    const modal = document.getElementById('search-modal');
+    if (!modal || modal.classList.contains('hidden')) return;
+    modal.classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeSearch();
+    if (e.key === 'Escape') { closeSearch(); closeSearchModal(); }
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k' && document.getElementById('search-modal')) {
+      e.preventDefault();
+      openSearchModal();
+    }
   });
 
-  window.liveSearch  = liveSearch;
-  window.closeSearch = closeSearch;
-  window.siteGoTo    = siteGoTo;
+  window.liveSearch       = liveSearch;
+  window.closeSearch      = closeSearch;
+  window.siteGoTo         = siteGoTo;
+  window.openSearchModal  = openSearchModal;
+  window.closeSearchModal = closeSearchModal;
 
   // Non-blocking: build DOM index during idle time
   if (window.requestIdleCallback) {

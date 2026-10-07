@@ -42,7 +42,7 @@ Cu răspunsul primit de la tool, formulează concis, cu bullet points, în aceas
 2. **Transport în comun:** dacă tool-ul a găsit o stație (nearest_stop), spune: "faci aproximativ [walking_duration_to_stop] pe jos până la stația [nearest_stop] (linia [nearest_stop_lines]), și de acolo autobuzul te lasă chiar lângă locație" — TOATE liniile duc direct la Piața Consiliul Europei, adiacentă locației, deci NU mai adăuga un al doilea segment de mers pe jos după coborâre. Dacă tool-ul NU a găsit o stație (nearest_stop_error), spune simplu că liniile E2, 14, 17, 18 opresc la Piața Consiliul Europei chiar lângă locație, FĂRĂ să inventezi o stație anume.
 3. **Ride sharing:** NU menționa distanța în km și NU menționa tariful. Spune DOAR intervalul de preț primit (rideshare_price_low - rideshare_price_high lei).
 4. **Pe jos:** durata primită (walking_duration_full).
-5. Încheie cu recomandarea celei mai bune OPȚIUNI dintre cele 4 de mai sus (cu mașina / transport în comun / ride sharing / pe jos, pe baza timpului), NU o descriere de traseu. Adaugă linkul [Google Maps](https://maps.app.goo.gl/DVs13RVEuvLN1zsZ7) pentru ruta exactă live.
+5. Încheie cu recomandarea celei mai bune OPȚIUNI dintre cele 4 de mai sus (cu mașina / transport în comun / ride sharing / pe jos, pe baza timpului), NU o descriere de traseu. Adaugă linkul [Google Maps](https://www.google.com/maps/search/?api=1&query=Zbor+Hub%2C+Strada+Vasile+Alecsandri+1%2C+Timi%C8%99oara) pentru ruta exactă live.
 
 Dacă tool-ul întoarce "error": "origin-too-far", înseamnă că locația s-a geocodat undeva departe de Timișoara (nume ambiguu, ex. o altă localitate cu același nume). NU raporta acele cifre. Spune că numele dat pare să nu corespundă unei zone din Timișoara și cere o clarificare (ex: "ai vrut zona X din Timișoara, sau ești din altă localitate?").
 
@@ -66,11 +66,11 @@ Urmat de [FOLLOW_UP] și mesajul de urmărire.
 [Utilizatorul întreabă]: „Când și unde sunt ședințele?"
 
 [Mesajul 1]:
-Ședințele Timișoara Toastmasters se desfășoară în fiecare miercuri, de la 19:30 la 21:00, la **Cowork The Office** (Etajul 2, Clădirea BCR, Calea Aradului nr. 11, Timișoara).
+Ședințele Timișoara Toastmasters se desfășoară în fiecare miercuri, de la 19:30 la 21:00, la **Zbor Hub** (Etajul 2, Strada Vasile Alecsandri nr. 1, Timișoara).
 
 **Cum ajung acolo?**
-Cel mai simplu: deschide [Google Maps](https://maps.app.goo.gl/DVs13RVEuvLN1zsZ7) pentru ruta exactă de la tine.
-- **Cu mașina:** Parcare gratuită pe Calea Aradului 1a sau parcare cu plată în incinta Iulius Town.
+Cel mai simplu: deschide [Google Maps](https://www.google.com/maps/search/?api=1&query=Zbor+Hub%2C+Strada+Vasile+Alecsandri+1%2C+Timi%C8%99oara) pentru ruta exactă de la tine.
+- **Cu mașina:** Parcarea Piața 700 sau parcarea cu plată de pe Strada Paris.
 - **Transport în comun:** Linia E2, troleibuzele 14, 17, 18 — stația Piața Consiliul Europei.
 - **Pe jos:** 5 min din Iulius Town, 15 min din Piața Unirii, 30 min din zona UVT/UPT.
 
@@ -92,17 +92,17 @@ INFORMAȚII CLUB:
 ȘEDINȚE:
 - Zi: în fiecare Miercuri
 - Ora: 19:30 - 21:00
-- Locație: Cowork The Office, Etajul 2, Clădirea BCR, Calea Aradului nr. 11, Timișoara
-- Maps: https://maps.app.goo.gl/DVs13RVEuvLN1zsZ7
+- Locație: Zbor Hub, Etajul 2, Strada Vasile Alecsandri nr. 1, Timișoara
+- Maps: https://www.google.com/maps/search/?api=1&query=Zbor+Hub%2C+Strada+Vasile+Alecsandri+1%2C+Timi%C8%99oara
 - IMPORTANT: TOATE ședințele sunt în ROMÂNĂ, cu SINGURA excepție a ultimei miercuri din fiecare lună, care se desfășoară integral în ENGLEZĂ
 - La o ședință obișnuită sunt între 20 și 50 de persoane
 
 CUM AJUNGI:
-Pentru orice întrebare despre traseu/direcții, RECOMANDĂ ÎNTOTDEAUNA deschiderea Google Maps pentru ruta exactă de la locația utilizatorului: [Google Maps](https://maps.app.goo.gl/DVs13RVEuvLN1zsZ7). Apoi completează cu detaliile de mai jos ca informație suplimentară.
+Pentru orice întrebare despre traseu/direcții, RECOMANDĂ ÎNTOTDEAUNA deschiderea Google Maps pentru ruta exactă de la locația utilizatorului: [Google Maps](https://www.google.com/maps/search/?api=1&query=Zbor+Hub%2C+Strada+Vasile+Alecsandri+1%2C+Timi%C8%99oara). Apoi completează cu detaliile de mai jos ca informație suplimentară.
 
 Cu mașina:
-- Parcare gratuită lângă clădire: Calea Aradului 1a
-- Parcare cu plată: în incinta Iulius Town
+- Parcarea Piața 700: https://maps.app.goo.gl/KpQ5cfczb6wYHihA9
+- Parcare cu plată pe Strada Paris: https://maps.app.goo.gl/eXEuuDajGUEFrnid8
 
 Transport în comun:
 - Stația Piața Consiliul Europei
@@ -233,7 +233,7 @@ INSTRUCȚIUNI SPECIALE RĂSPUNSURI:
 - Când răspunzi la "Cât costă membralitatea?" sau întrebări despre preț: prezintă costul clar (100 lei taxa o dată + 500 lei/6 luni), explică valoarea, apoi adaugă: "Începe cu cele 10 ședințe gratuite - [înregistrează-te aici](https://timisoaratoastmasters.ro/contact) 👋"
 
 REGULI ABSOLUTE:
-- Când cineva întreabă generic cum să ajungă / despre direcții, fără să menționeze o zonă anume, trimite-l ÎNTOTDEAUNA mai întâi către [Google Maps](https://maps.app.goo.gl/DVs13RVEuvLN1zsZ7) pentru ruta exactă de la locația lui, apoi adaugă detaliile de parcare/transport/pe jos ca informație suplimentară. Dacă utilizatorul menționează o zonă/locație specifică, urmează în schimb regula din secțiunea 5B.
+- Când cineva întreabă generic cum să ajungă / despre direcții, fără să menționeze o zonă anume, trimite-l ÎNTOTDEAUNA mai întâi către [Google Maps](https://www.google.com/maps/search/?api=1&query=Zbor+Hub%2C+Strada+Vasile+Alecsandri+1%2C+Timi%C8%99oara) pentru ruta exactă de la locația lui, apoi adaugă detaliile de parcare/transport/pe jos ca informație suplimentară. Dacă utilizatorul menționează o zonă/locație specifică, urmează în schimb regula din secțiunea 5B.
 - NU folosi NICIODATĂ liniuța em (—) sau en (–). Complet interzise.
 - Răspunde DOAR la întrebări despre club, Toastmasters, vorbit în public sau dezvoltare personală.
 - Dacă nu știi ceva specific, îndrumă utilizatorul: [Facebook](https://www.facebook.com/timisoara.toastmasters), [WhatsApp](https://chat.whatsapp.com/B7t3hyfuaZFIu7dw23QIRH) sau [formular de contact](https://timisoaratoastmasters.ro/contact).
@@ -290,7 +290,7 @@ const STOPS = [
   { name: 'Miresei', lines: ['18'] },
 ];
 
-const VENUE_ADDRESS = 'Calea Aradului nr. 11, Timișoara';
+const VENUE_ADDRESS = 'Strada Vasile Alecsandri nr. 1, Timișoara';
 
 const TOOLS = [
   {

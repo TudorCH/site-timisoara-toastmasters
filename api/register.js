@@ -134,7 +134,7 @@ module.exports = async function handler(req, res) {
         <div style="color:#004165;font-weight:700;font-size:13px;margin-bottom:10px;">DETALII ȘEDINȚĂ</div>
         <div style="color:#374151;font-size:14px;line-height:1.8;">
           📅 <strong>Miercuri</strong>, 19:30–21:00<br/>
-          📍 <strong>Cowork The Office</strong>, Timișoara<br/>
+          📍 <strong>Zbor Hub</strong>, Timișoara<br/>
           🎟️ Intrare <strong>liberă</strong> pentru vizitatori
           ${sedinta ? `<br/>📌 Data selectată: <strong>${escapeHtml(sedinta)}</strong>` : ''}
         </div>
