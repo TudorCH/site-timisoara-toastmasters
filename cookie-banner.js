@@ -88,13 +88,13 @@
         '<div id="tm-text">' +
           '<div id="tm-text-long">' +
             '<p>Folosim date stocate local în browserul tău și servicii terțe de bază. Nu folosim trackere de urmărire sau publicitate.</p>' +
-            '<p>Apasă „Acceptă” pentru toate funcționalitățile sau „Respinge” pentru cele esențiale. <a href="cookies">Politică cookies</a></p>' +
+            '<p>Apasă „Acceptă” pentru toate funcționalitățile sau „Respinge” pentru cele esențiale. <a href="/cookies">Politică cookies</a></p>' +
           '</div>' +
           '<p id="tm-text-short">Folosim cookie-uri esențiale, fără elemente de tracking.</p>' +
         '</div>' +
       '</div>' +
       '<div id="tm-actions">' +
-        '<a id="tm-more" href="cookies">Află mai multe</a>' +
+        '<a id="tm-more" href="/cookies">Află mai multe</a>' +
         '<button id="tm-settings" type="button">Setări cookies</button>' +
         '<button id="tm-ess" type="button">Respinge</button>' +
         '<button id="tm-ok" type="button">Acceptă</button>' +
@@ -125,7 +125,7 @@
     setTimeout(function () {
       bar.remove();
       document.body.style.removeProperty('--tm-bar-h');
-      document.querySelectorAll('a[href="contact"].bg-gold').forEach(function (el) {
+      document.querySelectorAll('a[href="contact"].bg-gold, a[href="/contact"].bg-gold').forEach(function (el) {
         el.classList.add('tm-cta-active');
         setTimeout(function () { el.classList.remove('tm-cta-active'); }, 1500);
       });
@@ -135,7 +135,7 @@
   window.addEventListener('resize', syncLayout);
   document.getElementById('tm-ok').addEventListener('click', function () { dismiss('all'); });
   document.getElementById('tm-ess').addEventListener('click', function () { dismiss('essential'); });
-  document.getElementById('tm-settings').addEventListener('click', function () { window.location.href = 'cookies.html'; });
+  document.getElementById('tm-settings').addEventListener('click', function () { window.location.href = '/cookies'; });
 
   setTimeout(showBar, 2000);
 })();

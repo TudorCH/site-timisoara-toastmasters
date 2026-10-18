@@ -1,0 +1,45 @@
+# Decap CMS: editorul de articole de la /admin.
+# Fiecare articol salvat devine un fișier în content/blog/, iar deploy-ul îl transformă în pagină (scripts/build-blog.mjs).
+backend:
+  name: github
+  repo: TudorCH/site-timisoara-toastmasters
+  branch: dev            # la lansare: main
+  auth_endpoint: api/decap-auth
+
+locale: ro
+site_url: https://timisoaratoastmasters.ro
+logo_url: /logo.webp
+
+media_folder: Images/blog
+public_folder: /Images/blog
+
+collections:
+  - name: blog
+    label: Articole
+    label_singular: Articol
+    folder: content/blog
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    format: frontmatter
+    sortable_fields: [date, title]
+    summary: "{{title}}"
+    fields:
+      - { label: Titlu, name: title, widget: string }
+      - { label: Data publicării, name: date, widget: datetime, format: "YYYY-MM-DD", date_format: "DD.MM.YYYY", time_format: false }
+      - label: Categorie
+        name: category
+        widget: select
+        options:
+          - { label: "Ghiduri & tehnici", value: ghiduri }
+          - { label: "Povești de membri", value: povesti }
+          - { label: "Evenimente & concursuri", value: evenimente }
+          - { label: "Despre club", value: club }
+      - { label: Autor, name: author, widget: string, required: false, hint: "Lasă gol pentru „Echipa clubului”." }
+      - { label: Copertă, name: cover, widget: image, required: false, hint: "Ideal 1600×900 px (format 16:9)." }
+      - { label: Rezumat, name: excerpt, widget: text, hint: "1–2 fraze. Apare pe cardul din listă și când articolul e distribuit pe Facebook." }
+      - { label: Recomandat, name: featured, widget: boolean, default: false, required: false, hint: "Apare mare, primul în listă." }
+      - { label: Ciornă, name: draft, widget: boolean, default: true, required: false, hint: "Cât timp e bifat, articolul NU apare pe site. Debifează ca să-l publici." }
+      - { label: Titlu (engleză), name: title_en, widget: string, required: false, hint: "Opțional, afișat când vizitatorul alege EN." }
+      - { label: Rezumat (engleză), name: excerpt_en, widget: text, required: false }
+      - { label: Conținut, name: body, widget: markdown }

@@ -1,5 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /api/
+Disallow: /admin/
 
 Sitemap: https://timisoaratoastmasters.ro/sitemap.xml
+Sitemap: https://timisoaratoastmasters.ro/sitemap-blog.xml

@@ -1,5 +1,5 @@
 {
-  "buildCommand": "npm install && npm run build:css",
+  "buildCommand": "npm install && npm run build",
   "outputDirectory": ".",
   "redirects": [
     { "source": "/home.html",       "destination": "/",          "permanent": true },
@@ -15,7 +15,9 @@
     { "source": "/galerie",    "destination": "/galerie.html"   },
     { "source": "/despre-noi", "destination": "/despre-noi.html"},
     { "source": "/cookies",    "destination": "/cookies.html"   },
-    { "source": "/blog",       "destination": "/blog.html"      }
+    { "source": "/blog",       "destination": "/blog.html"      },
+    { "source": "/blog/:slug", "destination": "/blog/:slug.html" },
+    { "source": "/admin",      "destination": "/admin/index.html" }
   ],
   "functions": {
     "api/*.js": {

@@ -250,6 +250,7 @@
   </div>
 </div>
 
+<!-- BLOG:MAIN:START (paginile de articol generate de scripts/build-blog.mjs înlocuiesc tot până la BLOG:MAIN:END) -->
 <!-- ════════════════════ HERO BLOG ════════════════════ -->
 <div class="bg-gray-50 pt-24 lg:pt-28 pb-2 px-5 lg:px-8 text-center">
   <div class="max-w-3xl mx-auto">
@@ -267,13 +268,13 @@
 <section id="main-content" tabindex="-1" class="pt-6 pb-14 lg:pb-20 bg-gray-50">
   <div class="max-w-7xl mx-auto px-5 lg:px-8">
 
-    <!-- Notă: articole demonstrative -->
-    <div class="flex items-start gap-3 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 sm:px-5 mb-6 max-w-3xl mx-auto" role="note">
-      <svg class="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-      <p class="text-sm text-amber-900 leading-relaxed">
-        <strong data-i18n="blog-demo-title">Articole demonstrative.</strong>
-        <span data-i18n="blog-demo-text">Blogul e în pregătire, iar cardurile de mai jos arată doar cum va arăta. Primele articole reale apar în curând.</span>
-      </p>
+    <!-- Stare goală: niciun articol publicat încă -->
+    <div id="blog-soon" class="hidden max-w-xl mx-auto text-center rounded-2xl bg-white border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.06)] px-6 py-10 mb-6">
+      <span class="inline-flex w-12 h-12 rounded-full items-center justify-center text-maroon mb-4" style="background:#f3f5f5;box-shadow:0 0 0 2px #fff,0 0 0 3px #dce2e1">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+      </span>
+      <p class="font-heading font-bold text-primary-dark text-xl" data-i18n="blog-soon-title">Primele articole apar în curând</p>
+      <p class="text-gray-500 text-sm leading-relaxed mt-2" data-i18n="blog-soon-text">Membrii clubului pregătesc ghiduri, povești și noutăți despre vorbitul în public. Până atunci, te așteptăm la o ședință.</p>
     </div>
 
     <!-- Categorii -->
@@ -302,7 +303,8 @@
   <script>
   (function () {
     const CLD = 'https://res.cloudinary.com/dnxcej0q5/image/upload/';
-    const img = (id, w) => CLD + 'w_' + w + ',q_auto,f_auto/' + id;
+    // Coperta poate fi un URL complet, o cale din site (/Images/blog/...) sau un ID Cloudinary.
+    const img = (src, w) => /^(https?:)?\//.test(src) ? src : CLD + 'w_' + w + ',q_auto,f_auto/' + src;
 
     const CATS = [
       { id: 'all',      ro: 'Toate',                   en: 'All' },
@@ -312,47 +314,32 @@
       { id: 'club',     ro: 'Despre club',             en: 'About the club' },
     ];
 
-    // Articole DEMONSTRATIVE: titluri și rezumate de exemplu, fără autori reali.
-    const POSTS = [
-      { cat: 'ghiduri', min: 5, photo: 'IMG_5826_q84dxk', featured: true,
-        ro: { t: 'Primele 60 de secunde pe scenă: cum transformi tracul în energie', x: 'Tracul nu dispare complet, dar poate fi ancorat: o respirație controlată, câteva priviri spre fețe prietenoase și o primă frază pe care o știi pe de rost.' },
-        en: { t: 'The first 60 seconds on stage: turning nerves into energy', x: 'Stage fright never fully goes away, but you can anchor it: controlled breathing, a few glances at friendly faces and an opening line you know by heart.' } },
-      { cat: 'ghiduri', min: 3, photo: 'IMG_5522_gomrtv',
-        ro: { t: 'Table Topics: trei structuri simple pentru răspunsuri improvizate', x: 'Trecut–prezent–viitor, problemă–soluție–beneficiu sau o poveste scurtă. Alegi una și ai un început, un mijloc și un final.' },
-        en: { t: 'Table Topics: three simple structures for impromptu answers', x: 'Past–present–future, problem–solution–benefit or a short story. Pick one and you have a beginning, a middle and an end.' } },
-      { cat: 'ghiduri', min: 4, photo: 'IMG_4926_r5b20v',
-        ro: { t: 'Cum oferi un feedback care chiar ajută', x: 'Ce a mers bine, ce poate fi îmbunătățit și cum anume. O evaluare bună e specifică, sinceră și te face să vrei să revii pe scenă.' },
-        en: { t: 'How to give feedback that actually helps', x: 'What worked, what could be better and how exactly. A good evaluation is specific, honest and makes you want to get back on stage.' } },
-      { cat: 'povesti', min: 4, photo: 'IMG_4694_iti5mm',
-        ro: { t: 'Primul meu discurs: ce aș vrea să fi știut înainte', x: 'De la emoțiile din seara dinainte la aplauzele de la final: ce contează cu adevărat la primul discurs și ce poți lăsa deoparte.' },
-        en: { t: 'My first speech: what I wish I had known', x: 'From the nerves the night before to the applause at the end: what really matters in your first speech and what you can let go.' } },
-      { cat: 'evenimente', min: 5, photo: '684918986_1362854235652283_8692383011814902506_n_ieuoij.jpg',
-        ro: { t: 'Din culisele unui concurs național de discursuri', x: 'Cum arată pregătirea, ce se întâmplă în spatele scenei și ce rămâne după, indiferent de clasament.' },
-        en: { t: 'Behind the scenes of a national speech contest', x: 'What the preparation looks like, what happens backstage and what stays with you afterwards, whatever the ranking.' } },
-      { cat: 'club', min: 3, photo: 'IMG_4416_fauxu4',
-        ro: { t: 'Cine ce face într-o ședință Toastmasters', x: 'Toastmasterul serii, evaluatorii, cronometrorul, gramaticianul: un ghid rapid al rolurilor, ca să știi la ce să te uiți prima dată.' },
-        en: { t: 'Who does what in a Toastmasters meeting', x: 'The Toastmaster of the evening, the evaluators, the timer, the grammarian: a quick guide to the roles, so you know what to look for the first time.' } },
-    ];
-
+    // Lista e generată la build din content/blog/*.md (scripts/build-blog.mjs).
+    let POSTS = [];
     let active = 'all';
     const lang = () => (window.tmtLang && window.tmtLang()) || 'ro';
     const T = (ro, en) => lang() === 'en' ? en : ro;
     const catLabel = id => { const c = CATS.find(c => c.id === id); return c ? c[lang()] : id; };
-    const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+    const esc = s => String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+    const txt = p => (lang() === 'en' && p.en && p.en.t) ? p.en : p.ro;
+    const fmtDate = d => new Date(d).toLocaleDateString(lang() === 'en' ? 'en-GB' : 'ro-RO', { day: 'numeric', month: 'long', year: 'numeric' });
+    const url = p => '/blog/' + p.slug;
 
-    const demo = () => `<span class="inline-flex items-center rounded-md bg-amber-100 text-amber-800 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5">${T('Exemplu', 'Sample')}</span>`;
-    const author = () => `
+    const author = p => `
       <div class="flex items-center gap-2.5 min-w-0">
-        <span class="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center flex-shrink-0">
-          <img src="logo.webp" alt="" class="w-5 h-5 object-contain" />
-        </span>
+        <span class="w-8 h-8 rounded-full overflow-hidden bg-gray-200 text-gray-400 flex-shrink-0" aria-hidden="true"><svg class="w-full h-full" viewBox="0 0 44 44" fill="currentColor"><circle cx="22" cy="17" r="8"/><path d="M6 44c0-9.4 7.2-15 16-15s16 5.6 16 15z"/></svg></span>
         <span class="min-w-0">
-          <span class="block text-xs font-semibold text-gray-900 truncate">${T('Echipa clubului', 'Club team')}</span>
+          <span class="block text-xs font-semibold text-gray-900 truncate">${esc(p.author || T('Echipa clubului', 'Club team'))}</span>
+          <span class="block text-[11px] text-gray-400">${fmtDate(p.date)}</span>
         </span>
       </div>`;
-    const soon = cls => `<span class="${cls} inline-flex items-center gap-1.5 text-xs font-bold text-gray-400" title="${T('Articolul apare în curând', 'Coming soon')}">${T('În curând', 'Coming soon')}</span>`;
+    const readMore = cls => `<span class="${cls} inline-flex items-center gap-1 text-xs font-bold text-maroon">${T('Citește', 'Read')}<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6l6 6-6 6"/></svg></span>`;
 
     function render() {
+      const none = POSTS.length === 0;
+      document.getElementById('blog-soon').classList.toggle('hidden', !none);
+      document.getElementById('blog-filters').classList.toggle('hidden', none);
+
       document.getElementById('blog-filters').innerHTML = CATS.map(c => {
         const on = c.id === active;
         return `<button type="button" role="tab" aria-selected="${on}" onclick="blogFilter('${c.id}')"
@@ -360,55 +347,55 @@
       }).join('');
 
       const list = POSTS.filter(p => active === 'all' || p.cat === active);
-      const feat = active === 'all' ? list.find(p => p.featured) : null;
+      const feat = active === 'all' ? (list.find(p => p.featured) || null) : null;
       const rest = list.filter(p => p !== feat);
 
       const fEl = document.getElementById('blog-featured');
       fEl.classList.toggle('hidden', !feat);
-      if (feat) {
-        const d = feat[lang()];
-        fEl.innerHTML = `
-          <div class="grid lg:grid-cols-[5fr_7fr] rounded-2xl overflow-hidden bg-white border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.06)]">
-            <div class="relative min-h-[220px] sm:min-h-[280px]">
-              <img src="${img(feat.photo, 900)}" alt="" class="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" />
+      fEl.innerHTML = feat ? (() => {
+        const d = txt(feat);
+        return `
+          <a href="${url(feat)}" class="group grid lg:grid-cols-[5fr_7fr] rounded-2xl overflow-hidden bg-white border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.10)] transition-shadow">
+            <div class="relative min-h-[220px] sm:min-h-[280px] bg-gray-100">
+              ${feat.cover ? `<img src="${esc(img(feat.cover, 900))}" alt="" class="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" />` : ''}
               <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/50 to-transparent"></div>
               <span class="absolute top-4 left-4 rounded-full bg-gold text-primary-dark text-[10px] font-extrabold uppercase tracking-wider px-3 py-1">${T('Recomandat', 'Featured')}</span>
             </div>
             <div class="p-6 sm:p-8 lg:p-10 flex flex-col">
               <div class="flex flex-wrap items-center gap-2 text-xs font-bold uppercase tracking-wider text-maroon">
-                <span>${catLabel(feat.cat)}</span><span class="text-gray-300">•</span><span class="text-gray-500">${feat.min} min ${T('lectură', 'read')}</span>${demo()}
+                <span>${catLabel(feat.cat)}</span><span class="text-gray-300">•</span><span class="text-gray-500">${feat.min} min ${T('lectură', 'read')}</span>
               </div>
-              <h2 class="font-heading font-extrabold text-primary-dark text-2xl sm:text-3xl leading-tight mt-3">${esc(d.t)}</h2>
+              <h2 class="font-heading font-extrabold text-primary-dark text-2xl sm:text-3xl leading-tight mt-3 group-hover:text-primary">${esc(d.t)}</h2>
               <p class="text-gray-500 text-base leading-relaxed mt-3">${esc(d.x)}</p>
               <div class="mt-auto pt-6 flex items-center justify-between gap-4">
-                ${author()}
-                <span class="inline-flex items-center rounded-xl border border-gray-200 bg-gray-50 text-gray-400 text-sm font-bold px-4 py-2.5">${T('În curând', 'Coming soon')}</span>
+                ${author(feat)}
+                ${readMore('flex-shrink-0 text-sm')}
               </div>
             </div>
-          </div>`;
-      }
+          </a>`;
+      })() : '';
 
       document.getElementById('blog-grid').innerHTML = rest.map(p => {
-        const d = p[lang()];
+        const d = txt(p);
         return `
-          <article class="flex flex-col rounded-2xl overflow-hidden bg-white border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.06)]">
-            <div class="relative" style="aspect-ratio:16/9">
-              <img src="${img(p.photo, 600)}" alt="" class="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" />
+          <a href="${url(p)}" class="group flex flex-col rounded-2xl overflow-hidden bg-white border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.10)] transition-shadow">
+            <div class="relative bg-gray-100" style="aspect-ratio:16/9">
+              ${p.cover ? `<img src="${esc(img(p.cover, 600))}" alt="" class="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" />` : ''}
               <span class="absolute bottom-3 left-3 rounded-md bg-white/95 text-maroon text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 shadow-sm">${catLabel(p.cat)}</span>
             </div>
             <div class="p-5 flex flex-col flex-1">
-              <div class="flex items-center gap-2 text-[11px] font-semibold text-gray-400 mb-2">${p.min} min ${T('lectură', 'read')} ${demo()}</div>
-              <h3 class="font-heading font-bold text-gray-900 text-lg leading-snug">${esc(d.t)}</h3>
+              <div class="text-[11px] font-semibold text-gray-400 mb-2">${p.min} min ${T('lectură', 'read')}</div>
+              <h3 class="font-heading font-bold text-gray-900 text-lg leading-snug group-hover:text-primary">${esc(d.t)}</h3>
               <p class="text-gray-500 text-sm leading-relaxed mt-2 mb-5">${esc(d.x)}</p>
               <div class="mt-auto pt-4 flex items-center justify-between gap-3 border-t border-gray-100">
-                ${author()}
-                ${soon('flex-shrink-0')}
+                ${author(p)}
+                ${readMore('flex-shrink-0')}
               </div>
             </div>
-          </article>`;
+          </a>`;
       }).join('');
 
-      document.getElementById('blog-empty').classList.toggle('hidden', list.length > 0);
+      document.getElementById('blog-empty').classList.toggle('hidden', none || list.length > 0);
     }
 
     window.blogFilter = function (id) { active = id; render(); };
@@ -419,10 +406,14 @@
       render();
     };
 
-    render();
+    fetch('/blog-posts.json', { cache: 'no-cache' })
+      .then(r => r.ok ? r.json() : [])
+      .catch(() => [])
+      .then(list => { POSTS = Array.isArray(list) ? list : []; render(); });
   })();
   </script>
 </section>
+<!-- BLOG:MAIN:END -->
 
 <!-- ════════════════════ FOOTER ════════════════════ -->
 <footer class="bg-gradient-to-b from-[#002d47] to-[#001a2a] border-t border-white/5 pt-8 pb-6 lg:pt-14 lg:pb-6">

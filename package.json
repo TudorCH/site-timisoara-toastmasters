@@ -2,10 +2,14 @@
   "name": "site-timisoara-toastmasters",
   "private": true,
   "scripts": {
+    "build": "npm run build:blog && npm run build:css",
+    "build:blog": "node scripts/build-blog.mjs",
     "build:css": "tailwindcss -i ./src/input.css -o ./output.css --minify",
     "watch:css": "tailwindcss -i ./src/input.css -o ./output.css --watch"
   },
   "devDependencies": {
+    "gray-matter": "^4.0.3",
+    "marked": "^18.1.1",
     "tailwindcss": "^3.4.0"
   }
 }

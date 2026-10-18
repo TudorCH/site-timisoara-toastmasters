@@ -18,3 +18,8 @@ Thumbs.db
 .env*.local
 .env
 .vercel/
+
+# Blog generat la build (scripts/build-blog.mjs)
+/blog/
+/blog-posts.json
+/sitemap-blog.xml

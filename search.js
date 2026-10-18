@@ -143,7 +143,7 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     } else {
-      window.location.href = url;
+      window.location.href = '/' + url; // root-relative, so it also works from /blog/<slug>
     }
   }
 

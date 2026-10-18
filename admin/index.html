@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Administrare blog | Timișoara Toastmasters</title>
+  <link rel="icon" type="image/webp" href="/logo.webp" />
+  <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url" />
+</head>
+<body>
+  <script>window.CMS_MANUAL_INIT = true;</script>
+  <script src="https://unpkg.com/decap-cms@3.16.3/dist/decap-cms.js"></script>
+  <script>
+    // Login-ul GitHub trece prin /api/decap-auth de pe același domeniu (preview sau producție).
+    CMS.init({ config: { backend: { base_url: window.location.origin } } });
+  </script>
+</body>
+</html>
