@@ -448,7 +448,8 @@
   };
 
   function fabVisible() {
-    return !fab.classList.contains('gone') && !fab.classList.contains('no-footer') && !fab.classList.contains('over-hero');
+    return !fab.classList.contains('gone') && !fab.classList.contains('no-footer') && !fab.classList.contains('over-hero') &&
+      !document.body.classList.contains('tm-consent-open'); /* mobile cookie sheet is open */
   }
   function hideTeaser() {
     teaser.classList.remove('on');
