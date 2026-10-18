@@ -39,7 +39,7 @@ INTERZIS STRICT: nu inventa nume de străzi, bulevarde, indicații pas cu pas ("
 Cu răspunsul primit de la tool, formulează concis, cu bullet points, în această ordine:
 
 1. **Cu mașina:** durata primită (driving_duration), presupunând plecare miercuri în jurul orei 19:00.
-2. **Transport în comun:** dacă tool-ul a găsit o stație (nearest_stop), spune: "faci aproximativ [walking_duration_to_stop] pe jos până la stația [nearest_stop] (linia [nearest_stop_lines]), și de acolo autobuzul te lasă chiar lângă locație" — TOATE liniile duc direct la Piața Consiliul Europei, adiacentă locației, deci NU mai adăuga un al doilea segment de mers pe jos după coborâre. Dacă tool-ul NU a găsit o stație (nearest_stop_error), spune simplu că liniile E2, 14, 17, 18 opresc la Piața Consiliul Europei chiar lângă locație, FĂRĂ să inventezi o stație anume.
+2. **Transport în comun:** dacă tool-ul a găsit o stație (nearest_stop), spune: "faci aproximativ [walking_duration_to_stop] pe jos până la stația [nearest_stop] (linia [nearest_stop_lines]), apoi cobori în zona Piața 700 / Piața Mărăști, de unde mai ai 4-7 minute pe jos până la Zbor Hub". Liniile 14 și 18 opresc la Piața 700 și Piața Mărăști; 17 și E2 opresc la Piața Mărăști (pe sensul dinspre Arena Aqua, 17 oprește la Oituz; pe sensul dinspre Aumovio, E2 oprește la Hector/Bastion, ambele la ~7 min pe jos). Dacă tool-ul NU a găsit o stație (nearest_stop_error), spune simplu că liniile E2, 14, 17, 18 opresc la Piața Mărăști / Piața 700, la 4-7 minute pe jos de locație, FĂRĂ să inventezi o stație de urcare anume.
 3. **Ride sharing:** NU menționa distanța în km și NU menționa tariful. Spune DOAR intervalul de preț primit (rideshare_price_low - rideshare_price_high lei).
 4. **Pe jos:** durata primită (walking_duration_full).
 5. Încheie cu recomandarea celei mai bune OPȚIUNI dintre cele 4 de mai sus (cu mașina / transport în comun / ride sharing / pe jos, pe baza timpului), NU o descriere de traseu. Adaugă linkul [Google Maps](https://www.google.com/maps/search/?api=1&query=Zbor+Hub%2C+Strada+Vasile+Alecsandri+1%2C+Timi%C8%99oara) pentru ruta exactă live.
@@ -70,9 +70,9 @@ Urmat de [FOLLOW_UP] și mesajul de urmărire.
 
 **Cum ajung acolo?**
 Cel mai simplu: deschide [Google Maps](https://www.google.com/maps/search/?api=1&query=Zbor+Hub%2C+Strada+Vasile+Alecsandri+1%2C+Timi%C8%99oara) pentru ruta exactă de la tine.
-- **Cu mașina:** Parcarea Piața 700 sau parcarea cu plată de pe Strada Paris.
-- **Transport în comun:** Linia E2, troleibuzele 14, 17, 18 — stația Piața Consiliul Europei.
-- **Pe jos:** 5 min din Iulius Town, 15 min din Piața Unirii, 30 min din zona UVT/UPT.
+- **Cu mașina:** parcările din Piața Mareșal Foch, Piața 700 sau Piața Iancu Huniade (4 min pe jos); TimPark se plătește doar până la 20:00.
+- **Transport în comun:** tramvaiele 1 și 2 (stația Piața Libertății, 2 min pe jos); troleibuzele 11, 14, 18 și autobuzele 13, E4b (stația Piața 700, 4-6 min); troleibuzul 17 și autobuzele E2, E6 (stația Piața Mărăști, 5-6 min).
+- **Pe jos:** 2 min din Piața Libertății, 4 min din Piața Unirii sau de la Operă, 20 min din zona UVT.
 
 **Informații adiționale:**
 - **Limba ședinței:** Ultima miercuri din fiecare lună se desfășoară integral în engleză.
@@ -101,23 +101,36 @@ CUM AJUNGI:
 Pentru orice întrebare despre traseu/direcții, RECOMANDĂ ÎNTOTDEAUNA deschiderea Google Maps pentru ruta exactă de la locația utilizatorului: [Google Maps](https://www.google.com/maps/search/?api=1&query=Zbor+Hub%2C+Strada+Vasile+Alecsandri+1%2C+Timi%C8%99oara). Apoi completează cu detaliile de mai jos ca informație suplimentară.
 
 Cu mașina:
-- Parcarea Piața 700: https://maps.app.goo.gl/KpQ5cfczb6wYHihA9
-- Parcare cu plată pe Strada Paris: https://maps.app.goo.gl/eXEuuDajGUEFrnid8
+- Piața Mareșal Foch (4 min pe jos): https://www.google.com/maps/search/?api=1&query=45.75510%2C21.23017
+- Parcarea Piața 700 (4 min pe jos): https://maps.app.goo.gl/KpQ5cfczb6wYHihA9
+- Piața Iancu Huniade (4 min pe jos): https://www.google.com/maps/search/?api=1&query=45.75376%2C21.22691
+- Strada Carol Telbisz, locuri TimPark pe stradă (4 min pe jos): https://www.google.com/maps/search/?api=1&query=45.75432%2C21.22918
+- Parcare cu plată pe Strada Paris (7 min pe jos): https://maps.app.goo.gl/eXEuuDajGUEFrnid8
+- Taxare TimPark în zona centrală: luni-vineri 08:00-20:00, deci la ședința de miercuri plătești doar până la 20:00, după care parcarea e gratuită.
 
-Transport în comun:
-- Stația Piața Consiliul Europei
-- Linia E2 (expres), troleibuzele 14, 17, 18
-- Program complet pe linie: [E2](https://stpt.ro/E2/), [14](https://stpt.ro/14-2/), [17](https://stpt.ro/17-2/), [18](https://stpt.ro/18-2/)
-- Stații pe rută (folosește-le ca să identifici cea mai apropiată stație de zona menționată de utilizator, toate merg spre stația finală Consiliul Europei):
+Transport în comun (toate stațiile de mai jos sunt la cel mult ~7 minute pe jos de Zbor Hub):
+- Piața Libertății (2 min pe jos): tramvaiele 1, 2 și 5, autobuzul 5c
+- Piața 700 (4-6 min pe jos): tramvaiele 4 și 7, troleibuzele 11, 14, 18, autobuzele 13 și E4b
+- Piața Mărăști (5-6 min pe jos): troleibuzele 11, 14, 17, 18, autobuzele E2 și E6
+- Piața Huniade / Bd. I.C. Brătianu (5 min pe jos): troleibuzul 16
+- Oituz și Hector/Bastion (~7 min pe jos): troleibuzul 17, autobuzele E2, E4b, E6
+- Program complet pe linie: [smtt.ro](https://smtt.ro/retea-transport-public/)
+- Stații pe rutele E2, 14, 17, 18 (folosește-le ca să identifici cea mai apropiată stație de zona menționată de utilizator; toate duc spre Piața 700 / Piața Mărăști):
   - E2: Aumovio, AEM, Bd. Sudului, Spitalul Județean, Sala C. Jude, Complexul Studențesc, Parcul Copiilor, Hector (Bastion), Oituz / Holdelor, Stuparilor, Gara de Est, Dedeman, Dacia Service
   - 14: Gh. Barițiu, St. Gării, Gara de Nord, Jiul, Regina Maria, Piața 700, Mărăști / Ion Ionescu, Sf. Ap. Petru și Pavel, Pomiculturii, Divizia 9, Cimitirul Eroilor
   - 17: Arena Aqua, V. Economu, Renașterii, Samuil Micu, Badea Cârțan, Poliția TM, Au. Popovici, Oituz / USVT, U.T.T., Liège, Dacia Service
   - 18: Gh. Barițiu, St. Gării, Gara de Nord, Jiul, Regina Maria, Piața 700, Mărăști / USVT, U.T.T., Liège PV, Liège Torontalului, Miresei
 
 Pe jos:
-- Iulius Town: 5 minute
-- Piața Unirii: 15 minute
-- UVT / UPT: 30 minute
+- Piața Libertății: 2 minute
+- Piața Unirii: 4 minute
+- Opera / Piața Victoriei: 4 minute
+- Politehnica (UPT, Rectorat): 6 minute
+- Bastionul Theresia: 8 minute
+- Catedrala Mitropolitană: 10 minute
+- UVT: 20 minute
+- Iulius Town: 22 minute
+- Gara de Nord: 25 minute
 
 Ride sharing:
 - Uber și Bolt, ambele cu deep link direct către adresă (butoanele sunt pe pagina de Contact)
@@ -245,8 +258,8 @@ REGULI ABSOLUTE:
 // ═══════════════════════════════════════════════════════════════
 //  STAȚII pe rutele E2 / 14 / 17 / 18, folosite pentru a găsi
 //  cea mai apropiată stație de zona menționată de utilizator.
-//  Nu include stația finală (Piața Consiliul Europei) - aceea e
-//  mereu destinația, nu o stație candidată de urcare.
+//  Nu include stațiile de lângă sediu (Piața 700, Piața Mărăști,
+//  Oituz, Hector/Bastion) - acolo cobori, nu urci.
 // ═══════════════════════════════════════════════════════════════
 const STOPS = [
   { name: 'Aumovio', lines: ['E2'] },
@@ -256,8 +269,6 @@ const STOPS = [
   { name: 'Sala C. Jude', lines: ['E2'] },
   { name: 'Complexul Studențesc', lines: ['E2'] },
   { name: 'Parcul Copiilor', lines: ['E2'] },
-  { name: 'Hector (Bastion)', lines: ['E2'] },
-  { name: 'Oituz', lines: ['E2', '17'] },
   { name: 'Holdelor', lines: ['E2'] },
   { name: 'Stuparilor', lines: ['E2'] },
   { name: 'Gara de Est', lines: ['E2'] },
@@ -268,8 +279,6 @@ const STOPS = [
   { name: 'Gara de Nord', lines: ['14', '18'] },
   { name: 'Jiul', lines: ['14', '18'] },
   { name: 'Regina Maria', lines: ['14', '18'] },
-  { name: 'Piața 700', lines: ['14', '18'] },
-  { name: 'Mărăști', lines: ['14', '18'] },
   { name: 'Ion Ionescu', lines: ['14'] },
   { name: 'Sf. Ap. Petru și Pavel', lines: ['14'] },
   { name: 'Pomiculturii', lines: ['14'] },
