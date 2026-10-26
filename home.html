@@ -725,13 +725,13 @@
 
     // Cele mai recente 3 albume din galerie (același stil de card ca în pagina Galerie)
     const recent = [
-      { date: '2 Septembrie 2026', location: 'Timișoara', count: 94, src: 'IMG_5826_q84dxk', stack: ['IMG_5809_qdz8s8', 'IMG_5814_gb1hcp'] },
-      { date: '26 August 2026',    location: 'Timișoara', count: 68, src: 'IMG_5522_gomrtv', stack: ['IMG_5508_oinqa7', 'IMG_5511_ibemz2'] },
-      { date: '22 August 2026',    location: 'Miele',     count: 49, src: 'IMG_5257_jpfrcg', stack: ['IMG_5237_lnxguv', 'IMG_5241_r76tey'], pill: 'Ședință Specială' }
+      { date: '17 Octombrie 2026', location: 'Arad', count: 261, src: '483B2904_fymjqd', stack: ['483B2893_kbtq90', '483B2898_lvbzu4'], pill: 'Concurs Arie' },
+      { date: '14 Octombrie 2026', location: 'Timișoara', count: 102, src: '483B2477_wt1ycq', stack: ['483B2464_mwodcj', '483B2469_ublzxp'] },
+      { date: '7 Octombrie 2026', location: 'Timișoara', count: 74, src: 'IMG_7510_dqbsdq', stack: ['IMG_7483_ahuofv', 'IMG_7490_mrxues'] }
     ];
     const MONTHS_RO = ['ianuarie','februarie','martie','aprilie','mai','iunie','iulie','august','septembrie','octombrie','noiembrie','decembrie'];
     const MONTHS_EN = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-    const PILL_EN   = { 'Ședință Specială': 'Special Meeting', 'Alegeri Board': 'Board Elections', 'Concurs Național': 'National Contest', 'Concurs Arie': 'Area Contest' };
+    const PILL_EN   = { 'Ședință Specială': 'Special Meeting', 'Alegeri Board': 'Board Elections', 'Concurs Național': 'National Contest', 'Concurs Arie': 'Area Contest', 'Concurs Local': 'Club Contest' };
     function translateDate(date, lang) {
       if (lang !== 'en') return date;
       const m = date.match(/^(\d+) ([A-Za-zăâîșțĂÂÎȘȚ]+) (\d{4})$/);
