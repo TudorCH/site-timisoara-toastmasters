@@ -69,9 +69,12 @@
     @media (min-width:640px) { .pe-jos-grid { display:flex; flex-wrap:wrap; } .pe-jos-grid .loc-pill { width:auto; } }
     .transport-pill-lg { font-family: inherit; display: inline-flex; align-items: center; border-radius: 9999px; padding: .35rem .95rem; font-weight: 700; font-size: .9375rem; line-height:1; color:#fff; cursor:pointer; border:none; transition: filter .15s, transform .15s }
     .transport-pill-lg:hover { filter: brightness(1.15); transform: scale(1.06) }
-    .transport-pill-sm { font-family: inherit; display: inline-flex; align-items: center; justify-content: center; min-width: 1.75rem; border-radius: 9999px; padding: .3rem .55rem; font-weight: 700; font-size: .75rem; line-height:1; color:#fff; background:#004165; cursor:pointer; border:none; transition: filter .15s, transform .15s }
+    .transport-pill-sm { font-family: inherit; display: inline-flex; align-items: center; justify-content: center; min-width: 1.75rem; border-radius: .5rem; padding: .3rem .55rem; font-weight: 700; font-size: .75rem; line-height:1; color:#fff; background:#004165; cursor:pointer; border:none; transition: filter .15s, transform .15s }
     .transport-pill-sm:hover { filter: brightness(1.2); transform: scale(1.08) }
     .transport-grid .transport-pill-sm { width:100%; min-width:0; padding-left:0; padding-right:0 }
+    .transport-pill-sm.tp-tram { background:#F2C230; color:#1f2937 }
+    .transport-pill-sm.tp-trolley { background:#7c3aed }
+    .transport-pill-sm.tp-bus { background:#f97316 }
     #bus-route-panel { position:absolute; inset:0; background:#fff; padding:1.25rem; z-index:10; opacity:0; pointer-events:none; transition:opacity .18s; overflow-y:auto; }
     #bus-route-panel.visible { opacity:1; pointer-events:auto }
     .bt-strip { overflow-x:auto; margin-bottom:10px; padding:4px 6px 0 0; scrollbar-width:none; -ms-overflow-style:none; }
@@ -97,13 +100,6 @@
     .nav-cta:hover {
       box-shadow: inset 0 1px 0 rgba(255,255,255,.6), 0 0 0 4px rgba(242,223,116,.18), 0 6px 18px rgba(242,223,116,.4);
       transform: translateY(-1px);
-    }
-    @media (min-width: 1024px) {
-      .nav-pill {
-        background: rgba(0,45,71,.9);
-        -webkit-backdrop-filter: blur(16px) saturate(140%); backdrop-filter: blur(16px) saturate(140%);
-        box-shadow: 0 10px 30px rgba(0,20,35,.35), inset 0 1px 0 rgba(255,255,255,.08);
-      }
     }
 
     /* ── accordion ── */
@@ -265,9 +261,9 @@
 <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[9999] focus:bg-white focus:text-primary focus:font-semibold focus:px-4 focus:py-2 focus:rounded-lg focus:shadow-lg" data-i18n="skip-link">Sari la conținut</a>
 
 <!-- ════════════════════ NAVBAR ════════════════════ -->
-<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 shadow-lg shadow-primary/30 lg:top-4 lg:px-6 lg:shadow-none lg:!bg-none" style="background:linear-gradient(135deg,#00537f 0%,#004165 55%,#002d47 100%)">
-  <div class="nav-pill max-w-7xl mx-auto px-4 lg:max-w-6xl lg:pl-3 lg:pr-2.5 lg:rounded-full lg:border lg:border-white/15">
-    <div class="flex items-center justify-between h-16">
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 border-b border-white/10" style="background:linear-gradient(to bottom,#00253b,#001c2d)">
+  <div class="max-w-7xl mx-auto px-4 lg:px-8">
+    <div class="flex items-center justify-between h-16 lg:gap-4 min-[1200px]:grid min-[1200px]:grid-cols-[1fr_auto_1fr] min-[1200px]:gap-6">
 
       <!-- Logo -->
       <a href="/" class="flex items-center gap-3 lg:gap-2.5 flex-shrink-0">
@@ -279,53 +275,51 @@
       </a>
 
       <!-- Desktop links -->
-      <div class="hidden lg:flex flex-1 items-center justify-center gap-5 xl:gap-7 whitespace-nowrap">
-        <a href="/"         class="nav-link nav-active text-white text-sm font-bold transition-colors" data-i18n="nav-home">Acasă</a>
-        <a href="despre-noi"    class="nav-link text-white/70 hover:text-gold text-sm font-medium transition-colors" data-i18n="nav-about">Despre noi</a>
-        <a href="galerie"       class="nav-link text-white/70 hover:text-gold text-sm font-medium transition-colors" data-i18n="nav-gallery">Galerie</a>
-        <a href="blog"          class="nav-link text-white/70 hover:text-gold text-sm font-medium transition-colors" data-i18n="nav-blog">Blog</a>
-        <a href="contact" class="nav-link text-white/70 hover:text-gold text-sm font-medium transition-colors" data-i18n="nav-contact">Contact</a>
+      <div class="hidden lg:flex items-center justify-center gap-1 xl:gap-2 whitespace-nowrap">
+        <a href="/"         class="text-white text-[15px] font-semibold px-3.5 py-2 rounded-lg bg-white/10 transition-colors" aria-current="page" data-i18n="nav-home">Acasă</a>
+        <a href="despre-noi"    class="text-white/70 hover:text-white hover:bg-white/5 text-[15px] font-medium px-3.5 py-2 rounded-lg transition-colors" data-i18n="nav-about">Despre noi</a>
+        <a href="galerie"       class="text-white/70 hover:text-white hover:bg-white/5 text-[15px] font-medium px-3.5 py-2 rounded-lg transition-colors" data-i18n="nav-gallery">Galerie</a>
+        <a href="blog"          class="text-white/70 hover:text-white hover:bg-white/5 text-[15px] font-medium px-3.5 py-2 rounded-lg transition-colors" data-i18n="nav-blog">Blog</a>
+        <a href="contact" class="text-white/70 hover:text-white hover:bg-white/5 text-[15px] font-medium px-3.5 py-2 rounded-lg transition-colors" data-i18n="nav-contact">Contact</a>
       </div>
 
-      <!-- Desktop utilities: search · language · read aloud | CTA -->
-      <div class="hidden lg:flex items-center gap-3 whitespace-nowrap">
-        <div class="flex items-center gap-1 rounded-full bg-white/10 border border-white/10 p-1">
-          <button type="button" onclick="openSearchModal()" aria-label="Caută pe site (Ctrl+K)" data-i18n-aria="search-open-aria" aria-keyshortcuts="Control+K"
-                  class="w-8 h-8 flex items-center justify-center rounded-full text-white/75 hover:text-white hover:bg-white/10 transition-colors">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z"/></svg>
-          </button>
-          <span class="w-px h-5 bg-white/15" aria-hidden="true"></span>
+      <!-- Desktop utilities: language · search · read aloud | CTA -->
+      <div class="hidden lg:flex items-center justify-self-end gap-2.5 whitespace-nowrap">
+        <div class="flex items-center gap-1 rounded-lg border border-white/10 bg-white/5 px-1 h-10">
           <div class="flex items-center">
-            <button data-lang="ro" onclick="setLang('ro')" class="lang-btn active" aria-pressed="true" aria-label="Română"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;background:linear-gradient(to right,#002B7F 33%,#FCD116 33% 66%,#CE1126 66%)"></span></button>
-            <button data-lang="en" onclick="setLang('en')" class="lang-btn" aria-pressed="false" aria-label="English"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;overflow:hidden"><svg width="22" height="22" viewBox="0 0 22 22"><rect width="22" height="22" fill="#012169"/><path d="M0 0L22 22M22 0L0 22" stroke="white" stroke-width="6"/><path d="M0 0L22 22M22 0L0 22" stroke="#C8102E" stroke-width="3.5"/><rect x="9" y="0" width="4" height="22" fill="white"/><rect x="0" y="9" width="22" height="4" fill="white"/><rect x="10" y="0" width="2" height="22" fill="#C8102E"/><rect x="0" y="10" width="22" height="2" fill="#C8102E"/></svg></span></button>
+            <button data-lang="ro" onclick="setLang('en')" class="lang-btn lang-one active" title="Switch to English" aria-label="Limba: română. Schimbă în engleză"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;background:linear-gradient(to right,#002B7F 33%,#FCD116 33% 66%,#CE1126 66%)"></span></button>
+            <button data-lang="en" onclick="setLang('ro')" class="lang-btn lang-one" title="Schimbă în română" aria-label="Language: English. Switch to Romanian"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;overflow:hidden"><svg width="22" height="22" viewBox="0 0 22 22"><rect width="22" height="22" fill="#012169"/><path d="M0 0L22 22M22 0L0 22" stroke="white" stroke-width="6"/><path d="M0 0L22 22M22 0L0 22" stroke="#C8102E" stroke-width="3.5"/><rect x="9" y="0" width="4" height="22" fill="white"/><rect x="0" y="9" width="22" height="4" fill="white"/><rect x="10" y="0" width="2" height="22" fill="#C8102E"/><rect x="0" y="10" width="22" height="2" fill="#C8102E"/></svg></span></button>
           </div>
           <span class="w-px h-5 bg-white/15" aria-hidden="true"></span>
-          <button id="tts-nav-btn" data-tts-btn aria-label="Citește pagina (Alt+T)" data-i18n-aria="tts-aria" aria-keyshortcuts="Alt+T"
-                  class="w-8 h-8 flex items-center justify-center rounded-full text-white/75 hover:text-white hover:bg-white/10 transition-colors">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+          <button type="button" onclick="openSearchModal()" aria-label="Caută pe site (Ctrl+K)" data-i18n-aria="search-open-aria" aria-keyshortcuts="Control+K" class="w-9 h-9 flex items-center justify-center rounded-lg text-white/70 hover:text-white hover:bg-white/10 transition-colors">
+            <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z"/></svg>
+          </button>
+          <span class="w-px h-5 bg-white/15" aria-hidden="true"></span>
+          <button id="tts-nav-btn" data-tts-btn aria-label="Citește pagina (Alt+T)" data-i18n-aria="tts-aria" aria-keyshortcuts="Alt+T" class="w-9 h-9 flex items-center justify-center rounded-lg text-white/70 hover:text-white hover:bg-white/10 transition-colors">
+            <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
           </button>
         </div>
-        <a href="contact"
-           class="nav-cta group inline-flex items-center gap-1.5 text-primary font-bold pl-4 pr-3 xl:pl-[18px] xl:pr-3.5 py-2 rounded-full text-[13px]">
+        <a href="contact" class="group inline-flex items-center gap-1.5 h-10 rounded-xl border border-white/10 hover:border-white/25 bg-white/5 hover:bg-white/10 text-white font-semibold px-4 text-[14px] transition-colors">
           <span data-i18n="nav-cta">Hai și tu la o ședință</span>
-          <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6l6 6-6 6"/></svg>
+          <svg class="w-4 h-4 text-gold transition-transform duration-200 group-hover:translate-x-0.5" fill="none" stroke="currentColor" stroke-width="4" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6l6 6-6 6"/></svg>
         </a>
       </div>
 
       <!-- Mobile right side: search icon + hamburger -->
-      <div class="flex lg:hidden items-center gap-2">
-        <button onclick="toggleSearch()" aria-label="Caută pe site" data-i18n-aria="search-open-aria" class="text-white p-2 rounded-full hover:bg-white/10 transition-colors">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div class="flex lg:hidden items-center gap-1 rounded-lg border border-white/10 bg-white/5 px-1 h-10">
+        <button onclick="toggleSearch()" aria-label="Caută pe site" data-i18n-aria="search-open-aria" class="w-9 h-9 flex items-center justify-center rounded-md text-white/80 hover:text-white hover:bg-white/10 transition-colors">
+          <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z"/>
           </svg>
         </button>
+        <span class="w-px h-5 bg-white/15" aria-hidden="true"></span>
         <button id="mobile-toggle" onclick="toggleMobile()" aria-label="Deschide meniu" data-i18n-aria="menu-open" aria-expanded="false" aria-controls="mobile-menu"
-                class="text-white p-2 rounded-full hover:bg-white/10 transition-colors">
-          <svg id="icon-menu"  class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                class="w-9 h-9 flex items-center justify-center rounded-md text-white/80 hover:text-white hover:bg-white/10 transition-colors">
+          <svg id="icon-menu"  class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
           </svg>
-          <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg id="icon-close" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
           </svg>
         </button>
@@ -337,7 +331,7 @@
       <div class="relative">
         <input id="mobile-search-input" type="text" placeholder="Caută pe site…" data-i18n-ph="search-ph-mobile"
           class="search-input w-full bg-white/10 border border-white/20 text-white placeholder-white/40
-                 rounded-full pl-4 pr-10 py-2 text-sm"
+                 rounded-lg pl-4 pr-10 py-2.5 text-sm"
           oninput="liveSearch(this.value,'mobile')"
           onkeydown="if(event.key==='Escape'){closeSearch()}"
           autocomplete="off" />
@@ -355,27 +349,28 @@
     <!-- Mobile menu -->
     <div id="mobile-menu" class="hidden lg:hidden border-t border-white/10 pt-4 pb-5 overflow-hidden">
       <div class="flex flex-col gap-1">
-        <a href="/"         onclick="closeMobile()" class="nav-active text-white bg-white/10 rounded-xl px-4 py-3 text-sm font-bold transition-colors" data-i18n="nav-home">Acasă</a>
-        <a href="despre-noi"    onclick="closeMobile()" class="text-white/70 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors" data-i18n="nav-about">Despre noi</a>
-        <a href="galerie"       onclick="closeMobile()" class="text-white/70 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors" data-i18n="nav-gallery">Galerie</a>
-        <a href="blog"          onclick="closeMobile()" class="text-white/70 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors" data-i18n="nav-blog">Blog</a>
-        <a href="contact" onclick="closeMobile()" class="text-white/70 hover:text-gold hover:bg-white/5 rounded-xl px-4 py-3 text-sm font-medium transition-colors" data-i18n="nav-contact">Contact</a>
+        <a href="/"         onclick="closeMobile()" class="text-white bg-white/10 rounded-lg px-4 py-3 text-[15px] font-semibold transition-colors" aria-current="page" data-i18n="nav-home">Acasă</a>
+        <a href="despre-noi"    onclick="closeMobile()" class="text-white/75 hover:text-white hover:bg-white/5 rounded-lg px-4 py-3 text-[15px] font-medium transition-colors" data-i18n="nav-about">Despre noi</a>
+        <a href="galerie"       onclick="closeMobile()" class="text-white/75 hover:text-white hover:bg-white/5 rounded-lg px-4 py-3 text-[15px] font-medium transition-colors" data-i18n="nav-gallery">Galerie</a>
+        <a href="blog"          onclick="closeMobile()" class="text-white/75 hover:text-white hover:bg-white/5 rounded-lg px-4 py-3 text-[15px] font-medium transition-colors" data-i18n="nav-blog">Blog</a>
+        <a href="contact" onclick="closeMobile()" class="text-white/75 hover:text-white hover:bg-white/5 rounded-lg px-4 py-3 text-[15px] font-medium transition-colors" data-i18n="nav-contact">Contact</a>
         <!-- Language + TTS row -->
-        <div class="flex items-center gap-3 px-4 py-2 mt-1 border-t border-white/10">
+        <div class="flex items-center gap-3 px-4 pt-3 pb-1 mt-2 border-t border-white/10">
           <span class="text-white/40 text-xs" data-i18n="nav-util-label">Limbă:</span>
-          <div class="flex items-center bg-white/10 rounded-full p-0.5">
+          <div class="flex items-center gap-1 rounded-lg border border-white/10 bg-white/5 px-1 h-9" role="group" aria-label="Limbă" data-i18n-aria="nav-util-label">
             <button data-lang="ro" onclick="setLang('ro')" class="lang-btn active" aria-pressed="true" aria-label="Română"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;background:linear-gradient(to right,#002B7F 33%,#FCD116 33% 66%,#CE1126 66%)"></span></button>
             <button data-lang="en" onclick="setLang('en')" class="lang-btn" aria-pressed="false" aria-label="English"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;overflow:hidden"><svg width="22" height="22" viewBox="0 0 22 22"><rect width="22" height="22" fill="#012169"/><path d="M0 0L22 22M22 0L0 22" stroke="white" stroke-width="6"/><path d="M0 0L22 22M22 0L0 22" stroke="#C8102E" stroke-width="3.5"/><rect x="9" y="0" width="4" height="22" fill="white"/><rect x="0" y="9" width="22" height="4" fill="white"/><rect x="10" y="0" width="2" height="22" fill="#C8102E"/><rect x="0" y="10" width="22" height="2" fill="#C8102E"/></svg></span></button>
           </div>
           <button id="tts-mob-btn" data-tts-btn aria-label="Citește pagina (Alt+T)" data-i18n-aria="tts-aria"
-                  class="text-white/60 hover:text-white p-1.5 rounded-full hover:bg-white/10 transition-colors ml-auto">
+                  class="ml-auto w-10 h-9 flex items-center justify-center rounded-lg border border-white/10 bg-white/5 text-white/80 hover:text-white hover:bg-white/10 transition-colors">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
           </button>
         </div>
-        <div class="pt-2 px-4">
+        <div class="pt-3 px-4">
           <a href="contact" onclick="closeMobile()"
-             class="block w-full bg-gold text-primary font-semibold px-5 py-3 rounded-full text-sm text-center shadow-md">
-            <span data-i18n="nav-cta">Hai și tu la o ședință</span> →
+             class="flex w-full items-center justify-center gap-2 h-12 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 text-white font-semibold text-[15px] transition-colors">
+            <span data-i18n="nav-cta">Hai și tu la o ședință</span>
+            <svg class="w-[18px] h-[18px] text-gold" fill="none" stroke="currentColor" stroke-width="4" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6l6 6-6 6"/></svg>
           </a>
         </div>
       </div>
@@ -417,31 +412,34 @@
 
     <p class="text-white/80 text-base sm:text-lg leading-relaxed max-w-md mx-auto text-balance mb-6 animate-in" style="animation-delay:.2s" data-i18n="idx-hero-desc">
       În fiecare miercuri seară, oameni din Timișoara se adună să vorbească, să primească
-      feedback sincer și să crească. Participarea ca invitat e gratuită.
+      feedback sincer și să crească. <strong class="text-white font-semibold">Participarea ca invitat e gratuită.</strong>
     </p>
 
-    <div class="flex flex-col items-center gap-1 mb-5 animate-in" style="animation-delay:.3s">
-      <a href="#contact" class="nav-cta w-full sm:w-auto inline-flex items-center justify-center gap-2 text-primary font-bold px-8 py-3.5 rounded-full text-base">
+    <!-- CTA + următoarea întâlnire -->
+    <div class="animate-in" style="animation-delay:.3s">
+      <a href="#contact" class="w-full inline-flex items-center justify-center gap-2 rounded-xl border border-gold/60 bg-white/5 hover:bg-white/10 text-white font-bold text-base py-4 transition-colors hover:border-gold shadow-[0_0_24px_rgba(242,223,116,.15)]">
         <span data-i18n="nav-cta">Hai și tu la o ședință</span>
+        <svg class="w-[18px] h-[18px] text-gold" fill="none" stroke="currentColor" stroke-width="4" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6l6 6-6 6"/></svg>
       </a>
-      <a href="#journey-section" class="inline-flex items-center gap-1.5 text-white/85 hover:text-gold font-semibold px-4 py-2.5 text-[15px] transition-colors">
+      <a href="#journey-section" class="mt-2.5 w-full inline-flex items-center justify-center gap-2 rounded-xl border border-white/25 bg-white/5 hover:bg-white/10 text-white font-semibold text-base py-3.5 transition-colors">
         <span data-i18n="idx-cta2">Vezi cum funcționează</span>
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
       </a>
+      <div class="mt-4 flex justify-center">
+        <span class="inline-flex items-center gap-2 rounded-xl border border-white/25 bg-white/5 backdrop-blur-sm px-4 py-2 text-sm">
+          <span class="w-2 h-2 rounded-full bg-gold flex-shrink-0" style="animation:livePulse 1.5s ease-in-out infinite"></span>
+          <span class="text-gold font-semibold" data-i18n="hero-next-label">Următoarea ședință:</span>
+          <span id="meeting-when-short" class="text-white font-semibold"></span>
+        </span>
+      </div>
     </div>
 
-    <a href="#contact" class="inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-primary-dark/60 backdrop-blur-sm pl-4 pr-4 py-2 hover:border-gold/50 transition-colors animate-in" style="animation-delay:.4s">
-      <span class="w-2 h-2 rounded-full bg-gold flex-shrink-0" style="animation:livePulse 1.5s ease-in-out infinite"></span>
-      <span class="text-gold text-[10px] font-bold uppercase tracking-[0.14em]" data-i18n="next-meeting-label">Următoarea ședință ·</span>
-      <span id="meeting-when-short" class="text-white text-sm font-semibold"></span>
-    </a>
-
-    <div class="mt-5 flex justify-center items-center gap-2.5 text-[12px] text-white/65 animate-in" style="animation-delay:.5s">
-      <span><span class="text-gold font-bold">★ 4.9</span>&nbsp;pe Google</span>
+    <div class="mt-5 flex flex-wrap justify-center items-center gap-x-2.5 gap-y-1 text-[12px] text-white/65 animate-in" style="animation-delay:.5s">
+      <span class="inline-flex items-center gap-1"><span class="text-gold tracking-tight" aria-hidden="true">★★★★★</span><span class="font-bold text-white">4.9</span>&nbsp;pe Google</span>
       <span class="w-1 h-1 rounded-full bg-white/40" aria-hidden="true"></span>
-      <span data-i18n="idx-proof2">#1 Club România</span>
-      <span class="w-1 h-1 rounded-full bg-white/40" aria-hidden="true"></span>
-      <span data-i18n="idx-proof1">Afiliat din 2008</span>
+      <span data-i18n="idx-proof2">Clubul #1 din România</span>
+      <span class="hidden sm:block w-1 h-1 rounded-full bg-white/40" aria-hidden="true"></span>
+      <span class="basis-full sm:basis-auto" data-i18n="idx-proof1">Activ fără întrerupere din 2008</span>
     </div>
   </div>
 </section>
@@ -462,35 +460,36 @@
 
     <p class="text-white/80 text-lg xl:text-xl leading-relaxed max-w-2xl mx-auto mb-7 animate-in" style="animation-delay:.2s" data-i18n="idx-hero-desc">
       În fiecare miercuri seară, oameni din Timișoara se adună să vorbească, să primească
-      feedback sincer și să crească.<br class="hidden lg:inline" /> Participarea ca invitat e gratuită.
+      feedback sincer și să crească.<br class="hidden lg:inline" /> <strong class="text-white font-semibold">Participarea ca invitat e gratuită.</strong>
     </p>
 
-    <div class="flex justify-center items-center gap-2 mb-6 animate-in" style="animation-delay:.3s">
-      <a href="#contact" class="nav-cta inline-flex items-center gap-2 text-primary font-bold px-6 py-3 rounded-full text-[15px]">
-        <span data-i18n="nav-cta">Hai și tu la o ședință</span>
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M9 7h8v8"/></svg>
-      </a>
-      <a href="#journey-section" class="group inline-flex items-center gap-1.5 text-white/85 hover:text-gold font-semibold px-4 py-3 text-[15px] transition-colors">
-        <span data-i18n="idx-cta2">Vezi cum funcționează</span>
-        <svg class="w-4 h-4 transition-transform group-hover:translate-y-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-      </a>
+    <!-- CTA + următoarea întâlnire -->
+    <div class="flex flex-col items-center animate-in" style="animation-delay:.3s">
+      <div class="flex items-center justify-center gap-3">
+        <a href="#contact" class="inline-flex items-center gap-2.5 rounded-xl border border-gold/60 bg-white/5 backdrop-blur-sm hover:bg-white/10 hover:border-gold text-white font-bold text-lg px-10 py-4 transition-colors shadow-[0_0_24px_rgba(242,223,116,.15)]">
+          <span data-i18n="nav-cta">Hai și tu la o ședință</span>
+          <svg class="w-[18px] h-[18px] text-gold" fill="none" stroke="currentColor" stroke-width="4" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6l6 6-6 6"/></svg>
+        </a>
+        <a href="#journey-section" class="inline-flex items-center gap-2 rounded-xl border border-white/25 bg-white/5 backdrop-blur-sm hover:bg-white/10 hover:border-white/40 text-white font-semibold text-lg px-8 py-4 transition-colors">
+          <span data-i18n="idx-cta2">Vezi cum funcționează</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </a>
+      </div>
+      <span class="mt-5 inline-flex items-center gap-2.5 rounded-xl border border-white/25 bg-white/5 backdrop-blur-sm px-5 py-2.5 text-[15px]">
+        <span class="w-2 h-2 rounded-full bg-gold flex-shrink-0" style="animation:livePulse 1.5s ease-in-out infinite"></span>
+        <span class="text-gold font-semibold" data-i18n="hero-next-label">Următoarea ședință:</span>
+        <span id="meeting-when-desk" class="text-white font-semibold"></span>
+      </span>
     </div>
-
-    <a href="#contact" class="inline-flex items-center gap-3 rounded-full border border-white/15 bg-primary-dark/60 backdrop-blur-sm pl-5 pr-4 py-2.5 hover:border-gold/50 transition-colors animate-in" style="animation-delay:.4s">
-      <span class="w-2 h-2 rounded-full bg-gold flex-shrink-0" style="animation:livePulse 1.5s ease-in-out infinite"></span>
-      <span class="text-gold text-[11px] font-bold uppercase tracking-[0.15em]" data-i18n="next-meeting-label">Următoarea ședință ·</span>
-      <span id="meeting-when-desk" class="text-white text-sm font-semibold"></span>
-      <svg class="w-3.5 h-3.5 text-gold" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M9 7h8v8"/></svg>
-    </a>
   </div>
 
   <!-- Proof line, bottom -->
   <div class="absolute bottom-6 inset-x-0 z-10 flex justify-center items-center gap-3 text-[13px] text-white/70 animate-in" style="animation-delay:.5s">
-    <span><span class="text-gold font-bold">★ 4.9</span>&nbsp;pe Google</span>
+    <span class="inline-flex items-center gap-1.5"><span class="text-gold tracking-tight" aria-hidden="true">★★★★★</span><span class="font-bold text-white">4.9</span>&nbsp;pe Google</span>
     <span class="w-1 h-1 rounded-full bg-white/40" aria-hidden="true"></span>
-    <span data-i18n="idx-proof2">#1 Club România</span>
+    <span data-i18n="idx-proof2">Clubul #1 din România</span>
     <span class="w-1 h-1 rounded-full bg-white/40" aria-hidden="true"></span>
-    <span data-i18n="idx-proof1">Afiliat din 2008</span>
+    <span data-i18n="idx-proof1">Activ fără întrerupere din 2008</span>
   </div>
 </section>
 
@@ -499,12 +498,9 @@
 <section id="de-ce" class="py-14 lg:py-24 bg-white scroll-fade">
   <div class="max-w-7xl mx-auto px-5 lg:px-8">
     <div class="text-center mb-8 md:mb-16">
-      <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-5" data-i18n="idx-dece-h2">
+      <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-0" data-i18n="idx-dece-h2">
         De ce Timișoara Toastmasters?
       </h2>
-      <p class="text-gray-500 text-lg max-w-2xl mx-auto" data-i18n="idx-dece-p">
-        Comunicarea eficientă nu este un talent înnăscut, este o abilitate care se poate învăța și exersa.
-      </p>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
 
@@ -558,12 +554,9 @@
 
     <div class="text-center mb-10 lg:mb-14">
       <span class="inline-block rounded-full bg-maroon/5 border border-maroon/15 text-maroon text-[11px] font-bold uppercase tracking-[.12em] px-4 py-1.5 mb-4" data-i18n="idx-jrn-eyebrow">Evoluția ta în club</span>
-      <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-3" data-i18n="idx-jrn-h2">
+      <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-0" data-i18n="idx-jrn-h2">
         Cum arată drumul tău în Toastmasters?
       </h2>
-      <p class="text-gray-500 text-lg max-w-2xl mx-auto" data-i18n="idx-jrn-p">
-        De la prima ședință ca invitat la lider recunoscut, fiecare pas este susținut de comunitate.
-      </p>
     </div>
 
     <ol class="grid gap-6 lg:grid-cols-5 lg:gap-6 pl-3 lg:pl-0">
@@ -676,12 +669,9 @@
     <!-- Header -->
     <div class="mb-8 sm:mb-10">
       <div class="text-center">
-        <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-3" data-i18n="idx-gal-h2">
+        <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-0" data-i18n="idx-gal-h2">
           Unde se ascund cele mai tari amintiri?
         </h2>
-        <p class="text-gray-500 text-lg max-w-xl mx-auto" data-i18n="idx-gal-p">
-          Ședințe, evenimente și socializare, surprinse în imagini.
-        </p>
       </div>
     </div>
 
@@ -814,25 +804,17 @@
       <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-3" data-i18n="idx-rev-h2">
         Ce spun oamenii care<br class="sm:hidden"> ne-au trecut pragul?
       </h2>
-      <p class="text-gray-500 text-lg max-w-2xl mx-auto" data-i18n="idx-rev-p">Poveștile membrilor și invitaților noștri, după primele discursuri și luni de practică.</p>
-      <div class="inline-flex items-center gap-2 bg-gray-100 rounded-full p-1 mt-4" role="tablist" aria-label="Platformă recenzii" data-i18n-aria="rev-platform-aria">
-        <button onclick="switchReviews('fb')" id="tab-fb"
-          role="tab" aria-selected="true" aria-controls="panel-fb"
-          class="review-tab active-tab flex items-center gap-2 px-3 sm:px-5 py-3.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200">
-          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-          Facebook
-        </button>
-        <button onclick="switchReviews('g')" id="tab-g"
-          role="tab" aria-selected="false" aria-controls="panel-g"
-          class="review-tab flex items-center gap-2 px-3 sm:px-5 py-3.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 text-gray-500 hover:text-gray-700">
-          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-          Google
-        </button>
+      <div class="mt-4 flex justify-center">
+        <span class="inline-flex items-center gap-2 rounded-full bg-white border border-gray-200 shadow-sm pl-4 pr-4 py-2">
+          <span class="font-heading font-extrabold text-primary text-lg leading-none">4.9</span>
+          <span class="text-amber-400 tracking-tight leading-none" aria-label="5 stele" data-i18n-aria="rev-stars-aria">★★★★★</span>
+          <span class="text-gray-500 text-sm" data-i18n="rev-badge-src">din peste 60 de recenzii pe Google și Facebook</span>
+        </span>
       </div>
     </div>
 
     <!-- ── Facebook panel ── -->
-    <div id="panel-fb" role="tabpanel" aria-labelledby="tab-fb">
+    <div id="panel-fb">
       <div class="relative">
         <!-- Prev -->
         <button onclick="revSlide('fb',-1)" id="rev-prev-fb" aria-label="Recenzie anterioară" data-i18n-aria="rev-prev-aria"
@@ -846,91 +828,100 @@
             <!-- Teliban Bianca -->
             <div class="rev-card relative overflow-hidden bg-white rounded-2xl p-7 border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.06)] card-hover">
               <span aria-hidden="true" class="pointer-events-none select-none absolute right-5 -bottom-10 font-heading text-[8rem] leading-none text-gray-100">”</span>
-              <div class="relative flex items-center gap-3 mb-4">
-                <div class="w-11 h-11 rounded-full flex-shrink-0 overflow-hidden bg-gray-200 text-gray-400" aria-hidden="true"><svg class="w-full h-full" viewBox="0 0 44 44" fill="currentColor"><circle cx="22" cy="17" r="8"/><path d="M6 44c0-9.4 7.2-15 16-15s16 5.6 16 15z"/></svg></div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-semibold text-primary text-sm">Teliban Bianca</div>
-                  <div class="flex items-center gap-1.5 mt-0.5">
-                    <span class="text-amber-400 text-sm leading-none" aria-label="5 stele" data-i18n-aria="rev-stars-aria">★★★★★</span>
-                    <span class="text-gray-300 text-xs">·</span>
-                    <span class="text-gray-400 text-xs">Facebook</span>
-                  </div>
-                </div>
+              <div class="relative flex items-center gap-2.5 mb-4">
                 <svg class="w-5 h-5 flex-shrink-0" style="color:#004165" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                <span class="font-semibold text-primary text-base truncate">Teliban Bianca</span>
+                <span class="text-amber-400 text-sm flex-shrink-0 leading-none" aria-label="5 stele" data-i18n-aria="rev-stars-aria">★★★★★</span>
               </div>
               <p class="relative text-gray-600 text-sm leading-relaxed" style="display:-webkit-box;-webkit-line-clamp:5;line-clamp:5;-webkit-box-orient:vertical;overflow:hidden;" data-i18n="testi-1">„Astăzi am participat la prima mea întâlnire cu Toastmasters, o echipă minunată. Nu-i cunoșteam pe nici unul dintre membrii, am găsit evenimentul întâmplător pe Facebook și am dat join. Acum pot să zic că abia aștept următoarele întâlniri! Totul a fost grozav, m-am simțit minunat și totodată am învățat o mulțime de lucruri. De la fiecare am învățat câte ceva. Recomandat cu mare căldură oricărei persoane interesate să se dezvolte pe plan personal și profesional. Nu pot să exprim cât de tare mă bucur că nu am renunțat la întâlnire, am plecat cu o mulțime de informații folositoare și cu o altă energie și perspectivă. Mulțumesc mult pentru tot, Toastmasters!"</p>
+            </div>
+
+            <!-- Vornicescu Nicoleta -->
+            <div class="rev-card relative overflow-hidden bg-white rounded-2xl p-7 border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.06)] card-hover">
+              <span aria-hidden="true" class="pointer-events-none select-none absolute right-5 -bottom-10 font-heading text-[8rem] leading-none text-gray-100">”</span>
+              <div class="relative flex items-center gap-2.5 mb-4">
+                <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                <span class="font-semibold text-primary text-base truncate">Vornicescu Nicoleta</span>
+                <span class="text-amber-400 text-sm flex-shrink-0 leading-none" aria-label="5 stele" data-i18n-aria="rev-stars-aria">★★★★★</span>
+              </div>
+              <p class="relative text-gray-600 text-sm leading-relaxed" style="display:-webkit-box;-webkit-line-clamp:5;line-clamp:5;-webkit-box-orient:vertical;overflow:hidden;" data-i18n="testi-6">„Mi-a plăcut foarte mult atmosfera și faptul că totul a fost bine organizat. Am apreciat că noii veniți au fost luați în seamă și integrați, inclusiv prin detalii precum foile cu numele fiecăruia, care au făcut mai ușoară interacțiunea. Am participat deja la câteva ședințe, atât în română, cât și în engleză, și îmi place că există mereu un flux de oameni noi. De fiecare dată ai ocazia să cunoști persoane diferite și să înveți ceva nou. Nu mă simt în măsură să ofer sugestii pentru că mi se pare totul foarte bine gândit."</p>
             </div>
 
             <!-- Argint Dragos -->
             <div class="rev-card relative overflow-hidden bg-white rounded-2xl p-7 border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.06)] card-hover">
               <span aria-hidden="true" class="pointer-events-none select-none absolute right-5 -bottom-10 font-heading text-[8rem] leading-none text-gray-100">”</span>
-              <div class="relative flex items-center gap-3 mb-4">
-                <div class="w-11 h-11 rounded-full flex-shrink-0 overflow-hidden bg-gray-200 text-gray-400" aria-hidden="true"><svg class="w-full h-full" viewBox="0 0 44 44" fill="currentColor"><circle cx="22" cy="17" r="8"/><path d="M6 44c0-9.4 7.2-15 16-15s16 5.6 16 15z"/></svg></div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-semibold text-primary text-sm">Argint Dragoș</div>
-                  <div class="flex items-center gap-1.5 mt-0.5">
-                    <span class="text-amber-400 text-sm leading-none" aria-label="5 stele" data-i18n-aria="rev-stars-aria">★★★★★</span>
-                    <span class="text-gray-300 text-xs">·</span>
-                    <span class="text-gray-400 text-xs">Facebook</span>
-                  </div>
-                </div>
+              <div class="relative flex items-center gap-2.5 mb-4">
                 <svg class="w-5 h-5 flex-shrink-0" style="color:#004165" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                <span class="font-semibold text-primary text-base truncate">Argint Dragoș</span>
+                <span class="text-amber-400 text-sm flex-shrink-0 leading-none" aria-label="5 stele" data-i18n-aria="rev-stars-aria">★★★★★</span>
               </div>
               <p class="relative text-gray-600 text-sm leading-relaxed" data-i18n="testi-2">„Timișoara Toastmasters este locul unde am învățat că este normal să greșești atât ca lider, cât și ca vorbitor în public. Important este să perseverezi pentru a deveni mai bun în plan profesional și personal. Pentru mine, aici este acasă."</p>
             </div>
 
-            <!-- Sirbu Silvia -->
+            <!-- Pera Casian -->
             <div class="rev-card relative overflow-hidden bg-white rounded-2xl p-7 border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.06)] card-hover">
               <span aria-hidden="true" class="pointer-events-none select-none absolute right-5 -bottom-10 font-heading text-[8rem] leading-none text-gray-100">”</span>
-              <div class="relative flex items-center gap-3 mb-4">
-                <div class="w-11 h-11 rounded-full flex-shrink-0 overflow-hidden bg-gray-200 text-gray-400" aria-hidden="true"><svg class="w-full h-full" viewBox="0 0 44 44" fill="currentColor"><circle cx="22" cy="17" r="8"/><path d="M6 44c0-9.4 7.2-15 16-15s16 5.6 16 15z"/></svg></div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-semibold text-primary text-sm">Sîrbu Silvia</div>
-                  <div class="flex items-center gap-1.5 mt-0.5">
-                    <span class="text-amber-400 text-sm leading-none" aria-label="5 stele" data-i18n-aria="rev-stars-aria">★★★★★</span>
-                    <span class="text-gray-300 text-xs">·</span>
-                    <span class="text-gray-400 text-xs">Facebook</span>
-                  </div>
-                </div>
-                <svg class="w-5 h-5 flex-shrink-0" style="color:#004165" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              <div class="relative flex items-center gap-2.5 mb-4">
+                <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                <span class="font-semibold text-primary text-base truncate">Pera Casian</span>
+                <span class="text-amber-400 text-sm flex-shrink-0 leading-none" aria-label="5 stele" data-i18n-aria="rev-stars-aria">★★★★★</span>
               </div>
-              <p class="relative text-gray-600 text-sm leading-relaxed" data-i18n="testi-3">„Recomand cu drag tuturor celor care doresc să se dezvolte într-un nucleu foarte bun!"</p>
+              <p class="relative text-gray-600 text-sm leading-relaxed" data-i18n="testi-7">„Clubul Toastmasters Timișoara este primul club Toastmasters înființat în România. Aici am avut ocazia să întâlnesc persoane competente și motivate. Un loc ideal pentru dezvoltarea personală și profesională. Toastmasters e mediul ideal în care teoria se îmbină cu practica."</p>
+            </div>
+
+            <!-- Cristina Mihaela -->
+            <div class="rev-card relative overflow-hidden bg-white rounded-2xl p-7 border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.06)] card-hover">
+              <span aria-hidden="true" class="pointer-events-none select-none absolute right-5 -bottom-10 font-heading text-[8rem] leading-none text-gray-100">”</span>
+              <div class="relative flex items-center gap-2.5 mb-4">
+                <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                <span class="font-semibold text-primary text-base truncate">Cristina Mihaela</span>
+                <span class="text-amber-400 text-sm flex-shrink-0 leading-none" aria-label="5 stele" data-i18n-aria="rev-stars-aria">★★★★★</span>
+              </div>
+              <p class="relative text-gray-600 text-sm leading-relaxed" data-i18n="testi-8">„De când m-am alăturat Toastmasters, simt că am făcut un pas mai aproape de misiunea mea în viață. Am încredere în a vorbi în public. Învăț cum să creez discursuri cu impact, simt că vocea mea este în sfârșit auzită."</p>
             </div>
 
             <!-- Alina Sârb -->
             <div class="rev-card relative overflow-hidden bg-white rounded-2xl p-7 border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.06)] card-hover">
               <span aria-hidden="true" class="pointer-events-none select-none absolute right-5 -bottom-10 font-heading text-[8rem] leading-none text-gray-100">”</span>
-              <div class="relative flex items-center gap-3 mb-4">
-                <div class="w-11 h-11 rounded-full flex-shrink-0 overflow-hidden bg-gray-200 text-gray-400" aria-hidden="true"><svg class="w-full h-full" viewBox="0 0 44 44" fill="currentColor"><circle cx="22" cy="17" r="8"/><path d="M6 44c0-9.4 7.2-15 16-15s16 5.6 16 15z"/></svg></div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-semibold text-primary text-sm">Alina Sârb</div>
-                  <div class="flex items-center gap-1.5 mt-0.5">
-                    <span class="text-amber-400 text-sm leading-none" aria-label="5 stele" data-i18n-aria="rev-stars-aria">★★★★★</span>
-                    <span class="text-gray-300 text-xs">·</span>
-                    <span class="text-gray-400 text-xs">Facebook</span>
-                  </div>
-                </div>
+              <div class="relative flex items-center gap-2.5 mb-4">
                 <svg class="w-5 h-5 flex-shrink-0" style="color:#004165" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                <span class="font-semibold text-primary text-base truncate">Alina Sârb</span>
+                <span class="text-amber-400 text-sm flex-shrink-0 leading-none" aria-label="5 stele" data-i18n-aria="rev-stars-aria">★★★★★</span>
               </div>
               <p class="relative text-gray-600 text-sm leading-relaxed" data-i18n="testi-4">„Mă bucur pentru oamenii frumoși fără de care nu știu dacă aș fi reușit să îmi înving cea mai mare teamă de a vorbi în public. Aici am găsit curaj și susținerea unde am crescut în arta vorbitului."</p>
+            </div>
+
+            <!-- Dan Bodnariuc -->
+            <div class="rev-card relative overflow-hidden bg-white rounded-2xl p-7 border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.06)] card-hover">
+              <span aria-hidden="true" class="pointer-events-none select-none absolute right-5 -bottom-10 font-heading text-[8rem] leading-none text-gray-100">”</span>
+              <div class="relative flex items-center gap-2.5 mb-4">
+                <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                <span class="font-semibold text-primary text-base truncate">Dan Bodnariuc</span>
+                <span class="text-amber-400 text-sm flex-shrink-0 leading-none" aria-label="5 stele" data-i18n-aria="rev-stars-aria">★★★★★</span>
+              </div>
+              <p class="relative text-gray-600 text-sm leading-relaxed" data-i18n="testi-9">„Un club unde poți experimenta vorbitul în public în fiecare săptămână fără griji și fără să fii judecat. Un loc unde întâlnești prieteni noi ambițioși, ești inspirat de poveștile lor și unde voluntariatul este la el acasă."</p>
             </div>
 
             <!-- Lla Stopei -->
             <div class="rev-card relative overflow-hidden bg-white rounded-2xl p-7 border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.06)] card-hover">
               <span aria-hidden="true" class="pointer-events-none select-none absolute right-5 -bottom-10 font-heading text-[8rem] leading-none text-gray-100">”</span>
-              <div class="relative flex items-center gap-3 mb-4">
-                <div class="w-11 h-11 rounded-full flex-shrink-0 overflow-hidden bg-gray-200 text-gray-400" aria-hidden="true"><svg class="w-full h-full" viewBox="0 0 44 44" fill="currentColor"><circle cx="22" cy="17" r="8"/><path d="M6 44c0-9.4 7.2-15 16-15s16 5.6 16 15z"/></svg></div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-semibold text-primary text-sm">Lla Stopei</div>
-                  <div class="flex items-center gap-1.5 mt-0.5">
-                    <span class="text-amber-400 text-sm leading-none" aria-label="5 stele" data-i18n-aria="rev-stars-aria">★★★★★</span>
-                    <span class="text-gray-300 text-xs">·</span>
-                    <span class="text-gray-400 text-xs">Facebook</span>
-                  </div>
-                </div>
+              <div class="relative flex items-center gap-2.5 mb-4">
                 <svg class="w-5 h-5 flex-shrink-0" style="color:#004165" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                <span class="font-semibold text-primary text-base truncate">Lla Stopei</span>
+                <span class="text-amber-400 text-sm flex-shrink-0 leading-none" aria-label="5 stele" data-i18n-aria="rev-stars-aria">★★★★★</span>
               </div>
               <p class="relative text-gray-600 text-sm leading-relaxed" data-i18n="testi-5">„Dacă vrei un loc în care să înveți să vorbești în public, să scapi de trac și, nu în ultimul rând, să te simți ca într-o familie, acesta este locul potrivit."</p>
+            </div>
+
+            <!-- Mihaela Bobei -->
+            <div class="rev-card relative overflow-hidden bg-white rounded-2xl p-7 border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.06)] card-hover">
+              <span aria-hidden="true" class="pointer-events-none select-none absolute right-5 -bottom-10 font-heading text-[8rem] leading-none text-gray-100">”</span>
+              <div class="relative flex items-center gap-2.5 mb-4">
+                <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                <span class="font-semibold text-primary text-base truncate">Mihaela Bobei</span>
+                <span class="text-amber-400 text-sm flex-shrink-0 leading-none" aria-label="5 stele" data-i18n-aria="rev-stars-aria">★★★★★</span>
+              </div>
+              <p class="relative text-gray-600 text-sm leading-relaxed" style="display:-webkit-box;-webkit-line-clamp:5;line-clamp:5;-webkit-box-orient:vertical;overflow:hidden;" data-i18n="testi-10">„Timișoara Toastmasters este locul unde îți dezvolți abilitățile de comunicare și leadership și ajungi să câștigi chiar mai mult. Atmosfera este prietenoasă, oamenii te susțin sincer, iar întâlnirile te ajută să devii mai conștient de tine și să crești în mod real. Un aspect valoros este comunitatea: aici îți poți extinde networkingul și îți poți face prieteni care îți sunt alături în călătoria ta de dezvoltare. Recomand cu încredere!"</p>
             </div>
 
           </div>
@@ -944,133 +935,19 @@
       <!-- Dots -->
       <div id="rev-dots-fb" class="flex md:hidden justify-center gap-2 mt-6"></div>
 
-      <div class="flex justify-center mt-8">
+      <div class="flex flex-wrap justify-center gap-3 mt-8">
         <a href="https://www.facebook.com/timisoara.toastmasters/reviews?locale=ro_RO" target="_blank"
-           class="inline-flex items-center gap-2 text-gray-600 font-semibold text-sm px-6 py-3 rounded-full transition-colors"
+           class="inline-flex items-center gap-2 text-gray-600 font-semibold text-sm px-6 py-3 rounded-xl transition-colors"
            style="border:2px solid #004165">
           <svg class="w-4 h-4" fill="#004165" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
           <span data-i18n="idx-rev-fb-cta">Vezi toate recenziile pe Facebook</span>
         </a>
-      </div>
-    </div>
-
-    <!-- Google reviews panel (hidden by default) -->
-    <div id="panel-g" class="hidden" role="tabpanel" aria-labelledby="tab-g">
-      <div class="relative">
-        <!-- Prev -->
-        <button onclick="revSlide('g',-1)" id="rev-prev-g" aria-label="Recenzie anterioară" data-i18n-aria="rev-prev-aria"
-          class="absolute -left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white border border-gray-200 shadow-md hidden md:flex items-center justify-center text-primary hover:bg-primary hover:text-white hover:border-primary transition-all duration-200 disabled:opacity-30 disabled:pointer-events-none">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
-        </button>
-        <!-- Track -->
-        <div class="overflow-hidden px-3 py-4">
-          <div id="rev-track-g" class="flex gap-0 md:gap-6" style="transition:transform .4s cubic-bezier(.4,0,.2,1)">
-
-            <!-- Vornicescu Nicoleta -->
-            <div class="rev-card relative overflow-hidden bg-white rounded-2xl p-7 border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.06)] card-hover">
-              <span aria-hidden="true" class="pointer-events-none select-none absolute right-5 -bottom-10 font-heading text-[8rem] leading-none text-gray-100">”</span>
-              <div class="relative flex items-center gap-3 mb-4">
-                <div class="w-11 h-11 rounded-full flex-shrink-0 overflow-hidden bg-gray-200 text-gray-400" aria-hidden="true"><svg class="w-full h-full" viewBox="0 0 44 44" fill="currentColor"><circle cx="22" cy="17" r="8"/><path d="M6 44c0-9.4 7.2-15 16-15s16 5.6 16 15z"/></svg></div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-semibold text-primary text-sm">Vornicescu Nicoleta</div>
-                  <div class="flex items-center gap-1 mt-0.5">
-                    <span class="text-amber-400 text-sm leading-none" aria-label="5 stele" data-i18n-aria="rev-stars-aria">★★★★★</span>
-                    <span class="text-gray-400 text-xs ml-1">· Google</span>
-                  </div>
-                </div>
-                <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-              </div>
-              <p class="relative text-gray-600 text-sm leading-relaxed" style="display:-webkit-box;-webkit-line-clamp:5;line-clamp:5;-webkit-box-orient:vertical;overflow:hidden;" data-i18n="testi-6">„Mi-a plăcut foarte mult atmosfera și faptul că totul a fost bine organizat. Am apreciat că noii veniți au fost luați în seamă și integrați, inclusiv prin detalii precum foile cu numele fiecăruia, care au făcut mai ușoară interacțiunea. Am participat deja la câteva ședințe, atât în română, cât și în engleză, și îmi place că există mereu un flux de oameni noi. De fiecare dată ai ocazia să cunoști persoane diferite și să înveți ceva nou. Nu mă simt în măsură să ofer sugestii pentru că mi se pare totul foarte bine gândit."</p>
-            </div>
-
-            <!-- Pera Casian -->
-            <div class="rev-card relative overflow-hidden bg-white rounded-2xl p-7 border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.06)] card-hover">
-              <span aria-hidden="true" class="pointer-events-none select-none absolute right-5 -bottom-10 font-heading text-[8rem] leading-none text-gray-100">”</span>
-              <div class="relative flex items-center gap-3 mb-4">
-                <div class="w-11 h-11 rounded-full flex-shrink-0 overflow-hidden bg-gray-200 text-gray-400" aria-hidden="true"><svg class="w-full h-full" viewBox="0 0 44 44" fill="currentColor"><circle cx="22" cy="17" r="8"/><path d="M6 44c0-9.4 7.2-15 16-15s16 5.6 16 15z"/></svg></div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-semibold text-primary text-sm">Pera Casian</div>
-                  <div class="flex items-center gap-1 mt-0.5">
-                    <span class="text-amber-400 text-sm leading-none" aria-label="5 stele" data-i18n-aria="rev-stars-aria">★★★★★</span>
-                    <span class="text-gray-400 text-xs ml-1">· Google</span>
-                  </div>
-                </div>
-                <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-              </div>
-              <p class="relative text-gray-600 text-sm leading-relaxed" data-i18n="testi-7">„Clubul Toastmasters Timișoara este primul club Toastmasters înființat în România. Aici am avut ocazia să întâlnesc persoane competente și motivate. Un loc ideal pentru dezvoltarea personală și profesională. Toastmasters e mediul ideal în care teoria se îmbină cu practica."</p>
-            </div>
-
-            <!-- Cristina Mihaela -->
-            <div class="rev-card relative overflow-hidden bg-white rounded-2xl p-7 border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.06)] card-hover">
-              <span aria-hidden="true" class="pointer-events-none select-none absolute right-5 -bottom-10 font-heading text-[8rem] leading-none text-gray-100">”</span>
-              <div class="relative flex items-center gap-3 mb-4">
-                <div class="w-11 h-11 rounded-full flex-shrink-0 overflow-hidden bg-gray-200 text-gray-400" aria-hidden="true"><svg class="w-full h-full" viewBox="0 0 44 44" fill="currentColor"><circle cx="22" cy="17" r="8"/><path d="M6 44c0-9.4 7.2-15 16-15s16 5.6 16 15z"/></svg></div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-semibold text-primary text-sm">Cristina Mihaela</div>
-                  <div class="flex items-center gap-1 mt-0.5">
-                    <span class="text-amber-400 text-sm leading-none" aria-label="5 stele" data-i18n-aria="rev-stars-aria">★★★★★</span>
-                    <span class="text-gray-400 text-xs ml-1">· Google</span>
-                  </div>
-                </div>
-                <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-              </div>
-              <p class="relative text-gray-600 text-sm leading-relaxed" data-i18n="testi-8">„De când m-am alăturat Toastmasters, simt că am făcut un pas mai aproape de misiunea mea în viață. Am încredere în a vorbi în public. Învăț cum să creez discursuri cu impact, simt că vocea mea este în sfârșit auzită."</p>
-            </div>
-
-            <!-- Dan Bodnariuc -->
-            <div class="rev-card relative overflow-hidden bg-white rounded-2xl p-7 border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.06)] card-hover">
-              <span aria-hidden="true" class="pointer-events-none select-none absolute right-5 -bottom-10 font-heading text-[8rem] leading-none text-gray-100">”</span>
-              <div class="relative flex items-center gap-3 mb-4">
-                <div class="w-11 h-11 rounded-full flex-shrink-0 overflow-hidden bg-gray-200 text-gray-400" aria-hidden="true"><svg class="w-full h-full" viewBox="0 0 44 44" fill="currentColor"><circle cx="22" cy="17" r="8"/><path d="M6 44c0-9.4 7.2-15 16-15s16 5.6 16 15z"/></svg></div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-semibold text-primary text-sm">Dan Bodnariuc</div>
-                  <div class="flex items-center gap-1 mt-0.5">
-                    <span class="text-amber-400 text-sm leading-none" aria-label="5 stele" data-i18n-aria="rev-stars-aria">★★★★★</span>
-                    <span class="text-gray-400 text-xs ml-1">· Google</span>
-                  </div>
-                </div>
-                <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-              </div>
-              <p class="relative text-gray-600 text-sm leading-relaxed" data-i18n="testi-9">„Un club unde poți experimenta vorbitul în public în fiecare săptămână fără griji și fără să fii judecat. Un loc unde întâlnești prieteni noi ambițioși, ești inspirat de poveștile lor și unde voluntariatul este la el acasă."</p>
-            </div>
-
-            <!-- Mihaela Bobei -->
-            <div class="rev-card relative overflow-hidden bg-white rounded-2xl p-7 border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.06)] card-hover">
-              <span aria-hidden="true" class="pointer-events-none select-none absolute right-5 -bottom-10 font-heading text-[8rem] leading-none text-gray-100">”</span>
-              <div class="relative flex items-center gap-3 mb-4">
-                <div class="w-11 h-11 rounded-full flex-shrink-0 overflow-hidden bg-gray-200 text-gray-400" aria-hidden="true"><svg class="w-full h-full" viewBox="0 0 44 44" fill="currentColor"><circle cx="22" cy="17" r="8"/><path d="M6 44c0-9.4 7.2-15 16-15s16 5.6 16 15z"/></svg></div>
-                <div class="flex-1 min-w-0">
-                  <div class="font-semibold text-primary text-sm">Mihaela Bobei</div>
-                  <div class="flex items-center gap-1 mt-0.5">
-                    <span class="text-amber-400 text-sm leading-none" aria-label="5 stele" data-i18n-aria="rev-stars-aria">★★★★★</span>
-                    <span class="text-gray-400 text-xs ml-1">· Google</span>
-                  </div>
-                </div>
-                <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-              </div>
-              <p class="relative text-gray-600 text-sm leading-relaxed" style="display:-webkit-box;-webkit-line-clamp:5;line-clamp:5;-webkit-box-orient:vertical;overflow:hidden;" data-i18n="testi-10">„Timișoara Toastmasters este locul unde îți dezvolți abilitățile de comunicare și leadership și ajungi să câștigi chiar mai mult. Atmosfera este prietenoasă, oamenii te susțin sincer, iar întâlnirile te ajută să devii mai conștient de tine și să crești în mod real. Un aspect valoros este comunitatea: aici îți poți extinde networkingul și îți poți face prieteni care îți sunt alături în călătoria ta de dezvoltare. Recomand cu încredere!"</p>
-            </div>
-
-          </div>
-        </div>
-        <!-- Next -->
-        <button onclick="revSlide('g',1)" id="rev-next-g" aria-label="Recenzie următoare" data-i18n-aria="rev-next-aria"
-          class="absolute -right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white border border-gray-200 shadow-md hidden md:flex items-center justify-center text-primary hover:bg-primary hover:text-white hover:border-primary transition-all duration-200">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-        </button>
-      </div>
-      <!-- Dots -->
-      <div id="rev-dots-g" class="flex md:hidden justify-center gap-2 mt-6"></div>
-
-      <div class="flex justify-center mt-8">
         <a href="https://www.google.com/search?q=Timisoara+Toastmasters+Recenzii&tbm=lcl&rflfq=1&rldimm=16515440122464284173&hl=ro-RO#lkt=LocalPoiReviews" target="_blank"
-           class="inline-flex items-center gap-2 text-gray-600 font-semibold text-sm px-6 py-3 rounded-full hover:bg-gray-50 transition-colors" style="border:2px solid transparent;background:linear-gradient(white,white) padding-box,linear-gradient(90deg,#4285F4,#34A853,#FBBC05,#EA4335) border-box">
+           class="inline-flex items-center gap-2 text-gray-600 font-semibold text-sm px-6 py-3 rounded-xl hover:bg-gray-50 transition-colors" style="border:2px solid transparent;background:linear-gradient(white,white) padding-box,linear-gradient(90deg,#4285F4,#34A853,#FBBC05,#EA4335) border-box">
           <svg class="w-4 h-4" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
           <span data-i18n="idx-rev-g-cta">Vezi toate recenziile pe Google</span>
         </a>
-      </div>
     </div>
-
   </div>
 </section>
 
@@ -1110,18 +987,6 @@
   .ct-input:focus { outline:none; box-shadow:0 0 0 3px rgba(0,65,101,.18); border-color:#004165; }
 </style>
 <script>
-  /* ── Review tab switcher ── */
-  function switchReviews(platform) {
-    document.getElementById('panel-fb').classList.toggle('hidden', platform !== 'fb');
-    document.getElementById('panel-g').classList.toggle('hidden', platform !== 'g');
-    document.getElementById('tab-fb').classList.toggle('active-tab', platform === 'fb');
-    document.getElementById('tab-g').classList.toggle('active-tab', platform === 'g');
-    document.getElementById('tab-fb').classList.toggle('text-gray-500', platform !== 'fb');
-    document.getElementById('tab-g').classList.toggle('text-gray-500', platform !== 'g');
-    document.getElementById('tab-fb').setAttribute('aria-selected', String(platform === 'fb'));
-    document.getElementById('tab-g').setAttribute('aria-selected', String(platform === 'g'));
-  }
-
   /* ── Carousel ── */
   const revPos = { fb: 0, g: 0 };
 
@@ -1135,7 +1000,7 @@
     dotsEl.innerHTML = '';
     for (let i = 0; i <= maxPos; i++) {
       const dot = document.createElement('button');
-      dot.className = 'h-2 rounded-full transition-all duration-300 ' +
+      dot.className = 'h-2 rounded-xl transition-all duration-300 ' +
         (i === revPos[platform] ? 'bg-primary w-5' : 'w-2 bg-gray-300 hover:bg-gray-400');
       dot.setAttribute('aria-label', window.tmtStr('Recenzie ', 'Review ') + (i + 1));
       dot.onclick = function() { revGoTo(platform, i); };
@@ -1531,7 +1396,15 @@
         <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
           <span class="w-9 h-9 rounded-full flex items-center justify-center text-maroon flex-shrink-0" style="background:#f3f5f5;box-shadow:0 0 0 2px #fff,0 0 0 3px #dce2e1"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg></span>
           <h3 class="font-heading font-bold text-gray-900 text-lg" data-i18n="how-to-get-here">Cum ajungi la noi</h3>
+          <button type="button" onclick="copyVenueAddress(this)" class="ml-auto inline-flex items-center gap-1.5 rounded-lg border border-gray-200 bg-white hover:border-primary hover:text-primary text-gray-600 text-xs font-semibold px-3 py-1.5 transition-colors"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path stroke-linecap="round" stroke-linejoin="round" d="M5 15V5a2 2 0 012-2h10"/></svg><span data-i18n="copy-addr">Copiază adresa</span></button>
         </div>
+        <script>
+          function copyVenueAddress(btn) {
+            var addr = 'Zbor Hub, Strada Vasile Alecsandri nr. 1, Timișoara', label = btn.querySelector('span');
+            var done = function () { var t = label.textContent; label.textContent = window.tmtStr ? window.tmtStr('Copiat!', 'Copied!') : 'Copiat!'; setTimeout(function () { label.textContent = t; }, 1800); };
+            if (navigator.clipboard) navigator.clipboard.writeText(addr).then(done, function () {}); 
+          }
+        </script>
 
         <div class="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-4">
           <div id="bus-route-panel" class="rounded-xl"><!-- filled by JS --></div>
@@ -1544,6 +1417,7 @@
                 <p class="text-sm font-bold text-gray-900" data-i18n="by-car-label">Cu mașina</p>
                 <p class="text-xs text-gray-500" data-i18n="by-car-sub">Parcări publice în apropiere</p>
               </div>
+              <span class="ml-auto flex-shrink-0 rounded-md border border-gray-200 bg-white text-gray-600 text-[10px] font-bold px-2 py-1 whitespace-nowrap" data-i18n="timpark-badge">TimPark până la 20:00</span>
             </div>
             <div class="mt-3 grid grid-cols-2 gap-2">
               <a href="https://www.google.com/maps/search/?api=1&query=45.75510%2C21.23017" target="_blank" rel="noopener" class="group flex items-center gap-2 rounded-lg bg-white border border-gray-200 hover:border-primary px-2.5 py-2 transition-colors"><span class="w-5 h-5 rounded bg-primary text-white text-[10px] font-black flex-shrink-0 flex items-center justify-center">P</span><span class="text-xs font-semibold text-gray-700 group-hover:text-primary leading-snug min-w-0 truncate">Mareșal Foch</span></a>
@@ -1551,7 +1425,7 @@
               <a href="https://www.google.com/maps/search/?api=1&query=45.75376%2C21.22691" target="_blank" rel="noopener" class="group flex items-center gap-2 rounded-lg bg-white border border-gray-200 hover:border-primary px-2.5 py-2 transition-colors"><span class="w-5 h-5 rounded bg-primary text-white text-[10px] font-black flex-shrink-0 flex items-center justify-center">P</span><span class="text-xs font-semibold text-gray-700 group-hover:text-primary leading-snug min-w-0 truncate">Iancu Huniade</span></a>
               <a href="https://www.google.com/maps/search/?api=1&query=45.75432%2C21.22918" target="_blank" rel="noopener" class="group flex items-center gap-2 rounded-lg bg-white border border-gray-200 hover:border-primary px-2.5 py-2 transition-colors"><span class="w-5 h-5 rounded bg-primary text-white text-[10px] font-black flex-shrink-0 flex items-center justify-center">P</span><span class="text-xs font-semibold text-gray-700 group-hover:text-primary leading-snug min-w-0 truncate">Carol Telbisz</span></a>
             </div>
-            <p class="mt-2 text-[11px] text-gray-400" data-i18n="parking-note">Toate la sub 5 min pe jos · TimPark până la 20:00</p>
+            <p class="mt-2 text-[11px] text-gray-400" data-i18n="parking-note">Toate la sub 5 min pe jos</p>
           </div>
 
           <!-- Transport în comun -->
@@ -1562,40 +1436,41 @@
                 <p class="text-sm font-bold text-gray-900" data-i18n="public-transport-label">Transport în comun</p>
                 <p class="text-xs text-gray-500" data-i18n="transit-hint">Apasă pe o linie pentru traseu</p>
               </div>
+              <span class="ml-auto flex-shrink-0 rounded-md border border-gray-200 bg-white text-gray-600 text-[10px] font-bold px-2 py-1 whitespace-nowrap" data-i18n="transit-walk-badge">≤ 7 min pe jos</span>
             </div>
             <div class="mt-3 space-y-2">
               <div class="rounded-lg bg-white border border-gray-200 px-2.5 py-2">
                 <span class="block text-[11px] font-semibold uppercase tracking-wider text-gray-400 mb-1.5" data-i18n="tram-label">Tramvai</span>
                 <div class="transport-grid grid grid-cols-5 gap-1.5">
-                  <button class="transport-pill-sm" data-line="1" aria-label="Stații linia 1" data-i18n-aria="bus-line-1-aria">1</button>
-                  <button class="transport-pill-sm" data-line="2" aria-label="Stații linia 2" data-i18n-aria="bus-line-2-aria">2</button>
-                  <button class="transport-pill-sm" data-line="4" aria-label="Stații linia 4" data-i18n-aria="bus-line-4-aria">4</button>
-                  <button class="transport-pill-sm" data-line="5" aria-label="Stații linia 5" data-i18n-aria="bus-line-5-aria">5</button>
-                  <button class="transport-pill-sm" data-line="7" aria-label="Stații linia 7" data-i18n-aria="bus-line-7-aria">7</button>
+                  <button class="transport-pill-sm tp-tram" data-line="1" aria-label="Stații linia 1" data-i18n-aria="bus-line-1-aria">1</button>
+                  <button class="transport-pill-sm tp-tram" data-line="2" aria-label="Stații linia 2" data-i18n-aria="bus-line-2-aria">2</button>
+                  <button class="transport-pill-sm tp-tram" data-line="4" aria-label="Stații linia 4" data-i18n-aria="bus-line-4-aria">4</button>
+                  <button class="transport-pill-sm tp-tram" data-line="5" aria-label="Stații linia 5" data-i18n-aria="bus-line-5-aria">5</button>
+                  <button class="transport-pill-sm tp-tram" data-line="7" aria-label="Stații linia 7" data-i18n-aria="bus-line-7-aria">7</button>
                 </div>
               </div>
               <div class="rounded-lg bg-white border border-gray-200 px-2.5 py-2">
                 <span class="block text-[11px] font-semibold uppercase tracking-wider text-gray-400 mb-1.5" data-i18n="trolley-label">Troleibuz</span>
                 <div class="transport-grid grid grid-cols-5 gap-1.5">
-                  <button class="transport-pill-sm" data-line="11" aria-label="Stații linia 11" data-i18n-aria="bus-line-11-aria">11</button>
-                  <button class="transport-pill-sm" data-line="14" aria-label="Stații linia 14" data-i18n-aria="bus-line-14-aria">14</button>
-                  <button class="transport-pill-sm" data-line="16" aria-label="Stații linia 16" data-i18n-aria="bus-line-16-aria">16</button>
-                  <button class="transport-pill-sm" data-line="17" aria-label="Stații linia 17" data-i18n-aria="bus-line-17-aria">17</button>
-                  <button class="transport-pill-sm" data-line="18" aria-label="Stații linia 18" data-i18n-aria="bus-line-18-aria">18</button>
+                  <button class="transport-pill-sm tp-trolley" data-line="11" aria-label="Stații linia 11" data-i18n-aria="bus-line-11-aria">11</button>
+                  <button class="transport-pill-sm tp-trolley" data-line="14" aria-label="Stații linia 14" data-i18n-aria="bus-line-14-aria">14</button>
+                  <button class="transport-pill-sm tp-trolley" data-line="16" aria-label="Stații linia 16" data-i18n-aria="bus-line-16-aria">16</button>
+                  <button class="transport-pill-sm tp-trolley" data-line="17" aria-label="Stații linia 17" data-i18n-aria="bus-line-17-aria">17</button>
+                  <button class="transport-pill-sm tp-trolley" data-line="18" aria-label="Stații linia 18" data-i18n-aria="bus-line-18-aria">18</button>
                 </div>
               </div>
               <div class="rounded-lg bg-white border border-gray-200 px-2.5 py-2">
                 <span class="block text-[11px] font-semibold uppercase tracking-wider text-gray-400 mb-1.5" data-i18n="bus-label">Autobuz</span>
                 <div class="transport-grid grid grid-cols-5 gap-1.5">
-                  <button class="transport-pill-sm" data-line="5c" aria-label="Stații linia 5c" data-i18n-aria="bus-line-5c-aria">5c</button>
-                  <button class="transport-pill-sm" data-line="13" aria-label="Stații linia 13" data-i18n-aria="bus-line-13-aria">13</button>
-                  <button class="transport-pill-sm" data-line="E2" aria-label="Stații linia E2" data-i18n-aria="bus-line-e2-aria">E2</button>
-                  <button class="transport-pill-sm" data-line="E4b" aria-label="Stații linia E4b" data-i18n-aria="bus-line-e4b-aria">E4b</button>
-                  <button class="transport-pill-sm" data-line="E6" aria-label="Stații linia E6" data-i18n-aria="bus-line-e6-aria">E6</button>
+                  <button class="transport-pill-sm tp-bus" data-line="5c" aria-label="Stații linia 5c" data-i18n-aria="bus-line-5c-aria">5c</button>
+                  <button class="transport-pill-sm tp-bus" data-line="13" aria-label="Stații linia 13" data-i18n-aria="bus-line-13-aria">13</button>
+                  <button class="transport-pill-sm tp-bus" data-line="E2" aria-label="Stații linia E2" data-i18n-aria="bus-line-e2-aria">E2</button>
+                  <button class="transport-pill-sm tp-bus" data-line="E4b" aria-label="Stații linia E4b" data-i18n-aria="bus-line-e4b-aria">E4b</button>
+                  <button class="transport-pill-sm tp-bus" data-line="E6" aria-label="Stații linia E6" data-i18n-aria="bus-line-e6-aria">E6</button>
                 </div>
               </div>
             </div>
-            <p class="mt-2 text-[11px] text-gray-400" data-i18n="transit-walk-note">Toate stațiile sunt la cel mult 7 minute de mers pe jos.</p>
+            <a href="https://smtt.ro/retea-transport-public/" target="_blank" rel="noopener" class="mt-2 self-start inline-flex items-center gap-1 text-[11px] font-semibold text-gray-400 hover:text-primary transition-colors"><span data-i18n="stpt-schedules">Orare oficiale STPT</span><svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H8M17 7V16"/></svg></a>
           </div>
 
           <!-- Pe jos -->
@@ -1606,17 +1481,30 @@
                 <p class="text-sm font-bold text-gray-900" data-i18n="pe-jos-label">Pe jos</p>
                 <p class="text-xs text-gray-500" data-i18n="pe-jos-sub">Din punctele cheie din centru</p>
               </div>
+              <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Zbor+Hub%2C+Strada+Vasile+Alecsandri+1%2C+Timi%C8%99oara&amp;travelmode=walking" target="_blank" rel="noopener" class="ml-auto flex-shrink-0 inline-flex items-center gap-1 rounded-lg border border-gray-200 bg-white hover:border-primary hover:text-primary text-gray-600 text-[11px] font-semibold px-2 py-1 transition-colors"><span data-i18n="walk-maps">Traseu</span><svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H8M17 7V16"/></svg></a>
             </div>
-            <ul class="mt-3 rounded-lg bg-white border border-gray-200 divide-y divide-gray-100 text-xs">
-              <li class="flex items-center justify-between gap-2 px-2.5 py-1.5"><span class="font-semibold text-gray-700">Piața Libertății</span><span class="text-gray-500">2 min</span></li>
-              <li class="flex items-center justify-between gap-2 px-2.5 py-1.5"><span class="font-semibold text-gray-700">Piața Unirii</span><span class="text-gray-500">4 min</span></li>
-              <li class="flex items-center justify-between gap-2 px-2.5 py-1.5"><span class="font-semibold text-gray-700">Opera / Piața Victoriei</span><span class="text-gray-500">4 min</span></li>
-              <li class="flex items-center justify-between gap-2 px-2.5 py-1.5"><span class="font-semibold text-gray-700">Bastionul Theresia</span><span class="text-gray-500">8 min</span></li>
-              <li class="flex items-center justify-between gap-2 px-2.5 py-1.5"><span class="font-semibold text-gray-700">Catedrala Mitropolitană</span><span class="text-gray-500">10 min</span></li>
-              <li class="flex items-center justify-between gap-2 px-2.5 py-1.5"><span class="font-semibold text-gray-700">UPT / UVT</span><span class="text-gray-500">20 min</span></li>
-              <li class="flex items-center justify-between gap-2 px-2.5 py-1.5"><span class="font-semibold text-gray-700">Iulius Mall</span><span class="text-gray-500">22 min</span></li>
-              <li class="flex items-center justify-between gap-2 px-2.5 py-1.5"><span class="font-semibold text-gray-700">Gara de Nord</span><span class="text-gray-500">25 min</span></li>
-            </ul>
+            <div class="mt-3 rounded-lg bg-white border border-gray-200 divide-y divide-gray-100 text-xs">
+              <div class="px-2.5 py-1">
+                <ul>
+                  <li class="flex items-center justify-between gap-2 py-[5px]"><span class="font-semibold text-gray-700">Piața Libertății</span><span class="rounded-full bg-primary/10 text-primary font-bold text-[11px] leading-4 px-2 whitespace-nowrap">2 min</span></li>
+                  <li class="flex items-center justify-between gap-2 py-[5px]"><span class="font-semibold text-gray-700">Piața Unirii</span><span class="rounded-full bg-primary/10 text-primary font-bold text-[11px] leading-4 px-2 whitespace-nowrap">4 min</span></li>
+                  <li class="flex items-center justify-between gap-2 py-[5px]"><span class="font-semibold text-gray-700">Opera / Piața Victoriei</span><span class="rounded-full bg-primary/10 text-primary font-bold text-[11px] leading-4 px-2 whitespace-nowrap">4 min</span></li>
+                </ul>
+              </div>
+              <div class="px-2.5 py-1">
+                <ul>
+                  <li class="flex items-center justify-between gap-2 py-[5px]"><span class="font-semibold text-gray-700">Bastionul Theresia</span><span class="rounded-full bg-gold/30 text-primary-dark font-bold text-[11px] leading-4 px-2 whitespace-nowrap">8 min</span></li>
+                  <li class="flex items-center justify-between gap-2 py-[5px]"><span class="font-semibold text-gray-700">Catedrala Mitropolitană</span><span class="rounded-full bg-gold/30 text-primary-dark font-bold text-[11px] leading-4 px-2 whitespace-nowrap">10 min</span></li>
+                </ul>
+              </div>
+              <div class="px-2.5 py-1">
+                <ul>
+                  <li class="flex items-center justify-between gap-2 py-[5px]"><span class="font-semibold text-gray-700">UPT / UVT</span><span class="rounded-full bg-maroon/10 text-maroon font-bold text-[11px] leading-4 px-2 whitespace-nowrap">20 min</span></li>
+                  <li class="flex items-center justify-between gap-2 py-[5px]"><span class="font-semibold text-gray-700">Iulius Mall</span><span class="rounded-full bg-maroon/10 text-maroon font-bold text-[11px] leading-4 px-2 whitespace-nowrap">22 min</span></li>
+                  <li class="flex items-center justify-between gap-2 py-[5px]"><span class="font-semibold text-gray-700">Gara de Nord</span><span class="rounded-full bg-maroon/10 text-maroon font-bold text-[11px] leading-4 px-2 whitespace-nowrap">25 min</span></li>
+                </ul>
+              </div>
+            </div>
           </div>
 
           <!-- Ride Sharing -->
@@ -1649,6 +1537,7 @@
             document.addEventListener('DOMContentLoaded', function(){
               /* Lines with a stop at most ~7 min on foot from Zbor Hub (walking times from OSM foot routing).
                  Stops: smtt.ro (STPT); trams 1, 2 and 5 on their regular route via Piața Libertății. */
+              const PILL = { tram:['#F2C230','#1f2937'], trolley:['#7c3aed','#fff'], bus:['#f97316','#fff'] };
               const TYPES = { tram:['Tramvai','Tram'], trolley:['Troleibuz','Trolleybus'], bus:['Autobuz','Bus'] };
               const ROUTES = {
                 '1': { type:'tram', url:'https://stpt.ro/1-2/', dirs: [
@@ -1724,7 +1613,7 @@
                   }
                   return `<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
                       <div style="display:flex;align-items:center;gap:7px">
-                        <span style="display:inline-flex;align-items:center;border-radius:9999px;background:#004165;color:#fff;font-size:.75rem;font-weight:800;padding:.2rem .65rem">${key}</span>
+                        <span style="display:inline-flex;align-items:center;border-radius:.4rem;background:${PILL[r.type][0]};color:${PILL[r.type][1]};font-size:.75rem;font-weight:800;padding:.2rem .65rem">${key}</span>
                         <span style="font-size:.78rem;font-weight:600;color:#374151">${window.tmtStr('Linia ','Line ')+key+' – '+window.tmtStr(TYPES[r.type][0],TYPES[r.type][1])}</span>
                       </div>
                       <button onclick="document.getElementById('bus-route-panel').classList.remove('visible');window._busOpenLine=null"
@@ -1955,7 +1844,7 @@
   // ── Scroll shadow ──
   window.addEventListener('scroll', () => {
     document.getElementById('navbar').style.boxShadow =
-      window.scrollY > 20 && window.innerWidth < 1024 ? '0 4px 30px rgba(0,65,101,0.35)' : '';
+      window.scrollY > 20 && window.innerWidth < 1024 ? '0 6px 20px rgba(0,10,20,0.35)' : '';
   });
 
   async function submitForm(e) {
@@ -2257,6 +2146,8 @@
   var elLong  = document.getElementById('meeting-when-long');
   function renderMeetingWhen() {
     var r = nextMeetingText();
+    var tidy = function (t) { t = t.replace(', ora ', ', '); return t.charAt(0).toUpperCase() + t.slice(1); };
+    r = { short: tidy(r.short), long: tidy(r.long) };
     if (elShort) elShort.textContent = r.short;
     if (elLong)  elLong.textContent  = r.long;
     var elDesk = document.getElementById('meeting-when-desk');

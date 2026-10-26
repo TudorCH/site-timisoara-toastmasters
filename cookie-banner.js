@@ -35,10 +35,10 @@
     '#tm-settings{background:transparent;border:none;color:rgba(255,255,255,.6);font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;' +
     'text-decoration:underline;text-underline-offset:3px;padding:4px 2px;margin-right:auto;white-space:nowrap;transition:color .2s;}' +
     '#tm-settings:hover{color:#F2DF74;}' +
-    '#tm-ess{background:rgba(255,255,255,.04);color:#fff;border:1.5px solid rgba(255,255,255,.3);border-radius:999px;padding:9px 18px;' +
+    '#tm-ess{background:rgba(255,255,255,.04);color:#fff;border:1.5px solid rgba(255,255,255,.3);border-radius:12px;padding:9px 18px;' +
     'font-size:12.5px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap;transition:all .2s;}' +
     '#tm-ess:hover{border-color:#fff;background:rgba(255,255,255,.1);}' +
-    '#tm-ok{background:#F2DF74;color:#004165;border:none;border-radius:999px;padding:9px 22px;font-size:12.5px;font-weight:700;cursor:pointer;' +
+    '#tm-ok{background:#F2DF74;color:#004165;border:none;border-radius:12px;padding:9px 22px;font-size:12.5px;font-weight:700;cursor:pointer;' +
     'font-family:inherit;white-space:nowrap;box-shadow:0 0 18px rgba(242,223,116,.25);transition:background .2s,box-shadow .2s;}' +
     '#tm-ok:hover{background:#f7ea99;box-shadow:0 0 24px rgba(242,223,116,.4);}' +
     '#tm-bar button:focus-visible,#tm-bar a:focus-visible{outline:2px solid #F2DF74;outline-offset:3px;}' +
@@ -59,7 +59,7 @@
     '#tm-text-short{display:block;font-size:13px;line-height:1.45;color:rgba(255,255,255,.88);}' +
     '#tm-actions{gap:6px;padding-top:0;}' +
     '#tm-settings{display:none;}' +
-    '#tm-more{display:flex;flex:1;align-items:center;justify-content:center;color:#F2DF74;border:1.5px solid rgba(242,223,116,.35);border-radius:999px;' +
+    '#tm-more{display:flex;flex:1;align-items:center;justify-content:center;color:#F2DF74;border:1.5px solid rgba(242,223,116,.35);border-radius:12px;' +
     'padding:9px 8px;font-size:11.5px;font-weight:600;text-decoration:none;white-space:nowrap;font-family:Inter,sans-serif;transition:border-color .2s;}' +
     '#tm-more:hover{border-color:rgba(242,223,116,.7);}' +
     '#tm-ess,#tm-ok{flex:1;text-align:center;padding:9px 8px;font-size:11.5px;}' +

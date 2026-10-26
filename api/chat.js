@@ -239,7 +239,6 @@ Timișoara Toastmasters este primul club Toastmasters înființat în România. 
 RECENZII REALE DE LA MEMBRI:
 - "Toastmasters este locul unde am învățat că este normal să greșești atât ca lider, cât și ca vorbitor în public. Important este să perseverezi." - Argint Dragoș
 - "Am participat la prima mea întâlnire... am găsit evenimentul întâmplător pe Facebook. Acum abia aștept următoarele! Am plecat cu o mulțime de informații folositoare și cu o altă energie." - Teliban Bianca
-- "Recomand cu drag tuturor celor care doresc să se dezvolte într-un nucleu foarte bun!" - Sîrbu Silvia
 
 INSTRUCȚIUNI SPECIALE RĂSPUNSURI:
 - Când răspunzi la "Pot veni gratuit?" sau întrebări despre costul vizitei: menționează cele 10 ședințe gratuite neobligatorii, iar la final adaugă CTA clar: "Rezervă-ți locul la [prima ședință gratuită](https://timisoaratoastmasters.ro/contact) 🎟️"

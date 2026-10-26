@@ -21,7 +21,7 @@
 
     /* FAB */
     '#ty-fab{all:unset;position:fixed!important;bottom:20px!important;right:16px!important;',
-    'z-index:2147483647!important;width:52px;height:52px;border-radius:50%;cursor:pointer;',
+    'z-index:2147483647!important;width:46px;height:46px;border-radius:50%;cursor:pointer;',
     'background:#002d47;touch-action:manipulation;',
     'box-shadow:0 4px 16px rgba(0,45,71,.55),0 1px 0 rgba(255,255,255,.07) inset;',
     'display:flex!important;align-items:center;justify-content:center;',
@@ -29,7 +29,7 @@
     '#ty-fab:hover{transform:scale(1.09);background:#004165;box-shadow:0 6px 24px rgba(0,65,101,.6);}',
     '#ty-fab:focus-visible{outline:3px solid #00537f;outline-offset:3px;}',
     '#ty-fab.gone,#ty-fab.no-footer,#ty-fab.over-hero{opacity:0!important;visibility:hidden!important;pointer-events:none!important;}',
-    '@media(min-width:640px){#ty-fab{bottom:28px!important;right:28px!important;width:56px;height:56px;}}',
+    '@media(min-width:640px){#ty-fab{bottom:28px!important;right:28px!important;width:50px;height:50px;}}',
 
     /* Panel — fix 1: visible diagonal gradient instead of invisible blobs */
     '#ty-win{position:fixed!important;top:0!important;right:0!important;',
@@ -48,7 +48,7 @@
     /* Desktop popup */
     '@media(min-width:768px){',
     '#ty-win{',
-    'top:auto!important;bottom:96px!important;right:28px!important;',
+    'top:auto!important;bottom:90px!important;right:28px!important;',
     'height:min(580px,calc(100dvh - 120px))!important;width:380px;max-width:calc(100vw - 56px);',
     'border-radius:16px;',
     'transform:scale(.92) translateY(16px)!important;opacity:0;',
@@ -172,7 +172,7 @@
   fab.setAttribute('aria-label', TY_T[tyLang()].fabLabel);
   fab.setAttribute('aria-controls', 'ty-win');
   fab.setAttribute('aria-expanded', 'false');
-  fab.innerHTML = iconChat(24);
+  fab.innerHTML = iconChat(21);
   document.body.appendChild(fab);
 
   /* ── Panel ── */
@@ -371,21 +371,13 @@
     window.visualViewport.addEventListener('scroll', onVP);
   }
 
-  /* ── Hero hide — FAB reappears as soon as the hero no longer overlaps
-     the FAB's own corner of the screen, not only once fully scrolled away ── */
-  /* Dark full-screen heroes only; pages with a light hero keep the button visible.
-     Mobile and desktop heroes are separate elements, the hidden one never intersects. */
+  /* ── Hero hide: on pages with a dark full-screen hero the button stays out of the way on the
+     first screen only, and shows up as soon as the visitor starts scrolling ── */
   var heroEls = document.querySelectorAll('.hero-section, #hero-mobile, #hero-desktop');
-  if (heroEls.length && 'IntersectionObserver' in window) {
-    var heroHits = new Map();
-    fab.classList.add('over-hero'); /* start hidden until first observer callback */
-    var heroObs = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) { heroHits.set(e.target, e.isIntersecting); });
-      var over = false;
-      heroHits.forEach(function (v) { if (v) over = true; });
-      fab.classList.toggle('over-hero', over);
-    }, { threshold: 0, rootMargin: '0px 0px -90px 0px' });
-    heroEls.forEach(function (el) { heroObs.observe(el); });
+  if (heroEls.length) {
+    var heroSync = function () { fab.classList.toggle('over-hero', window.scrollY < 120); };
+    heroSync();
+    window.addEventListener('scroll', heroSync, { passive: true });
   }
 
   /* ── Footer hide ── */
@@ -410,7 +402,7 @@
 
   var teaserCss = document.createElement('style');
   teaserCss.textContent = [
-    '#ty-teaser{position:fixed;right:16px;bottom:82px;z-index:2147483646;max-width:200px;',
+    '#ty-teaser{position:fixed;right:16px;bottom:76px;z-index:2147483646;max-width:200px;',
     'background:#fff;color:#0f2942;border-radius:14px 14px 4px 14px;padding:9px 28px 9px 12px;cursor:pointer;',
     'box-shadow:0 8px 28px rgba(0,21,42,.18),0 0 0 1px rgba(0,83,127,.12);font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif;',
     'opacity:0;transform:translateY(8px) scale(.97);transform-origin:bottom right;pointer-events:none;transition:opacity .25s,transform .25s;}',
@@ -421,7 +413,7 @@
     'display:flex;align-items:center;justify-content:center;color:#7a93a8;}',
     '#ty-teaser-x:hover{background:#eef4f8;color:#004165;}',
     '#ty-teaser-x:focus-visible{outline:2px solid #00537f;outline-offset:1px;}',
-    '@media(min-width:640px){#ty-teaser{right:28px;bottom:96px;max-width:250px;padding:12px 34px 12px 14px;border-radius:16px 16px 4px 16px;}#ty-teaser b{font-size:14px;}#ty-teaser span{font-size:13px;}}',
+    '@media(min-width:640px){#ty-teaser{right:28px;bottom:90px;max-width:250px;padding:12px 34px 12px 14px;border-radius:16px 16px 4px 16px;}#ty-teaser b{font-size:14px;}#ty-teaser span{font-size:13px;}}',
     '@media(prefers-reduced-motion:reduce){#ty-teaser{transition:none;}}',
   ].join('');
   document.head.appendChild(teaserCss);

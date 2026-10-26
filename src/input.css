@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Desktop navbar: one flag (the active language); the other one is hidden, a click switches language */
+.lang-btn.lang-one:not(.active) { display: none; }
+.lang-btn.lang-one.active { border-color: transparent; box-shadow: none; opacity: 1; }
+.lang-btn.lang-one:hover { opacity: .8; }
