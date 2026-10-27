@@ -734,99 +734,115 @@
               const TYPES = { tram:['Tramvai','Tram'], trolley:['Troleibuz','Trolleybus'], bus:['Autobuz','Bus'] };
               const ROUTES = {
                 '1': { type:'tram', url:'https://stpt.ro/1-2/', dirs: [
-                  { from:'Gara de Nord', stop:'Piața Libertății', walk:2, stops:['Piața Mocioni','Piața Sf. Maria','Catedrala Mitropolitană','Spitalul de Copii','Piața 700','Piața Libertății'] },
-                  { from:'Meteo', stop:'Piața Libertății', walk:2, stops:['Piața Traian','3 August 1919','Prefectură','Hotel Continental','Piața Libertății'] } ] },
+                  { from:'Gara de Nord', stop:'Piața Libertății', walk:2, stops:['Gara de Nord','Bd. Regele Carol I','Piața A. Mocioni','Piața Sfânta Maria','Catedrala Mitropolitană','Spitalul de Copii','Piața 700','Piața Libertății'] },
+                  { from:'Meteo', stop:'Piața Libertății', walk:2, stops:['Meteo','U.M.T.','Arena Electrică','Gara de Est','Piața Badea Cârțan','Piața Traian','3 August 1919','Prefectura','Hotel Continental','Piața Libertății'] } ] },
                 '2': { type:'tram', url:'https://stpt.ro/2-2/', dirs: [
-                  { from:'Shopping City', stop:'Piața Libertății', walk:2, stops:['Piața Mocioni','Piața Sf. Maria','Catedrala Mitropolitană','Spitalul de Copii','Piața 700','Piața Libertății'] },
-                  { from:'Meteo', stop:'Piața Libertății', walk:2, stops:['Piața Traian','3 August 1919','Prefectură','Hotel Continental','Piața Libertății'] } ] },
+                  { from:'Shopping City', stop:'Piața Libertății', walk:2, stops:['Shopping City','Piața Veteranilor','Transilvania','Banatul','Dâmbovița','Crizantemelor','Mangalia','Bd. Iuliu Maniu','Bd. Regele Carol I','Piața A. Mocioni','Piața Sfânta Maria','Catedrala Mitropolitană','Spitalul de Copii','Piața 700','Piața Libertății'] },
+                  { from:'Meteo', stop:'Piața Libertății', walk:2, stops:['Meteo','U.M.T.','Arena Electrică','Gara de Est','Piața Badea Cârțan','Piața Traian','3 August 1919','Prefectura','Hotel Continental','Piața Libertății'] } ] },
                 '4': { type:'tram', url:'https://smtt.ro/linie-transport-public-4/', dirs: [
-                  { from:'Calea Torontalului', stop:'Piața 700', walk:6, stops:['Amforei','Gheorghe Lazăr','Balta Verde','Mendeleev','Circumvalațiunii','Piața 700'] },
-                  { from:'AEM', stop:'Piața 700', walk:6, stops:['Piața N. Bălcescu','Parcul C. Sylva','Piața Sfânta Maria','Catedrala Mitropolitană','Spitalul de Copii','Piața 700'] } ] },
+                  { from:'Calea Torontalului', stop:'Piața 700', walk:6, stops:['Calea Torontalului','Matei Basarab','Amforei','Gheorghe Lazăr','Balta Verde','Mendeleev','Circumvalațiunii','Piața 700'] },
+                  { from:'AEM', stop:'Piața 700', walk:6, stops:['AEM','Mecatim','Fabrica de Detergenți','Bătania','Banatim','Deliblata','Sala C. Jude','Strada Cluj','Piața Crucii','Piața N. Bălcescu','Parcul C. Sylva','Piața Sfânta Maria','Catedrala Mitropolitană','Spitalul de Copii','Piața 700'] } ] },
                 '5': { type:'tram', url:'https://smtt.ro/linie-transport-public-5/', dirs: [
-                  { from:'Ronaț', stop:'Piața Libertății', walk:2, stops:['Macilor','Balta Verde','Mendeleev','Circumvalațiunii','Piața 700','Piața Libertății'] },
-                  { from:'Gara de Est', stop:'Piața Libertății', walk:2, stops:['Prințul Turcesc','Piața Traian','3 August 1919','Prefectura','Hotel Continental','Piața Libertății'] } ] },
+                  { from:'Ronaț', stop:'Piața Libertății', walk:2, stops:['Ronaț','Madona','Grigore Alexandrescu','Alexandru Lăpușneanu','Macilor','Balta Verde','Mendeleev','Circumvalațiunii','Piața 700','Piața Libertății'] },
+                  { from:'Gara de Est', stop:'Piața Libertății', walk:2, stops:['Gara de Est','Poliția Locală','U.M.T.','Stația Meteo','Spitalul Victor Babeș','Piața V. Economu','Lalelelor','Piața Sarmizegetusa','Prințul Turcesc','Piața Traian','3 August 1919','Prefectura','Hotel Continental','Piața Libertății'] } ] },
                 '7': { type:'tram', url:'https://smtt.ro/linie-transport-public-7/', dirs: [
-                  { from:'Dâmbovița', stop:'Piața 700', walk:6, stops:['Piața N. Bălcescu','Parcul C. Sylva','Piața Sfânta Maria','Catedrala Mitropolitană','Spitalul de Copii','Piața 700'] },
-                  { from:'Calea Torontalului', stop:'Piața 700', walk:6, stops:['Amforei','Gheorghe Lazăr','Balta Verde','Mendeleev','Circumvalațiunii','Piața 700'] } ] },
+                  { from:'Dâmbovița', stop:'Piața 700', walk:6, stops:['Dâmbovița','Banatul','Transilvania','Piața Veteranilor','Chișodei','Izlaz','Emil Zola','Progresul','Ivan Pavlov','Mureș','Mareșal A. Averescu','Liviu Rebreanu','Memorandumului','Piața N. Bălcescu','Parcul C. Sylva','Piața Sfânta Maria','Catedrala Mitropolitană','Spitalul de Copii','Piața 700'] },
+                  { from:'Calea Torontalului', stop:'Piața 700', walk:6, stops:['Calea Torontalului','Matei Basarab','Amforei','Gheorghe Lazăr','Balta Verde','Mendeleev','Circumvalațiunii','Piața 700'] } ] },
                 '11': { type:'trolley', url:'https://smtt.ro/linie-transport-public-11/', dirs: [
-                  { from:'Gheorghe Barițiu', stop:'Piața Mărăști', walk:5, stops:['Pop de Băsești','Gara de Nord','Pasaj Jiul','Piața Regina Maria','Piața 700','Piața Mărăști'] },
-                  { from:'Arena Aqua', stop:'Piața 700', walk:4, stops:['Piața Badea Cârțan','Poliția Jud. Timiș','Aurel Popovici','Oituz','Spitalul Municipal','Piața 700'] } ] },
+                  { from:'Gheorghe Barițiu', stop:'Piața Mărăști', walk:5, stops:['Gheorghe Barițiu','Pop de Băsești','Gara de Nord','Pasaj Jiul','Piața Regina Maria','Piața 700','Piața Mărăști'] },
+                  { from:'Arena Aqua', stop:'Piața 700', walk:4, stops:['Arena Aqua','Piața V. Economu','Renașterii','Samuil Micu','Piața Badea Cârțan','Poliția Jud. Timiș','Aurel Popovici','Oituz','Spitalul Municipal','Piața 700'] } ] },
                 '14': { type:'trolley', url:'https://smtt.ro/linie-transport-public-14/', dirs: [
-                  { from:'Gheorghe Barițiu', stop:'Piața Mărăști', walk:5, stops:['Pop de Băsești','Gara de Nord','Pasaj Jiul','Piața Regina Maria','Piața 700','Piața Mărăști'] },
-                  { from:'Ion Ionescu de la Brad', stop:'Piața 700', walk:4, stops:['Pomiculturii','Divizia 9 Cavalerie','Cimitirul Eroilor','Piața Consiliul Europei','Spitalul Municipal','Piața 700'] } ] },
+                  { from:'Gheorghe Barițiu', stop:'Piața Mărăști', walk:5, stops:['Gheorghe Barițiu','Pop de Băsești','Gara de Nord','Pasaj Jiul','Piața Regina Maria','Piața 700','Piața Mărăști'] },
+                  { from:'Ion Ionescu de la Brad', stop:'Piața 700', walk:4, stops:['Ion Ionescu de la Brad','Sf. Apostoli Petru și Pavel','Pomiculturii','Divizia 9 Cavalerie','Cimitirul Eroilor','Piața Consiliul Europei','Spitalul Municipal','Piața 700'] } ] },
                 '16': { type:'trolley', url:'https://smtt.ro/linie-transport-public-16/', dirs: [
-                  { from:'Girație Bulevardul Sudului', stop:'Bd. I.C. Brătianu', walk:5, stops:['Casa Tineretului','Sala C. Jude','Pasaj Michelangelo','Universitatea de Vest','Pod Mihai Viteazu','Bd. I.C. Brătianu'] } ] },
+                  { from:'Girație Bulevardul Sudului', stop:'Bd. I.C. Brătianu', walk:5, stops:['Girație Bulevardul Sudului','Mareșal C. Prezan','Martir Ioan Stanciu','Calea Martirilor','Casa Tineretului','Sala C. Jude','Pasaj Michelangelo','Universitatea de Vest','Pod Mihai Viteazu','Bd. I.C. Brătianu'] },
+                  { from:'Traian Grozăvescu', stop:'Piața Huniade', walk:5, stops:['Traian Grozăvescu','Piața Huniade'] } ] },
                 '17': { type:'trolley', url:'https://smtt.ro/linie-transport-public-17/', dirs: [
                   { from:'Universitatea de Științele Vieții', stop:'Piața Mărăști', walk:6, stops:['Universitatea de Științele Vieții','U.T.T.','Liege','Miresei','Piața Consiliul Europei','Piața Mărăști'] },
-                  { from:'Arena Aqua', stop:'Oituz', walk:7, stops:['Renașterii','Samuil Micu','Piața Badea Cârțan','Poliția Jud. Timiș','Aurel Popovici','Oituz'] } ] },
+                  { from:'Arena Aqua', stop:'Oituz', walk:7, stops:['Arena Aqua','Piața V. Economu','Renașterii','Samuil Micu','Piața Badea Cârțan','Poliția Jud. Timiș','Aurel Popovici','Oituz'] } ] },
                 '18': { type:'trolley', url:'https://smtt.ro/linie-transport-public-18/', dirs: [
-                  { from:'Gheorghe Barițiu', stop:'Piața Mărăști', walk:5, stops:['Pop de Băsești','Gara de Nord','Pasaj Jiul','Piața Regina Maria','Piața 700','Piața Mărăști'] },
-                  { from:'Universitatea de Științele Vieții', stop:'Piața 700', walk:4, stops:['Liege','Calea Torontalului','Miresei','Piața Consiliul Europei','Spitalul Municipal','Piața 700'] } ] },
+                  { from:'Gheorghe Barițiu', stop:'Piața Mărăști', walk:5, stops:['Gheorghe Barițiu','Pop de Băsești','Gara de Nord','Pasaj Jiul','Piața Regina Maria','Piața 700','Piața Mărăști'] },
+                  { from:'Universitatea de Științele Vieții', stop:'Piața 700', walk:4, stops:['Universitatea de Științele Vieții','U.T.T.','Liege','Calea Torontalului','Miresei','Piața Consiliul Europei','Spitalul Municipal','Piața 700'] } ] },
                 '5c': { type:'bus', url:'https://smtt.ro/linie-transport-public-5c/', dirs: [
-                  { from:'Ronaț', stop:'Piața Libertății', walk:2, stops:['Macilor','Balta Verde','Mendeleev','Circumvalațiunii','Piața 700','Piața Libertății'] },
-                  { from:'Gara de Est', stop:'Piața Libertății', walk:2, stops:['Baba Dochia','Iepurelui','Liceul J. L. Calderon','Prefectura','Hotel Continental','Piața Libertății'] } ] },
+                  { from:'Ronaț', stop:'Piața Libertății', walk:2, stops:['Ronaț','Madona','Grigore Alexandrescu','Alexandru Lăpușneanu','Macilor','Balta Verde','Mendeleev','Circumvalațiunii','Piața 700','Piața Libertății'] },
+                  { from:'Gara de Est', stop:'Piața Libertății', walk:2, stops:['Gara de Est','Poliția Locală','U.M.T.','Stația Meteorologică','Spitalul Victor Babeș','Piața V. Economu','Lalelelor','Piața Sarmizegetusa','Prințul Turcesc','Baba Dochia','Iepurelui','Liceul J. L. Calderon','Prefectura','Hotel Continental','Piața Libertății'] } ] },
                 '13': { type:'bus', url:'https://smtt.ro/linie-transport-public-13/', dirs: [
-                  { from:'Pasaj C.F.', stop:'Piața 700', walk:4, stops:['Vuk Karadjici','Piața Avram Iancu','Bulevardul Cetății','Timiș','Bd. Circumvalațiunii','Piața 700'] } ] },
+                  { from:'Pasaj C.F.', stop:'Piața 700', walk:4, stops:['Pasaj C.F.','Piața de Gros','Grigore Alexandrescu','Vuk Karadjici','Piața Avram Iancu','Bulevardul Cetății','Timiș','Bd. Circumvalațiunii','Piața 700'] } ] },
                 'E2': { type:'bus', url:'https://smtt.ro/linie-transport-public-e2/', dirs: [
-                  { from:'Aumovio', stop:'Hector', walk:7, stops:['Spitalul Județean','Casa Tineretului','Sala C. Jude','Complexul Studențesc','Parcul Copiilor','Hector'] },
-                  { from:'Holdelor', stop:'Piața Mărăști', walk:6, stops:['Stuparilor','Gara de Est','Dedeman','Miresei','Piața Consiliul Europei','Piața Mărăști'] } ] },
+                  { from:'Aumovio', stop:'Hector', walk:7, stops:['Aumovio','Liceul Electrotimiș','Piața Gheorghe Domășneanu','Venus','Girație Bulevardul Sudului','Parc Bulevardul Sudului','Bulevardul Sudului','Spitalul Județean','Casa Tineretului','Sala C. Jude','Complexul Studențesc','Parcul Copiilor','Hector'] },
+                  { from:'Holdelor', stop:'Piața Mărăști', walk:6, stops:['Holdelor','Stuparilor','Gara de Est','Dedeman','Miresei','Piața Consiliul Europei','Piața Mărăști'] } ] },
                 'E4b': { type:'bus', url:'https://smtt.ro/linie-transport-public-e4b/', dirs: [
                   { from:'Gheorghe Barițiu', stop:'Piața 700', walk:6, stops:['Gheorghe Barițiu','Gara de Nord','Piața 700'] },
-                  { from:'Aeroport', stop:'Piața 700', walk:4, stops:['Piața V. Economu','Samuil Micu','Piața Badea Cârțan','Oituz','Spitalul Municipal','Piața 700'] } ] },
+                  { from:'Aeroport', stop:'Piața 700', walk:4, stops:['Aeroport','Aeroportul Internațional','Swoboda','Jumbo','DN 6','Camping','Piața V. Economu','Samuil Micu','Piața Badea Cârțan','Oituz','Spitalul Municipal','Piața 700'] } ] },
                 'E6': { type:'bus', url:'https://smtt.ro/linie-transport-public-e6/', dirs: [
-                  { from:'P.I.T.T.', stop:'Piața Mărăști', walk:6, stops:['Grigore Alexandrescu','VOX','Calea Torontalului','Miresei','Piața Consiliul Europei','Piața Mărăști'] } ] }
+                  { from:'P.I.T.T.', stop:'Piața Mărăști', walk:6, stops:['P.I.T.T.','Metro II','Scalini','Grigore Alexandrescu','VOX','Calea Torontalului','Miresei','Piața Consiliul Europei','Piața Mărăști'] } ] }
               };
               const panel = document.getElementById('bus-route-panel');
               let openLine = null;
 
-              function show(key) {
+              function show(key, dirIdx, open) {
                 const r = ROUTES[key];
                 if (!r) return;
-                panel.innerHTML = (()=>{
-                  function renderStrip(stops, color) {
-                    /* one continuous line from the first stop's centre to the destination's centre;
-                       columns are equal width, so each end sits half a column in from the edge */
-                    const n = stops.length;
-                    const NODE = 22;
-                    const arrow = `<svg style="width:14px;height:14px;color:#9ca3af;flex-shrink:0;margin:${(NODE - 14) / 2}px 8px 0 0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>`;
-                    const line = `<div style="position:absolute;top:${NODE / 2 - 1}px;left:calc(100% / ${2 * n});right:calc(100% / ${2 * n});height:2px;border-radius:2px;background:#e5e7eb;pointer-events:none"></div>`;
-                    const cols = stops.map((s, i) => {
-                      const last = i === n - 1;
-                      const dot = last
-                        ? `<div style="width:18px;height:18px;border-radius:50%;background:${color};box-shadow:0 0 0 4px rgba(0,65,101,.15);display:flex;align-items:center;justify-content:center"><div style="width:6px;height:6px;border-radius:50%;background:#fff"></div></div>`
-                        : `<div style="width:9px;height:9px;border-radius:50%;background:#d1d5db;box-shadow:0 0 0 3px #fff"></div>`;
-                      const lbl = `<span style="font-size:.625rem;text-align:center;line-height:1.25;margin-top:6px;padding:0 2px;${last ? `color:${color};font-weight:700;` : 'color:#6b7280;'}">${s}</span>`;
-                      return `<div style="position:relative;display:flex;flex-direction:column;align-items:center;flex:1 1 0;min-width:0">
-                        <div style="height:${NODE}px;display:flex;align-items:center;justify-content:center">${dot}</div>${lbl}</div>`;
-                    }).join('');
-                    return `<div class="bt-strip"><div style="display:flex;align-items:flex-start">
-                      ${arrow}
-                      <div style="position:relative;display:flex;flex:1;min-width:${n * 52}px">${line}${cols}</div>
-                    </div></div>`;
-                  }
-                  return `<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
-                      <div style="display:flex;align-items:center;gap:7px">
-                        <span style="display:inline-flex;align-items:center;border-radius:.4rem;background:${PILL[r.type][0]};color:${PILL[r.type][1]};font-size:.75rem;font-weight:800;padding:.2rem .65rem">${key}</span>
-                        <span style="font-size:.78rem;font-weight:600;color:#374151">${window.tmtStr('Linia ','Line ')+key+' – '+window.tmtStr(TYPES[r.type][0],TYPES[r.type][1])}</span>
-                      </div>
-                      <button onclick="document.getElementById('bus-route-panel').classList.remove('visible');window._busOpenLine=null"
-                        style="background:none;border:none;cursor:pointer;padding:2px;color:#9ca3af;font-size:1rem;line-height:1" aria-label="${window.tmtStr('Închide','Close')}">✕</button>
-                    </div>
-                    ${r.dirs.map(d => `<p style="font-size:.68rem;line-height:1.35;color:#6b7280;margin:0 0 2px">${window.tmtStr('Dinspre','From')} <strong style="color:#374151">${d.from}</strong> · ${window.tmtStr('cobori la','get off at')} <strong style="color:#004165">${d.stop}</strong> · ${d.walk} min ${window.tmtStr('pe jos','walk')}</p>${renderStrip(d.stops, '#004165')}`).join('')}
-                    <a href="${r.url}" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:5px;margin-top:6px;padding:.5rem;border-radius:.6rem;background:#f3f4f6;color:#374151;font-size:.7rem;font-weight:600;text-decoration:none">
-                      ${window.tmtStr('Vezi programul complet','See full schedule')}
-                      <svg style="width:11px;height:11px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H8M17 7V16"/></svg>
-                    </a>`;
-                })();
-                /* long routes scroll sideways on narrow screens: fade the edge until the end is reached */
-                panel.querySelectorAll('.bt-strip').forEach(strip => {
-                  const sync = () => strip.classList.toggle('more', strip.scrollLeft + strip.clientWidth < strip.scrollWidth - 2);
-                  strip.addEventListener('scroll', sync, { passive: true });
-                  sync();
-                });
+                dirIdx = dirIdx || 0; open = !!open;
+                const T = (ro, en) => window.tmtStr(ro, en);
+                const col = PILL[r.type][0], fg = PILL[r.type][1];
+                const d = r.dirs[dirIdx];
+                const mid = d.stops.slice(1, -1);
+                const cut = false;
+                const ARR = '<svg style="width:12px;height:12px;flex-shrink:0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6l6 6-6 6"/></svg>';
+                const arrowSvg = '<svg style="width:12px;height:12px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H8M17 7V16"/></svg>';
+                const walkSvg = '<svg style="width:12px;height:12px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13" cy="4" r="1.6"/><path d="m9 21 3-6 3 3v3m-6-8 2-4 4 2 2 3M8 12l1-3"/></svg>';
+                const tabs = r.dirs.length > 1
+                  ? '<div style="display:flex;gap:2px;padding:3px;border-radius:.75rem;background:#f3f4f6;margin:10px 0 12px">' +
+                    r.dirs.map((x, i) => '<button type="button" data-dir="' + i + '" style="flex:1;min-width:0;border:0;cursor:pointer;border-radius:.6rem;padding:.4rem .5rem;font:inherit;font-size:.7rem;line-height:1.2;' +
+                      (i === dirIdx ? 'background:#fff;color:#111827;font-weight:700;box-shadow:0 1px 2px rgba(0,0,0,.08)' : 'background:transparent;color:#6b7280;font-weight:500') + '">' +
+                      '<span style="display:inline-flex;align-items:center;justify-content:center;gap:5px;' + (i === dirIdx ? 'color:#004165' : '') + '">' + x.from + ARR + '</span></button>').join('') + '</div>'
+                  : '<p style="display:flex;align-items:center;gap:5px;font-size:.72rem;font-weight:700;color:#004165;margin:10px 0 12px">' + d.from + ARR + '</p>';
+                panel.innerHTML =
+                  '<div style="display:flex;align-items:center;justify-content:space-between;gap:8px">' +
+                    '<div style="display:flex;align-items:center;gap:8px;min-width:0">' +
+                      '<span style="display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:28px;padding:0 6px;border-radius:.5rem;background:' + col + ';color:' + fg + ';font-size:.8rem;font-weight:800">' + key + '</span>' +
+                      '<span style="font-size:.8rem;font-weight:700;color:#111827">' + T(TYPES[r.type][0], TYPES[r.type][1]) + ' · ' + T('Linia ', 'Line ') + key + '</span>' +
+                    '</div>' +
+                    '<button type="button" data-close style="background:none;border:0;cursor:pointer;padding:4px;color:#9ca3af;font-size:1rem;line-height:1" aria-label="' + T('Închide', 'Close') + '">✕</button>' +
+                  '</div>' + tabs +
+                  '<div style="border:1px solid #e5e7eb;background:#f9fafb;border-radius:.75rem;padding:12px">' +
+                    '<div style="display:flex;align-items:center;gap:10px">' +
+                      '<div style="min-width:0;max-width:34%">' +
+                        '<div style="font-size:.58rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#9ca3af">' + T('Capăt de linie', 'Terminus') + '</div>' +
+                        '<div style="font-size:.78rem;font-weight:600;color:#1f2937;margin-top:2px;line-height:1.25">' + d.from + '</div>' +
+                      '</div>' +
+                      '<div style="position:relative;flex:1;display:flex;align-items:center;justify-content:center;min-width:70px">' +
+                        '<div style="position:absolute;left:0;right:0;height:3px;border-radius:3px;background:' + col + '"></div>' +
+                        '<button type="button" ' + (mid.length ? 'data-stops' : 'disabled') + ' style="position:relative;display:inline-flex;align-items:center;gap:4px;border:1px solid #e5e7eb;background:#fff;border-radius:.5rem;padding:3px 8px;font:inherit;font-size:.66rem;font-weight:600;color:#374151;cursor:pointer;white-space:nowrap">' +
+                          (mid.length ? mid.length + ' ' + (mid.length === 1 ? T('stație', 'stop') : T('stații', 'stops')) : T('direct', 'direct')) +
+                          '<svg style="width:10px;height:10px;transition:transform .2s;' + (mid.length ? '' : 'display:none;') + (open ? 'transform:rotate(180deg)' : '') + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>' +
+                        '</button>' +
+                      '</div>' +
+                      '<div style="min-width:0;max-width:34%;text-align:right">' +
+                        '<div style="font-size:.58rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#772432">' + T('Cobori la', 'Get off at') + '</div>' +
+                        '<div style="font-size:.8rem;font-weight:800;color:#004165;margin-top:2px;line-height:1.25">' + d.stop + '</div>' +
+                        '<div style="display:inline-flex;align-items:center;gap:3px;margin-top:5px;border-radius:.4rem;background:rgba(0,65,101,.08);color:#004165;font-size:.66rem;font-weight:700;padding:2px 6px">' + walkSvg + d.walk + ' min</div>' +
+                      '</div>' +
+                    '</div>' +
+                    (open && mid.length
+                      ? '<div style="border-top:1px solid #e5e7eb;margin-top:12px;padding-top:10px">' +
+                          '<div style="font-size:.6rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#6b7280;margin-bottom:6px">' + T(cut ? 'Ultimele stații înainte de coborâre' : 'Stații pe traseu', cut ? 'Last stops before you get off' : 'Stops on the way') + '</div>' +
+                          '<div style="display:flex;flex-wrap:wrap;gap:5px">' +
+                            mid.map(s => '<span style="display:inline-flex;align-items:center;gap:5px;border:1px solid #e5e7eb;background:#fff;border-radius:.5rem;padding:3px 7px;font-size:.66rem;color:#374151"><span style="width:6px;height:6px;border-radius:50%;background:' + col + '"></span>' + s + '</span>').join('') +
+                          '</div>' +
+                        '</div>'
+                      : '') +
+                  '</div>' +
+                  '<a href="' + r.url + '" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:5px;margin-top:10px;padding:.5rem;border-radius:.6rem;background:#f3f4f6;color:#374151;font-size:.7rem;font-weight:600;text-decoration:none">' +
+                    T('Program complet', 'Full schedule') + arrowSvg + '</a>';
+                panel.querySelectorAll('[data-dir]').forEach(b => b.onclick = () => show(key, +b.dataset.dir, false));
+                const tg = panel.querySelector('[data-stops]'); if (tg) tg.onclick = () => show(key, dirIdx, !open);
+                panel.querySelector('[data-close]').onclick = () => hide();
                 panel.classList.add('visible');
                 openLine = key;
               }
+              panel.addEventListener('click', e => e.stopPropagation());
 
               function hide() { panel.classList.remove('visible'); openLine = null; }
 
