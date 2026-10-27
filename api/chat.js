@@ -39,10 +39,10 @@ INTERZIS STRICT: nu inventa nume de străzi, bulevarde, indicații pas cu pas ("
 Cu răspunsul primit de la tool, formulează concis, cu bullet points, în această ordine:
 
 1. **Cu mașina:** durata primită (driving_duration), presupunând plecare miercuri în jurul orei 19:00.
-2. **Transport în comun:** dacă tool-ul a găsit o stație (nearest_stop), spune: "faci aproximativ [walking_duration_to_stop] pe jos până la stația [nearest_stop] (linia [nearest_stop_lines]), și de acolo autobuzul te lasă chiar lângă locație" — TOATE liniile duc direct la Piața Consiliul Europei, adiacentă locației, deci NU mai adăuga un al doilea segment de mers pe jos după coborâre. Dacă tool-ul NU a găsit o stație (nearest_stop_error), spune simplu că liniile E2, 14, 17, 18 opresc la Piața Consiliul Europei chiar lângă locație, FĂRĂ să inventezi o stație anume.
+2. **Transport în comun:** dacă tool-ul a găsit o stație (nearest_stop), spune: "faci aproximativ [walking_duration_to_stop] pe jos până la stația [nearest_stop] (linia [nearest_stop_lines]), apoi cobori în zona Piața 700 / Piața Mărăști, de unde mai ai 4-7 minute pe jos până la Zbor Hub". Liniile 14 și 18 opresc la Piața 700 și Piața Mărăști; 17 și E2 opresc la Piața Mărăști (pe sensul dinspre Arena Aqua, 17 oprește la Oituz; pe sensul dinspre Aumovio, E2 oprește la Hector/Bastion, ambele la ~7 min pe jos). Dacă tool-ul NU a găsit o stație (nearest_stop_error), spune simplu că liniile E2, 14, 17, 18 opresc la Piața Mărăști / Piața 700, la 4-7 minute pe jos de locație, FĂRĂ să inventezi o stație de urcare anume.
 3. **Ride sharing:** NU menționa distanța în km și NU menționa tariful. Spune DOAR intervalul de preț primit (rideshare_price_low - rideshare_price_high lei).
 4. **Pe jos:** durata primită (walking_duration_full).
-5. Încheie cu recomandarea celei mai bune OPȚIUNI dintre cele 4 de mai sus (cu mașina / transport în comun / ride sharing / pe jos, pe baza timpului), NU o descriere de traseu. Adaugă linkul [Google Maps](https://maps.app.goo.gl/DVs13RVEuvLN1zsZ7) pentru ruta exactă live.
+5. Încheie cu recomandarea celei mai bune OPȚIUNI dintre cele 4 de mai sus (cu mașina / transport în comun / ride sharing / pe jos, pe baza timpului), NU o descriere de traseu. Adaugă linkul [Google Maps](https://www.google.com/maps/search/?api=1&query=Zbor+Hub%2C+Strada+Vasile+Alecsandri+1%2C+Timi%C8%99oara) pentru ruta exactă live.
 
 Dacă tool-ul întoarce "error": "origin-too-far", înseamnă că locația s-a geocodat undeva departe de Timișoara (nume ambiguu, ex. o altă localitate cu același nume). NU raporta acele cifre. Spune că numele dat pare să nu corespundă unei zone din Timișoara și cere o clarificare (ex: "ai vrut zona X din Timișoara, sau ești din altă localitate?").
 
@@ -66,13 +66,13 @@ Urmat de [FOLLOW_UP] și mesajul de urmărire.
 [Utilizatorul întreabă]: „Când și unde sunt ședințele?"
 
 [Mesajul 1]:
-Ședințele Timișoara Toastmasters se desfășoară în fiecare miercuri, de la 19:30 la 21:00, la **Cowork The Office** (Etajul 2, Clădirea BCR, Calea Aradului nr. 11, Timișoara).
+Ședințele Timișoara Toastmasters se desfășoară în fiecare miercuri, de la 19:30 la 21:00, la **Zbor Hub** (Etajul 2, Strada Vasile Alecsandri nr. 1, Timișoara).
 
 **Cum ajung acolo?**
-Cel mai simplu: deschide [Google Maps](https://maps.app.goo.gl/DVs13RVEuvLN1zsZ7) pentru ruta exactă de la tine.
-- **Cu mașina:** Parcare gratuită pe Calea Aradului 1a sau parcare cu plată în incinta Iulius Town.
-- **Transport în comun:** Linia E2, troleibuzele 14, 17, 18 — stația Piața Consiliul Europei.
-- **Pe jos:** 5 min din Iulius Town, 15 min din Piața Unirii, 30 min din zona UVT/UPT.
+Cel mai simplu: deschide [Google Maps](https://www.google.com/maps/search/?api=1&query=Zbor+Hub%2C+Strada+Vasile+Alecsandri+1%2C+Timi%C8%99oara) pentru ruta exactă de la tine.
+- **Cu mașina:** parcările din Piața Mareșal Foch, Piața 700 sau Piața Iancu Huniade (4 min pe jos); TimPark se plătește doar până la 20:00.
+- **Transport în comun:** tramvaiele 1 și 2 (stația Piața Libertății, 2 min pe jos); troleibuzele 11, 14, 18 și autobuzele 13, E4b (stația Piața 700, 4-6 min); troleibuzul 17 și autobuzele E2, E6 (stația Piața Mărăști, 5-6 min).
+- **Pe jos:** 2 min din Piața Libertății, 4 min din Piața Unirii sau de la Operă, 20 min din zona UVT.
 
 **Informații adiționale:**
 - **Limba ședinței:** Ultima miercuri din fiecare lună se desfășoară integral în engleză.
@@ -86,38 +86,51 @@ INFORMAȚII CLUB:
 - Nume: Timișoara Toastmasters, Club #1269633
 - Parte din rețeaua internațională Toastmasters International (14.000+ cluburi în 150+ țări)
 - Motto: "Where Leaders Are Made!"
-- Activ de 17+ ani, 200+ membri de-a lungul timpului, 1.200+ discursuri susținute, 30+ premii de excelență
+- Fondat în 2008 (18 ani de activitate), peste 1.500 de discursuri susținute, peste 50 de premii și distincții
 - Misiune: dezvoltarea abilităților de vorbit în public și leadership
 
 ȘEDINȚE:
 - Zi: în fiecare Miercuri
 - Ora: 19:30 - 21:00
-- Locație: Cowork The Office, Etajul 2, Clădirea BCR, Calea Aradului nr. 11, Timișoara
-- Maps: https://maps.app.goo.gl/DVs13RVEuvLN1zsZ7
+- Locație: Zbor Hub, Etajul 2, Strada Vasile Alecsandri nr. 1, Timișoara
+- Maps: https://www.google.com/maps/search/?api=1&query=Zbor+Hub%2C+Strada+Vasile+Alecsandri+1%2C+Timi%C8%99oara
 - IMPORTANT: TOATE ședințele sunt în ROMÂNĂ, cu SINGURA excepție a ultimei miercuri din fiecare lună, care se desfășoară integral în ENGLEZĂ
 - La o ședință obișnuită sunt între 20 și 50 de persoane
 
 CUM AJUNGI:
-Pentru orice întrebare despre traseu/direcții, RECOMANDĂ ÎNTOTDEAUNA deschiderea Google Maps pentru ruta exactă de la locația utilizatorului: [Google Maps](https://maps.app.goo.gl/DVs13RVEuvLN1zsZ7). Apoi completează cu detaliile de mai jos ca informație suplimentară.
+Pentru orice întrebare despre traseu/direcții, RECOMANDĂ ÎNTOTDEAUNA deschiderea Google Maps pentru ruta exactă de la locația utilizatorului: [Google Maps](https://www.google.com/maps/search/?api=1&query=Zbor+Hub%2C+Strada+Vasile+Alecsandri+1%2C+Timi%C8%99oara). Apoi completează cu detaliile de mai jos ca informație suplimentară.
 
 Cu mașina:
-- Parcare gratuită lângă clădire: Calea Aradului 1a
-- Parcare cu plată: în incinta Iulius Town
+- Piața Mareșal Foch (4 min pe jos): https://www.google.com/maps/search/?api=1&query=45.75510%2C21.23017
+- Parcarea Piața 700 (4 min pe jos): https://maps.app.goo.gl/KpQ5cfczb6wYHihA9
+- Piața Iancu Huniade (4 min pe jos): https://www.google.com/maps/search/?api=1&query=45.75376%2C21.22691
+- Strada Carol Telbisz, locuri TimPark pe stradă (4 min pe jos): https://www.google.com/maps/search/?api=1&query=45.75432%2C21.22918
+- Parcare cu plată pe Strada Paris (7 min pe jos): https://maps.app.goo.gl/eXEuuDajGUEFrnid8
+- Taxare TimPark în zona centrală: luni-vineri 08:00-20:00, deci la ședința de miercuri plătești doar până la 20:00, după care parcarea e gratuită.
 
-Transport în comun:
-- Stația Piața Consiliul Europei
-- Linia E2 (expres), troleibuzele 14, 17, 18
-- Program complet pe linie: [E2](https://stpt.ro/E2/), [14](https://stpt.ro/14-2/), [17](https://stpt.ro/17-2/), [18](https://stpt.ro/18-2/)
-- Stații pe rută (folosește-le ca să identifici cea mai apropiată stație de zona menționată de utilizator, toate merg spre stația finală Consiliul Europei):
+Transport în comun (toate stațiile de mai jos sunt la cel mult ~7 minute pe jos de Zbor Hub):
+- Piața Libertății (2 min pe jos): tramvaiele 1, 2 și 5, autobuzul 5c
+- Piața 700 (4-6 min pe jos): tramvaiele 4 și 7, troleibuzele 11, 14, 18, autobuzele 13 și E4b
+- Piața Mărăști (5-6 min pe jos): troleibuzele 11, 14, 17, 18, autobuzele E2 și E6
+- Piața Huniade / Bd. I.C. Brătianu (5 min pe jos): troleibuzul 16
+- Oituz și Hector/Bastion (~7 min pe jos): troleibuzul 17, autobuzele E2, E4b, E6
+- Program complet pe linie: [smtt.ro](https://smtt.ro/retea-transport-public/)
+- Stații pe rutele E2, 14, 17, 18 (folosește-le ca să identifici cea mai apropiată stație de zona menționată de utilizator; toate duc spre Piața 700 / Piața Mărăști):
   - E2: Aumovio, AEM, Bd. Sudului, Spitalul Județean, Sala C. Jude, Complexul Studențesc, Parcul Copiilor, Hector (Bastion), Oituz / Holdelor, Stuparilor, Gara de Est, Dedeman, Dacia Service
   - 14: Gh. Barițiu, St. Gării, Gara de Nord, Jiul, Regina Maria, Piața 700, Mărăști / Ion Ionescu, Sf. Ap. Petru și Pavel, Pomiculturii, Divizia 9, Cimitirul Eroilor
   - 17: Arena Aqua, V. Economu, Renașterii, Samuil Micu, Badea Cârțan, Poliția TM, Au. Popovici, Oituz / USVT, U.T.T., Liège, Dacia Service
   - 18: Gh. Barițiu, St. Gării, Gara de Nord, Jiul, Regina Maria, Piața 700, Mărăști / USVT, U.T.T., Liège PV, Liège Torontalului, Miresei
 
 Pe jos:
-- Iulius Town: 5 minute
-- Piața Unirii: 15 minute
-- UVT / UPT: 30 minute
+- Piața Libertății: 2 minute
+- Piața Unirii: 4 minute
+- Opera / Piața Victoriei: 4 minute
+- Politehnica (UPT, Rectorat): 6 minute
+- Bastionul Theresia: 8 minute
+- Catedrala Mitropolitană: 10 minute
+- UVT: 20 minute
+- Iulius Town: 22 minute
+- Gara de Nord: 25 minute
 
 Ride sharing:
 - Uber și Bolt, ambele cu deep link direct către adresă (butoanele sunt pe pagina de Contact)
@@ -171,7 +184,7 @@ CLUB VALUES (EN):
 
 CUM ARATĂ O SEARĂ (structura unei ședințe):
 - Partea 1 - Discursuri pregătite: membrii susțin discursuri din programul Pathways, cu obiective clare de comunicare. De la discursuri introductive la prezentări complexe cu date și argumente.
-- Partea 2 - Table Topics (discursuri improvizate): primești un subiect pe loc și ai 1-2 minute să vorbești despre el. Dezvoltă gândirea rapidă și spontaneitatea.
+- Partea 2 - Table Topics (discursuri improvizate): primești un subiect pe loc și ai 2 minute să vorbești despre el. Dezvoltă gândirea rapidă și spontaneitatea.
 - Ultima parte - Feedback structurat: fiecare discurs primește feedback detaliat de la un evaluator desemnat - ce a mers bine și ce poate fi îmbunătățit.
 
 CELE 8 COMPONENTE ALE SISTEMULUI TOASTMASTERS:
@@ -186,7 +199,7 @@ CELE 8 COMPONENTE ALE SISTEMULUI TOASTMASTERS:
 
 CE FACEM LA ȘEDINȚE:
 - Discursuri pregătite (membri susțin discursuri din programul Pathways)
-- Table Topics: discursuri improvizate de 1-2 minute pe un subiect dat pe loc
+- Table Topics: discursuri improvizate de 2 minute pe un subiect dat pe loc
 - Evaluări constructive: fiecare discurs primește feedback detaliat
 - Roluri speciale: Moderator (Toastmaster of the Evening), Cronometror, Ah-Counter, Evaluator de gramatică etc.
 
@@ -226,14 +239,13 @@ Timișoara Toastmasters este primul club Toastmasters înființat în România. 
 RECENZII REALE DE LA MEMBRI:
 - "Toastmasters este locul unde am învățat că este normal să greșești atât ca lider, cât și ca vorbitor în public. Important este să perseverezi." - Argint Dragoș
 - "Am participat la prima mea întâlnire... am găsit evenimentul întâmplător pe Facebook. Acum abia aștept următoarele! Am plecat cu o mulțime de informații folositoare și cu o altă energie." - Teliban Bianca
-- "Recomand cu drag tuturor celor care doresc să se dezvolte într-un nucleu foarte bun!" - Sîrbu Silvia
 
 INSTRUCȚIUNI SPECIALE RĂSPUNSURI:
 - Când răspunzi la "Pot veni gratuit?" sau întrebări despre costul vizitei: menționează cele 10 ședințe gratuite neobligatorii, iar la final adaugă CTA clar: "Rezervă-ți locul la [prima ședință gratuită](https://timisoaratoastmasters.ro/contact) 🎟️"
 - Când răspunzi la "Cât costă membralitatea?" sau întrebări despre preț: prezintă costul clar (100 lei taxa o dată + 500 lei/6 luni), explică valoarea, apoi adaugă: "Începe cu cele 10 ședințe gratuite - [înregistrează-te aici](https://timisoaratoastmasters.ro/contact) 👋"
 
 REGULI ABSOLUTE:
-- Când cineva întreabă generic cum să ajungă / despre direcții, fără să menționeze o zonă anume, trimite-l ÎNTOTDEAUNA mai întâi către [Google Maps](https://maps.app.goo.gl/DVs13RVEuvLN1zsZ7) pentru ruta exactă de la locația lui, apoi adaugă detaliile de parcare/transport/pe jos ca informație suplimentară. Dacă utilizatorul menționează o zonă/locație specifică, urmează în schimb regula din secțiunea 5B.
+- Când cineva întreabă generic cum să ajungă / despre direcții, fără să menționeze o zonă anume, trimite-l ÎNTOTDEAUNA mai întâi către [Google Maps](https://www.google.com/maps/search/?api=1&query=Zbor+Hub%2C+Strada+Vasile+Alecsandri+1%2C+Timi%C8%99oara) pentru ruta exactă de la locația lui, apoi adaugă detaliile de parcare/transport/pe jos ca informație suplimentară. Dacă utilizatorul menționează o zonă/locație specifică, urmează în schimb regula din secțiunea 5B.
 - NU folosi NICIODATĂ liniuța em (—) sau en (–). Complet interzise.
 - Răspunde DOAR la întrebări despre club, Toastmasters, vorbit în public sau dezvoltare personală.
 - Dacă nu știi ceva specific, îndrumă utilizatorul: [Facebook](https://www.facebook.com/timisoara.toastmasters), [WhatsApp](https://chat.whatsapp.com/B7t3hyfuaZFIu7dw23QIRH) sau [formular de contact](https://timisoaratoastmasters.ro/contact).
@@ -245,8 +257,8 @@ REGULI ABSOLUTE:
 // ═══════════════════════════════════════════════════════════════
 //  STAȚII pe rutele E2 / 14 / 17 / 18, folosite pentru a găsi
 //  cea mai apropiată stație de zona menționată de utilizator.
-//  Nu include stația finală (Piața Consiliul Europei) - aceea e
-//  mereu destinația, nu o stație candidată de urcare.
+//  Nu include stațiile de lângă sediu (Piața 700, Piața Mărăști,
+//  Oituz, Hector/Bastion) - acolo cobori, nu urci.
 // ═══════════════════════════════════════════════════════════════
 const STOPS = [
   { name: 'Aumovio', lines: ['E2'] },
@@ -256,8 +268,6 @@ const STOPS = [
   { name: 'Sala C. Jude', lines: ['E2'] },
   { name: 'Complexul Studențesc', lines: ['E2'] },
   { name: 'Parcul Copiilor', lines: ['E2'] },
-  { name: 'Hector (Bastion)', lines: ['E2'] },
-  { name: 'Oituz', lines: ['E2', '17'] },
   { name: 'Holdelor', lines: ['E2'] },
   { name: 'Stuparilor', lines: ['E2'] },
   { name: 'Gara de Est', lines: ['E2'] },
@@ -268,8 +278,6 @@ const STOPS = [
   { name: 'Gara de Nord', lines: ['14', '18'] },
   { name: 'Jiul', lines: ['14', '18'] },
   { name: 'Regina Maria', lines: ['14', '18'] },
-  { name: 'Piața 700', lines: ['14', '18'] },
-  { name: 'Mărăști', lines: ['14', '18'] },
   { name: 'Ion Ionescu', lines: ['14'] },
   { name: 'Sf. Ap. Petru și Pavel', lines: ['14'] },
   { name: 'Pomiculturii', lines: ['14'] },
@@ -290,7 +298,7 @@ const STOPS = [
   { name: 'Miresei', lines: ['18'] },
 ];
 
-const VENUE_ADDRESS = 'Calea Aradului nr. 11, Timișoara';
+const VENUE_ADDRESS = 'Strada Vasile Alecsandri nr. 1, Timișoara';
 
 const TOOLS = [
   {
