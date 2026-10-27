@@ -47,6 +47,23 @@
       .card-hover { transition: none; }
     }
     .gradient-hero { background: linear-gradient(135deg, #002d47 0%, #004165 55%, #003555 100%); }
+    /* Dark backdrop, same as the gallery: navy from the navbar down, soft glow, dot grid, thin circles */
+    .tm-dark { position: relative; background: linear-gradient(to bottom, #00151f 0, #00151f 55%, #002d47 100%); }
+    .tm-backdrop {
+      position: absolute; left: 0; right: 0; top: 0; height: 100%; max-height: 1200px; pointer-events: none; overflow: hidden;
+      background:
+        radial-gradient(ellipse 55% 32% at 50% 22%, rgba(0,65,101,.55), transparent 72%),
+        radial-gradient(ellipse 30% 28% at 88% 22%, rgba(242,223,116,.05), transparent 70%),
+        radial-gradient(ellipse 30% 28% at 8% 40%, rgba(0,65,101,.25), transparent 70%),
+        linear-gradient(to bottom, #001c2d 0, #001c2d 64px, rgba(0,21,31,0) 100%);
+    }
+    .tm-backdrop::before {
+      content: ""; position: absolute; inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,.09) 1px, transparent 1.3px);
+      background-size: 22px 22px;
+      -webkit-mask-image: radial-gradient(ellipse 70% 55% at 50% 12%, #000 15%, transparent 72%);
+              mask-image: radial-gradient(ellipse 70% 55% at 50% 12%, #000 15%, transparent 72%);
+    }
     .gradient-dark { background: linear-gradient(135deg, #002d47 0%, #004165 100%); }
     .nav-link { position: relative; }
     .nav-link::after {
@@ -243,51 +260,50 @@
 </div>
 
 <!-- BLOG:MAIN:START (paginile de articol generate de scripts/build-blog.mjs înlocuiesc tot până la BLOG:MAIN:END) -->
+<div class="tm-dark">
+<div class="tm-backdrop" aria-hidden="true">
+  <div class="absolute top-[-140px] right-[-120px] w-[520px] h-[520px] rounded-full border border-gold/10"></div>
+  <div class="absolute top-[-60px] right-[-40px] w-[360px] h-[360px] rounded-full border border-white/5"></div>
+  <div class="absolute top-[260px] left-[-180px] w-[440px] h-[440px] rounded-full border border-gold/5"></div>
+</div>
 <!-- ════════════════════ HERO BLOG ════════════════════ -->
-<div class="bg-gray-50 pt-24 lg:pt-28 pb-2 px-5 lg:px-8 text-center">
-  <div class="max-w-3xl mx-auto">
-    <span class="inline-block rounded-full bg-maroon/5 border border-maroon/15 text-maroon text-[11px] font-bold uppercase tracking-[.12em] px-4 py-1.5 mb-4" data-i18n="blog-eyebrow">Articole &amp; idei</span>
-    <h1 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-primary-dark tracking-tight mb-3 leading-tight" data-i18n="blog-h1">
-      Gânduri, tehnici și povești de pe scenă
-    </h1>
-    <p class="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed" data-i18n="blog-p">
-      Resurse practice despre vorbitul în public, leadership și experiențele membrilor noștri.
-    </p>
-  </div>
+<div class="relative pt-28 lg:pt-36 pb-4 lg:pb-6 px-5 lg:px-8 text-center animate-in" style="animation-delay:.05s">
+  <h1 class="font-heading text-[2.1rem] md:text-5xl font-bold text-white leading-[1.1] max-w-4xl mx-auto mb-0" data-i18n="blog-h1">Gânduri, tehnici și povești <span class="text-gold">de pe scenă</span></h1>
 </div>
 
 <!-- ════════════════════ ARTICOLE ════════════════════ -->
-<section id="main-content" tabindex="-1" class="pt-6 pb-14 lg:pb-20 bg-gray-50">
+<section id="main-content" tabindex="-1" class="relative pt-6 pb-14 lg:pb-20">
   <div class="max-w-7xl mx-auto px-5 lg:px-8">
 
     <!-- Stare goală: niciun articol publicat încă -->
-    <div id="blog-soon" class="hidden max-w-xl mx-auto text-center rounded-2xl bg-white border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.06)] px-6 py-10 mb-6">
-      <span class="inline-flex w-12 h-12 rounded-full items-center justify-center text-maroon mb-4" style="background:#f3f5f5;box-shadow:0 0 0 2px #fff,0 0 0 3px #dce2e1">
+    <div id="blog-soon" class="hidden max-w-xl mx-auto mt-4 text-center rounded-2xl border border-[#4f7ba3]/20 bg-[#123a5e]/35 backdrop-blur-sm px-6 py-10 mb-6">
+      <span class="inline-flex w-12 h-12 rounded-xl items-center justify-center text-gold mb-4 border border-white/15 bg-white/5">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
       </span>
-      <p class="font-heading font-bold text-primary-dark text-xl" data-i18n="blog-soon-title">Primele articole apar în curând</p>
-      <p class="text-gray-500 text-sm leading-relaxed mt-2" data-i18n="blog-soon-text">Membrii clubului pregătesc ghiduri, povești și noutăți despre vorbitul în public. Până atunci, te așteptăm la o ședință.</p>
+      <p class="font-heading font-bold text-white text-xl" data-i18n="blog-soon-title">Primele articole apar în curând</p>
+      <p class="text-white/65 text-sm leading-relaxed mt-2 text-center" data-i18n="blog-soon-text">Membrii clubului pregătesc ghiduri, povești și noutăți despre vorbitul în public. Până atunci, te așteptăm la o ședință.</p>
     </div>
 
     <!-- Categorii -->
-    <div id="blog-filters" class="flex sm:flex-wrap sm:justify-center gap-2 mb-8 overflow-x-auto -mx-5 px-5 sm:mx-0 sm:px-0 pb-1 scrollbar-hide" role="tablist" aria-label="Categorii" data-i18n-aria="blog-filters-aria"></div>
+    <div id="blog-filters" class="flex sm:flex-wrap sm:justify-center gap-2 mb-10 lg:mb-12 overflow-x-auto -mx-5 px-5 sm:mx-0 sm:px-0 pb-1 scrollbar-hide" role="tablist" aria-label="Categorii" data-i18n-aria="blog-filters-aria"></div>
 
     <!-- Articol recomandat -->
     <article id="blog-featured" class="mb-6 lg:mb-8"></article>
 
     <!-- Grid articole -->
     <div id="blog-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6"></div>
-    <p id="blog-empty" class="hidden text-center text-gray-500 py-10" data-i18n="blog-empty">Încă nu avem articole în această categorie.</p>
+    <p id="blog-empty" class="hidden text-center text-white/55 py-10" data-i18n="blog-empty">Încă nu avem articole în această categorie.</p>
 
     <!-- Îndemn -->
-    <div class="mt-12 lg:mt-16 rounded-2xl bg-white border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.06)] px-6 py-6 sm:px-10 sm:py-8 flex flex-col md:flex-row md:items-center md:justify-between gap-5 text-center md:text-left">
-      <div>
-        <p class="font-heading font-bold text-primary text-xl sm:text-2xl" data-i18n="blog-cta-title">Cel mai bine înveți exersând</p>
-        <p class="text-gray-500 text-sm sm:text-base mt-1" data-i18n="blog-cta-text">Vino ca invitat la o ședință, miercuri seara. Participarea e gratuită.</p>
+    <div class="mt-12 lg:mt-16 relative overflow-hidden rounded-3xl border border-[#4f7ba3]/20 bg-[#123a5e]/35 px-6 py-10 lg:px-12 lg:py-12 flex flex-col lg:flex-row items-center justify-between gap-7 text-center lg:text-left">
+      <div class="absolute top-[-120px] right-[-60px] w-80 h-80 rounded-full border border-gold/10 pointer-events-none"></div>
+      <div class="relative">
+        <p class="font-heading text-2xl md:text-3xl font-bold text-white mb-2" data-i18n="blog-cta-title">Cel mai bine înveți <span class="text-gold">exersând</span></p>
+        <p class="text-white/70 mb-0 max-w-xl" style="text-align:inherit" data-i18n="blog-cta-text">Vino ca invitat la o ședință, miercuri seara. Participarea e gratuită.</p>
       </div>
-      <a href="contact" class="shrink-0 inline-flex items-center justify-center gap-2 rounded-xl bg-maroon hover:bg-maroon-light text-white font-bold text-sm px-6 py-3.5 transition-colors">
+      <a href="contact" class="relative shrink-0 inline-flex items-center gap-2.5 rounded-xl border border-gold/60 hover:border-gold bg-[#123a5e]/35 hover:bg-[#123a5e]/55 text-white font-bold py-3 px-5 shadow-[0_0_24px_rgba(242,223,116,.15)] transition-colors text-sm lg:text-base whitespace-nowrap">
         <span data-i18n="blog-cta-btn">Alege o ședință</span>
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6l6 6-6 6"/></svg>
+        <svg class="w-[18px] h-[18px] text-gold" fill="none" stroke="currentColor" stroke-width="4" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6l6 6-6 6"/></svg>
       </a>
     </div>
   </div>
@@ -319,13 +335,13 @@
 
     const author = p => `
       <div class="flex items-center gap-2.5 min-w-0">
-        <span class="w-8 h-8 rounded-full overflow-hidden bg-gray-200 text-gray-400 flex-shrink-0" aria-hidden="true"><svg class="w-full h-full" viewBox="0 0 44 44" fill="currentColor"><circle cx="22" cy="17" r="8"/><path d="M6 44c0-9.4 7.2-15 16-15s16 5.6 16 15z"/></svg></span>
+        <span class="w-8 h-8 rounded-full overflow-hidden bg-white/10 text-white/40 flex-shrink-0" aria-hidden="true"><svg class="w-full h-full" viewBox="0 0 44 44" fill="currentColor"><circle cx="22" cy="17" r="8"/><path d="M6 44c0-9.4 7.2-15 16-15s16 5.6 16 15z"/></svg></span>
         <span class="min-w-0">
-          <span class="block text-xs font-semibold text-gray-900 truncate">${esc(p.author || T('Echipa clubului', 'Club team'))}</span>
-          <span class="block text-[11px] text-gray-400">${fmtDate(p.date)}</span>
+          <span class="block text-xs font-semibold text-white truncate">${esc(p.author || T('Echipa clubului', 'Club team'))}</span>
+          <span class="block text-[11px] text-white/50">${fmtDate(p.date)}</span>
         </span>
       </div>`;
-    const readMore = cls => `<span class="${cls} inline-flex items-center gap-1 text-xs font-bold text-maroon">${T('Citește', 'Read')}<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6l6 6-6 6"/></svg></span>`;
+    const readMore = cls => `<span class="${cls} inline-flex items-center gap-1 text-xs font-bold text-gold">${T('Citește', 'Read')}<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6l6 6-6 6"/></svg></span>`;
 
     function render() {
       const none = POSTS.length === 0;
@@ -335,7 +351,7 @@
       document.getElementById('blog-filters').innerHTML = CATS.map(c => {
         const on = c.id === active;
         return `<button type="button" role="tab" aria-selected="${on}" onclick="blogFilter('${c.id}')"
-          class="flex-shrink-0 whitespace-nowrap rounded-full px-4 py-2 text-sm font-semibold transition-colors ${on ? 'bg-primary text-white shadow-sm' : 'bg-white text-gray-600 border border-gray-200 hover:border-primary/40 hover:text-primary'}">${c[lang()]}</button>`;
+          class="flex-shrink-0 whitespace-nowrap rounded-xl px-4 py-2 text-sm font-semibold transition-colors border ${on ? 'bg-white/[.12] border-white/15 text-white' : 'bg-[#123a5e]/35 border-[#4f7ba3]/25 text-white/65 hover:text-white'}">${c[lang()]}</button>`;
       }).join('');
 
       const list = POSTS.filter(p => active === 'all' || p.cat === active);
@@ -347,18 +363,18 @@
       fEl.innerHTML = feat ? (() => {
         const d = txt(feat);
         return `
-          <a href="${url(feat)}" class="group grid lg:grid-cols-[5fr_7fr] rounded-2xl overflow-hidden bg-white border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.10)] transition-shadow">
-            <div class="relative min-h-[220px] sm:min-h-[280px] bg-gray-100">
+          <a href="${url(feat)}" class="group grid lg:grid-cols-[5fr_7fr] rounded-2xl overflow-hidden border border-[#4f7ba3]/20 bg-[#123a5e]/35 hover:bg-[#123a5e]/55 hover:border-white/25 shadow-lg shadow-black/30 transition-colors">
+            <div class="relative min-h-[220px] sm:min-h-[280px] bg-[#0b2a40]">
               ${feat.cover ? `<img src="${esc(img(feat.cover, 900))}" alt="" class="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" />` : ''}
-              <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/50 to-transparent"></div>
-              <span class="absolute top-4 left-4 rounded-full bg-gold text-primary-dark text-[10px] font-extrabold uppercase tracking-wider px-3 py-1">${T('Recomandat', 'Featured')}</span>
+              <div class="absolute inset-0 bg-gradient-to-t from-[#001c2d]/60 to-transparent"></div>
+              <span class="absolute top-4 left-4 rounded-lg bg-gold text-primary-dark text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1">${T('Recomandat', 'Featured')}</span>
             </div>
             <div class="p-6 sm:p-8 lg:p-10 flex flex-col">
-              <div class="flex flex-wrap items-center gap-2 text-xs font-bold uppercase tracking-wider text-maroon">
-                <span>${catLabel(feat.cat)}</span><span class="text-gray-300">•</span><span class="text-gray-500">${feat.min} min ${T('lectură', 'read')}</span>
+              <div class="flex flex-wrap items-center gap-2 text-xs font-bold uppercase tracking-wider text-gold">
+                <span>${catLabel(feat.cat)}</span><span class="text-white/25">•</span><span class="text-white/55">${feat.min} min ${T('lectură', 'read')}</span>
               </div>
-              <h2 class="font-heading font-extrabold text-primary-dark text-2xl sm:text-3xl leading-tight mt-3 group-hover:text-primary">${esc(d.t)}</h2>
-              <p class="text-gray-500 text-base leading-relaxed mt-3">${esc(d.x)}</p>
+              <h2 class="font-heading font-extrabold text-white text-2xl sm:text-3xl leading-tight mt-3 group-hover:text-gold transition-colors">${esc(d.t)}</h2>
+              <p class="text-white/65 text-base leading-relaxed mt-3">${esc(d.x)}</p>
               <div class="mt-auto pt-6 flex items-center justify-between gap-4">
                 ${author(feat)}
                 ${readMore('flex-shrink-0 text-sm')}
@@ -370,16 +386,16 @@
       document.getElementById('blog-grid').innerHTML = rest.map(p => {
         const d = txt(p);
         return `
-          <a href="${url(p)}" class="group flex flex-col rounded-2xl overflow-hidden bg-white border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.10)] transition-shadow">
-            <div class="relative bg-gray-100" style="aspect-ratio:16/9">
+          <a href="${url(p)}" class="group flex flex-col rounded-2xl overflow-hidden border border-[#4f7ba3]/20 bg-[#123a5e]/35 hover:bg-[#123a5e]/55 hover:border-white/25 shadow-lg shadow-black/30 transition-colors">
+            <div class="relative bg-[#0b2a40]" style="aspect-ratio:16/9">
               ${p.cover ? `<img src="${esc(img(p.cover, 600))}" alt="" class="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" />` : ''}
-              <span class="absolute bottom-3 left-3 rounded-md bg-white/95 text-maroon text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 shadow-sm">${catLabel(p.cat)}</span>
+              <span class="absolute bottom-3 left-3 rounded-lg bg-[#001c2d]/70 backdrop-blur-md border border-white/15 text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 shadow-sm">${catLabel(p.cat)}</span>
             </div>
             <div class="p-5 flex flex-col flex-1">
-              <div class="text-[11px] font-semibold text-gray-400 mb-2">${p.min} min ${T('lectură', 'read')}</div>
-              <h3 class="font-heading font-bold text-gray-900 text-lg leading-snug group-hover:text-primary">${esc(d.t)}</h3>
-              <p class="text-gray-500 text-sm leading-relaxed mt-2 mb-5">${esc(d.x)}</p>
-              <div class="mt-auto pt-4 flex items-center justify-between gap-3 border-t border-gray-100">
+              <div class="text-[11px] font-semibold text-white/50 mb-2">${p.min} min ${T('lectură', 'read')}</div>
+              <h3 class="font-heading font-bold text-white text-lg leading-snug group-hover:text-gold transition-colors">${esc(d.t)}</h3>
+              <p class="text-white/65 text-sm leading-relaxed mt-2 mb-5">${esc(d.x)}</p>
+              <div class="mt-auto pt-4 flex items-center justify-between gap-3 border-t border-white/10">
                 ${author(p)}
                 ${readMore('flex-shrink-0')}
               </div>
@@ -405,10 +421,11 @@
   })();
   </script>
 </section>
+</div>
 <!-- BLOG:MAIN:END -->
 
 <!-- ════════════════════ FOOTER ════════════════════ -->
-<footer class="bg-gradient-to-b from-[#002d47] to-[#001a2a] border-t border-white/5 pt-8 pb-6 lg:pt-14 lg:pb-6">
+<footer class="bg-gradient-to-b from-[#002d47] to-[#001a2a] pt-8 pb-6 lg:pt-14 lg:pb-6">
   <div class="max-w-7xl mx-auto px-5 lg:px-8">
     <div class="grid grid-cols-2 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,0.7fr)_minmax(0,0.95fr)_minmax(0,1.25fr)] gap-x-6 gap-y-6 lg:gap-10 items-start lg:items-stretch pb-8 border-b border-white/10">
 

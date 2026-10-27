@@ -76,40 +76,52 @@ const PROSE_CSS = `
     .tm-prose hr { border:0; border-top:1px solid #e5e7eb; margin:2.5em 0; }
     .tm-prose code { background:#f3f4f6; padding:.1em .35em; border-radius:.3em; font-size:.9em; }`;
 
+// Dark header (same backdrop as /blog and /galerie), article text on white for reading.
 function articleMain(p) {
   const cover = imgUrl(p.cover, 1400);
   return `<!-- BLOG:MAIN:START -->
-<main id="main-content" tabindex="-1" class="bg-gray-50 pt-24 lg:pt-28 pb-14 lg:pb-20">
-  <article class="max-w-3xl mx-auto px-5 lg:px-8">
-    <a href="/blog" class="inline-flex items-center gap-1.5 text-sm font-semibold text-gray-500 hover:text-primary transition-colors">
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 12H5m6 6l-6-6 6-6"/></svg>
-      <span data-i18n="blog-back">Toate articolele</span>
-    </a>
-    <div class="mt-6 flex flex-wrap items-center gap-2 text-xs font-bold uppercase tracking-wider text-maroon">
-      <span>${esc(CATS[p.category])}</span><span class="text-gray-300">•</span><span class="text-gray-500">${p.minutes} min lectură</span>
+<main id="main-content" tabindex="-1" class="bg-white">
+  <header class="relative overflow-hidden pt-24 lg:pt-28 ${cover ? 'pb-28 sm:pb-40 lg:pb-48' : 'pb-12 lg:pb-16'}" style="background:#00151f">
+    <div class="tm-backdrop" aria-hidden="true">
+      <div class="absolute top-[-140px] right-[-120px] w-[520px] h-[520px] rounded-full border border-gold/10"></div>
+      <div class="absolute top-[-60px] right-[-40px] w-[360px] h-[360px] rounded-full border border-white/5"></div>
+      <div class="absolute top-[260px] left-[-180px] w-[440px] h-[440px] rounded-full border border-gold/5"></div>
     </div>
-    <h1 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-primary-dark tracking-tight leading-tight mt-3">${esc(p.title)}</h1>
-    ${p.excerpt ? `<p class="text-gray-600 text-lg leading-relaxed mt-4">${esc(p.excerpt)}</p>` : ''}
-    <div class="mt-6 flex items-center gap-3">
-      <span class="w-10 h-10 rounded-full overflow-hidden bg-gray-200 text-gray-400 flex-shrink-0" aria-hidden="true"><svg class="w-full h-full" viewBox="0 0 44 44" fill="currentColor"><circle cx="22" cy="17" r="8"/><path d="M6 44c0-9.4 7.2-15 16-15s16 5.6 16 15z"/></svg></span>
-      <span>
-        <span class="block text-sm font-semibold text-gray-900">${esc(p.author || 'Echipa clubului')}</span>
-        <time class="block text-xs text-gray-500" datetime="${isoDate(p.date)}">${roDate(p.date)}</time>
-      </span>
+    <div class="relative max-w-3xl mx-auto px-5 lg:px-8">
+      <a href="/blog" class="inline-flex items-center gap-1.5 text-sm font-semibold text-white/60 hover:text-white transition-colors">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 12H5m6 6l-6-6 6-6"/></svg>
+        <span data-i18n="blog-back">Toate articolele</span>
+      </a>
+      <div class="mt-6 flex flex-wrap items-center gap-2 text-xs font-bold uppercase tracking-wider text-gold">
+        <span>${esc(CATS[p.category])}</span><span class="text-white/25">•</span><span class="text-white/55">${p.minutes} min lectură</span>
+      </div>
+      <h1 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight mt-3">${esc(p.title)}</h1>
+      ${p.excerpt ? `<p class="text-white/70 text-lg leading-relaxed mt-4">${esc(p.excerpt)}</p>` : ''}
+      <div class="mt-6 flex items-center gap-3">
+        <span class="w-10 h-10 rounded-full overflow-hidden bg-white/10 text-white/40 flex-shrink-0" aria-hidden="true"><svg class="w-full h-full" viewBox="0 0 44 44" fill="currentColor"><circle cx="22" cy="17" r="8"/><path d="M6 44c0-9.4 7.2-15 16-15s16 5.6 16 15z"/></svg></span>
+        <span>
+          <span class="block text-sm font-semibold text-white">${esc(p.author || 'Echipa clubului')}</span>
+          <time class="block text-xs text-white/55" datetime="${isoDate(p.date)}">${roDate(p.date)}</time>
+        </span>
+      </div>
     </div>
-    ${cover ? `<figure class="mt-8 rounded-2xl overflow-hidden bg-gray-100" style="aspect-ratio:16/9"><img src="${esc(cover)}" alt="" class="w-full h-full object-cover" decoding="async" /></figure>` : ''}
+  </header>
+
+  <article class="max-w-3xl mx-auto px-5 lg:px-8 pb-14 lg:pb-20 ${cover ? '' : 'pt-10'}">
+    ${cover ? `<figure class="relative -mt-20 sm:-mt-32 lg:-mt-40 rounded-2xl overflow-hidden bg-[#0b2a40] shadow-2xl shadow-black/30 ring-1 ring-black/5" style="aspect-ratio:16/9"><img src="${esc(cover)}" alt="" class="w-full h-full object-cover" decoding="async" /></figure>` : ''}
     <div class="tm-prose mt-8">
 ${p.html}
     </div>
 
-    <div class="mt-12 rounded-2xl bg-white border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.06)] px-6 py-6 sm:px-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5 text-center sm:text-left">
-      <div>
-        <p class="font-heading font-bold text-primary text-xl" data-i18n="blog-cta-title">Cel mai bine înveți exersând</p>
-        <p class="text-gray-500 text-sm mt-1" data-i18n="blog-cta-text">Vino ca invitat la o ședință, miercuri seara. Participarea e gratuită.</p>
+    <div class="mt-12 relative overflow-hidden rounded-3xl px-6 py-8 sm:px-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 text-center sm:text-left" style="background:linear-gradient(135deg,#001c2d 0%,#00253a 100%)">
+      <div class="absolute top-[-120px] right-[-60px] w-80 h-80 rounded-full border border-gold/10 pointer-events-none"></div>
+      <div class="relative">
+        <p class="font-heading font-bold text-white text-xl sm:text-2xl" data-i18n="blog-cta-title">Cel mai bine înveți <span class="text-gold">exersând</span></p>
+        <p class="text-white/70 text-sm mt-1" data-i18n="blog-cta-text">Vino ca invitat la o ședință, miercuri seara. Participarea e gratuită.</p>
       </div>
-      <a href="/contact" class="shrink-0 inline-flex items-center justify-center gap-2 rounded-xl bg-maroon hover:bg-maroon-light text-white font-bold text-sm px-6 py-3.5 transition-colors">
+      <a href="/contact" class="relative shrink-0 inline-flex items-center justify-center gap-2.5 rounded-xl border border-gold/60 hover:border-gold bg-[#123a5e]/35 hover:bg-[#123a5e]/55 text-white font-bold text-sm px-5 py-3 shadow-[0_0_24px_rgba(242,223,116,.15)] transition-colors whitespace-nowrap">
         <span data-i18n="blog-cta-btn">Alege o ședință</span>
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6l6 6-6 6"/></svg>
+        <svg class="w-[18px] h-[18px] text-gold" fill="none" stroke="currentColor" stroke-width="4" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6l6 6-6 6"/></svg>
       </a>
     </div>
   </article>
