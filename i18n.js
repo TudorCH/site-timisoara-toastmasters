@@ -230,7 +230,7 @@
     'val-v4-title':     'Excellence',
     'val-v4-body':      'We consistently strive to exceed expectations by upholding the Toastmasters Promise, innovating and optimizing quality to produce superior service.',
     'achiev-h2':        'The First Toastmasters Club in Romania',
-    'achiev-p1':        'Timișoara Toastmasters is the first Toastmasters club founded in Romania. It started with a group of people who believed effective speaking can be learned, and that the best way is practice, not theory.',
+    'achiev-p1':        'Since 2008, more than 200 people have come through our doors: they arrived nervous and left confident, one speech at a time.',
     'achiev-p2':        '17 years later, over 200 members have come through the club. Some gave their first public speech here. Others went on to lead teams, present at conferences, or become trainers.',
     'achiev-p3':        'Whether you\'re giving your first speech or have years of experience, <strong class="text-maroon">your place is here.</strong>',
     'achiev-s1':        'Years Active',
@@ -268,7 +268,7 @@
     'ben-c8-tag':       'Own Curriculum',
     'ben-c8-title':     'Personal Growth',
     'ben-c8-desc':      '<li class="flex items-start gap-1"><span class="text-white/60 flex-shrink-0">·</span>Track tailored to your goals</li><li class="flex items-start gap-1"><span class="text-white/60 flex-shrink-0">·</span>At your own pace, weekly</li><li class="flex items-start gap-1"><span class="text-white/60 flex-shrink-0">·</span>An investment in yourself</li>',
-    'cta-btn1':         'Reserve Your Spot →',
+    'cta-btn1':         'Reserve your spot',
     'cta-btn2':         'View Meeting Schedule',
 
     /* ─ Cookies / Privacy / GDPR page ─ */

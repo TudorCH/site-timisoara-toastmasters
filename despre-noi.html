@@ -105,7 +105,8 @@
     .hero-slide {
       position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
       opacity: 0; transform: scale(1.06);
-      transition: opacity 1s ease, transform 5s ease-out;
+      transition: opacity .8s ease, transform 4s ease-out;
+      object-position: center top; transform-origin: center top;
     }
     .hero-slide.is-active { opacity: 1; transform: scale(1); }
     .hero-dot {
@@ -312,35 +313,34 @@
   <div class="flex-1 px-5 flex flex-col gap-4">
     <!-- Pozele: cardul ocupă spațiul rămas, ca hero-ul să fie exact un ecran -->
     <div id="hero-slider-m" class="relative flex-1 w-full max-w-[420px] mx-auto rounded-3xl overflow-hidden shadow-2xl shadow-black/40 bg-primary-dark" style="min-height:190px;max-height:420px">
-        <img src="Images/hero-mobile.webp" alt="" class="hero-slide is-active" style="object-position:center top" />
-        <img src="https://res.cloudinary.com/dnxcej0q5/image/upload/w_880,h_1100,c_fill,g_auto,q_auto,f_auto/IMG_2583_mjclxi" alt="" class="hero-slide" style="object-position:center top" loading="lazy" />
-        <img src="https://res.cloudinary.com/dnxcej0q5/image/upload/w_880,h_1100,c_fill,g_auto,q_auto,f_auto/IMG_2985_rk0z30" alt="" class="hero-slide" style="object-position:center top" loading="lazy" />
-        <img src="https://res.cloudinary.com/dnxcej0q5/image/upload/w_880,h_1100,c_fill,g_auto,q_auto,f_auto/IMG_0995_gpr80l" alt="" class="hero-slide" style="object-position:center top" loading="lazy" />
-        <img src="https://res.cloudinary.com/dnxcej0q5/image/upload/w_880,h_1100,c_fill,g_auto,q_auto,f_auto/IMG_2266_mvqvde" alt="" class="hero-slide" style="object-position:center top" loading="lazy" />
-        <img src="https://res.cloudinary.com/dnxcej0q5/image/upload/w_880,h_1100,c_fill,g_auto,q_auto,f_auto/696971441_1374827881121585_1234612732339358811_n_xb6evn" alt="" class="hero-slide" style="object-position:center top" loading="lazy" />
-        <img src="https://res.cloudinary.com/dnxcej0q5/image/upload/w_880,h_1100,c_fill,g_auto,q_auto,f_auto/IMG_2600_qcmg3o" alt="" class="hero-slide" style="object-position:center top" loading="lazy" />
+        <img src="https://res.cloudinary.com/dnxcej0q5/image/upload/c_crop,x_274,y_0,w_2736,h_2736/w_1000,h_1000,c_fill,q_auto,f_auto/IMG_7085_uaug5n" alt="" class="hero-slide is-active" />
+        <img src="https://res.cloudinary.com/dnxcej0q5/image/upload/c_crop,x_137,y_0,w_3648,h_3648/w_1000,h_1000,c_fill,q_auto,f_auto/IMG_2405_pjkjvt" alt="" class="hero-slide" loading="lazy" />
+        <img src="https://res.cloudinary.com/dnxcej0q5/image/upload/c_crop,x_0,y_0,w_3470,h_3470/w_1000,h_1000,c_fill,q_auto,f_auto/483B3071_dremuz" alt="" class="hero-slide" loading="lazy" />
+        <img src="https://res.cloudinary.com/dnxcej0q5/image/upload/c_crop,x_0,y_0,w_2400,h_2400/w_1000,h_1000,c_fill,q_auto,f_auto/IMG_1019_l5uw1n" alt="" class="hero-slide" loading="lazy" />
+        <img src="https://res.cloudinary.com/dnxcej0q5/image/upload/c_crop,x_410,y_0,w_3648,h_3648/w_1000,h_1000,c_fill,q_auto,f_auto/IMG_4928_b0ate2" alt="" class="hero-slide" loading="lazy" />
+        <img src="https://res.cloudinary.com/dnxcej0q5/image/upload/c_crop,x_622,y_0,w_2736,h_2736/w_1000,h_1000,c_fill,q_auto,f_auto/IMG_1039_ngnxyo" alt="" class="hero-slide" loading="lazy" />
+        <img src="https://res.cloudinary.com/dnxcej0q5/image/upload/c_crop,x_71,y_100,w_950,h_950/w_1000,h_1000,c_fill,q_auto,f_auto/666485200_1344487134155660_6028880164368544998_n_nj9nek" alt="" class="hero-slide" loading="lazy" />
+        <img src="https://res.cloudinary.com/dnxcej0q5/image/upload/c_crop,x_958,y_0,w_2736,h_2736/w_1000,h_1000,c_fill,q_auto,f_auto/IMG_1037_etxh6u" alt="" class="hero-slide" loading="lazy" />
+        <img src="https://res.cloudinary.com/dnxcej0q5/image/upload/c_crop,x_274,y_0,w_3648,h_3648/w_1000,h_1000,c_fill,q_auto,f_auto/IMG_2550_iggolp" alt="" class="hero-slide" loading="lazy" />
       <div class="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/50 to-transparent pointer-events-none"></div>
       <div class="absolute left-3 bottom-3 flex flex-col items-start gap-1.5 z-10">
         <span class="inline-flex items-center gap-1.5 rounded-full bg-primary-dark/75 backdrop-blur-sm border border-white/15 px-2.5 py-1 text-white text-xs font-semibold shadow-sm"><svg class="w-3.5 h-3.5 text-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span data-i18n="hero-d1">Miercuri 19:30–21:00</span></span>
         <span class="inline-flex items-center gap-1.5 rounded-full bg-primary-dark/75 backdrop-blur-sm border border-white/15 px-2.5 py-1 text-white text-xs font-semibold shadow-sm"><svg class="w-3.5 h-3.5 text-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span data-i18n="hero-d2">Zbor Hub, Timișoara</span></span>
         <span class="inline-flex items-center gap-1.5 rounded-full bg-primary-dark/75 backdrop-blur-sm border border-white/15 px-2.5 py-1 text-white text-xs font-semibold shadow-sm"><svg class="w-3.5 h-3.5 text-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/><path d="M13 5v2M13 17v2M13 11v2"/></svg><span data-i18n="hero-d3">Intrare liberă</span></span>
       </div>
-      <div class="absolute right-4 bottom-4 flex gap-1.5 z-10"><button type="button" class="hero-dot is-active" aria-label="Poza 1"></button><button type="button" class="hero-dot" aria-label="Poza 2"></button><button type="button" class="hero-dot" aria-label="Poza 3"></button><button type="button" class="hero-dot" aria-label="Poza 4"></button><button type="button" class="hero-dot" aria-label="Poza 5"></button><button type="button" class="hero-dot" aria-label="Poza 6"></button><button type="button" class="hero-dot" aria-label="Poza 7"></button></div>
+      <div class="absolute right-4 bottom-4 flex gap-1.5 z-10"><button type="button" class="hero-dot is-active" aria-label="Poza 1"></button><button type="button" class="hero-dot" aria-label="Poza 2"></button><button type="button" class="hero-dot" aria-label="Poza 3"></button><button type="button" class="hero-dot" aria-label="Poza 4"></button><button type="button" class="hero-dot" aria-label="Poza 5"></button><button type="button" class="hero-dot" aria-label="Poza 6"></button><button type="button" class="hero-dot" aria-label="Poza 7"></button><button type="button" class="hero-dot" aria-label="Poza 8"></button><button type="button" class="hero-dot" aria-label="Poza 9"></button></div>
     </div>
 
     <div class="text-center">
       <h1 class="font-heading text-[2.1rem] sm:text-[2.5rem] font-bold text-white leading-[1.1] mb-3 text-balance" data-i18n="hero-h1">
     Primul club Toastmasters<br/><span class="text-gold">din România</span>
     </h1>
-      <p class="text-white/75 text-sm leading-relaxed max-w-md mx-auto text-balance" style="text-align:center" data-i18n="achiev-p1">Timișoara Toastmasters este primul club Toastmasters înființat în România. A început cu un grup de oameni care credeau că abilitatea de a vorbi clar și convingător se poate învăța, iar cel mai bun mod e practica, nu teoria.</p>
+      <p class="text-white/75 text-sm leading-relaxed max-w-md mx-auto text-balance" style="text-align:center" data-i18n="achiev-p1">Din 2008, aici emoțiile de pe scenă se transformă în încredere, discurs cu discurs.</p>
     </div>
 
     <div class="flex flex-col items-center gap-0.5 w-full max-w-sm mx-auto">
-      <a href="contact" class="cta-pulse w-full bg-gold hover:bg-gold-light text-primary font-bold px-8 py-3.5 rounded-xl text-base transition-all duration-200 text-center shadow-lg shadow-gold/30" data-i18n="cta-btn1">Rezervă-ți locul →</a>
-      <a href="contact#main-content" class="inline-flex items-center gap-1.5 text-white/85 hover:text-gold font-semibold px-4 py-2 text-sm transition-colors">
-        <span data-i18n="cta-btn2">Vezi programul ședințelor</span>
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-      </a>
+      <a href="contact" class="w-full inline-flex justify-center items-center gap-2.5 rounded-xl border border-gold/60 hover:border-gold bg-white/5 hover:bg-white/10 backdrop-blur-sm text-white font-bold py-4 shadow-[0_0_24px_rgba(242,223,116,.15)] transition-colors text-base"><span data-i18n="cta-btn1">Rezervă-ți locul</span><svg class="w-[18px] h-[18px] text-gold" fill="none" stroke="currentColor" stroke-width="4" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6l6 6-6 6"/></svg></a>
+      <a href="contact#main-content" class="mt-1.5 w-full inline-flex justify-center items-center gap-2 rounded-xl border border-white/25 hover:border-white/40 bg-white/5 hover:bg-white/10 backdrop-blur-sm text-white font-semibold py-4 transition-colors text-base"><span data-i18n="cta-btn2">Vezi programul ședințelor</span></a>
     </div>
 
     <div class="grid grid-cols-4 gap-2 w-full max-w-md mx-auto">
@@ -370,13 +370,13 @@
   <div class="absolute top-40 right-20 w-80 h-80 rounded-full border border-white/5 pointer-events-none"></div>
   <div class="absolute bottom-0 left-[-60px] w-96 h-96 rounded-full border border-gold/5 pointer-events-none"></div>
 
-  <div class="w-full max-w-7xl mx-auto px-5 lg:px-8 py-8 xl:py-10 relative z-10 grid grid-cols-12 gap-5">
+  <div class="w-full max-w-7xl mx-auto px-5 lg:px-8 py-8 xl:py-10 relative z-10 grid grid-cols-2 gap-8 xl:gap-12">
 
-    <div class="col-span-7 flex flex-col justify-between gap-8">
+    <div class="flex flex-col justify-center gap-8">
       <!-- Intro -->
-      <div class="pr-6 animate-in" style="animation-delay:.1s">
-        <h1 class="font-heading text-[2.75rem] xl:text-[3.25rem] font-bold text-white leading-[1.08] mb-5" data-i18n="hero-h1">Primul club Toastmasters<br/><span class="text-gold">din România</span></h1>
-          <p class="text-white/75 text-base xl:text-[17px] leading-relaxed mb-6" data-i18n="achiev-p1">Timișoara Toastmasters este primul club Toastmasters înființat în România. A început cu un grup de oameni care credeau că abilitatea de a vorbi clar și convingător se poate învăța, iar cel mai bun mod e practica, nu teoria.</p>
+      <div class="animate-in" style="animation-delay:.1s">
+        <h1 class="font-heading text-[2.4rem] xl:text-[2.6rem] font-bold text-white leading-[1.08] mb-5" data-i18n="hero-h1">Primul club Toastmasters<br/><span class="text-gold">din România</span></h1>
+          <p class="text-white/75 text-base xl:text-[17px] leading-relaxed mb-6" data-i18n="achiev-p1">Din 2008, aici emoțiile de pe scenă se transformă în încredere, discurs cu discurs.</p>
         <div class="flex flex-wrap gap-x-7 gap-y-2 mb-6">
             <div class="flex items-center gap-2.5">
               <svg class="w-5 h-5 text-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
@@ -392,35 +392,37 @@
             </div>
         </div>
         <div class="flex gap-3">
-          <a href="contact" class="cta-pulse bg-gold hover:bg-gold-light text-primary font-bold px-8 py-3.5 rounded-xl text-base transition-all duration-200 hover:scale-105 text-center shadow-lg shadow-gold/30" data-i18n="cta-btn1">Rezervă-ți locul →</a>
-          <a href="contact#main-content" class="border border-white/50 hover:border-gold text-white hover:text-gold font-semibold px-8 py-3.5 rounded-xl text-base transition-all duration-200 text-center backdrop-blur-sm" data-i18n="cta-btn2">Vezi programul ședințelor</a>
+          <a href="contact" class="inline-flex items-center gap-2.5 rounded-xl border border-gold/60 hover:border-gold bg-white/5 hover:bg-white/10 backdrop-blur-sm text-white font-bold py-4 shadow-[0_0_24px_rgba(242,223,116,.15)] transition-colors px-8 text-lg"><span data-i18n="cta-btn1">Rezervă-ți locul</span><svg class="w-[18px] h-[18px] text-gold" fill="none" stroke="currentColor" stroke-width="4" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6l6 6-6 6"/></svg></a>
+          <a href="contact#main-content" class="inline-flex items-center gap-2 rounded-xl border border-white/25 hover:border-white/40 bg-white/5 hover:bg-white/10 backdrop-blur-sm text-white font-semibold py-4 transition-colors px-8 text-lg"><span data-i18n="cta-btn2">Vezi programul ședințelor</span></a>
         </div>
       </div>
 
       <!-- Mission -->
-      <figure class="rounded-3xl border border-white/10 bg-white/[0.06] backdrop-blur-sm relative overflow-hidden p-7 flex flex-col animate-in" style="animation-delay:.35s">
-        <svg class="absolute top-5 right-6 w-12 h-12 text-gold/30" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.983 3v7.391c0 5.704-3.731 9.57-8.983 10.609l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849h-4v-10h9.983zm14.017 0v7.391c0 5.704-3.748 9.571-9 10.609l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849h-3.983v-10h9.983z"/></svg>
-        <div class="text-gold text-[11px] font-semibold uppercase tracking-wider mb-3" data-i18n="mission-h2">Care este misiunea unui club Toastmasters?</div>
-        <blockquote class="flex-1"><p class="text-white/85 text-[15px] 2xl:text-base leading-relaxed pr-10" data-i18n="mission-text">„Misiunea unui club Toastmasters este de a oferi o experiență de învățare într-un mediu pozitiv și de suport reciproc, prin intermediul căruia fiecare membru să își dezvolte abilitățile de comunicare și de leadership, toate acestea ducând la dezvoltarea personală, profesională și la creșterea încrederii în sine.”</p></blockquote>
-        <figcaption class="mt-4 flex items-center gap-2.5">
-          <img src="logo.webp" alt="" width="28" height="28" class="w-7 h-7 object-contain" loading="lazy" />
+      <figure class="rounded-2xl border border-white/10 bg-white/[0.06] backdrop-blur-sm relative overflow-hidden px-5 py-4 flex flex-col animate-in" style="animation-delay:.35s">
+        <svg class="absolute top-3 right-4 w-7 h-7 text-gold/30" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.983 3v7.391c0 5.704-3.731 9.57-8.983 10.609l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849h-4v-10h9.983zm14.017 0v7.391c0 5.704-3.748 9.571-9 10.609l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849h-3.983v-10h9.983z"/></svg>
+        <div class="text-gold text-[10px] font-semibold uppercase tracking-wider mb-1.5 pr-8" data-i18n="mission-h2">Care este misiunea unui club Toastmasters?</div>
+        <blockquote class="flex-1"><p class="text-white/75 text-[13px] leading-relaxed pr-6" data-i18n="mission-text">„Misiunea unui club Toastmasters este de a oferi o experiență de învățare într-un mediu pozitiv și de suport reciproc, prin intermediul căruia fiecare membru să își dezvolte abilitățile de comunicare și de leadership, toate acestea ducând la dezvoltarea personală, profesională și la creșterea încrederii în sine.”</p></blockquote>
+        <figcaption class="mt-2 flex items-center gap-2">
+          <img src="logo.webp" alt="" width="20" height="20" class="w-5 h-5 object-contain" loading="lazy" />
           <span class="text-xs text-white/55 font-semibold" data-i18n="mission-source">Toastmasters International</span>
         </figcaption>
       </figure>
     </div>
 
     <!-- Slider -->
-    <div class="col-span-5 flex flex-col gap-4 pl-4 pr-6 xl:pl-6 xl:pr-10 animate-in" style="animation-delay:.25s">
-      <div id="hero-slider" class="relative w-full flex-1 min-h-0 rounded-3xl overflow-hidden shadow-2xl shadow-black/40 bg-primary-dark">
-        <img src="Images/hero-mobile.webp" alt="Membru Timișoara Toastmasters vorbind pe scenă" class="hero-slide is-active" style="object-position:center 20%" />
-        <img src="https://res.cloudinary.com/dnxcej0q5/image/upload/w_880,h_1100,c_fill,g_auto,q_auto,f_auto/IMG_2583_mjclxi" alt="Ședință Timișoara Toastmasters" class="hero-slide" loading="lazy" />
-        <img src="https://res.cloudinary.com/dnxcej0q5/image/upload/w_880,h_1100,c_fill,g_auto,q_auto,f_auto/IMG_2985_rk0z30" alt="Ședință Timișoara Toastmasters" class="hero-slide" loading="lazy" />
-        <img src="https://res.cloudinary.com/dnxcej0q5/image/upload/w_880,h_1100,c_fill,g_auto,q_auto,f_auto/IMG_0995_gpr80l" alt="Ședință Timișoara Toastmasters" class="hero-slide" loading="lazy" />
-        <img src="https://res.cloudinary.com/dnxcej0q5/image/upload/w_880,h_1100,c_fill,g_auto,q_auto,f_auto/IMG_2266_mvqvde" alt="Ședință Timișoara Toastmasters" class="hero-slide" loading="lazy" />
-        <img src="https://res.cloudinary.com/dnxcej0q5/image/upload/w_880,h_1100,c_fill,g_auto,q_auto,f_auto/696971441_1374827881121585_1234612732339358811_n_xb6evn" alt="Ședință Timișoara Toastmasters" class="hero-slide" loading="lazy" />
-        <img src="https://res.cloudinary.com/dnxcej0q5/image/upload/w_880,h_1100,c_fill,g_auto,q_auto,f_auto/IMG_2600_qcmg3o" alt="Ședință Timișoara Toastmasters" class="hero-slide" loading="lazy" />
+    <div class="flex flex-col gap-4 animate-in" style="animation-delay:.25s">
+      <div id="hero-slider" class="relative w-full flex-1 min-h-[460px] xl:min-h-[540px] rounded-3xl overflow-hidden shadow-2xl shadow-black/40 bg-primary-dark">
+        <img src="https://res.cloudinary.com/dnxcej0q5/image/upload/c_crop,x_274,y_0,w_2736,h_2736/w_1000,h_1000,c_fill,q_auto,f_auto/IMG_7085_uaug5n" alt="Membru Timișoara Toastmasters vorbind în public" class="hero-slide is-active" />
+        <img src="https://res.cloudinary.com/dnxcej0q5/image/upload/c_crop,x_137,y_0,w_3648,h_3648/w_1000,h_1000,c_fill,q_auto,f_auto/IMG_2405_pjkjvt" alt="Membru Timișoara Toastmasters vorbind în public" class="hero-slide" loading="lazy" />
+        <img src="https://res.cloudinary.com/dnxcej0q5/image/upload/c_crop,x_0,y_0,w_3470,h_3470/w_1000,h_1000,c_fill,q_auto,f_auto/483B3071_dremuz" alt="Membru Timișoara Toastmasters vorbind în public" class="hero-slide" loading="lazy" />
+        <img src="https://res.cloudinary.com/dnxcej0q5/image/upload/c_crop,x_0,y_0,w_2400,h_2400/w_1000,h_1000,c_fill,q_auto,f_auto/IMG_1019_l5uw1n" alt="Membru Timișoara Toastmasters vorbind în public" class="hero-slide" loading="lazy" />
+        <img src="https://res.cloudinary.com/dnxcej0q5/image/upload/c_crop,x_410,y_0,w_3648,h_3648/w_1000,h_1000,c_fill,q_auto,f_auto/IMG_4928_b0ate2" alt="Membru Timișoara Toastmasters vorbind în public" class="hero-slide" loading="lazy" />
+        <img src="https://res.cloudinary.com/dnxcej0q5/image/upload/c_crop,x_622,y_0,w_2736,h_2736/w_1000,h_1000,c_fill,q_auto,f_auto/IMG_1039_ngnxyo" alt="Membru Timișoara Toastmasters vorbind în public" class="hero-slide" loading="lazy" />
+        <img src="https://res.cloudinary.com/dnxcej0q5/image/upload/c_crop,x_71,y_100,w_950,h_950/w_1000,h_1000,c_fill,q_auto,f_auto/666485200_1344487134155660_6028880164368544998_n_nj9nek" alt="Membru Timișoara Toastmasters vorbind în public" class="hero-slide" loading="lazy" />
+        <img src="https://res.cloudinary.com/dnxcej0q5/image/upload/c_crop,x_958,y_0,w_2736,h_2736/w_1000,h_1000,c_fill,q_auto,f_auto/IMG_1037_etxh6u" alt="Membru Timișoara Toastmasters vorbind în public" class="hero-slide" loading="lazy" />
+        <img src="https://res.cloudinary.com/dnxcej0q5/image/upload/c_crop,x_274,y_0,w_3648,h_3648/w_1000,h_1000,c_fill,q_auto,f_auto/IMG_2550_iggolp" alt="Membru Timișoara Toastmasters vorbind în public" class="hero-slide" loading="lazy" />
         <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/40 to-transparent pointer-events-none"></div>
-        <div class="absolute left-1/2 -translate-x-1/2 bottom-5 flex gap-1.5 z-10"><button type="button" class="hero-dot" aria-label="Poza 1"></button><button type="button" class="hero-dot" aria-label="Poza 2"></button><button type="button" class="hero-dot" aria-label="Poza 3"></button><button type="button" class="hero-dot" aria-label="Poza 4"></button><button type="button" class="hero-dot" aria-label="Poza 5"></button><button type="button" class="hero-dot" aria-label="Poza 6"></button><button type="button" class="hero-dot" aria-label="Poza 7"></button></div>
+        <div class="absolute left-1/2 -translate-x-1/2 bottom-5 flex gap-1.5 z-10"><button type="button" class="hero-dot" aria-label="Poza 1"></button><button type="button" class="hero-dot" aria-label="Poza 2"></button><button type="button" class="hero-dot" aria-label="Poza 3"></button><button type="button" class="hero-dot" aria-label="Poza 4"></button><button type="button" class="hero-dot" aria-label="Poza 5"></button><button type="button" class="hero-dot" aria-label="Poza 6"></button><button type="button" class="hero-dot" aria-label="Poza 7"></button><button type="button" class="hero-dot" aria-label="Poza 8"></button><button type="button" class="hero-dot" aria-label="Poza 9"></button></div>
       </div>
       <div class="grid grid-cols-4 gap-3">
         <div class="rounded-2xl border border-white/10 bg-white/[0.06] backdrop-blur-sm px-2 py-3 text-center">
@@ -1203,7 +1205,7 @@
       cur = (i + slides.length) % slides.length;
       slides[cur].classList.add('is-active'); dots[cur].classList.add('is-active');
     }
-    function start() { if (!reduce && !timer) timer = setInterval(function () { show(cur + 1); }, 4000); }
+    function start() { if (!reduce && !timer) timer = setInterval(function () { show(cur + 1); }, 3200); }
     function stop() { clearInterval(timer); timer = null; }
 
     dots[0].classList.add('is-active');
@@ -1229,7 +1231,7 @@
     }
     function start() {
       if (reduce || timer) return;
-      timer = setInterval(function () { if (window.innerWidth < 1024 && !document.hidden) show(cur + 1); }, 4000);
+      timer = setInterval(function () { if (window.innerWidth < 1024 && !document.hidden) show(cur + 1); }, 3200);
     }
     dots.forEach(function (d, i) { d.addEventListener('click', function () { clearInterval(timer); timer = null; show(i); start(); }); });
     start();

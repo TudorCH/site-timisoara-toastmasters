@@ -4,5 +4,7 @@
 
 /* Desktop navbar: one flag (the active language); the other one is hidden, a click switches language */
 .lang-btn.lang-one:not(.active) { display: none; }
-.lang-btn.lang-one.active { border-color: transparent; box-shadow: none; opacity: 1; }
+.lang-btn.lang-one.active { border-color: rgba(255,255,255,.8); box-shadow: 0 0 0 1px rgba(255,255,255,.15); opacity: 1; }
+/* thin white outline on every flag so the blue in the flags does not melt into the navy bar */
+.lang-btn > span { box-shadow: 0 0 0 1px rgba(255,255,255,.35); }
 .lang-btn.lang-one:hover { opacity: .8; }
