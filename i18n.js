@@ -239,7 +239,7 @@
     'achiev-s2-short':  'members',
     'achiev-s3':        'Speeches Delivered',
     'achiev-s3-short':  'speeches',
-    'achiev-s4':        'Awards of Excellence',
+    'achiev-s4':        'Awards & Distinctions',
     'achiev-s4-short':  'awards',
     'eve-h2':           'What Does a Meeting at<br/>Timișoara Toastmasters Look Like?',
     'ben-h2':           'Why Do Our Members Benefit?',
@@ -458,7 +458,7 @@
     'eve-panel1-title': 'Prepared Speeches',
     'eve-panel1-body':  'Members deliver prepared speeches from the Pathways program, each with clear communication goals and a well-defined structure. From introductory speeches to complex presentations with data and arguments.',
     'eve-panel2-title': 'Impromptu Speeches',
-    'eve-panel2-body':  'You get a topic and 1–2 minutes to speak about it. Excellent for developing quick thinking and spontaneity in front of an audience.',
+    'eve-panel2-body':  'You get a topic and 2 minutes to speak about it. Excellent for developing quick thinking and spontaneity in front of an audience.',
     'eve-panel3-title': 'Structured Feedback',
     'eve-panel3-body':  'Every speech gets detailed feedback from a designated evaluator: what worked well and what can be improved. Concrete feedback you can apply as soon as the next meeting.',
 

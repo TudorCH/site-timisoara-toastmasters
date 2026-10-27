@@ -21,21 +21,21 @@
 
     /* FAB */
     '#ty-fab{all:unset;position:fixed!important;bottom:20px!important;right:16px!important;',
-    'z-index:2147483647!important;width:46px;height:46px;border-radius:50%;cursor:pointer;',
-    'background:#002d47;touch-action:manipulation;',
-    'box-shadow:0 4px 16px rgba(0,45,71,.55),0 1px 0 rgba(255,255,255,.07) inset;',
+    'z-index:2147483647!important;width:46px;height:46px;border-radius:14px;cursor:pointer;',
+    'background:linear-gradient(to bottom,#00253b,#001c2d);border:1px solid rgba(255,255,255,.12);touch-action:manipulation;',
+    'box-shadow:0 8px 24px rgba(0,20,35,.35);',
     'display:flex!important;align-items:center;justify-content:center;',
     'transition:transform .2s,box-shadow .2s,opacity .2s,visibility .2s;}',
-    '#ty-fab:hover{transform:scale(1.09);background:#004165;box-shadow:0 6px 24px rgba(0,65,101,.6);}',
-    '#ty-fab:focus-visible{outline:3px solid #00537f;outline-offset:3px;}',
+    '#ty-fab:hover{transform:translateY(-2px);border-color:rgba(242,223,116,.5);box-shadow:0 10px 28px rgba(0,20,35,.45);}',
+    '#ty-fab:focus-visible{outline:3px solid #F2DF74;outline-offset:3px;}',
     '#ty-fab.gone,#ty-fab.no-footer,#ty-fab.over-hero{opacity:0!important;visibility:hidden!important;pointer-events:none!important;}',
-    '@media(min-width:640px){#ty-fab{bottom:28px!important;right:28px!important;width:50px;height:50px;}}',
+    '@media(min-width:640px){#ty-fab{bottom:28px!important;right:28px!important;width:50px;height:50px;border-radius:15px;}}',
 
     /* Panel — fix 1: visible diagonal gradient instead of invisible blobs */
     '#ty-win{position:fixed!important;top:0!important;right:0!important;',
     'height:100%;height:100dvh;width:380px;max-width:100vw;',
-    'background:linear-gradient(155deg,#ddeef8 0%,#eaf4fb 28%,#f4f9fd 60%,#ffffff 100%);',
-    'border:1.5px solid rgba(0,83,127,.45);border-radius:16px 0 0 16px;overflow:hidden;',
+    'background:#f9fafb;',
+    'border:1px solid rgba(0,28,45,.12);border-radius:16px 0 0 16px;overflow:hidden;',
     'z-index:2147483646!important;display:flex;flex-direction:column;',
     'transform:translateX(100%);',
     'transition:transform .18s cubic-bezier(.4,0,1,1);',
@@ -53,7 +53,7 @@
     'border-radius:16px;',
     'transform:scale(.92) translateY(16px)!important;opacity:0;',
     'transition:transform .18s ease-in,opacity .18s ease-in;',
-    'box-shadow:0 8px 40px rgba(0,21,42,.22),0 0 0 1.5px rgba(0,83,127,.45);}',
+    'box-shadow:0 20px 50px rgba(0,20,35,.28);}',
     '#ty-win.on{transform:scale(1) translateY(0)!important;opacity:1;',
     'transition:transform .3s cubic-bezier(.34,1.3,.64,1),opacity .22s ease-out;}',
     '#ty-ov{background:transparent!important;}}',
@@ -61,10 +61,10 @@
     '@media(max-width:479px){#ty-win{width:100vw;border-radius:0;border-left:none;border-right:none;}}',
 
     /* fix 7: Close button — no fill circle, just icon + hover */
-    '#ty-hdr-close{all:unset;width:44px;height:44px;border-radius:50%;',
+    '#ty-hdr-close{all:unset;width:40px;height:40px;border-radius:10px;',
     'display:flex;align-items:center;justify-content:center;',
     'cursor:pointer;flex-shrink:0;transition:background .15s;touch-action:manipulation;}',
-    '#ty-hdr-close:hover{background:rgba(255,255,255,.18);}',
+    '#ty-hdr-close:hover{background:rgba(255,255,255,.1);}',
     '#ty-hdr-close:focus-visible{outline:2px solid rgba(255,255,255,.85);outline-offset:2px;}',
 
     /* Messages */
@@ -75,37 +75,37 @@
     '#ty-msgs::-webkit-scrollbar-thumb{background:rgba(0,45,71,.15);border-radius:99px;}',
 
     /* Chips */
-    '.ty-chip{cursor:pointer;border:1.5px solid rgba(0,83,127,.2);border-radius:999px;',
-    'padding:10px 16px;font-size:13px;color:#0f2942;background:rgba(255,255,255,.75);',
-    'font-family:inherit;font-weight:500;min-height:44px;touch-action:manipulation;',
+    '.ty-chip{cursor:pointer;border:1px solid #e5e7eb;border-radius:12px;',
+    'padding:10px 14px;font-size:13px;color:#1f2937;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.04);',
+    'font-family:inherit;font-weight:600;min-height:44px;touch-action:manipulation;',
     'display:inline-flex;align-items:center;gap:6px;',
     'transition:border-color .15s,color .15s,background .15s,transform .1s,opacity .1s;white-space:nowrap;}',
-    '.ty-chip:hover{border-color:#00537f;color:#00537f;background:rgba(255,255,255,.95);}',
+    '.ty-chip svg{color:#772432;flex-shrink:0;}.ty-chip:hover{border-color:#004165;color:#004165;}',
     '.ty-chip:active{transform:scale(.96);opacity:.82;}',
-    '.ty-chip:focus-visible{outline:2px solid #00537f;outline-offset:2px;}',
+    '.ty-chip:focus-visible{outline:2px solid #004165;outline-offset:2px;}',
 
     /* Input */
-    '#ty-inp{flex:1;border:1.5px solid rgba(255,255,255,.25);border-radius:12px;',
+    '#ty-inp{flex:1;border:1px solid #e5e7eb;border-radius:12px;',
     'padding:12px 16px;font-size:16px;outline:none;',
-    'font-family:inherit;color:#fff;background:rgba(255,255,255,.13);',
+    'font-family:inherit;color:#111827;background:#f9fafb;',
     'transition:border-color .15s,background .15s,box-shadow .15s;min-height:44px;}',
-    '#ty-inp:focus{border-color:rgba(255,255,255,.55);background:rgba(255,255,255,.2);',
-    'box-shadow:0 0 0 3px rgba(255,255,255,.1);}',
-    '#ty-inp::placeholder{color:rgba(255,255,255,.5);}',
+    '#ty-inp:focus{border-color:#004165;background:#fff;',
+    'box-shadow:0 0 0 3px rgba(0,65,101,.12);}',
+    '#ty-inp::placeholder{color:#9ca3af;}',
 
     /* fix 6: Send button circular (matches pill chips) */
-    '#ty-send{all:unset;width:44px;height:44px;min-width:44px;border-radius:50%;',
-    'background:rgba(255,255,255,.18);border:1.5px solid rgba(255,255,255,.25);',
+    '#ty-send{all:unset;width:44px;height:44px;min-width:44px;border-radius:12px;',
+    'background:linear-gradient(to bottom,#00253b,#001c2d);border:1px solid rgba(0,28,45,.2);',
     'display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;',
     'touch-action:manipulation;',
     'transition:background .15s,transform .1s,border-color .15s,opacity .2s;}',
-    '#ty-send:hover{background:rgba(255,255,255,.28);border-color:rgba(255,255,255,.4);}',
+    '#ty-send:hover{filter:brightness(1.25);}',
     '#ty-send:active{transform:scale(.94);}',
-    '#ty-send:focus-visible{outline:2px solid rgba(255,255,255,.8);outline-offset:2px;}',
+    '#ty-send:focus-visible{outline:2px solid #004165;outline-offset:2px;}',
     '#ty-send.loading{opacity:.4;pointer-events:none;cursor:not-allowed;}',
 
     /* Retry button inside error bubble */
-    '.ty-retry{background:none;border:none;color:#00537f;font-weight:600;cursor:pointer;',
+    '.ty-retry{background:none;border:none;color:#772432;font-weight:600;cursor:pointer;',
     'font-size:14px;padding:0;text-decoration:underline;font-family:inherit;',
     'touch-action:manipulation;}'
   ].join('');
@@ -115,9 +115,9 @@
   /* FAB: filled chat bubble + ? (FAQ signal) */
   function iconChat(size) {
     return '<svg width="' + size + '" height="' + size + '" viewBox="0 0 24 24">' +
-      '<path fill="rgba(255,255,255,.92)" d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>' +
+      '<path fill="#F2DF74" d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>' +
       '<text x="12" y="11" text-anchor="middle" dominant-baseline="middle"' +
-      ' fill="#002d47" font-size="13" font-weight="900" font-family="Arial,sans-serif">?</text>' +
+      ' fill="#001c2d" font-size="13" font-weight="900" font-family="Arial,sans-serif">?</text>' +
       '</svg>';
   }
 
@@ -184,20 +184,20 @@
   win.innerHTML = [
 
     /* Header — fix 4: mic icon in avatar, fix 7: plain close button */
-    '<div style="background:linear-gradient(135deg,#00537f 0%,#004165 55%,#002d47 100%);',
+    '<div style="background:linear-gradient(to bottom,#00253b,#001c2d);border-bottom:1px solid rgba(255,255,255,.1);',
     'padding:16px 18px;display:flex;align-items:center;gap:12px;flex-shrink:0;min-height:68px;">',
 
-      '<div style="width:40px;height:40px;border-radius:11px;',
-      'background:rgba(255,255,255,.15);border:1.5px solid rgba(255,255,255,.22);',
+      '<div style="width:40px;height:40px;border-radius:12px;',
+      'background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);',
       'display:flex;align-items:center;justify-content:center;flex-shrink:0;">',
         iconChatStroke(20),
       '</div>',
 
       '<div style="flex:1;min-width:0;">',
-        '<div style="color:#fff;font-weight:700;font-size:15px;line-height:1.2;">Toasty</div>',
+        '<div style="color:#fff;font-weight:800;font-size:16px;line-height:1.2;font-family:\'Plus Jakarta Sans\',Inter,sans-serif;">Toasty</div>',
         '<div style="display:flex;align-items:center;gap:5px;margin-top:4px;">',
-          '<span style="width:6px;height:6px;background:#4ade80;border-radius:50%;flex-shrink:0;"></span>',
-          '<span id="ty-status" style="color:rgba(255,255,255,.68);font-size:12px;font-weight:500;"></span>',
+          '<span style="width:6px;height:6px;background:#F2DF74;border-radius:50%;flex-shrink:0;"></span>',
+          '<span id="ty-status" style="color:rgba(255,255,255,.65);font-size:12px;font-weight:500;"></span>',
         '</div>',
       '</div>',
 
@@ -213,11 +213,11 @@
 
       /* welcome message — no avatar (header already shows identity) */
       '<div style="display:flex;gap:8px;align-items:flex-end;margin-top:4px;">',
-        '<div style="background:rgba(255,255,255,.88);border-radius:4px 16px 16px 16px;',
-        'border:1px solid rgba(0,83,127,.1);',
-        'padding:12px 15px;max-width:88%;font-size:14px;line-height:1.65;color:#0f2942;">',
+        '<div style="background:#fff;border-radius:4px 16px 16px 16px;',
+        'border:1px solid #e5e7eb;box-shadow:0 1px 2px rgba(0,0,0,.04);',
+        'padding:12px 15px;max-width:88%;font-size:14px;line-height:1.65;color:#1f2937;">',
           '<span id="ty-welcome-title"></span>',
-          '<div id="ty-welcome-sub" style="color:#3a6a85;font-size:13px;font-weight:500;margin-top:5px;"></div>',
+          '<div id="ty-welcome-sub" style="color:#772432;font-size:13px;font-weight:600;margin-top:5px;"></div>',
         '</div>',
       '</div>',
 
@@ -239,7 +239,7 @@
       /* fix 2: hint fills dead zone, disappears on first message */
       '<div id="ty-hint" style="flex:1;display:flex;align-items:flex-end;',
       'justify-content:center;padding-bottom:10px;pointer-events:none;">',
-        '<span id="ty-hint-text" style="font-size:11.5px;color:rgba(0,65,101,.38);letter-spacing:.02em;',
+        '<span id="ty-hint-text" style="font-size:11.5px;color:#9ca3af;letter-spacing:.02em;',
         'font-weight:500;"></span>',
       '</div>',
 
@@ -248,12 +248,12 @@
     /* fix 9: more descriptive placeholder, fix 6: send btn now circular via CSS */
     '<div style="padding:12px 14px max(16px,env(safe-area-inset-bottom));',
     'display:flex;gap:8px;align-items:center;',
-    'flex-shrink:0;background:linear-gradient(135deg,#00537f 0%,#004165 55%,#002d47 100%);">',
+    'flex-shrink:0;background:#fff;border-top:1px solid #e5e7eb;">',
       '<input id="ty-inp" type="text" placeholder=""',
       ' autocomplete="off" inputmode="text" aria-label=""',
       ' onkeydown="if(event.key===\'Enter\'&&!event.shiftKey){event.preventDefault();toastySendInput();}">',
       '<button id="ty-send" onclick="toastySendInput()" aria-label="">',
-        '<svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="white">',
+        '<svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#F2DF74">',
         '<path d="M120-160v-640l760 320-760 320Zm80-120 474-200-474-200v140l240 60-240 60v140Zm0 0v-400 400Z"/>',
         '</svg>',
       '</button>',
@@ -403,16 +403,16 @@
   var teaserCss = document.createElement('style');
   teaserCss.textContent = [
     '#ty-teaser{position:fixed;right:16px;bottom:76px;z-index:2147483646;max-width:200px;',
-    'background:#fff;color:#0f2942;border-radius:14px 14px 4px 14px;padding:9px 28px 9px 12px;cursor:pointer;',
-    'box-shadow:0 8px 28px rgba(0,21,42,.18),0 0 0 1px rgba(0,83,127,.12);font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif;',
+    'background:#fff;color:#1f2937;border-radius:14px 14px 4px 14px;padding:9px 28px 9px 12px;cursor:pointer;border:1px solid #e5e7eb;',
+    'box-shadow:0 10px 30px rgba(0,20,35,.18);font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif;',
     'opacity:0;transform:translateY(8px) scale(.97);transform-origin:bottom right;pointer-events:none;transition:opacity .25s,transform .25s;}',
     '#ty-teaser.on{opacity:1;transform:none;pointer-events:auto;}',
     '#ty-teaser b{display:block;font-size:13px;margin-bottom:1px;color:#004165;}',
-    '#ty-teaser span{display:block;font-size:12px;line-height:1.4;color:#3a5a72;}',
+    '#ty-teaser span{display:block;font-size:12px;line-height:1.4;color:#6b7280;}',
     '#ty-teaser-x{all:unset;position:absolute;top:4px;right:4px;width:22px;height:22px;border-radius:50%;cursor:pointer;',
     'display:flex;align-items:center;justify-content:center;color:#7a93a8;}',
     '#ty-teaser-x:hover{background:#eef4f8;color:#004165;}',
-    '#ty-teaser-x:focus-visible{outline:2px solid #00537f;outline-offset:1px;}',
+    '#ty-teaser-x:focus-visible{outline:2px solid #004165;outline-offset:1px;}',
     '@media(min-width:640px){#ty-teaser{right:28px;bottom:90px;max-width:250px;padding:12px 34px 12px 14px;border-radius:16px 16px 4px 16px;}#ty-teaser b{font-size:14px;}#ty-teaser span{font-size:13px;}}',
     '@media(prefers-reduced-motion:reduce){#ty-teaser{transition:none;}}',
   ].join('');
@@ -544,8 +544,8 @@
     row.style.cssText = 'display:flex;' + (bot ? '' : 'flex-direction:row-reverse;');
     var bubble = '<div style="' +
       (bot
-        ? 'background:rgba(255,255,255,.88);border:1px solid rgba(0,83,127,.1);border-radius:4px 16px 16px 16px;color:#0f2942;'
-        : 'background:#00537f;border-radius:16px 4px 16px 16px;color:#fff;') +
+        ? 'background:#fff;border:1px solid #e5e7eb;box-shadow:0 1px 2px rgba(0,0,0,.04);border-radius:4px 16px 16px 16px;color:#1f2937;'
+        : 'background:linear-gradient(to bottom,#00253b,#001c2d);border-radius:16px 4px 16px 16px;color:#fff;') +
       'padding:12px 15px;max-width:88%;font-size:14px;line-height:1.65;">' +
       esc(text) + '</div>';
     row.innerHTML = bubble;
@@ -560,9 +560,9 @@
     row.style.cssText = 'display:flex;';
 
     var bubble = document.createElement('div');
-    bubble.style.cssText = 'background:rgba(255,255,255,.88);border:1px solid rgba(0,83,127,.1);' +
+    bubble.style.cssText = 'background:#fff;border:1px solid #e5e7eb;box-shadow:0 1px 2px rgba(0,0,0,.04);' +
       'border-radius:4px 16px 16px 16px;' +
-      'padding:12px 15px;max-width:88%;font-size:14px;line-height:1.65;color:#0f2942;';
+      'padding:12px 15px;max-width:88%;font-size:14px;line-height:1.65;color:#1f2937;';
     bubble.appendChild(document.createTextNode(msg + ' '));
 
     var btn = document.createElement('button');
@@ -588,7 +588,7 @@
     row.style.cssText = 'display:flex;';
     var dotStyle = 'width:6px;height:6px;background:#8faab8;border-radius:50%;';
     row.innerHTML =
-      '<div style="background:rgba(255,255,255,.88);border:1px solid rgba(0,83,127,.1);' +
+      '<div style="background:#fff;border:1px solid #e5e7eb;box-shadow:0 1px 2px rgba(0,0,0,.04);' +
       'border-radius:4px 16px 16px 16px;' +
       'padding:14px 15px;display:flex;gap:4px;align-items:center;">' +
       '<span class="ty-dot" style="' + dotStyle + 'animation:tyDot 1.2s infinite"></span>' +
@@ -611,14 +611,14 @@
     s = s.replace(/\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g, function (_, t, u) {
       var ph = '\x00L' + links.length + '\x00';
       links.push('<a href="' + u + '" target="_blank" rel="noopener noreferrer"' +
-        ' style="color:#00537f;font-weight:600;text-decoration:underline;">' + t + '</a>');
+        ' style="color:#772432;font-weight:600;text-decoration:underline;text-underline-offset:2px;">' + t + '</a>');
       return ph;
     });
     s = s.replace(/(https?:\/\/[^\s\x00]+)/g, function (_, u) {
       var d = u.replace(/https?:\/\/(www\.)?/, '').split('/')[0];
       var ph = '\x00L' + links.length + '\x00';
       links.push('<a href="' + u + '" target="_blank" rel="noopener noreferrer"' +
-        ' style="color:#00537f;text-decoration:underline;">' + d + '</a>');
+        ' style="color:#772432;text-decoration:underline;text-underline-offset:2px;">' + d + '</a>');
       return ph;
     });
     s = s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');

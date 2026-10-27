@@ -86,7 +86,7 @@ INFORMAȚII CLUB:
 - Nume: Timișoara Toastmasters, Club #1269633
 - Parte din rețeaua internațională Toastmasters International (14.000+ cluburi în 150+ țări)
 - Motto: "Where Leaders Are Made!"
-- Activ de 17+ ani, 200+ membri de-a lungul timpului, 1.200+ discursuri susținute, 30+ premii de excelență
+- Fondat în 2008 (18 ani de activitate), peste 1.500 de discursuri susținute, peste 50 de premii și distincții
 - Misiune: dezvoltarea abilităților de vorbit în public și leadership
 
 ȘEDINȚE:
@@ -184,7 +184,7 @@ CLUB VALUES (EN):
 
 CUM ARATĂ O SEARĂ (structura unei ședințe):
 - Partea 1 - Discursuri pregătite: membrii susțin discursuri din programul Pathways, cu obiective clare de comunicare. De la discursuri introductive la prezentări complexe cu date și argumente.
-- Partea 2 - Table Topics (discursuri improvizate): primești un subiect pe loc și ai 1-2 minute să vorbești despre el. Dezvoltă gândirea rapidă și spontaneitatea.
+- Partea 2 - Table Topics (discursuri improvizate): primești un subiect pe loc și ai 2 minute să vorbești despre el. Dezvoltă gândirea rapidă și spontaneitatea.
 - Ultima parte - Feedback structurat: fiecare discurs primește feedback detaliat de la un evaluator desemnat - ce a mers bine și ce poate fi îmbunătățit.
 
 CELE 8 COMPONENTE ALE SISTEMULUI TOASTMASTERS:
@@ -199,7 +199,7 @@ CELE 8 COMPONENTE ALE SISTEMULUI TOASTMASTERS:
 
 CE FACEM LA ȘEDINȚE:
 - Discursuri pregătite (membri susțin discursuri din programul Pathways)
-- Table Topics: discursuri improvizate de 1-2 minute pe un subiect dat pe loc
+- Table Topics: discursuri improvizate de 2 minute pe un subiect dat pe loc
 - Evaluări constructive: fiecare discurs primește feedback detaliat
 - Roluri speciale: Moderator (Toastmaster of the Evening), Cronometror, Ah-Counter, Evaluator de gramatică etc.
 

@@ -254,14 +254,14 @@
     }
 
     /* ── back to top button ── */
-    #btt-btn:hover { transform: translateY(-2px) !important; }
+    #btt-btn:hover { transform: translateY(-2px) !important; border-color: rgba(242,223,116,.5); }
   </style>
 </head>
 <body class="font-sans bg-white text-gray-900 antialiased">
 <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[9999] focus:bg-white focus:text-primary focus:font-semibold focus:px-4 focus:py-2 focus:rounded-lg focus:shadow-lg" data-i18n="skip-link">Sari la conținut</a>
 
 <!-- ════════════════════ NAVBAR ════════════════════ -->
-<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 border-b border-white/10" style="background:linear-gradient(to bottom,#00253b,#001c2d)">
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50" style="background:linear-gradient(to bottom,#00253b,#001c2d)">
   <div class="max-w-7xl mx-auto px-4 lg:px-8">
     <div class="flex items-center justify-between h-16 lg:gap-4 min-[1200px]:grid min-[1200px]:grid-cols-[1fr_auto_1fr] min-[1200px]:gap-6">
 
@@ -401,7 +401,7 @@
   <!-- Group photo framed under the nav (the wide photo would be cropped to a sliver at full height) -->
   <div class="absolute inset-x-0 top-16 overflow-hidden" style="height:52svh" aria-hidden="true">
     <img src="Images/background-hero.webp" alt="" class="w-full h-full object-cover" style="object-position:50% 30%" fetchpriority="high" />
-    <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(0,35,58,.15) 0%,rgba(0,35,58,0) 35%,rgba(0,45,71,.55) 70%,#002d47 100%)"></div>
+    <div class="absolute inset-0" style="background:linear-gradient(to bottom,#001c2d 0,rgba(0,28,45,.75) 28px,rgba(0,28,45,0) 110px,rgba(0,35,58,0) 35%,rgba(0,45,71,.55) 70%,#002d47 100%)"></div>
   </div>
 
   <div class="relative z-10 w-full max-w-xl mx-auto px-5 pb-7 text-center">
@@ -434,13 +434,6 @@
       </div>
     </div>
 
-    <div class="mt-5 flex flex-wrap justify-center items-center gap-x-2.5 gap-y-1 text-[12px] text-white/65 animate-in" style="animation-delay:.5s">
-      <span class="inline-flex items-center gap-1"><span class="text-gold tracking-tight" aria-hidden="true">★★★★★</span><span class="font-bold text-white">4.9</span>&nbsp;pe Google</span>
-      <span class="w-1 h-1 rounded-full bg-white/40" aria-hidden="true"></span>
-      <span data-i18n="idx-proof2">Clubul #1 din România</span>
-      <span class="hidden sm:block w-1 h-1 rounded-full bg-white/40" aria-hidden="true"></span>
-      <span class="basis-full sm:basis-auto" data-i18n="idx-proof1">Activ fără întrerupere din 2008</span>
-    </div>
   </div>
 </section>
 
@@ -450,6 +443,8 @@
   <!-- Navy overlay: darker behind the copy, lighter toward the bottom where the group stands -->
   <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(0,30,50,.55) 0%,rgba(0,35,58,.2) 18%,rgba(0,35,58,.25) 38%,rgba(0,30,50,.78) 58%,rgba(0,25,42,.92) 100%)"></div>
   <div class="absolute inset-0" style="background:radial-gradient(ellipse at center 35%,transparent 40%,rgba(0,20,35,.35) 100%)"></div>
+  <!-- blend the photo into the navbar: same navy as the bar bottom, fading out -->
+  <div class="absolute inset-x-0 top-0 h-[220px] pointer-events-none" style="background:linear-gradient(to bottom,#001c2d 64px,rgba(0,28,45,.85) 100px,rgba(0,28,45,0) 100%)"></div>
 
   <div class="relative z-10 w-full max-w-4xl mx-auto px-8 text-center">
 
@@ -483,14 +478,6 @@
     </div>
   </div>
 
-  <!-- Proof line, bottom -->
-  <div class="absolute bottom-6 inset-x-0 z-10 flex justify-center items-center gap-3 text-[13px] text-white/70 animate-in" style="animation-delay:.5s">
-    <span class="inline-flex items-center gap-1.5"><span class="text-gold tracking-tight" aria-hidden="true">★★★★★</span><span class="font-bold text-white">4.9</span>&nbsp;pe Google</span>
-    <span class="w-1 h-1 rounded-full bg-white/40" aria-hidden="true"></span>
-    <span data-i18n="idx-proof2">Clubul #1 din România</span>
-    <span class="w-1 h-1 rounded-full bg-white/40" aria-hidden="true"></span>
-    <span data-i18n="idx-proof1">Activ fără întrerupere din 2008</span>
-  </div>
 </section>
 
 <!-- ════════════════════ DE CE COMUNICARE ════════════════════ -->
@@ -2045,10 +2032,10 @@
 <!-- Back to top -->
 <button id="btt-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})"
   aria-label="Înapoi sus" data-i18n-aria="back-to-top-aria"
-  class="fixed z-40 w-9 h-9 rounded-full text-white shadow-lg
+  class="fixed z-40 w-10 h-10 rounded-xl text-gold border border-white/10
          flex items-center justify-center opacity-0 pointer-events-none"
-  style="background:#004165;bottom:84px;right:16px;transition:opacity .3s ease,transform .3s ease;">
-  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+  style="background:linear-gradient(to bottom,#00253b,#001c2d);box-shadow:0 8px 24px rgba(0,20,35,.35);bottom:84px;right:19px;transition:opacity .3s ease,transform .3s ease;">
+  <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
     <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/>
   </svg>
 </button>
@@ -2056,10 +2043,10 @@
 (function(){
   var btt = document.getElementById('btt-btn');
   if (!btt) return;
-  if (window.innerWidth >= 640) { btt.style.bottom = '100px'; btt.style.right = '28px'; }
+  if (window.innerWidth >= 640) { btt.style.bottom = '100px'; btt.style.right = '33px'; }
   window.addEventListener('resize', function() {
     btt.style.bottom = window.innerWidth >= 640 ? '100px' : '84px';
-    btt.style.right  = window.innerWidth >= 640 ? '28px'  : '16px';
+    btt.style.right  = window.innerWidth >= 640 ? '33px'  : '19px';
   });
   var nearFooter = false, ttsActive = false, toastyOpen = false;
   function upd() {
