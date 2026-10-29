@@ -1,0 +1,110 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Dark theme (test). Loaded after output.css; turns the light content sections
+   dark, in the same language as /galerie and /blog. Hero, navbar and footer are
+   already dark and are not touched (everything below is scoped to <section>).
+   To switch it off, remove the <link rel="stylesheet" href="theme-dark.css">.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  --td-page: #00151f;
+  --td-page-alt: #001b29;
+  --td-card: rgba(18, 58, 94, .35);
+  --td-card-hover: rgba(18, 58, 94, .55);
+  --td-line: rgba(79, 123, 163, .22);
+  --td-line-soft: rgba(255, 255, 255, .08);
+  --td-field: rgba(255, 255, 255, .05);
+  --td-text: #fff;
+  --td-text-2: rgba(255, 255, 255, .75);
+  --td-text-3: rgba(255, 255, 255, .6);
+  --td-text-4: rgba(255, 255, 255, .45);
+  --td-accent: #F2DF74;
+}
+
+html, body, body.bg-white, body.bg-gray-50 { background: var(--td-page) !important; }
+.section-divider { background: linear-gradient(to right, transparent, rgba(255,255,255,.12), transparent) !important; }
+
+/* ── Section backgrounds: alternate two navy shades for rhythm ─────────────── */
+:is(section,[data-td]).bg-white { background: var(--td-page) !important; }
+:is(section,[data-td]).bg-gray-50, :is(section,[data-td]).bg-gray-100 { background: var(--td-page-alt) !important; }
+
+/* ── Surfaces inside sections ──────────────────────────────────────────────── */
+:is(section,[data-td]) .bg-white { background-color: var(--td-card); }
+:is(section,[data-td]) .bg-white\/95, :is(section,[data-td]) .bg-white\/90, :is(section,[data-td]) .bg-white\/80 { background-color: rgba(0, 28, 45, .75); }
+:is(section,[data-td]) .bg-gray-50 { background-color: rgba(255, 255, 255, .04); }
+:is(section,[data-td]) .bg-gray-100, :is(section,[data-td]) .bg-gray-200 { background-color: rgba(255, 255, 255, .07); }
+:is(section,[data-td]) .hover\:bg-gray-50:hover, :is(section,[data-td]) .hover\:bg-gray-100:hover { background-color: rgba(255, 255, 255, .09); }
+:is(section,[data-td]) .bg-primary\/5, :is(section,[data-td]) .bg-primary\/10 { background-color: rgba(255, 255, 255, .06); }
+:is(section,[data-td]) .bg-maroon\/5, :is(section,[data-td]) .bg-maroon\/10 { background-color: rgba(242, 223, 116, .08); }
+
+/* ── Borders ───────────────────────────────────────────────────────────────── */
+:is(section,[data-td]) .border-gray-100, :is(section,[data-td]) .border-gray-200, :is(section,[data-td]) .border-gray-300 { border-color: var(--td-line); }
+:is(section,[data-td]) .divide-gray-100 > * + *, :is(section,[data-td]) .divide-gray-200 > * + * { border-color: var(--td-line-soft); }
+:is(section,[data-td]) .border-primary\/10, :is(section,[data-td]) .border-primary\/20, :is(section,[data-td]) .border-primary\/30, :is(section,[data-td]) .border-primary\/40 { border-color: rgba(255, 255, 255, .22); }
+:is(section,[data-td]) .border-maroon\/15, :is(section,[data-td]) .border-maroon\/20, :is(section,[data-td]) .border-maroon\/25 { border-color: rgba(242, 223, 116, .35); }
+:is(section,[data-td]) .ring-gray-100, :is(section,[data-td]) .ring-gray-200 { --tw-ring-color: var(--td-line); }
+
+/* ── Text ──────────────────────────────────────────────────────────────────── */
+:is(section,[data-td]) .text-gray-900, :is(section,[data-td]) .text-gray-800, :is(section,[data-td]) .text-black { color: var(--td-text); }
+:is(section,[data-td]) .text-gray-700, :is(section,[data-td]) .text-gray-600 { color: var(--td-text-2); }
+:is(section,[data-td]) .text-gray-500 { color: var(--td-text-3); }
+:is(section,[data-td]) .text-gray-400 { color: var(--td-text-4); }
+:is(section,[data-td]) .text-gray-300 { color: rgba(255, 255, 255, .3); }
+:is(section,[data-td]) .text-primary, :is(section,[data-td]) .text-primary-dark { color: var(--td-text); }
+:is(section,[data-td]) .text-maroon { color: var(--td-accent); }
+:is(section,[data-td]) .hover\:text-primary:hover, :is(section,[data-td]) .group:hover .group-hover\:text-primary { color: var(--td-accent); }
+
+/* buttons that were navy on white stay readable */
+:is(section,[data-td]) .bg-primary { background-color: rgba(255, 255, 255, .12); }
+:is(section,[data-td]) .bg-primary.text-white { box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .14); }
+:is(section,[data-td]) .hover\:bg-primary:hover { background-color: rgba(255, 255, 255, .14); }
+
+/* ── Form fields ───────────────────────────────────────────────────────────── */
+:is(section,[data-td]) input:not([type=checkbox]):not([type=radio]), :is(section,[data-td]) select, :is(section,[data-td]) textarea {
+  background-color: var(--td-field) !important;
+  border-color: rgba(255, 255, 255, .15) !important;
+  color: var(--td-text) !important;
+}
+:is(section,[data-td]) input::placeholder, :is(section,[data-td]) textarea::placeholder { color: rgba(255, 255, 255, .35) !important; }
+:is(section,[data-td]) select option { background: #00151f; color: #fff; }
+
+/* ── Inline-styled bits (icon discs, transport card, route panel) ──────────── */
+:is(section,[data-td]) [style*="background:#f3f5f5"] { background: rgba(255, 255, 255, .06) !important; box-shadow: 0 0 0 1px rgba(255, 255, 255, .12) !important; }
+:is(section,[data-td]) [style*="background:#fff"] { background: var(--td-card) !important; }
+:is(section,[data-td]) [style*="background:#f9fafb"], :is(section,[data-td]) [style*="background:#f3f4f6"] { background: rgba(255, 255, 255, .05) !important; }
+:is(section,[data-td]) [style*="border:1px solid #e5e7eb"] { border-color: var(--td-line) !important; }
+:is(section,[data-td]) [style*="color:#111827"], :is(section,[data-td]) [style*="color:#1f2937"] { color: var(--td-text) !important; }
+:is(section,[data-td]) [style*="color:#374151"] { color: var(--td-text-2) !important; }
+:is(section,[data-td]) [style*="color:#6b7280"], :is(section,[data-td]) [style*="color:#9ca3af"] { color: var(--td-text-3) !important; }
+:is(section,[data-td]) [style*="color:#004165"] { color: var(--td-text) !important; }
+:is(section,[data-td]) [style*="color:#772432"] { color: var(--td-accent) !important; }
+:is(section,[data-td]) .loc-pill--soft { background: rgba(255, 255, 255, .06); color: var(--td-text-2); border-color: rgba(255, 255, 255, .12); }
+:is(section,[data-td]) a.loc-pill--soft:hover { border-color: rgba(255, 255, 255, .35); color: #fff; }
+#bus-route-panel { background: #001b29 !important; }
+.bt-stop { color: var(--td-text-3); }
+.bt-stop.bt-here { color: #fff; }
+.bt-line-wrap::before { background: rgba(255, 255, 255, .12); }
+
+/* buttons styled inline for the light page */
+:is(section,[data-td]) [style*="background:white;border:2px solid #004165"] {
+  background: rgba(18, 58, 94, .35) !important; border-color: rgba(79, 123, 163, .45) !important; color: #fff !important;
+}
+:is(section,[data-td]) [style*="background:white;border:2px solid #004165"]:hover { background: rgba(18, 58, 94, .6) !important; border-color: rgba(255, 255, 255, .45) !important; }
+:is(section,[data-td]) [style*="linear-gradient(white,white) padding-box"] {
+  background: linear-gradient(#0a2536, #0a2536) padding-box, linear-gradient(90deg, #4285F4, #34A853, #FBBC05, #EA4335) border-box !important;
+}
+
+/* pills and photo stacks sitting on photos */
+:is(section,[data-td]) .absolute.bg-white, :is(section,[data-td]) .absolute.bg-white\/95 {
+  background: rgba(0, 28, 45, .85) !important; color: #fff !important;
+  border: 1px solid rgba(255, 255, 255, .15); border-radius: .4rem;
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+}
+:is(section,[data-td]) img.border-white { border-color: #0b2a40; box-shadow: 0 0 0 1px rgba(255, 255, 255, .3), 0 8px 16px rgba(0, 0, 0, .4); }
+
+/* Google Maps embed in night colours */
+:is(section,[data-td]) iframe[src*="maps.google"] { filter: invert(.9) hue-rotate(180deg) saturate(.55) brightness(.95); }
+
+/* transport card tabs (mobile) */
+.tc-tab { color: rgba(255, 255, 255, .6); }
+.tc-tab[aria-selected="true"] { background: rgba(255, 255, 255, .12); color: #fff; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .14); }
+.tc-tab[aria-selected="true"] svg { color: #F2DF74; }
