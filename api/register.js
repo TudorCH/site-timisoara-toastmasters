@@ -1,3 +1,6 @@
+const crypto = require('crypto');
+const store = require('./_lib/store');
+
 const ALLOWED_ORIGINS = [
   'https://timisoaratoastmasters.ro',
   'https://www.timisoaratoastmasters.ro',
@@ -40,6 +43,25 @@ module.exports = async function handler(req, res) {
   }
   if (!email || !email.trim() || !isValidEmail(email.trim())) {
     return res.status(400).json({ error: 'Adresă de email invalidă.' });
+  }
+
+  // Keep a copy for /admin/stats (deleted automatically after 12 months), before the email goes out
+  // so a failed email never loses a submission.
+  try {
+    const id = crypto.randomUUID();
+    const clip = (v, n) => String(v || '').trim().slice(0, n);
+    const record = {
+      id, ts: Date.now(),
+      prenume: clip(prenume, 80), nume: clip(nume, 80), email: clip(email, 160),
+      telefon: clip(telefon, 40), sedinta: clip(sedinta, 80), mesaj: clip(mesaj, 2000),
+    };
+    await store.pipeline([
+      ['SET', store.k('reg:' + id), JSON.stringify(record), 'EX', store.REG_TTL],
+      ['ZADD', store.k('reg:index'), record.ts, id],
+      ...store.eventCmds('reg'),
+    ]);
+  } catch (err) {
+    console.error('Register store error:', err.message);
   }
 
   const apiKey    = process.env.RESEND_API_KEY;

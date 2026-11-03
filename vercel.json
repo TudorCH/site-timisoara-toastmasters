@@ -17,7 +17,8 @@
     { "source": "/cookies",    "destination": "/cookies.html"   },
     { "source": "/blog",       "destination": "/blog.html"      },
     { "source": "/blog/:slug", "destination": "/blog/:slug.html" },
-    { "source": "/admin",      "destination": "/admin/index.html" }
+    { "source": "/admin",      "destination": "/admin/index.html" },
+    { "source": "/admin/stats", "destination": "/admin/stats.html" }
   ],
   "functions": {
     "api/*.js": {

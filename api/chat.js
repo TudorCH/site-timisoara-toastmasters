@@ -1,3 +1,4 @@
+const store = require('./_lib/store');
 const SYSTEM_PROMPT = `Ești „Toasty", asistentul AI oficial pentru Timișoara Toastmasters. Scopul tău este să întâmpini membrii și invitații, să răspunzi la întrebări despre club și să exprimi spiritul de susținere al Toastmasters International. Răspunzi în limba în care ți se vorbește (română sau engleză).
 
 ### 1. PERSONA ȘI TON
@@ -595,6 +596,12 @@ module.exports = async function handler(req, res) {
   if (totalChars > MAX_TOTAL_CHARS) {
     return res.status(400).json({ error: 'Conversation too long' });
   }
+
+  // Usage count for /admin/stats: every message, plus a new conversation on the first one.
+  // Not awaited: it finishes while Claude answers.
+  const userMsgs = messages.filter(m => m && m.role === 'user').length;
+  store.pipeline([...store.eventCmds('chat'), ...(userMsgs === 1 ? store.eventCmds('chatconv') : [])])
+    .catch(err => console.error('chat stats:', err.message));
 
   const langHint = lang === 'en'
     ? '\n\nCONTEXT SITE: Utilizatorul navighează site-ul în limba ENGLEZĂ (a apăsat toggle-ul EN). Dacă mesajul lui e ambiguu sau scurt, răspunde în engleză implicit. Dacă mesajul e clar scris în altă limbă, respectă limba mesajului.'
