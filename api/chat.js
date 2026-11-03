@@ -190,7 +190,7 @@ CUM ARATĂ O SEARĂ (structura unei ședințe):
 CELE 8 COMPONENTE ALE SISTEMULUI TOASTMASTERS:
 1. Club de public speaking - spațiu sigur și structurat pentru exersat vorbitul în public
 2. Feedback pe discursuri - evaluare constructivă și imediată, cel mai rapid mod de a progresa
-3. Pathways - platformă de învățare cu 8 căi educaționale (programe personalizate), curriculum structurat cu zeci de proiecte, adaptat obiectivelor tale
+3. Pathways - platformă de învățare cu 6 căi educaționale (programe personalizate), curriculum structurat cu zeci de proiecte, adaptat obiectivelor tale
 4. Roluri de suport - Toastmaster of the Evening, Gramatician, Cronometror (dezvoltă gândirea critică)
 5. Leadership în acțiune - organizezi și motivezi echipe, competențe transferabile în carieră
 6. Comunitate caldă - oameni din domenii diverse, uniți de dorința de a crește și de a se exprima autentic
@@ -239,6 +239,107 @@ Timișoara Toastmasters este primul club Toastmasters înființat în România. 
 RECENZII REALE DE LA MEMBRI:
 - "Toastmasters este locul unde am învățat că este normal să greșești atât ca lider, cât și ca vorbitor în public. Important este să perseverezi." - Argint Dragoș
 - "Am participat la prima mea întâlnire... am găsit evenimentul întâmplător pe Facebook. Acum abia aștept următoarele! Am plecat cu o mulțime de informații folositoare și cu o altă energie." - Teliban Bianca
+
+═══════════════════════════════════════════════════
+BAZA DE CUNOȘTINȚE TOASTMASTERS INTERNATIONAL
+Folosește secțiunile de mai jos pentru orice întrebare generală despre Toastmasters (istorie, Pathways, roluri, concursuri, premii, structură). Nu inventa cifre, nume sau date.
+
+CĂUTARE PE WEB (tool-ul web_search):
+- Caută DOAR când răspunsul nu se află în acest prompt: detalii despre Toastmasters International care lipsesc aici, informații recente (evenimente, concursuri, schimbări de program sau de reguli) sau când utilizatorul cere explicit ceva actual.
+- NU căuta pentru informații despre club (program, locație, cost, înscriere, echipă) sau pentru direcții: acestea sunt deja aici, respectiv în tool-ul get_travel_estimate.
+- Dacă informația din căutare contrazice acest prompt pe un subiect despre clubul nostru, are prioritate promptul.
+- Când folosești o informație găsită, menționează sursa ca link Markdown, ex: [toastmasters.org](url).
+- Dacă nici căutarea nu găsește răspunsul, spune sincer și trimite la [toastmasters.org](https://www.toastmasters.org).
+═══════════════════════════════════════════════════
+
+ISTORIE:
+- Fondată de Dr. Ralph C. Smedley pe 22 octombrie 1924, la YMCA din Santa Ana, California (SUA).
+- Numele vine de la „toastmaster”, persoana care propune toasturi și prezintă vorbitorii la banchete.
+- Primul club din afara SUA a apărut în Victoria, Canada, de aici „International”. Organizația s-a încorporat oficial ca Toastmasters International în 1932.
+- Femeile au fost admise oficial ca membre din 1973.
+- Sediul mondial: Englewood, Colorado (SUA).
+- Motto: „Where Leaders Are Made”. Citat celebru al lui Smedley: „Învățăm cel mai bine în momentele de bucurie” („We learn best in moments of enjoyment”).
+- Misiunea Toastmasters International: „Îi ajutăm pe oameni să devină comunicatori și lideri mai eficienți” („We empower individuals to become more effective communicators and leaders”).
+- Valori: Integritate, Respect, Serviciu, Excelență (detaliate mai sus).
+- Revista oficială: Toastmaster Magazine, lunară, disponibilă online.
+
+STRUCTURA ORGANIZAȚIEI:
+- Club → Arie (câteva cluburi apropiate) → Divizie → District → Regiune → Consiliul Director internațional (Board of Directors), condus de Președintele Internațional.
+- Timișoara Toastmasters face parte din District 110.
+- Anul Toastmasters ține de la 1 iulie la 30 iunie; mandatul echipei de conducere a clubului urmează de regulă acest an.
+- Există cluburi comunitare (deschise oricui), cluburi de companie, cluburi online și hibride, în zeci de limbi.
+
+PATHWAYS (programul educațional):
+- Lansat în 2018, înlocuind vechile manuale Competent Communication și Competent Leadership. Se parcurge online pe platforma Base Camp.
+- Din octombrie 2024 sunt disponibile 6 căi (paths). Membrul își alege una la început și o poate schimba ulterior:
+  - Dynamic Leadership: leadership, gestionarea schimbării, negociere, rezolvarea conflictelor.
+  - Engaging Humor: folosirea umorului în discursuri și conectarea cu publicul.
+  - Motivational Strategies: motivarea celorlalți, coaching, înțelegerea stilurilor personale.
+  - Persuasive Influence: persuasiune, negociere, leadership în situații dificile.
+  - Presentation Mastery: structura și livrarea prezentărilor, prezență scenică, persuasiune.
+  - Visionary Communication: comunicarea unei viziuni, comunicare strategică, inspirarea echipelor.
+- Căi retrase în 2024 (pot fi terminate doar de cei care le începuseră): Effective Coaching, Innovative Planning, Leadership Development, Strategic Relationships, Team Collaboration.
+- În 2026 au apărut și „căi vintage” opționale, cu plată separată: Basic Training for Toastmasters (după manualul lui Smedley din 1943) și The Communication Series (manuale clasice din anii '80).
+- Fiecare cale are 5 niveluri, cu proiecte obligatorii și opționale (electives):
+  1. Mastering Fundamentals: primul discurs (Ice Breaker, 4-6 minute), scrierea unui discurs, voce și limbaj corporal, evaluare și feedback.
+  2. Learning Your Style: stilul personal de comunicare și de învățare, mentorat.
+  3. Increasing Knowledge: proiecte specifice căii alese.
+  4. Building Skills: competențe avansate și leadership.
+  5. Demonstrating Expertise: proiecte complexe, de obicei un proiect de leadership amplu.
+- După actualizările din 2025, fiecare nivel include și roluri de ședință de îndeplinit, iar nivelurile superioare introduc seriile Successful Club, Better Speaker și Leadership Excellence.
+- Discursurile pregătite durează de obicei 5-7 minute.
+
+PREMII ȘI RECUNOAȘTERI:
+- Certificat la finalizarea fiecărui nivel și a fiecărei căi.
+- DTM (Distinguished Toastmaster): cea mai înaltă distincție educațională. Necesită: finalizarea a două căi, 12 luni ca ofițer de club, rol de mentor sau coach de club, sponsorizarea unui club nou sau organizarea unui program Speechcraft/Youth Leadership, un an ca ofițer de district și un proiect final (DTM capstone).
+- Distinguished Club Program: clubul are 10 obiective anuale (premii educaționale, membri noi, ofițeri instruiți, plata la timp a cotizațiilor etc.) și poate deveni Distinguished, Select Distinguished sau President's Distinguished.
+- Accredited Speaker: program pentru vorbitori profesioniști.
+
+ROLURILE DE LA O ȘEDINȚĂ (detaliat):
+- Toastmaster of the Evening (Moderatorul serii): conduce ședința și prezintă participanții.
+- Speaker (Vorbitor): susține un discurs pregătit dintr-un proiect Pathways.
+- Evaluator: oferă feedback pe un discurs, de regulă 2-3 minute: ce a mers bine, ce se poate îmbunătăți, încurajare.
+- General Evaluator (Evaluatorul general): evaluează ședința în ansamblu, inclusiv evaluatorii.
+- Table Topics Master: propune subiectele pentru discursurile improvizate.
+- Timer (Cronometror): măsoară timpul și arată cartonașe sau lumini: verde la timpul minim, galben la mijloc, roșu la timpul maxim.
+- Ah-Counter: numără cuvintele de umplutură („ăăă”, „deci”, „practic”).
+- Grammarian (Gramatician): urmărește limbajul, propune „cuvântul zilei” și semnalează exprimările reușite sau greșite.
+- Table Topics durează de obicei 1-2 minute.
+
+ECHIPA DE CONDUCERE A UNUI CLUB (rolurile):
+- Președinte: conduce clubul și ședințele de board.
+- VP Educație: planifică agenda, discursurile și progresul în Pathways.
+- VP Membri: aduce și integrează membri noi.
+- VP Relații Publice: promovare, social media, imaginea clubului.
+- Secretar: procese-verbale și evidențe.
+- Trezorier: cotizații și finanțe.
+- Sergent la Arme: logistica ședinței și primirea invitaților.
+- Președinte Precedent (Immediate Past President): sprijină și consiliază echipa.
+
+CONCURSURI TOASTMASTERS:
+- Etape: club → arie → divizie → district; concursul internațional continuă cu etape regionale și finala.
+- Tipuri de concursuri:
+  - International Speech Contest (5-7 minute): singurul care duce la World Championship of Public Speaking, finala de la Convenția Internațională din august.
+  - Evaluation Contest (2-3 minute): toți concurenții evaluează același discurs-țintă.
+  - Humorous Speech Contest (5-7 minute): discurs umoristic.
+  - Table Topics Contest (1-2 minute): toți primesc același subiect, pe loc.
+  - Tall Tales Contest (3-5 minute): povești exagerate, imposibile.
+- De regulă, primăvara au loc concursurile International și Evaluation, iar toamna Humorous și Table Topics (depinde de district).
+- Timpul: un concurent iese din concurs dacă vorbește cu peste 30 de secunde sub minim sau peste maxim.
+- Campioni mondiali recenți: 2025 Sabyasachi Sengupta („Just Nod”, Philadelphia); 2026 Dirceu da Silva din Rotterdam (Vancouver). Alți campioni cunoscuți: Craig Valentine (1999), Darren LaCroix (2001), Dananjaya Hettiarachchi (2014).
+- Clubul nostru a organizat în octombrie 2026 concursul de club de discursuri umoristice și Table Topics (3 octombrie, Timișoara), urmat de etapa de arie (17 octombrie, Arad).
+
+PROMISIUNEA TOASTMASTERS (Toastmasters Promise), pe scurt:
+Ca membru, te angajezi să participi regulat la ședințe, să îți pregătești proiectele cât mai bine, să îți îndeplinești rolurile, să oferi evaluări utile și constructive, să menții un mediu prietenos, să servești clubul ca ofițer când e nevoie, să îi tratezi pe toți cu respect, să aduci invitați, să respecți regulile programelor educaționale și să acționezi cu integritate.
+
+COTIZAȚIA INTERNAȚIONALĂ (context pentru întrebări despre preț):
+- Toastmasters International percepe, din 3 august 2026, 72 USD la 6 luni per membru și o taxă unică de 25 USD pentru membrii noi. Acestea sunt incluse în costurile clubului de mai sus (100 lei taxă de înscriere + 500 lei la 6 luni); la club, utilizatorul plătește doar sumele în lei.
+
+ALTE PROGRAME:
+- Mentorat: membrii noi primesc un mentor care îi ghidează în primele luni.
+- Speechcraft: curs scurt de public speaking pentru nemembri.
+- Youth Leadership Program: program de comunicare pentru tineri.
+- Convenția Internațională: eveniment anual în august, cu finala World Championship of Public Speaking.
 
 INSTRUCȚIUNI SPECIALE RĂSPUNSURI:
 - Când răspunzi la "Pot veni gratuit?" sau întrebări despre costul vizitei: menționează cele 10 ședințe gratuite neobligatorii, iar la final adaugă CTA clar: "Rezervă-ți locul la [prima ședință gratuită](https://timisoaratoastmasters.ro/contact) 🎟️"
@@ -314,6 +415,14 @@ const TOOLS = [
       },
       required: ['origin'],
     },
+  },
+  // Server-side web search, run by Anthropic. Limited to Toastmasters sources
+  // and capped per request to keep cost and latency in check.
+  {
+    type: 'web_search_20250305',
+    name: 'web_search',
+    max_uses: 2,
+    allowed_domains: ['toastmasters.org', 'timisoaratoastmasters.ro'],
   },
 ];
 
@@ -501,8 +610,13 @@ module.exports = async function handler(req, res) {
       },
       body: JSON.stringify({
         model: 'claude-haiku-4-5-20251001',
-        max_tokens: 700,
-        system: SYSTEM_PROMPT + langHint,
+        max_tokens: 1000,
+        // The prompt is long and identical across requests, so cache it; the
+        // language hint varies and goes in its own uncached block.
+        system: [
+          { type: 'text', text: SYSTEM_PROMPT, cache_control: { type: 'ephemeral' } },
+          ...(langHint ? [{ type: 'text', text: langHint.trim() }] : []),
+        ],
         messages: msgs,
         tools: TOOLS,
       }),
@@ -519,8 +633,16 @@ module.exports = async function handler(req, res) {
     let data = await callClaude(msgs);
     let rounds = 0;
 
-    while (data.stop_reason === 'tool_use' && rounds < 2) {
+    while ((data.stop_reason === 'tool_use' || data.stop_reason === 'pause_turn') && rounds < 3) {
       rounds++;
+      // A long server-side web search can pause the turn; send the partial
+      // assistant content back unchanged and Claude picks up where it left off.
+      if (data.stop_reason === 'pause_turn') {
+        msgs = [...msgs, { role: 'assistant', content: data.content }];
+        data = await callClaude(msgs);
+        continue;
+      }
+      // Only our own tool runs here; web_search blocks are server_tool_use.
       const toolUses = data.content.filter(b => b.type === 'tool_use');
       const toolResults = await Promise.all(toolUses.map(async (tu) => {
         let content;
@@ -539,8 +661,13 @@ module.exports = async function handler(req, res) {
       data = await callClaude(msgs);
     }
 
-    const textBlock = data.content?.find(b => b.type === 'text');
-    const text = textBlock?.text || 'Ne pare rău, nu am putut genera un răspuns.';
+    // With web search the answer is split into several text blocks (cited
+    // passages are separate blocks), so join them all.
+    const text = (data.content || [])
+      .filter(b => b.type === 'text')
+      .map(b => b.text)
+      .join('')
+      .trim() || 'Ne pare rău, nu am putut genera un răspuns.';
     return res.status(200).json({ reply: text });
 
   } catch (err) {
