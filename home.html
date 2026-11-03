@@ -189,6 +189,14 @@
       .hero-title { font-size: clamp(1.6rem, 4vw, 2.4rem) !important; }
     }
 
+    /* ── hero: laptop + tabletă landscape - textul și butoanele mai jos ── */
+    @media (min-width: 1024px) and (max-width: 1599px) {
+      #hero-desktop { padding-bottom: .75rem; }
+      #hero-desktop h1 { margin-bottom: .75rem; }
+      #hero-desktop h1 + p { margin-bottom: 1.25rem; }
+      #hero-desktop .mt-5 { margin-top: .75rem; }
+    }
+
     /* ── scroll-margin: compensate fixed navbar on anchor jumps ── */
     #contact, #journey-section, #galerie, #de-ce, #testimoniale { scroll-margin-top: 4.5rem; }
 
