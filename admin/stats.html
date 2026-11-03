@@ -156,6 +156,7 @@
         <li>Conectează baza de date la proiect pentru Production și Preview. Vercel adaugă singur <code>KV_REST_API_URL</code> și <code>KV_REST_API_TOKEN</code>.</li>
         <li>Fă un redeploy. De atunci, vizitele și înscrierile apar aici.</li>
       </ol>
+      <p class="hint" id="env-names" style="margin:12px 0 0"></p>
     </div>
 
     <div id="content">
@@ -350,6 +351,12 @@
     var from = new Date(Date.now() - (days - 1) * 86400000);
     $('period').textContent = 'Ultimele ' + days + ' zile: ' + from.toLocaleDateString('ro-RO', { day: 'numeric', month: 'long' }) + ' – azi';
     $('setup').hidden = data.configured;
+    if (!data.configured) {
+      var names = data.envNames || [];
+      $('env-names').innerHTML = names.length
+        ? 'Variabile de bază de date găsite în acest mediu (' + esc(data.env) + '): ' + names.map(function (n) { return '<code>' + esc(n) + '</code>'; }).join(' ') + '. Lipsesc perechea <code>…_REST_API_URL</code> + <code>…_REST_API_TOKEN</code>.'
+        : 'Nicio variabilă de bază de date în acest mediu (' + esc(data.env) + '). Verifică în Vercel → Storage → baza de date → Projects că e conectată și pentru <b>Preview</b>, apoi redeploy.';
+    }
     $('content').hidden = !data.configured;
     if (!data.configured) return;
 

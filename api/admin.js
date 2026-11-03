@@ -5,7 +5,7 @@
 //   POST ?action=delete  { id }          deletes one form submission (GDPR requests)
 // Needs ADMIN_PASSWORD in Vercel; stats need the Upstash Redis integration (see _lib/store.js).
 const crypto = require('crypto');
-const { configured, pipeline, k, day, hmac, secret, clientIp, ENV } = require('./_lib/store');
+const { configured, pipeline, k, day, hmac, secret, clientIp, envNames, ENV } = require('./_lib/store');
 
 const COOKIE = 'tm_admin';
 const SESSION_DAYS = 7;
@@ -62,7 +62,7 @@ function top(hashes, n) {
 
 async function stats(req, res) {
   const days = Math.min(Math.max(parseInt(req.query.days, 10) || 30, 1), 180);
-  if (!configured()) return res.status(200).json({ configured: false, env: ENV, days });
+  if (!configured()) return res.status(200).json({ configured: false, env: ENV, days, envNames: envNames() });
 
   const dates = Array.from({ length: days }, (_, i) => day(days - 1 - i));      // oldest → today
   const prev = Array.from({ length: days }, (_, i) => day(2 * days - 1 - i));   // the period before

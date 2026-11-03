@@ -4,8 +4,23 @@
 // KV_REST_API_TOKEN (UPSTASH_REDIS_REST_URL / UPSTASH_REDIS_REST_TOKEN also work).
 const crypto = require('crypto');
 
-const URL_ = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL || '';
-const TOKEN = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN || '';
+// Vercel lets you pick a prefix when connecting the database (STORAGE_KV_REST_API_URL...), so any
+// *_REST_API_URL / *_REDIS_REST_URL with its matching token is accepted.
+function findEnv() {
+  const env = process.env;
+  for (const [u, tk] of [['KV_REST_API_URL', 'KV_REST_API_TOKEN'], ['UPSTASH_REDIS_REST_URL', 'UPSTASH_REDIS_REST_TOKEN']]) {
+    if (env[u] && env[tk]) return [env[u], env[tk]];
+  }
+  for (const name of Object.keys(env)) {
+    const m = /^(.*)(KV_REST_API|REDIS_REST)_URL$/.exec(name);
+    const token = m && env[m[1] + m[2] + '_TOKEN'];
+    if (m && token && /^https:\/\//.test(env[name])) return [env[name], token];
+  }
+  return ['', ''];
+}
+const [URL_, TOKEN] = findEnv();
+// Names only (never values), shown to logged-in admins when the database isn't found.
+const envNames = () => Object.keys(process.env).filter(n => /KV|REDIS|UPSTASH/i.test(n)).sort();
 
 // Preview deployments count separately from production, so testing never mixes into real stats.
 const ENV = process.env.VERCEL_ENV || 'development';
@@ -49,4 +64,4 @@ function eventCmds(name, date = day()) {
   return [['HINCRBY', key, name, 1], ['EXPIRE', key, DAY_TTL]];
 }
 
-module.exports = { configured, pipeline, k, day, hmac, secret, clientIp, eventCmds, DAY_TTL, REG_TTL, ENV };
+module.exports = { configured, pipeline, k, day, hmac, secret, clientIp, eventCmds, envNames, DAY_TTL, REG_TTL, ENV };
