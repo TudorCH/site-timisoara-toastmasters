@@ -1,0 +1,144 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Dark mode. Every rule applies only while <html> has the class theme-dark, which
+   the moon/sun button in the navbar toggles (choice kept in localStorage: tm-theme).
+   Turns the light content sections dark, in the same language as /galerie and /blog;
+   hero, navbar and footer are already dark. Scoped to <section> and [data-td].
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  --td-page: #00151f;
+  --td-page-alt: #001b29;
+  --td-card: rgba(18, 58, 94, .35);
+  --td-card-hover: rgba(18, 58, 94, .55);
+  --td-line: rgba(79, 123, 163, .22);
+  --td-line-soft: rgba(255, 255, 255, .08);
+  --td-field: rgba(255, 255, 255, .05);
+  --td-text: #fff;
+  --td-text-2: rgba(255, 255, 255, .75);
+  --td-text-3: rgba(255, 255, 255, .6);
+  --td-text-4: rgba(255, 255, 255, .45);
+  --td-accent: #F2DF74;
+}
+
+html.theme-dark, html.theme-dark body, html.theme-dark body.bg-white, html.theme-dark body.bg-gray-50 { background: var(--td-page) !important; }
+html.theme-dark .section-divider { background: linear-gradient(to right, transparent, rgba(255,255,255,.12), transparent) !important; }
+
+/* ── Section backgrounds: alternate two navy shades for rhythm ─────────────── */
+html.theme-dark :is(section,[data-td]).bg-white { background: var(--td-page) !important; }
+html.theme-dark :is(section,[data-td]).bg-gray-50, html.theme-dark :is(section,[data-td]).bg-gray-100 { background: var(--td-page-alt) !important; }
+
+/* ── Surfaces inside sections ──────────────────────────────────────────────── */
+html.theme-dark :is(section,[data-td]) .bg-white { background-color: var(--td-card); }
+html.theme-dark :is(section,[data-td]) .bg-white\/95, html.theme-dark :is(section,[data-td]) .bg-white\/90, html.theme-dark :is(section,[data-td]) .bg-white\/80 { background-color: rgba(0, 28, 45, .75); }
+html.theme-dark :is(section,[data-td]) .bg-gray-50 { background-color: rgba(255, 255, 255, .04); }
+html.theme-dark :is(section,[data-td]) .bg-gray-100, html.theme-dark :is(section,[data-td]) .bg-gray-200 { background-color: rgba(255, 255, 255, .07); }
+html.theme-dark :is(section,[data-td]) .hover\:bg-gray-50:hover, html.theme-dark :is(section,[data-td]) .hover\:bg-gray-100:hover { background-color: rgba(255, 255, 255, .09); }
+html.theme-dark :is(section,[data-td]) .bg-primary\/5, html.theme-dark :is(section,[data-td]) .bg-primary\/10 { background-color: rgba(255, 255, 255, .06); }
+html.theme-dark :is(section,[data-td]) .bg-maroon\/5, html.theme-dark :is(section,[data-td]) .bg-maroon\/10 { background-color: rgba(242, 223, 116, .08); }
+
+/* ── Borders ───────────────────────────────────────────────────────────────── */
+html.theme-dark :is(section,[data-td]) .border-gray-100, html.theme-dark :is(section,[data-td]) .border-gray-200, html.theme-dark :is(section,[data-td]) .border-gray-300 { border-color: var(--td-line); }
+html.theme-dark :is(section,[data-td]) .divide-gray-100 > * + *, html.theme-dark :is(section,[data-td]) .divide-gray-200 > * + * { border-color: var(--td-line-soft); }
+html.theme-dark :is(section,[data-td]) .border-primary\/10, html.theme-dark :is(section,[data-td]) .border-primary\/20, html.theme-dark :is(section,[data-td]) .border-primary\/30, html.theme-dark :is(section,[data-td]) .border-primary\/40 { border-color: rgba(255, 255, 255, .22); }
+html.theme-dark :is(section,[data-td]) .border-maroon\/15, html.theme-dark :is(section,[data-td]) .border-maroon\/20, html.theme-dark :is(section,[data-td]) .border-maroon\/25 { border-color: rgba(242, 223, 116, .35); }
+html.theme-dark :is(section,[data-td]) .ring-gray-100, html.theme-dark :is(section,[data-td]) .ring-gray-200 { --tw-ring-color: var(--td-line); }
+
+/* ── Text ──────────────────────────────────────────────────────────────────── */
+html.theme-dark :is(section,[data-td]) .text-gray-900, html.theme-dark :is(section,[data-td]) .text-gray-800, html.theme-dark :is(section,[data-td]) .text-black { color: var(--td-text); }
+html.theme-dark :is(section,[data-td]) .text-gray-700, html.theme-dark :is(section,[data-td]) .text-gray-600 { color: var(--td-text-2); }
+html.theme-dark :is(section,[data-td]) .text-gray-500 { color: var(--td-text-3); }
+html.theme-dark :is(section,[data-td]) .text-gray-400 { color: var(--td-text-4); }
+html.theme-dark :is(section,[data-td]) .text-gray-300 { color: rgba(255, 255, 255, .3); }
+html.theme-dark :is(section,[data-td]) .text-primary, html.theme-dark :is(section,[data-td]) .text-primary-dark { color: var(--td-text); }
+html.theme-dark :is(section,[data-td]) .text-maroon { color: var(--td-accent); }
+html.theme-dark :is(section,[data-td]) .hover\:text-primary:hover, html.theme-dark :is(section,[data-td]) .group:hover .group-hover\:text-primary { color: var(--td-accent); }
+
+/* buttons that were navy on white stay readable */
+html.theme-dark :is(section,[data-td]) .bg-primary { background-color: rgba(255, 255, 255, .12); }
+html.theme-dark :is(section,[data-td]) .bg-primary.text-white { box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .14); }
+html.theme-dark :is(section,[data-td]) .hover\:bg-primary:hover { background-color: rgba(255, 255, 255, .14); }
+
+/* ── Form fields ───────────────────────────────────────────────────────────── */
+html.theme-dark :is(section,[data-td]) input:not([type=checkbox]):not([type=radio]), html.theme-dark :is(section,[data-td]) select, html.theme-dark :is(section,[data-td]) textarea {
+  background-color: var(--td-field) !important;
+  border-color: rgba(255, 255, 255, .15) !important;
+  color: var(--td-text) !important;
+}
+html.theme-dark :is(section,[data-td]) input::placeholder, html.theme-dark :is(section,[data-td]) textarea::placeholder { color: rgba(255, 255, 255, .35) !important; }
+html.theme-dark :is(section,[data-td]) select option { background: #00151f; color: #fff; }
+
+/* ── Inline-styled bits (icon discs, transport card, route panel) ──────────── */
+html.theme-dark :is(section,[data-td]) [style*="background:#f3f5f5"] { background: rgba(255, 255, 255, .06) !important; box-shadow: 0 0 0 1px rgba(255, 255, 255, .12) !important; }
+html.theme-dark :is(section,[data-td]) [style*="background:#fff"] { background: var(--td-card) !important; }
+html.theme-dark :is(section,[data-td]) [style*="background:#f9fafb"], html.theme-dark :is(section,[data-td]) [style*="background:#f3f4f6"] { background: rgba(255, 255, 255, .05) !important; }
+html.theme-dark :is(section,[data-td]) [style*="border:1px solid #e5e7eb"] { border-color: var(--td-line) !important; }
+html.theme-dark :is(section,[data-td]) [style*="color:#111827"], html.theme-dark :is(section,[data-td]) [style*="color:#1f2937"] { color: var(--td-text) !important; }
+html.theme-dark :is(section,[data-td]) [style*="color:#374151"] { color: var(--td-text-2) !important; }
+html.theme-dark :is(section,[data-td]) [style*="color:#6b7280"], html.theme-dark :is(section,[data-td]) [style*="color:#9ca3af"] { color: var(--td-text-3) !important; }
+html.theme-dark :is(section,[data-td]) [style*="color:#004165"] { color: var(--td-text) !important; }
+html.theme-dark :is(section,[data-td]) [style*="color:#772432"] { color: var(--td-accent) !important; }
+html.theme-dark :is(section,[data-td]) .loc-pill--soft { background: rgba(255, 255, 255, .06); color: var(--td-text-2); border-color: rgba(255, 255, 255, .12); }
+html.theme-dark :is(section,[data-td]) a.loc-pill--soft:hover { border-color: rgba(255, 255, 255, .35); color: #fff; }
+html.theme-dark #bus-route-panel { background: #001b29 !important; }
+html.theme-dark .bt-stop { color: var(--td-text-3); }
+html.theme-dark .bt-stop.bt-here { color: #fff; }
+html.theme-dark .bt-line-wrap::before { background: rgba(255, 255, 255, .12); }
+
+/* buttons styled inline for the light page */
+html.theme-dark :is(section,[data-td]) [style*="background:white;border:2px solid #004165"] {
+  background: rgba(18, 58, 94, .35) !important; border-color: rgba(79, 123, 163, .45) !important; color: #fff !important;
+}
+html.theme-dark :is(section,[data-td]) [style*="background:white;border:2px solid #004165"]:hover { background: rgba(18, 58, 94, .6) !important; border-color: rgba(255, 255, 255, .45) !important; }
+html.theme-dark :is(section,[data-td]) [style*="linear-gradient(white,white) padding-box"] {
+  background: linear-gradient(#0a2536, #0a2536) padding-box, linear-gradient(90deg, #4285F4, #34A853, #FBBC05, #EA4335) border-box !important;
+}
+
+/* pills and photo stacks sitting on photos */
+html.theme-dark :is(section,[data-td]) .absolute.bg-white, html.theme-dark :is(section,[data-td]) .absolute.bg-white\/95 {
+  background: rgba(0, 28, 45, .85) !important; color: #fff !important;
+  border: 1px solid rgba(255, 255, 255, .15); border-radius: .4rem;
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+}
+html.theme-dark :is(section,[data-td]) img.border-white { border-color: #0b2a40; box-shadow: 0 0 0 1px rgba(255, 255, 255, .3), 0 8px 16px rgba(0, 0, 0, .4); }
+
+/* Google Maps embed in night colours */
+html.theme-dark :is(section,[data-td]) iframe[src*="maps.google"] { filter: invert(.9) hue-rotate(180deg) saturate(.55) brightness(.95); }
+
+/* transport card tabs (mobile) */
+html.theme-dark .tc-tab { color: rgba(255, 255, 255, .6); }
+html.theme-dark .tc-tab[aria-selected="true"] { background: rgba(255, 255, 255, .12); color: #fff; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .14); }
+html.theme-dark .tc-tab[aria-selected="true"] svg { color: #F2DF74; }
+
+/* blog article body (outside <section>) */
+html.theme-dark main.bg-white { background: var(--td-page) !important; }
+html.theme-dark .tm-prose { color: var(--td-text-2); }
+html.theme-dark .tm-prose h2, html.theme-dark .tm-prose h3, html.theme-dark .tm-prose strong { color: #fff; }
+html.theme-dark .tm-prose a { color: var(--td-accent); }
+html.theme-dark .tm-prose blockquote { color: var(--td-text-3); }
+html.theme-dark .tm-prose hr { border-top-color: var(--td-line-soft); }
+html.theme-dark .tm-prose code { background: rgba(255, 255, 255, .08); color: #fff; }
+
+/* the toggle shows a moon in light mode and a sun in dark mode */
+.tm-theme-sun { display: none; }
+html.theme-dark .tm-theme-sun { display: block; }
+html.theme-dark .tm-theme-moon { display: none; }
+
+/* cookie / privacy policy text (cookies.html has its own .prose styles) */
+html.theme-dark .prose, html.theme-dark .prose p, html.theme-dark .prose td { color: var(--td-text-2); }
+html.theme-dark .prose h2, html.theme-dark .prose h3, html.theme-dark .prose strong { color: #fff; }
+html.theme-dark .prose em { color: var(--td-text-3); }
+html.theme-dark .prose a { color: var(--td-accent); }
+html.theme-dark .prose a:hover { color: #f7ea99; }
+html.theme-dark .prose code { background: rgba(255, 255, 255, .08) !important; color: #fff !important; border-color: rgba(255, 255, 255, .12) !important; }
+html.theme-dark .prose .tm-table-wrap { border-color: var(--td-line); }
+html.theme-dark .prose thead tr { background: rgba(255, 255, 255, .05); border-bottom-color: var(--td-line); }
+html.theme-dark .prose th { color: var(--td-text-3); }
+html.theme-dark .prose td { border-bottom-color: var(--td-line-soft); }
+html.theme-dark .prose tbody tr:hover { background: rgba(255, 255, 255, .03); }
+html.theme-dark .prose .bg-emerald-50 { background: rgba(52, 211, 153, .1); }
+html.theme-dark .prose .border-emerald-100 { border-color: rgba(52, 211, 153, .25); }
+html.theme-dark .prose .text-emerald-800, html.theme-dark .prose .text-emerald-700 { color: #a7f3d0; }
+html.theme-dark .prose .text-emerald-600 { color: #6ee7b7; }
+html.theme-dark .prose .bg-sky-50 { background: rgba(56, 189, 248, .12); }
+html.theme-dark .prose .text-sky-700 { color: #bae6fd; }
+html.theme-dark .ck-toc-link.active, html.theme-dark .ck-toc-link[aria-current] { color: #fff; border-color: var(--td-accent); }
