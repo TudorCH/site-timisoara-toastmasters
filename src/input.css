@@ -25,9 +25,12 @@
 /* language */
 .tm-lang-btn { display: inline-flex; align-items: center; padding: 3px; border: 0; border-radius: 999px; background: none; cursor: pointer; }
 .tm-lang-btn:focus-visible { outline: 2px solid rgba(242,223,116,.6); outline-offset: 2px; }
-.tm-glide-lang { width: 68px; height: 30px; }
-/* English: the same navy, one step lighter (not the gold "on" colour of the panel switches) */
-[aria-checked="true"] .tm-glide-lang { background: linear-gradient(180deg, #17384f, #1e4661); box-shadow: inset 2px 2px 5px rgba(0,0,0,.45), inset -1px -1px 3px rgba(255,255,255,.1); }
+/* a clearly visible pill on the navy bar; English is the same blue one step lighter (never gold) */
+.tm-glide-lang { width: 68px; height: 30px; background: linear-gradient(180deg, #163a54, #1f4a68); border: 1px solid rgba(255,255,255,.16);
+  box-shadow: inset 2px 2px 4px rgba(0,0,0,.4), inset -1px -1px 2px rgba(255,255,255,.08), 0 1px 0 rgba(255,255,255,.04); }
+.tm-glide-lang .tm-glide-knob { top: 2px; left: 2px; }
+.tm-glide-lang .tm-glide-txt { color: rgba(255,255,255,.75); }
+[aria-checked="true"] .tm-glide-lang { background: linear-gradient(180deg, #22506f, #2b5f82); border-color: rgba(255,255,255,.22); box-shadow: inset 2px 2px 4px rgba(0,0,0,.35), inset -1px -1px 2px rgba(255,255,255,.1), 0 1px 0 rgba(255,255,255,.04); }
 [aria-checked="true"] .tm-glide-lang .tm-glide-knob { background: none; box-shadow: 0 0 0 1.5px rgba(255,255,255,.55), 2px 2px 5px rgba(0,0,0,.5); }
 .tm-glide-lang .tm-glide-knob { width: 24px; height: 24px; overflow: hidden; background: none; box-shadow: 0 0 0 1.5px rgba(255,255,255,.55), 2px 2px 5px rgba(0,0,0,.5); }
 .tm-glide-lang .tm-glide-knob > span { width: 24px !important; height: 24px !important; }
@@ -37,7 +40,7 @@
 .tm-txt-ro { left: 8px; display: none; }
 .tm-flag-en { display: none !important; }
 .tm-flag-ro { display: block !important; }
-html[lang="en"] .tm-glide-lang .tm-glide-knob { transform: translateX(38px); }
+html[lang="en"] .tm-glide-lang .tm-glide-knob { transform: translateX(38px); }  /* 68 - 2*2 border-box gap - 24 knob - 2 border */
 html[lang="en"] .tm-txt-ro { display: block; }
 html[lang="en"] .tm-txt-en { display: none; }
 html[lang="en"] .tm-flag-en { display: block !important; }
