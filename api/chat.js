@@ -86,7 +86,7 @@ Te mai pot ajuta cu ceva?
 INFORMAȚII CLUB:
 - Nume: Timișoara Toastmasters, Club #1269633
 - Parte din rețeaua internațională Toastmasters International (14.000+ cluburi în 150+ țări)
-- Motto: "Where Leaders Are Made!"
+- Motto: "Where Leaders Are Made" (sloganul oficial, fără semn de exclamare)
 - Fondat în 2008 (18 ani de activitate), peste 1.500 de discursuri susținute, peste 50 de premii și distincții
 - Misiune: dezvoltarea abilităților de vorbit în public și leadership
 
