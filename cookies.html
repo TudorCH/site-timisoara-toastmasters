@@ -92,20 +92,22 @@
   </style>
   <link rel="stylesheet" href="theme-dark.css" />
   <script>
-    // Dark mode: applied before the page paints; the choice is kept in localStorage (tm-theme).
+    // Display settings, applied before the page paints: dark mode (tm-theme) and the accessibility
+    // panel's choices (tm-a11y: text size, contrast, font, spacing, links, motion). Panel: a11y.js.
     (function () {
-      var root = document.documentElement;
-      try { if (localStorage.getItem('tm-theme') === 'dark') root.classList.add('theme-dark'); } catch (e) {}
-      function sync() {
-        var on = root.classList.contains('theme-dark');
-        document.querySelectorAll('[data-theme-btn]').forEach(function (b) { b.setAttribute('aria-pressed', String(on)); });
+      var root = document.documentElement, a = {};
+      try {
+        if (localStorage.getItem('tm-theme') === 'dark') root.classList.add('theme-dark');
+        a = JSON.parse(localStorage.getItem('tm-a11y') || '{}') || {};
+      } catch (e) {}
+      if (a.text) root.classList.add('a11y-text-' + a.text);
+      ['contrast', 'font', 'spacing', 'links', 'motion'].forEach(function (k) { if (a[k]) root.classList.add('a11y-' + k); });
+      if (a.font) {
+        var l = document.createElement('link');
+        l.id = 'a11y-font-css'; l.rel = 'stylesheet';
+        l.href = 'https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap';
+        document.head.appendChild(l);
       }
-      window.tmToggleTheme = function () {
-        var on = root.classList.toggle('theme-dark');
-        try { localStorage.setItem('tm-theme', on ? 'dark' : 'light'); } catch (e) {}
-        sync();
-      };
-      document.addEventListener('DOMContentLoaded', sync);
     })();
   </script>
 </head>
@@ -138,21 +140,12 @@
       <!-- Desktop utilities: language · search · read aloud | CTA -->
       <div class="hidden lg:flex items-center justify-self-end gap-2.5 whitespace-nowrap">
         <div class="flex items-center gap-1 rounded-lg border border-white/10 bg-white/5 px-1 h-10">
-          <div class="flex items-center">
-            <button data-lang="ro" onclick="setLang('en')" class="lang-btn lang-one active" title="Switch to English" aria-label="Limba: română. Schimbă în engleză"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;background:linear-gradient(to right,#002B7F 33%,#FCD116 33% 66%,#CE1126 66%)"></span></button>
-            <button data-lang="en" onclick="setLang('ro')" class="lang-btn lang-one" title="Schimbă în română" aria-label="Language: English. Switch to Romanian"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;overflow:hidden"><svg width="22" height="22" viewBox="0 0 22 22"><rect width="22" height="22" fill="#012169"/><path d="M0 0L22 22M22 0L0 22" stroke="white" stroke-width="6"/><path d="M0 0L22 22M22 0L0 22" stroke="#C8102E" stroke-width="3.5"/><rect x="9" y="0" width="4" height="22" fill="white"/><rect x="0" y="9" width="22" height="4" fill="white"/><rect x="10" y="0" width="2" height="22" fill="#C8102E"/><rect x="0" y="10" width="22" height="2" fill="#C8102E"/></svg></span></button>
-          </div>
+          <button type="button" role="switch" data-lang-switch onclick="setLang(tmtLang() === 'en' ? 'ro' : 'en')" aria-checked="false" aria-label="English" title="Română / English" class="tm-lang-btn">
+              <span class="tm-glide tm-glide-lang"><span class="tm-glide-txt tm-txt-ro">RO</span><span class="tm-glide-txt tm-txt-en">EN</span><span class="tm-glide-knob"><span class="tm-flag-ro" style="display:inline-block;width:22px;height:22px;border-radius:50%;background:linear-gradient(to right,#002B7F 33%,#FCD116 33% 66%,#CE1126 66%)"></span><span class="tm-flag-en" style="display:inline-block;width:22px;height:22px;border-radius:50%;overflow:hidden"><svg width="22" height="22" viewBox="0 0 22 22"><rect width="22" height="22" fill="#012169"/><path d="M0 0L22 22M22 0L0 22" stroke="white" stroke-width="6"/><path d="M0 0L22 22M22 0L0 22" stroke="#C8102E" stroke-width="3.5"/><rect x="9" y="0" width="4" height="22" fill="white"/><rect x="0" y="9" width="22" height="4" fill="white"/><rect x="10" y="0" width="2" height="22" fill="#C8102E"/><rect x="0" y="10" width="22" height="2" fill="#C8102E"/></svg></span></span></span>
+            </button>
           <span class="w-px h-5 bg-white/15" aria-hidden="true"></span>
           <button type="button" onclick="openSearchModal()" aria-label="Caută pe site (Ctrl+K)" data-i18n-aria="search-open-aria" aria-keyshortcuts="Control+K" class="w-9 h-9 flex items-center justify-center rounded-lg text-white/70 hover:text-white hover:bg-white/10 transition-colors">
             <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z"/></svg>
-          </button>
-          <span class="w-px h-5 bg-white/15" aria-hidden="true"></span>
-          <button id="tts-nav-btn" data-tts-btn aria-label="Citește pagina (Alt+T)" data-i18n-aria="tts-aria" aria-keyshortcuts="Alt+T" class="w-9 h-9 flex items-center justify-center rounded-lg text-white/70 hover:text-white hover:bg-white/10 transition-colors">
-            <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
-          </button>
-          <span class="w-px h-5 bg-white/15" aria-hidden="true"></span>
-          <button type="button" data-theme-btn onclick="tmToggleTheme()" aria-pressed="false" aria-label="Mod întunecat" data-i18n-aria="theme-aria" title="Mod întunecat" data-i18n-title="theme-aria" class="w-9 h-9 flex items-center justify-center rounded-lg text-white/70 hover:text-white hover:bg-white/10 transition-colors">
-            <svg class="tm-theme-moon w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="tm-theme-sun w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
           </button>
         </div>
         <a href="contact" class="group inline-flex items-center gap-1.5 h-10 rounded-xl border border-white/10 hover:border-white/25 bg-white/5 hover:bg-white/10 text-white font-semibold px-4 text-[14px] transition-colors">
@@ -213,17 +206,8 @@
         <!-- Language + TTS row -->
         <div class="flex items-center gap-3 px-4 pt-3 pb-1 mt-2 border-t border-white/10">
           <span class="text-white/40 text-xs" data-i18n="nav-util-label">Limbă:</span>
-          <div class="flex items-center gap-1 rounded-lg border border-white/10 bg-white/5 px-1 h-9" role="group" aria-label="Limbă" data-i18n-aria="nav-util-label">
-            <button data-lang="ro" onclick="setLang('ro')" class="lang-btn active" aria-pressed="true" aria-label="Română"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;background:linear-gradient(to right,#002B7F 33%,#FCD116 33% 66%,#CE1126 66%)"></span></button>
-            <button data-lang="en" onclick="setLang('en')" class="lang-btn" aria-pressed="false" aria-label="English"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;overflow:hidden"><svg width="22" height="22" viewBox="0 0 22 22"><rect width="22" height="22" fill="#012169"/><path d="M0 0L22 22M22 0L0 22" stroke="white" stroke-width="6"/><path d="M0 0L22 22M22 0L0 22" stroke="#C8102E" stroke-width="3.5"/><rect x="9" y="0" width="4" height="22" fill="white"/><rect x="0" y="9" width="22" height="4" fill="white"/><rect x="10" y="0" width="2" height="22" fill="#C8102E"/><rect x="0" y="10" width="22" height="2" fill="#C8102E"/></svg></span></button>
-          </div>
-          <button type="button" data-theme-btn onclick="tmToggleTheme()" aria-pressed="false" aria-label="Mod întunecat" data-i18n-aria="theme-aria"
-                  class="ml-auto w-10 h-9 flex items-center justify-center rounded-lg border border-white/10 bg-white/5 text-white/80 hover:text-white hover:bg-white/10 transition-colors">
-            <svg class="tm-theme-moon w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="tm-theme-sun w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
-          </button>
-          <button id="tts-mob-btn" data-tts-btn aria-label="Citește pagina (Alt+T)" data-i18n-aria="tts-aria"
-                  class="w-10 h-9 flex items-center justify-center rounded-lg border border-white/10 bg-white/5 text-white/80 hover:text-white hover:bg-white/10 transition-colors">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+          <button type="button" role="switch" data-lang-switch onclick="setLang(tmtLang() === 'en' ? 'ro' : 'en')" aria-checked="false" aria-label="English" title="Română / English" class="tm-lang-btn">
+            <span class="tm-glide tm-glide-lang"><span class="tm-glide-txt tm-txt-ro">RO</span><span class="tm-glide-txt tm-txt-en">EN</span><span class="tm-glide-knob"><span class="tm-flag-ro" style="display:inline-block;width:22px;height:22px;border-radius:50%;background:linear-gradient(to right,#002B7F 33%,#FCD116 33% 66%,#CE1126 66%)"></span><span class="tm-flag-en" style="display:inline-block;width:22px;height:22px;border-radius:50%;overflow:hidden"><svg width="22" height="22" viewBox="0 0 22 22"><rect width="22" height="22" fill="#012169"/><path d="M0 0L22 22M22 0L0 22" stroke="white" stroke-width="6"/><path d="M0 0L22 22M22 0L0 22" stroke="#C8102E" stroke-width="3.5"/><rect x="9" y="0" width="4" height="22" fill="white"/><rect x="0" y="9" width="22" height="4" fill="white"/><rect x="10" y="0" width="2" height="22" fill="#C8102E"/><rect x="0" y="10" width="22" height="2" fill="#C8102E"/></svg></span></span></span>
           </button>
         </div>
         <div class="pt-3 px-4">
@@ -338,6 +322,12 @@
             <td><code>tm-theme</code></td>
             <td><span class="inline-flex rounded-full bg-sky-50 text-sky-700 text-[11px] font-bold px-2.5 py-0.5 whitespace-nowrap" data-i18n="ck-table-pref">Preferință</span></td>
             <td data-i18n="ck-row-theme-purpose">Dacă ai ales modul întunecat sau luminos, ca site-ul să se deschidă la fel data viitoare</td>
+            <td class="text-gray-500" data-i18n="ck-table-permanent">Permanent (până la ștergere manuală)</td>
+          </tr>
+          <tr>
+            <td><code>tm-a11y</code></td>
+            <td><span class="inline-flex rounded-full bg-sky-50 text-sky-700 text-[11px] font-bold px-2.5 py-0.5 whitespace-nowrap" data-i18n="ck-table-pref">Preferință</span></td>
+            <td data-i18n="ck-row-a11y-purpose">Setările de accesibilitate alese (mărime text, contrast, font, spațiere, linkuri subliniate, animații)</td>
             <td class="text-gray-500" data-i18n="ck-table-permanent">Permanent (până la ștergere manuală)</td>
           </tr>
           <tr>
@@ -645,6 +635,7 @@
 <script src="i18n.js"></script>
 <script src="cookie-banner.js"></script>
 <script src="track.js" defer></script>
+<script src="a11y.js" defer></script>
 </body>
 </html>
 

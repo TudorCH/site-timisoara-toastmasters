@@ -285,6 +285,7 @@
     'ck-table-session':   'Until the tab is closed (sessionStorage)',
     'ck-row-tts-purpose': 'The reading speed chosen for the site\'s voice reader',
     'ck-row-theme-purpose': 'Whether you chose dark or light mode, so the site opens the same way next time',
+    'ck-row-a11y-purpose': 'The accessibility settings you chose (text size, contrast, font, spacing, underlined links, animations)',
     'ck-row-teaser-purpose': 'Remembers that you have seen the Toasty assistant intro message, so it is not shown again during the same visit',
     'ck-toc-title':       'Contents',
     'ck-callout-title':   'Transparency',
@@ -387,7 +388,6 @@
     'search-results-aria':'Search results',
     'search-open-aria':   'Search the site',
     'tts-aria':           'Read the page (Alt+T)',
-    'theme-aria':       'Dark mode',
     'menu-open':          'Open menu',
     'menu-close':         'Close menu',
     'nav-cta-arrow':      'Join a meeting →',
@@ -642,6 +642,11 @@
       el.setAttribute('content', lang === 'en'
         ? (T[el.dataset.i18nContent] || el.getAttribute('data-orig-content'))
         : el.getAttribute('data-orig-content'));
+    });
+
+    /* Language glide switch (navbar + mobile menu): on = English */
+    document.querySelectorAll('[data-lang-switch]').forEach(function (b) {
+      b.setAttribute('aria-checked', String(lang === 'en'));
     });
 
     /* Lang button active state */

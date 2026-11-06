@@ -2,9 +2,97 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Desktop navbar: one flag (the active language); the other one is hidden, a click switches language */
-.lang-btn.lang-one:not(.active) { display: none; }
-.lang-btn.lang-one.active { border-color: rgba(255,255,255,.8); box-shadow: 0 0 0 1px rgba(255,255,255,.15); opacity: 1; }
-/* thin white outline on every flag so the blue in the flags does not melt into the navy bar */
-.lang-btn > span { box-shadow: 0 0 0 1px rgba(255,255,255,.35); }
-.lang-btn.lang-one:hover { opacity: .8; }
+/* ── Glide switches: a soft pill with a round knob that carries the icon ──────────────────────
+   Theme: light pill + sun ↔ dark pill + moon. Other panel switches: recessed when off, gold when on.
+   Language (navbar): the knob is the flag; the empty side shows the language you would switch to. */
+.tm-glide { position: relative; display: inline-block; flex-shrink: 0; width: 50px; height: 28px; border-radius: 999px;
+  background: linear-gradient(180deg, #0b2233, #10293d); box-shadow: inset 2px 2px 5px rgba(0,0,0,.55), inset -1px -1px 3px rgba(255,255,255,.07);
+  transition: background .25s, box-shadow .25s; }
+.tm-glide-knob { position: absolute; top: 3px; left: 3px; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(145deg, #3d4a5c, #2a3545); box-shadow: 2px 2px 5px rgba(0,0,0,.45), -1px -1px 2px rgba(255,255,255,.08); color: #e8ecf3;
+  transition: transform .28s cubic-bezier(.3,.7,.4,1), background .25s, color .25s; }
+.tm-glide-knob svg { width: 13px; height: 13px; }
+.tm-glide .ic-on { display: none; }
+[aria-checked="true"] .tm-glide { background: linear-gradient(180deg, #b9a443, #e0c64e); box-shadow: inset 2px 2px 5px rgba(0,0,0,.3), inset -1px -1px 3px rgba(255,255,255,.35); }
+[aria-checked="true"] .tm-glide-knob { transform: translateX(22px); background: linear-gradient(145deg, #ffffff, #eef0f4); color: #9c8418; box-shadow: 2px 2px 5px rgba(0,0,0,.3), -1px -1px 2px rgba(255,255,255,.6); }
+[aria-checked="true"] .tm-glide .ic-on { display: block; }
+[aria-checked="true"] .tm-glide .ic-off { display: none; }
+/* theme: like a day / night switch */
+.tm-glide-theme { background: linear-gradient(180deg, #d9dee6, #eef1f5); box-shadow: inset 2px 2px 5px rgba(0,0,0,.2), inset -2px -2px 5px rgba(255,255,255,.75); }
+.tm-glide-theme .tm-glide-knob { background: linear-gradient(145deg, #ffffff, #e3e7ed); color: #8f98a8; box-shadow: 2px 2px 5px rgba(0,0,0,.25), -1px -1px 3px rgba(255,255,255,.9); }
+[aria-checked="true"] .tm-glide-theme { background: linear-gradient(180deg, #1c2232, #2a3143); box-shadow: inset 2px 2px 5px rgba(0,0,0,.55), inset -1px -1px 3px rgba(255,255,255,.06); }
+[aria-checked="true"] .tm-glide-theme .tm-glide-knob { background: linear-gradient(145deg, #5a6278, #3e4558); color: #eef1f6; box-shadow: 2px 2px 5px rgba(0,0,0,.5), -1px -1px 2px rgba(255,255,255,.1); }
+/* language */
+.tm-lang-btn { display: inline-flex; align-items: center; padding: 3px; border: 0; border-radius: 999px; background: none; cursor: pointer; }
+.tm-lang-btn:focus-visible { outline: 2px solid rgba(242,223,116,.6); outline-offset: 2px; }
+.tm-glide-lang { width: 58px; height: 30px; }
+.tm-glide-lang .tm-glide-knob { width: 24px; height: 24px; overflow: hidden; background: none; box-shadow: 0 0 0 1.5px rgba(255,255,255,.55), 2px 2px 5px rgba(0,0,0,.5); }
+.tm-glide-lang .tm-glide-knob > span { width: 24px !important; height: 24px !important; }
+.tm-glide-lang .tm-glide-knob svg { width: 24px; height: 24px; }
+.tm-glide-txt { position: absolute; top: 50%; transform: translateY(-50%); font: 800 10px/1 Inter, sans-serif; letter-spacing: .05em; color: rgba(255,255,255,.6); }
+.tm-txt-en { right: 8px; }
+.tm-txt-ro { left: 8px; display: none; }
+.tm-flag-en { display: none !important; }
+.tm-flag-ro { display: block !important; }
+html[lang="en"] .tm-glide-lang .tm-glide-knob { transform: translateX(28px); }
+html[lang="en"] .tm-txt-ro { display: block; }
+html[lang="en"] .tm-txt-en { display: none; }
+html[lang="en"] .tm-flag-en { display: block !important; }
+html[lang="en"] .tm-flag-ro { display: none !important; }
+
+/* ── Accessibility tab (left edge) and panel ────────────────────────────────────────────── */
+#a11y-tab { position: fixed; left: 0; top: 50%; transform: translateY(-50%); z-index: 45; width: 42px; height: 50px; display: flex; align-items: center; justify-content: center;
+  border: 1px solid rgba(255,255,255,.14); border-left: 0; border-radius: 0 14px 14px 0; background: linear-gradient(180deg, #00314d, #001c2d); color: #F2DF74;
+  box-shadow: 0 8px 24px rgba(0,0,0,.28); cursor: pointer; transition: width .2s; }
+#a11y-tab:hover, html.a11y-open #a11y-tab { width: 47px; }
+#a11y-tab svg { width: 24px; height: 24px; }
+#a11y-tab:focus-visible { outline: 2px solid #F2DF74; outline-offset: 2px; }
+#a11y-panel { position: fixed; left: 12px; top: 76px; z-index: 55; width: min(340px, calc(100vw - 24px)); max-height: calc(100vh - 92px); max-height: calc(100dvh - 92px); overflow-y: auto;
+  background: #001c2d; color: #fff; border: 1px solid rgba(255,255,255,.12); border-radius: 18px; box-shadow: 0 24px 60px rgba(0,0,0,.45); font: 14px/1.4 Inter, sans-serif; letter-spacing: normal; word-spacing: normal; }
+#a11y-panel[hidden] { display: none; }
+#a11y-panel:focus { outline: none; }
+#a11y-panel * { letter-spacing: inherit; word-spacing: inherit; }
+.a11y-head { position: sticky; top: 0; z-index: 1; display: flex; align-items: center; justify-content: space-between; padding: 14px 14px 8px 18px; background: #001c2d; }
+.a11y-head h2 { margin: 0; font: 700 17px/1.2 'Plus Jakarta Sans', Inter, sans-serif; color: #fff; }
+.a11y-x { width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; border: 0; border-radius: 10px; background: rgba(255,255,255,.06); color: rgba(255,255,255,.8); cursor: pointer; }
+.a11y-x:hover { background: rgba(255,255,255,.12); color: #fff; }
+.a11y-x svg { width: 18px; height: 18px; }
+.a11y-body { padding: 0 10px 6px; }
+.a11y-group { margin: 12px 8px 4px; font-size: 11px; font-weight: 700; letter-spacing: .08em !important; text-transform: uppercase; color: rgba(255,255,255,.45); }
+.a11y-row { display: flex; align-items: center; gap: 12px; width: 100%; padding: 9px 8px; border: 0; border-radius: 12px; background: none; color: #fff; text-align: left; cursor: pointer; font: inherit; }
+.a11y-row:hover { background: rgba(255,255,255,.05); }
+.a11y-row:focus-visible, .a11y-seg button:focus-visible, .a11y-reset:focus-visible { outline: 2px solid rgba(242,223,116,.7); outline-offset: 1px; }
+.a11y-static, .a11y-static:hover { cursor: default; background: none; }
+.a11y-ico { width: 20px; height: 20px; flex-shrink: 0; color: #F2DF74; }
+.a11y-txt { flex: 1; min-width: 0; }
+.a11y-txt b { display: block; font-size: 14px; font-weight: 600; line-height: 1.3; }
+.a11y-txt small { display: block; margin-top: 1px; font-size: 12px; color: rgba(255,255,255,.55); }
+.a11y-seg { display: inline-flex; gap: 2px; padding: 3px; border-radius: 10px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); }
+.a11y-seg button { border: 0; border-radius: 7px; padding: 5px 8px; background: none; color: rgba(255,255,255,.7); font: 700 13px/1 Inter, sans-serif; cursor: pointer; }
+.a11y-seg button:nth-child(2) { font-size: 14.5px; }
+.a11y-seg button:nth-child(3) { font-size: 16px; }
+.a11y-seg button[aria-pressed="true"] { background: rgba(255,255,255,.14); color: #fff; }
+.a11y-go { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; border-radius: 50%; background: rgba(242,223,116,.15); color: #F2DF74; }
+.a11y-go svg { width: 14px; height: 14px; }
+.a11y-foot { margin-top: 6px; padding: 6px 14px 12px; border-top: 1px solid rgba(255,255,255,.08); }
+.a11y-reset { display: inline-flex; align-items: center; gap: 8px; padding: 8px 6px; border: 0; border-radius: 8px; background: none; color: rgba(255,255,255,.65); font: 600 13px/1 Inter, sans-serif; cursor: pointer; }
+.a11y-reset:hover { color: #fff; }
+.a11y-reset svg { width: 16px; height: 16px; }
+@media (max-width: 640px) { #a11y-panel { top: auto; bottom: 12px; max-height: calc(100dvh - 88px); } }
+
+/* ── Accessibility settings (classes on <html>, set by the head script and a11y.js) ──────── */
+html.a11y-text-1 { font-size: 112.5%; }
+html.a11y-text-2 { font-size: 125%; }
+html.a11y-contrast :is(.text-gray-300, .text-gray-400, .text-gray-500, .text-gray-600, .text-gray-700) { color: #111827 !important; }
+html.a11y-contrast [class*="text-white/"] { color: #fff !important; }
+html.a11y-contrast :is(.border-gray-100, .border-gray-200) { border-color: #9ca3af !important; }
+html.a11y-contrast ::placeholder { color: #4b5563 !important; }
+html.a11y-contrast.theme-dark :is(section, [data-td]) :is(.text-gray-300, .text-gray-400, .text-gray-500, .text-gray-600, .text-gray-700) { color: #fff !important; }
+html.a11y-contrast.theme-dark :is(section, [data-td]) :is(.border-gray-100, .border-gray-200, .border-gray-300) { border-color: rgba(255,255,255,.45) !important; }
+html.a11y-contrast.theme-dark ::placeholder { color: rgba(255,255,255,.7) !important; }
+html.a11y-contrast :focus-visible { outline: 3px solid #F2DF74 !important; outline-offset: 2px; }
+html.a11y-font body, html.a11y-font :is(.font-sans, .font-heading, h1, h2, h3, h4, h5, h6, button, input, textarea, select) { font-family: 'Atkinson Hyperlegible', Inter, sans-serif !important; }
+html.a11y-spacing :is(p, li, dd, td, blockquote, label) { line-height: 1.9 !important; letter-spacing: .03em !important; word-spacing: .12em !important; }
+html.a11y-links :is(main, section, footer, [data-td]) a:not([class*="rounded"]):not([role]) { text-decoration: underline !important; text-decoration-thickness: 2px !important; text-underline-offset: 3px; }
+html.a11y-motion, html.a11y-motion *, html.a11y-motion *::before, html.a11y-motion *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+@media (prefers-reduced-motion: reduce) { .tm-glide, .tm-glide-knob, #a11y-tab { transition: none; } }
