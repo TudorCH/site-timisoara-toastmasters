@@ -85,16 +85,13 @@
     /* Two columns over the full page: a light sidebar (logo, officers, info) and the program column with the bands on top */
     .sheet { --s: 1; width: 210mm; height: 297mm; background: #fff; color: #161616; font-family: Inter, Arial, sans-serif; display: grid; grid-template-columns: 52mm minmax(0, 1fr); overflow: hidden; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .sh-col { display: flex; flex-direction: column; height: 297mm; min-width: 0; }
-    /* Header: the meeting's title (+ theme / word of the day) on the left, the date as a calendar tile on the right */
-    .sh-head { flex: 0 0 auto; height: 32mm; background: linear-gradient(135deg, #004a73 0%, #003a5c 70%, #00314d 100%); display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; column-gap: 5mm; padding: 0 8mm; border-bottom: .9mm solid #F2DF74; }
+    /* Header: the meeting's title, the date under it, then theme / word of the day; centred on the program column */
+    .sh-head { flex: 0 0 auto; height: 32mm; background: linear-gradient(135deg, #004a73 0%, #003a5c 70%, #00314d 100%); display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 8mm; border-bottom: .9mm solid #F2DF74; }
     .sh-head .hm { line-height: 1.2; }
-    .sh-head .hm .ti { font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-weight: 800; font-size: 15pt; color: #fff; }
-    .sh-head .hm .ex { font-size: 8.8pt; color: rgba(255,255,255,.75); margin-top: 1.6mm; }
-    .sh-head .hm .ex b { color: #F2DF74; font-weight: 700; }
-    .sh-head .hd { text-align: center; color: #F2DF74; border: .45mm solid rgba(242,223,116,.75); border-radius: 2.5mm; padding: 1.6mm 4.5mm 1.8mm; background: rgba(0,0,0,.12); min-width: 27mm; }
-    .sh-head .hd .wd { font-size: 6.8pt; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
-    .sh-head .hd .dd { font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 24pt; font-weight: 800; line-height: 1.05; color: #fff; }
-    .sh-head .hd .my { font-size: 7.6pt; font-weight: 600; }
+    .sh-head .hm .ti { font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-weight: 800; font-size: 16pt; color: #fff; }
+    .sh-head .hm .dt { font-size: 10.5pt; font-weight: 600; color: #F2DF74; margin-top: 1.4mm; }
+    .sh-head .hm .ex { font-size: 8.6pt; color: rgba(255,255,255,.75); margin-top: 1.4mm; }
+    .sh-head .hm .ex b { color: #fff; font-weight: 700; }
     /* Thin maroon accent under the gold rule */
     .sh-band { flex: 0 0 auto; height: 2.4mm; background: #772432; }
     /* Sidebar: full height, sections spread evenly from the logo down to the QR code */
@@ -471,14 +468,13 @@
     if (a.word) extra.push(l.word + ': <b>' + esc(a.word) + '</b>');
 
     var dt = parseIso(a.date);
-    var tile = dt
-      ? '<div class="hd"><div class="wd">' + l.days[dt.getUTCDay()] + '</div><div class="dd">' + dt.getUTCDate() + '</div><div class="my">' + l.months[dt.getUTCMonth()] + ' ' + dt.getUTCFullYear() + '</div></div>'
-      : '<div></div>';
+    // e.g. "Miercuri, 25 Noiembrie 2026"
+    var dateText = dt ? l.days[dt.getUTCDay()] + ', ' + dt.getUTCDate() + ' ' + l.months[dt.getUTCMonth()] + ' ' + dt.getUTCFullYear() : '';
 
     $('sheet').innerHTML =
       '<div class="sh-side">' + side + '</div>' +
       '<div class="sh-col">' +
-        '<div class="sh-head"><div class="hm"><div class="ti">' + esc(a.title || l.title) + '</div>' + (extra.length ? '<div class="ex">' + extra.join(' &nbsp;·&nbsp; ') + '</div>' : '') + '</div>' + tile + '</div>' +
+        '<div class="sh-head"><div class="hm"><div class="ti">' + esc(a.title || l.title) + '</div>' + (dateText ? '<div class="dt">' + dateText + '</div>' : '') + (extra.length ? '<div class="ex">' + extra.join(' &nbsp;·&nbsp; ') + '</div>' : '') + '</div></div>' +
         '<div class="sh-band"></div>' +
         '<div class="sh-main"><div class="sh-rows">' + rows + '</div></div>' +
       '</div>';
