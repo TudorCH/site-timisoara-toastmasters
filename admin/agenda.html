@@ -85,24 +85,24 @@
     /* Two columns over the full page: a light sidebar (logo, officers, info) and the program column with the bands on top */
     .sheet { --s: 1; width: 210mm; height: 297mm; background: #fff; color: #161616; font-family: Inter, Arial, sans-serif; display: grid; grid-template-columns: 52mm minmax(0, 1fr); overflow: hidden; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .sh-col { display: flex; flex-direction: column; height: 297mm; min-width: 0; }
-    /* Header: club identity on the left, the date as a calendar tile on the right */
+    /* Header: the meeting's title (+ theme / word of the day) on the left, the date as a calendar tile on the right */
     .sh-head { flex: 0 0 auto; height: 32mm; background: linear-gradient(135deg, #004a73 0%, #003a5c 70%, #00314d 100%); display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; column-gap: 5mm; padding: 0 8mm; border-bottom: .9mm solid #F2DF74; }
-    .sh-head .hm { line-height: 1.15; }
-    .sh-head .hm .nm { font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-weight: 800; font-size: 16pt; letter-spacing: .01em; text-transform: uppercase; color: #fff; }
-    .sh-head .hm .tg { font-weight: 700; font-size: 10pt; color: #F2DF74; margin-top: 1mm; }
-    .sh-head .hm .mt { font-size: 7.4pt; color: rgba(255,255,255,.65); margin-top: 1.6mm; letter-spacing: .02em; }
+    .sh-head .hm { line-height: 1.2; }
+    .sh-head .hm .ti { font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-weight: 800; font-size: 15pt; color: #fff; }
+    .sh-head .hm .ex { font-size: 8.8pt; color: rgba(255,255,255,.75); margin-top: 1.6mm; }
+    .sh-head .hm .ex b { color: #F2DF74; font-weight: 700; }
     .sh-head .hd { text-align: center; color: #F2DF74; border: .45mm solid rgba(242,223,116,.75); border-radius: 2.5mm; padding: 1.6mm 4.5mm 1.8mm; background: rgba(0,0,0,.12); min-width: 27mm; }
     .sh-head .hd .wd { font-size: 6.8pt; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
     .sh-head .hd .dd { font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 24pt; font-weight: 800; line-height: 1.05; color: #fff; }
     .sh-head .hd .my { font-size: 7.6pt; font-weight: 600; }
-    /* Maroon band: the meeting's title, plus theme / word of the day when set */
-    .sh-band { flex: 0 0 auto; background: #772432; color: #fff; text-align: center; padding: 2.4mm 8mm 2.6mm; }
-    .sh-band .ti { font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-weight: 800; font-size: 12pt; letter-spacing: .01em; }
-    .sh-band .ex { font-size: 8.6pt; color: rgba(255,255,255,.8); margin-top: .6mm; }
-    .sh-band .ex b { color: #F2DF74; font-weight: 700; }
+    /* Thin maroon accent under the gold rule */
+    .sh-band { flex: 0 0 auto; height: 2.4mm; background: #772432; }
     /* Sidebar: full height, sections spread evenly from the logo down to the QR code */
     .sh-side { height: 297mm; background: #f1f4f6; border-right: .3mm solid #dde3e7; padding: 7mm 4.5mm 7mm; text-align: center; font-size: calc(8.3pt * var(--s)); line-height: 1.32; display: flex; flex-direction: column; justify-content: space-between; gap: calc(3mm * var(--s)); overflow: hidden; }
-    .sh-side .logo img { display: block; width: calc(30mm * var(--s)); height: calc(30mm * var(--s)); object-fit: contain; margin: 0 auto; }
+    .sh-side .sb-brand .bn { font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-weight: 800; font-size: calc(11pt * var(--s)); line-height: 1.15; text-transform: uppercase; letter-spacing: .02em; color: #004165; margin-bottom: calc(2.5mm * var(--s)); }
+    .sh-side .sb-brand img { display: block; width: calc(28mm * var(--s)); height: calc(28mm * var(--s)); object-fit: contain; margin: 0 auto; }
+    .sh-side .sb-brand .bt { font-weight: 700; font-size: calc(8.6pt * var(--s)); color: #772432; margin-top: calc(2.5mm * var(--s)); }
+    .sh-side .clubno { font-size: 7pt; font-weight: 600; letter-spacing: .04em; color: #8b949a; }
     .sh-side .ico { display: flex; justify-content: center; margin-bottom: 1mm; }
     .sh-side .ico svg { width: calc(6.5mm * var(--s)); height: calc(6.5mm * var(--s)); }
     .sh-side h4 { margin: 0 0 1mm; font-size: calc(9pt * var(--s)); font-weight: 800; color: #004165; }
@@ -304,7 +304,7 @@
   // ── Texts printed on the agenda ──
   var L = {
     ro: {
-      days: ['Duminică','Luni','Marți','Miercuri','Joi','Vineri','Sâmbătă'], division: 'Divizia F · Aria 1',
+      days: ['Duminică','Luni','Marți','Miercuri','Joi','Vineri','Sâmbătă'],
       title: 'Întâlnire de vorbit în public', months: ['Ianuarie','Februarie','Martie','Aprilie','Mai','Iunie','Iulie','August','Septembrie','Octombrie','Noiembrie','Decembrie'],
       officers: 'Ofițeri', weekly: 'Întâlnire săptămânală', wed: 'Miercuri', location: 'Locație', missionH: 'Misiunea clubului', social: 'Rețele Social Media',
       mission: 'este de a oferi un mediu de învățare pozitiv și de suport reciproc prin intermediul căruia fiecare membru are oportunitatea să-și dezvolte abilitățile de comunicare și de conducere, toate acestea ducând la creșterea încrederii în sine și la dezvoltarea sa personală.',
@@ -316,7 +316,7 @@
       end1: 'Închiderea evenimentului', end2: 'Socializare', theme: 'Tema serii', word: 'Cuvântul zilei'
     },
     en: {
-      days: ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'], division: 'Division F · Area 1',
+      days: ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
       title: 'Public Speaking Meeting', months: ['January','February','March','April','May','June','July','August','September','October','November','December'],
       officers: 'Officers', weekly: 'Weekly meeting', wed: 'Wednesday', location: 'Location', missionH: 'Club mission', social: 'Social media',
       mission: 'provides a supportive and positive learning experience in which members are empowered to develop communication and leadership skills, resulting in greater self-confidence and personal growth.',
@@ -431,7 +431,7 @@
 
   function renderSheet() {
     var a = state, l = L[a.lang] || L.ro, tl = timeline(a), T = tl.T, c = a.club;
-    var side = '<div class="logo"><img src="/logo.webp" alt="Toastmasters International" /></div>';
+    var side = '<div class="sb-brand"><div class="bn">Timișoara<br>Toastmasters</div><img src="/logo.webp" alt="Toastmasters International" /><div class="bt">Where Leaders Are Made</div></div>';
     side += '<div>' + icon('users') + '<h4>' + l.officers + '</h4>' + OFFICERS.map(function (k) {
       return '<div class="role">' + l.roles[k] + '</div><div>' + who(c.officers[k]) + '</div>';
     }).join('') + '</div>';
@@ -439,6 +439,7 @@
     side += '<div>' + icon('pin') + '<h4>' + l.location + '</h4><div>' + esc(c.venue) + '</div><div>' + esc(c.address) + '</div></div>';
     side += '<div>' + icon('target') + '<h4>' + l.missionH + '</h4><div class="mission"><b>Timișoara Toastmasters</b> ' + l.mission + '</div></div>';
     if (c.qr) side += '<div class="qr"><h4>' + l.social + '</h4>' + qrImg(c.qr) + '<small>' + esc(c.qr.replace(/^https?:\/\//, '')) + '</small></div>';
+    side += '<div class="clubno">Club #01269633</div>';
 
     var rows = '';
     rows += row('', fmt(T.open), l.open, who(a.roles.president));
@@ -477,8 +478,8 @@
     $('sheet').innerHTML =
       '<div class="sh-side">' + side + '</div>' +
       '<div class="sh-col">' +
-        '<div class="sh-head"><div class="hm"><div class="nm">Timișoara Toastmasters</div><div class="tg">Where Leaders Are Made</div><div class="mt">Club #01269633 · District 231 · ' + l.division + '</div></div>' + tile + '</div>' +
-        '<div class="sh-band"><div class="ti">' + esc(a.title || l.title) + '</div>' + (extra.length ? '<div class="ex">' + extra.join(' &nbsp;·&nbsp; ') + '</div>' : '') + '</div>' +
+        '<div class="sh-head"><div class="hm"><div class="ti">' + esc(a.title || l.title) + '</div>' + (extra.length ? '<div class="ex">' + extra.join(' &nbsp;·&nbsp; ') + '</div>' : '') + '</div>' + tile + '</div>' +
+        '<div class="sh-band"></div>' +
         '<div class="sh-main"><div class="sh-rows">' + rows + '</div></div>' +
       '</div>';
 
