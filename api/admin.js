@@ -3,7 +3,7 @@
 //   POST ?action=logout                  clears it
 //   GET  ?action=stats&days=30           visits, sources, devices, events and form submissions
 //   POST ?action=delete  { id }          deletes one form submission (GDPR requests)
-// Meeting agendas (/admin/agenda), kept until deleted:
+// Meeting agendas (/admin/agenda), kept until deleted. No password (club's choice); writes rate-limited:
 //   GET  ?action=agendas                 saved dates, names used before (autocomplete), club defaults
 //   GET  ?action=agenda&date=YYYY-MM-DD  one agenda
 //   POST ?action=agenda-save   { agenda }
@@ -153,6 +153,14 @@ function namesIn(a) {
   return [...new Set(out)];
 }
 
+// At most 120 agenda writes per IP per hour (plenty for editing, stops scripted spam).
+async function agendaRateLimited(req) {
+  if (!configured()) return false;
+  const rl = k('rl:agenda:' + hmac(secret(), clientIp(req)).slice(0, 16));
+  const [, n] = await pipeline([['SET', rl, 0, 'EX', 3600, 'NX'], ['INCR', rl]]);
+  return n > 120;
+}
+
 async function agendaList(req, res) {
   if (!configured()) return res.status(200).json({ configured: false, agendas: [], names: [], settings: null });
   const [dates, names, settings] = await pipeline([
@@ -213,14 +221,18 @@ module.exports = async function handler(req, res) {
       res.setHeader('Set-Cookie', `${COOKIE}=; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=0`);
       return res.status(200).json({ ok: true });
     }
+    // Agendas are open (no password, by the club's choice); writes are rate-limited per IP.
+    if (action === 'agendas' && req.method === 'GET') return await agendaList(req, res);
+    if (action === 'agenda' && req.method === 'GET') return await agendaGet(req, res);
+    if (/^agenda-(save|delete|settings)$/.test(action || '') && req.method === 'POST') {
+      if (await agendaRateLimited(req)) return res.status(429).json({ error: 'Prea multe modificări. Mai încearcă peste o oră.' });
+      if (action === 'agenda-save') return await agendaSave(req, res);
+      if (action === 'agenda-delete') return await agendaDelete(req, res);
+      return await agendaSettings(req, res);
+    }
     if (!isAuthed(req)) return res.status(401).json({ error: 'Neautentificat.' });
     if (action === 'stats' && req.method === 'GET') return await stats(req, res);
     if (action === 'delete' && req.method === 'POST') return await remove(req, res);
-    if (action === 'agendas' && req.method === 'GET') return await agendaList(req, res);
-    if (action === 'agenda' && req.method === 'GET') return await agendaGet(req, res);
-    if (action === 'agenda-save' && req.method === 'POST') return await agendaSave(req, res);
-    if (action === 'agenda-delete' && req.method === 'POST') return await agendaDelete(req, res);
-    if (action === 'agenda-settings' && req.method === 'POST') return await agendaSettings(req, res);
     return res.status(400).json({ error: 'Acțiune necunoscută.' });
   } catch (err) {
     console.error('admin:', err);
