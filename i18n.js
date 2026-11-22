@@ -579,6 +579,25 @@
     '404-btn-home':       'Back Home',
     '404-btn-guest':      'Join as a Guest',
     '404-quicknav-aria':  'Quick navigation',
+
+    /* ─ Links (link-in-bio page) ─ */
+    'lk-title':    'Links | Timișoara Toastmasters',
+    'lk-desc':     'All Timișoara Toastmasters links: join as a guest, the WhatsApp community, Instagram, Facebook, LinkedIn and where we meet.',
+    'lk-share':    'Share this page',
+    'lk-hero-h':   'Come to your first meeting',
+    'lk-hero-p':   'Join as a free guest and get a feel for our club.',
+    'lk-next':     'Next meeting:',
+    'lk-en':       'in English',
+    'lk-cta':      'Save your free seat',
+    'lk-where':    'Where to find us',
+    'lk-venue':    'Zbor Hub, 2nd floor',
+    'lk-street':   '1 V. Alecsandri St. →',
+    'lk-when':     'Schedule',
+    'lk-day':      'Wednesday',
+    'lk-wa-t':     'WhatsApp community',
+    'lk-wa-s':     'Meeting and event announcements',
+    'lk-gal-t':    'Photo gallery',
+    'lk-site-t':   'Official website',
   };
 
   /* ── Engine ── */

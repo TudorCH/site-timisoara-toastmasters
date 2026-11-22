@@ -17,7 +17,11 @@
   send({ p: location.pathname, r: ref });
 
   document.addEventListener('click', function (e) {
-    var a = e.target.closest && e.target.closest('a[href^="http"]');
+    if (!e.target.closest) return;
+    var a = e.target.closest('a[href^="http"]');
     if (a && a.host !== location.host) send({ t: 'click', u: a.href });
+    // Buttons on /links carry a short name, so the stats can show which ones get used.
+    var l = e.target.closest('a[data-link]');
+    if (l) send({ t: 'link', n: l.getAttribute('data-link') });
   }, true);
 })();

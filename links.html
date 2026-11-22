@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="lk-title">Linkuri | Timișoara Toastmasters</title>
+  <meta name="description" content="Toate linkurile Timișoara Toastmasters: înscriere ca invitat, comunitatea WhatsApp, Instagram, Facebook, LinkedIn și locația ședințelor." data-i18n-content="lk-desc" />
+  <!-- Link-in-bio page: reached from social profiles, not meant to compete with the home page in search. -->
+  <meta name="robots" content="noindex, follow" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://timisoaratoastmasters.ro/links" />
+  <meta property="og:site_name" content="Timișoara Toastmasters" />
+  <meta property="og:title" content="Timișoara Toastmasters · Where Leaders Are Made" />
+  <meta property="og:description" content="Public speaking și leadership în Timișoara, în fiecare miercuri. Vino ca invitat, gratuit." />
+  <meta property="og:image" content="https://timisoaratoastmasters.ro/Images/background-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Timișoara Toastmasters" />
+  <meta property="og:locale" content="ro_RO" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Timișoara Toastmasters · Where Leaders Are Made" />
+  <meta name="twitter:description" content="Public speaking și leadership în Timișoara, în fiecare miercuri. Vino ca invitat, gratuit." />
+  <meta name="twitter:image" content="https://timisoaratoastmasters.ro/Images/background-hero.webp" />
+  <link rel="icon" type="image/webp" href="logo.webp" />
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#0B0F17" />
+  <link rel="apple-touch-icon" href="logo.png" />
+  <link rel="stylesheet" href="output.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" /></noscript>
+  <style>
+    :root {
+      --ink: #0B0F17;
+      --navy: #004165;
+      --maroon: #772432;
+      --gold: #F2DF74;
+      --gold-ink: #00273E;
+      --glass: rgba(255,255,255,.10);
+      --glass-hover: rgba(255,255,255,.15);
+      --line: rgba(255,255,255,.15);
+      --muted: #94a3b8;   /* slate-400 */
+    }
+    html { background: var(--ink); }
+    body { background: var(--ink); font-family: 'Plus Jakarta Sans', 'Inter', sans-serif; }
+
+    /* Soft colour glows behind the glass */
+    .glow { position: fixed; width: 20rem; height: 20rem; border-radius: 999px; filter: blur(64px); pointer-events: none; }
+
+    /* Glass surfaces */
+    .glass {
+      background: var(--glass);
+      border: 1px solid var(--line);
+      -webkit-backdrop-filter: blur(24px); backdrop-filter: blur(24px);
+    }
+    a.glass { color: #fff; text-decoration: none; transition: background-color .2s, border-color .2s, transform .2s; }
+    a.glass:hover { background: var(--glass-hover); border-color: rgba(242,223,116,.35); }
+    a.glass:active { transform: scale(.985); }
+    a:focus-visible, button:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+
+    .hero { background: linear-gradient(135deg, var(--navy) 0%, var(--maroon) 100%); border: 1px solid rgba(255,255,255,.2); }
+    .cta {
+      display: block; width: 100%; padding: .8rem 1rem; border-radius: .75rem;
+      background: var(--gold); color: var(--gold-ink); font-weight: 700; font-size: .875rem; text-align: center;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.5), 0 6px 18px rgba(242,223,116,.25);
+      transition: box-shadow .2s, transform .2s, background-color .2s;
+    }
+    .cta:hover { background: #f5e488; box-shadow: inset 0 1px 0 rgba(255,255,255,.5), 0 0 0 4px rgba(242,223,116,.2), 0 8px 24px rgba(242,223,116,.35); }
+    .cta:active { transform: scale(.985); }
+
+    .eyebrow { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; font-weight: 600; color: var(--muted); }
+    .pill-gold {
+      display: inline-flex; align-items: center; border-radius: 999px;
+      background: rgba(242,223,116,.15); border: 1px solid rgba(242,223,116,.4); color: var(--gold);
+      font-size: .75rem; font-weight: 700;
+    }
+
+    /* RO / EN toggle, styled as the gold pill */
+    .lang { padding: 2px; gap: 2px; }
+    .lang button { padding: .2rem .45rem; border-radius: 999px; font: inherit; color: rgba(242,223,116,.65); transition: background-color .2s, color .2s; }
+    .lang button[aria-pressed="true"] { background: var(--gold); color: var(--gold-ink); }
+
+    .icon-btn { width: 2.25rem; height: 2.25rem; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; color: #fff; background: rgba(255,255,255,.08); border: 1px solid var(--line); transition: background-color .2s; }
+    .icon-btn:hover { background: var(--glass-hover); }
+
+    .ico { width: 2.25rem; height: 2.25rem; flex: 0 0 2.25rem; border-radius: .75rem; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,.08); }
+    .ico svg { width: 1.15rem; height: 1.15rem; }
+
+    #toast { position: fixed; left: 50%; bottom: 1.5rem; transform: translate(-50%, 1rem); opacity: 0; pointer-events: none; z-index: 20;
+      background: #fff; color: var(--gold-ink); font-size: .875rem; font-weight: 600; padding: .6rem 1rem; border-radius: 999px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.35); transition: opacity .2s, transform .2s; }
+    #toast.on { opacity: 1; transform: translate(-50%, 0); }
+
+    @keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+    .rise { animation: rise .45s ease both; }
+    @media (prefers-reduced-motion: reduce) {
+      .rise { animation: none; }
+      a.glass, .cta { transition: none; }
+      a.glass:active, .cta:active { transform: none; }
+    }
+  </style>
+</head>
+<body class="min-h-screen text-white antialiased flex justify-center px-4 py-8 sm:py-10 relative overflow-x-hidden">
+
+  <div class="glow -top-20 -left-20" style="background:rgba(119,36,50,.45)" aria-hidden="true"></div>
+  <div class="glow top-40 -right-20" style="background:rgba(0,65,101,.55)" aria-hidden="true"></div>
+  <div class="glow -bottom-24 left-1/4" style="background:rgba(242,223,116,.08)" aria-hidden="true"></div>
+
+  <main class="relative z-10 w-full max-w-md space-y-3.5">
+
+    <!-- Identity bar -->
+    <header class="glass rounded-2xl p-3.5 flex items-center gap-3 rise">
+      <a href="/" data-link="logo" class="flex-shrink-0">
+        <img src="logo.webp" alt="Timișoara Toastmasters" width="44" height="44" class="h-11 w-11 object-contain" />
+      </a>
+      <div class="min-w-0 flex-1">
+        <h1 class="font-bold text-[15px] leading-tight">Timișoara Toastmasters</h1>
+        <p class="text-xs text-[#F2DF74] font-semibold mt-0.5">Where Leaders Are Made</p>
+      </div>
+      <div class="lang pill-gold" role="group" aria-label="Limbă / Language">
+        <button type="button" data-lang-opt="ro" aria-pressed="true" onclick="setLang('ro')">RO</button>
+        <button type="button" data-lang-opt="en" aria-pressed="false" onclick="setLang('en')">EN</button>
+      </div>
+    </header>
+
+    <!-- Main call to action -->
+    <section class="hero rounded-3xl p-5 shadow-xl rise" style="animation-delay:.05s">
+      <h2 class="text-xl font-extrabold leading-snug" data-i18n="lk-hero-h">Participă la prima ta ședință</h2>
+      <p class="text-xs text-slate-200 mt-1" data-i18n="lk-hero-p">Vino ca invitat gratuit și descoperă atmosfera clubului nostru.</p>
+
+      <div class="mt-4 mb-4 flex items-center gap-2.5 rounded-xl bg-black/20 border border-white/10 px-3 py-2.5">
+        <svg class="w-4 h-4 text-[#F2DF74] flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        <p class="min-w-0 flex-1 text-xs leading-snug">
+          <span class="text-slate-300" data-i18n="lk-next">Următoarea ședință:</span>
+          <span id="next-when" class="font-bold text-white">miercuri, 19:30</span>
+        </p>
+        <span id="next-en" class="pill-gold px-2 py-0.5 text-[10px] flex-shrink-0" hidden data-i18n="lk-en">în engleză</span>
+      </div>
+
+      <a href="/contact" class="cta" data-link="invitat"><span data-i18n="lk-cta">Confirmă prezența gratuit</span> ↗</a>
+    </section>
+
+    <!-- Where & when -->
+    <div class="grid grid-cols-2 gap-3 rise" style="animation-delay:.1s">
+      <a href="https://maps.app.goo.gl/KpQ5cfczb6wYHihA9" target="_blank" rel="noopener" class="glass rounded-2xl p-4" data-link="harta">
+        <p class="eyebrow" data-i18n="lk-where">Unde ne găsești</p>
+        <p class="text-sm font-bold mt-1" data-i18n="lk-venue">Zbor Hub, etaj 2</p>
+        <p class="text-xs text-[#F2DF74] mt-0.5" data-i18n="lk-street">V. Alecsandri 1 →</p>
+      </a>
+      <div class="glass rounded-2xl p-4">
+        <p class="eyebrow" data-i18n="lk-when">Program</p>
+        <p class="text-sm font-bold mt-1" data-i18n="lk-day">Miercuri</p>
+        <p class="text-xs text-emerald-300 font-semibold mt-0.5">19:30 – 21:00</p>
+      </div>
+    </div>
+
+    <!-- Community -->
+    <a href="https://chat.whatsapp.com/B7t3hyfuaZFIu7dw23QIRH" target="_blank" rel="noopener" class="glass rounded-2xl p-3.5 flex items-center gap-3 rise" style="animation-delay:.15s" data-link="whatsapp">
+      <span class="ico" style="color:#25D366"><svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></span>
+      <span class="min-w-0 flex-1">
+        <span class="block text-sm font-bold" data-i18n="lk-wa-t">Comunitatea WhatsApp</span>
+        <span class="block text-xs text-slate-400 mt-0.5" data-i18n="lk-wa-s">Anunțuri despre ședințe și evenimente</span>
+      </span>
+      <span class="text-[#F2DF74] text-sm" aria-hidden="true">↗</span>
+    </a>
+
+    <!-- Socials + gallery -->
+    <div class="grid grid-cols-2 gap-3 rise" style="animation-delay:.2s">
+      <a href="https://www.instagram.com/timisoaratoastmasters/" target="_blank" rel="noopener" class="glass rounded-2xl p-3.5 flex items-center gap-2.5" data-link="instagram">
+        <span class="ico"><svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></span>
+        <span class="text-sm font-bold">Instagram</span>
+      </a>
+      <a href="https://www.facebook.com/timisoara.toastmasters" target="_blank" rel="noopener" class="glass rounded-2xl p-3.5 flex items-center gap-2.5" data-link="facebook">
+        <span class="ico" style="color:#4f9cf9"><svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></span>
+        <span class="text-sm font-bold">Facebook</span>
+      </a>
+      <a href="https://www.linkedin.com/company/toastmasters-timisoara/" target="_blank" rel="noopener" class="glass rounded-2xl p-3.5 flex items-center gap-2.5" data-link="linkedin">
+        <span class="ico" style="color:#5aa9e6"><svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></span>
+        <span class="text-sm font-bold">LinkedIn</span>
+      </a>
+      <a href="/galerie" class="glass rounded-2xl p-3.5 flex items-center gap-2.5" data-link="galerie">
+        <span class="ico" style="color:#F2DF74"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></span>
+        <span class="text-sm font-bold" data-i18n="lk-gal-t">Galerie foto</span>
+      </a>
+    </div>
+
+    <!-- Website -->
+    <a href="/" class="glass block w-full py-3.5 px-4 rounded-2xl text-sm font-semibold text-center rise" style="animation-delay:.25s" data-link="site">
+      <span data-i18n="lk-site-t">Website oficial</span> — timisoaratoastmasters.ro ↗
+    </a>
+
+    <footer class="pt-4 flex items-center justify-between gap-3 text-[11px] leading-relaxed text-slate-400">
+      <p class="min-w-0">
+        <span data-i18n="footer-aff-official">Club oficial Toastmasters International</span><br />
+        <span data-i18n="footer-aff-district">District 231 · Divizia F · Aria 1</span> · #1269633
+      </p>
+      <button type="button" id="share" class="icon-btn flex-shrink-0" aria-label="Distribuie pagina" data-i18n-aria="lk-share" title="Distribuie" data-i18n-title="lk-share">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12v7a2 2 0 002 2h12a2 2 0 002-2v-7"/><path d="M16 6l-4-4-4 4"/><path d="M12 2v13"/></svg>
+      </button>
+    </footer>
+  </main>
+
+  <div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+// Next meeting: every Wednesday 19:30–21:00 (Romania time); the last Wednesday of the month is in English.
+// Defined before i18n.js so the language switch re-renders it (i18n.js keeps an earlier setLang as a page hook).
+(function () {
+  var TZ = 'Europe/Bucharest';
+  var RO_M = ['ianuarie','februarie','martie','aprilie','mai','iunie','iulie','august','septembrie','octombrie','noiembrie','decembrie'];
+  var EN_M = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+  function render() {
+    var en = window.tmtLang && window.tmtLang() === 'en';
+    var parts = {};
+    new Intl.DateTimeFormat('en', { timeZone: TZ, year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', hourCycle: 'h23', weekday: 'short' })
+      .formatToParts(new Date()).forEach(function (p) { parts[p.type] = p.value; });
+    var wd = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 }[parts.weekday];
+    var h = parseInt(parts.hour, 10);
+    // Today counts until the meeting ends at 21:00.
+    var offset = (wd === 3 && h < 21) ? 0 : ((3 - wd + 7) % 7 || 7);
+    var d = new Date(Date.UTC(+parts.year, +parts.month - 1, +parts.day + offset));
+    var english = new Date(d.getTime() + 7 * 864e5).getUTCMonth() !== d.getUTCMonth();
+
+    var when;
+    if (offset === 0) when = en ? 'today, 19:30' : 'astăzi, 19:30';
+    else if (offset === 1) when = en ? 'tomorrow, 19:30' : 'mâine, 19:30';
+    else when = en
+      ? 'Wed, ' + EN_M[d.getUTCMonth()] + ' ' + d.getUTCDate() + ', 19:30'
+      : 'miercuri, ' + d.getUTCDate() + ' ' + RO_M[d.getUTCMonth()] + ', 19:30';
+
+    document.getElementById('next-when').textContent = when;
+    document.getElementById('next-en').hidden = !english;
+    document.querySelectorAll('[data-lang-opt]').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.getAttribute('data-lang-opt') === (en ? 'en' : 'ro')));
+    });
+  }
+  window.setLang = render;
+  render();
+})();
+</script>
+<script src="i18n.js"></script>
+<script>
+// Share: native share sheet on phones, otherwise copy the link.
+(function () {
+  var btn = document.getElementById('share'), toast = document.getElementById('toast'), t;
+  function say(msg) {
+    toast.textContent = msg; toast.classList.add('on');
+    clearTimeout(t); t = setTimeout(function () { toast.classList.remove('on'); }, 2200);
+  }
+  btn.addEventListener('click', function () {
+    var url = 'https://timisoaratoastmasters.ro/links';
+    if (navigator.share) {
+      navigator.share({ title: 'Timișoara Toastmasters', url: url }).catch(function () {});
+    } else if (navigator.clipboard) {
+      navigator.clipboard.writeText(url).then(function () { say(tmtStr('Link copiat', 'Link copied')); }, function () { say(url); });
+    } else {
+      say(url);
+    }
+  });
+})();
+</script>
+<script src="/track.js" defer></script>
+</body>
+</html>

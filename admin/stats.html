@@ -180,6 +180,7 @@
         <div class="card"><h2>Dispozitive</h2><p class="hint">Afișări pe tip de dispozitiv</p><ul class="bl" id="l-devices"></ul></div>
         <div class="card"><h2>Țări</h2><p class="hint">Afișări pe țară (din rețea, aproximativ)</p><ul class="bl" id="l-countries"></ul></div>
         <div class="card"><h2>Ședințe alese în formular</h2><p class="hint">Câte înscrieri are fiecare dată</p><ul class="bl" id="l-sessions"></ul></div>
+        <div class="card"><h2>Pagina de linkuri</h2><p class="hint">Butoane apăsate pe /links (linkul din bio-ul rețelelor sociale)</p><ul class="bl" id="l-links"></ul></div>
       </div>
 
       <div class="card" style="margin-top:16px">
@@ -233,7 +234,8 @@
     return function (cc) { if (cc === '??') return 'Necunoscută'; try { return dn ? dn.of(cc) : cc; } catch (e) { return cc; } };
   })();
   var CLICK_NAMES = { whatsapp: 'WhatsApp', facebook: 'Facebook', instagram: 'Instagram', linkedin: 'LinkedIn', tiktok: 'TikTok', youtube: 'YouTube', maps: 'Google Maps', uber: 'Uber', bolt: 'Bolt', 'toastmasters.org': 'toastmasters.org', alt: 'Alte site-uri' };
-  var PAGE_NAMES = { '/': 'Acasă', '/despre-noi': 'Despre noi', '/galerie': 'Galerie', '/blog': 'Blog', '/contact': 'Contact', '/cookies': 'Cookies' };
+  var PAGE_NAMES = { '/': 'Acasă', '/despre-noi': 'Despre noi', '/galerie': 'Galerie', '/blog': 'Blog', '/contact': 'Contact', '/cookies': 'Cookies', '/links': 'Linkuri (bio)' };
+  var LINK_NAMES = { invitat: 'Vino ca invitat', whatsapp: 'WhatsApp', instagram: 'Instagram', facebook: 'Facebook', linkedin: 'LinkedIn', harta: 'Hartă (Zbor Hub)', galerie: 'Galerie', site: 'Site-ul clubului', logo: 'Logo' };
 
   function show(view) {
     $('login').hidden = view !== 'login';
@@ -370,6 +372,7 @@
     barList('l-pages', data.pages, function (p) { return PAGE_NAMES[p] || (p.indexOf('/blog/') === 0 ? 'Blog: ' + p.slice(6) : p); });
     barList('l-refs', data.refs, function (r) { return r === 'direct' ? 'Direct' : r; });
     barList('l-clicks', data.clicks, function (c) { return CLICK_NAMES[c] || c; });
+    barList('l-links', data.links || [], function (l) { return LINK_NAMES[l] || l; });
     barList('l-devices', data.devices, function (d) { return d.charAt(0).toUpperCase() + d.slice(1); });
     barList('l-countries', data.countries, countryName);
     var bySession = {};

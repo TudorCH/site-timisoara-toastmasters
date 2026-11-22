@@ -7,7 +7,9 @@
     { "source": "/galerie.html",    "destination": "/galerie",   "permanent": true },
     { "source": "/despre-noi.html", "destination": "/despre-noi","permanent": true },
     { "source": "/cookies.html",    "destination": "/cookies",   "permanent": true },
-    { "source": "/blog.html",       "destination": "/blog",      "permanent": true }
+    { "source": "/blog.html",       "destination": "/blog",      "permanent": true },
+    { "source": "/links.html",      "destination": "/links",     "permanent": true },
+    { "source": "/bio",             "destination": "/links",     "permanent": false }
   ],
   "rewrites": [
     { "source": "/",           "destination": "/home.html"      },
@@ -16,6 +18,7 @@
     { "source": "/despre-noi", "destination": "/despre-noi.html"},
     { "source": "/cookies",    "destination": "/cookies.html"   },
     { "source": "/blog",       "destination": "/blog.html"      },
+    { "source": "/links",      "destination": "/links.html"     },
     { "source": "/blog/:slug", "destination": "/blog/:slug.html" },
     { "source": "/admin",      "destination": "/admin/index.html" },
     { "source": "/admin/stats", "destination": "/admin/stats.html" }

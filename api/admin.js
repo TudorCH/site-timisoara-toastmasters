@@ -106,6 +106,7 @@ async function stats(req, res) {
     devices: top(devs, 5),
     countries: top(ctys, 10),
     clicks: top(evs, 30).filter(([n]) => n.startsWith('click:')).map(([n, c]) => [n.slice(6), c]),
+    links: top(evs, 60).filter(([n]) => n.startsWith('link:')).map(([n, c]) => [n.slice(5), c]),
     registrations,
   });
 }

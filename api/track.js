@@ -13,6 +13,8 @@ const CLICKS = [
   ['linkedin', /linkedin\.com$/], ['tiktok', /tiktok\.com$/], ['youtube', /youtube\.com$|youtu\.be$/],
   ['maps', /google\.[a-z.]+$|goo\.gl$/], ['uber', /uber\.com$/], ['bolt', /bolt\.eu$/], ['toastmasters.org', /toastmasters\.org$/],
 ];
+// Button names on /links (data-link in links.html).
+const LINKS = new Set(['invitat', 'whatsapp', 'instagram', 'facebook', 'linkedin', 'harta', 'galerie', 'site', 'logo']);
 
 const cleanPath = p => {
   p = String(p || '/').split(/[?#]/)[0].replace(/\.html$/, '').replace(/\/+$/, '') || '/';
@@ -46,6 +48,10 @@ module.exports = async function handler(req, res) {
       if (!h || OWN.test(h)) return res.status(204).end();
       const hit = CLICKS.find(([, re]) => re.test(h));
       cmds.push(...eventCmds('click:' + (hit ? hit[0] : 'alt'), date));
+    } else if (body.t === 'link') {
+      // A button on the /links page; only the names used there are counted.
+      if (!LINKS.has(body.n)) return res.status(204).end();
+      cmds.push(...eventCmds('link:' + body.n, date));
     } else {
       const path = cleanPath(body.p);
       if (!path) return res.status(204).end();
