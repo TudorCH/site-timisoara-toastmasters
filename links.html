@@ -76,10 +76,32 @@
       font-size: .75rem; font-weight: 700;
     }
 
-    /* RO / EN toggle, styled as the gold pill */
-    .lang { padding: 2px; gap: 2px; }
-    .lang button { padding: .2rem .45rem; border-radius: 999px; font: inherit; color: rgba(242,223,116,.65); transition: background-color .2s, color .2s; }
-    .lang button[aria-pressed="true"] { background: var(--gold); color: var(--gold-ink); }
+    /* RO / EN glide switch: a gold knob slides under the active language (on = English) */
+    .lang-sw { flex: 0 0 auto; padding: 0; border: 0; background: none; border-radius: 999px; cursor: pointer; }
+    .lang-track {
+      position: relative; display: grid; grid-template-columns: 1fr 1fr; box-sizing: border-box;
+      width: 68px; height: 30px; padding: 2px; border-radius: 999px;
+      background: rgba(242,223,116,.12); border: 1px solid rgba(242,223,116,.4);
+      box-shadow: inset 0 1px 3px rgba(0,0,0,.35);
+    }
+    .lang-knob {
+      position: absolute; top: 2px; left: 2px; width: calc(50% - 3px); height: calc(100% - 4px); border-radius: 999px;
+      background: var(--gold); box-shadow: 0 2px 6px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.5);
+      transition: transform .25s cubic-bezier(.4,0,.2,1);
+    }
+    .lang-sw[aria-checked="true"] .lang-knob { transform: translateX(calc(100% + 2px)); }
+    .lang-lbl { position: relative; z-index: 1; display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 800; letter-spacing: .04em; color: rgba(242,223,116,.7); transition: color .25s; }
+    .lang-sw[aria-checked="false"] .lang-ro, .lang-sw[aria-checked="true"] .lang-en { color: var(--gold-ink); }
+
+    /* Mini map: a preview only (taps open Google Maps), dimmed to sit on the dark page */
+    .map { position: relative; height: 140px; overflow: hidden; background: #1a2230; }
+    .map iframe { position: absolute; left: 0; top: -65px; width: 100%; height: calc(100% + 65px); border: 0; pointer-events: none;
+      filter: invert(.9) hue-rotate(180deg) saturate(.7) brightness(.95) contrast(.95); }
+    .map-card { transition: border-color .2s; }
+    .map-card:hover { border-color: rgba(242,223,116,.35); }
+    .map-card a:focus-visible { outline-offset: -3px; border-radius: 1rem; }
+    .map::after { content: ''; position: absolute; inset: auto 0 0 0; height: 40%; background: linear-gradient(to bottom, rgba(11,15,23,0), rgba(11,15,23,.85)); pointer-events: none; }
 
     .icon-btn { width: 2.25rem; height: 2.25rem; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; color: #fff; background: rgba(255,255,255,.08); border: 1px solid var(--line); transition: background-color .2s; }
     .icon-btn:hover { background: var(--glass-hover); }
@@ -118,10 +140,13 @@
         <h1 class="font-bold text-[15px] leading-tight">Timișoara Toastmasters</h1>
         <p class="text-xs text-[#F2DF74] font-semibold mt-0.5">Where Leaders Are Made</p>
       </div>
-      <div class="lang pill-gold" role="group" aria-label="Limbă / Language">
-        <button type="button" data-lang-opt="ro" aria-pressed="true" onclick="setLang('ro')">RO</button>
-        <button type="button" data-lang-opt="en" aria-pressed="false" onclick="setLang('en')">EN</button>
-      </div>
+      <button type="button" role="switch" data-lang-switch aria-checked="false" aria-label="English" title="Română / English" class="lang-sw" onclick="setLang(tmtLang() === 'en' ? 'ro' : 'en')">
+        <span class="lang-track" aria-hidden="true">
+          <span class="lang-knob"></span>
+          <span class="lang-lbl lang-ro">RO</span>
+          <span class="lang-lbl lang-en">EN</span>
+        </span>
+      </button>
     </header>
 
     <!-- Main call to action -->
@@ -129,17 +154,27 @@
       <h2 class="text-xl font-extrabold leading-snug" data-i18n="lk-hero-h">Participă la prima ta ședință</h2>
       <p class="text-xs text-slate-200 mt-1" data-i18n="lk-hero-p">Vino ca invitat gratuit și descoperă atmosfera clubului nostru.</p>
 
-      <div class="mt-4 mb-4 flex items-center gap-2.5 rounded-xl bg-black/20 border border-white/10 px-3 py-2.5">
-        <svg class="w-4 h-4 text-[#F2DF74] flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-        <p class="min-w-0 flex-1 text-xs leading-snug">
-          <span class="text-slate-300" data-i18n="lk-next">Următoarea ședință:</span>
-          <span id="next-when" class="font-bold text-white">miercuri, 19:30</span>
+      <div class="mt-4 mb-4 rounded-xl bg-black/20 border border-white/10 px-3 py-3 text-center">
+        <p class="flex items-center justify-center gap-1.5 text-[11px] uppercase tracking-wider font-semibold text-slate-300">
+          <svg class="w-3.5 h-3.5 text-[#F2DF74]" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          <span data-i18n="lk-next">Următoarea ședință</span>
         </p>
-        <span id="next-en" class="pill-gold px-2 py-0.5 text-[10px] flex-shrink-0" hidden data-i18n="lk-en">în engleză</span>
+        <p class="mt-1 flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
+          <span id="next-when" class="text-sm font-bold text-white">Miercuri · 19:30</span>
+          <span id="next-en" class="pill-gold px-2 py-0.5 text-[10px]" hidden data-i18n="lk-en">în engleză</span>
+        </p>
       </div>
 
       <a href="/contact" class="cta" data-link="invitat"><span data-i18n="lk-cta">Confirmă prezența gratuit</span> ↗</a>
     </section>
+
+    <!-- Mini map -->
+    <div class="glass map-card relative rounded-2xl overflow-hidden rise" style="animation-delay:.08s">
+      <div class="map">
+        <iframe src="https://maps.google.com/maps?q=Strada+Vasile+Alecsandri+1,+Timi%C8%99oara&output=embed&z=16&hl=ro" loading="lazy" referrerpolicy="no-referrer-when-downgrade" tabindex="-1" aria-hidden="true" title="Zbor Hub Timișoara"></iframe>
+      </div>
+      <a href="https://maps.app.goo.gl/KpQ5cfczb6wYHihA9" target="_blank" rel="noopener" class="absolute inset-0 z-[1]" data-link="harta-mini" aria-label="Hartă: Zbor Hub, Timișoara. Se deschide în Google Maps" data-i18n-aria="lk-map"></a>
+    </div>
 
     <!-- Where & when -->
     <div class="grid grid-cols-2 gap-3 rise" style="animation-delay:.1s">
@@ -224,17 +259,14 @@
     var english = new Date(d.getTime() + 7 * 864e5).getUTCMonth() !== d.getUTCMonth();
 
     var when;
-    if (offset === 0) when = en ? 'today, 19:30' : 'astăzi, 19:30';
-    else if (offset === 1) when = en ? 'tomorrow, 19:30' : 'mâine, 19:30';
+    if (offset === 0) when = en ? 'Today' : 'Astăzi';
+    else if (offset === 1) when = en ? 'Tomorrow' : 'Mâine';
     else when = en
-      ? 'Wed, ' + EN_M[d.getUTCMonth()] + ' ' + d.getUTCDate() + ', 19:30'
-      : 'miercuri, ' + d.getUTCDate() + ' ' + RO_M[d.getUTCMonth()] + ', 19:30';
+      ? 'Wednesday, ' + EN_M[d.getUTCMonth()] + ' ' + d.getUTCDate()
+      : 'Miercuri, ' + d.getUTCDate() + ' ' + RO_M[d.getUTCMonth()];
 
-    document.getElementById('next-when').textContent = when;
+    document.getElementById('next-when').textContent = when + ' · 19:30';
     document.getElementById('next-en').hidden = !english;
-    document.querySelectorAll('[data-lang-opt]').forEach(function (b) {
-      b.setAttribute('aria-pressed', String(b.getAttribute('data-lang-opt') === (en ? 'en' : 'ro')));
-    });
   }
   window.setLang = render;
   render();

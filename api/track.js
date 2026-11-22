@@ -14,7 +14,7 @@ const CLICKS = [
   ['maps', /google\.[a-z.]+$|goo\.gl$/], ['uber', /uber\.com$/], ['bolt', /bolt\.eu$/], ['toastmasters.org', /toastmasters\.org$/],
 ];
 // Button names on /links (data-link in links.html).
-const LINKS = new Set(['invitat', 'whatsapp', 'instagram', 'facebook', 'linkedin', 'harta', 'galerie', 'site', 'logo']);
+const LINKS = new Set(['invitat', 'whatsapp', 'instagram', 'facebook', 'linkedin', 'harta', 'harta-mini', 'galerie', 'site', 'logo']);
 
 const cleanPath = p => {
   p = String(p || '/').split(/[?#]/)[0].replace(/\.html$/, '').replace(/\/+$/, '') || '/';
