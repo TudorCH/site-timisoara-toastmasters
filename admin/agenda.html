@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Agende | Timișoara Toastmasters</title>
+  <link rel="icon" type="image/webp" href="/logo.webp" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+  <style>
+    :root {
+      --page: #00151f; --card: rgba(18, 58, 94, .35); --line: rgba(79, 123, 163, .22);
+      --hair: rgba(255, 255, 255, .08); --text: #fff; --text-2: rgba(255, 255, 255, .75); --text-3: rgba(255, 255, 255, .55);
+      --gold: #F2DF74; --good: #34d399; --bad: #f87171;
+      color-scheme: dark;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--page); color: var(--text); font: 14px/1.5 Inter, system-ui, sans-serif; min-height: 100vh; }
+    h1, h2 { font-family: 'Plus Jakarta Sans', Inter, sans-serif; }
+    button, input, select, textarea { font: inherit; color: inherit; }
+    [hidden] { display: none !important; }
+
+    /* header (same as /admin/stats) */
+    header { position: sticky; top: 0; z-index: 10; background: linear-gradient(to bottom, #00253b, #001c2d); border-bottom: 1px solid var(--hair); }
+    header .wrap { max-width: 1500px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; gap: 12px; height: 64px; }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; }
+    .brand img { width: 34px; height: 34px; }
+    .brand b { display: block; font-size: 14px; }
+    .brand > span > span { display: block; font-size: 11px; color: var(--gold); font-weight: 600; }
+    .spacer { flex: 1; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; border: 1px solid var(--line); background: var(--card); color: #fff; border-radius: 10px; padding: 7px 12px; font-size: 13px; font-weight: 600; cursor: pointer; text-decoration: none; white-space: nowrap; }
+    .btn:hover { border-color: rgba(255, 255, 255, .35); }
+    .btn.gold { background: var(--gold); color: #00273E; border-color: transparent; }
+    .btn.gold:hover { background: #f5e488; }
+    .btn.ghost-bad:hover { border-color: rgba(248,113,113,.6); color: var(--bad); }
+    .btn:disabled { opacity: .5; cursor: default; }
+    .btn svg { width: 15px; height: 15px; }
+
+    /* layout */
+    .app { max-width: 1500px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: minmax(360px, 460px) minmax(0, 1fr); gap: 24px; align-items: start; }
+    @media (max-width: 1000px) { .app { grid-template-columns: minmax(0, 1fr); } }
+    .toolbar { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+    .toolbar select.input { width: auto; min-width: 240px; max-width: 100%; }
+    .status { font-size: 12px; color: var(--text-3); margin-left: 4px; }
+    .status.dirty { color: var(--gold); }
+    .status.err { color: var(--bad); }
+    .notice { grid-column: 1 / -1; border: 1px solid rgba(242,223,116,.35); background: rgba(242,223,116,.06); border-radius: 12px; padding: 10px 14px; font-size: 13px; color: var(--text-2); }
+
+    /* form */
+    .form { display: grid; gap: 14px; }
+    details.card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 0; }
+    details.card > summary { list-style: none; cursor: pointer; padding: 14px 18px; font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-weight: 700; font-size: 15px; display: flex; align-items: center; justify-content: space-between; }
+    details.card > summary::-webkit-details-marker { display: none; }
+    details.card > summary::after { content: '▾'; color: var(--text-3); transition: transform .2s; }
+    details.card:not([open]) > summary::after { transform: rotate(-90deg); }
+    .body { padding: 0 18px 18px; display: grid; gap: 10px; }
+    .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+    label.f { display: grid; gap: 4px; font-size: 12px; color: var(--text-2); font-weight: 500; min-width: 0; }
+    .input, select.input { width: 100%; background: rgba(255, 255, 255, .05); border: 1px solid rgba(255, 255, 255, .15); border-radius: 9px; padding: 8px 10px; font-size: 13.5px; min-width: 0; }
+    .input:focus { outline: none; border-color: rgba(242, 223, 116, .6); }
+    select.input option { background: #0a2536; }
+    .hint { font-size: 12px; color: var(--text-3); margin: 0; }
+    .check { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-2); }
+    .check input { width: 16px; height: 16px; accent-color: var(--gold); }
+
+    .speech { border: 1px solid var(--hair); background: rgba(0,0,0,.15); border-radius: 12px; padding: 12px; display: grid; gap: 8px; }
+    .speech-head { display: flex; align-items: center; gap: 6px; }
+    .speech-head b { flex: 1; font-size: 13px; color: var(--gold); }
+    .mini { border: 1px solid var(--line); background: none; color: var(--text-2); border-radius: 7px; width: 28px; height: 28px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; }
+    .mini:hover { color: #fff; border-color: rgba(255,255,255,.35); }
+    .mini.bad:hover { color: var(--bad); border-color: rgba(248,113,113,.6); }
+    .mini:disabled { opacity: .35; cursor: default; }
+
+    /* login */
+    .center { max-width: 380px; margin: 12vh auto 0; padding: 0 20px; }
+    .center .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 18px 20px; }
+    .error { color: var(--bad); font-size: 13px; min-height: 20px; margin-top: 8px; }
+
+    /* preview */
+    .preview { position: sticky; top: 84px; }
+    .stage { width: 100%; max-width: 820px; margin: 0 auto; }
+    .sheet-wrap { transform-origin: top left; width: 210mm; box-shadow: 0 20px 60px rgba(0,0,0,.5); }
+    .preview-hint { text-align: center; font-size: 12px; color: var(--text-3); margin-top: 10px; }
+
+    /* ═════════ The printed agenda (A4) ═════════ */
+    .sheet { --s: 1; width: 210mm; height: 297mm; background: #fff; color: #161616; font-family: Inter, Arial, sans-serif; display: flex; flex-direction: column; overflow: hidden; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .sh-head { flex: 0 0 auto; height: 31mm; background: linear-gradient(180deg, #004a73 0%, #003a5c 100%); display: grid; grid-template-columns: 1fr 34mm 1fr; align-items: center; padding: 0 10mm; color: #F2DF74; }
+    .sh-head .hl, .sh-head .hr { text-align: center; font-weight: 800; text-transform: uppercase; line-height: 1.2; }
+    .sh-head .hl small { display: block; font-size: 8.5pt; letter-spacing: .02em; }
+    .sh-head .hl span { display: block; font-size: 12.5pt; letter-spacing: .02em; }
+    .sh-head .hr { font-size: 11.5pt; letter-spacing: .01em; }
+    .sh-head .hc { display: flex; justify-content: center; }
+    .sh-head .hc img { width: 27mm; height: 27mm; object-fit: contain; filter: drop-shadow(0 1mm 1.5mm rgba(0,0,0,.35)); }
+    .sh-date { flex: 0 0 auto; background: #772432; color: #F2DF74; text-align: center; font-weight: 700; font-size: 11pt; padding: 1.4mm 0; }
+    .sh-body { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: 50mm minmax(0, 1fr); }
+    .sh-side { border-right: .6mm solid #a3abb0; padding: calc(5mm * var(--s)) 3mm 4mm; text-align: center; font-size: calc(8.2pt * var(--s)); line-height: 1.3; display: flex; flex-direction: column; gap: calc(4.2mm * var(--s)); overflow: hidden; }
+    .sh-side .ico { display: flex; justify-content: center; margin-bottom: .8mm; }
+    .sh-side .ico svg { width: calc(6.5mm * var(--s)); height: calc(6.5mm * var(--s)); }
+    .sh-side h4 { margin: 0 0 .6mm; font-size: calc(9pt * var(--s)); font-weight: 800; color: #111; }
+    .sh-side .role { color: #8b949a; }
+    .sh-side .mission { font-size: calc(7.2pt * var(--s)); line-height: 1.25; }
+    .sh-side .qr img { width: calc(27mm * var(--s)); height: calc(27mm * var(--s)); image-rendering: pixelated; display: block; margin: 1mm auto 0; }
+    .sh-side .qr small { display: block; font-size: 6.5pt; color: #8b949a; margin-top: .6mm; }
+    .sh-main { padding: calc(5mm * var(--s)) 6mm 4mm 7mm; font-size: calc(9.4pt * var(--s)); line-height: 1.28; overflow: hidden; }
+    .sh-title { text-align: center; font-weight: 800; font-size: calc(11.5pt * var(--s)); margin: 0 0 calc(1.2mm * var(--s)); }
+    .sh-theme { text-align: center; font-size: calc(8.6pt * var(--s)); color: #444; margin: 0 0 calc(1mm * var(--s)); }
+    .sh-theme b { color: #772432; }
+    .sh-rows { margin-top: calc(3.5mm * var(--s)); }
+    .r { display: grid; grid-template-columns: 12mm minmax(0, 1fr) 36mm; column-gap: 2.5mm; margin-top: calc(3.4mm * var(--s)); align-items: start; }
+    .r:first-child { margin-top: 0; }
+    .r .t { font-weight: 800; }
+    .r .x { font-weight: 700; }
+    .r .p { font-weight: 500; }
+    .r.sub { margin-top: calc(1mm * var(--s)); }
+    .r.sub .x { font-weight: 400; padding-left: 3mm; }
+    .r.sp { margin-top: calc(2.2mm * var(--s)); }
+    .r.sp .x { font-weight: 400; padding-left: 3mm; }
+    .r.sp .x i { font-style: italic; }
+    .r.sp .x b { font-weight: 700; }
+    .r.sp .x .meta { display: block; font-style: italic; font-size: calc(7.8pt * var(--s)); padding-left: 3mm; margin-top: .4mm; color: #222; }
+    .r.place .x { font-weight: 800; display: flex; align-items: center; gap: 1.2mm; }
+    .r.place svg { width: 3.6mm; height: 3.6mm; flex: 0 0 auto; }
+    .blank { color: #c4c9cc; }
+
+    @media print {
+      @page { size: A4; margin: 0; }
+      html, body { background: #fff !important; }
+      header, .toolbar, .form, .notice, .preview-hint, #login { display: none !important; }
+      .app { display: block; padding: 0; max-width: none; }
+      .preview { position: static; }
+      .stage { max-width: none; height: auto !important; }
+      .sheet-wrap { transform: none !important; box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="brand" href="/"><img src="/logo.webp" alt="" /><span><b>Timișoara Toastmasters</b><span>Agende ședințe</span></span></a>
+    <span class="spacer"></span>
+    <a class="btn" href="/admin/stats">Statistici</a>
+    <a class="btn" href="/admin" title="Editorul de articole">Blog</a>
+    <button id="logout" class="btn" type="button" hidden>Ieșire</button>
+  </div>
+</header>
+
+<!-- Login -->
+<section id="login" class="center" hidden>
+  <div class="card">
+    <h1 style="font-size:22px;margin:0 0 4px">Agende ședințe</h1>
+    <p class="hint">Doar pentru comitetul clubului. Aceeași parolă ca la statistici.</p>
+    <form id="login-form">
+      <label class="f" for="pw" style="margin-top:14px">Parolă</label>
+      <input id="pw" class="input" type="password" autocomplete="current-password" required style="margin-top:6px" />
+      <div id="login-error" class="error" role="alert"></div>
+      <button class="btn gold" type="submit" style="width:100%;padding:11px">Intră</button>
+    </form>
+  </div>
+</section>
+
+<div id="app" class="app" hidden>
+
+  <div class="toolbar">
+    <select id="saved" class="input" aria-label="Agende salvate"></select>
+    <button id="btn-new" class="btn" type="button">+ Agendă nouă</button>
+    <button id="btn-dup" class="btn" type="button" title="Copiază agenda curentă pe miercurea următoare">Duplică</button>
+    <button id="btn-save" class="btn gold" type="button">Salvează</button>
+    <button id="btn-print" class="btn" type="button" title="Din fereastra de print alege „Salvează ca PDF”">
+      <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+      Print / PDF
+    </button>
+    <button id="btn-png" class="btn" type="button" title="Imagine pentru WhatsApp sau Instagram">
+      <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+      PNG
+    </button>
+    <button id="btn-del" class="btn ghost-bad" type="button">Șterge</button>
+    <span id="status" class="status" role="status"></span>
+  </div>
+
+  <div id="offline" class="notice" hidden></div>
+
+  <!-- ═══ Form ═══ -->
+  <div class="form" id="form">
+
+    <details class="card" open>
+      <summary>Ședința</summary>
+      <div class="body">
+        <div class="row2">
+          <label class="f">Data<input class="input" type="date" data-k="date" /></label>
+          <label class="f">Limba agendei
+            <select class="input" data-k="lang"><option value="ro">Română</option><option value="en">English</option></select>
+          </label>
+        </div>
+        <p class="hint" id="lang-hint"></p>
+        <label class="f">Titlu<input class="input" data-k="title" data-ph-title /></label>
+        <div class="row2">
+          <label class="f">Tema serii (opțional)<input class="input" data-k="theme" placeholder="ex. Curajul" /></label>
+          <label class="f">Cuvântul zilei (opțional)<input class="input" data-k="word" placeholder="ex. Reziliență" /></label>
+        </div>
+        <div class="row2">
+          <label class="f">Ora de început<input class="input" type="time" data-k="start" /></label>
+          <span></span>
+        </div>
+      </div>
+    </details>
+
+    <details class="card" open>
+      <summary>Roluri</summary>
+      <div class="body">
+        <div class="row2">
+          <label class="f">Președinte (deschide / închide)<input class="input" data-k="roles.president" list="names" /></label>
+          <label class="f">Toastmaster-ul serii<input class="input" data-k="roles.tme" list="names" /></label>
+        </div>
+        <div class="row2">
+          <label class="f">Maestrul discursurilor improvizate<input class="input" data-k="roles.ttm" list="names" /></label>
+          <label class="f">Evaluator general<input class="input" data-k="roles.ge" list="names" /></label>
+        </div>
+        <div class="row3">
+          <label class="f">Numărătorul de Ă-uri<input class="input" data-k="roles.ah" list="names" /></label>
+          <label class="f">Gramatician<input class="input" data-k="roles.gram" list="names" /></label>
+          <label class="f">Cronometru<input class="input" data-k="roles.timer" list="names" /></label>
+        </div>
+      </div>
+    </details>
+
+    <details class="card" open>
+      <summary>Discursuri</summary>
+      <div class="body">
+        <div id="speeches" style="display:grid;gap:10px"></div>
+        <button id="add-speech" class="btn" type="button">+ Adaugă discurs</button>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Durate (minute)</summary>
+      <div class="body">
+        <p class="hint">Orele din agendă se calculează din aceste durate. Câmpurile goale folosesc valoarea automată (în gri).</p>
+        <div class="row3">
+          <label class="f">Deschidere<input class="input" type="number" min="0" max="60" data-k="dur.open" data-num /></label>
+          <label class="f">Remarci TME<input class="input" type="number" min="0" max="60" data-k="dur.intro" data-num /></label>
+          <label class="f">Discursuri<input class="input" type="number" min="0" max="120" data-k="dur.speeches" data-num id="dur-sp" /></label>
+        </div>
+        <div class="row3">
+          <label class="f">Improvizate<input class="input" type="number" min="0" max="60" data-k="dur.tt" data-num /></label>
+          <label class="f">Evaluări<input class="input" type="number" min="0" max="90" data-k="dur.eval" data-num id="dur-ev" /></label>
+          <label class="f">Închidere<input class="input" type="number" min="0" max="60" data-k="dur.close" data-num /></label>
+        </div>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Final</summary>
+      <div class="body">
+        <label class="check"><input type="checkbox" data-k="vote.on" /> Votare membru nou</label>
+        <label class="f">Cine conduce votul<input class="input" data-k="vote.name" list="names" /></label>
+        <label class="f">Socializare după ședință (opțional)<input class="input" data-k="social" placeholder="ex. Czech In, Iulius Gardens" /></label>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>Date club (ofițeri, locație)</summary>
+      <div class="body">
+        <div class="row2">
+          <label class="f">Președinte<input class="input" data-k="club.officers.pres" list="names" /></label>
+          <label class="f">VP Educație<input class="input" data-k="club.officers.vpe" list="names" /></label>
+          <label class="f">VP Membri<input class="input" data-k="club.officers.vpm" list="names" /></label>
+          <label class="f">VP Relații Publice<input class="input" data-k="club.officers.vppr" list="names" /></label>
+          <label class="f">Trezorier<input class="input" data-k="club.officers.treas" list="names" /></label>
+          <label class="f">Sergent<input class="input" data-k="club.officers.saa" list="names" /></label>
+          <label class="f">Secretar<input class="input" data-k="club.officers.sec" list="names" /></label>
+          <label class="f">Fost Președinte<input class="input" data-k="club.officers.ipp" list="names" /></label>
+        </div>
+        <div class="row2">
+          <label class="f">Locație<input class="input" data-k="club.venue" /></label>
+          <label class="f">Adresă<input class="input" data-k="club.address" /></label>
+        </div>
+        <label class="f">Link în codul QR<input class="input" data-k="club.qr" /></label>
+        <button id="btn-defaults" class="btn" type="button">Folosește pentru agendele noi</button>
+        <p class="hint">Se salvează odată cu agenda. Butonul de mai sus le face implicite pentru agendele create de acum înainte.</p>
+      </div>
+    </details>
+  </div>
+
+  <!-- ═══ Preview ═══ -->
+  <div class="preview">
+    <div class="stage" id="stage"><div class="sheet-wrap" id="sheet-wrap"><div class="sheet" id="sheet"></div></div></div>
+    <p class="preview-hint">Previzualizare A4. La print alege „Salvează ca PDF” și bifează „Grafică de fundal” dacă lipsesc culorile.</p>
+  </div>
+</div>
+
+<datalist id="names"></datalist>
+<datalist id="paths">
+  <option value="Dynamic Leadership"></option><option value="Effective Coaching"></option><option value="Engaging Humor"></option>
+  <option value="Innovative Planning"></option><option value="Leadership Development"></option><option value="Motivational Strategies"></option>
+  <option value="Persuasive Influence"></option><option value="Presentation Mastery"></option><option value="Strategic Relationships"></option>
+  <option value="Team Collaboration"></option><option value="Visionary Communication"></option>
+</datalist>
+<datalist id="projects">
+  <option value="Ice Breaker"></option><option value="Writing a Speech with Purpose"></option>
+  <option value="Introduction to Vocal Variety and Body Language"></option><option value="Evaluation and Feedback"></option>
+  <option value="Researching and Presenting"></option>
+</datalist>
+
+<script>
+(function () {
+  'use strict';
+  var $ = function (id) { return document.getElementById(id); };
+  var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
+  var clone = function (o) { return JSON.parse(JSON.stringify(o)); };
+
+  // ── Texts printed on the agenda ──
+  var L = {
+    ro: {
+      title: 'Întâlnire de vorbit în public', months: ['Ianuarie','Februarie','Martie','Aprilie','Mai','Iunie','Iulie','August','Septembrie','Octombrie','Noiembrie','Decembrie'],
+      officers: 'Ofițeri', weekly: 'Întâlnire săptămânală', wed: 'Miercuri', location: 'Locație', missionH: 'Misiunea clubului', social: 'Rețele Social Media',
+      mission: 'este de a oferi un mediu de învățare pozitiv și de suport reciproc prin intermediul căruia fiecare membru are oportunitatea să-și dezvolte abilitățile de comunicare și de conducere, toate acestea ducând la creșterea încrederii în sine și la dezvoltarea sa personală.',
+      roles: { pres: 'Președinte', vpe: 'VP Educație', vpm: 'VP Membri', vppr: 'VP Relații Publice', treas: 'Trezorier', saa: 'Sergent', sec: 'Secretar', ipp: 'Fost Președinte' },
+      open: 'Președintele deschide ședința', intro: 'Toastmaster-ul face remarci introductive', speakers: 'Toastmaster-ul prezintă vorbitorii',
+      titleLbl: 'Titlu:', level: 'Nivel', tt: 'Toastmaster-ul prezintă maestrul discursurilor improvizate', ge: 'Toastmaster-ul prezintă evaluatorul general',
+      evaluator: 'Evaluator discurs', ah: 'Numărătorul de Ă-uri', gram: 'Gramatician', timer: 'Cronometru', geEval: 'Oferă o evaluare generală a întâlnirii',
+      close1: 'Toastmaster-ul redă președintelui', close2: 'Președintele închide întâlnirea', vote: 'Votare membru nou',
+      end1: 'Închiderea evenimentului', end2: 'Socializare', theme: 'Tema serii', word: 'Cuvântul zilei'
+    },
+    en: {
+      title: 'Public Speaking Meeting', months: ['January','February','March','April','May','June','July','August','September','October','November','December'],
+      officers: 'Officers', weekly: 'Weekly meeting', wed: 'Wednesday', location: 'Location', missionH: 'Club mission', social: 'Social media',
+      mission: 'provides a supportive and positive learning experience in which members are empowered to develop communication and leadership skills, resulting in greater self-confidence and personal growth.',
+      roles: { pres: 'President', vpe: 'VP Education', vpm: 'VP Membership', vppr: 'VP Public Relations', treas: 'Treasurer', saa: 'Sergeant at Arms', sec: 'Secretary', ipp: 'Immediate Past President' },
+      open: 'The President opens the meeting', intro: 'The Toastmaster makes opening remarks', speakers: 'The Toastmaster introduces the speakers',
+      titleLbl: 'Title:', level: 'Level', tt: 'The Toastmaster introduces the Table Topics Master', ge: 'The Toastmaster introduces the General Evaluator',
+      evaluator: 'Speech evaluator', ah: 'Ah-Counter', gram: 'Grammarian', timer: 'Timer', geEval: 'General evaluation of the meeting',
+      close1: 'The Toastmaster hands over to the President', close2: 'The President closes the meeting', vote: 'New member vote',
+      end1: 'End of the meeting', end2: 'Networking', theme: 'Theme', word: 'Word of the day'
+    }
+  };
+  var OFFICERS = ['pres', 'vpe', 'vpm', 'vppr', 'treas', 'saa', 'sec', 'ipp'];
+  var DEFAULT_CLUB = {
+    officers: { pres: 'Robert Cernea', vpe: 'Olga Lancea', vpm: 'Ionuț Cornean', vppr: 'Lavinia Borza', treas: 'Mihaela Stroia', saa: 'Sergiu Spătar', sec: 'Tudor Chiu', ipp: 'Adriana Stamatin' },
+    venue: 'Zbor Hub, etaj 2', address: 'Str. Vasile Alecsandri 1', qr: 'https://timisoaratoastmasters.ro/links'
+  };
+  // Minutes per evaluation-block role (shown as (3') etc.)
+  var EV = { evaluator: 3, ah: 3, gram: 5, timer: 3, ge: 5 };
+  var DRAFT_KEY = 'tm-agenda-draft';
+
+  var state = null, savedDates = [], settings = null, offline = false, dbReady = false, dirty = false;
+
+  // ── Dates ──
+  var pad = function (n) { return (n < 10 ? '0' : '') + n; };
+  var iso = function (d) { return d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate()); };
+  var parseIso = function (s) { var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(s || ''); return m ? new Date(Date.UTC(+m[1], +m[2] - 1, +m[3])) : null; };
+  function todayIso() { return new Date().toLocaleDateString('en-CA', { timeZone: 'Europe/Bucharest' }); }
+  function nextWednesday(fromIso, strictlyAfter) {
+    var d = parseIso(fromIso) || parseIso(todayIso());
+    var add = (3 - d.getUTCDay() + 7) % 7;
+    if (strictlyAfter && add === 0) add = 7;
+    d.setUTCDate(d.getUTCDate() + add);
+    return iso(d);
+  }
+  function isLastWednesday(s) {
+    var d = parseIso(s); if (!d || d.getUTCDay() !== 3) return false;
+    var n = new Date(d.getTime() + 7 * 864e5); return n.getUTCMonth() !== d.getUTCMonth();
+  }
+  function dateLabel(s, lang) {
+    var d = parseIso(s); if (!d) return '';
+    return d.getUTCDate() + ' ' + L[lang].months[d.getUTCMonth()] + ' ' + d.getUTCFullYear();
+  }
+  var toMin = function (t) { var m = /^(\d{1,2}):(\d{2})/.exec(t || ''); return m ? +m[1] * 60 + +m[2] : 19 * 60 + 30; };
+  var fmt = function (m) { return pad(Math.floor(m / 60) % 24) + ':' + pad(m % 60); };
+  var ceil5 = function (n) { return Math.ceil(n / 5) * 5; };
+  var num = function (v, d) { return (v === '' || v == null || isNaN(+v)) ? d : +v; };
+
+  // ── Model ──
+  function blankSpeech() { return { speaker: '', title: '', min: 7, path: '', level: 1, project: '', note: '', evaluator: '' }; }
+  function clubDefaults() { return clone((settings && settings.club) || DEFAULT_CLUB); }
+  function newAgenda(date) {
+    var club = clubDefaults();
+    return {
+      v: 1, date: date, lang: isLastWednesday(date) ? 'en' : 'ro', title: '', theme: '', word: '', start: '19:30',
+      roles: { president: club.officers.pres || '', tme: '', ttm: '', ge: '', ah: '', gram: '', timer: '' },
+      speeches: [blankSpeech(), blankSpeech()],
+      dur: { open: 5, intro: 5, speeches: '', tt: 25, eval: '', close: 10 },
+      vote: { on: false, name: club.officers.vpm || '' },
+      social: '', club: club
+    };
+  }
+  function normalize(a) {
+    var base = newAgenda(a.date || nextWednesday());
+    var out = Object.assign(base, a);
+    ['roles', 'dur', 'vote'].forEach(function (k) { out[k] = Object.assign(base[k], a[k] || {}); });
+    out.club = Object.assign(clubDefaults(), a.club || {});
+    out.club.officers = Object.assign({}, DEFAULT_CLUB.officers, (a.club && a.club.officers) || {});
+    out.speeches = (Array.isArray(a.speeches) ? a.speeches : []).map(function (s) { return Object.assign(blankSpeech(), s || {}); });
+    return out;
+  }
+  function getPath(o, path) { return path.split('.').reduce(function (x, k) { return x == null ? x : x[k]; }, o); }
+  function setPath(o, path, v) {
+    var ks = path.split('.'), last = ks.pop();
+    var t = ks.reduce(function (x, k) { if (x[k] == null) x[k] = {}; return x[k]; }, o);
+    t[last] = v;
+  }
+
+  // ── Timeline: the sample agenda gives 19:30 → 19:35 → 19:40 → 20:05 → 20:30 → 21:00 → 21:10 ──
+  function timeline(a) {
+    var sp = a.speeches, n = sp.length;
+    var sum = sp.reduce(function (s, x) { return s + num(x.min, 0); }, 0);
+    var autoSp = n ? ceil5(sum + 3 * n) : 0;                       // speeches + ~3' intro/applause each
+    var evRoles = n + 4;                                           // speech evaluators + Ah-Counter, Grammarian, Timer, GE
+    var evSum = n * EV.evaluator + EV.ah + EV.gram + EV.timer + EV.ge;
+    var autoEv = ceil5(evSum + evRoles);                           // + ~1' hand-over per report
+    var d = a.dur, t = toMin(a.start), T = {};
+    T.open = t; t += num(d.open, 5);
+    T.intro = t; t += num(d.intro, 5);
+    T.speakers = t; t += n ? num(d.speeches, autoSp) : 0;
+    T.tt = t; t += num(d.tt, 25);
+    T.ge = t; t += num(d.eval, autoEv);
+    T.close = t; t += num(d.close, 10);
+    T.end = t;
+    return { T: T, autoSp: autoSp, autoEv: autoEv };
+  }
+
+  // ── Preview ──
+  var ICONS = {
+    users: '<path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>',
+    cal: '<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/>',
+    pin: '<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>',
+    target: '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/><path d="M22 2l-8 8"/>'
+  };
+  var icon = function (k) { return '<div class="ico"><svg fill="none" stroke="#2a2f33" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">' + ICONS[k] + '</svg></div>'; };
+  var who = function (n) { return n && n.trim() ? esc(n) : '<span class="blank">—</span>'; };
+  var row = function (cls, t, x, p) { return '<div class="r ' + cls + '"><div class="t">' + (t || '') + '</div><div class="x">' + x + '</div><div class="p">' + (p == null ? '' : p) + '</div></div>'; };
+
+  var qrCache = {};
+  function qrImg(url) {
+    if (!url || typeof qrcode !== 'function') return '';
+    if (!qrCache[url]) {
+      try { var q = qrcode(0, 'M'); q.addData(url); q.make(); qrCache[url] = q.createDataURL(4, 0); } catch (e) { return ''; }
+    }
+    return '<img src="' + qrCache[url] + '" alt="QR" />';
+  }
+
+  function renderSheet() {
+    var a = state, l = L[a.lang] || L.ro, tl = timeline(a), T = tl.T, c = a.club;
+    var side = '';
+    side += '<div>' + icon('users') + '<h4>' + l.officers + '</h4>' + OFFICERS.map(function (k) {
+      return '<div class="role">' + l.roles[k] + '</div><div>' + who(c.officers[k]) + '</div>';
+    }).join('') + '</div>';
+    side += '<div>' + icon('cal') + '<h4>' + l.weekly + '</h4><div>' + l.wed + ', ' + fmt(toMin(a.start)) + ' - ' + fmt(T.end) + '</div></div>';
+    side += '<div>' + icon('pin') + '<h4>' + l.location + '</h4><div>' + esc(c.venue) + '</div><div>' + esc(c.address) + '</div></div>';
+    side += '<div>' + icon('target') + '<h4>' + l.missionH + '</h4><div class="mission"><b>Timișoara Toastmasters</b> ' + l.mission + '</div></div>';
+    if (c.qr) side += '<div class="qr"><h4>' + l.social + '</h4>' + qrImg(c.qr) + '<small>' + esc(c.qr.replace(/^https?:\/\//, '')) + '</small></div>';
+
+    var rows = '';
+    rows += row('', fmt(T.open), l.open, who(a.roles.president));
+    rows += row('', fmt(T.intro), l.intro, who(a.roles.tme));
+    if (a.speeches.length) {
+      rows += row('', fmt(T.speakers), l.speakers, '');
+      a.speeches.forEach(function (s) {
+        // e.g. "Persuasive Influence, Nivel 1, Writing a Speech with Purpose (moment educațional)"
+        var meta = [s.path, s.path || s.project ? (l.level + ' ' + (s.level || 1)) : '', s.project].filter(Boolean).join(', ');
+        if (s.note) meta += (meta ? ' ' : '') + '(' + s.note + ')';
+        rows += row('sp', '', '<i>' + l.titleLbl + '</i> <b>"' + (s.title ? esc(s.title) : '…') + '"</b> (' + num(s.min, 0) + '\')' +
+          (meta ? '<span class="meta">' + esc(meta) + '</span>' : ''), who(s.speaker));
+      });
+    }
+    rows += row('', fmt(T.tt), l.tt, who(a.roles.ttm));
+    rows += row('', fmt(T.ge), l.ge, who(a.roles.ge));
+    a.speeches.forEach(function (s) { rows += row('sub', '', '(' + EV.evaluator + '\') ' + l.evaluator, who(s.evaluator)); });
+    rows += row('sub', '', '(' + EV.ah + '\') ' + l.ah, who(a.roles.ah));
+    rows += row('sub', '', '(' + EV.gram + '\') ' + l.gram, who(a.roles.gram));
+    rows += row('sub', '', '(' + EV.timer + '\') ' + l.timer, who(a.roles.timer));
+    rows += row('sub', '', '(' + EV.ge + '\') ' + l.geEval, who(a.roles.ge));
+    rows += row('', fmt(T.close), l.close1 + '<br>' + l.close2, who(a.roles.president));
+    if (a.vote.on) rows += row('sub', '', l.vote, who(a.vote.name));
+    rows += row('', fmt(T.end), l.end1 + '<br>' + l.end2, who(a.roles.president));
+    if (a.social) rows += row('place', '', '<svg fill="#161616" viewBox="0 0 24 24"><path d="M12 2a7 7 0 00-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z"/></svg>' + esc(a.social), '');
+
+    var extra = [];
+    if (a.theme) extra.push(l.theme + ': <b>' + esc(a.theme) + '</b>');
+    if (a.word) extra.push(l.word + ': <b>' + esc(a.word) + '</b>');
+
+    $('sheet').innerHTML =
+      '<div class="sh-head"><div class="hl"><small>Timișoara Toastmasters</small><span>Club #01269633</span></div>' +
+      '<div class="hc"><img src="/logo.webp" alt="Toastmasters International" /></div><div class="hr">Where Leaders<br>Are Made</div></div>' +
+      '<div class="sh-date">' + esc(dateLabel(a.date, a.lang)) + '</div>' +
+      '<div class="sh-body"><div class="sh-side">' + side + '</div><div class="sh-main">' +
+      '<div class="sh-title">' + esc(a.title || l.title) + '</div>' +
+      (extra.length ? '<div class="sh-theme">' + extra.join(' · ') + '</div>' : '') +
+      '<div class="sh-rows">' + rows + '</div></div></div>';
+
+    // Auto-placeholders for durations
+    $('dur-sp').placeholder = String(tl.autoSp); $('dur-ev').placeholder = String(tl.autoEv);
+    fit();
+  }
+
+  // Shrinks the text a little when a long agenda would not fit on one page.
+  function fit() {
+    var sheet = $('sheet'), s = 1;
+    var over = function () { return [].some.call(sheet.querySelectorAll('.sh-main, .sh-side'), function (el) { return el.scrollHeight > el.clientHeight + 1; }); };
+    sheet.style.setProperty('--s', 1);
+    while (over() && s > 0.7) { s -= 0.03; sheet.style.setProperty('--s', s.toFixed(2)); }
+  }
+  function scalePreview() {
+    var stage = $('stage'), wrap = $('sheet-wrap'), sheet = $('sheet');
+    var k = Math.min(1, stage.clientWidth / sheet.offsetWidth);
+    wrap.style.transform = 'scale(' + k + ')';
+    stage.style.height = (sheet.offsetHeight * k) + 'px';
+  }
+
+  // ── Form ──
+  function fillForm() {
+    document.querySelectorAll('#form [data-k]').forEach(function (el) {
+      var v = getPath(state, el.getAttribute('data-k'));
+      if (el.type === 'checkbox') el.checked = !!v; else el.value = v == null ? '' : v;
+    });
+    document.querySelector('[data-ph-title]').placeholder = L[state.lang].title;
+    renderSpeeches();
+    langHint();
+  }
+  function langHint() {
+    $('lang-hint').textContent = isLastWednesday(state.date) ? 'Ultima miercuri din lună: ședința e în engleză.' : '';
+  }
+  function renderSpeeches() {
+    var box = $('speeches'), n = state.speeches.length;
+    box.innerHTML = state.speeches.map(function (s, i) {
+      var p = 'speeches.' + i + '.';
+      return '<div class="speech"><div class="speech-head"><b>Discursul ' + (i + 1) + '</b>' +
+        '<button type="button" class="mini" data-move="' + i + ':-1" aria-label="Mută mai sus"' + (i === 0 ? ' disabled' : '') + '>↑</button>' +
+        '<button type="button" class="mini" data-move="' + i + ':1" aria-label="Mută mai jos"' + (i === n - 1 ? ' disabled' : '') + '>↓</button>' +
+        '<button type="button" class="mini bad" data-remove="' + i + '" aria-label="Șterge discursul">✕</button></div>' +
+        '<div class="row2"><label class="f">Vorbitor<input class="input" data-k="' + p + 'speaker" list="names" value="' + esc(s.speaker) + '" /></label>' +
+        '<label class="f">Evaluator<input class="input" data-k="' + p + 'evaluator" list="names" value="' + esc(s.evaluator) + '" /></label></div>' +
+        '<label class="f">Titlul discursului<input class="input" data-k="' + p + 'title" value="' + esc(s.title) + '" /></label>' +
+        '<div class="row3"><label class="f">Traseu Pathways<input class="input" data-k="' + p + 'path" list="paths" value="' + esc(s.path) + '" /></label>' +
+        '<label class="f">Nivel<select class="input" data-k="' + p + 'level" data-num>' + [1, 2, 3, 4, 5].map(function (v) { return '<option' + (+s.level === v ? ' selected' : '') + '>' + v + '</option>'; }).join('') + '</select></label>' +
+        '<label class="f">Minute (max)<input class="input" type="number" min="1" max="45" data-k="' + p + 'min" data-num value="' + esc(s.min) + '" /></label></div>' +
+        '<div class="row2"><label class="f">Proiect<input class="input" data-k="' + p + 'project" list="projects" value="' + esc(s.project) + '" /></label>' +
+        '<label class="f">Notă (opțional)<input class="input" data-k="' + p + 'note" placeholder="ex. moment educațional" value="' + esc(s.note) + '" /></label></div></div>';
+    }).join('');
+  }
+
+  function onField(e) {
+    var el = e.target, k = el.getAttribute && el.getAttribute('data-k');
+    if (!k) return;
+    var v = el.type === 'checkbox' ? el.checked : el.value;
+    if (el.hasAttribute('data-num')) v = v === '' ? '' : +v;
+    setPath(state, k, v);
+    if (k === 'date') {
+      state.lang = isLastWednesday(state.date) ? 'en' : 'ro';
+      document.querySelector('[data-k="lang"]').value = state.lang;
+      langHint();
+    }
+    if (k === 'lang' || k === 'date') document.querySelector('[data-ph-title]').placeholder = L[state.lang].title;
+    // Ice Breaker is 4–6 minutes; the other Level 1 projects 5–7.
+    var m = /^speeches\.(\d+)\.project$/.exec(k);
+    if (m && /ice\s*breaker/i.test(v)) { state.speeches[+m[1]].min = 6; var mi = document.querySelector('[data-k="speeches.' + m[1] + '.min"]'); if (mi) mi.value = 6; }
+    changed();
+  }
+  $('form').addEventListener('input', onField);
+  $('form').addEventListener('change', onField);
+  $('speeches').addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    if (b.hasAttribute('data-remove')) {
+      var i = +b.getAttribute('data-remove');
+      var s = state.speeches[i];
+      if ((s.speaker || s.title) && !confirm('Ștergi discursul ' + (i + 1) + '?')) return;
+      state.speeches.splice(i, 1);
+    } else if (b.hasAttribute('data-move')) {
+      var p = b.getAttribute('data-move').split(':'), a = +p[0], to = a + +p[1];
+      var x = state.speeches.splice(a, 1)[0]; state.speeches.splice(to, 0, x);
+    }
+    renderSpeeches(); changed();
+  });
+  $('add-speech').addEventListener('click', function () { state.speeches.push(blankSpeech()); renderSpeeches(); changed(); });
+
+  // ── Saving ──
+  function setStatus(text, cls) { var s = $('status'); s.textContent = text; s.className = 'status' + (cls ? ' ' + cls : ''); }
+  function changed() {
+    dirty = true;
+    try { localStorage.setItem(DRAFT_KEY, JSON.stringify(state)); } catch (e) {}
+    setStatus(dbReady ? 'Modificări nesalvate' : 'Ciornă salvată în acest browser', dbReady ? 'dirty' : '');
+    renderSheet();
+  }
+  function load(a, isDirty) {
+    state = normalize(a);
+    dirty = !!isDirty;
+    fillForm(); renderSheet(); scalePreview(); syncSaved();
+    setStatus(isDirty ? (dbReady ? 'Ciornă nesalvată (din acest browser)' : 'Ciornă din acest browser') : (savedDates.some(function (x) { return x.date === state.date; }) ? 'Salvată' : ''), isDirty && dbReady ? 'dirty' : '');
+  }
+  function api(action, opts) {
+    return fetch('/api/admin?action=' + action, Object.assign({ credentials: 'same-origin', headers: { 'Content-Type': 'application/json' } }, opts || {}))
+      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { if (!r.ok) { var e = new Error(j.error || ('Eroare ' + r.status)); e.status = r.status; throw e; } return j; }); });
+  }
+  function syncSaved() {
+    var sel = $('saved'), cur = state && state.date;
+    var opts = savedDates.map(function (x) {
+      var d = parseIso(x.date);
+      return '<option value="' + esc(x.date) + '">' + pad(d.getUTCDate()) + '.' + pad(d.getUTCMonth() + 1) + '.' + d.getUTCFullYear() + (x.lang === 'en' ? ' · EN' : '') + (x.title ? ' · ' + esc(x.title) : '') + '</option>';
+    });
+    var known = savedDates.some(function (x) { return x.date === cur; });
+    if (!known) opts.unshift('<option value="">' + (cur ? 'Nesalvată: ' + esc(cur.split('-').reverse().join('.')) : 'Agendă nouă') + '</option>');
+    sel.innerHTML = opts.join('') || '<option value="">Nicio agendă salvată</option>';
+    sel.value = known ? cur : '';
+    $('btn-del').disabled = !known;
+  }
+  function confirmLeave() { return !dirty || confirm('Ai modificări nesalvate. Continui fără să le salvezi?'); }
+
+  $('saved').addEventListener('change', function () {
+    var date = this.value;
+    if (!date || date === state.date) return;
+    if (!confirmLeave()) { syncSaved(); return; }
+    setStatus('Se încarcă…');
+    api('agenda&date=' + encodeURIComponent(date)).then(function (j) { load(j.agenda); }, function (e) { setStatus(e.message, 'err'); syncSaved(); });
+  });
+  $('btn-new').addEventListener('click', function () {
+    if (!confirmLeave()) return;
+    var latest = savedDates.length ? savedDates[0].date : null;   // list is newest first
+    var date = nextWednesday(todayIso());
+    if (latest && latest >= date) date = nextWednesday(latest, true);
+    load(newAgenda(date)); try { localStorage.removeItem(DRAFT_KEY); } catch (e) {}
+  });
+  $('btn-dup').addEventListener('click', function () {
+    var copy = clone(state);
+    copy.date = nextWednesday(state.date, true);
+    copy.lang = isLastWednesday(copy.date) ? 'en' : 'ro';
+    delete copy.updated;
+    load(copy, true); changed();
+    setStatus('Copie pentru ' + copy.date.split('-').reverse().join('.') + ', nesalvată', 'dirty');
+  });
+  $('btn-save').addEventListener('click', function () {
+    if (!dbReady) { setStatus('Baza de date nu e conectată; agenda rămâne doar în acest browser.', 'err'); return; }
+    if (!parseIso(state.date)) { setStatus('Alege o dată.', 'err'); return; }
+    setStatus('Se salvează…');
+    api('agenda-save', { method: 'POST', body: JSON.stringify({ agenda: state }) }).then(function () {
+      dirty = false; try { localStorage.removeItem(DRAFT_KEY); } catch (e) {}
+      return refreshList();
+    }).then(function () { syncSaved(); setStatus('Salvată'); }, function (e) { setStatus(e.message, 'err'); });
+  });
+  $('btn-del').addEventListener('click', function () {
+    if (!confirm('Ștergi agenda din ' + state.date.split('-').reverse().join('.') + '? Nu se poate anula.')) return;
+    api('agenda-delete', { method: 'POST', body: JSON.stringify({ date: state.date }) }).then(refreshList).then(function () {
+      dirty = true; syncSaved(); setStatus('Ștearsă. Ce vezi acum e doar o ciornă.', 'dirty');
+    }, function (e) { setStatus(e.message, 'err'); });
+  });
+  $('btn-defaults').addEventListener('click', function () {
+    if (!dbReady) { setStatus('Baza de date nu e conectată.', 'err'); return; }
+    var next = Object.assign({}, settings || {}, { club: clone(state.club) });
+    api('agenda-settings', { method: 'POST', body: JSON.stringify({ settings: next }) }).then(function () {
+      settings = next; setStatus('Datele clubului sunt acum implicite pentru agendele noi.');
+    }, function (e) { setStatus(e.message, 'err'); });
+  });
+  $('btn-print').addEventListener('click', function () {
+    var t = document.title; document.title = 'Agenda ' + state.date;
+    window.print(); document.title = t;
+  });
+  $('btn-png').addEventListener('click', function () {
+    var btn = this; btn.disabled = true; setStatus('Se pregătește imaginea…');
+    loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js').then(function () {
+      return window.html2canvas($('sheet'), { scale: 2, backgroundColor: '#ffffff', useCORS: true,
+        onclone: function (doc) { doc.getElementById('sheet-wrap').style.transform = 'none'; } });
+    }).then(function (canvas) {
+      canvas.toBlob(function (blob) {
+        var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'agenda-' + state.date + '.png';
+        document.body.appendChild(a); a.click(); a.remove(); setTimeout(function () { URL.revokeObjectURL(a.href); }, 2000);
+        setStatus(dirty ? 'Imagine descărcată (agenda nu e salvată)' : 'Imagine descărcată', dirty ? 'dirty' : '');
+      }, 'image/png');
+    }).catch(function () { setStatus('Nu am putut crea imaginea.', 'err'); }).then(function () { btn.disabled = false; });
+  });
+  function loadScript(src) {
+    return new Promise(function (ok, fail) {
+      if (document.querySelector('script[src="' + src + '"]')) return ok();
+      var s = document.createElement('script'); s.src = src; s.onload = ok; s.onerror = fail; document.head.appendChild(s);
+    });
+  }
+  window.addEventListener('beforeunload', function (e) { if (dirty && dbReady) { e.preventDefault(); e.returnValue = ''; } });
+  window.addEventListener('resize', scalePreview);
+
+  // ── Session ──
+  function refreshList() {
+    return api('agendas').then(function (j) {
+      dbReady = !!j.configured; savedDates = j.agendas || []; settings = j.settings || settings;
+      $('names').innerHTML = (j.names || []).map(function (n) { return '<option value="' + esc(n) + '"></option>'; }).join('');
+      return j;
+    });
+  }
+  function start() {
+    $('login').hidden = true; $('app').hidden = false;
+    var draft = null;
+    try { draft = JSON.parse(localStorage.getItem(DRAFT_KEY) || 'null'); } catch (e) {}
+    if (draft && draft.date) load(draft, true);
+    else load(newAgenda(nextWednesday(todayIso())));
+    if (offline || !dbReady) {
+      $('offline').hidden = false;
+      $('offline').textContent = offline
+        ? 'Nu pot contacta serverul. Poți completa, printa și descărca agenda; ciorna rămâne în acest browser.'
+        : 'Baza de date nu e conectată în acest mediu, deci agendele nu se pot salva pe server. Poți completa, printa și descărca; ciorna rămâne în acest browser.';
+    }
+  }
+  function init() {
+    refreshList().then(function () { $('logout').hidden = false; start(); }, function (e) {
+      if (e.status === 401) { $('app').hidden = true; $('login').hidden = false; setTimeout(function () { $('pw').focus(); }, 0); return; }
+      offline = true; start();
+    });
+  }
+  $('login-form').addEventListener('submit', function (e) {
+    e.preventDefault(); $('login-error').textContent = '';
+    api('login', { method: 'POST', body: JSON.stringify({ password: $('pw').value }) }).then(function () { $('pw').value = ''; init(); }, function (err) { $('login-error').textContent = err.message; });
+  });
+  $('logout').addEventListener('click', function () {
+    if (!confirmLeave()) return;
+    api('logout', { method: 'POST' }).then(function () { location.reload(); });
+  });
+
+  // For testing / quick fills from the console
+  window.tmAgenda = { load: function (a) { load(a, true); changed(); }, get state() { return state; } };
+
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { if (state) { renderSheet(); scalePreview(); } });
+  init();
+})();
+</script>
+</body>
+</html>

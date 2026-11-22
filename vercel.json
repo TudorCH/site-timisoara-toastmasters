@@ -21,7 +21,8 @@
     { "source": "/links",      "destination": "/links.html"     },
     { "source": "/blog/:slug", "destination": "/blog/:slug.html" },
     { "source": "/admin",      "destination": "/admin/index.html" },
-    { "source": "/admin/stats", "destination": "/admin/stats.html" }
+    { "source": "/admin/stats", "destination": "/admin/stats.html" },
+    { "source": "/admin/agenda", "destination": "/admin/agenda.html" }
   ],
   "functions": {
     "api/*.js": {

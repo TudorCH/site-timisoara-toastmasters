@@ -3,6 +3,12 @@
 //   POST ?action=logout                  clears it
 //   GET  ?action=stats&days=30           visits, sources, devices, events and form submissions
 //   POST ?action=delete  { id }          deletes one form submission (GDPR requests)
+// Meeting agendas (/admin/agenda), kept until deleted:
+//   GET  ?action=agendas                 saved dates, names used before (autocomplete), club defaults
+//   GET  ?action=agenda&date=YYYY-MM-DD  one agenda
+//   POST ?action=agenda-save   { agenda }
+//   POST ?action=agenda-delete { date }
+//   POST ?action=agenda-settings { settings }   club defaults for new agendas (officers, venue...)
 // Needs ADMIN_PASSWORD in Vercel; stats need the Upstash Redis integration (see _lib/store.js).
 const crypto = require('crypto');
 const { configured, pipeline, k, day, hmac, secret, clientIp, envNames, ENV } = require('./_lib/store');
@@ -118,6 +124,84 @@ async function remove(req, res) {
   return res.status(200).json({ ok: true });
 }
 
+// ── Agendas ──
+const AG_DATE = /^\d{4}-\d{2}-\d{2}$/;
+const AG_MAX = 40000;   // bytes of JSON per agenda; a full one is ~3 KB
+// Keeps only plain data: short strings, numbers, booleans, small arrays/objects with simple keys.
+function clean(v, depth = 0) {
+  if (typeof v === 'string') return v.slice(0, 400);
+  if (typeof v === 'number') return Number.isFinite(v) ? v : null;
+  if (typeof v === 'boolean' || v === null) return v;
+  if (depth > 4) return null;
+  if (Array.isArray(v)) return v.slice(0, 40).map(x => clean(x, depth + 1));
+  if (typeof v === 'object') {
+    const o = {};
+    for (const [key, x] of Object.entries(v).slice(0, 60)) if (/^[a-zA-Z0-9_]{1,30}$/.test(key)) o[key] = clean(x, depth + 1);
+    return o;
+  }
+  return null;
+}
+const parseJson = s => { try { return s ? JSON.parse(s) : null; } catch { return null; } };
+// Every person named in an agenda, for autocomplete next time.
+function namesIn(a) {
+  const out = [];
+  const add = n => { if (typeof n === 'string' && n.trim() && n.length <= 60) out.push(n.trim()); };
+  Object.values(a.roles || {}).forEach(add);
+  (a.speeches || []).forEach(s => { if (s) { add(s.speaker); add(s.evaluator); } });
+  if (a.vote) add(a.vote.name);
+  Object.values((a.club && a.club.officers) || {}).forEach(add);
+  return [...new Set(out)];
+}
+
+async function agendaList(req, res) {
+  if (!configured()) return res.status(200).json({ configured: false, agendas: [], names: [], settings: null });
+  const [dates, names, settings] = await pipeline([
+    ['ZREVRANGE', k('agenda:index'), 0, 199], ['SMEMBERS', k('agenda:names')], ['GET', k('agenda:settings')],
+  ]);
+  let titles = [];
+  if (dates && dates.length) titles = (await pipeline([['MGET', ...dates.map(d => k('agenda:' + d))]]))[0] || [];
+  return res.status(200).json({
+    configured: true,
+    agendas: (dates || []).map((date, i) => { const a = parseJson(titles[i]) || {}; return { date, title: a.title || '', lang: a.lang || 'ro' }; }),
+    names: (names || []).sort((a, b) => a.localeCompare(b, 'ro')),
+    settings: parseJson(settings),
+  });
+}
+async function agendaGet(req, res) {
+  const date = String(req.query.date || '');
+  if (!AG_DATE.test(date)) return res.status(400).json({ error: 'Dată invalidă.' });
+  const [raw] = await pipeline([['GET', k('agenda:' + date)]]);
+  const agenda = parseJson(raw);
+  return agenda ? res.status(200).json({ agenda }) : res.status(404).json({ error: 'Agenda nu există.' });
+}
+async function agendaSave(req, res) {
+  if (!configured()) return res.status(503).json({ error: 'Baza de date nu e conectată, agenda nu se poate salva.' });
+  const agenda = clean(parseBody(req).agenda);
+  if (!agenda || !AG_DATE.test(agenda.date || '')) return res.status(400).json({ error: 'Agenda nu are o dată validă.' });
+  agenda.updated = Date.now();
+  const json = JSON.stringify(agenda);
+  if (json.length > AG_MAX) return res.status(413).json({ error: 'Agenda e prea mare.' });
+  const cmds = [['SET', k('agenda:' + agenda.date), json], ['ZADD', k('agenda:index'), Date.parse(agenda.date), agenda.date]];
+  const names = namesIn(agenda);
+  if (names.length) cmds.push(['SADD', k('agenda:names'), ...names]);
+  await pipeline(cmds);
+  return res.status(200).json({ ok: true, updated: agenda.updated });
+}
+async function agendaDelete(req, res) {
+  const { date } = parseBody(req);
+  if (!AG_DATE.test(String(date || ''))) return res.status(400).json({ error: 'Dată invalidă.' });
+  await pipeline([['DEL', k('agenda:' + date)], ['ZREM', k('agenda:index'), date]]);
+  return res.status(200).json({ ok: true });
+}
+async function agendaSettings(req, res) {
+  if (!configured()) return res.status(503).json({ error: 'Baza de date nu e conectată.' });
+  const settings = clean(parseBody(req).settings);
+  const json = JSON.stringify(settings || {});
+  if (json.length > AG_MAX) return res.status(413).json({ error: 'Setările sunt prea mari.' });
+  await pipeline([['SET', k('agenda:settings'), json]]);
+  return res.status(200).json({ ok: true });
+}
+
 module.exports = async function handler(req, res) {
   res.setHeader('Cache-Control', 'no-store');
   res.setHeader('X-Robots-Tag', 'noindex');
@@ -132,6 +216,11 @@ module.exports = async function handler(req, res) {
     if (!isAuthed(req)) return res.status(401).json({ error: 'Neautentificat.' });
     if (action === 'stats' && req.method === 'GET') return await stats(req, res);
     if (action === 'delete' && req.method === 'POST') return await remove(req, res);
+    if (action === 'agendas' && req.method === 'GET') return await agendaList(req, res);
+    if (action === 'agenda' && req.method === 'GET') return await agendaGet(req, res);
+    if (action === 'agenda-save' && req.method === 'POST') return await agendaSave(req, res);
+    if (action === 'agenda-delete' && req.method === 'POST') return await agendaDelete(req, res);
+    if (action === 'agenda-settings' && req.method === 'POST') return await agendaSettings(req, res);
     return res.status(400).json({ error: 'Acțiune necunoscută.' });
   } catch (err) {
     console.error('admin:', err);
