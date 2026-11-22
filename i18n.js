@@ -588,7 +588,6 @@
     'lk-hero-p':   'Join as a free guest and get a feel for our club.',
     'lk-next':     'Next meeting',
     'lk-map':      'Map: Zbor Hub, Timișoara. Opens Google Maps',
-    'lk-en':       'in English',
     'lk-cta':      'Save your free seat',
     'lk-where':    'Where to find us',
     'lk-venue':    'Zbor Hub, 2nd floor',
