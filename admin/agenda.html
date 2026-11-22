@@ -82,10 +82,11 @@
     .preview-hint { text-align: center; font-size: 12px; color: var(--text-3); margin-top: 10px; }
 
     /* ═════════ The printed agenda (A4) ═════════ */
-    .sheet { --s: 1; width: 210mm; height: 297mm; background: #fff; color: #161616; font-family: Inter, Arial, sans-serif; display: flex; flex-direction: column; overflow: hidden; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    /* Header: logo + club identity on the left, the date as a calendar tile on the right */
-    .sh-head { flex: 0 0 auto; height: 32mm; background: linear-gradient(135deg, #004a73 0%, #003a5c 70%, #00314d 100%); display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; column-gap: 5mm; padding: 0 10mm 0 8mm; border-bottom: .9mm solid #F2DF74; }
-    .sh-head .hl img { display: block; width: 24mm; height: 24mm; object-fit: contain; filter: drop-shadow(0 .8mm 1.2mm rgba(0,0,0,.35)); }
+    /* Two columns over the full page: a light sidebar (logo, officers, info) and the program column with the bands on top */
+    .sheet { --s: 1; width: 210mm; height: 297mm; background: #fff; color: #161616; font-family: Inter, Arial, sans-serif; display: grid; grid-template-columns: 52mm minmax(0, 1fr); overflow: hidden; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .sh-col { display: flex; flex-direction: column; height: 297mm; min-width: 0; }
+    /* Header: club identity on the left, the date as a calendar tile on the right */
+    .sh-head { flex: 0 0 auto; height: 32mm; background: linear-gradient(135deg, #004a73 0%, #003a5c 70%, #00314d 100%); display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; column-gap: 5mm; padding: 0 8mm; border-bottom: .9mm solid #F2DF74; }
     .sh-head .hm { line-height: 1.15; }
     .sh-head .hm .nm { font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-weight: 800; font-size: 16pt; letter-spacing: .01em; text-transform: uppercase; color: #fff; }
     .sh-head .hm .tg { font-weight: 700; font-size: 10pt; color: #F2DF74; margin-top: 1mm; }
@@ -95,20 +96,22 @@
     .sh-head .hd .dd { font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 24pt; font-weight: 800; line-height: 1.05; color: #fff; }
     .sh-head .hd .my { font-size: 7.6pt; font-weight: 600; }
     /* Maroon band: the meeting's title, plus theme / word of the day when set */
-    .sh-band { flex: 0 0 auto; background: #772432; color: #fff; text-align: center; padding: 2.4mm 10mm 2.6mm; }
+    .sh-band { flex: 0 0 auto; background: #772432; color: #fff; text-align: center; padding: 2.4mm 8mm 2.6mm; }
     .sh-band .ti { font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-weight: 800; font-size: 12pt; letter-spacing: .01em; }
     .sh-band .ex { font-size: 8.6pt; color: rgba(255,255,255,.8); margin-top: .6mm; }
     .sh-band .ex b { color: #F2DF74; font-weight: 700; }
-    .sh-body { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: 50mm minmax(0, 1fr); }
-    .sh-side { border-right: .6mm solid #a3abb0; padding: calc(5mm * var(--s)) 3mm 4mm; text-align: center; font-size: calc(8.2pt * var(--s)); line-height: 1.3; display: flex; flex-direction: column; gap: calc(4.2mm * var(--s)); overflow: hidden; }
-    .sh-side .ico { display: flex; justify-content: center; margin-bottom: .8mm; }
+    /* Sidebar: full height, sections spread evenly from the logo down to the QR code */
+    .sh-side { height: 297mm; background: #f1f4f6; border-right: .3mm solid #dde3e7; padding: 7mm 4.5mm 7mm; text-align: center; font-size: calc(8.3pt * var(--s)); line-height: 1.32; display: flex; flex-direction: column; justify-content: space-between; gap: calc(3mm * var(--s)); overflow: hidden; }
+    .sh-side .logo img { display: block; width: calc(30mm * var(--s)); height: calc(30mm * var(--s)); object-fit: contain; margin: 0 auto; }
+    .sh-side .ico { display: flex; justify-content: center; margin-bottom: 1mm; }
     .sh-side .ico svg { width: calc(6.5mm * var(--s)); height: calc(6.5mm * var(--s)); }
-    .sh-side h4 { margin: 0 0 .6mm; font-size: calc(9pt * var(--s)); font-weight: 800; color: #111; }
-    .sh-side .role { color: #8b949a; }
-    .sh-side .mission { font-size: calc(7.2pt * var(--s)); line-height: 1.25; }
+    .sh-side h4 { margin: 0 0 1mm; font-size: calc(9pt * var(--s)); font-weight: 800; color: #004165; }
+    .sh-side .role { color: #8b949a; font-size: calc(7.6pt * var(--s)); margin-top: calc(1mm * var(--s)); }
+    .sh-side h4 + .role { margin-top: 0; }
+    .sh-side .mission { font-size: calc(7.3pt * var(--s)); line-height: 1.3; }
     .sh-side .qr img { width: calc(27mm * var(--s)); height: calc(27mm * var(--s)); image-rendering: pixelated; display: block; margin: 1mm auto 0; }
     .sh-side .qr small { display: block; font-size: 6.5pt; color: #8b949a; margin-top: .6mm; }
-    .sh-main { padding: calc(5mm * var(--s)) 6mm 4mm 7mm; font-size: calc(9.4pt * var(--s)); line-height: 1.28; overflow: hidden; }
+    .sh-main { flex: 1 1 auto; min-height: 0; padding: calc(6mm * var(--s)) 7mm 5mm 7mm; font-size: calc(9.4pt * var(--s)); line-height: 1.28; overflow: hidden; }
     .sh-rows { margin-top: calc(1mm * var(--s)); }
     .r { display: grid; grid-template-columns: 12mm minmax(0, 1fr) 36mm; column-gap: 2.5mm; margin-top: calc(3.4mm * var(--s)); align-items: start; }
     .r:first-child { margin-top: 0; }
@@ -428,7 +431,7 @@
 
   function renderSheet() {
     var a = state, l = L[a.lang] || L.ro, tl = timeline(a), T = tl.T, c = a.club;
-    var side = '';
+    var side = '<div class="logo"><img src="/logo.webp" alt="Toastmasters International" /></div>';
     side += '<div>' + icon('users') + '<h4>' + l.officers + '</h4>' + OFFICERS.map(function (k) {
       return '<div class="role">' + l.roles[k] + '</div><div>' + who(c.officers[k]) + '</div>';
     }).join('') + '</div>';
@@ -472,12 +475,12 @@
       : '<div></div>';
 
     $('sheet').innerHTML =
-      '<div class="sh-head"><div class="hl"><img src="/logo.webp" alt="Toastmasters International" /></div>' +
-      '<div class="hm"><div class="nm">Timișoara Toastmasters</div><div class="tg">Where Leaders Are Made</div><div class="mt">Club #01269633 · District 231 · ' + l.division + '</div></div>' +
-      tile + '</div>' +
-      '<div class="sh-band"><div class="ti">' + esc(a.title || l.title) + '</div>' + (extra.length ? '<div class="ex">' + extra.join(' &nbsp;·&nbsp; ') + '</div>' : '') + '</div>' +
-      '<div class="sh-body"><div class="sh-side">' + side + '</div><div class="sh-main">' +
-      '<div class="sh-rows">' + rows + '</div></div></div>';
+      '<div class="sh-side">' + side + '</div>' +
+      '<div class="sh-col">' +
+        '<div class="sh-head"><div class="hm"><div class="nm">Timișoara Toastmasters</div><div class="tg">Where Leaders Are Made</div><div class="mt">Club #01269633 · District 231 · ' + l.division + '</div></div>' + tile + '</div>' +
+        '<div class="sh-band"><div class="ti">' + esc(a.title || l.title) + '</div>' + (extra.length ? '<div class="ex">' + extra.join(' &nbsp;·&nbsp; ') + '</div>' : '') + '</div>' +
+        '<div class="sh-main"><div class="sh-rows">' + rows + '</div></div>' +
+      '</div>';
 
     // Auto-placeholders for durations
     $('dur-sp').placeholder = String(tl.autoSp); $('dur-ev').placeholder = String(tl.autoEv);
