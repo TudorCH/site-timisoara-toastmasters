@@ -86,13 +86,14 @@
     /* Faint wire globe behind the name, as in the mockup */
     .badge .wm { position: absolute; left: 50%; top: 53%; width: 58em; height: 58em; max-width: none; transform: translate(-50%, -50%); opacity: .11; pointer-events: none; }
     .badge > *:not(.frame):not(.wm) { position: relative; }
-    .badge .club { width: 100%; overflow: hidden; font-size: 3.05em; font-weight: 600; letter-spacing: .03em; text-transform: uppercase; white-space: nowrap; }
+    /* The two small lines (top and bottom) take the accent colour and keep clear of the frame */
+    .badge .club { width: 86%; overflow: hidden; font-size: 2.8em; font-weight: 600; letter-spacing: .03em; text-transform: uppercase; white-space: nowrap; color: var(--tag); }
     .badge .logo { width: 24em; height: 24em; object-fit: contain; filter: drop-shadow(0 .6em .9em rgba(0,0,0,.45)); }
     .badge .nm { width: 100%; font-size: 6.6em; font-weight: 800; line-height: 1.08; text-transform: uppercase; overflow: hidden; }
     .badge .nm span { display: block; white-space: nowrap; }
-    .badge .pill { max-width: 100%; padding: 1.25em 4.2em; border-radius: 99em; background: var(--pill); color: var(--pill-fg); box-shadow: 0 .5em 1em rgba(0,0,0,.35); overflow: hidden; }
-    .badge .pill span { display: block; font-size: 3.2em; font-weight: 700; letter-spacing: .02em; text-transform: uppercase; white-space: nowrap; }
-    .badge .tag { width: 100%; overflow: hidden; font-size: 2.55em; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: var(--tag); white-space: nowrap; }
+    .badge .pill { max-width: 86%; padding: 1.25em 4.2em; border-radius: 99em; background: var(--pill); color: var(--pill-fg); box-shadow: 0 .5em 1em rgba(0,0,0,.35); overflow: hidden; }
+    .badge .pill span { display: block; overflow: hidden; font-size: 3.2em; font-weight: 700; letter-spacing: .02em; text-transform: uppercase; white-space: nowrap; }
+    .badge .tag { width: 86%; overflow: hidden; font-size: 2.4em; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: var(--tag); white-space: nowrap; }
 
     @media print {
       @page { size: A4; margin: 0; }
@@ -300,9 +301,9 @@
   function fitText() {
     document.querySelectorAll('#pages .nm, #pages .club, #pages .tag, #pages .pill span').forEach(function (el) {
       el.style.fontSize = '';
-      var box = el.parentNode.classList.contains('pill') ? el.parentNode : el;   // the pill clips its label
+      // Each line clips its own overflow, so it is measured against its own width (inside the pill's padding).
       var fs = parseFloat(getComputedStyle(el).fontSize), min = fs * 0.45;
-      var over = function () { return box.scrollWidth > box.clientWidth + 0.5; };
+      var over = function () { return el.scrollWidth > el.clientWidth + 0.5; };
       while (over() && fs > min) { fs *= 0.95; el.style.fontSize = fs + 'px'; }
     });
   }
