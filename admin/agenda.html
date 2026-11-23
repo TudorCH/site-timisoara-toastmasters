@@ -95,6 +95,11 @@
     .sh-head .dt { font-family: 'Libre Baskerville', Georgia, serif; font-weight: 700; font-size: 11pt; color: #F2DF74; }
     .sh-head .tg { letter-spacing: .16em; margin-top: 1.2mm; }
     .sh-body { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: 52mm minmax(0, 1fr); grid-template-rows: minmax(0, 1fr); }
+    /* Sidebar head: emblem + club name and number, with a rule under it */
+    .sh-side .sb-id { display: flex; align-items: center; gap: 2.6mm; text-align: left; padding-bottom: calc(3.5mm * var(--s)); border-bottom: .3mm solid #d4d9dd; }
+    .sh-side .sb-id img { width: calc(13mm * var(--s)); height: calc(13mm * var(--s)); object-fit: contain; flex: 0 0 auto; }
+    .sh-side .sb-id .nm { font-weight: 800; font-size: calc(8pt * var(--s)); line-height: 1.25; letter-spacing: .1em; text-transform: uppercase; color: #004165; }
+    .sh-side .sb-id .no { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: calc(7pt * var(--s)); color: #555; margin-top: .6mm; }
     /* Sidebar: sections spread evenly from the top down to the QR code */
     .sh-side { min-height: 0; background: #f1f4f6; border-right: .3mm solid #dde3e7; padding: 7mm 4.5mm 7mm; text-align: center; font-size: calc(8.3pt * var(--s)); line-height: 1.32; display: flex; flex-direction: column; justify-content: space-between; gap: calc(3mm * var(--s)); overflow: hidden; }
     .sh-side .ico { display: flex; justify-content: center; margin-bottom: 1mm; }
@@ -425,7 +430,8 @@
 
   function renderSheet() {
     var a = state, l = L[a.lang] || L.ro, tl = timeline(a), T = tl.T, c = a.club;
-    var side = '<div>' + icon('users') + '<h4>' + l.officers + '</h4>' + OFFICERS.map(function (k) {
+    var side = '<div class="sb-id"><img src="/logo.webp" alt="Toastmasters International" /><div><div class="nm">Timișoara<br>Toastmasters</div><div class="no">Club #01269633</div></div></div>';
+    side += '<div>' + icon('users') + '<h4>' + l.officers + '</h4>' + OFFICERS.map(function (k) {
       return '<div class="role">' + l.roles[k] + '</div><div>' + who(c.officers[k]) + '</div>';
     }).join('') + '</div>';
     side += '<div>' + icon('cal') + '<h4>' + l.weekly + '</h4><div>' + l.wed + ', ' + fmt(toMin(a.start)) + ' - ' + fmt(T.end) + '</div></div>';
