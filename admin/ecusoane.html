@@ -86,7 +86,7 @@
     .badge.white { --tag: #eef2f5; --pill: linear-gradient(90deg, #b9c3cb 0%, #ffffff 35%, #e3e8ec 65%, #ffffff 100%); }
     /* Fine matte-card texture */
     .badge::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(rgba(255, 255, 255, .03) .1em, transparent 0); background-size: .4em .4em; pointer-events: none; z-index: 1; }
-    /* Wire globe watermark and the metallic inner frame (both SVG images, see GLOBE / frameSvg) */
+    /* Wire globe watermark (Images/badge-globe.png) and the metallic inner frame (SVG, see frameSvg) */
     .badge .wm { position: absolute; left: 50%; top: 52%; width: 31em; height: 31em; max-width: none; transform: translate(-50%, -50%); opacity: .06; pointer-events: none; z-index: 1; }
     .badge .frame { position: absolute; left: 0; top: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; }
     .badge > .club, .badge > .logo, .badge > .nm, .badge > .pill, .badge > .tag { position: relative; z-index: 3; }
@@ -257,21 +257,9 @@
 
   // ── Badges ──
   var svgUrl = function (s) { return 'data:image/svg+xml,' + encodeURIComponent(s); };
-  // Wire globe watermark in the style of the reference: a tilted globe whose parallels are wide bands
-  // running a little past the outline on the left.
-  var GLOBE = svgUrl((function () {
-    var s = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" fill="none" stroke="#ffffff" stroke-linecap="round">' +
-      '<defs><clipPath id="c"><circle cx="100" cy="100" r="99"/></clipPath><clipPath id="i"><circle cx="100" cy="100" r="86"/></clipPath></defs>' +
-      '<circle cx="100" cy="100" r="86" stroke-width="3.2"/>' +
-      '<g transform="rotate(24 100 100)" stroke-width="2.6"><g clip-path="url(#i)"><line x1="100" y1="10" x2="100" y2="190"/>';
-    [26, 52, 74].forEach(function (rx) { s += '<ellipse cx="100" cy="100" rx="' + rx + '" ry="86"/>'; });
-    s += '</g><g clip-path="url(#c)">';
-    [-62, -33, -4, 25, 54].forEach(function (d) {
-      var w = Math.sqrt(86 * 86 - d * d);
-      s += '<ellipse cx="91" cy="' + (100 + d) + '" rx="' + (w + 9).toFixed(1) + '" ry="13"/>';
-    });
-    return s + '</g></g></svg>';
-  })());
+  // Watermark: the globe from the reference image the club sent (the outer ring with text removed),
+  // as white lines on transparent.
+  var GLOBE = '/Images/badge-globe.png';
   // Metallic inner frame (original: 12 px inset, 14 px radius, 3 px line, 135° gold gradient), drawn for
   // the card's proportions in the original's 340 px-wide units. Members get the silver-white version.
   var frameCache = {};
@@ -369,7 +357,8 @@
     var el = document.querySelector('#pages [data-b="' + i + '"]');
     if (!el) return Promise.reject(new Error('no badge'));
     // html2canvas draws SVG images wrongly, so the globe and the frame are swapped for PNG copies in its clone.
-    var svgs = [].map.call(el.querySelectorAll('img.wm, img.frame'), function (im) { return im.getAttribute('src'); });
+    var svgs = [].map.call(el.querySelectorAll('img.wm, img.frame'), function (im) { return im.getAttribute('src'); })
+      .filter(function (src) { return /^data:image\/svg/.test(src); });
     var pngs = {};
     return loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js').then(function () {
       return Promise.all(svgs.map(function (src) { return toPng(src).then(function (p) { pngs[src] = p; }); }));
