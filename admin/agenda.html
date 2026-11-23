@@ -102,7 +102,7 @@
     .sh-head .dt { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 9.8pt; font-weight: 600; color: #772432; white-space: nowrap; }
     .sh-head .ex { margin-top: 2.2mm; font-size: 8.8pt; color: #555; }
     .sh-head .ex b { color: #772432; font-weight: 700; }
-    /* Left column below the emblem: officers, weekly meeting, location, mission; QR at the bottom */
+    /* Left column below the emblem: officers; QR at the bottom */
     .sh-side { grid-column: 1; grid-row: 2; min-height: 0; background: #F6F5F1; border-right: .3mm solid #D4D2CC; padding: calc(6mm * var(--s)) 4mm 6mm; text-align: center; font-size: calc(8.2pt * var(--s)); line-height: 1.3; display: flex; flex-direction: column; gap: calc(5.5mm * var(--s)); overflow: hidden; }
     .sh-side .qr { margin-top: auto; }   /* QR sits at the foot of the column */
     .sh-side .ico { display: flex; justify-content: center; margin-bottom: 1mm; }
@@ -116,8 +116,13 @@
     .sh-side .qr-logo { position: absolute; left: 50%; top: 50%; width: 26%; height: 26%; transform: translate(-50%, -50%); background: #fff; border-radius: 50%; padding: 1.5%; box-sizing: border-box; display: flex; }
     .sh-side .qr-logo img { width: 100%; height: 100%; object-fit: contain; display: block; }
     .sh-side .qr small { display: block; font-size: 6.5pt; color: #80868a; margin-top: .6mm; }
-    .sh-main { grid-column: 2; grid-row: 2; min-height: 0; padding: calc(6mm * var(--s)) 7mm 4mm 8mm; font-size: calc(9.4pt * var(--s)); line-height: 1.28; overflow: hidden; }
+    .sh-main { grid-column: 2; grid-row: 2; min-height: 0; padding: calc(6mm * var(--s)) 7mm 6mm 8mm; font-size: calc(9.4pt * var(--s)); line-height: 1.28; overflow: hidden; display: flex; flex-direction: column; }
     .sh-rows { margin-top: 0; }
+    /* Info block at the foot of the program column: weekly meeting | location | mission */
+    .sh-info { margin-top: auto; padding-top: calc(4mm * var(--s)); border-top: .3mm solid #D4D2CC; display: grid; grid-template-columns: minmax(0, .95fr) minmax(0, 1fr) minmax(0, 2.1fr); column-gap: 5mm; font-size: calc(8pt * var(--s)); line-height: 1.38; color: #222; }
+    .sh-info .ih { display: flex; align-items: center; gap: 1.4mm; margin-bottom: 1.3mm; font-size: calc(7.2pt * var(--s)); font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: #004165; }
+    .sh-info .ih svg { width: calc(4mm * var(--s)); height: calc(4mm * var(--s)); flex: 0 0 auto; }
+    .sh-info .mission { font-size: calc(7.6pt * var(--s)); line-height: 1.4; color: #333; }
     .r { display: grid; grid-template-columns: 12mm minmax(0, 1fr) 36mm; column-gap: 2.5mm; margin-top: calc(3.4mm * var(--s)); align-items: start; }
     .r:first-child { margin-top: 0; }
     .r .t { font-weight: 800; }
@@ -472,9 +477,6 @@
     side += '<div>' + icon('users') + '<h4>' + l.officers + '</h4>' + OFFICERS.map(function (k) {
       return '<div class="role">' + l.roles[k] + '</div><div>' + who(c.officers[k]) + '</div>';
     }).join('') + '</div>';
-    side += '<div>' + icon('cal') + '<h4>' + l.weekly + '</h4><div>' + l.wed + ', ' + fmt(toMin(a.start)) + ' - ' + fmt(T.end) + '</div></div>';
-    side += '<div>' + icon('pin') + '<h4>' + l.location + '</h4><div>' + esc(c.venue) + '</div><div>' + esc(c.address) + '</div></div>';
-    side += '<div>' + icon('target') + '<h4>' + l.missionH + '</h4><div class="mission"><b>Timișoara Toastmasters</b> ' + l.mission + '</div></div>';
     if (c.qr) side += '<div class="qr"><h4>' + l.social + '</h4>' + qrImg(c.qr) + '<small>' + esc(c.qr.replace(/^https?:\/\//, '')) + '</small><small>Club #01269633</small></div>';
 
     var rows = '';
@@ -502,6 +504,14 @@
     rows += row('', fmt(T.end), l.end1 + '<br>' + l.end2, who(a.roles.president));
     if (a.social) rows += row('place', '', '<svg fill="#161616" viewBox="0 0 24 24"><path d="M12 2a7 7 0 00-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z"/></svg>' + esc(a.social), '');
 
+    // Footer of the program column: weekly meeting, location, club mission
+    var ih = function (k, t) { return '<div class="ih"><svg fill="none" stroke="#004165" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">' + ICONS[k] + '</svg>' + t + '</div>'; };
+    var info = '<div class="sh-info">' +
+      '<div>' + ih('cal', l.weekly) + '<div>' + l.wed + ', ' + fmt(toMin(a.start)) + ' - ' + fmt(T.end) + '</div></div>' +
+      '<div>' + ih('pin', l.location) + '<div>' + esc(c.venue) + '</div><div>' + esc(c.address) + '</div></div>' +
+      '<div>' + ih('target', l.missionH) + '<div class="mission"><b>Timișoara Toastmasters</b> ' + l.mission + '</div></div>' +
+      '</div>';
+
     var extra = [];
     if (a.theme) extra.push(l.theme + ': <b>' + esc(a.theme) + '</b>');
     if (a.word) extra.push(l.word + ': <b>' + esc(a.word) + '</b>');
@@ -513,7 +523,7 @@
         (extra.length ? '<div class="ex">' + extra.join(' &nbsp;·&nbsp; ') + '</div>' : '') +
       '</div>' +
       '<div class="sh-side">' + side + '</div>' +
-      '<div class="sh-main"><div class="sh-rows">' + rows + '</div></div>';
+      '<div class="sh-main"><div class="sh-rows">' + rows + '</div>' + info + '</div>';
 
     // Auto-placeholders for durations
     $('dur-sp').placeholder = String(tl.autoSp); $('dur-ev').placeholder = String(tl.autoEv);
