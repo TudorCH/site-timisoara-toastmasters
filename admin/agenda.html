@@ -66,6 +66,7 @@
     .hint { font-size: 12px; color: var(--text-3); margin: 0; }
     .pick { display: grid; gap: 6px; }
     .row2, .row3 { align-items: start; }
+    .row-path { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, .8fr) minmax(0, 1fr); gap: 10px; align-items: start; }
     textarea.input { resize: vertical; line-height: 1.5; font-size: 13px; }
     .check { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-2); }
     .check input { width: 16px; height: 16px; accent-color: var(--gold); }
@@ -289,17 +290,6 @@
 </div>
 
 <datalist id="names"></datalist>
-<datalist id="paths">
-  <option value="Dynamic Leadership"></option><option value="Effective Coaching"></option><option value="Engaging Humor"></option>
-  <option value="Innovative Planning"></option><option value="Leadership Development"></option><option value="Motivational Strategies"></option>
-  <option value="Persuasive Influence"></option><option value="Presentation Mastery"></option><option value="Strategic Relationships"></option>
-  <option value="Team Collaboration"></option><option value="Visionary Communication"></option>
-</datalist>
-<datalist id="projects">
-  <option value="Ice Breaker"></option><option value="Writing a Speech with Purpose"></option>
-  <option value="Introduction to Vocal Variety and Body Language"></option><option value="Evaluation and Feedback"></option>
-  <option value="Researching and Presenting"></option>
-</datalist>
 
 <script>
 (function () {
@@ -343,6 +333,24 @@
     'Nadejda Silosieva', 'Olga Lancea', 'Ovidiu Diatlov', 'Petrica Gavril Tihulca', 'Raul Nistor', 'Rebeca Peca',
     'Robert Cernea', 'Serban Blidariu', 'Sergiu Foca', 'Sergiu Spătar', 'Sorin Săliștean', 'Tudor Chiu', 'Valentin Deleanu'
   ];
+  // Pathways (toastmasters.org, "Paths and Projects"): the six current paths. Level 1 is the same on all
+  // of them, Level 2 depends on the path; from Level 3 on the project is typed freely (electives).
+  var PATHS = ['Dynamic Leadership', 'Engaging Humor', 'Motivational Strategies', 'Persuasive Influence', 'Presentation Mastery', 'Visionary Communication'];
+  var L1_PROJECTS = ['Ice Breaker', 'Writing a Speech with Purpose', 'Introduction to Vocal Variety and Body Language', 'Evaluation and Feedback'];
+  var L2_PROJECTS = {
+    'Dynamic Leadership': ['Understanding Your Leadership Style', 'Understanding Your Communication Style', 'Introduction to Toastmasters Mentoring'],
+    'Engaging Humor': ['Know Your Sense of Humor', 'Connect with Your Audience', 'Introduction to Toastmasters Mentoring'],
+    'Motivational Strategies': ['Understanding Your Communication Style', 'Active Listening', 'Introduction to Toastmasters Mentoring'],
+    'Persuasive Influence': ['Understanding Your Leadership Style', 'Active Listening', 'Introduction to Toastmasters Mentoring'],
+    'Presentation Mastery': ['Understanding Your Communication Style', 'Effective Body Language', 'Introduction to Toastmasters Mentoring'],
+    'Visionary Communication': ['Understanding Your Leadership Style', 'Understanding Your Communication Style', 'Introduction to Toastmasters Mentoring']
+  };
+  function projectOptions(s) {
+    var lv = +s.level || 1;
+    if (lv === 1) return L1_PROJECTS;
+    if (lv === 2) return L2_PROJECTS[s.path] || null;
+    return null;
+  }
   var MEMBERS_KEY = 'tm-agenda-members';
   var members = DEFAULT_MEMBERS.slice();
   var byName = function (a, b) { return a.localeCompare(b, 'ro'); };
@@ -536,14 +544,23 @@
   // ── Person fields: a dropdown of members, plus "Alt nume…" for guests / new members ──
   // Each <input list="names"> gets a <select> in front of it; the input keeps the value (data-k)
   // and is shown only when the name isn't in the list.
+  // The same dropdown serves Pathways paths (data-choice="paths") and projects (data-choice="proj:<i>").
+  var OTHER_LABEL = { members: 'Alt nume…', paths: 'Alt traseu…', proj: 'Alt proiect…' };
+  function optionsFor(src) {
+    if (src === 'members') return members;
+    if (src === 'paths') return PATHS;
+    var m = /^proj:(\d+)$/.exec(src);
+    return (m && state.speeches[+m[1]] && projectOptions(state.speeches[+m[1]])) || [];
+  }
   function enhancePeople(root) {
-    root.querySelectorAll('input[list="names"]:not([data-pick])').forEach(function (inp) {
+    root.querySelectorAll('input[list="names"]:not([data-pick]), input[data-choice]:not([data-pick])').forEach(function (inp) {
       inp.setAttribute('data-pick', '');
-      var wrap = document.createElement('div'); wrap.className = 'pick';
+      var src = inp.getAttribute('data-choice') || 'members';
+      var wrap = document.createElement('div'); wrap.className = 'pick'; wrap.setAttribute('data-src', src);
       var sel = document.createElement('select'); sel.className = 'input';
       var lbl = inp.closest('label');
       sel.setAttribute('aria-label', lbl ? lbl.firstChild.textContent.trim() : 'Persoană');
-      inp.placeholder = 'Scrie numele';
+      inp.placeholder = src === 'members' ? 'Scrie numele' : 'Scrie aici';
       inp.parentNode.insertBefore(wrap, inp);
       wrap.appendChild(sel); wrap.appendChild(inp);
       syncPick(wrap);
@@ -551,10 +568,11 @@
   }
   function syncPick(wrap) {
     var sel = wrap.querySelector('select'), inp = wrap.querySelector('input');
+    var src = wrap.getAttribute('data-src') || 'members', opts = optionsFor(src);
     var v = inp.value.trim();
-    var other = wrap.classList.contains('other') || (v && members.indexOf(v) === -1);
-    sel.innerHTML = '<option value="">—</option>' + members.map(function (m) { return '<option>' + esc(m) + '</option>'; }).join('') +
-      '<option value="__other">Alt nume…</option>';
+    var other = wrap.classList.contains('other') || (v && opts.indexOf(v) === -1);
+    sel.innerHTML = '<option value="">—</option>' + opts.map(function (m) { return '<option>' + esc(m) + '</option>'; }).join('') +
+      '<option value="__other">' + OTHER_LABEL[src.split(':')[0]] + '</option>';
     sel.value = other ? '__other' : v;
     wrap.classList.toggle('other', !!other);
     inp.hidden = !other;
@@ -601,13 +619,19 @@
         '<div class="row2"><label class="f">Vorbitor<input class="input" data-k="' + p + 'speaker" list="names" value="' + esc(s.speaker) + '" /></label>' +
         '<label class="f">Evaluator<input class="input" data-k="' + p + 'evaluator" list="names" value="' + esc(s.evaluator) + '" /></label></div>' +
         '<label class="f">Titlul discursului<input class="input" data-k="' + p + 'title" value="' + esc(s.title) + '" /></label>' +
-        '<div class="row3"><label class="f">Traseu Pathways<input class="input" data-k="' + p + 'path" list="paths" value="' + esc(s.path) + '" /></label>' +
+        '<div class="row-path"><label class="f">Traseu Pathways<input class="input" data-k="' + p + 'path" data-choice="paths" value="' + esc(s.path) + '" /></label>' +
         '<label class="f">Nivel<select class="input" data-k="' + p + 'level" data-num>' + [1, 2, 3, 4, 5].map(function (v) { return '<option' + (+s.level === v ? ' selected' : '') + '>' + v + '</option>'; }).join('') + '</select></label>' +
         '<label class="f">Minute (max)<input class="input" type="number" min="1" max="45" data-k="' + p + 'min" data-num value="' + esc(s.min) + '" /></label></div>' +
-        '<div class="row2"><label class="f">Proiect<input class="input" data-k="' + p + 'project" list="projects" value="' + esc(s.project) + '" /></label>' +
-        '<label class="f">Notă (opțional)<input class="input" data-k="' + p + 'note" placeholder="ex. moment educațional" value="' + esc(s.note) + '" /></label></div></div>';
+        '<div class="proj-slot" data-i="' + i + '">' + projectField(s, i) + '</div>' +
+        '<label class="f">Notă (opțional)<input class="input" data-k="' + p + 'note" placeholder="ex. moment educațional" value="' + esc(s.note) + '" /></label></div>';
     }).join('');
     enhancePeople(box);
+  }
+  // Levels 1–2: a list of the path's projects; Level 3+ (or a path not in the list): free text.
+  function projectField(s, i) {
+    var opts = projectOptions(s), k = 'speeches.' + i + '.project';
+    return '<label class="f">Proiect' +
+      '<input class="input" data-k="' + k + '"' + (opts ? ' data-choice="proj:' + i + '"' : ' placeholder="Scrie numele proiectului"') + ' value="' + esc(s.project) + '" /></label>';
   }
 
   function onField(e) {
@@ -615,7 +639,18 @@
     if (!k) return;
     var v = el.type === 'checkbox' ? el.checked : el.value;
     if (el.hasAttribute('data-num')) v = v === '' ? '' : +v;
+    // Path or level changed: the project field may switch between a list and free text.
+    var pl = /^speeches\.(\d+)\.(path|level)$/.exec(k), sp = pl && state.speeches[+pl[1]], before = sp && projectOptions(sp);
     setPath(state, k, v);
+    if (sp) {
+      var after = projectOptions(sp);
+      if (before !== after) {
+        // A project picked from the old list that isn't in the new one is cleared; typed text is kept.
+        if (before && before.indexOf(sp.project) !== -1 && !(after && after.indexOf(sp.project) !== -1)) sp.project = '';
+        var slot = document.querySelector('.proj-slot[data-i="' + pl[1] + '"]');
+        if (slot) { slot.innerHTML = projectField(sp, +pl[1]); enhancePeople(slot); }
+      }
+    }
     if (k === 'date') {
       state.lang = isLastWednesday(state.date) ? 'en' : 'ro';
       document.querySelector('[data-k="lang"]').value = state.lang;
