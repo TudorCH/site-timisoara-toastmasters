@@ -64,6 +64,9 @@
     .input:focus { outline: none; border-color: rgba(242, 223, 116, .6); }
     select.input option { background: #0a2536; }
     .hint { font-size: 12px; color: var(--text-3); margin: 0; }
+    .pick { display: grid; gap: 6px; }
+    .row2, .row3 { align-items: start; }
+    textarea.input { resize: vertical; line-height: 1.5; font-size: 13px; }
     .check { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-2); }
     .check input { width: 16px; height: 16px; accent-color: var(--gold); }
 
@@ -243,6 +246,15 @@
     </details>
 
     <details class="card">
+      <summary>Membri <span id="members-count" class="hint" style="font-family:Inter,sans-serif;font-weight:500"></span></summary>
+      <div class="body">
+        <p class="hint">Un nume pe rând, exact cum vrei să apară pe agendă. Sunt numele din listele de la roluri; pentru invitați alegi „Alt nume…”.</p>
+        <textarea id="members" class="input" rows="12" spellcheck="false" aria-label="Lista de membri"></textarea>
+        <button id="btn-members" class="btn" type="button">Salvează lista</button>
+      </div>
+    </details>
+
+    <details class="card">
       <summary>Date club (ofițeri, locație)</summary>
       <div class="body">
         <div class="row2">
@@ -319,6 +331,18 @@
     }
   };
   var OFFICERS = ['pres', 'vpe', 'vpm', 'vppr', 'treas', 'saa', 'sec', 'ipp'];
+  // Club members for the role dropdowns (names only). The list is edited on the page ("Membri")
+  // and saved with the club settings; this is the starting list.
+  var DEFAULT_MEMBERS = [
+    'Adriana Stamatin', 'Anca Kovacs-Cziczeri', 'Andrada Roman', 'Andrei Hleba', 'Bianca Teliban', 'Casian Pera',
+    'Corina Thorsnes', 'Daniel Roseti', 'David Duca', 'Florin Valcu', 'George Olteanu', 'Ionuț Cornean',
+    'Isabela Boncila', 'Lavinia Borza', 'Loredana Velica', 'Lucian Corcodel', 'Mihaela Bobei', 'Mihaela Stroia',
+    'Nadejda Silosieva', 'Olga Lancea', 'Ovidiu Diatlov', 'Petrica Gavril Tihulca', 'Raul Nistor', 'Rebeca Peca',
+    'Robert Cernea', 'Serban Blidariu', 'Sergiu Foca', 'Sergiu Spătar', 'Sorin Săliștean', 'Tudor Chiu', 'Valentin Deleanu'
+  ];
+  var MEMBERS_KEY = 'tm-agenda-members';
+  var members = DEFAULT_MEMBERS.slice();
+  var byName = function (a, b) { return a.localeCompare(b, 'ro'); };
   var DEFAULT_CLUB = {
     officers: { pres: 'Robert Cernea', vpe: 'Olga Lancea', vpm: 'Ionuț Cornean', vppr: 'Lavinia Borza', treas: 'Mihaela Stroia', saa: 'Sergiu Spătar', sec: 'Tudor Chiu', ipp: 'Adriana Stamatin' },
     venue: 'Zbor Hub, etaj 2', address: 'Str. Vasile Alecsandri 1', qr: 'https://timisoaratoastmasters.ro/links'
@@ -499,8 +523,65 @@
     });
     document.querySelector('[data-ph-title]').placeholder = L[state.lang].title;
     renderSpeeches();
+    enhancePeople(document);
+    document.querySelectorAll('.pick').forEach(function (w) { w.classList.remove('other'); syncPick(w); });
     langHint();
   }
+
+  // ── Person fields: a dropdown of members, plus "Alt nume…" for guests / new members ──
+  // Each <input list="names"> gets a <select> in front of it; the input keeps the value (data-k)
+  // and is shown only when the name isn't in the list.
+  function enhancePeople(root) {
+    root.querySelectorAll('input[list="names"]:not([data-pick])').forEach(function (inp) {
+      inp.setAttribute('data-pick', '');
+      var wrap = document.createElement('div'); wrap.className = 'pick';
+      var sel = document.createElement('select'); sel.className = 'input';
+      var lbl = inp.closest('label');
+      sel.setAttribute('aria-label', lbl ? lbl.firstChild.textContent.trim() : 'Persoană');
+      inp.placeholder = 'Scrie numele';
+      inp.parentNode.insertBefore(wrap, inp);
+      wrap.appendChild(sel); wrap.appendChild(inp);
+      syncPick(wrap);
+    });
+  }
+  function syncPick(wrap) {
+    var sel = wrap.querySelector('select'), inp = wrap.querySelector('input');
+    var v = inp.value.trim();
+    var other = wrap.classList.contains('other') || (v && members.indexOf(v) === -1);
+    sel.innerHTML = '<option value="">—</option>' + members.map(function (m) { return '<option>' + esc(m) + '</option>'; }).join('') +
+      '<option value="__other">Alt nume…</option>';
+    sel.value = other ? '__other' : v;
+    wrap.classList.toggle('other', !!other);
+    inp.hidden = !other;
+  }
+  $('form').addEventListener('change', function (e) {
+    var sel = e.target;
+    if (!sel.matches || !sel.matches('.pick select')) return;
+    var wrap = sel.parentNode, inp = wrap.querySelector('input');
+    if (sel.value === '__other') { wrap.classList.add('other'); inp.hidden = false; inp.value = ''; inp.focus(); }
+    else { wrap.classList.remove('other'); inp.hidden = true; inp.value = sel.value; }
+    inp.dispatchEvent(new Event('input', { bubbles: true }));
+  });
+
+  // ── Members list ──
+  function setMembers(list) {
+    var seen = {};
+    members = list.map(function (s) { return String(s).trim().replace(/\s+/g, ' '); })
+      .filter(function (s) { if (!s || s.length > 60 || seen[s.toLowerCase()]) return false; seen[s.toLowerCase()] = 1; return true; })
+      .sort(byName);
+    $('members').value = members.join('\n');
+    $('members-count').textContent = members.length + ' membri';
+    document.querySelectorAll('.pick').forEach(syncPick);
+  }
+  $('btn-members').addEventListener('click', function () {
+    setMembers($('members').value.split(/\r?\n/));
+    try { localStorage.setItem(MEMBERS_KEY, JSON.stringify(members)); } catch (e) {}
+    if (!dbReady) { setStatus('Lista de membri e salvată doar în acest browser (baza de date nu e conectată).'); return; }
+    var next = Object.assign({}, settings || {}, { members: members });
+    api('agenda-settings', { method: 'POST', body: JSON.stringify({ settings: next }) }).then(function () {
+      settings = next; setStatus('Lista de membri a fost salvată.');
+    }, function (e) { setStatus(e.message, 'err'); });
+  });
   function langHint() {
     $('lang-hint').textContent = isLastWednesday(state.date) ? 'Ultima miercuri din lună: ședința e în engleză.' : '';
   }
@@ -521,6 +602,7 @@
         '<div class="row2"><label class="f">Proiect<input class="input" data-k="' + p + 'project" list="projects" value="' + esc(s.project) + '" /></label>' +
         '<label class="f">Notă (opțional)<input class="input" data-k="' + p + 'note" placeholder="ex. moment educațional" value="' + esc(s.note) + '" /></label></div></div>';
     }).join('');
+    enhancePeople(box);
   }
 
   function onField(e) {
@@ -669,6 +751,9 @@
   }
   function start() {
     $('app').hidden = false;
+    var stored = settings && Array.isArray(settings.members) && settings.members.length ? settings.members : null;
+    if (!stored) { try { stored = JSON.parse(localStorage.getItem(MEMBERS_KEY) || 'null'); } catch (e) {} }
+    setMembers(Array.isArray(stored) && stored.length ? stored : DEFAULT_MEMBERS);
     var draft = null;
     try { draft = JSON.parse(localStorage.getItem(DRAFT_KEY) || 'null'); } catch (e) {}
     if (draft && draft.date) load(draft, true);

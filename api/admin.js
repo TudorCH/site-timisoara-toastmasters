@@ -133,7 +133,7 @@ function clean(v, depth = 0) {
   if (typeof v === 'number') return Number.isFinite(v) ? v : null;
   if (typeof v === 'boolean' || v === null) return v;
   if (depth > 4) return null;
-  if (Array.isArray(v)) return v.slice(0, 40).map(x => clean(x, depth + 1));
+  if (Array.isArray(v)) return v.slice(0, 150).map(x => clean(x, depth + 1));   // room for the members list
   if (typeof v === 'object') {
     const o = {};
     for (const [key, x] of Object.entries(v).slice(0, 60)) if (/^[a-zA-Z0-9_]{1,30}$/.test(key)) o[key] = clean(x, depth + 1);
