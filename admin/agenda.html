@@ -8,7 +8,7 @@
   <link rel="icon" type="image/webp" href="/logo.webp" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Libre+Baskerville:wght@700&family=IBM+Plex+Mono:wght@400;500&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
   <style>
     :root {
@@ -82,36 +82,29 @@
     .preview-hint { text-align: center; font-size: 12px; color: var(--text-3); margin-top: 10px; }
 
     /* ═════════ The printed agenda (A4) ═════════ */
-    /* Full-width navy header on top, then two columns: a light sidebar (officers, info) and the program */
     .sheet { --s: 1; width: 210mm; height: 297mm; background: #fff; color: #161616; font-family: Inter, Arial, sans-serif; display: flex; flex-direction: column; overflow: hidden; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    /* Header (editorial): small mono line + serif title on the left, gold serif date + tagline on the right, maroon rule */
-    .sh-head { flex: 0 0 auto; background: #004165; color: #FAF9F6; padding: 7mm 10mm 6mm; border-bottom: 1mm solid #772432; display: flex; align-items: flex-start; justify-content: space-between; gap: 8mm; }
-    .sh-head .eb, .sh-head .tg { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 7.4pt; text-transform: uppercase; color: #D8D5CC; }
-    .sh-head .eb { letter-spacing: .22em; }
-    .sh-head .ti { font-family: 'Libre Baskerville', Georgia, serif; font-weight: 700; font-size: 19pt; line-height: 1.2; letter-spacing: -.01em; color: #fff; margin-top: 1.6mm; }
-    .sh-head .ex { font-size: 8.6pt; color: rgba(255,255,255,.75); margin-top: 1.6mm; }
-    .sh-head .ex b { color: #F2DF74; font-weight: 700; }
-    .sh-head .hr { flex: 0 0 auto; text-align: right; padding-top: .4mm; }
-    .sh-head .dt { font-family: 'Libre Baskerville', Georgia, serif; font-weight: 700; font-size: 11pt; color: #F2DF74; }
-    .sh-head .tg { letter-spacing: .16em; margin-top: 1.2mm; }
-    .sh-body { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: 52mm minmax(0, 1fr); grid-template-rows: minmax(0, 1fr); }
-    /* Sidebar head: emblem + club name and number, with a rule under it */
-    .sh-side .sb-id { display: flex; align-items: center; gap: 2.6mm; text-align: left; padding-bottom: calc(3.5mm * var(--s)); border-bottom: .3mm solid #d4d9dd; }
-    .sh-side .sb-id img { width: calc(13mm * var(--s)); height: calc(13mm * var(--s)); object-fit: contain; flex: 0 0 auto; }
-    .sh-side .sb-id .nm { font-weight: 800; font-size: calc(8pt * var(--s)); line-height: 1.25; letter-spacing: .1em; text-transform: uppercase; color: #004165; }
-    .sh-side .sb-id .no { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: calc(7pt * var(--s)); color: #555; margin-top: .6mm; }
-    /* Sidebar: sections spread evenly from the top down to the QR code */
-    .sh-side { min-height: 0; background: #f1f4f6; border-right: .3mm solid #dde3e7; padding: 7mm 4.5mm 7mm; text-align: center; font-size: calc(8.3pt * var(--s)); line-height: 1.32; display: flex; flex-direction: column; justify-content: space-between; gap: calc(3mm * var(--s)); overflow: hidden; }
-    .sh-side .ico { display: flex; justify-content: center; margin-bottom: 1mm; }
+    .sh-head { flex: 0 0 auto; height: 31mm; background: linear-gradient(180deg, #004a73 0%, #003a5c 100%); display: grid; grid-template-columns: 1fr 34mm 1fr; align-items: center; padding: 0 10mm; color: #F2DF74; }
+    .sh-head .hl, .sh-head .hr { text-align: center; font-weight: 800; text-transform: uppercase; line-height: 1.2; }
+    .sh-head .hl small { display: block; font-size: 8.5pt; letter-spacing: .02em; }
+    .sh-head .hl span { display: block; font-size: 12.5pt; letter-spacing: .02em; }
+    .sh-head .hr { font-size: 11.5pt; letter-spacing: .01em; }
+    .sh-head .hc { display: flex; justify-content: center; }
+    .sh-head .hc img { width: 27mm; height: 27mm; object-fit: contain; filter: drop-shadow(0 1mm 1.5mm rgba(0,0,0,.35)); }
+    .sh-date { flex: 0 0 auto; background: #772432; color: #F2DF74; text-align: center; font-weight: 700; font-size: 11pt; padding: 1.4mm 0; }
+    .sh-body { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: 50mm minmax(0, 1fr); }
+    .sh-side { border-right: .6mm solid #a3abb0; padding: calc(5mm * var(--s)) 3mm 4mm; text-align: center; font-size: calc(8.2pt * var(--s)); line-height: 1.3; display: flex; flex-direction: column; gap: calc(4.2mm * var(--s)); overflow: hidden; }
+    .sh-side .ico { display: flex; justify-content: center; margin-bottom: .8mm; }
     .sh-side .ico svg { width: calc(6.5mm * var(--s)); height: calc(6.5mm * var(--s)); }
-    .sh-side h4 { margin: 0 0 1mm; font-size: calc(9pt * var(--s)); font-weight: 800; color: #004165; }
-    .sh-side .role { color: #8b949a; font-size: calc(7.6pt * var(--s)); margin-top: calc(1mm * var(--s)); }
-    .sh-side h4 + .role { margin-top: 0; }
-    .sh-side .mission { font-size: calc(7.3pt * var(--s)); line-height: 1.3; }
+    .sh-side h4 { margin: 0 0 .6mm; font-size: calc(9pt * var(--s)); font-weight: 800; color: #111; }
+    .sh-side .role { color: #8b949a; }
+    .sh-side .mission { font-size: calc(7.2pt * var(--s)); line-height: 1.25; }
     .sh-side .qr img { width: calc(27mm * var(--s)); height: calc(27mm * var(--s)); image-rendering: pixelated; display: block; margin: 1mm auto 0; }
     .sh-side .qr small { display: block; font-size: 6.5pt; color: #8b949a; margin-top: .6mm; }
-    .sh-main { min-height: 0; padding: calc(6mm * var(--s)) 7mm 5mm 7mm; font-size: calc(9.4pt * var(--s)); line-height: 1.28; overflow: hidden; }
-    .sh-rows { margin-top: calc(1mm * var(--s)); }
+    .sh-main { padding: calc(5mm * var(--s)) 6mm 4mm 7mm; font-size: calc(9.4pt * var(--s)); line-height: 1.28; overflow: hidden; }
+    .sh-title { text-align: center; font-weight: 800; font-size: calc(11.5pt * var(--s)); margin: 0 0 calc(1.2mm * var(--s)); }
+    .sh-theme { text-align: center; font-size: calc(8.6pt * var(--s)); color: #444; margin: 0 0 calc(1mm * var(--s)); }
+    .sh-theme b { color: #772432; }
+    .sh-rows { margin-top: calc(3.5mm * var(--s)); }
     .r { display: grid; grid-template-columns: 12mm minmax(0, 1fr) 36mm; column-gap: 2.5mm; margin-top: calc(3.4mm * var(--s)); align-items: start; }
     .r:first-child { margin-top: 0; }
     .r .t { font-weight: 800; }
@@ -303,7 +296,6 @@
   // ── Texts printed on the agenda ──
   var L = {
     ro: {
-      days: ['Duminică','Luni','Marți','Miercuri','Joi','Vineri','Sâmbătă'],
       title: 'Întâlnire de vorbit în public', months: ['Ianuarie','Februarie','Martie','Aprilie','Mai','Iunie','Iulie','August','Septembrie','Octombrie','Noiembrie','Decembrie'],
       officers: 'Ofițeri', weekly: 'Întâlnire săptămânală', wed: 'Miercuri', location: 'Locație', missionH: 'Misiunea clubului', social: 'Rețele Social Media',
       mission: 'este de a oferi un mediu de învățare pozitiv și de suport reciproc prin intermediul căruia fiecare membru are oportunitatea să-și dezvolte abilitățile de comunicare și de conducere, toate acestea ducând la creșterea încrederii în sine și la dezvoltarea sa personală.',
@@ -315,7 +307,6 @@
       end1: 'Închiderea evenimentului', end2: 'Socializare', theme: 'Tema serii', word: 'Cuvântul zilei'
     },
     en: {
-      days: ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
       title: 'Public Speaking Meeting', months: ['January','February','March','April','May','June','July','August','September','October','November','December'],
       officers: 'Officers', weekly: 'Weekly meeting', wed: 'Wednesday', location: 'Location', missionH: 'Club mission', social: 'Social media',
       mission: 'provides a supportive and positive learning experience in which members are empowered to develop communication and leadership skills, resulting in greater self-confidence and personal growth.',
@@ -353,6 +344,10 @@
   function isLastWednesday(s) {
     var d = parseIso(s); if (!d || d.getUTCDay() !== 3) return false;
     var n = new Date(d.getTime() + 7 * 864e5); return n.getUTCMonth() !== d.getUTCMonth();
+  }
+  function dateLabel(s, lang) {
+    var d = parseIso(s); if (!d) return '';
+    return d.getUTCDate() + ' ' + L[lang].months[d.getUTCMonth()] + ' ' + d.getUTCFullYear();
   }
   var toMin = function (t) { var m = /^(\d{1,2}):(\d{2})/.exec(t || ''); return m ? +m[1] * 60 + +m[2] : 19 * 60 + 30; };
   var fmt = function (m) { return pad(Math.floor(m / 60) % 24) + ':' + pad(m % 60); };
@@ -430,7 +425,7 @@
 
   function renderSheet() {
     var a = state, l = L[a.lang] || L.ro, tl = timeline(a), T = tl.T, c = a.club;
-    var side = '<div class="sb-id"><img src="/logo.webp" alt="Toastmasters International" /><div><div class="nm">Timișoara<br>Toastmasters</div><div class="no">Club #01269633</div></div></div>';
+    var side = '';
     side += '<div>' + icon('users') + '<h4>' + l.officers + '</h4>' + OFFICERS.map(function (k) {
       return '<div class="role">' + l.roles[k] + '</div><div>' + who(c.officers[k]) + '</div>';
     }).join('') + '</div>';
@@ -468,18 +463,14 @@
     if (a.theme) extra.push(l.theme + ': <b>' + esc(a.theme) + '</b>');
     if (a.word) extra.push(l.word + ': <b>' + esc(a.word) + '</b>');
 
-    var dt = parseIso(a.date);
-    // e.g. "Miercuri, 25 Noiembrie 2026"
-    var dateText = dt ? l.days[dt.getUTCDay()] + ', ' + dt.getUTCDate() + ' ' + l.months[dt.getUTCMonth()] + ' ' + dt.getUTCFullYear() : '';
-
     $('sheet').innerHTML =
-      '<div class="sh-head">' +
-        '<div class="hl"><div class="eb">Timișoara Toastmasters · Club #01269633</div><div class="ti">' + esc(a.title || l.title) + '</div>' +
-          (extra.length ? '<div class="ex">' + extra.join(' &nbsp;·&nbsp; ') + '</div>' : '') + '</div>' +
-        '<div class="hr"><div class="dt">' + dateText + '</div><div class="tg">Where Leaders Are Made</div></div>' +
-      '</div>' +
-      '<div class="sh-body"><div class="sh-side">' + side + '</div>' +
-        '<div class="sh-main"><div class="sh-rows">' + rows + '</div></div></div>';
+      '<div class="sh-head"><div class="hl"><small>Timișoara Toastmasters</small><span>Club #01269633</span></div>' +
+      '<div class="hc"><img src="/logo.webp" alt="Toastmasters International" /></div><div class="hr">Where Leaders<br>Are Made</div></div>' +
+      '<div class="sh-date">' + esc(dateLabel(a.date, a.lang)) + '</div>' +
+      '<div class="sh-body"><div class="sh-side">' + side + '</div><div class="sh-main">' +
+      '<div class="sh-title">' + esc(a.title || l.title) + '</div>' +
+      (extra.length ? '<div class="sh-theme">' + extra.join(' · ') + '</div>' : '') +
+      '<div class="sh-rows">' + rows + '</div></div></div>';
 
     // Auto-placeholders for durations
     $('dur-sp').placeholder = String(tl.autoSp); $('dur-ev').placeholder = String(tl.autoEv);
