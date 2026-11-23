@@ -85,8 +85,9 @@
     /* Members: the same badge with silver-white instead of gold */
     .badge.white { --tag: #eef2f5; --pill: linear-gradient(90deg, #b9c3cb 0%, #ffffff 35%, #e3e8ec 65%, #ffffff 100%); }
     /* Wire globe watermark (Images/badge-globe.png) and the metallic inner frame (SVG, see frameSvg) */
-    /* larger than the card, so it runs past the frame and the card's edges, as in the mockup */
-    .badge .wm { position: absolute; left: 50%; top: 50%; width: 44em; height: 44em; max-width: none; transform: translate(-50%, -50%); opacity: .06; pointer-events: none; z-index: 1; }
+    /* The globe is cut off at the inside of the frame (frame line: 13.5–16.5 of 340 → inner edge at 1.65em) */
+    .badge .wm-clip { position: absolute; inset: 1.65em; border-radius: 1.1em; overflow: hidden; pointer-events: none; z-index: 1; }
+    .badge .wm { position: absolute; left: 50%; top: 55%; width: 36em; height: 36em; max-width: none; transform: translate(-50%, -50%); opacity: .06; pointer-events: none; z-index: 1; }
     .badge .frame { position: absolute; left: 0; top: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; }
     .badge > .club, .badge > .logo, .badge > .nm, .badge > .pill, .badge > .tag { position: relative; z-index: 3; }
     /* The two small lines take the accent colour (gold / white) and keep clear of the frame */
@@ -280,7 +281,7 @@
     var parts = String(it.name || '').trim().split(/\s+/).filter(Boolean);
     var first = parts.shift() || '', rest = parts.join(' '), white = it.style === 'white';
     return '<div class="badge ' + (white ? 'white' : 'gold') + '" data-b="' + i + '">' +
-      '<img class="wm" src="' + GLOBE + '" alt="" /><img class="frame" src="' + frameSvg(sz, white) + '" alt="" />' +
+      '<div class="wm-clip"><img class="wm" src="' + GLOBE + '" alt="" /></div><img class="frame" src="' + frameSvg(sz, white) + '" alt="" />' +
       '<div class="club">Timișoara Toastmasters</div>' +
       '<img class="logo" src="/logo.webp" alt="Toastmasters International" />' +
       '<div class="nm"><span>' + esc(first || ' ') + '</span>' + (rest ? '<span>' + esc(rest) + '</span>' : '') + '</div>' +
