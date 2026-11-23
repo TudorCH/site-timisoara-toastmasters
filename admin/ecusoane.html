@@ -82,8 +82,9 @@
       padding: 6.2em 5em 5.8em;
     }
     .badge.white { --acc: #e9eef2; --pill: linear-gradient(180deg, #ffffff 0%, #eef2f5 60%, #d7dee4 100%); --pill-fg: #062538; --tag: #e9eef2; }
-    .badge .frame { position: absolute; inset: 2.6em; border: .45em solid var(--acc); border-radius: 2.2em; pointer-events: none; }
-    .badge .wm { position: absolute; left: 50%; top: 46%; width: 92%; transform: translate(-50%, -50%); opacity: .035; pointer-events: none; }
+    .badge .frame { position: absolute; inset: 2.6em; border: .95em solid var(--acc); border-radius: 2.4em; pointer-events: none; }
+    /* Faint wire globe behind the name, as in the mockup */
+    .badge .wm { position: absolute; left: 50%; top: 53%; width: 58em; height: 58em; max-width: none; transform: translate(-50%, -50%); opacity: .11; pointer-events: none; }
     .badge > *:not(.frame):not(.wm) { position: relative; }
     .badge .club { width: 100%; overflow: hidden; font-size: 3.05em; font-weight: 600; letter-spacing: .03em; text-transform: uppercase; white-space: nowrap; }
     .badge .logo { width: 24em; height: 24em; object-fit: contain; filter: drop-shadow(0 .6em .9em rgba(0,0,0,.45)); }
@@ -248,11 +249,33 @@
   $('cut').addEventListener('change', function () { state.cut = this.checked; save(); renderPages(); });
 
   // ── Badges ──
+  // Wire globe for the background: outline, meridians and parallels in thin white lines.
+  var GLOBE = 'data:image/svg+xml,' + encodeURIComponent(
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" stroke="#fff" stroke-width=".55">' +
+    '<circle cx="50" cy="50" r="48"/>' +
+    '<ellipse cx="50" cy="50" rx="33" ry="48"/><ellipse cx="50" cy="50" rx="16" ry="48"/><line x1="50" y1="2" x2="50" y2="98"/>' +
+    '<line x1="2" y1="50" x2="98" y2="50"/>' +
+    '<line x1="6.4" y1="30" x2="93.6" y2="30"/><line x1="6.4" y1="70" x2="93.6" y2="70"/>' +
+    '<line x1="18.3" y1="14" x2="81.7" y2="14"/><line x1="18.3" y1="86" x2="81.7" y2="86"/>' +
+    '</svg>');
+  // html2canvas (PNG export) draws SVG images wrongly, so the globe is rasterised once to a sharp PNG.
+  (function () {
+    var img = new Image();
+    img.onload = function () {
+      try {
+        var c = document.createElement('canvas'); c.width = c.height = 1200;
+        c.getContext('2d').drawImage(img, 0, 0, 1200, 1200);
+        GLOBE = c.toDataURL('image/png');
+        if (state.items.length) renderPages();
+      } catch (e) { /* keep the SVG */ }
+    };
+    img.src = GLOBE;
+  })();
   function badgeHtml(it, i) {
     var parts = String(it.name || '').trim().split(/\s+/).filter(Boolean);
     var first = parts.shift() || '', rest = parts.join(' ');
     return '<div class="badge ' + (it.style === 'white' ? 'white' : 'gold') + '" data-b="' + i + '">' +
-      '<span class="frame"></span><img class="wm" src="/logo.webp" alt="" />' +
+      '<img class="wm" src="' + GLOBE + '" alt="" /><span class="frame"></span>' +
       '<div class="club">Timișoara Toastmasters</div>' +
       '<img class="logo" src="/logo.webp" alt="Toastmasters International" />' +
       '<div class="nm"><span>' + esc(first || ' ') + '</span>' + (rest ? '<span>' + esc(rest) + '</span>' : '') + '</div>' +
