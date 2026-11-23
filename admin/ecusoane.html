@@ -84,15 +84,14 @@
     }
     /* Members: the same badge with silver-white instead of gold */
     .badge.white { --tag: #eef2f5; --pill: linear-gradient(90deg, #b9c3cb 0%, #ffffff 35%, #e3e8ec 65%, #ffffff 100%); }
-    /* Fine matte-card texture */
-    .badge::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(rgba(255, 255, 255, .03) .1em, transparent 0); background-size: .4em .4em; pointer-events: none; z-index: 1; }
     /* Wire globe watermark (Images/badge-globe.png) and the metallic inner frame (SVG, see frameSvg) */
-    .badge .wm { position: absolute; left: 50%; top: 52%; width: 31em; height: 31em; max-width: none; transform: translate(-50%, -50%); opacity: .06; pointer-events: none; z-index: 1; }
+    /* larger than the card, so it runs past the frame and the card's edges, as in the mockup */
+    .badge .wm { position: absolute; left: 50%; top: 50%; width: 44em; height: 44em; max-width: none; transform: translate(-50%, -50%); opacity: .06; pointer-events: none; z-index: 1; }
     .badge .frame { position: absolute; left: 0; top: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; }
     .badge > .club, .badge > .logo, .badge > .nm, .badge > .pill, .badge > .tag { position: relative; z-index: 3; }
     /* The two small lines take the accent colour (gold / white) and keep clear of the frame */
     .badge .club { width: 86%; overflow: hidden; margin-top: .44em; font-size: 1.35em; font-weight: 700; letter-spacing: .104em; text-transform: uppercase; white-space: nowrap; color: var(--tag); }
-    .badge .logo { width: 14.5em; height: 14.5em; margin: -.5em 0; object-fit: contain; }
+    .badge .logo { width: 18em; height: 18em; margin: -.8em 0; object-fit: contain; }
     .badge .nm { width: 90%; margin: .1em 0; font-size: 4.6em; font-weight: 900; line-height: 1.08; letter-spacing: .016em; text-transform: uppercase; text-shadow: 0 .0625em .125em rgba(0, 0, 0, .35); overflow: hidden; }
     .badge .nm span { display: block; white-space: nowrap; }
     .badge .pill { width: 86%; padding: 1em 1.6em; border-radius: 5em; background: var(--pill); color: var(--pill-fg); box-shadow: 0 .4em 1em rgba(0, 0, 0, .4), inset 0 .1em .1em rgba(255, 255, 255, .6); }
@@ -366,9 +365,9 @@
       // the preview's scaling is undone in the copy html2canvas renders
       return window.html2canvas(el, { scale: scale || 5, backgroundColor: null, onclone: function (doc) {
         doc.getElementById('pages').style.transform = 'none';
-        // html2canvas renders the dot texture and inset shadows as grey washes; they are too subtle to miss
+        // html2canvas renders inset shadows as grey washes; they are too subtle to miss
         var st = doc.createElement('style');
-        st.textContent = '.badge::before{display:none!important}.badge{box-shadow:none!important}.badge .pill{box-shadow:0 .4em 1em rgba(0,0,0,.4)!important}';
+        st.textContent = '.badge{box-shadow:none!important}.badge .pill{box-shadow:0 .4em 1em rgba(0,0,0,.4)!important}';
         doc.head.appendChild(st);
         doc.querySelectorAll('img.wm, img.frame').forEach(function (im) { var p = pngs[im.getAttribute('src')]; if (p) im.setAttribute('src', p); });
       } });
