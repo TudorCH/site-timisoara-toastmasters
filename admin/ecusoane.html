@@ -8,7 +8,7 @@
   <link rel="icon" type="image/webp" href="/logo.webp" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800;900&display=swap" />
   <script src="/admin/club-data.js"></script>
   <style>
     :root {
@@ -72,28 +72,32 @@
     .cell { padding: 2mm; }
     .cut .cell { outline: .2mm dashed #c9cdd1; outline-offset: -.1mm; }
 
-    /* One badge. Sizes are in em, where 1em = 1/54 of the badge width (1 mm on a 54 mm card). */
+    /* One badge, after the original badge code (340 × 480 px). 1em = 10 px of that design: the badge's
+       font-size is its width / 34, so every size below scales with the card size chosen for printing. */
     .badge {
-      --acc: #d6b24e; --pill: linear-gradient(180deg, #f6e08a 0%, #dcb84f 55%, #bf973a 100%); --pill-fg: #062538; --tag: #e2c25e;
-      position: relative; width: var(--bw); height: var(--bh); font-size: calc(var(--bw) / 54); overflow: hidden;
-      border-radius: 3.2em; color: #fff; font-family: Montserrat, 'Plus Jakarta Sans', Inter, sans-serif;
-      background: radial-gradient(120% 85% at 50% 34%, #0e4a70 0%, #093653 42%, #06263b 78%, #051d2e 100%);
-      display: flex; flex-direction: column; align-items: center; justify-content: space-between; text-align: center;
-      padding: 6.2em 5em 5.8em;
+      --tag: #f6e298; --pill: linear-gradient(90deg, #9c7822 0%, #f6e298 35%, #d4af37 65%, #f6e298 100%); --pill-fg: #092434;
+      position: relative; width: var(--bw); height: var(--bh); font-size: calc(var(--bw) / 34); overflow: hidden;
+      border-radius: 2.2em; color: #fff; font-family: Montserrat, 'Plus Jakarta Sans', Inter, sans-serif;
+      background: radial-gradient(circle at 50% 35%, #103a52 0%, #092434 85%);
+      box-shadow: inset 0 .1em .1em rgba(255, 255, 255, .15);
+      padding: 2.8em 2.4em; display: flex; flex-direction: column; align-items: center; justify-content: space-between; text-align: center;
     }
-    .badge.white { --acc: #e9eef2; --pill: linear-gradient(180deg, #ffffff 0%, #eef2f5 60%, #d7dee4 100%); --pill-fg: #062538; --tag: #e9eef2; }
-    .badge .frame { position: absolute; inset: 2.6em; border: .95em solid var(--acc); border-radius: 2.4em; pointer-events: none; }
-    /* Faint wire globe behind the name, as in the mockup */
-    .badge .wm { position: absolute; left: 50%; top: 53%; width: 58em; height: 58em; max-width: none; transform: translate(-50%, -50%); opacity: .11; pointer-events: none; }
-    .badge > *:not(.frame):not(.wm) { position: relative; }
-    /* The two small lines (top and bottom) take the accent colour and keep clear of the frame */
-    .badge .club { width: 86%; overflow: hidden; font-size: 2.8em; font-weight: 700; letter-spacing: .03em; text-transform: uppercase; white-space: nowrap; color: var(--tag); }
-    .badge .logo { width: 24em; height: 24em; object-fit: contain; filter: drop-shadow(0 .6em .9em rgba(0,0,0,.45)); }
-    .badge .nm { width: 90%; font-size: 7.6em; font-weight: 800; line-height: 1.08; text-transform: uppercase; overflow: hidden; }
+    /* Members: the same badge with silver-white instead of gold */
+    .badge.white { --tag: #eef2f5; --pill: linear-gradient(90deg, #b9c3cb 0%, #ffffff 35%, #e3e8ec 65%, #ffffff 100%); }
+    /* Fine matte-card texture */
+    .badge::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(rgba(255, 255, 255, .03) .1em, transparent 0); background-size: .4em .4em; pointer-events: none; z-index: 1; }
+    /* Wire globe watermark and the metallic inner frame (both SVG images, see GLOBE / frameSvg) */
+    .badge .wm { position: absolute; left: 50%; top: 52%; width: 31em; height: 31em; max-width: none; transform: translate(-50%, -50%); opacity: .06; pointer-events: none; z-index: 1; }
+    .badge .frame { position: absolute; left: 0; top: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; }
+    .badge > .club, .badge > .logo, .badge > .nm, .badge > .pill, .badge > .tag { position: relative; z-index: 3; }
+    /* The two small lines take the accent colour (gold / white) and keep clear of the frame */
+    .badge .club { width: 86%; overflow: hidden; margin-top: .44em; font-size: 1.35em; font-weight: 700; letter-spacing: .104em; text-transform: uppercase; white-space: nowrap; color: var(--tag); }
+    .badge .logo { width: 14.5em; height: 14.5em; margin: -.5em 0; object-fit: contain; }
+    .badge .nm { width: 90%; margin: .1em 0; font-size: 4.6em; font-weight: 900; line-height: 1.08; letter-spacing: .016em; text-transform: uppercase; text-shadow: 0 .0625em .125em rgba(0, 0, 0, .35); overflow: hidden; }
     .badge .nm span { display: block; white-space: nowrap; }
-    .badge .pill { max-width: 86%; padding: 1.25em 4.2em; border-radius: 99em; background: var(--pill); color: var(--pill-fg); box-shadow: 0 .5em 1em rgba(0,0,0,.35); overflow: hidden; }
-    .badge .pill span { display: block; overflow: hidden; font-size: 3.2em; font-weight: 700; letter-spacing: .02em; text-transform: uppercase; white-space: nowrap; }
-    .badge .tag { width: 86%; overflow: hidden; font-size: 2.4em; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--tag); white-space: nowrap; }
+    .badge .pill { width: 86%; padding: 1em 1.6em; border-radius: 5em; background: var(--pill); color: var(--pill-fg); box-shadow: 0 .4em 1em rgba(0, 0, 0, .4), inset 0 .1em .1em rgba(255, 255, 255, .6); }
+    .badge .pill span { display: block; overflow: hidden; font-size: 1.5em; font-weight: 800; letter-spacing: .067em; text-transform: uppercase; white-space: nowrap; }
+    .badge .tag { width: 86%; overflow: hidden; margin-bottom: .5em; font-size: 1.2em; font-weight: 700; letter-spacing: .125em; text-transform: uppercase; color: var(--tag); white-space: nowrap; }
 
     @media print {
       @page { size: A4; margin: 0; }
@@ -129,6 +133,7 @@
         </label>
         <label class="f">Mărime
           <select id="size" class="input">
+            <option value="orig">60 × 85 mm, ca designul original (9 pe pagină)</option>
             <option value="cr80">Card 54 × 86 mm (9 pe pagină)</option>
             <option value="large">Mare 70 × 100 mm (4 pe pagină)</option>
           </select>
@@ -180,11 +185,12 @@
     en: { pres: 'President', vpe: 'VP Education', vpm: 'VP Membership', vppr: 'VP Public Relations', treas: 'Treasurer', saa: 'Sergeant at Arms', sec: 'Secretary', ipp: 'Immediate Past President', member: 'Member' },
     ro: { pres: 'Președinte', vpe: 'VP Educație', vpm: 'VP Membri', vppr: 'VP Relații Publice', treas: 'Trezorier', saa: 'Sergent', sec: 'Secretar', ipp: 'Fost Președinte', member: 'Membru' }
   };
-  var SIZES = { cr80: { w: 54, h: 86, cols: 3, rows: 3 }, large: { w: 70, h: 100, cols: 2, rows: 2 } };
+  // "orig" keeps the proportions of the original badge design (340 × 480).
+  var SIZES = { orig: { w: 60, h: 85, cols: 3, rows: 3 }, cr80: { w: 54, h: 86, cols: 3, rows: 3 }, large: { w: 70, h: 100, cols: 2, rows: 2 } };
 
   // Club data: the copy saved from /admin/agenda when the database has one, else the defaults.
   var club = { members: window.TM_CLUB.members.slice(), officers: Object.assign({}, window.TM_CLUB.club.officers) };
-  var state = { lang: 'en', size: 'cr80', cut: true, items: [] };
+  var state = { lang: 'en', size: 'orig', cut: true, items: [] };
   try { Object.assign(state, JSON.parse(localStorage.getItem(KEY) || '{}')); } catch (e) {}
   function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
 
@@ -250,33 +256,44 @@
   $('cut').addEventListener('change', function () { state.cut = this.checked; save(); renderPages(); });
 
   // ── Badges ──
-  // Wire globe for the background: outline, meridians and parallels in thin white lines.
-  var GLOBE = 'data:image/svg+xml,' + encodeURIComponent(
-    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" stroke="#fff" stroke-width=".55">' +
-    '<circle cx="50" cy="50" r="48"/>' +
-    '<ellipse cx="50" cy="50" rx="33" ry="48"/><ellipse cx="50" cy="50" rx="16" ry="48"/><line x1="50" y1="2" x2="50" y2="98"/>' +
-    '<line x1="2" y1="50" x2="98" y2="50"/>' +
-    '<line x1="6.4" y1="30" x2="93.6" y2="30"/><line x1="6.4" y1="70" x2="93.6" y2="70"/>' +
-    '<line x1="18.3" y1="14" x2="81.7" y2="14"/><line x1="18.3" y1="86" x2="81.7" y2="86"/>' +
-    '</svg>');
-  // html2canvas (PNG export) draws SVG images wrongly, so the globe is rasterised once to a sharp PNG.
-  (function () {
-    var img = new Image();
-    img.onload = function () {
-      try {
-        var c = document.createElement('canvas'); c.width = c.height = 1200;
-        c.getContext('2d').drawImage(img, 0, 0, 1200, 1200);
-        GLOBE = c.toDataURL('image/png');
-        if (state.items.length) renderPages();
-      } catch (e) { /* keep the SVG */ }
-    };
-    img.src = GLOBE;
-  })();
-  function badgeHtml(it, i) {
+  var svgUrl = function (s) { return 'data:image/svg+xml,' + encodeURIComponent(s); };
+  // Wire globe watermark in the style of the reference: a tilted globe whose parallels are wide bands
+  // running a little past the outline on the left.
+  var GLOBE = svgUrl((function () {
+    var s = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" fill="none" stroke="#ffffff" stroke-linecap="round">' +
+      '<defs><clipPath id="c"><circle cx="100" cy="100" r="99"/></clipPath><clipPath id="i"><circle cx="100" cy="100" r="86"/></clipPath></defs>' +
+      '<circle cx="100" cy="100" r="86" stroke-width="3.2"/>' +
+      '<g transform="rotate(24 100 100)" stroke-width="2.6"><g clip-path="url(#i)"><line x1="100" y1="10" x2="100" y2="190"/>';
+    [26, 52, 74].forEach(function (rx) { s += '<ellipse cx="100" cy="100" rx="' + rx + '" ry="86"/>'; });
+    s += '</g><g clip-path="url(#c)">';
+    [-62, -33, -4, 25, 54].forEach(function (d) {
+      var w = Math.sqrt(86 * 86 - d * d);
+      s += '<ellipse cx="91" cy="' + (100 + d) + '" rx="' + (w + 9).toFixed(1) + '" ry="13"/>';
+    });
+    return s + '</g></g></svg>';
+  })());
+  // Metallic inner frame (original: 12 px inset, 14 px radius, 3 px line, 135° gold gradient), drawn for
+  // the card's proportions in the original's 340 px-wide units. Members get the silver-white version.
+  var frameCache = {};
+  function frameSvg(sz, white) {
+    var h = Math.round(340 * sz.h / sz.w), key = h + (white ? 'w' : 'g');
+    if (!frameCache[key]) {
+      var stops = (white ? ['#ffffff', '#e3e8ec', '#b9c3cb', '#ffffff'] : ['#f6e298', '#d4af37', '#9c7822', '#f6e298']);
+      var at = [0, 45, 75, 100];
+      frameCache[key] = svgUrl(
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 ' + h + '" width="340" height="' + h + '" preserveAspectRatio="none">' +
+        '<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">' +
+        stops.map(function (c, k) { return '<stop offset="' + at[k] + '%" stop-color="' + c + '"/>'; }).join('') +
+        '</linearGradient></defs>' +
+        '<rect x="13.5" y="13.5" width="313" height="' + (h - 27) + '" rx="12.5" fill="none" stroke="url(#g)" stroke-width="3"/></svg>');
+    }
+    return frameCache[key];
+  }
+  function badgeHtml(it, i, sz) {
     var parts = String(it.name || '').trim().split(/\s+/).filter(Boolean);
-    var first = parts.shift() || '', rest = parts.join(' ');
-    return '<div class="badge ' + (it.style === 'white' ? 'white' : 'gold') + '" data-b="' + i + '">' +
-      '<img class="wm" src="' + GLOBE + '" alt="" /><span class="frame"></span>' +
+    var first = parts.shift() || '', rest = parts.join(' '), white = it.style === 'white';
+    return '<div class="badge ' + (white ? 'white' : 'gold') + '" data-b="' + i + '">' +
+      '<img class="wm" src="' + GLOBE + '" alt="" /><img class="frame" src="' + frameSvg(sz, white) + '" alt="" />' +
       '<div class="club">Timișoara Toastmasters</div>' +
       '<img class="logo" src="/logo.webp" alt="Toastmasters International" />' +
       '<div class="nm"><span>' + esc(first || ' ') + '</span>' + (rest ? '<span>' + esc(rest) + '</span>' : '') + '</div>' +
@@ -284,13 +301,13 @@
       '<div class="tag">Where Leaders Are Made</div></div>';
   }
   function renderPages() {
-    var sz = SIZES[state.size] || SIZES.cr80, per = sz.cols * sz.rows, items = state.items, html = '';
+    var sz = SIZES[state.size] || SIZES.orig, per = sz.cols * sz.rows, items = state.items, html = '';
     var pages = Math.max(1, Math.ceil(items.length / per));
     for (var p = 0; p < pages; p++) {
       var cells = '';
       for (var j = 0; j < per; j++) {
         var i = p * per + j;
-        cells += '<div class="cell">' + (i < items.length ? badgeHtml(items[i], i) : '<div style="width:' + sz.w + 'mm;height:' + sz.h + 'mm"></div>') + '</div>';
+        cells += '<div class="cell">' + (i < items.length ? badgeHtml(items[i], i, sz) : '<div style="width:' + sz.w + 'mm;height:' + sz.h + 'mm"></div>') + '</div>';
       }
       html += '<div class="page' + (state.cut ? ' cut' : '') + '"><div class="page-grid" style="grid-template-columns:repeat(' + sz.cols + ', auto);--bw:' + sz.w + 'mm;--bh:' + sz.h + 'mm">' + cells + '</div></div>';
     }
@@ -320,20 +337,57 @@
     if (!state.items.length) { status('Lista e goală.'); return; }
     var t = document.title; document.title = 'Ecusoane Timișoara Toastmasters'; window.print(); document.title = t;
   });
+  // One promise per script, so a second click while it is still loading waits for the same load.
+  var scripts = {};
   function loadScript(src) {
-    return new Promise(function (ok, fail) {
-      if (document.querySelector('script[src="' + src + '"]')) return ok();
-      var s = document.createElement('script'); s.src = src; s.onload = ok; s.onerror = fail; document.head.appendChild(s);
-    });
+    if (!scripts[src]) {
+      scripts[src] = new Promise(function (ok, fail) {
+        var s = document.createElement('script'); s.src = src; s.onload = ok;
+        s.onerror = function (e) { delete scripts[src]; fail(e); };
+        document.head.appendChild(s);
+      });
+    }
+    return scripts[src];
   }
   var slug = function (s) { return (s || 'ecuson').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'ecuson'; };
+  // SVG data URL → PNG data URL at 6× its own size (sharp at 600 dpi on the card).
+  var pngCache = {};
+  function toPng(src) {
+    if (pngCache[src]) return Promise.resolve(pngCache[src]);
+    return new Promise(function (ok, fail) {
+      var img = new Image();
+      img.onload = function () {
+        var c = document.createElement('canvas'); c.width = img.naturalWidth * 6; c.height = img.naturalHeight * 6;
+        c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+        ok(pngCache[src] = c.toDataURL('image/png'));
+      };
+      img.onerror = fail; img.src = src;
+    });
+  }
+  // Renders badge i to a canvas (~600 dpi).
+  function capture(i, scale) {
+    var el = document.querySelector('#pages [data-b="' + i + '"]');
+    if (!el) return Promise.reject(new Error('no badge'));
+    // html2canvas draws SVG images wrongly, so the globe and the frame are swapped for PNG copies in its clone.
+    var svgs = [].map.call(el.querySelectorAll('img.wm, img.frame'), function (im) { return im.getAttribute('src'); });
+    var pngs = {};
+    return loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js').then(function () {
+      return Promise.all(svgs.map(function (src) { return toPng(src).then(function (p) { pngs[src] = p; }); }));
+    }).then(function () {
+      // the preview's scaling is undone in the copy html2canvas renders
+      return window.html2canvas(el, { scale: scale || 5, backgroundColor: null, onclone: function (doc) {
+        doc.getElementById('pages').style.transform = 'none';
+        // html2canvas renders the dot texture and inset shadows as grey washes; they are too subtle to miss
+        var st = doc.createElement('style');
+        st.textContent = '.badge::before{display:none!important}.badge{box-shadow:none!important}.badge .pill{box-shadow:0 .4em 1em rgba(0,0,0,.4)!important}';
+        doc.head.appendChild(st);
+        doc.querySelectorAll('img.wm, img.frame').forEach(function (im) { var p = pngs[im.getAttribute('src')]; if (p) im.setAttribute('src', p); });
+      } });
+    });
+  }
   function downloadPng(i, btn) {
-    var el = document.querySelector('#pages [data-b="' + i + '"]'); if (!el) return;
     btn.disabled = true; status('Se pregătește imaginea…');
-    loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js').then(function () {
-      // ~600 dpi for print quality; the preview's scaling is undone in the copy html2canvas renders
-      return window.html2canvas(el, { scale: 5, backgroundColor: null, onclone: function (doc) { doc.getElementById('pages').style.transform = 'none'; } });
-    }).then(function (canvas) {
+    capture(i).then(function (canvas) {
       canvas.toBlob(function (blob) {
         var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'ecuson-' + slug(state.items[i].name) + '.png';
         document.body.appendChild(a); a.click(); a.remove(); setTimeout(function () { URL.revokeObjectURL(a.href); }, 2000);
@@ -359,7 +413,7 @@
     fillNames();
   }).catch(function () {});
 
-  window.tmBadges = { state: state, render: function () { renderItems(); renderPages(); } };
+  window.tmBadges = { state: state, render: function () { renderItems(); renderPages(); }, capture: capture };
 })();
 </script>
 </body>
