@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Ecusoane | Timișoara Toastmasters</title>
+  <link rel="icon" type="image/webp" href="/logo.webp" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" />
+  <script src="/admin/club-data.js"></script>
+  <style>
+    :root {
+      --page: #00151f; --card: rgba(18, 58, 94, .35); --line: rgba(79, 123, 163, .22);
+      --hair: rgba(255, 255, 255, .08); --text: #fff; --text-2: rgba(255, 255, 255, .75); --text-3: rgba(255, 255, 255, .55);
+      --gold: #F2DF74; --bad: #f87171;
+      color-scheme: dark;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--page); color: var(--text); font: 14px/1.5 Inter, system-ui, sans-serif; min-height: 100vh; }
+    h1, h2 { font-family: 'Plus Jakarta Sans', Inter, sans-serif; }
+    button, input, select { font: inherit; color: inherit; }
+    [hidden] { display: none !important; }
+
+    header { position: sticky; top: 0; z-index: 10; background: linear-gradient(to bottom, #00253b, #001c2d); border-bottom: 1px solid var(--hair); }
+    header .wrap { max-width: 1500px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; gap: 12px; height: 64px; }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; }
+    .brand img { width: 34px; height: 34px; }
+    .brand b { display: block; font-size: 14px; }
+    .brand > span > span { display: block; font-size: 11px; color: var(--gold); font-weight: 600; }
+    .spacer { flex: 1; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; border: 1px solid var(--line); background: var(--card); color: #fff; border-radius: 10px; padding: 7px 12px; font-size: 13px; font-weight: 600; cursor: pointer; text-decoration: none; white-space: nowrap; }
+    .btn:hover { border-color: rgba(255, 255, 255, .35); }
+    .btn.gold { background: var(--gold); color: #00273E; border-color: transparent; }
+    .btn.gold:hover { background: #f5e488; }
+    .btn:disabled { opacity: .5; cursor: default; }
+
+    .app { max-width: 1500px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: minmax(380px, 520px) minmax(0, 1fr); gap: 24px; align-items: start; }
+    @media (max-width: 1000px) { .app { grid-template-columns: minmax(0, 1fr); } }
+    .panel { display: grid; gap: 14px; }
+    .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 16px 18px; }
+    .card h2 { font-size: 15px; margin: 0 0 10px; }
+    .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    label.f { display: grid; gap: 4px; font-size: 12px; color: var(--text-2); font-weight: 500; min-width: 0; }
+    .input { width: 100%; background: rgba(255, 255, 255, .05); border: 1px solid rgba(255, 255, 255, .15); border-radius: 9px; padding: 8px 10px; font-size: 13.5px; min-width: 0; }
+    .input:focus { outline: none; border-color: rgba(242, 223, 116, .6); }
+    select.input option { background: #0a2536; }
+    .check { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-2); }
+    .check input { width: 16px; height: 16px; accent-color: var(--gold); }
+    .hint { font-size: 12px; color: var(--text-3); margin: 0; }
+    .status { font-size: 12px; color: var(--text-3); }
+
+    .items { display: grid; gap: 8px; }
+    .item { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) 92px auto auto; gap: 6px; align-items: center; }
+    .item .input { padding: 7px 9px; font-size: 13px; }
+    .mini { border: 1px solid var(--line); background: none; color: var(--text-2); border-radius: 8px; height: 34px; padding: 0 9px; cursor: pointer; font-size: 12px; font-weight: 600; }
+    .mini:hover { color: #fff; border-color: rgba(255,255,255,.35); }
+    .mini.bad:hover { color: var(--bad); border-color: rgba(248,113,113,.6); }
+    .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 4px; vertical-align: middle; }
+    .empty { color: var(--text-3); font-size: 13px; }
+
+    .preview { position: sticky; top: 84px; }
+    .stage { width: 100%; max-width: 820px; margin: 0 auto; overflow: hidden; }
+    #pages { width: 210mm; transform-origin: top left; display: grid; gap: 8mm; }
+    .preview-hint { text-align: center; font-size: 12px; color: var(--text-3); margin-top: 10px; }
+
+    /* ═════════ A4 sheets of badges ═════════ */
+    .page { width: 210mm; height: 297mm; background: #fff; display: flex; align-items: center; justify-content: center; box-shadow: 0 20px 60px rgba(0,0,0,.5); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .page-grid { display: grid; gap: 0; }
+    .cell { padding: 2mm; }
+    .cut .cell { outline: .2mm dashed #c9cdd1; outline-offset: -.1mm; }
+
+    /* One badge. Sizes are in em, where 1em = 1/54 of the badge width (1 mm on a 54 mm card). */
+    .badge {
+      --acc: #d6b24e; --pill: linear-gradient(180deg, #f6e08a 0%, #dcb84f 55%, #bf973a 100%); --pill-fg: #062538; --tag: #e2c25e;
+      position: relative; width: var(--bw); height: var(--bh); font-size: calc(var(--bw) / 54); overflow: hidden;
+      border-radius: 3.2em; color: #fff; font-family: Montserrat, 'Plus Jakarta Sans', Inter, sans-serif;
+      background: radial-gradient(120% 85% at 50% 34%, #0e4a70 0%, #093653 42%, #06263b 78%, #051d2e 100%);
+      display: flex; flex-direction: column; align-items: center; justify-content: space-between; text-align: center;
+      padding: 6.2em 5em 5.8em;
+    }
+    .badge.white { --acc: #e9eef2; --pill: linear-gradient(180deg, #ffffff 0%, #eef2f5 60%, #d7dee4 100%); --pill-fg: #062538; --tag: #e9eef2; }
+    .badge .frame { position: absolute; inset: 2.6em; border: .45em solid var(--acc); border-radius: 2.2em; pointer-events: none; }
+    .badge .wm { position: absolute; left: 50%; top: 46%; width: 92%; transform: translate(-50%, -50%); opacity: .035; pointer-events: none; }
+    .badge > *:not(.frame):not(.wm) { position: relative; }
+    .badge .club { width: 100%; overflow: hidden; font-size: 3.05em; font-weight: 600; letter-spacing: .03em; text-transform: uppercase; white-space: nowrap; }
+    .badge .logo { width: 24em; height: 24em; object-fit: contain; filter: drop-shadow(0 .6em .9em rgba(0,0,0,.45)); }
+    .badge .nm { width: 100%; font-size: 6.6em; font-weight: 800; line-height: 1.08; text-transform: uppercase; overflow: hidden; }
+    .badge .nm span { display: block; white-space: nowrap; }
+    .badge .pill { max-width: 100%; padding: 1.25em 4.2em; border-radius: 99em; background: var(--pill); color: var(--pill-fg); box-shadow: 0 .5em 1em rgba(0,0,0,.35); overflow: hidden; }
+    .badge .pill span { display: block; font-size: 3.2em; font-weight: 700; letter-spacing: .02em; text-transform: uppercase; white-space: nowrap; }
+    .badge .tag { width: 100%; overflow: hidden; font-size: 2.55em; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: var(--tag); white-space: nowrap; }
+
+    @media print {
+      @page { size: A4; margin: 0; }
+      html, body { background: #fff !important; }
+      header, .panel, .preview-hint { display: none !important; }
+      .app { display: block; padding: 0; max-width: none; }
+      .preview { position: static; }
+      .stage { max-width: none; height: auto !important; overflow: visible; }
+      #pages { transform: none !important; display: block; }
+      .page { box-shadow: none; break-after: page; }
+      .page:last-child { break-after: auto; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="brand" href="/"><img src="/logo.webp" alt="" /><span><b>Timișoara Toastmasters</b><span>Ecusoane</span></span></a>
+    <span class="spacer"></span>
+    <a class="btn" href="/admin/agenda">Agende</a>
+    <a class="btn" href="/admin/stats">Statistici</a>
+  </div>
+</header>
+
+<div class="app">
+  <div class="panel">
+    <div class="card">
+      <h2>Ecusoane</h2>
+      <div class="grid2">
+        <label class="f">Limba rolurilor
+          <select id="lang" class="input"><option value="en">English (VP Education)</option><option value="ro">Română (VP Educație)</option></select>
+        </label>
+        <label class="f">Mărime
+          <select id="size" class="input">
+            <option value="cr80">Card 54 × 86 mm (9 pe pagină)</option>
+            <option value="large">Mare 70 × 100 mm (4 pe pagină)</option>
+          </select>
+        </label>
+      </div>
+      <label class="check" style="margin-top:10px"><input type="checkbox" id="cut" checked /> Linii de tăiere la print</label>
+    </div>
+
+    <div class="card">
+      <h2>Adaugă</h2>
+      <div class="row">
+        <button class="btn" type="button" id="add-board"><span class="dot" style="background:#d6b24e"></span>Board-ul (auriu)</button>
+        <button class="btn" type="button" id="add-members"><span class="dot" style="background:#e9eef2"></span>Toți membrii (alb)</button>
+        <button class="btn" type="button" id="add-one">+ Un ecuson</button>
+      </div>
+      <p class="hint" style="margin-top:8px">Board-ul și membrii vin din lista de la Agende (secțiunile „Membri” și „Date club”).</p>
+    </div>
+
+    <div class="card">
+      <div class="row" style="justify-content:space-between;margin-bottom:10px">
+        <h2 style="margin:0">Lista <span id="count" class="hint"></span></h2>
+        <button class="mini bad" type="button" id="clear">Golește lista</button>
+      </div>
+      <div id="items" class="items"></div>
+    </div>
+
+    <div class="row">
+      <button class="btn gold" type="button" id="print">Print / PDF</button>
+      <span id="status" class="status" role="status"></span>
+    </div>
+  </div>
+
+  <div class="preview">
+    <div class="stage" id="stage"><div id="pages"></div></div>
+    <p class="preview-hint">Previzualizare A4. La print alege „Salvează ca PDF” și bifează „Grafică de fundal”. Pentru ecusoane rigide, printează pe carton de 250–300 g.</p>
+  </div>
+</div>
+
+<datalist id="names"></datalist>
+
+<script>
+(function () {
+  'use strict';
+  var $ = function (id) { return document.getElementById(id); };
+  var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
+  var KEY = 'tm-badges';
+
+  var ROLES = {
+    en: { pres: 'President', vpe: 'VP Education', vpm: 'VP Membership', vppr: 'VP Public Relations', treas: 'Treasurer', saa: 'Sergeant at Arms', sec: 'Secretary', ipp: 'Immediate Past President', member: 'Member' },
+    ro: { pres: 'Președinte', vpe: 'VP Educație', vpm: 'VP Membri', vppr: 'VP Relații Publice', treas: 'Trezorier', saa: 'Sergent', sec: 'Secretar', ipp: 'Fost Președinte', member: 'Membru' }
+  };
+  var SIZES = { cr80: { w: 54, h: 86, cols: 3, rows: 3 }, large: { w: 70, h: 100, cols: 2, rows: 2 } };
+
+  // Club data: the copy saved from /admin/agenda when the database has one, else the defaults.
+  var club = { members: window.TM_CLUB.members.slice(), officers: Object.assign({}, window.TM_CLUB.club.officers) };
+  var state = { lang: 'en', size: 'cr80', cut: true, items: [] };
+  try { Object.assign(state, JSON.parse(localStorage.getItem(KEY) || '{}')); } catch (e) {}
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+
+  // An item shows a role key's label (follows the language) unless the text was edited by hand.
+  var roleText = function (it) { return it.rk ? ROLES[state.lang][it.rk] : (it.role || ''); };
+  var status = function (t) { $('status').textContent = t || ''; };
+
+  // ── List editor ──
+  function renderItems() {
+    $('count').textContent = state.items.length ? '(' + state.items.length + ')' : '';
+    if (!state.items.length) { $('items').innerHTML = '<p class="empty">Niciun ecuson încă. Adaugă board-ul, membrii sau un ecuson gol.</p>'; return; }
+    $('items').innerHTML = state.items.map(function (it, i) {
+      return '<div class="item" data-i="' + i + '">' +
+        '<input class="input" data-f="name" list="names" placeholder="Nume" value="' + esc(it.name) + '" aria-label="Nume" />' +
+        '<input class="input" data-f="role" placeholder="Rol" value="' + esc(roleText(it)) + '" aria-label="Rol" />' +
+        '<select class="input" data-f="style" aria-label="Culoare"><option value="gold"' + (it.style === 'gold' ? ' selected' : '') + '>Auriu</option><option value="white"' + (it.style === 'white' ? ' selected' : '') + '>Alb</option></select>' +
+        '<button type="button" class="mini" data-png="' + i + '" title="Descarcă imaginea acestui ecuson">PNG</button>' +
+        '<button type="button" class="mini bad" data-del="' + i + '" aria-label="Șterge">✕</button></div>';
+    }).join('');
+  }
+  $('items').addEventListener('input', function (e) {
+    var row = e.target.closest('.item'); if (!row) return;
+    var it = state.items[+row.getAttribute('data-i')], f = e.target.getAttribute('data-f');
+    if (f === 'name') it.name = e.target.value;
+    if (f === 'role') { it.role = e.target.value; it.rk = ''; }
+    if (f === 'style') it.style = e.target.value;
+    save(); renderPages();
+  });
+  $('items').addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    if (b.hasAttribute('data-del')) { state.items.splice(+b.getAttribute('data-del'), 1); save(); renderItems(); renderPages(); }
+    if (b.hasAttribute('data-png')) downloadPng(+b.getAttribute('data-png'), b);
+  });
+
+  var has = function (name) { return state.items.some(function (x) { return x.name.trim().toLowerCase() === name.trim().toLowerCase(); }); };
+  $('add-board').addEventListener('click', function () {
+    var n = 0;
+    window.TM_CLUB.officerKeys.forEach(function (k) {
+      var name = club.officers[k];
+      if (name && !state.items.some(function (x) { return x.rk === k && x.name === name; })) { state.items.push({ name: name, rk: k, role: '', style: 'gold' }); n++; }
+    });
+    save(); renderItems(); renderPages(); status(n ? n + ' ecusoane pentru board adăugate.' : 'Board-ul e deja în listă.');
+  });
+  $('add-members').addEventListener('click', function () {
+    var board = Object.keys(club.officers).map(function (k) { return club.officers[k]; });
+    var n = 0;
+    club.members.forEach(function (name) {
+      if (board.indexOf(name) === -1 && !has(name)) { state.items.push({ name: name, rk: 'member', role: '', style: 'white' }); n++; }
+    });
+    save(); renderItems(); renderPages(); status(n ? n + ' ecusoane pentru membri adăugate (fără board).' : 'Toți membrii sunt deja în listă.');
+  });
+  $('add-one').addEventListener('click', function () {
+    state.items.push({ name: '', rk: 'member', role: '', style: 'white' });
+    save(); renderItems(); renderPages();
+    var inputs = document.querySelectorAll('#items [data-f="name"]'); if (inputs.length) inputs[inputs.length - 1].focus();
+  });
+  $('clear').addEventListener('click', function () {
+    if (state.items.length && !confirm('Golești lista de ecusoane?')) return;
+    state.items = []; save(); renderItems(); renderPages();
+  });
+  $('lang').addEventListener('change', function () { state.lang = this.value; save(); renderItems(); renderPages(); });
+  $('size').addEventListener('change', function () { state.size = this.value; save(); renderPages(); });
+  $('cut').addEventListener('change', function () { state.cut = this.checked; save(); renderPages(); });
+
+  // ── Badges ──
+  function badgeHtml(it, i) {
+    var parts = String(it.name || '').trim().split(/\s+/).filter(Boolean);
+    var first = parts.shift() || '', rest = parts.join(' ');
+    return '<div class="badge ' + (it.style === 'white' ? 'white' : 'gold') + '" data-b="' + i + '">' +
+      '<span class="frame"></span><img class="wm" src="/logo.webp" alt="" />' +
+      '<div class="club">Timișoara Toastmasters</div>' +
+      '<img class="logo" src="/logo.webp" alt="Toastmasters International" />' +
+      '<div class="nm"><span>' + esc(first || ' ') + '</span>' + (rest ? '<span>' + esc(rest) + '</span>' : '') + '</div>' +
+      '<div class="pill"><span>' + esc(roleText(it) || ' ') + '</span></div>' +
+      '<div class="tag">Where Leaders Are Made</div></div>';
+  }
+  function renderPages() {
+    var sz = SIZES[state.size] || SIZES.cr80, per = sz.cols * sz.rows, items = state.items, html = '';
+    var pages = Math.max(1, Math.ceil(items.length / per));
+    for (var p = 0; p < pages; p++) {
+      var cells = '';
+      for (var j = 0; j < per; j++) {
+        var i = p * per + j;
+        cells += '<div class="cell">' + (i < items.length ? badgeHtml(items[i], i) : '<div style="width:' + sz.w + 'mm;height:' + sz.h + 'mm"></div>') + '</div>';
+      }
+      html += '<div class="page' + (state.cut ? ' cut' : '') + '"><div class="page-grid" style="grid-template-columns:repeat(' + sz.cols + ', auto);--bw:' + sz.w + 'mm;--bh:' + sz.h + 'mm">' + cells + '</div></div>';
+    }
+    $('pages').innerHTML = html;
+    fitText(); scalePreview();
+  }
+  // Long names and roles shrink until they fit the badge width.
+  function fitText() {
+    document.querySelectorAll('#pages .nm, #pages .club, #pages .tag, #pages .pill span').forEach(function (el) {
+      el.style.fontSize = '';
+      var box = el.parentNode.classList.contains('pill') ? el.parentNode : el;   // the pill clips its label
+      var fs = parseFloat(getComputedStyle(el).fontSize), min = fs * 0.45;
+      var over = function () { return box.scrollWidth > box.clientWidth + 0.5; };
+      while (over() && fs > min) { fs *= 0.95; el.style.fontSize = fs + 'px'; }
+    });
+  }
+  function scalePreview() {
+    var stage = $('stage'), pages = $('pages');
+    var k = Math.min(1, stage.clientWidth / pages.offsetWidth);
+    pages.style.transform = 'scale(' + k + ')';
+    stage.style.height = (pages.offsetHeight * k) + 'px';
+  }
+  window.addEventListener('resize', scalePreview);
+
+  // ── Output ──
+  $('print').addEventListener('click', function () {
+    if (!state.items.length) { status('Lista e goală.'); return; }
+    var t = document.title; document.title = 'Ecusoane Timișoara Toastmasters'; window.print(); document.title = t;
+  });
+  function loadScript(src) {
+    return new Promise(function (ok, fail) {
+      if (document.querySelector('script[src="' + src + '"]')) return ok();
+      var s = document.createElement('script'); s.src = src; s.onload = ok; s.onerror = fail; document.head.appendChild(s);
+    });
+  }
+  var slug = function (s) { return (s || 'ecuson').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'ecuson'; };
+  function downloadPng(i, btn) {
+    var el = document.querySelector('#pages [data-b="' + i + '"]'); if (!el) return;
+    btn.disabled = true; status('Se pregătește imaginea…');
+    loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js').then(function () {
+      // ~600 dpi for print quality; the preview's scaling is undone in the copy html2canvas renders
+      return window.html2canvas(el, { scale: 5, backgroundColor: null, onclone: function (doc) { doc.getElementById('pages').style.transform = 'none'; } });
+    }).then(function (canvas) {
+      canvas.toBlob(function (blob) {
+        var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'ecuson-' + slug(state.items[i].name) + '.png';
+        document.body.appendChild(a); a.click(); a.remove(); setTimeout(function () { URL.revokeObjectURL(a.href); }, 2000);
+        status('Imagine descărcată.');
+      }, 'image/png');
+    }).catch(function () { status('Nu am putut crea imaginea.'); }).then(function () { btn.disabled = false; });
+  }
+
+  // ── Start ──
+  function fillNames() { $('names').innerHTML = club.members.map(function (n) { return '<option value="' + esc(n) + '"></option>'; }).join(''); }
+  $('lang').value = state.lang; $('size').value = state.size; $('cut').checked = state.cut !== false;
+  fillNames(); renderItems(); renderPages();
+  // Re-fit once the badge font (Montserrat) has loaded: it is wider than the fallback.
+  if (document.fonts) {
+    if (document.fonts.ready) document.fonts.ready.then(function () { fitText(); scalePreview(); });
+    if (document.fonts.addEventListener) document.fonts.addEventListener('loadingdone', function () { fitText(); scalePreview(); });
+  }
+  // Newer members / board saved from /admin/agenda
+  fetch('/api/admin?action=agendas', { credentials: 'same-origin' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
+    var s = j && j.settings;
+    if (s && Array.isArray(s.members) && s.members.length) club.members = s.members.slice();
+    if (s && s.club && s.club.officers) club.officers = Object.assign({}, club.officers, s.club.officers);
+    fillNames();
+  }).catch(function () {});
+
+  window.tmBadges = { state: state, render: function () { renderItems(); renderPages(); } };
+})();
+</script>
+</body>
+</html>

@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Libre+Baskerville:wght@700&family=IBM+Plex+Mono:wght@400;600&display=swap" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+  <script src="/admin/club-data.js"></script>
   <style>
     :root {
       --page: #00151f; --card: rgba(18, 58, 94, .35); --line: rgba(79, 123, 163, .22);
@@ -156,6 +157,7 @@
   <div class="wrap">
     <a class="brand" href="/"><img src="/logo.webp" alt="" /><span><b>Timișoara Toastmasters</b><span>Agende ședințe</span></span></a>
     <span class="spacer"></span>
+    <a class="btn" href="/admin/ecusoane">Ecusoane</a>
     <a class="btn" href="/admin/stats">Statistici</a>
     <a class="btn" href="/admin" title="Editorul de articole">Blog</a>
   </div>
@@ -334,16 +336,10 @@
       end1: 'End of the meeting', end2: 'Networking', theme: 'Theme', word: 'Word of the day'
     }
   };
-  var OFFICERS = ['pres', 'vpe', 'vpm', 'vppr', 'treas', 'saa', 'sec', 'ipp'];
+  var OFFICERS = window.TM_CLUB.officerKeys;
   // Club members for the role dropdowns (names only). The list is edited on the page ("Membri")
-  // and saved with the club settings; this is the starting list.
-  var DEFAULT_MEMBERS = [
-    'Adriana Stamatin', 'Anca Kovacs-Cziczeri', 'Andrada Roman', 'Andrei Hleba', 'Bianca Teliban', 'Casian Pera',
-    'Corina Thorsnes', 'Daniel Roseti', 'David Duca', 'Florin Valcu', 'George Olteanu', 'Ionuț Cornean',
-    'Isabela Boncila', 'Lavinia Borza', 'Loredana Velica', 'Lucian Corcodel', 'Mihaela Bobei', 'Mihaela Stroia',
-    'Nadejda Silosieva', 'Olga Lancea', 'Ovidiu Diatlov', 'Petrica Gavril Tihulca', 'Raul Nistor', 'Rebeca Peca',
-    'Robert Cernea', 'Serban Blidariu', 'Sergiu Foca', 'Sergiu Spătar', 'Sorin Săliștean', 'Tudor Chiu', 'Valentin Deleanu'
-  ];
+  // and saved with the club settings; the starting list is in /admin/club-data.js.
+  var DEFAULT_MEMBERS = window.TM_CLUB.members;
   // Pathways (toastmasters.org, "Paths and Projects"): the six current paths. Level 1 is the same on all
   // of them, Level 2 depends on the path; from Level 3 on the project is typed freely (electives).
   var PATHS = ['Dynamic Leadership', 'Engaging Humor', 'Motivational Strategies', 'Persuasive Influence', 'Presentation Mastery', 'Visionary Communication'];
@@ -365,10 +361,7 @@
   var MEMBERS_KEY = 'tm-agenda-members';
   var members = DEFAULT_MEMBERS.slice();
   var byName = function (a, b) { return a.localeCompare(b, 'ro'); };
-  var DEFAULT_CLUB = {
-    officers: { pres: 'Robert Cernea', vpe: 'Olga Lancea', vpm: 'Ionuț Cornean', vppr: 'Lavinia Borza', treas: 'Mihaela Stroia', saa: 'Sergiu Spătar', sec: 'Tudor Chiu', ipp: 'Adriana Stamatin' },
-    venue: 'Zbor Hub, etaj 2', address: 'Str. Vasile Alecsandri 1', qr: 'https://timisoaratoastmasters.ro/links'
-  };
+  var DEFAULT_CLUB = window.TM_CLUB.club;
   // Minutes per evaluation-block role (shown as (3') etc.)
   var EV = { evaluator: 3, ah: 3, gram: 5, timer: 3, ge: 5 };
   var DRAFT_KEY = 'tm-agenda-draft';
