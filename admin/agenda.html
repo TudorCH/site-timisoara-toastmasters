@@ -129,10 +129,44 @@
     .r.place svg { width: 3.6mm; height: 3.6mm; flex: 0 0 auto; }
     .blank { color: #c4c9cc; }
 
+    /* ═════════ Toasty (fills the agenda from text, pasted Excel cells or screenshots) ═════════ */
+    #ty-fab { position: fixed; right: 22px; bottom: 22px; z-index: 40; display: flex; align-items: center; gap: 8px; height: 50px; padding: 0 18px 0 14px; border-radius: 16px; border: 1px solid rgba(242,223,116,.45); background: linear-gradient(to bottom, #00253b, #001c2d); color: #fff; font-weight: 700; cursor: pointer; box-shadow: 0 10px 28px rgba(0,0,0,.45); }
+    #ty-fab:hover { border-color: var(--gold); }
+    #ty-fab svg { width: 22px; height: 22px; }
+    #ty-panel { position: fixed; top: 0; right: 0; bottom: 0; width: 420px; max-width: 100vw; z-index: 50; display: flex; flex-direction: column; background: #031c2b; border-left: 1px solid var(--line); box-shadow: -20px 0 60px rgba(0,0,0,.5); transform: translateX(100%); transition: transform .25s ease; }
+    #ty-panel.on { transform: none; }
+    #ty-panel.drag { outline: 3px dashed rgba(242,223,116,.7); outline-offset: -10px; }
+    .ty-head { display: flex; align-items: center; gap: 10px; padding: 14px 16px; background: linear-gradient(to bottom, #00253b, #001c2d); border-bottom: 1px solid var(--hair); }
+    .ty-av { width: 38px; height: 38px; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: rgba(242,223,116,.12); color: var(--gold); flex: 0 0 auto; }
+    .ty-head b { display: block; font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 16px; }
+    .ty-head small { color: var(--text-3); font-size: 12px; }
+    .ty-msgs { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+    .ty-m { max-width: 88%; padding: 10px 12px; border-radius: 14px; font-size: 13.5px; line-height: 1.45; white-space: pre-wrap; word-break: break-word; }
+    .ty-m.bot { align-self: flex-start; background: rgba(255,255,255,.06); border: 1px solid var(--hair); border-bottom-left-radius: 4px; }
+    .ty-m.me { align-self: flex-end; background: rgba(242,223,116,.14); border: 1px solid rgba(242,223,116,.3); border-bottom-right-radius: 4px; }
+    .ty-m.err { border-color: rgba(248,113,113,.5); color: #fecaca; }
+    .ty-m .thumbs { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+    .ty-m .thumbs img { width: 64px; height: 64px; object-fit: cover; border-radius: 8px; border: 1px solid var(--hair); }
+    .ty-m .undo { margin-top: 8px; border: 1px solid var(--line); background: none; color: var(--text-2); border-radius: 8px; padding: 4px 10px; font-size: 12px; font-weight: 600; cursor: pointer; }
+    .ty-m .undo:hover { color: #fff; border-color: rgba(255,255,255,.35); }
+    .ty-typing { align-self: flex-start; color: var(--text-3); font-size: 13px; }
+    .ty-foot { border-top: 1px solid var(--hair); padding: 10px 12px 12px; display: grid; gap: 8px; }
+    .ty-att { display: flex; flex-wrap: wrap; gap: 6px; }
+    .ty-att span { position: relative; }
+    .ty-att img { width: 56px; height: 56px; object-fit: cover; border-radius: 8px; border: 1px solid var(--line); display: block; }
+    .ty-att button { position: absolute; top: -6px; right: -6px; width: 20px; height: 20px; border-radius: 50%; border: 0; background: #b91c1c; color: #fff; font-size: 11px; cursor: pointer; line-height: 20px; padding: 0; }
+    .ty-row { display: flex; gap: 8px; align-items: flex-end; }
+    .ty-row textarea { flex: 1; resize: none; min-height: 44px; max-height: 160px; }
+    .ty-icon { width: 44px; height: 44px; flex: 0 0 auto; border-radius: 10px; border: 1px solid var(--line); background: var(--card); color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    .ty-icon:hover { border-color: rgba(255,255,255,.35); }
+    .ty-icon.send { background: var(--gold); color: #00273E; border-color: transparent; }
+    .ty-icon:disabled { opacity: .5; cursor: default; }
+    .ty-icon svg { width: 20px; height: 20px; }
+
     @media print {
       @page { size: A4; margin: 0; }
       html, body { background: #fff !important; }
-      header, .toolbar, .form, .notice, .preview-hint { display: none !important; }
+      header, .toolbar, .form, .notice, .preview-hint, #ty-fab, #ty-panel { display: none !important; }
       .app { display: block; padding: 0; max-width: none; }
       .preview { position: static; }
       .stage { max-width: none; height: auto !important; }
@@ -292,6 +326,33 @@
 </div>
 
 <datalist id="names"></datalist>
+
+<!-- Toasty -->
+<button id="ty-fab" type="button" aria-controls="ty-panel" aria-expanded="false">
+  <svg fill="none" stroke="#F2DF74" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+  Toasty
+</button>
+<aside id="ty-panel" role="dialog" aria-label="Toasty: completează agenda" aria-hidden="true">
+  <div class="ty-head">
+    <span class="ty-av"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+    <div style="flex:1"><b>Toasty</b><small>Completez agenda din text, Excel sau poze</small></div>
+    <button type="button" class="ty-icon" id="ty-close" aria-label="Închide"><svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+  </div>
+  <div class="ty-msgs" id="ty-msgs" aria-live="polite"></div>
+  <div class="ty-foot">
+    <div class="ty-att" id="ty-att"></div>
+    <div class="ty-row">
+      <button type="button" class="ty-icon" id="ty-attach" aria-label="Atașează poze sau capturi de ecran" title="Atașează poze (sau lipește cu Ctrl+V / trage-le aici)">
+        <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+      </button>
+      <textarea id="ty-text" class="input" rows="1" placeholder="Scrie, lipește celule din Excel sau o captură de ecran…" aria-label="Mesaj pentru Toasty"></textarea>
+      <button type="button" class="ty-icon send" id="ty-send" aria-label="Trimite">
+        <svg fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+      </button>
+    </div>
+    <input type="file" id="ty-file" accept="image/*" multiple hidden />
+  </div>
+</aside>
 
 <script>
 (function () {
@@ -802,6 +863,121 @@
   function init() {
     refreshList().then(start, function () { offline = true; start(); });
   }
+
+  // ── Toasty: fills the agenda from text, cells pasted from Excel, or photos / screenshots ──
+  (function () {
+    var MAX_IMAGES = 4, MAX_SIDE = 1600;
+    var panel = $('ty-panel'), msgs = $('ty-msgs'), txt = $('ty-text'), sendBtn = $('ty-send');
+    var pending = [];     // images waiting to be sent: { media_type, data, url }
+    var history = [];     // text turns sent back for context: { role, text }
+    var busy = false;
+
+    function open(on) {
+      panel.classList.toggle('on', on); panel.setAttribute('aria-hidden', String(!on));
+      $('ty-fab').setAttribute('aria-expanded', String(on)); $('ty-fab').hidden = on;
+      if (on) setTimeout(function () { txt.focus(); }, 50);
+    }
+    $('ty-fab').addEventListener('click', function () { open(true); });
+    $('ty-close').addEventListener('click', function () { open(false); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && panel.classList.contains('on')) open(false); });
+
+    function bubble(cls, text, thumbs) {
+      var d = document.createElement('div'); d.className = 'ty-m ' + cls; d.textContent = text || '';
+      if (thumbs && thumbs.length) {
+        var t = document.createElement('div'); t.className = 'thumbs';
+        thumbs.forEach(function (u) { var i = document.createElement('img'); i.src = u; i.alt = ''; t.appendChild(i); });
+        d.appendChild(t);
+      }
+      msgs.appendChild(d); msgs.scrollTop = msgs.scrollHeight; return d;
+    }
+    bubble('bot', 'Salut! Sunt Toasty. Trimite-mi o captură de ecran cu tabelul din Excel, lipește direct celulele copiate sau scrie-mi ce să pun (de ex. „Tudor e cronometru, Andrei evaluează primul discurs”) și completez agenda.');
+
+    // Images: downsized in the browser (keeps the request small), sent as JPEG/PNG base64.
+    function addFiles(files) {
+      [].slice.call(files || []).filter(function (f) { return /^image\//.test(f.type); }).forEach(function (f) {
+        if (pending.length >= MAX_IMAGES) { setStatus('Maxim ' + MAX_IMAGES + ' imagini pe mesaj.', 'err'); return; }
+        var url = URL.createObjectURL(f), img = new Image();
+        img.onload = function () {
+          var k = Math.min(1, MAX_SIDE / Math.max(img.naturalWidth, img.naturalHeight));
+          var c = document.createElement('canvas'); c.width = Math.round(img.naturalWidth * k); c.height = Math.round(img.naturalHeight * k);
+          var x = c.getContext('2d'); x.fillStyle = '#fff'; x.fillRect(0, 0, c.width, c.height); x.drawImage(img, 0, 0, c.width, c.height);
+          // Screenshots stay PNG (sharp text); photos become JPEG
+          var type = f.type === 'image/png' ? 'image/png' : 'image/jpeg';
+          var data = c.toDataURL(type, 0.88);
+          if (type === 'image/png' && data.length > 1300000) { type = 'image/jpeg'; data = c.toDataURL(type, 0.9); }
+          if (pending.length < MAX_IMAGES) pending.push({ media_type: type, data: data.split(',')[1], url: data });
+          URL.revokeObjectURL(url); renderPending();
+        };
+        img.onerror = function () { URL.revokeObjectURL(url); setStatus('Nu am putut citi imaginea.', 'err'); };
+        img.src = url;
+      });
+    }
+    function renderPending() {
+      $('ty-att').innerHTML = pending.map(function (p, i) { return '<span><img src="' + p.url + '" alt="" /><button type="button" data-rm="' + i + '" aria-label="Scoate imaginea">✕</button></span>'; }).join('');
+    }
+    $('ty-att').addEventListener('click', function (e) { var b = e.target.closest('[data-rm]'); if (b) { pending.splice(+b.getAttribute('data-rm'), 1); renderPending(); } });
+    $('ty-attach').addEventListener('click', function () { $('ty-file').click(); });
+    $('ty-file').addEventListener('change', function () { addFiles(this.files); this.value = ''; });
+    txt.addEventListener('paste', function (e) {
+      var files = [].slice.call((e.clipboardData || {}).files || []);
+      if (files.length) { e.preventDefault(); addFiles(files); }   // a screenshot; plain text / Excel cells paste as usual
+    });
+    ['dragenter', 'dragover'].forEach(function (ev) { panel.addEventListener(ev, function (e) { e.preventDefault(); panel.classList.add('drag'); }); });
+    ['dragleave', 'drop'].forEach(function (ev) { panel.addEventListener(ev, function (e) { e.preventDefault(); panel.classList.remove('drag'); }); });
+    panel.addEventListener('drop', function (e) { addFiles(e.dataTransfer && e.dataTransfer.files); });
+    txt.addEventListener('input', function () { txt.style.height = 'auto'; txt.style.height = Math.min(160, txt.scrollHeight) + 'px'; });
+    txt.addEventListener('keydown', function (e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); } });
+    sendBtn.addEventListener('click', send);
+
+    // Applies Toasty's changes (null = leave as is); returns how many fields changed.
+    function apply(ch) {
+      var a = clone(state), n = 0;
+      var set = function (path, v) { if (v !== null && v !== undefined && getPath(a, path) !== v) { setPath(a, path, v); n++; } };
+      if (ch.date && parseIso(ch.date)) { set('date', ch.date); a.lang = isLastWednesday(a.date) ? 'en' : 'ro'; }
+      set('lang', ch.lang);
+      ['title', 'theme', 'word', 'start', 'social'].forEach(function (k) { set(k, ch[k]); });
+      Object.keys(ch.roles || {}).forEach(function (k) { set('roles.' + k, ch.roles[k]); });
+      if (Array.isArray(ch.speeches)) {
+        a.speeches = ch.speeches.map(function (s) {
+          return Object.assign(blankSpeech(), s, { level: Math.min(5, Math.max(1, +s.level || 1)), min: Math.min(45, Math.max(1, +s.min || 7)) });
+        });
+        n++;
+      }
+      if (ch.vote_on !== null && ch.vote_on !== undefined) set('vote.on', !!ch.vote_on);
+      set('vote.name', ch.vote_name);
+      if (n) { load(a, true); changed(); }
+      return n;
+    }
+
+    function send() {
+      if (busy) return;
+      var text = txt.value.trim(), imgs = pending.slice();
+      if (!text && !imgs.length) return;
+      busy = true; sendBtn.disabled = true;
+      bubble('me', text, imgs.map(function (p) { return p.url; }));
+      txt.value = ''; txt.style.height = ''; pending = []; renderPending();
+      var typing = document.createElement('div'); typing.className = 'ty-typing'; typing.textContent = 'Toasty citește…'; msgs.appendChild(typing); msgs.scrollTop = msgs.scrollHeight;
+      var before = clone(state);
+      fetch('/api/agenda-ai', {
+        method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text: text, images: imgs.map(function (p) { return { media_type: p.media_type, data: p.data }; }), history: history, agenda: state, members: members, today: todayIso() })
+      }).then(function (r) {
+        return r.json().catch(function () { return {}; }).then(function (j) { if (!r.ok) throw new Error(j.error || ('Eroare ' + r.status)); return j; });
+      }).then(function (j) {
+        var n = j.changes ? apply(j.changes) : 0;
+        var d = bubble('bot', j.reply || (n ? 'Am completat agenda.' : 'Nu am găsit ce să completez.'));
+        if (n) {
+          var u = document.createElement('button'); u.type = 'button'; u.className = 'undo'; u.textContent = 'Anulează modificările';
+          u.addEventListener('click', function () { load(before, true); changed(); u.disabled = true; u.textContent = 'Anulat'; });
+          d.appendChild(u);
+        }
+        history.push({ role: 'user', text: text || '(imagini atașate)' }, { role: 'assistant', text: j.reply || '' });
+        history = history.slice(-12);
+      }).catch(function (e) {
+        bubble('bot err', e.message || 'Nu am putut contacta Toasty.');
+      }).then(function () { typing.remove(); busy = false; sendBtn.disabled = false; txt.focus(); });
+    }
+  })();
 
   // For testing / quick fills from the console
   window.tmAgenda = { load: function (a) { load(a, true); changed(); }, get state() { return state; } };
