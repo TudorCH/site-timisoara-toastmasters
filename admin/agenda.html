@@ -8,7 +8,7 @@
   <link rel="icon" type="image/webp" href="/logo.webp" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Libre+Baskerville:wght@700&family=IBM+Plex+Mono:wght@400;600&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
   <script src="/admin/club-data.js"></script>
   <style>
@@ -87,43 +87,32 @@
     .preview-hint { text-align: center; font-size: 12px; color: var(--text-3); margin-top: 10px; }
 
     /* ═════════ The printed agenda (A4) ═════════ */
-    /* Layout (print-friendly): two columns over the full page. The left column (warm paper) opens with the
-       emblem and continues into the officers; the right one has a white title header, then the program.
-       One navy rule runs under both header cells. */
-    .sheet { --s: 1; width: 210mm; height: 297mm; background: #fff; color: #161616; font-family: Inter, Arial, sans-serif; display: grid; grid-template-columns: 52mm minmax(0, 1fr); grid-template-rows: 37mm minmax(0, 1fr); overflow: hidden; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    /* Emblem cell: club name above the emblem, tagline under it */
-    .sh-brand { grid-column: 1; grid-row: 1; background: #F6F5F1; border-right: .3mm solid #D4D2CC; border-bottom: .6mm solid #004165; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.6mm; padding: 2mm 3mm; text-align: center; }
-    .sh-brand .nm { font-weight: 800; font-size: 8.2pt; line-height: 1.2; letter-spacing: .12em; text-transform: uppercase; color: #004165; }
-    .sh-brand img { width: 17mm; height: 17mm; object-fit: contain; display: block; }
-    .sh-brand .tg { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 6.6pt; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: #772432; }
-    /* Title header: the meeting title and the date; theme / word of the day under them when set */
-    .sh-head { grid-column: 2; grid-row: 1; border-bottom: .6mm solid #004165; padding: 0 8mm; display: flex; flex-direction: column; justify-content: center; }
-    .sh-head .mid { display: flex; justify-content: space-between; align-items: baseline; gap: 4mm; }
-    .sh-head .ti { font-family: 'Libre Baskerville', Georgia, serif; font-weight: 700; font-size: 17pt; line-height: 1.2; letter-spacing: -.01em; color: #111; }
-    .sh-head .dt { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 9.8pt; font-weight: 600; color: #772432; white-space: nowrap; }
-    .sh-head .ex { margin-top: 2.2mm; font-size: 8.8pt; color: #555; }
-    .sh-head .ex b { color: #772432; font-weight: 700; }
-    /* Left column below the emblem: officers; QR at the bottom */
-    .sh-side { grid-column: 1; grid-row: 2; min-height: 0; background: #F6F5F1; border-right: .3mm solid #D4D2CC; padding: calc(6mm * var(--s)) 4mm 6mm; text-align: center; font-size: calc(8.2pt * var(--s)); line-height: 1.3; display: flex; flex-direction: column; gap: calc(5.5mm * var(--s)); overflow: hidden; }
-    .sh-side .qr { margin-top: auto; }   /* QR sits at the foot of the column */
-    .sh-side .ico { display: flex; justify-content: center; margin-bottom: 1mm; }
+    .sheet { --s: 1; width: 210mm; height: 297mm; background: #fff; color: #161616; font-family: Inter, Arial, sans-serif; display: flex; flex-direction: column; overflow: hidden; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .sh-head { flex: 0 0 auto; height: 31mm; background: linear-gradient(180deg, #004a73 0%, #003a5c 100%); display: grid; grid-template-columns: 1fr 34mm 1fr; align-items: center; padding: 0 10mm; color: #F2DF74; }
+    .sh-head .hl, .sh-head .hr { text-align: center; font-weight: 800; text-transform: uppercase; line-height: 1.2; }
+    .sh-head .hl small { display: block; font-size: 8.5pt; letter-spacing: .02em; }
+    .sh-head .hl span { display: block; font-size: 12.5pt; letter-spacing: .02em; }
+    .sh-head .hr { font-size: 11.5pt; letter-spacing: .01em; }
+    .sh-head .hc { display: flex; justify-content: center; }
+    .sh-head .hc img { width: 27mm; height: 27mm; object-fit: contain; filter: drop-shadow(0 1mm 1.5mm rgba(0,0,0,.35)); }
+    .sh-date { flex: 0 0 auto; background: #772432; color: #F2DF74; text-align: center; font-weight: 700; font-size: 11pt; padding: 1.4mm 0; }
+    .sh-body { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: 50mm minmax(0, 1fr); }
+    .sh-side { border-right: .6mm solid #a3abb0; padding: calc(5mm * var(--s)) 3mm 4mm; text-align: center; font-size: calc(8.2pt * var(--s)); line-height: 1.3; display: flex; flex-direction: column; gap: calc(4.2mm * var(--s)); overflow: hidden; }
+    .sh-side .ico { display: flex; justify-content: center; margin-bottom: .8mm; }
     .sh-side .ico svg { width: calc(6.5mm * var(--s)); height: calc(6.5mm * var(--s)); }
-    .sh-side h4 { margin: 0 0 1.2mm; font-size: calc(7.8pt * var(--s)); font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: #004165; }
-    .sh-side .role { color: #80868a; font-size: calc(7.6pt * var(--s)); margin-top: calc(.9mm * var(--s)); }
-    .sh-side h4 + .role { margin-top: 0; }
-    .sh-side .mission { font-size: calc(7.3pt * var(--s)); line-height: 1.32; color: #333; }
+    .sh-side h4 { margin: 0 0 .6mm; font-size: calc(9pt * var(--s)); font-weight: 800; color: #111; }
+    .sh-side .role { color: #8b949a; }
+    .sh-side .mission { font-size: calc(7.2pt * var(--s)); line-height: 1.25; }
     .sh-side .qr-box { position: relative; width: calc(27mm * var(--s)); height: calc(27mm * var(--s)); margin: 1mm auto 0; }
     .sh-side .qr-code { width: 100%; height: 100%; image-rendering: pixelated; display: block; }
     .sh-side .qr-logo { position: absolute; left: 50%; top: 50%; width: 26%; height: 26%; transform: translate(-50%, -50%); background: #fff; border-radius: 50%; padding: 1.5%; box-sizing: border-box; display: flex; }
     .sh-side .qr-logo img { width: 100%; height: 100%; object-fit: contain; display: block; }
-    .sh-side .qr small { display: block; font-size: 6.5pt; color: #80868a; margin-top: .6mm; }
-    .sh-main { grid-column: 2; grid-row: 2; min-height: 0; padding: calc(6mm * var(--s)) 7mm 6mm 8mm; font-size: calc(9.4pt * var(--s)); line-height: 1.28; overflow: hidden; display: flex; flex-direction: column; }
-    .sh-rows { margin-top: 0; }
-    /* Info block at the foot of the program column: weekly meeting | location | mission */
-    .sh-info { margin-top: auto; padding-top: calc(4mm * var(--s)); border-top: .3mm solid #D4D2CC; display: grid; grid-template-columns: minmax(0, .95fr) minmax(0, 1fr) minmax(0, 2.1fr); column-gap: 5mm; font-size: calc(8pt * var(--s)); line-height: 1.38; color: #222; }
-    .sh-info .ih { display: flex; align-items: center; gap: 1.4mm; margin-bottom: 1.3mm; font-size: calc(7.2pt * var(--s)); font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: #004165; }
-    .sh-info .ih svg { width: calc(4mm * var(--s)); height: calc(4mm * var(--s)); flex: 0 0 auto; }
-    .sh-info .mission { font-size: calc(7.6pt * var(--s)); line-height: 1.4; color: #333; }
+    .sh-side .qr small { display: block; font-size: 6.5pt; color: #8b949a; margin-top: .6mm; }
+    .sh-main { padding: calc(5mm * var(--s)) 6mm 4mm 7mm; font-size: calc(9.4pt * var(--s)); line-height: 1.28; overflow: hidden; }
+    .sh-title { text-align: center; font-weight: 800; font-size: calc(11.5pt * var(--s)); margin: 0 0 calc(1.2mm * var(--s)); }
+    .sh-theme { text-align: center; font-size: calc(8.6pt * var(--s)); color: #444; margin: 0 0 calc(1mm * var(--s)); }
+    .sh-theme b { color: #772432; }
+    .sh-rows { margin-top: calc(3.5mm * var(--s)); }
     .r { display: grid; grid-template-columns: 12mm minmax(0, 1fr) 36mm; column-gap: 2.5mm; margin-top: calc(3.4mm * var(--s)); align-items: start; }
     .r:first-child { margin-top: 0; }
     .r .t { font-weight: 800; }
@@ -470,7 +459,10 @@
     side += '<div>' + icon('users') + '<h4>' + l.officers + '</h4>' + OFFICERS.map(function (k) {
       return '<div class="role">' + l.roles[k] + '</div><div>' + who(c.officers[k]) + '</div>';
     }).join('') + '</div>';
-    if (c.qr) side += '<div class="qr"><h4>' + l.social + '</h4>' + qrImg(c.qr) + '<small>' + esc(c.qr.replace(/^https?:\/\//, '')) + '</small><small>Club #01269633</small></div>';
+    side += '<div>' + icon('cal') + '<h4>' + l.weekly + '</h4><div>' + l.wed + ', ' + fmt(toMin(a.start)) + ' - ' + fmt(T.end) + '</div></div>';
+    side += '<div>' + icon('pin') + '<h4>' + l.location + '</h4><div>' + esc(c.venue) + '</div><div>' + esc(c.address) + '</div></div>';
+    side += '<div>' + icon('target') + '<h4>' + l.missionH + '</h4><div class="mission"><b>Timișoara Toastmasters</b> ' + l.mission + '</div></div>';
+    if (c.qr) side += '<div class="qr"><h4>' + l.social + '</h4>' + qrImg(c.qr) + '<small>' + esc(c.qr.replace(/^https?:\/\//, '')) + '</small></div>';
 
     var rows = '';
     rows += row('', fmt(T.open), l.open, who(a.roles.president));
@@ -497,26 +489,18 @@
     rows += row('', fmt(T.end), l.end1 + '<br>' + l.end2, who(a.roles.president));
     if (a.social) rows += row('place', '', '<svg fill="#161616" viewBox="0 0 24 24"><path d="M12 2a7 7 0 00-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z"/></svg>' + esc(a.social), '');
 
-    // Footer of the program column: weekly meeting, location, club mission
-    var ih = function (k, t) { return '<div class="ih"><svg fill="none" stroke="#004165" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">' + ICONS[k] + '</svg>' + t + '</div>'; };
-    var info = '<div class="sh-info">' +
-      '<div>' + ih('cal', l.weekly) + '<div>' + l.wed + ', ' + fmt(toMin(a.start)) + ' - ' + fmt(T.end) + '</div></div>' +
-      '<div>' + ih('pin', l.location) + '<div>' + esc(c.venue) + '</div><div>' + esc(c.address) + '</div></div>' +
-      '<div>' + ih('target', l.missionH) + '<div class="mission"><b>Timișoara Toastmasters</b> ' + l.mission + '</div></div>' +
-      '</div>';
-
     var extra = [];
     if (a.theme) extra.push(l.theme + ': <b>' + esc(a.theme) + '</b>');
     if (a.word) extra.push(l.word + ': <b>' + esc(a.word) + '</b>');
 
     $('sheet').innerHTML =
-      '<div class="sh-brand"><div class="nm">Timișoara<br>Toastmasters</div><img src="/logo.webp" alt="Toastmasters International" /><div class="tg">Where Leaders Are Made</div></div>' +
-      '<div class="sh-head">' +
-        '<div class="mid"><span class="ti">' + esc(a.title || l.title) + '</span><span class="dt">' + esc(dateLabel(a.date, a.lang)) + '</span></div>' +
-        (extra.length ? '<div class="ex">' + extra.join(' &nbsp;·&nbsp; ') + '</div>' : '') +
-      '</div>' +
-      '<div class="sh-side">' + side + '</div>' +
-      '<div class="sh-main"><div class="sh-rows">' + rows + '</div>' + info + '</div>';
+      '<div class="sh-head"><div class="hl"><small>Timișoara Toastmasters</small><span>Club #01269633</span></div>' +
+      '<div class="hc"><img src="/logo.webp" alt="Toastmasters International" /></div><div class="hr">Where Leaders<br>Are Made</div></div>' +
+      '<div class="sh-date">' + esc(dateLabel(a.date, a.lang)) + '</div>' +
+      '<div class="sh-body"><div class="sh-side">' + side + '</div><div class="sh-main">' +
+      '<div class="sh-title">' + esc(a.title || l.title) + '</div>' +
+      (extra.length ? '<div class="sh-theme">' + extra.join(' · ') + '</div>' : '') +
+      '<div class="sh-rows">' + rows + '</div></div></div>';
 
     // Auto-placeholders for durations
     $('dur-sp').placeholder = String(tl.autoSp); $('dur-ev').placeholder = String(tl.autoEv);
