@@ -106,7 +106,7 @@
     .sh-side h4 { margin: 0 0 .6mm; font-size: calc(9pt * var(--s)); font-weight: 800; color: #111; }
     .sh-side .role { color: #8b949a; }
     .sh-side .mission { font-size: calc(7.2pt * var(--s)); line-height: 1.25; }
-    .sh-side .qr-box { position: relative; width: calc(27mm * var(--s)); height: calc(27mm * var(--s)); margin: 1mm auto 0; }
+    .sh-side .qr-box { position: relative; width: calc(36mm * var(--s)); height: calc(36mm * var(--s)); margin: 1mm auto 0; }
     .sh-side .qr-code { width: 100%; height: 100%; image-rendering: pixelated; display: block; }
     .sh-side .qr-logo { position: absolute; left: 50%; top: 50%; width: 26%; height: 26%; transform: translate(-50%, -50%); background: #fff; border-radius: 50%; padding: 1.5%; box-sizing: border-box; display: flex; }
     .sh-side .qr-logo img { width: 100%; height: 100%; object-fit: contain; display: block; }
@@ -537,7 +537,7 @@
     side += '<div>' + icon('cal') + '<h4>' + l.weekly + '</h4><div>' + l.wed + ', ' + fmt(toMin(a.start)) + ' - ' + fmt(T.end) + '</div></div>';
     side += '<div>' + icon('pin') + '<h4>' + l.location + '</h4><div>' + esc(c.venue) + '</div><div>' + esc(c.address) + '</div></div>';
     side += '<div>' + icon('target') + '<h4>' + l.missionH + '</h4><div class="mission"><b>Timișoara Toastmasters</b> ' + l.mission + '</div></div>';
-    if (c.qr) side += '<div class="qr"><h4>' + l.social + '</h4>' + qrImg(c.qr) + '<small>' + esc(c.qr.replace(/^https?:\/\//, '')) + '</small></div>';
+    if (c.qr) side += '<div class="qr"><h4>' + l.social + '</h4>' + qrImg(c.qr) + '</div>';
 
     var rows = '';
     rows += row('', fmt(T.open), l.open, who(a.roles.president));
