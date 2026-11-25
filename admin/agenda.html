@@ -87,7 +87,7 @@
     .preview-hint { text-align: center; font-size: 12px; color: var(--text-3); margin-top: 10px; }
 
     /* ═════════ The printed agenda (A4) ═════════ */
-    .sheet { --s: 1; width: 210mm; height: 297mm; background: #fff; color: #161616; font-family: Inter, Arial, sans-serif; display: flex; flex-direction: column; overflow: hidden; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .sheet { --s: 1; --g: 1; width: 210mm; height: 297mm; background: #fff; color: #161616; font-family: Inter, Arial, sans-serif; display: flex; flex-direction: column; overflow: hidden; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .sh-head { flex: 0 0 auto; height: 31mm; background: linear-gradient(180deg, #004a73 0%, #003a5c 100%); display: grid; grid-template-columns: 1fr 34mm 1fr; align-items: center; padding: 0 10mm; color: #F2DF74; }
     .sh-head .hl, .sh-head .hr { text-align: center; font-weight: 800; text-transform: uppercase; line-height: 1.2; }
     .sh-head .hl small { display: block; font-size: 8.5pt; letter-spacing: .02em; }
@@ -118,15 +118,16 @@
     .sh-title .dt { grid-column: 3; grid-row: 1; font-weight: 800; font-size: calc(10pt * var(--s)); color: #161616; }
     .sh-title .th { grid-row: 2; font-size: calc(8.6pt * var(--s)); color: #444; margin-top: calc(.8mm * var(--s)); }
     .sh-title .th b { color: #772432; }
-    .sh-rows { margin-top: calc(3.5mm * var(--s)); }
-    .r { display: grid; grid-template-columns: 12mm minmax(0, 1fr) 36mm; column-gap: 2.5mm; margin-top: calc(3.4mm * var(--s)); align-items: start; }
+    /* --g spreads the program down the page (set by fit()); sub-rows open up half as much */
+    .sh-rows { margin-top: calc(3.5mm * var(--s) * var(--g)); }
+    .r { display: grid; grid-template-columns: 12mm minmax(0, 1fr) 36mm; column-gap: 2.5mm; margin-top: calc(3.4mm * var(--s) * var(--g)); align-items: start; }
     .r:first-child { margin-top: 0; }
     .r .t { font-weight: 800; }
     .r .x { font-weight: 700; }
     .r .p { font-weight: 500; }
-    .r.sub { margin-top: calc(1mm * var(--s)); }
+    .r.sub { margin-top: calc(1mm * var(--s) * (1 + (var(--g) - 1) * .5)); }
     .r.sub .x { font-weight: 400; padding-left: 3mm; }
-    .r.sp { margin-top: calc(2.2mm * var(--s)); }
+    .r.sp { margin-top: calc(2.2mm * var(--s) * (1 + (var(--g) - 1) * .5)); }
     .r.sp .x { font-weight: 400; padding-left: 3mm; }
     .r.sp .x i { font-style: italic; }
     .r.sp .x b { font-weight: 700; }
@@ -578,12 +579,20 @@
     fit();
   }
 
-  // Shrinks the text a little when a long agenda would not fit on one page.
+  // A long agenda: the text shrinks a little so it fits on one page. A short one: the gaps between
+  // the program's rows open up so it runs down to about 90% of the column instead of stopping halfway.
   function fit() {
-    var sheet = $('sheet'), s = 1;
+    var sheet = $('sheet'), s = 1, g = 1;
     var over = function () { return [].some.call(sheet.querySelectorAll('.sh-main, .sh-side'), function (el) { return el.scrollHeight > el.clientHeight + 1; }); };
-    sheet.style.setProperty('--s', 1);
+    sheet.style.setProperty('--s', 1); sheet.style.setProperty('--g', 1);
     while (over() && s > 0.7) { s -= 0.03; sheet.style.setProperty('--s', s.toFixed(2)); }
+    if (s < 1) return;
+    var main = sheet.querySelector('.sh-main'), rows = sheet.querySelector('.sh-rows');
+    if (!main || !rows) return;
+    var limit = main.offsetTop + main.clientHeight * 0.9;
+    var bottom = function () { return rows.offsetTop + rows.offsetHeight; };
+    while (bottom() < limit && g < 3) { g += 0.05; sheet.style.setProperty('--g', g.toFixed(2)); }
+    if (bottom() > limit || over()) sheet.style.setProperty('--g', Math.max(1, g - 0.05).toFixed(2));
   }
   function scalePreview() {
     var stage = $('stage'), wrap = $('sheet-wrap'), sheet = $('sheet');
