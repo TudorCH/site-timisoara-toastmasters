@@ -110,11 +110,13 @@
     .sh-side .qr-logo img { width: 100%; height: 100%; object-fit: contain; display: block; }
     .sh-side .qr small { display: block; font-size: 6.5pt; color: #8b949a; margin-top: .6mm; }
     .sh-main { padding: calc(5mm * var(--s)) 6mm 4mm 7mm; font-size: calc(9.4pt * var(--s)); line-height: 1.28; overflow: hidden; }
-    /* Title row on the program's grid: the title lines up with the descriptions, the date with the names */
+    /* Title row on the program's grid: the title centred on the column (kept clear of the names column on
+       both sides, so a long title never runs into the date), the date in the names column */
     .sh-title { display: grid; grid-template-columns: 12mm minmax(0, 1fr) 36mm; column-gap: 2.5mm; align-items: baseline; margin: 0 0 calc(1.2mm * var(--s)); }
-    .sh-title .ti { grid-column: 2; font-weight: 800; font-size: calc(11.5pt * var(--s)); }
-    .sh-title .dt { grid-column: 3; font-weight: 800; font-size: calc(10pt * var(--s)); color: #772432; }
-    .sh-title .th { grid-column: 2; font-size: calc(8.6pt * var(--s)); color: #444; margin-top: calc(.8mm * var(--s)); }
+    .sh-title .ti, .sh-title .th { grid-column: 1 / -1; text-align: center; padding: 0 38.5mm; }
+    .sh-title .ti { grid-row: 1; font-weight: 800; font-size: calc(11.5pt * var(--s)); }
+    .sh-title .dt { grid-column: 3; grid-row: 1; font-weight: 800; font-size: calc(10pt * var(--s)); color: #161616; }
+    .sh-title .th { grid-row: 2; font-size: calc(8.6pt * var(--s)); color: #444; margin-top: calc(.8mm * var(--s)); }
     .sh-title .th b { color: #772432; }
     .sh-rows { margin-top: calc(3.5mm * var(--s)); }
     .r { display: grid; grid-template-columns: 12mm minmax(0, 1fr) 36mm; column-gap: 2.5mm; margin-top: calc(3.4mm * var(--s)); align-items: start; }
