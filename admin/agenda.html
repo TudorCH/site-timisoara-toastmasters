@@ -425,7 +425,7 @@
   var byName = function (a, b) { return a.localeCompare(b, 'ro'); };
   var DEFAULT_CLUB = window.TM_CLUB.club;
   // Minutes per evaluation-block role (shown as (3') etc.)
-  var EV = { evaluator: 3, ah: 3, gram: 5, timer: 3, ge: 3 };
+  var EV = { evaluator: 3, ah: 3, gram: 6, timer: 3, ge: 3 };
   var DRAFT_KEY = 'tm-agenda-draft';
 
   var state = null, savedDates = [], settings = null, offline = false, dbReady = false, dirty = false;
@@ -474,6 +474,9 @@
     var out = Object.assign(base, a);
     ['roles', 'dur', 'vote'].forEach(function (k) { out[k] = Object.assign(base[k], a[k] || {}); });
     out.club = Object.assign(clubDefaults(), a.club || {});
+    // The QR used to point at /links, which is not on the live site yet (404): older agendas, drafts
+    // and saved club defaults move to the home page.
+    if (/^https?:\/\/(www\.)?timisoaratoastmasters\.ro\/links\/?$/i.test(out.club.qr || '')) out.club.qr = 'https://timisoaratoastmasters.ro/';
     out.club.officers = Object.assign({}, DEFAULT_CLUB.officers, (a.club && a.club.officers) || {});
     out.speeches = (Array.isArray(a.speeches) ? a.speeches : []).map(function (s) { return Object.assign(blankSpeech(), s || {}); });
     return out;

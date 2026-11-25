@@ -11,7 +11,7 @@ window.TM_CLUB = {
   ],
   club: {
     officers: { pres: 'Robert Cernea', vpe: 'Olga Lancea', vpm: 'Ionuț Cornean', vppr: 'Lavinia Borza', treas: 'Mihaela Stroia', saa: 'Sergiu Spătar', sec: 'Tudor Chiu', ipp: 'Adriana Stamatin' },
-    venue: 'Zbor Hub, etaj 2', address: 'Str. Vasile Alecsandri 1', qr: 'https://timisoaratoastmasters.ro/links'
+    venue: 'Zbor Hub, etaj 2', address: 'Str. Vasile Alecsandri 1', qr: 'https://timisoaratoastmasters.ro/'
   },
   // Board order (used for the agenda's officers list and the board badges)
   officerKeys: ['pres', 'vpe', 'vpm', 'vppr', 'treas', 'saa', 'sec', 'ipp']
