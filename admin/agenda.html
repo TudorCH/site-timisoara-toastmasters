@@ -473,11 +473,7 @@
     var base = newAgenda(a.date || nextWednesday());
     var out = Object.assign(base, a);
     ['roles', 'dur', 'vote'].forEach(function (k) { out[k] = Object.assign(base[k], a[k] || {}); });
-    out.club = Object.assign(clubDefaults(), a.club || {});
-    // The QR used to point at /links, which is not on the live site yet (404): older agendas, drafts
-    // and saved club defaults move to the home page.
-    if (/^https?:\/\/(www\.)?timisoaratoastmasters\.ro\/links\/?$/i.test(out.club.qr || '')) out.club.qr = 'https://timisoaratoastmasters.ro/';
-    out.club.officers = Object.assign({}, DEFAULT_CLUB.officers, (a.club && a.club.officers) || {});
+    out.club = Object.assign(clubDefaults(), a.club || {});    out.club.officers = Object.assign({}, DEFAULT_CLUB.officers, (a.club && a.club.officers) || {});
     out.speeches = (Array.isArray(a.speeches) ? a.speeches : []).map(function (s) { return Object.assign(blankSpeech(), s || {}); });
     return out;
   }
