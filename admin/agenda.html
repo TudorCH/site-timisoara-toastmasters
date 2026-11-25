@@ -136,8 +136,9 @@
     .r.sp .x i { font-style: italic; }
     .r.sp .x b { font-weight: 700; }
     .r.sp .x .meta { display: block; font-style: italic; font-size: calc(7.8pt * var(--s)); padding-left: 3mm; margin-top: .4mm; color: #222; }
-    .r.place .x { font-weight: 800; display: flex; align-items: center; gap: 1.2mm; }
-    .r.place svg { width: 3.6mm; height: 3.6mm; flex: 0 0 auto; }
+    /* 'Socializare la [place]' sits just under 'Închiderea evenimentului', the place on the same line */
+    .r .soc { display: flex; align-items: center; flex-wrap: wrap; gap: 0 1.2mm; margin-top: calc(1.3mm * var(--s)); }
+    .r .soc svg { width: 3.6mm; height: 3.6mm; flex: 0 0 auto; }
     .blank { color: #c4c9cc; }
 
     /* ═════════ Toasty (fills the agenda from text, pasted Excel cells or screenshots) ═════════ */
@@ -383,7 +384,7 @@
       titleLbl: 'Titlu:', level: 'Nivel', tt: 'Toastmaster-ul prezintă maestrul discursurilor improvizate', ge: 'Toastmaster-ul prezintă evaluatorul general',
       evaluator: 'Evaluator discurs', ah: 'Numărătorul de Ă-uri', gram: 'Gramatician', timer: 'Cronometru', geEval: 'Oferă o evaluare generală a întâlnirii',
       close1: 'Toastmaster-ul redă președintelui', close2: 'Președintele închide întâlnirea', vote: 'Votare membru nou',
-      end1: 'Închiderea evenimentului', end2: 'Socializare', theme: 'Tema serii', word: 'Cuvântul zilei'
+      end1: 'Închiderea evenimentului', end2: 'Socializare', at: 'la', theme: 'Tema serii', word: 'Cuvântul zilei'
     },
     en: {
       title: 'Public Speaking Meeting', months: ['January','February','March','April','May','June','July','August','September','October','November','December'],
@@ -394,7 +395,7 @@
       titleLbl: 'Title:', level: 'Level', tt: 'The Toastmaster introduces the Table Topics Master', ge: 'The Toastmaster introduces the General Evaluator',
       evaluator: 'Speech evaluator', ah: 'Ah-Counter', gram: 'Grammarian', timer: 'Timer', geEval: 'General evaluation of the meeting',
       close1: 'The Toastmaster hands over to the President', close2: 'The President closes the meeting', vote: 'New member vote',
-      end1: 'End of the meeting', end2: 'Networking', theme: 'Theme', word: 'Word of the day'
+      end1: 'End of the meeting', end2: 'Networking', at: 'at', theme: 'Theme', word: 'Word of the day'
     }
   };
   var OFFICERS = window.TM_CLUB.officerKeys;
@@ -562,8 +563,9 @@
     rows += row('sub', '', '(' + EV.ge + '\') ' + l.geEval, who(a.roles.ge));
     rows += row('', fmt(T.close), l.close1 + '<br>' + l.close2, who(a.roles.tme));   // the Toastmaster hands over
     if (a.vote.on) rows += row('sub', '', l.vote, who(a.vote.name));
-    rows += row('', fmt(T.end), l.end1 + '<br>' + l.end2, who(a.roles.president));
-    if (a.social) rows += row('place', '', '<svg fill="#161616" viewBox="0 0 24 24"><path d="M12 2a7 7 0 00-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z"/></svg>' + esc(a.social), '');
+    // e.g. 'Socializare la [pin] Czech In - Iulius Gardens' right under the closing line
+    var pin = '<svg fill="#161616" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 00-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z"/></svg>';
+    rows += row('', fmt(T.end), l.end1 + '<div class="soc"><span>' + l.end2 + (a.social ? ' ' + l.at + '</span>' + pin + '<span>' + esc(a.social) : '') + '</span></div>', who(a.roles.president));
 
     var extra = [];
     if (a.theme) extra.push(l.theme + ': <b>' + esc(a.theme) + '</b>');
