@@ -226,7 +226,7 @@
           <label class="f">Cuvântul zilei (opțional)<input class="input" data-k="word" placeholder="ex. Reziliență" /></label>
         </div>
         <div class="row2">
-          <label class="f">Ora de început<input class="input" type="time" data-k="start" /></label>
+          <label class="f">Ora de început<input class="input" type="time" step="300" data-k="start" /></label>
           <span></span>
         </div>
       </div>
@@ -262,16 +262,16 @@
     <details class="card">
       <summary>Durate (minute)</summary>
       <div class="body">
-        <p class="hint">Orele din agendă se calculează din aceste durate. Câmpurile goale folosesc valoarea automată (în gri).</p>
+        <p class="hint">Orele din agendă se calculează din aceste durate. Câmpurile goale folosesc valoarea automată (în gri). Duratele se rotunjesc în sus la 5 minute, ca orele să fie din 5 în 5.</p>
         <div class="row3">
-          <label class="f">Deschidere<input class="input" type="number" min="0" max="60" data-k="dur.open" data-num /></label>
-          <label class="f">Remarci TME<input class="input" type="number" min="0" max="60" data-k="dur.intro" data-num /></label>
-          <label class="f">Discursuri<input class="input" type="number" min="0" max="120" data-k="dur.speeches" data-num id="dur-sp" /></label>
+          <label class="f">Deschidere<input class="input" type="number" min="0" max="60" step="5" data-k="dur.open" data-num /></label>
+          <label class="f">Remarci TME<input class="input" type="number" min="0" max="60" step="5" data-k="dur.intro" data-num /></label>
+          <label class="f">Discursuri<input class="input" type="number" min="0" max="120" step="5" data-k="dur.speeches" data-num id="dur-sp" /></label>
         </div>
         <div class="row3">
-          <label class="f">Improvizate<input class="input" type="number" min="0" max="60" data-k="dur.tt" data-num /></label>
-          <label class="f">Evaluări<input class="input" type="number" min="0" max="90" data-k="dur.eval" data-num id="dur-ev" /></label>
-          <label class="f">Închidere<input class="input" type="number" min="0" max="60" data-k="dur.close" data-num /></label>
+          <label class="f">Improvizate<input class="input" type="number" min="0" max="60" step="5" data-k="dur.tt" data-num /></label>
+          <label class="f">Evaluări<input class="input" type="number" min="0" max="90" step="5" data-k="dur.eval" data-num id="dur-ev" /></label>
+          <label class="f">Închidere<input class="input" type="number" min="0" max="60" step="5" data-k="dur.close" data-num /></label>
         </div>
       </div>
     </details>
@@ -481,13 +481,16 @@
     var evRoles = n + 4;                                           // speech evaluators + Ah-Counter, Grammarian, Timer, GE
     var evSum = n * EV.evaluator + EV.ah + EV.gram + EV.timer + EV.ge;
     var autoEv = ceil5(evSum + evRoles);                           // + ~1' hand-over per report
-    var d = a.dur, t = toMin(a.start), T = {};
-    T.open = t; t += num(d.open, 5);
-    T.intro = t; t += num(d.intro, 5);
-    T.speakers = t; t += n ? num(d.speeches, autoSp) : 0;
-    T.tt = t; t += num(d.tt, 25);
-    T.ge = t; t += num(d.eval, autoEv);
-    T.close = t; t += num(d.close, 10);
+    // Every time on the agenda falls on a 5-minute mark: the start and each section's length are
+    // rounded up to the next multiple of 5.
+    var d = a.dur, t = ceil5(toMin(a.start)), T = {};
+    var step = function (v, def) { return ceil5(Math.max(0, num(v, def))); };
+    T.open = t; t += step(d.open, 5);
+    T.intro = t; t += step(d.intro, 5);
+    T.speakers = t; t += n ? step(d.speeches, autoSp) : 0;
+    T.tt = t; t += step(d.tt, 25);
+    T.ge = t; t += step(d.eval, autoEv);
+    T.close = t; t += step(d.close, 10);
     T.end = t;
     return { T: T, autoSp: autoSp, autoEv: autoEv };
   }
