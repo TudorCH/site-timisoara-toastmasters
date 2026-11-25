@@ -413,7 +413,7 @@
   var byName = function (a, b) { return a.localeCompare(b, 'ro'); };
   var DEFAULT_CLUB = window.TM_CLUB.club;
   // Minutes per evaluation-block role (shown as (3') etc.)
-  var EV = { evaluator: 3, ah: 3, gram: 5, timer: 3, ge: 5 };
+  var EV = { evaluator: 3, ah: 3, gram: 5, timer: 3, ge: 3 };
   var DRAFT_KEY = 'tm-agenda-draft';
 
   var state = null, savedDates = [], settings = null, offline = false, dbReady = false, dirty = false;
@@ -540,7 +540,8 @@
     }
     rows += row('', fmt(T.tt), l.tt, who(a.roles.ttm));
     rows += row('', fmt(T.ge), l.ge, who(a.roles.ge));
-    a.speeches.forEach(function (s) { rows += row('sub', '', '(' + EV.evaluator + '\') ' + l.evaluator, who(s.evaluator)); });
+    // numbered after the speech it evaluates: "Evaluator discurs 1", "2", ...
+    a.speeches.forEach(function (s, i) { rows += row('sub', '', '(' + EV.evaluator + '\') ' + l.evaluator + ' ' + (i + 1), who(s.evaluator)); });
     rows += row('sub', '', '(' + EV.ah + '\') ' + l.ah, who(a.roles.ah));
     rows += row('sub', '', '(' + EV.gram + '\') ' + l.gram, who(a.roles.gram));
     rows += row('sub', '', '(' + EV.timer + '\') ' + l.timer, who(a.roles.timer));
