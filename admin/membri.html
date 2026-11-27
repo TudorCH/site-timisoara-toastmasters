@@ -135,6 +135,8 @@
   var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
   var today = new Date().toLocaleDateString('en-CA', { timeZone: 'Europe/Bucharest' });
   var known = window.TM_CLUB.members.slice();   // names already used in agendas (replaced by the saved list below)
+  var lastName = {};                             // export name key -> the display name given at the last import
+  var lastLeftOut = [];                          // export name keys the board unticked at the last import
   var files = {};                                // { export: rows, sheet: rows }
   var merged = [];
 
@@ -212,23 +214,37 @@
         exp.push({ src: 'sheet', name: s.name, sheetName: s.name, emails: s.emails, memberSince: s.since, mentor: s.mentor, birthday: s.birthday, enrolled: s.enrolled, credentials: '', status: '' });
       }
     });
-    // Display name: the spelling already used in agendas when it matches, else the club sheet's, else the export's without initials
+    // Display name, first match wins: the club's alias for this person (club-data.js), the name the board
+    // gave them at the last import, the spelling already used in agendas, the club sheet's, the export's
+    // without initials. People the club leaves out, or the board left out last time, start unticked.
     var knownByKey = {};
     known.forEach(function (n) { knownByKey[nameKey(n)] = n; });
     var display = function (n) { return knownByKey[nameKey(n)] || ''; };
-    exp.forEach(function (m) {
-      m.display = display(m.name) || display(m.sheetName) || dropInitials(m.sheetName || m.name);
-      m.include = m.src !== 'sheet' || !!m.memberSince;   // sheet-only rows without a join date start unticked
+    var aliases = window.TM_CLUB.importAliases || {}, exclude = window.TM_CLUB.importExclude || [];
+    return Promise.all(exp.map(function (m) { return Promise.all([fingerprint(m.name), fingerprint(m.sheetName)]); })).then(function (fps) {
+    exp.forEach(function (m, i) {
+      var fp = fps[i];
+      m.display = aliases[fp[0]] || aliases[fp[1]] || lastName[nameKey(m.name)] || display(m.name) || display(m.sheetName) || dropInitials(m.sheetName || m.name);
+      m.include = (m.src !== 'sheet' || !!m.memberSince)   // sheet-only rows without a join date start unticked
+        && exclude.indexOf(fp[0]) === -1 && exclude.indexOf(fp[1]) === -1 && lastLeftOut.indexOf(nameKey(m.name)) === -1;
     });
     // Mentors written as in the sheet get the members' display spelling
     exp.forEach(function (m) {
       if (!m.mentor) return;
-      var hit = exp.find(function (x) { return nameKey(x.sheetName || '') === nameKey(m.mentor) || nameKey(x.name) === nameKey(m.mentor); });
+      var hit = exp.find(function (x) { return nameKey(x.sheetName || '') === nameKey(m.mentor) || nameKey(x.name) === nameKey(m.mentor) || nameKey(x.display) === nameKey(m.mentor); });
       if (hit) m.mentor = hit.display;
     });
     exp.sort(function (a, b) { return a.display.localeCompare(b.display, 'ro'); });
     merged = exp;
     renderPreview();
+    });
+  }
+  // Fingerprint of a name for the club's alias / exclude lists (same formula as in club-data.js)
+  function fingerprint(name) {
+    if (!name || !window.crypto || !crypto.subtle) return Promise.resolve('');
+    return crypto.subtle.digest('SHA-256', new TextEncoder().encode('tm-name:' + nameKey(name))).then(function (buf) {
+      return [].map.call(new Uint8Array(buf), function (b) { return ('0' + b.toString(16)).slice(-2); }).join('').slice(0, 16);
+    });
   }
 
   function renderPreview() {
@@ -289,7 +305,8 @@
     });
     if (!list.length) return;
     $('save').disabled = true; $('status').className = 'status'; $('status').textContent = 'Se salvează…';
-    api('/api/members?action=import', { method: 'POST', body: JSON.stringify({ members: list, syncAgenda: $('sync').checked }) }).then(function (j) {
+    var leftOut = merged.filter(function (m) { return !m.include; }).map(function (m) { return nameKey(m.name); });
+    api('/api/members?action=import', { method: 'POST', body: JSON.stringify({ members: list, leftOut: leftOut, syncAgenda: $('sync').checked }) }).then(function (j) {
       $('status').textContent = 'Salvat: ' + j.count + ' membri.' + (j.officers ? ' Lista și board-ul din Agende sunt actualizate.' : '');
       loadRoster();
     }, function (e) { $('status').className = 'status err'; $('status').textContent = e.message; }).then(function () { $('save').disabled = false; });
@@ -298,6 +315,8 @@
   function loadRoster() {
     return api('/api/members?action=roster').then(function (j) {
       if (j.members.length) known = j.members.map(function (m) { return m.name; });
+      lastName = {}; j.members.forEach(function (m) { if (m.fullName) lastName[nameKey(m.fullName)] = m.name; });
+      lastLeftOut = j.leftOut || [];
       $('roster-info').textContent = j.members.length
         ? j.members.length + ' membri, actualizat ' + new Date(j.updated).toLocaleString('ro-RO', { dateStyle: 'medium', timeStyle: 'short' }) + '.'
         : 'Încă nu e salvată nicio listă. Importă exportul de pe toastmasters.org mai jos.';

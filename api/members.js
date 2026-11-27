@@ -1,6 +1,6 @@
 // Club members for the member dashboard (/membri) and the roster import (/admin/membri).
 //   GET  ?action=roster               the stored roster, with Pathways read from the credentials
-//   POST ?action=import { members, syncAgenda }   replaces the roster (board only)
+//   POST ?action=import { members, leftOut, syncAgenda }   replaces the roster (board only)
 //   GET  ?action=profile&id=<id>      one member: profile, Pathways, roles from saved agendas
 // Only these fields are stored: name, emails, credentials, club position, membership dates and status,
 // mentor, birthday (day.month) and the paths the club sheet lists. Phones and addresses never reach the
@@ -82,7 +82,9 @@ async function importRoster(req, res) {
   const seen = {};
   list.forEach((m) => { seen[m.id] = (seen[m.id] || 0) + 1; if (seen[m.id] > 1) m.id += '-' + seen[m.id]; });
   list.sort((a, b) => a.name.localeCompare(b.name, 'ro'));
-  const roster = { updated: Date.now(), members: list };
+  // Export names the board left out, so the next import starts with them unticked (name keys only)
+  const leftOut = (Array.isArray(body.leftOut) ? body.leftOut : []).filter((x) => typeof x === 'string' && /^[a-z -]{2,80}$/.test(x)).slice(0, MAX_MEMBERS);
+  const roster = { updated: Date.now(), members: list, leftOut };
   const cmds = [['SET', k(ROSTER), JSON.stringify(roster)]];
 
   // Keep the agenda builder's members list and board in step with the roster
@@ -111,7 +113,7 @@ module.exports = async function handler(req, res) {
 
     if (action === 'roster' && req.method === 'GET') {
       const r = await readRoster();
-      return res.status(200).json({ updated: r.updated, members: r.members.map(withPathways) });
+      return res.status(200).json({ updated: r.updated, members: r.members.map(withPathways), leftOut: r.leftOut || [] });
     }
     if (action === 'import' && req.method === 'POST') return await importRoster(req, res);
     if (action === 'profile' && req.method === 'GET') {
