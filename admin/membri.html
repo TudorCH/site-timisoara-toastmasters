@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Membri | Timișoara Toastmasters</title>
+  <link rel="icon" type="image/webp" href="/logo.webp" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" />
+  <script src="/admin/club-data.js"></script>
+  <style>
+    :root {
+      --page: #00151f; --card: rgba(18, 58, 94, .35); --line: rgba(79, 123, 163, .22);
+      --hair: rgba(255, 255, 255, .08); --text: #fff; --text-2: rgba(255, 255, 255, .75); --text-3: rgba(255, 255, 255, .55);
+      --gold: #F2DF74; --good: #34d399; --warn: #fbbf24; --bad: #f87171;
+      color-scheme: dark;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--page); color: var(--text); font: 14px/1.5 Inter, system-ui, sans-serif; min-height: 100vh; }
+    h1, h2 { font-family: 'Plus Jakarta Sans', Inter, sans-serif; }
+    button, input, select { font: inherit; color: inherit; }
+    [hidden] { display: none !important; }
+    header { position: sticky; top: 0; z-index: 10; background: linear-gradient(to bottom, #00253b, #001c2d); border-bottom: 1px solid var(--hair); }
+    header .wrap { display: flex; align-items: center; gap: 12px; height: 64px; }
+    .wrap { max-width: 1300px; margin: 0 auto; padding: 0 20px; }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; }
+    .brand img { width: 34px; height: 34px; }
+    .brand b { display: block; font-size: 14px; }
+    .brand > span > span { display: block; font-size: 11px; color: var(--gold); font-weight: 600; }
+    .spacer { flex: 1; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; border: 1px solid var(--line); background: var(--card); color: #fff; border-radius: 10px; padding: 7px 12px; font-size: 13px; font-weight: 600; cursor: pointer; text-decoration: none; white-space: nowrap; }
+    .btn:hover { border-color: rgba(255, 255, 255, .35); }
+    .btn.gold { background: var(--gold); color: #00273E; border-color: transparent; }
+    .btn:disabled { opacity: .5; cursor: default; }
+    main { padding: 24px 0 60px; }
+    h1 { font-size: 24px; margin: 0 0 4px; }
+    .sub { color: var(--text-3); margin: 0 0 20px; }
+    .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 18px 20px; margin-bottom: 16px; }
+    .card h2 { font-size: 15px; margin: 0 0 6px; }
+    .hint { color: var(--text-3); font-size: 12.5px; margin: 0; }
+    .drop { border: 2px dashed var(--line); border-radius: 14px; padding: 22px; text-align: center; color: var(--text-2); cursor: pointer; margin-top: 12px; }
+    .drop.over { border-color: var(--gold); background: rgba(242,223,116,.05); }
+    .files { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .chip { font-size: 12px; padding: 4px 10px; border-radius: 99px; border: 1px solid var(--line); background: rgba(255,255,255,.04); }
+    .chip.ok { border-color: rgba(52,211,153,.5); color: var(--good); }
+    .chip.err { border-color: rgba(248,113,113,.5); color: var(--bad); }
+    .tbl-wrap { overflow-x: auto; margin: 12px -20px 0; padding: 0 20px; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--text-3); font-weight: 700; padding: 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+    td { padding: 7px 8px; border-bottom: 1px solid var(--hair); color: var(--text-2); vertical-align: middle; }
+    td input[type="text"] { width: 100%; min-width: 150px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.15); border-radius: 8px; padding: 5px 8px; color: #fff; }
+    td input[type="checkbox"], label input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--gold); }
+    tr.off td { opacity: .45; }
+    .tag { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 99px; white-space: nowrap; }
+    .tag.both { background: rgba(52,211,153,.12); color: var(--good); }
+    .tag.exp { background: rgba(96,165,250,.12); color: #93c5fd; }
+    .tag.sheet { background: rgba(251,191,36,.12); color: var(--warn); }
+    .tag.late { background: rgba(248,113,113,.12); color: var(--bad); }
+    .row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 14px; }
+    .status { font-size: 13px; color: var(--text-3); }
+    .status.err { color: var(--bad); }
+    .center { max-width: 380px; margin: 12vh auto 0; }
+    .input { width: 100%; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.15); border-radius: 10px; padding: 11px 13px; }
+    .error { color: var(--bad); font-size: 13px; min-height: 20px; margin-top: 8px; }
+    a.lnk { color: #93c5fd; text-decoration: none; } a.lnk:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="brand" href="/"><img src="/logo.webp" alt="" /><span><b>Timișoara Toastmasters</b><span>Membri</span></span></a>
+    <span class="spacer"></span>
+    <a class="btn" href="/membri">Dashboard</a>
+    <a class="btn" href="/admin/agenda">Agende</a>
+    <a class="btn" href="/admin/stats">Statistici</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <section id="login" class="center" hidden>
+    <div class="card">
+      <h1 style="font-size:22px">Membri</h1>
+      <p class="hint">Doar pentru board. Parola de la statistici.</p>
+      <form id="login-form">
+        <input id="pw" class="input" type="password" autocomplete="current-password" required style="margin-top:14px" aria-label="Parolă" />
+        <div id="login-error" class="error" role="alert"></div>
+        <button class="btn gold" type="submit" style="width:100%;padding:11px">Intră</button>
+      </form>
+    </div>
+  </section>
+
+  <section id="app" hidden>
+    <h1>Membri</h1>
+    <p class="sub" id="roster-info">Lista de membri a clubului, din exportul Toastmasters și tabelul clubului.</p>
+
+    <div class="card">
+      <h2>Importă membrii</h2>
+      <p class="hint">Trage aici exportul CSV de pe toastmasters.org (Club Central → Membership) și, opțional, tabelul clubului (cu mentori și zile de naștere). Fișierele se citesc în browser. Telefoanele și adresele nu se trimit nicăieri.</p>
+      <div class="drop" id="drop" role="button" tabindex="0">Trage fișierele CSV aici sau apasă ca să le alegi</div>
+      <input type="file" id="file" accept=".csv,text/csv" multiple hidden />
+      <div class="files" id="files"></div>
+    </div>
+
+    <div class="card" id="preview" hidden>
+      <h2>Verifică înainte să salvezi <span class="hint" id="preview-count"></span></h2>
+      <p class="hint">„Nume afișat” e cel din agende și din dashboard. Debifează pe cine nu vrei în listă.</p>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th></th><th>Nume afișat</th><th>Din export</th><th>Pathways</th><th>Funcție</th><th>Membru din</th><th>Cotizație până</th><th>Mentor</th><th>Zi naștere</th><th>Sursa</th></tr></thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+      <label class="row" style="gap:8px"><input type="checkbox" id="sync" checked /> Actualizează și lista de membri și board-ul din Agende</label>
+      <div class="row"><button class="btn gold" type="button" id="save">Salvează lista</button><span class="status" id="status" role="status"></span></div>
+    </div>
+
+    <div class="card" id="list-card" hidden>
+      <h2>Membri salvați</h2>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Nume</th><th>Pathways</th><th>Funcție</th><th>Cotizație până</th><th></th></tr></thead>
+          <tbody id="list"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function () {
+  'use strict';
+  var $ = function (id) { return document.getElementById(id); };
+  var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
+  var today = new Date().toLocaleDateString('en-CA', { timeZone: 'Europe/Bucharest' });
+  var known = window.TM_CLUB.members.slice();   // names already used in agendas (replaced by the saved list below)
+  var files = {};                                // { export: rows, sheet: rows }
+  var merged = [];
+
+  // ── CSV (quoted fields may contain commas and line breaks) ──
+  function parseCsv(text) {
+    var rows = [], row = [], f = '', q = false;
+    text = text.replace(/^﻿/, '');
+    for (var i = 0; i < text.length; i++) {
+      var c = text[i];
+      if (q) {
+        if (c === '"') { if (text[i + 1] === '"') { f += '"'; i++; } else q = false; }
+        else f += c;
+      } else if (c === '"') q = true;
+      else if (c === ',') { row.push(f); f = ''; }
+      else if (c === '\n' || c === '\r') { if (c === '\r' && text[i + 1] === '\n') i++; row.push(f); rows.push(row); row = []; f = ''; }
+      else f += c;
+    }
+    if (f || row.length) { row.push(f); rows.push(row); }
+    return rows;
+  }
+  // Name key that ignores diacritics, case, initials and word order (same rule as the server)
+  var nameKey = function (s) {
+    return String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
+      .replace(/[^a-z\s-]/g, ' ').split(/\s+/).filter(function (w) { return w.length > 1; }).sort().join(' ');
+  };
+  var words = function (s) { return nameKey(s).split(' ').filter(Boolean); };
+  var dropInitials = function (s) { return String(s || '').replace(/\s+[A-ZĂÂÎȘȚ]\.(?=\s)/g, ' ').replace(/\s+/g, ' ').trim(); };
+  var mdy = function (s) { var m = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/.exec(String(s || '').trim()); return m ? m[3] + '-' + ('0' + m[1]).slice(-2) + '-' + ('0' + m[2]).slice(-2) : ''; };
+  var dmy = function (s) { var m = /^(\d{1,2})\.(\d{1,2})\.(\d{4})$/.exec(String(s || '').trim()); return m ? m[3] + '-' + ('0' + m[2]).slice(-2) + '-' + ('0' + m[1]).slice(-2) : ''; };
+  var ddmm = function (s) { var m = /^(\d{1,2})\.(\d{1,2})$/.exec(String(s || '').trim()); return m ? ('0' + m[1]).slice(-2) + '.' + ('0' + m[2]).slice(-2) : ''; };
+  var fmtDate = function (iso) { return iso ? iso.split('-').reverse().join('.') : ''; };
+
+  // Reads either file; only the columns below are kept.
+  function readFile(text) {
+    var rows = parseCsv(text);
+    var hi = rows.findIndex(function (r) { return r.indexOf('Customer ID') !== -1 || r.indexOf('Nume') !== -1; });
+    if (hi < 0) return null;
+    var head = rows[hi], col = function (n) { return head.indexOf(n); };
+    var data = rows.slice(hi + 1).filter(function (r) { return r.some(function (c) { return c.trim(); }); });
+    if (head.indexOf('Customer ID') !== -1) {
+      return { type: 'export', rows: data.map(function (r) {
+        var g = function (n) { var i = col(n); return i < 0 ? '' : (r[i] || '').trim(); };
+        return { name: g('Name'), credentials: g('Credentials'), emails: [g('Email'), g('Secondary Email')].filter(Boolean),
+          paidUntil: mdy(g('Paid Until')), memberSince: mdy(g('Member of Club Since')), joined: mdy(g('Original Join Date')),
+          status: g('Status (*)'), position: g('Current Position'), futurePosition: g('Future Position') };
+      }).filter(function (m) { return m.name; }) };
+    }
+    var cPath = head.findIndex(function (h) { return /^cale/i.test(h); });
+    return { type: 'sheet', rows: data.map(function (r) {
+      var g = function (n) { var i = col(n); return i < 0 ? '' : (r[i] || '').trim(); };
+      return { name: g('Nume'), birthday: ddmm(g('Zile naștere')), since: dmy(g('De când este în club')), emails: [g('E-mail')].filter(Boolean),
+        mentor: /^(n\/a|-)$/i.test(g('Mentor')) ? '' : g('Mentor'), enrolled: cPath < 0 ? '' : (r[cPath] || '').trim() };
+    }).filter(function (m) { return m.name; }) };
+  }
+
+  // Export rows are the source of truth; the club sheet adds mentor, birthday and paths, matched by
+  // email, then by name, then by a surname only one exported member has.
+  function merge() {
+    var exp = (files.export || []).map(function (m) { return Object.assign({ src: 'exp' }, m); });
+    var sheet = files.sheet || [];
+    var byEmail = {};
+    exp.forEach(function (m) { m.emails.forEach(function (e) { byEmail[e.toLowerCase()] = m; }); });
+    sheet.forEach(function (s) {
+      var hit = s.emails.map(function (e) { return byEmail[e.toLowerCase()]; }).filter(Boolean)[0]
+        || exp.find(function (m) { return nameKey(m.name) === nameKey(s.name); });
+      if (!hit) {
+        var long = words(s.name).filter(function (w) { return w.length >= 4; });
+        var cands = exp.filter(function (m) { var w = words(m.name); return long.some(function (x) { return w.indexOf(x) !== -1; }); });
+        if (cands.length === 1 && !cands[0].sheetName) hit = cands[0];
+      }
+      if (hit) {
+        hit.src = 'both'; hit.sheetName = s.name; hit.mentor = s.mentor; hit.birthday = s.birthday; hit.enrolled = s.enrolled;
+        s.emails.forEach(function (e) { if (hit.emails.map(function (x) { return x.toLowerCase(); }).indexOf(e.toLowerCase()) === -1) hit.emails.push(e); });
+      } else {
+        exp.push({ src: 'sheet', name: s.name, sheetName: s.name, emails: s.emails, memberSince: s.since, mentor: s.mentor, birthday: s.birthday, enrolled: s.enrolled, credentials: '', status: '' });
+      }
+    });
+    // Display name: the spelling already used in agendas when it matches, else the club sheet's, else the export's without initials
+    var knownByKey = {};
+    known.forEach(function (n) { knownByKey[nameKey(n)] = n; });
+    var display = function (n) { return knownByKey[nameKey(n)] || ''; };
+    exp.forEach(function (m) {
+      m.display = display(m.name) || display(m.sheetName) || dropInitials(m.sheetName || m.name);
+      m.include = m.src !== 'sheet' || !!m.memberSince;   // sheet-only rows without a join date start unticked
+    });
+    // Mentors written as in the sheet get the members' display spelling
+    exp.forEach(function (m) {
+      if (!m.mentor) return;
+      var hit = exp.find(function (x) { return nameKey(x.sheetName || '') === nameKey(m.mentor) || nameKey(x.name) === nameKey(m.mentor); });
+      if (hit) m.mentor = hit.display;
+    });
+    exp.sort(function (a, b) { return a.display.localeCompare(b.display, 'ro'); });
+    merged = exp;
+    renderPreview();
+  }
+
+  function renderPreview() {
+    $('preview').hidden = !merged.length;
+    $('preview-count').textContent = '(' + merged.filter(function (m) { return m.include; }).length + ' din ' + merged.length + ')';
+    var SRC = { both: ['both', 'export + tabel'], exp: ['exp', 'doar export'], sheet: ['sheet', 'doar tabel'] };
+    $('rows').innerHTML = merged.map(function (m, i) {
+      var late = m.paidUntil && m.paidUntil < today;
+      return '<tr' + (m.include ? '' : ' class="off"') + ' data-i="' + i + '">' +
+        '<td><input type="checkbox" data-f="include"' + (m.include ? ' checked' : '') + ' aria-label="Include" /></td>' +
+        '<td><input type="text" data-f="display" value="' + esc(m.display) + '" aria-label="Nume afișat" /></td>' +
+        '<td>' + esc(m.name !== m.sheetName && m.sheetName && m.src === 'both' ? m.name + ' / ' + m.sheetName : m.name) + '</td>' +
+        '<td>' + esc(m.credentials || '') + (m.enrolled ? '<br><span class="hint">' + esc(m.enrolled.replace(/\n/g, ', ')) + '</span>' : '') + '</td>' +
+        '<td>' + esc(m.position || '') + '</td><td>' + esc(fmtDate(m.memberSince)) + '</td>' +
+        '<td>' + esc(fmtDate(m.paidUntil)) + (late ? ' <span class="tag late">expirată</span>' : '') + '</td>' +
+        '<td>' + esc(m.mentor || '') + '</td><td>' + esc(m.birthday || '') + '</td>' +
+        '<td><span class="tag ' + SRC[m.src][0] + '">' + SRC[m.src][1] + '</span></td></tr>';
+    }).join('');
+  }
+  $('rows').addEventListener('input', function (e) {
+    var tr = e.target.closest('tr'); if (!tr) return;
+    var m = merged[+tr.getAttribute('data-i')], f = e.target.getAttribute('data-f');
+    if (f === 'include') { m.include = e.target.checked; tr.classList.toggle('off', !m.include); $('preview-count').textContent = '(' + merged.filter(function (x) { return x.include; }).length + ' din ' + merged.length + ')'; }
+    if (f === 'display') m.display = e.target.value;
+  });
+
+  // ── Files ──
+  function take(list) {
+    [].slice.call(list || []).forEach(function (f) {
+      var r = new FileReader();
+      r.onload = function () {
+        var got = readFile(String(r.result || ''));
+        var chip = document.createElement('span');
+        if (!got) { chip.className = 'chip err'; chip.textContent = f.name + ': nu recunosc formatul'; }
+        else { files[got.type] = got.rows; chip.className = 'chip ok'; chip.textContent = f.name + ': ' + (got.type === 'export' ? 'export Toastmasters' : 'tabelul clubului') + ', ' + got.rows.length + ' rânduri'; }
+        $('files').appendChild(chip);
+        if (got) merge();
+      };
+      r.readAsText(f, 'utf-8');
+    });
+  }
+  $('drop').addEventListener('click', function () { $('file').click(); });
+  $('drop').addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); $('file').click(); } });
+  $('file').addEventListener('change', function () { take(this.files); this.value = ''; });
+  ['dragenter', 'dragover'].forEach(function (ev) { $('drop').addEventListener(ev, function (e) { e.preventDefault(); $('drop').classList.add('over'); }); });
+  ['dragleave', 'drop'].forEach(function (ev) { $('drop').addEventListener(ev, function (e) { e.preventDefault(); $('drop').classList.remove('over'); }); });
+  $('drop').addEventListener('drop', function (e) { take(e.dataTransfer && e.dataTransfer.files); });
+
+  // ── Server ──
+  function api(path, opts) {
+    return fetch(path, Object.assign({ credentials: 'same-origin', headers: { 'Content-Type': 'application/json' } }, opts || {}))
+      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { if (!r.ok) { var e = new Error(j.error || 'Eroare ' + r.status); e.status = r.status; throw e; } return j; }); });
+  }
+  $('save').addEventListener('click', function () {
+    var list = merged.filter(function (m) { return m.include && m.display.trim(); }).map(function (m) {
+      return { name: m.display.trim(), fullName: m.name, emails: m.emails, credentials: m.credentials, position: m.position, futurePosition: m.futurePosition,
+        memberSince: m.memberSince, joined: m.joined, paidUntil: m.paidUntil, status: m.status, mentor: m.mentor, birthday: m.birthday, enrolled: m.enrolled };
+    });
+    if (!list.length) return;
+    $('save').disabled = true; $('status').className = 'status'; $('status').textContent = 'Se salvează…';
+    api('/api/members?action=import', { method: 'POST', body: JSON.stringify({ members: list, syncAgenda: $('sync').checked }) }).then(function (j) {
+      $('status').textContent = 'Salvat: ' + j.count + ' membri.' + (j.officers ? ' Lista și board-ul din Agende sunt actualizate.' : '');
+      loadRoster();
+    }, function (e) { $('status').className = 'status err'; $('status').textContent = e.message; }).then(function () { $('save').disabled = false; });
+  });
+
+  function loadRoster() {
+    return api('/api/members?action=roster').then(function (j) {
+      if (j.members.length) known = j.members.map(function (m) { return m.name; });
+      $('roster-info').textContent = j.members.length
+        ? j.members.length + ' membri, actualizat ' + new Date(j.updated).toLocaleString('ro-RO', { dateStyle: 'medium', timeStyle: 'short' }) + '.'
+        : 'Încă nu e salvată nicio listă. Importă exportul de pe toastmasters.org mai jos.';
+      $('list-card').hidden = !j.members.length;
+      $('list').innerHTML = j.members.map(function (m) {
+        var p = m.pathways.paths.map(function (x) { return x.name + (x.completed ? ' ' + x.completed : ''); }).concat(m.pathways.titles).join(', ');
+        var late = m.paidUntil && m.paidUntil < today;
+        return '<tr><td style="color:#fff;font-weight:600">' + esc(m.name) + '</td><td>' + esc(p) + '</td><td>' + esc(m.position) + '</td>' +
+          '<td>' + esc(fmtDate(m.paidUntil)) + (late ? ' <span class="tag late">expirată</span>' : '') + '</td>' +
+          '<td><a class="lnk" href="/membri?id=' + encodeURIComponent(m.id) + '">Dashboard</a></td></tr>';
+      }).join('');
+    });
+  }
+  function start() {
+    loadRoster().then(function () { $('login').hidden = true; $('app').hidden = false; }, function (e) {
+      if (e.status === 401) { $('app').hidden = true; $('login').hidden = false; $('pw').focus(); return; }
+      $('app').hidden = false; $('roster-info').textContent = e.message;
+    });
+  }
+  $('login-form').addEventListener('submit', function (e) {
+    e.preventDefault(); $('login-error').textContent = '';
+    api('/api/admin?action=login', { method: 'POST', body: JSON.stringify({ password: $('pw').value }) }).then(function () { $('pw').value = ''; start(); }, function (err) { $('login-error').textContent = err.message; });
+  });
+  start();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Dashboard membri | Timișoara Toastmasters</title>
+  <link rel="icon" type="image/webp" href="/logo.webp" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" />
+  <style>
+    :root {
+      --page: #00151f; --card: rgba(18, 58, 94, .35); --line: rgba(79, 123, 163, .22);
+      --hair: rgba(255, 255, 255, .08); --text: #fff; --text-2: rgba(255, 255, 255, .75); --text-3: rgba(255, 255, 255, .55);
+      --gold: #F2DF74; --maroon: #772432; --good: #34d399; --bad: #f87171;
+      color-scheme: dark;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--page); color: var(--text); font: 14px/1.5 Inter, system-ui, sans-serif; min-height: 100vh; }
+    h1, h2, h3, .num { font-family: 'Plus Jakarta Sans', Inter, sans-serif; }
+    button, input, select { font: inherit; color: inherit; }
+    [hidden] { display: none !important; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+    header { position: sticky; top: 0; z-index: 10; background: linear-gradient(to bottom, #00253b, #001c2d); border-bottom: 1px solid var(--hair); }
+    header .wrap { display: flex; align-items: center; gap: 12px; height: 64px; }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; }
+    .brand img { width: 34px; height: 34px; }
+    .brand b { display: block; font-size: 14px; }
+    .brand > span > span { display: block; font-size: 11px; color: var(--gold); font-weight: 600; }
+    .spacer { flex: 1; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; border: 1px solid var(--line); background: var(--card); color: #fff; border-radius: 10px; padding: 7px 12px; font-size: 13px; font-weight: 600; cursor: pointer; text-decoration: none; white-space: nowrap; }
+    .btn:hover { border-color: rgba(255,255,255,.35); }
+    .btn.gold { background: var(--gold); color: #00273E; border-color: transparent; }
+    select.input, .input { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.15); border-radius: 10px; padding: 8px 11px; }
+    select.input option { background: #0a2536; }
+    main { padding: 22px 0 60px; }
+    .preview-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 10px 14px; margin-bottom: 18px; border-radius: 12px; border: 1px solid rgba(242,223,116,.35); background: rgba(242,223,116,.06); color: var(--text-2); font-size: 13px; }
+    .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 18px 20px; }
+    .card h2 { font-size: 15px; margin: 0 0 12px; }
+    .hint { color: var(--text-3); font-size: 12.5px; margin: 0; }
+    .grid { display: grid; gap: 16px; }
+    .g2 { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); }
+    .g4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    @media (max-width: 860px) { .g2, .g4 { grid-template-columns: minmax(0, 1fr); } }
+
+    /* Profile head */
+    .hero { display: flex; align-items: center; gap: 18px; margin-bottom: 18px; }
+    .avatar { width: 64px; height: 64px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 22px; color: #00273E; background: linear-gradient(135deg, #f8ea9a, #dcb84f); flex: 0 0 auto; }
+    .hero h1 { margin: 0; font-size: 26px; line-height: 1.2; }
+    .hero .meta { color: var(--text-2); margin-top: 4px; display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: center; }
+    .badge { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 99px; background: rgba(242,223,116,.12); color: var(--gold); border: 1px solid rgba(242,223,116,.35); }
+    .badge.red { background: rgba(248,113,113,.12); color: var(--bad); border-color: rgba(248,113,113,.4); }
+    .badge.green { background: rgba(52,211,153,.12); color: var(--good); border-color: rgba(52,211,153,.4); }
+
+    /* Facts */
+    .fact .lbl { color: var(--text-3); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; }
+    .fact .val { font-size: 17px; font-weight: 700; margin-top: 4px; }
+    .fact .sub { color: var(--text-3); font-size: 12.5px; margin-top: 2px; }
+
+    /* Pathways */
+    .path { padding: 14px 0; border-top: 1px solid var(--hair); }
+    .path:first-of-type { border-top: 0; padding-top: 2px; }
+    .path-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+    .path-head b { font-size: 15px; }
+    .levels { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; margin-top: 10px; }
+    .lv { height: 34px; border-radius: 9px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; border: 1px solid var(--line); color: var(--text-3); background: rgba(255,255,255,.03); }
+    .lv.done { background: linear-gradient(180deg, #f6e298, #d4af37); color: #00273E; border-color: transparent; }
+    .lv.now { border-color: var(--gold); color: var(--gold); box-shadow: inset 0 0 0 1px rgba(242,223,116,.35); }
+    .legacy { font-size: 11px; color: var(--text-3); font-weight: 600; }
+
+    /* Lists */
+    .stats { display: flex; flex-wrap: wrap; gap: 8px; }
+    .stat { padding: 8px 12px; border-radius: 12px; background: rgba(255,255,255,.04); border: 1px solid var(--hair); }
+    .stat .num { font-size: 20px; font-weight: 800; display: block; line-height: 1.1; }
+    .stat span:last-child { font-size: 12px; color: var(--text-3); }
+    .list { list-style: none; margin: 0; padding: 0; }
+    .list li { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 12px; padding: 10px 0; border-top: 1px solid var(--hair); }
+    .list li:first-child { border-top: 0; }
+    .list .d { color: var(--text-3); font-size: 12.5px; font-variant-numeric: tabular-nums; }
+    .list .r { font-weight: 600; }
+    .list .x { color: var(--text-3); font-size: 12.5px; }
+    .tools { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+    @media (max-width: 640px) { .tools { grid-template-columns: minmax(0, 1fr); } }
+    .tool { display: block; padding: 14px; border-radius: 14px; border: 1px solid var(--line); background: rgba(255,255,255,.03); color: inherit; text-decoration: none; }
+    .tool:hover { border-color: rgba(242,223,116,.45); }
+    .tool b { display: block; }
+    .tool span { color: var(--text-3); font-size: 12.5px; }
+    .empty { color: var(--text-3); font-size: 13px; }
+    .center { max-width: 380px; margin: 12vh auto 0; }
+    .error { color: var(--bad); font-size: 13px; min-height: 20px; margin-top: 8px; }
+  </style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="brand" href="/"><img src="/logo.webp" alt="" /><span><b>Timișoara Toastmasters</b><span>Zona membrilor</span></span></a>
+    <span class="spacer"></span>
+    <a class="btn" href="/admin/membri" id="nav-roster" hidden>Lista de membri</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <!-- Until members log in themselves, the board opens this page with its own password -->
+  <section id="login" class="center" hidden>
+    <div class="card">
+      <h1 style="font-size:22px;margin:0 0 4px">Zona membrilor</h1>
+      <p class="hint">Deocamdată doar pentru board, cu parola de la statistici. Logarea membrilor vine în curând.</p>
+      <form id="login-form">
+        <input id="pw" class="input" type="password" autocomplete="current-password" required style="width:100%;margin-top:14px;padding:11px 13px" aria-label="Parolă" />
+        <div id="login-error" class="error" role="alert"></div>
+        <button class="btn gold" type="submit" style="width:100%;padding:11px">Intră</button>
+      </form>
+    </div>
+  </section>
+
+  <section id="app" hidden>
+    <div class="preview-bar">
+      <span>Previzualizare board: vezi dashboard-ul ca</span>
+      <select id="who" class="input" aria-label="Membru"></select>
+    </div>
+
+    <div id="empty" class="card" hidden>
+      <h2>Încă nu există o listă de membri</h2>
+      <p class="hint">Importă exportul de membri de pe toastmasters.org din <a href="/admin/membri" style="color:#93c5fd">Lista de membri</a>.</p>
+    </div>
+
+    <div id="profile" hidden>
+      <div class="hero">
+        <div class="avatar" id="avatar"></div>
+        <div>
+          <h1 id="p-name"></h1>
+          <div class="meta" id="p-meta"></div>
+        </div>
+      </div>
+
+      <div class="grid g4" style="margin-bottom:16px">
+        <div class="card fact"><div class="lbl">Membru din</div><div class="val" id="f-since">—</div><div class="sub" id="f-since-sub"></div></div>
+        <div class="card fact"><div class="lbl">Cotizație plătită până la</div><div class="val" id="f-paid">—</div><div class="sub" id="f-paid-sub"></div></div>
+        <div class="card fact"><div class="lbl">Mentor</div><div class="val" id="f-mentor">—</div><div class="sub">Îți răspunde la întrebări despre Pathways și discursuri</div></div>
+        <div class="card fact"><div class="lbl">Ziua de naștere</div><div class="val" id="f-bday">—</div><div class="sub" id="f-bday-sub"></div></div>
+      </div>
+
+      <div class="grid g2">
+        <div class="grid" style="align-content:start">
+          <div class="card">
+            <h2>Pathways</h2>
+            <div id="paths"></div>
+            <p class="hint" style="margin-top:10px">Nivelurile vin din exportul clubului de pe toastmasters.org: un nivel e marcat după ce l-ai terminat în Base Camp.</p>
+          </div>
+          <div class="card">
+            <h2>Ce am făcut în club</h2>
+            <div class="stats" id="stats"></div>
+            <ul class="list" id="history" style="margin-top:12px"></ul>
+          </div>
+        </div>
+        <div class="grid" style="align-content:start">
+          <div class="card">
+            <h2>Următoarele mele roluri</h2>
+            <ul class="list" id="upcoming"></ul>
+          </div>
+          <div class="card">
+            <h2>Instrumente</h2>
+            <div class="tools" style="grid-template-columns:minmax(0,1fr)">
+              <a class="tool" href="/admin/agenda"><b>Agende</b><span>Fă agenda unei ședințe, cu Toasty</span></a>
+              <a class="tool" href="/admin/ecusoane"><b>Ecusoane</b><span>Ecusoane pentru membri și board</span></a>
+              <a class="tool" href="https://www.toastmasters.org/pathways-overview" target="_blank" rel="noopener"><b>Base Camp</b><span>Proiectele tale Pathways pe toastmasters.org</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function () {
+  'use strict';
+  var $ = function (id) { return document.getElementById(id); };
+  var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
+  var today = new Date().toLocaleDateString('en-CA', { timeZone: 'Europe/Bucharest' });
+  var MONTHS = ['ianuarie', 'februarie', 'martie', 'aprilie', 'mai', 'iunie', 'iulie', 'august', 'septembrie', 'octombrie', 'noiembrie', 'decembrie'];
+  var longDate = function (iso) { if (!iso) return '—'; var p = iso.split('-'); return +p[2] + ' ' + MONTHS[+p[1] - 1] + ' ' + p[0]; };
+  var shortDate = function (iso) { var p = iso.split('-'); return p[2] + '.' + p[1] + '.' + p[0]; };
+  var POS = [[/president/i, 'Președinte'], [/education/i, 'VP Educație'], [/membership/i, 'VP Membri'], [/public relations|\bpr\b/i, 'VP Relații Publice'],
+    [/treasurer/i, 'Trezorier'], [/secretary/i, 'Secretar'], [/sergeant/i, 'Sergent']];
+  var position = function (p) { var hit = POS.find(function (x) { return x[0].test(p || ''); }); return hit ? hit[1] : (p || ''); };
+  var ROLE = { president: 'Deschide și închide ședința', tme: 'Toastmaster-ul serii', ttm: 'Maestrul discursurilor improvizate', ge: 'Evaluator general',
+    ah: 'Numărătorul de Ă-uri', gram: 'Gramatician', timer: 'Cronometru', speaker: 'Discurs', evaluator: 'Evaluator discurs', vote: 'Conduce votarea' };
+  var STAT = [['speaker', 'discursuri'], ['evaluator', 'evaluări'], ['tme', 'ca Toastmaster'], ['ttm', 'Table Topics'], ['ge', 'evaluator general'], ['other', 'alte roluri']];
+
+  function api(path, opts) {
+    return fetch(path, Object.assign({ credentials: 'same-origin', headers: { 'Content-Type': 'application/json' } }, opts || {}))
+      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { if (!r.ok) { var e = new Error(j.error || 'Eroare ' + r.status); e.status = r.status; throw e; } return j; }); });
+  }
+
+  function itemText(it) {
+    if (it.role === 'speaker') return { r: 'Discurs' + (it.title ? ': „' + it.title + '”' : ''), x: [it.path, it.level ? 'Nivel ' + it.level : '', it.project].filter(Boolean).join(', ') };
+    if (it.role === 'evaluator') return { r: 'Evaluator discurs ' + it.n, x: it.of ? 'pentru ' + it.of : '' };
+    return { r: ROLE[it.role] || it.role, x: '' };
+  }
+  function renderList(el, items, emptyText, limit) {
+    el.innerHTML = items.length ? items.slice(0, limit || 50).map(function (it) {
+      var t = itemText(it);
+      return '<li><span class="d">' + shortDate(it.date) + (it.lang === 'en' ? ' · EN' : '') + '</span><span><span class="r">' + esc(t.r) + '</span>' + (t.x ? '<br><span class="x">' + esc(t.x) + '</span>' : '') + '</span></li>';
+    }).join('') : '<li class="empty" style="display:block">' + emptyText + '</li>';
+  }
+
+  function render(j) {
+    var m = j.member;
+    $('profile').hidden = false;
+    $('avatar').textContent = m.name.split(/\s+/).map(function (w) { return w[0]; }).slice(0, 2).join('').toUpperCase();
+    $('p-name').textContent = m.name;
+    var meta = [];
+    if (m.position) meta.push('<span class="badge">' + esc(position(m.position)) + '</span>');
+    m.pathways.titles.forEach(function (t) { meta.push('<span class="badge green">' + esc(t) + '</span>'); });
+    if (m.futurePosition) meta.push('<span>Din iulie: ' + esc(position(m.futurePosition)) + '</span>');
+    $('p-meta').innerHTML = meta.join('') || '<span>Membru Timișoara Toastmasters</span>';
+
+    $('f-since').textContent = longDate(m.memberSince);
+    var years = m.memberSince ? Math.floor((Date.parse(today) - Date.parse(m.memberSince)) / (365.25 * 864e5)) : 0;
+    $('f-since-sub').textContent = m.joined && m.joined < m.memberSince ? 'Prima dată în Toastmasters: ' + longDate(m.joined) : (years >= 1 ? years + (years === 1 ? ' an' : ' ani') + ' în club' : 'Bun venit în club!');
+    $('f-paid').textContent = longDate(m.paidUntil);
+    var late = m.paidUntil && m.paidUntil < today;
+    $('f-paid-sub').innerHTML = late ? '<span class="badge red">Cotizația a expirat</span>' : (m.paidUntil ? 'Cotizația e la zi' : '');
+    $('f-mentor').textContent = m.mentor || '—';
+    if (m.birthday) {
+      var b = m.birthday.split('.');
+      $('f-bday').textContent = +b[0] + ' ' + MONTHS[+b[1] - 1];
+      $('f-bday-sub').textContent = today.slice(5) === b[1] + '-' + b[0] ? 'La mulți ani!' : '';
+    } else { $('f-bday').textContent = '—'; $('f-bday-sub').textContent = ''; }
+
+    // Pathways: completed levels gold, the next one outlined
+    var paths = m.pathways.paths;
+    $('paths').innerHTML = paths.length ? paths.map(function (p) {
+      var next = p.completed < 5 ? p.completed + 1 : 0;
+      var lv = [1, 2, 3, 4, 5].map(function (n) { return '<div class="lv' + (n <= p.completed ? ' done' : (n === next ? ' now' : '')) + '">' + n + '</div>'; }).join('');
+      var state = p.completed >= 5 ? 'Traseu terminat' : (p.completed ? 'Nivelul ' + p.completed + ' terminat, lucrezi la nivelul ' + next : 'Lucrezi la nivelul 1');
+      return '<div class="path"><div class="path-head"><b>' + esc(p.name) + (p.current ? '' : ' <span class="legacy">(traseu vechi)</span>') + '</b><span class="hint">' + state + '</span></div><div class="levels">' + lv + '</div></div>';
+    }).join('') : '<p class="empty">Încă nu ai un traseu Pathways în exportul clubului. Alege-ți unul în Base Camp, cu ajutorul VP Educație.</p>';
+
+    // What they did: counts per role, then the list
+    var counts = { other: 0 };
+    j.history.forEach(function (it) { if (STAT.some(function (s) { return s[0] === it.role; })) counts[it.role] = (counts[it.role] || 0) + 1; else counts.other++; });
+    $('stats').innerHTML = j.history.length ? STAT.filter(function (s) { return counts[s[0]]; }).map(function (s) { return '<div class="stat"><span class="num">' + counts[s[0]] + '</span><span>' + s[1] + '</span></div>'; }).join('') : '';
+    renderList($('history'), j.history, 'Încă nu apari în agendele salvate. Rolurile tale apar aici după fiecare ședință.', 30);
+    renderList($('upcoming'), j.upcoming, 'Niciun rol în agendele următoare. Spune-i VP Educație ce rol vrei data viitoare.');
+  }
+
+  function show(id) {
+    if (!id) return;
+    history.replaceState(null, '', '/membri?id=' + encodeURIComponent(id));
+    api('/api/members?action=profile&id=' + encodeURIComponent(id)).then(render, function (e) { $('profile').hidden = true; alert(e.message); });
+  }
+  $('who').addEventListener('change', function () { show(this.value); });
+
+  function start() {
+    api('/api/members?action=roster').then(function (j) {
+      $('login').hidden = true; $('app').hidden = false; $('nav-roster').hidden = false;
+      if (!j.members.length) { $('empty').hidden = false; $('who').parentNode.hidden = true; return; }
+      $('who').innerHTML = j.members.map(function (m) { return '<option value="' + esc(m.id) + '">' + esc(m.name) + '</option>'; }).join('');
+      var want = new URLSearchParams(location.search).get('id');
+      var id = j.members.some(function (m) { return m.id === want; }) ? want : j.members[0].id;
+      $('who').value = id; show(id);
+    }, function (e) {
+      if (e.status === 401) { $('login').hidden = false; $('pw').focus(); return; }
+      $('app').hidden = false; $('empty').hidden = false; $('empty').querySelector('.hint').textContent = e.message;
+    });
+  }
+  $('login-form').addEventListener('submit', function (e) {
+    e.preventDefault(); $('login-error').textContent = '';
+    api('/api/admin?action=login', { method: 'POST', body: JSON.stringify({ password: $('pw').value }) }).then(function () { $('pw').value = ''; start(); }, function (err) { $('login-error').textContent = err.message; });
+  });
+
+  // For local testing without the server
+  window.tmMember = { render: render };
+  start();
+})();
+</script>
+</body>
+</html>

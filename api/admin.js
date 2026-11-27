@@ -10,32 +10,11 @@
 //   POST ?action=agenda-delete { date }
 //   POST ?action=agenda-settings { settings }   club defaults for new agendas (officers, venue...)
 // Needs ADMIN_PASSWORD in Vercel; stats need the Upstash Redis integration (see _lib/store.js).
-const crypto = require('crypto');
 const { configured, pipeline, k, day, hmac, secret, clientIp, envNames, ENV } = require('./_lib/store');
+const { sign, safeEqual, isAuthed, sameOrigin, parseBody } = require('./_lib/auth');
 
 const COOKIE = 'tm_admin';
 const SESSION_DAYS = 7;
-
-const signingKey = () => crypto.createHash('sha256').update('tm-admin:' + secret() + ':' + (process.env.ADMIN_PASSWORD || '')).digest();
-const sign = exp => `${exp}.${hmac(signingKey(), 'session:' + exp)}`;
-const safeEqual = (a, b) => {
-  const x = crypto.createHash('sha256').update(String(a)).digest(), y = crypto.createHash('sha256').update(String(b)).digest();
-  return crypto.timingSafeEqual(x, y);
-};
-
-function isAuthed(req) {
-  const m = /(?:^|;\s*)tm_admin=([0-9]+)\.([a-f0-9]{64})/.exec(req.headers.cookie || '');
-  if (!m || !process.env.ADMIN_PASSWORD) return false;
-  return Number(m[1]) > Date.now() && safeEqual(sign(m[1]), `${m[1]}.${m[2]}`);
-}
-const sameOrigin = req => {
-  const o = req.headers.origin;
-  return !o || new URL(o).host === (req.headers['x-forwarded-host'] || req.headers.host);
-};
-const parseBody = req => {
-  if (typeof req.body === 'string') { try { return JSON.parse(req.body); } catch { return {}; } }
-  return req.body || {};
-};
 
 async function login(req, res) {
   if (!process.env.ADMIN_PASSWORD) return res.status(503).json({ error: 'ADMIN_PASSWORD nu e setat în Vercel.' });

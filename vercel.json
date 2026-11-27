@@ -23,7 +23,9 @@
     { "source": "/admin",      "destination": "/admin/index.html" },
     { "source": "/admin/stats", "destination": "/admin/stats.html" },
     { "source": "/admin/agenda", "destination": "/admin/agenda.html" },
-    { "source": "/admin/ecusoane", "destination": "/admin/ecusoane.html" }
+    { "source": "/admin/ecusoane", "destination": "/admin/ecusoane.html" },
+    { "source": "/admin/membri", "destination": "/admin/membri.html" },
+    { "source": "/membri", "destination": "/membri.html" }
   ],
   "functions": {
     "api/*.js": {
