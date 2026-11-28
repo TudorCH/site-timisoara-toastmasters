@@ -311,6 +311,7 @@
                 <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
                   <button class="btn gold" type="button" id="w-save">Salvează</button>
                   <button class="btn" type="button" id="w-del" hidden>Șterge</button>
+                  <a class="btn" id="w-print" href="/admin/cuvant">Printează foaia</a>
                   <span class="status" id="w-status" role="status"></span>
                 </div>
                 <p class="hint">Cuvântul apare automat pe agenda ședinței, la „Cuvântul zilei”.</p>
@@ -341,6 +342,7 @@
           <a class="tool" href="/admin/agenda"><b>Agende</b><span>Fă agenda unei ședințe. Toasty o poate completa din Excel sau poze.</span></a>
           <a class="tool" href="/admin/ecusoane"><b>Ecusoane</b><span>Ecusoane pentru membri și board, gata de print.</span></a>
           <a class="tool" href="#" data-goto="word"><b>Cuvântul serii</b><span>Propune cuvântul următoarei ședințe.</span></a>
+          <a class="tool" href="/admin/cuvant"><b>Foaia cu cuvântul serii</b><span>A4 de pus pe pupitru, gata de print.</span></a>
           <a class="tool" href="https://www.toastmasters.org/pathways-overview" target="_blank" rel="noopener"><b>Base Camp</b><span>Proiectele tale Pathways pe toastmasters.org.</span></a>
           <a class="tool" href="/links" target="_blank" rel="noopener"><b>Linkurile clubului</b><span>Pagina de trimis invitaților.</span></a>
           <a class="tool" href="/admin/membri" data-board><b>Lista de membri</b><span>Importul de pe toastmasters.org (board).</span></a>
@@ -567,6 +569,7 @@
     var w = words[$('w-date').value];
     $('w-word').value = w ? w.word : ''; $('w-def').value = w ? w.definition || '' : ''; $('w-ex').value = w ? w.example || '' : '';
     $('w-del').hidden = !w; $('w-status').textContent = '';
+    $('w-print').href = '/admin/cuvant?date=' + $('w-date').value;
   }
   $('w-date').addEventListener('change', fillWordForm);
   function wordStatus(t, err) { $('w-status').textContent = t; $('w-status').className = 'status' + (err ? ' err' : ''); }

@@ -26,6 +26,7 @@
     { "source": "/admin/agenda", "destination": "/admin/agenda.html" },
     { "source": "/admin/ecusoane", "destination": "/admin/ecusoane.html" },
     { "source": "/admin/membri", "destination": "/admin/membri.html" },
+    { "source": "/admin/cuvant", "destination": "/admin/cuvant.html" },
     { "source": "/membri", "destination": "/membri.html" }
   ],
   "functions": {

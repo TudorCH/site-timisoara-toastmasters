@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Cuvântul serii | Timișoara Toastmasters</title>
+  <link rel="icon" type="image/webp" href="/logo.webp" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap" />
+  <style>
+    :root { --page: #00151f; --card: rgba(18, 58, 94, .35); --line: rgba(79, 123, 163, .22); --hair: rgba(255,255,255,.08); --text-2: rgba(255,255,255,.75); --text-3: rgba(255,255,255,.55); --gold: #F2DF74; color-scheme: dark; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--page); color: #fff; font: 14px/1.5 Inter, system-ui, sans-serif; }
+    button, input, select, textarea { font: inherit; color: inherit; }
+    [hidden] { display: none !important; }
+    header { background: linear-gradient(to bottom, #00253b, #001c2d); border-bottom: 1px solid var(--hair); }
+    header .wrap { display: flex; align-items: center; gap: 12px; height: 64px; }
+    .wrap { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; }
+    .brand img { width: 34px; height: 34px; }
+    .brand b { display: block; font-size: 14px; }
+    .brand > span > span { display: block; font-size: 11px; color: var(--gold); font-weight: 600; }
+    .spacer { flex: 1; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; border: 1px solid var(--line); background: var(--card); color: #fff; border-radius: 10px; padding: 7px 12px; font-size: 13px; font-weight: 600; cursor: pointer; text-decoration: none; }
+    .btn:hover { border-color: rgba(255,255,255,.35); }
+    .btn.gold { background: var(--gold); color: #00273E; border-color: transparent; }
+    .app { display: grid; grid-template-columns: minmax(300px, 380px) minmax(0, 1fr); gap: 24px; padding: 20px; max-width: 1400px; margin: 0 auto; align-items: start; }
+    @media (max-width: 900px) { .app { grid-template-columns: minmax(0, 1fr); } }
+    .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 18px 20px; display: grid; gap: 10px; }
+    .card h1 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 18px; margin: 0; }
+    label { display: grid; gap: 4px; font-size: 12px; color: var(--text-2); font-weight: 500; }
+    .input { width: 100%; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.15); border-radius: 10px; padding: 8px 11px; }
+    .input:focus { outline: none; border-color: rgba(242,223,116,.6); }
+    select.input option { background: #0a2536; }
+    textarea.input { resize: vertical; min-height: 70px; }
+    .hint { color: var(--text-3); font-size: 12.5px; margin: 0; }
+    .seg { display: inline-flex; padding: 3px; gap: 2px; border-radius: 10px; background: rgba(255,255,255,.05); border: 1px solid var(--line); }
+    .seg button { border: 0; background: none; padding: 6px 11px; border-radius: 7px; font-size: 13px; font-weight: 600; color: var(--text-3); cursor: pointer; }
+    .seg button[aria-pressed="true"] { background: rgba(255,255,255,.12); color: #fff; }
+    .stage { width: 100%; overflow: hidden; }
+    #sheet-wrap { transform-origin: top left; width: 297mm; box-shadow: 0 20px 60px rgba(0,0,0,.5); }
+
+    /* ═════════ The sheet: A4 landscape, light on toner ═════════ */
+    .sheet { width: 297mm; height: 210mm; background: #fff; color: #111; position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 18mm 24mm 22mm; font-family: Inter, Arial, sans-serif; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .sheet.portrait { width: 210mm; height: 297mm; padding: 28mm 18mm 30mm; }
+    .sheet .top { position: absolute; top: 12mm; left: 0; right: 0; display: flex; align-items: center; justify-content: center; gap: 4mm; }
+    .sheet .top img { width: 16mm; height: 16mm; object-fit: contain; }
+    .sheet .top div { text-align: left; line-height: 1.15; }
+    .sheet .top b { display: block; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 13pt; letter-spacing: .06em; text-transform: uppercase; color: #004165; }
+    .sheet .top span { font-size: 9pt; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: #772432; }
+    .sheet .lbl { font-size: 15pt; font-weight: 700; letter-spacing: .3em; text-transform: uppercase; color: #772432; }
+    .sheet .rule { width: 40mm; height: 1.2mm; border-radius: 1mm; background: #F2DF74; margin: 6mm auto 0; }
+    .sheet .word { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; line-height: 1.02; color: #004165; margin-top: 6mm; letter-spacing: -.01em; overflow-wrap: anywhere; }
+    .sheet .def { font-size: 20pt; line-height: 1.35; color: #222; max-width: 230mm; margin-top: 9mm; }
+    .sheet .ex { font-size: 16pt; line-height: 1.4; color: #555; font-style: italic; max-width: 220mm; margin-top: 6mm; }
+    .sheet .foot { position: absolute; bottom: 11mm; left: 0; right: 0; font-size: 10pt; color: #777; letter-spacing: .04em; }
+    .sheet .band { position: absolute; left: 0; right: 0; bottom: 0; height: 4mm; background: linear-gradient(90deg, #004165 0 70%, #772432 70% 100%); }
+
+    @media print {
+      @page { size: A4 landscape; margin: 0; }
+      html.portrait-page { } /* page orientation set by the style tag below */
+      body { background: #fff; }
+      header, .card { display: none !important; }
+      .app { display: block; padding: 0; max-width: none; }
+      .stage { height: auto !important; overflow: visible; }
+      #sheet-wrap { transform: none !important; box-shadow: none; }
+    }
+  </style>
+  <style id="page-size"></style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="brand" href="/"><img src="/logo.webp" alt="" /><span><b>Timișoara Toastmasters</b><span>Cuvântul serii</span></span></a>
+    <span class="spacer"></span>
+    <a class="btn" href="/membri#word">Dashboard</a>
+    <a class="btn" href="/admin/agenda">Agende</a>
+  </div>
+</header>
+
+<div class="app">
+  <div class="card">
+    <h1>Foaia cu cuvântul serii</h1>
+    <p class="hint">Se pune pe pupitru sau pe perete, ca vorbitorii să vadă cuvântul. Alege ședința; cuvântul vine din dashboard și îl poți ajusta aici înainte de print.</p>
+    <label>Ședința<select id="date" class="input"></select></label>
+    <label>Cuvântul<input id="word" class="input" maxlength="60" /></label>
+    <label>Definiția<textarea id="def" class="input" maxlength="400"></textarea></label>
+    <label>Exemplu<textarea id="ex" class="input" maxlength="400"></textarea></label>
+    <label>Orientare
+      <span class="seg" role="group"><button type="button" data-o="landscape" aria-pressed="true">Orizontal</button><button type="button" data-o="portrait" aria-pressed="false">Vertical</button></span>
+    </label>
+    <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn gold" type="button" id="print">Print / PDF</button></div>
+    <p class="hint" id="note"></p>
+  </div>
+  <div class="stage" id="stage"><div id="sheet-wrap"><div class="sheet" id="sheet"></div></div></div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var $ = function (id) { return document.getElementById(id); };
+  var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
+  var TODAY = new Date().toLocaleDateString('en-CA', { timeZone: 'Europe/Bucharest' });
+  var RO = ['ianuarie', 'februarie', 'martie', 'aprilie', 'mai', 'iunie', 'iulie', 'august', 'septembrie', 'octombrie', 'noiembrie', 'decembrie'];
+  var EN = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  var parse = function (s) { var p = s.split('-'); return new Date(Date.UTC(+p[0], +p[1] - 1, +p[2])); };
+  var addDays = function (s, n) { var d = parse(s); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); };
+  var nextWed = function (from) { var d = parse(from); return addDays(from, (3 - d.getUTCDay() + 7) % 7); };
+  var isEn = function (s) { return parse(addDays(s, 7)).getUTCMonth() !== parse(s).getUTCMonth(); };
+  var words = {}, orient = 'landscape';
+
+  function render() {
+    var d = $('date').value, en = isEn(d), p = parse(d), w = $('word').value.trim();
+    var date = en ? 'Wednesday, ' + EN[p.getUTCMonth()] + ' ' + p.getUTCDate() + ', ' + p.getUTCFullYear() : 'Miercuri, ' + p.getUTCDate() + ' ' + RO[p.getUTCMonth()] + ' ' + p.getUTCFullYear();
+    // Long words get a smaller size so they stay on one line
+    var len = Math.max(4, w.length), base = orient === 'portrait' ? 230 : 300;
+    var size = Math.min(orient === 'portrait' ? 80 : 110, Math.round(base / len * 2.6));
+    $('sheet').className = 'sheet' + (orient === 'portrait' ? ' portrait' : '');
+    $('sheet').innerHTML =
+      '<div class="top"><img src="/logo.webp" alt="" /><div><b>Timișoara Toastmasters</b><span>Where Leaders Are Made</span></div></div>' +
+      '<div class="lbl">' + (en ? 'Word of the evening' : 'Cuvântul serii') + '</div><div class="rule"></div>' +
+      '<div class="word" style="font-size:' + size + 'pt">' + esc(w || '…') + '</div>' +
+      ($('def').value.trim() ? '<div class="def">' + esc($('def').value.trim()) + '</div>' : '') +
+      ($('ex').value.trim() ? '<div class="ex">„' + esc($('ex').value.trim()) + '”</div>' : '') +
+      '<div class="foot">' + esc(date) + '</div><div class="band"></div>';
+    $('sheet-wrap').style.width = orient === 'portrait' ? '210mm' : '297mm';
+    $('page-size').textContent = '@media print { @page { size: A4 ' + orient + '; margin: 0; } }';
+    scale();
+  }
+  function scale() {
+    var stage = $('stage'), wrap = $('sheet-wrap'), sheet = $('sheet');
+    var k = Math.min(1, stage.clientWidth / sheet.offsetWidth);
+    wrap.style.transform = 'scale(' + k + ')';
+    stage.style.height = (sheet.offsetHeight * k) + 'px';
+  }
+  function fill() {
+    var w = words[$('date').value] || {};
+    $('word').value = w.word || ''; $('def').value = w.definition || ''; $('ex').value = w.example || '';
+    $('note').textContent = w.word ? '' : 'Pentru ședința asta nu e ales încă un cuvânt. Scrie-l aici sau alege-l în dashboard, la „Cuvântul serii”.';
+    render();
+  }
+  ['word', 'def', 'ex'].forEach(function (id) { $(id).addEventListener('input', render); });
+  $('date').addEventListener('change', fill);
+  document.querySelector('.seg').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-o]'); if (!b) return;
+    orient = b.getAttribute('data-o');
+    document.querySelectorAll('.seg button').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+    render();
+  });
+  $('print').addEventListener('click', function () { var t = document.title; document.title = 'Cuvantul serii ' + $('date').value; window.print(); document.title = t; });
+  window.addEventListener('resize', scale);
+
+  // Meetings: the next 8 Wednesdays plus any date with a chosen word; ?date= preselects one
+  function start() {
+    var dates = [], d = nextWed(TODAY);
+    for (var i = 0; i < 8; i++) { dates.push(d); d = addDays(d, 7); }
+    Object.keys(words).forEach(function (x) { if (dates.indexOf(x) === -1) dates.push(x); });
+    dates.sort();
+    $('date').innerHTML = dates.map(function (x) { var p = parse(x); return '<option value="' + x + '">' + p.getUTCDate() + ' ' + RO[p.getUTCMonth()] + ' ' + p.getUTCFullYear() + (isEn(x) ? ' (EN)' : '') + (words[x] ? ' · ' + esc(words[x].word) : '') + '</option>'; }).join('');
+    var want = new URLSearchParams(location.search).get('date');
+    $('date').value = want && dates.indexOf(want) !== -1 ? want : nextWed(TODAY);
+    fill();
+  }
+  fetch('/api/admin?action=words', { credentials: 'same-origin' }).then(function (r) { return r.ok ? r.json() : { words: {} }; })
+    .then(function (j) { words = j.words || {}; }, function () {}).then(start);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(scale);
+  window.tmWord = { setWords: function (w) { words = w; start(); } };
+})();
+</script>
+</body>
+</html>
