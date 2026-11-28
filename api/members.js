@@ -2,6 +2,7 @@
 //   GET  ?action=roster               the stored roster, with Pathways read from the credentials
 //   POST ?action=import { members, leftOut, syncAgenda }   replaces the roster (board only)
 //   GET  ?action=profile&id=<id>      one member: profile, Pathways, roles from saved agendas
+//   GET  ?action=club                 club overview: members (no emails), agendas, roles per member
 // Only these fields are stored: name, emails, credentials, club position, membership dates and status,
 // mentor, birthday (day.month) and the paths the club sheet lists. Phones and addresses never reach the
 // server (the import page drops them in the browser).
@@ -47,31 +48,62 @@ async function readRoster() {
   return parseJson(raw) || { updated: 0, members: [] };
 }
 
-// Every role a member had in the saved agendas: past ones as history, today and later as upcoming.
-async function rolesFor(member) {
+// All saved agendas, oldest first.
+async function allAgendas() {
   const [dates] = await pipeline([['ZRANGE', k('agenda:index'), 0, -1]]);
-  if (!dates || !dates.length) return { history: [], upcoming: [] };
+  if (!dates || !dates.length) return [];
   const [raws] = await pipeline([['MGET', ...dates.map((d) => k('agenda:' + d))]]);
+  return (raws || []).map(parseJson).filter((a) => a && a.date).sort((x, y) => (x.date < y.date ? -1 : 1));
+}
+// Every role in one agenda, as [person name, item]
+function rolesIn(a) {
+  const out = [];
+  Object.entries(a.roles || {}).forEach(([role, n]) => { if (n) out.push([n, { role }]); });
+  (a.speeches || []).forEach((s, i) => {
+    if (!s) return;
+    if (s.speaker) out.push([s.speaker, { role: 'speaker', title: str(s.title), path: str(s.path), level: +s.level || null, project: str(s.project) }]);
+    if (s.evaluator) out.push([s.evaluator, { role: 'evaluator', n: i + 1, of: str(s.speaker, 60) }]);
+  });
+  if (a.vote && a.vote.on && a.vote.name) out.push([a.vote.name, { role: 'vote' }]);
+  return out;
+}
+// Every role a member had in the saved agendas: past ones as history, today and later as upcoming.
+function rolesFor(member, agendas) {
   const keys = new Set([member.name, member.fullName].filter(Boolean).map(nameKey));
-  const me = (n) => !!n && keys.has(nameKey(n));
   const today = day();
   const history = [], upcoming = [];
-  (raws || []).forEach((raw) => {
-    const a = parseJson(raw);
-    if (!a || !a.date) return;
-    const items = [];
-    Object.entries(a.roles || {}).forEach(([role, n]) => { if (me(n)) items.push({ role }); });
-    (a.speeches || []).forEach((s, i) => {
-      if (!s) return;
-      if (me(s.speaker)) items.push({ role: 'speaker', title: str(s.title), path: str(s.path), level: +s.level || null, project: str(s.project) });
-      if (me(s.evaluator)) items.push({ role: 'evaluator', n: i + 1, of: str(s.speaker, 60) });
-    });
-    if (a.vote && a.vote.on && me(a.vote.name)) items.push({ role: 'vote' });
-    items.forEach((it) => (a.date >= today ? upcoming : history).push(Object.assign({ date: a.date, lang: a.lang || 'ro' }, it)));
-  });
-  history.sort((x, y) => (x.date < y.date ? 1 : -1));
-  upcoming.sort((x, y) => (x.date > y.date ? 1 : -1));
+  agendas.forEach((a) => rolesIn(a).forEach(([n, it]) => {
+    if (keys.has(nameKey(n))) (a.date >= today ? upcoming : history).push(Object.assign({ date: a.date, lang: a.lang || 'ro' }, it));
+  }));
+  history.reverse();
   return { history, upcoming };
+}
+
+// Club overview for the dashboard: members (no emails), agendas, and per member how many roles
+// they had and when the last one was, so the VP Education sees who hasn't had a role lately.
+async function clubOverview() {
+  const [r, agendas] = await Promise.all([readRoster(), allAgendas()]);
+  const today = day();
+  const byKey = {};
+  const members = r.members.map((m) => {
+    const out = { id: m.id, name: m.name, position: m.position, memberSince: m.memberSince, paidUntil: m.paidUntil,
+      birthday: m.birthday, mentor: m.mentor, pathways: pathwaysFor(m.credentials, m.enrolled), roles: 0, speeches: 0, lastRole: '', nextRole: '' };
+    [m.name, m.fullName].filter(Boolean).forEach((n) => { byKey[nameKey(n)] = out; });
+    return out;
+  });
+  const list = agendas.map((a) => {
+    const roles = rolesIn(a);
+    roles.forEach(([n, it]) => {
+      const m = byKey[nameKey(n)];
+      if (!m) return;
+      if (a.date < today) { m.roles++; if (it.role === 'speaker') m.speeches++; if (a.date > m.lastRole) m.lastRole = a.date; }
+      else if (!m.nextRole || a.date < m.nextRole) m.nextRole = a.date;
+    });
+    const filled = Object.values(a.roles || {}).filter(Boolean).length;
+    return { date: a.date, lang: a.lang || 'ro', title: str(a.title), theme: str(a.theme), word: str(a.word), speeches: (a.speeches || []).length,
+      rolesFilled: filled, rolesTotal: Object.keys(a.roles || {}).length || 7, people: roles.map(([n, it]) => ({ name: n, role: it.role, n: it.n || null })) };
+  });
+  return { updated: r.updated, members, agendas: list.reverse() };
 }
 
 async function importRoster(req, res) {
@@ -116,11 +148,12 @@ module.exports = async function handler(req, res) {
       return res.status(200).json({ updated: r.updated, members: r.members.map(withPathways), leftOut: r.leftOut || [] });
     }
     if (action === 'import' && req.method === 'POST') return await importRoster(req, res);
+    if (action === 'club' && req.method === 'GET') return res.status(200).json(await clubOverview());
     if (action === 'profile' && req.method === 'GET') {
       const r = await readRoster();
       const m = r.members.find((x) => x.id === String(req.query.id || ''));
       if (!m) return res.status(404).json({ error: 'Membrul nu există.' });
-      const roles = await rolesFor(m);
+      const roles = rolesFor(m, await allAgendas());
       return res.status(200).json({ member: withPathways(m), history: roles.history, upcoming: roles.upcoming });
     }
     return res.status(400).json({ error: 'Acțiune necunoscută.' });

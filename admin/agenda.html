@@ -458,10 +458,13 @@
   // ── Model ──
   function blankSpeech() { return { speaker: '', title: '', min: 7, path: '', level: 1, project: '', note: '', evaluator: '' }; }
   function clubDefaults() { return clone((settings && settings.club) || DEFAULT_CLUB); }
+  // Word of the evening chosen for that meeting in the members' dashboard, if any
+  var words = {};
+  function wordFor(date) { return (words[date] && words[date].word) || ''; }
   function newAgenda(date) {
     var club = clubDefaults();
     return {
-      v: 1, date: date, lang: isLastWednesday(date) ? 'en' : 'ro', title: '', theme: '', word: '', start: '19:30',
+      v: 1, date: date, lang: isLastWednesday(date) ? 'en' : 'ro', title: '', theme: '', word: wordFor(date), start: '19:30',
       roles: { president: club.officers.pres || '', tme: '', ttm: '', ge: '', ah: '', gram: '', timer: '' },
       speeches: [blankSpeech(), blankSpeech()],
       dur: { open: 5, intro: 5, speeches: '', tt: 25, eval: '', close: 10 },
@@ -724,6 +727,7 @@
     if (k === 'date') {
       state.lang = isLastWednesday(state.date) ? 'en' : 'ro';
       document.querySelector('[data-k="lang"]').value = state.lang;
+      if (!state.word && wordFor(state.date)) { state.word = wordFor(state.date); document.querySelector('[data-k="word"]').value = state.word; }
       langHint();
     }
     if (k === 'lang' || k === 'date') document.querySelector('[data-ph-title]').placeholder = L[state.lang].title;
@@ -854,7 +858,7 @@
   // ── Session ──
   function refreshList() {
     return api('agendas').then(function (j) {
-      dbReady = !!j.configured; savedDates = j.agendas || []; settings = j.settings || settings;
+      dbReady = !!j.configured; savedDates = j.agendas || []; settings = j.settings || settings; words = j.words || {};
       $('names').innerHTML = (j.names || []).map(function (n) { return '<option value="' + esc(n) + '"></option>'; }).join('');
       return j;
     });
@@ -864,10 +868,17 @@
     var stored = settings && Array.isArray(settings.members) && settings.members.length ? settings.members : null;
     if (!stored) { try { stored = JSON.parse(localStorage.getItem(MEMBERS_KEY) || 'null'); } catch (e) {} }
     setMembers(Array.isArray(stored) && stored.length ? stored : DEFAULT_MEMBERS);
+    // /admin/agenda?date=YYYY-MM-DD (links from the members' dashboard) opens that meeting's agenda
+    var want = new URLSearchParams(location.search).get('date');
+    if (want && parseIso(want)) {
+      if (savedDates.some(function (x) { return x.date === want; })) api('agenda&date=' + want).then(function (j) { load(j.agenda); }, function () { load(newAgenda(want)); });
+      else load(newAgenda(want));
+    } else {
     var draft = null;
     try { draft = JSON.parse(localStorage.getItem(DRAFT_KEY) || 'null'); } catch (e) {}
     if (draft && draft.date) load(draft, true);
     else load(newAgenda(nextWednesday(todayIso())));
+    }
     if (offline || !dbReady) {
       $('offline').hidden = false;
       $('offline').textContent = offline

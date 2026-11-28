@@ -13,18 +13,19 @@
     :root {
       --page: #00151f; --card: rgba(18, 58, 94, .35); --line: rgba(79, 123, 163, .22);
       --hair: rgba(255, 255, 255, .08); --text: #fff; --text-2: rgba(255, 255, 255, .75); --text-3: rgba(255, 255, 255, .55);
-      --gold: #F2DF74; --maroon: #772432; --good: #34d399; --bad: #f87171;
+      --gold: #F2DF74; --maroon: #772432; --good: #34d399; --warn: #fbbf24; --bad: #f87171;
       color-scheme: dark;
     }
     * { box-sizing: border-box; }
     body { margin: 0; background: var(--page); color: var(--text); font: 14px/1.5 Inter, system-ui, sans-serif; min-height: 100vh; }
     h1, h2, h3, .num { font-family: 'Plus Jakarta Sans', Inter, sans-serif; }
-    button, input, select { font: inherit; color: inherit; }
+    button, input, select, textarea { font: inherit; color: inherit; }
     [hidden] { display: none !important; }
-    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+    a { color: inherit; }
+    .wrap { max-width: 1140px; margin: 0 auto; padding: 0 20px; }
     header { position: sticky; top: 0; z-index: 10; background: linear-gradient(to bottom, #00253b, #001c2d); border-bottom: 1px solid var(--hair); }
     header .wrap { display: flex; align-items: center; gap: 12px; height: 64px; }
-    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
     .brand img { width: 34px; height: 34px; }
     .brand b { display: block; font-size: 14px; }
     .brand > span > span { display: block; font-size: 11px; color: var(--gold); font-weight: 600; }
@@ -32,30 +33,48 @@
     .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; border: 1px solid var(--line); background: var(--card); color: #fff; border-radius: 10px; padding: 7px 12px; font-size: 13px; font-weight: 600; cursor: pointer; text-decoration: none; white-space: nowrap; }
     .btn:hover { border-color: rgba(255,255,255,.35); }
     .btn.gold { background: var(--gold); color: #00273E; border-color: transparent; }
-    select.input, .input { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.15); border-radius: 10px; padding: 8px 11px; }
+    .btn.gold:hover { background: #f5e488; }
+    .btn:disabled { opacity: .5; cursor: default; }
+    .input { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.15); border-radius: 10px; padding: 8px 11px; width: 100%; }
+    .input:focus { outline: none; border-color: rgba(242,223,116,.6); }
     select.input option { background: #0a2536; }
-    main { padding: 22px 0 60px; }
-    .preview-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 10px 14px; margin-bottom: 18px; border-radius: 12px; border: 1px solid rgba(242,223,116,.35); background: rgba(242,223,116,.06); color: var(--text-2); font-size: 13px; }
+    textarea.input { resize: vertical; min-height: 64px; }
+    main { padding: 20px 0 60px; }
+    .preview-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 10px 14px; margin-bottom: 16px; border-radius: 12px; border: 1px solid rgba(242,223,116,.35); background: rgba(242,223,116,.06); color: var(--text-2); font-size: 13px; }
+    .preview-bar select { width: auto; }
+
+    /* Tabs */
+    .tabs { display: flex; gap: 4px; overflow-x: auto; border-bottom: 1px solid var(--line); margin-bottom: 20px; scrollbar-width: none; }
+    .tabs::-webkit-scrollbar { display: none; }
+    .tab { border: 0; background: none; padding: 10px 14px; font-weight: 700; font-size: 14px; color: var(--text-3); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; white-space: nowrap; }
+    .tab:hover { color: #fff; }
+    .tab[aria-selected="true"] { color: #fff; border-bottom-color: var(--gold); }
+    .tab:focus-visible { outline: 2px solid var(--gold); outline-offset: -2px; border-radius: 6px; }
+
     .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 18px 20px; }
-    .card h2 { font-size: 15px; margin: 0 0 12px; }
+    .card h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
     .hint { color: var(--text-3); font-size: 12.5px; margin: 0; }
     .grid { display: grid; gap: 16px; }
     .g2 { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); }
+    .g2e { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
     .g4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-    @media (max-width: 860px) { .g2, .g4 { grid-template-columns: minmax(0, 1fr); } }
+    .stack { display: grid; gap: 16px; align-content: start; }
+    @media (max-width: 900px) { .g2, .g2e, .g4 { grid-template-columns: minmax(0, 1fr); } }
+    @media (min-width: 560px) and (max-width: 900px) { .g4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
-    /* Profile head */
+    /* Profile */
     .hero { display: flex; align-items: center; gap: 18px; margin-bottom: 18px; }
     .avatar { width: 64px; height: 64px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 22px; color: #00273E; background: linear-gradient(135deg, #f8ea9a, #dcb84f); flex: 0 0 auto; }
     .hero h1 { margin: 0; font-size: 26px; line-height: 1.2; }
-    .hero .meta { color: var(--text-2); margin-top: 4px; display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: center; }
-    .badge { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 99px; background: rgba(242,223,116,.12); color: var(--gold); border: 1px solid rgba(242,223,116,.35); }
+    .hero .meta { color: var(--text-2); margin-top: 6px; display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: center; }
+    .badge { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 99px; background: rgba(242,223,116,.12); color: var(--gold); border: 1px solid rgba(242,223,116,.35); white-space: nowrap; }
     .badge.red { background: rgba(248,113,113,.12); color: var(--bad); border-color: rgba(248,113,113,.4); }
     .badge.green { background: rgba(52,211,153,.12); color: var(--good); border-color: rgba(52,211,153,.4); }
-
-    /* Facts */
+    .badge.amber { background: rgba(251,191,36,.12); color: var(--warn); border-color: rgba(251,191,36,.4); }
+    .badge.blue { background: rgba(96,165,250,.12); color: #93c5fd; border-color: rgba(96,165,250,.4); }
     .fact .lbl { color: var(--text-3); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; }
     .fact .val { font-size: 17px; font-weight: 700; margin-top: 4px; }
+    .fact .val.big { font-size: 28px; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; }
     .fact .sub { color: var(--text-3); font-size: 12.5px; margin-top: 2px; }
 
     /* Pathways */
@@ -67,6 +86,9 @@
     .lv { height: 34px; border-radius: 9px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; border: 1px solid var(--line); color: var(--text-3); background: rgba(255,255,255,.03); }
     .lv.done { background: linear-gradient(180deg, #f6e298, #d4af37); color: #00273E; border-color: transparent; }
     .lv.now { border-color: var(--gold); color: var(--gold); box-shadow: inset 0 0 0 1px rgba(242,223,116,.35); }
+    .mini-lv { display: inline-flex; gap: 3px; vertical-align: middle; }
+    .mini-lv i { width: 12px; height: 8px; border-radius: 3px; background: rgba(255,255,255,.1); }
+    .mini-lv i.on { background: #d4af37; }
     .legacy { font-size: 11px; color: var(--text-3); font-weight: 600; }
 
     /* Lists */
@@ -74,19 +96,57 @@
     .stat { padding: 8px 12px; border-radius: 12px; background: rgba(255,255,255,.04); border: 1px solid var(--hair); }
     .stat .num { font-size: 20px; font-weight: 800; display: block; line-height: 1.1; }
     .stat span:last-child { font-size: 12px; color: var(--text-3); }
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .chip { font-size: 12.5px; padding: 4px 10px; border-radius: 99px; border: 1px dashed rgba(255,255,255,.25); color: var(--text-2); }
     .list { list-style: none; margin: 0; padding: 0; }
-    .list li { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 12px; padding: 10px 0; border-top: 1px solid var(--hair); }
-    .list li:first-child { border-top: 0; }
+    .list > li { display: grid; grid-template-columns: 112px minmax(0, 1fr) auto; gap: 12px; padding: 10px 0; border-top: 1px solid var(--hair); align-items: start; }
+    .list > li:first-child { border-top: 0; }
     .list .d { color: var(--text-3); font-size: 12.5px; font-variant-numeric: tabular-nums; }
     .list .r { font-weight: 600; }
     .list .x { color: var(--text-3); font-size: 12.5px; }
-    .tools { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
-    @media (max-width: 640px) { .tools { grid-template-columns: minmax(0, 1fr); } }
-    .tool { display: block; padding: 14px; border-radius: 14px; border: 1px solid var(--line); background: rgba(255,255,255,.03); color: inherit; text-decoration: none; }
-    .tool:hover { border-color: rgba(242,223,116,.45); }
-    .tool b { display: block; }
-    .tool span { color: var(--text-3); font-size: 12.5px; }
+    .list.two > li { grid-template-columns: minmax(0, 1fr) auto; }
     .empty { color: var(--text-3); font-size: 13px; }
+    .tbl { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .tbl th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--text-3); font-weight: 700; padding: 6px 8px; border-bottom: 1px solid var(--line); }
+    .tbl td { padding: 8px; border-bottom: 1px solid var(--hair); color: var(--text-2); vertical-align: top; }
+    .tbl td.n { color: #fff; font-weight: 600; white-space: nowrap; }
+    .tbl-wrap { overflow-x: auto; margin: 0 -20px; padding: 0 20px; }
+
+    /* Next meeting */
+    .next { display: flex; flex-wrap: wrap; gap: 18px; align-items: center; justify-content: space-between; background: linear-gradient(135deg, rgba(0,65,101,.55), rgba(119,36,50,.45)); border-color: rgba(255,255,255,.15); }
+    .next .when { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 22px; }
+    .next .meta { color: var(--text-2); margin-top: 4px; display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: center; }
+    .bar { height: 6px; border-radius: 3px; background: rgba(255,255,255,.08); overflow: hidden; margin-top: 6px; }
+    .bar i { display: block; height: 100%; background: var(--gold); }
+
+    /* Agendas */
+    .ag { display: grid; grid-template-columns: 120px minmax(0, 1fr) auto; gap: 14px; align-items: center; padding: 12px 0; border-top: 1px solid var(--hair); }
+    .ag:first-child { border-top: 0; }
+    .ag .d b { display: block; font-size: 15px; }
+    .ag .d span { color: var(--text-3); font-size: 12px; }
+    .ag .me { margin-top: 4px; }
+    @media (max-width: 640px) { .ag { grid-template-columns: minmax(0, 1fr); gap: 6px; } }
+
+    /* Word */
+    .word-now { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 30px; font-weight: 800; color: var(--gold); line-height: 1.15; }
+    .word-def { color: var(--text-2); margin-top: 6px; }
+    .word-ex { color: var(--text-3); font-style: italic; margin-top: 6px; }
+    .form { display: grid; gap: 10px; }
+    .form label { display: grid; gap: 4px; font-size: 12px; color: var(--text-2); font-weight: 500; }
+    .sugg { display: grid; gap: 8px; margin-top: 12px; }
+    .sug { padding: 12px 14px; border-radius: 12px; border: 1px solid var(--line); background: rgba(255,255,255,.03); display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px; align-items: center; }
+    .sug b { color: var(--gold); font-size: 16px; }
+    .sug p { margin: 2px 0 0; font-size: 12.5px; color: var(--text-2); }
+    .sug p.e { font-style: italic; color: var(--text-3); }
+    .status { font-size: 12.5px; color: var(--text-3); }
+    .status.err { color: var(--bad); }
+
+    .tools { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+    @media (max-width: 760px) { .tools { grid-template-columns: minmax(0, 1fr); } }
+    .tool { display: block; padding: 16px; border-radius: 14px; border: 1px solid var(--line); background: var(--card); text-decoration: none; }
+    .tool:hover { border-color: rgba(242,223,116,.45); }
+    .tool b { display: block; font-size: 15px; }
+    .tool span { color: var(--text-3); font-size: 12.5px; }
     .center { max-width: 380px; margin: 12vh auto 0; }
     .error { color: var(--bad); font-size: 13px; min-height: 20px; margin-top: 8px; }
   </style>
@@ -107,7 +167,7 @@
       <h1 style="font-size:22px;margin:0 0 4px">Zona membrilor</h1>
       <p class="hint">Deocamdată doar pentru board, cu parola de la statistici. Logarea membrilor vine în curând.</p>
       <form id="login-form">
-        <input id="pw" class="input" type="password" autocomplete="current-password" required style="width:100%;margin-top:14px;padding:11px 13px" aria-label="Parolă" />
+        <input id="pw" class="input" type="password" autocomplete="current-password" required style="margin-top:14px;padding:11px 13px" aria-label="Parolă" />
         <div id="login-error" class="error" role="alert"></div>
         <button class="btn gold" type="submit" style="width:100%;padding:11px">Intră</button>
       </form>
@@ -115,7 +175,7 @@
   </section>
 
   <section id="app" hidden>
-    <div class="preview-bar">
+    <div class="preview-bar" id="preview-bar">
       <span>Previzualizare board: vezi dashboard-ul ca</span>
       <select id="who" class="input" aria-label="Membru"></select>
     </div>
@@ -125,48 +185,166 @@
       <p class="hint">Importă exportul de membri de pe toastmasters.org din <a href="/admin/membri" style="color:#93c5fd">Lista de membri</a>.</p>
     </div>
 
-    <div id="profile" hidden>
-      <div class="hero">
-        <div class="avatar" id="avatar"></div>
-        <div>
-          <h1 id="p-name"></h1>
-          <div class="meta" id="p-meta"></div>
-        </div>
+    <div id="main" hidden>
+      <div class="tabs" role="tablist" aria-label="Secțiuni">
+        <button class="tab" role="tab" data-tab="me" aria-selected="true">Profilul meu</button>
+        <button class="tab" role="tab" data-tab="club" aria-selected="false">Clubul</button>
+        <button class="tab" role="tab" data-tab="agendas" aria-selected="false">Agende</button>
+        <button class="tab" role="tab" data-tab="word" aria-selected="false">Cuvântul serii</button>
+        <button class="tab" role="tab" data-tab="tools" aria-selected="false">Instrumente</button>
       </div>
 
-      <div class="grid g4" style="margin-bottom:16px">
-        <div class="card fact"><div class="lbl">Membru din</div><div class="val" id="f-since">—</div><div class="sub" id="f-since-sub"></div></div>
-        <div class="card fact"><div class="lbl">Cotizație plătită până la</div><div class="val" id="f-paid">—</div><div class="sub" id="f-paid-sub"></div></div>
-        <div class="card fact"><div class="lbl">Mentor</div><div class="val" id="f-mentor">—</div><div class="sub">Îți răspunde la întrebări despre Pathways și discursuri</div></div>
-        <div class="card fact"><div class="lbl">Ziua de naștere</div><div class="val" id="f-bday">—</div><div class="sub" id="f-bday-sub"></div></div>
-      </div>
-
-      <div class="grid g2">
-        <div class="grid" style="align-content:start">
-          <div class="card">
-            <h2>Pathways</h2>
-            <div id="paths"></div>
-            <p class="hint" style="margin-top:10px">Nivelurile vin din exportul clubului de pe toastmasters.org: un nivel e marcat după ce l-ai terminat în Base Camp.</p>
-          </div>
-          <div class="card">
-            <h2>Ce am făcut în club</h2>
-            <div class="stats" id="stats"></div>
-            <ul class="list" id="history" style="margin-top:12px"></ul>
-          </div>
+      <!-- ═══ Profilul meu ═══ -->
+      <div data-panel="me">
+        <div class="hero">
+          <div class="avatar" id="avatar"></div>
+          <div><h1 id="p-name"></h1><div class="meta" id="p-meta"></div></div>
         </div>
-        <div class="grid" style="align-content:start">
-          <div class="card">
-            <h2>Următoarele mele roluri</h2>
-            <ul class="list" id="upcoming"></ul>
-          </div>
-          <div class="card">
-            <h2>Instrumente</h2>
-            <div class="tools" style="grid-template-columns:minmax(0,1fr)">
-              <a class="tool" href="/admin/agenda"><b>Agende</b><span>Fă agenda unei ședințe, cu Toasty</span></a>
-              <a class="tool" href="/admin/ecusoane"><b>Ecusoane</b><span>Ecusoane pentru membri și board</span></a>
-              <a class="tool" href="https://www.toastmasters.org/pathways-overview" target="_blank" rel="noopener"><b>Base Camp</b><span>Proiectele tale Pathways pe toastmasters.org</span></a>
+        <div class="grid g4" style="margin-bottom:16px">
+          <div class="card fact"><div class="lbl">Membru din</div><div class="val" id="f-since">—</div><div class="sub" id="f-since-sub"></div></div>
+          <div class="card fact"><div class="lbl">Cotizație plătită până la</div><div class="val" id="f-paid">—</div><div class="sub" id="f-paid-sub"></div></div>
+          <div class="card fact"><div class="lbl">Mentor</div><div class="val" id="f-mentor">—</div><div class="sub" id="f-mentees"></div></div>
+          <div class="card fact"><div class="lbl">Ziua de naștere</div><div class="val" id="f-bday">—</div><div class="sub" id="f-bday-sub"></div></div>
+        </div>
+        <div class="grid g2">
+          <div class="stack">
+            <div class="card">
+              <h2>Pathways</h2>
+              <div id="paths"></div>
+              <p class="hint" style="margin-top:10px">Nivelurile vin din exportul clubului de pe toastmasters.org: un nivel apare după ce l-ai terminat în Base Camp.</p>
+            </div>
+            <div class="card">
+              <h2>Ce am făcut în club</h2>
+              <div class="stats" id="stats"></div>
+              <ul class="list" id="history" style="margin-top:12px"></ul>
             </div>
           </div>
+          <div class="stack">
+            <div class="card">
+              <h2>Următoarele mele roluri</h2>
+              <ul class="list" id="upcoming"></ul>
+            </div>
+            <div class="card">
+              <h2>Roluri pe care nu le-am încercat</h2>
+              <div class="chips" id="untried"></div>
+              <p class="hint" style="margin-top:10px">Spune-i VP Educație ce rol vrei să încerci la una dintre ședințele următoare.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ Clubul ═══ -->
+      <div data-panel="club" hidden>
+        <div class="card next" style="margin-bottom:16px">
+          <div>
+            <div class="hint" style="text-transform:uppercase;letter-spacing:.08em;font-weight:700">Următoarea ședință</div>
+            <div class="when" id="n-when"></div>
+            <div class="meta" id="n-meta"></div>
+          </div>
+          <div style="min-width:220px">
+            <div class="hint" id="n-fill"></div>
+            <div class="bar"><i id="n-bar" style="width:0"></i></div>
+            <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap"><a class="btn gold" id="n-open" href="/admin/agenda">Deschide agenda</a></div>
+          </div>
+        </div>
+        <div class="grid g4" style="margin-bottom:16px">
+          <div class="card fact"><div class="lbl">Membri</div><div class="val big" id="k-members">—</div><div class="sub" id="k-new"></div></div>
+          <div class="card fact"><div class="lbl">Discursuri ținute</div><div class="val big" id="k-speeches">—</div><div class="sub">în agendele salvate</div></div>
+          <div class="card fact"><div class="lbl">Niveluri Pathways</div><div class="val big" id="k-levels">—</div><div class="sub">terminate de membrii clubului</div></div>
+          <div class="card fact"><div class="lbl">Cotizații</div><div class="val big" id="k-dues">—</div><div class="sub" id="k-dues-sub"></div></div>
+        </div>
+        <div class="grid g2e">
+          <div class="stack">
+            <div class="card">
+              <h2>Cine n-a mai avut un rol <span class="hint">pentru VP Educație</span></h2>
+              <ul class="list two" id="idle"></ul>
+            </div>
+            <div class="card">
+              <h2>Progres Pathways</h2>
+              <div class="tbl-wrap"><table class="tbl"><thead><tr><th>Membru</th><th>Traseu</th><th>Niveluri</th></tr></thead><tbody id="progress"></tbody></table></div>
+            </div>
+          </div>
+          <div class="stack">
+            <div class="card">
+              <h2>Zile de naștere <span class="hint">următoarele 30 de zile</span></h2>
+              <ul class="list two" id="bdays"></ul>
+            </div>
+            <div class="card">
+              <h2>Cotizații de urmărit</h2>
+              <ul class="list two" id="dues"></ul>
+            </div>
+            <div class="card">
+              <h2>Mentori</h2>
+              <ul class="list two" id="mentors"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ Agende ═══ -->
+      <div data-panel="agendas" hidden>
+        <div class="card" style="margin-bottom:16px">
+          <h2>Agendele ședințelor <a class="btn gold" href="/admin/agenda">+ Agendă nouă</a></h2>
+          <p class="hint">Agendele salvate în editor. Rolurile tale sunt marcate. Apasă pe o agendă ca s-o deschizi.</p>
+        </div>
+        <div class="grid g2e">
+          <div class="card"><h2>Următoarele</h2><div id="ag-next"></div></div>
+          <div class="card"><h2>Trecute</h2><div id="ag-past"></div></div>
+        </div>
+      </div>
+
+      <!-- ═══ Cuvântul serii ═══ -->
+      <div data-panel="word" hidden>
+        <div class="grid g2e">
+          <div class="stack">
+            <div class="card">
+              <h2>Cuvântul următoarei ședințe <span class="hint" id="w-next-date"></span></h2>
+              <div id="w-now"></div>
+            </div>
+            <div class="card">
+              <h2>Propune cuvântul serii</h2>
+              <div class="form">
+                <label>Ședința<select id="w-date" class="input"></select></label>
+                <label>Cuvântul<input id="w-word" class="input" maxlength="60" /></label>
+                <label>Definiția<textarea id="w-def" class="input" maxlength="400"></textarea></label>
+                <label>Exemplu într-o propoziție<textarea id="w-ex" class="input" maxlength="400"></textarea></label>
+                <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+                  <button class="btn gold" type="button" id="w-save">Salvează</button>
+                  <button class="btn" type="button" id="w-del" hidden>Șterge</button>
+                  <span class="status" id="w-status" role="status"></span>
+                </div>
+                <p class="hint">Cuvântul apare automat pe agenda ședinței, la „Cuvântul zilei”.</p>
+              </div>
+            </div>
+          </div>
+          <div class="stack">
+            <div class="card">
+              <h2>Idei de la Toasty</h2>
+              <div class="form">
+                <label>Tema serii (opțional)<input id="w-theme" class="input" placeholder="ex. Curaj, Schimbare, Recunoștință" /></label>
+                <label>Preferințe (opțional)<input id="w-hint" class="input" placeholder="ex. un verb, ceva legat de comunicare" /></label>
+                <div><button class="btn" type="button" id="w-ai">Cere 3 idei</button> <span class="status" id="w-ai-status" role="status"></span></div>
+              </div>
+              <div class="sugg" id="w-sugg"></div>
+            </div>
+            <div class="card">
+              <h2>Cuvinte alese</h2>
+              <ul class="list" id="w-list"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ Instrumente ═══ -->
+      <div data-panel="tools" hidden>
+        <div class="tools">
+          <a class="tool" href="/admin/agenda"><b>Agende</b><span>Fă agenda unei ședințe. Toasty o poate completa din Excel sau poze.</span></a>
+          <a class="tool" href="/admin/ecusoane"><b>Ecusoane</b><span>Ecusoane pentru membri și board, gata de print.</span></a>
+          <a class="tool" href="#" data-goto="word"><b>Cuvântul serii</b><span>Propune cuvântul următoarei ședințe.</span></a>
+          <a class="tool" href="https://www.toastmasters.org/pathways-overview" target="_blank" rel="noopener"><b>Base Camp</b><span>Proiectele tale Pathways pe toastmasters.org.</span></a>
+          <a class="tool" href="/links" target="_blank" rel="noopener"><b>Linkurile clubului</b><span>Pagina de trimis invitaților.</span></a>
+          <a class="tool" href="/admin/membri" data-board><b>Lista de membri</b><span>Importul de pe toastmasters.org (board).</span></a>
+          <a class="tool" href="/admin/stats" data-board><b>Statistici site</b><span>Vizite și înscrieri (board).</span></a>
         </div>
       </div>
     </div>
@@ -178,37 +356,69 @@
   'use strict';
   var $ = function (id) { return document.getElementById(id); };
   var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
-  var today = new Date().toLocaleDateString('en-CA', { timeZone: 'Europe/Bucharest' });
+  var TODAY = new Date().toLocaleDateString('en-CA', { timeZone: 'Europe/Bucharest' });
   var MONTHS = ['ianuarie', 'februarie', 'martie', 'aprilie', 'mai', 'iunie', 'iulie', 'august', 'septembrie', 'octombrie', 'noiembrie', 'decembrie'];
-  var longDate = function (iso) { if (!iso) return '—'; var p = iso.split('-'); return +p[2] + ' ' + MONTHS[+p[1] - 1] + ' ' + p[0]; };
-  var shortDate = function (iso) { var p = iso.split('-'); return p[2] + '.' + p[1] + '.' + p[0]; };
+  var parse = function (iso) { var p = iso.split('-'); return new Date(Date.UTC(+p[0], +p[1] - 1, +p[2])); };
+  var iso = function (d) { return d.toISOString().slice(0, 10); };
+  var addDays = function (s, n) { var d = parse(s); d.setUTCDate(d.getUTCDate() + n); return iso(d); };
+  var longDate = function (s) { if (!s) return '—'; var p = s.split('-'); return +p[2] + ' ' + MONTHS[+p[1] - 1] + ' ' + p[0]; };
+  var dayMonth = function (s) { var p = s.split('-'); return +p[2] + ' ' + MONTHS[+p[1] - 1]; };
+  var shortDate = function (s) { var p = s.split('-'); return p[2] + '.' + p[1] + '.' + p[0]; };
+  var isLastWed = function (s) { return parse(addDays(s, 7)).getUTCMonth() !== parse(s).getUTCMonth(); };
+  var nextWed = function (from, after) { var d = parse(from), add = (3 - d.getUTCDay() + 7) % 7; if (after && !add) add = 7; return addDays(from, add); };
+  var daysBetween = function (a, b) { return Math.round((parse(b) - parse(a)) / 864e5); };
   var POS = [[/president/i, 'Președinte'], [/education/i, 'VP Educație'], [/membership/i, 'VP Membri'], [/public relations|\bpr\b/i, 'VP Relații Publice'],
     [/treasurer/i, 'Trezorier'], [/secretary/i, 'Secretar'], [/sergeant/i, 'Sergent']];
   var position = function (p) { var hit = POS.find(function (x) { return x[0].test(p || ''); }); return hit ? hit[1] : (p || ''); };
   var ROLE = { president: 'Deschide și închide ședința', tme: 'Toastmaster-ul serii', ttm: 'Maestrul discursurilor improvizate', ge: 'Evaluator general',
     ah: 'Numărătorul de Ă-uri', gram: 'Gramatician', timer: 'Cronometru', speaker: 'Discurs', evaluator: 'Evaluator discurs', vote: 'Conduce votarea' };
+  var SHORT = { president: 'Președinte', tme: 'Toastmaster', ttm: 'Table Topics', ge: 'Evaluator general', ah: 'Ă-uri', gram: 'Gramatician', timer: 'Cronometru', speaker: 'Discurs', evaluator: 'Evaluator', vote: 'Votare' };
+  var TRY = ['speaker', 'evaluator', 'tme', 'ttm', 'ge', 'gram', 'ah', 'timer'];
   var STAT = [['speaker', 'discursuri'], ['evaluator', 'evaluări'], ['tme', 'ca Toastmaster'], ['ttm', 'Table Topics'], ['ge', 'evaluator general'], ['other', 'alte roluri']];
+
+  var roster = [], club = null, profile = null, words = {}, current = null, isBoard = true;
 
   function api(path, opts) {
     return fetch(path, Object.assign({ credentials: 'same-origin', headers: { 'Content-Type': 'application/json' } }, opts || {}))
       .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { if (!r.ok) { var e = new Error(j.error || 'Eroare ' + r.status); e.status = r.status; throw e; } return j; }); });
   }
 
+  // ── Tabs (the open tab is kept in the address, e.g. #club) ──
+  function openTab(name) {
+    if (!document.querySelector('[data-panel="' + name + '"]')) name = 'me';
+    document.querySelectorAll('.tab').forEach(function (t) { t.setAttribute('aria-selected', String(t.getAttribute('data-tab') === name)); });
+    document.querySelectorAll('[data-panel]').forEach(function (p) { p.hidden = p.getAttribute('data-panel') !== name; });
+    if (location.hash !== '#' + name) history.replaceState(null, '', location.pathname + location.search + '#' + name);
+  }
+  document.querySelector('.tabs').addEventListener('click', function (e) { var t = e.target.closest('.tab'); if (t) openTab(t.getAttribute('data-tab')); });
+  document.querySelector('.tabs').addEventListener('keydown', function (e) {
+    if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+    var tabs = [].slice.call(document.querySelectorAll('.tab')), i = tabs.indexOf(document.activeElement);
+    if (i < 0) return;
+    var n = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length]; n.focus(); openTab(n.getAttribute('data-tab'));
+  });
+  document.addEventListener('click', function (e) { var g = e.target.closest('[data-goto]'); if (g) { e.preventDefault(); openTab(g.getAttribute('data-goto')); window.scrollTo(0, 0); } });
+
+  // ── Profile ──
   function itemText(it) {
     if (it.role === 'speaker') return { r: 'Discurs' + (it.title ? ': „' + it.title + '”' : ''), x: [it.path, it.level ? 'Nivel ' + it.level : '', it.project].filter(Boolean).join(', ') };
     if (it.role === 'evaluator') return { r: 'Evaluator discurs ' + it.n, x: it.of ? 'pentru ' + it.of : '' };
     return { r: ROLE[it.role] || it.role, x: '' };
   }
-  function renderList(el, items, emptyText, limit) {
+  function roleList(el, items, emptyText, limit) {
     el.innerHTML = items.length ? items.slice(0, limit || 50).map(function (it) {
       var t = itemText(it);
-      return '<li><span class="d">' + shortDate(it.date) + (it.lang === 'en' ? ' · EN' : '') + '</span><span><span class="r">' + esc(t.r) + '</span>' + (t.x ? '<br><span class="x">' + esc(t.x) + '</span>' : '') + '</span></li>';
+      return '<li><span class="d">' + shortDate(it.date) + (it.lang === 'en' ? ' · EN' : '') + '</span><span><span class="r">' + esc(t.r) + '</span>' + (t.x ? '<br><span class="x">' + esc(t.x) + '</span>' : '') + '</span>' +
+        '<a class="btn" href="/admin/agenda?date=' + it.date + '" title="Deschide agenda">Agenda</a></li>';
     }).join('') : '<li class="empty" style="display:block">' + emptyText + '</li>';
   }
-
-  function render(j) {
+  function levelsHtml(p) {
+    var next = p.completed < 5 ? p.completed + 1 : 0;
+    return [1, 2, 3, 4, 5].map(function (n) { return '<div class="lv' + (n <= p.completed ? ' done' : (n === next ? ' now' : '')) + '">' + n + '</div>'; }).join('');
+  }
+  function renderProfile(j) {
+    profile = j;
     var m = j.member;
-    $('profile').hidden = false;
     $('avatar').textContent = m.name.split(/\s+/).map(function (w) { return w[0]; }).slice(0, 2).join('').toUpperCase();
     $('p-name').textContent = m.name;
     var meta = [];
@@ -218,53 +428,210 @@
     $('p-meta').innerHTML = meta.join('') || '<span>Membru Timișoara Toastmasters</span>';
 
     $('f-since').textContent = longDate(m.memberSince);
-    var years = m.memberSince ? Math.floor((Date.parse(today) - Date.parse(m.memberSince)) / (365.25 * 864e5)) : 0;
+    var years = m.memberSince ? Math.floor(daysBetween(m.memberSince, TODAY) / 365.25) : 0;
     $('f-since-sub').textContent = m.joined && m.joined < m.memberSince ? 'Prima dată în Toastmasters: ' + longDate(m.joined) : (years >= 1 ? years + (years === 1 ? ' an' : ' ani') + ' în club' : 'Bun venit în club!');
     $('f-paid').textContent = longDate(m.paidUntil);
-    var late = m.paidUntil && m.paidUntil < today;
-    $('f-paid-sub').innerHTML = late ? '<span class="badge red">Cotizația a expirat</span>' : (m.paidUntil ? 'Cotizația e la zi' : '');
+    var left = m.paidUntil ? daysBetween(TODAY, m.paidUntil) : null;
+    $('f-paid-sub').innerHTML = left === null ? '' : left < 0 ? '<span class="badge red">Cotizația a expirat</span>' : left <= 45 ? '<span class="badge amber">Expiră în ' + left + ' zile</span>' : 'Cotizația e la zi';
     $('f-mentor').textContent = m.mentor || '—';
+    var mentees = club ? club.members.filter(function (x) { return x.mentor === m.name; }).map(function (x) { return x.name; }) : [];
+    $('f-mentees').textContent = mentees.length ? 'Ești mentor pentru: ' + mentees.join(', ') : 'Îți răspunde la întrebări despre Pathways și discursuri';
     if (m.birthday) {
       var b = m.birthday.split('.');
       $('f-bday').textContent = +b[0] + ' ' + MONTHS[+b[1] - 1];
-      $('f-bday-sub').textContent = today.slice(5) === b[1] + '-' + b[0] ? 'La mulți ani!' : '';
+      $('f-bday-sub').textContent = TODAY.slice(5) === b[1] + '-' + b[0] ? 'La mulți ani!' : '';
     } else { $('f-bday').textContent = '—'; $('f-bday-sub').textContent = ''; }
 
-    // Pathways: completed levels gold, the next one outlined
     var paths = m.pathways.paths;
     $('paths').innerHTML = paths.length ? paths.map(function (p) {
       var next = p.completed < 5 ? p.completed + 1 : 0;
-      var lv = [1, 2, 3, 4, 5].map(function (n) { return '<div class="lv' + (n <= p.completed ? ' done' : (n === next ? ' now' : '')) + '">' + n + '</div>'; }).join('');
       var state = p.completed >= 5 ? 'Traseu terminat' : (p.completed ? 'Nivelul ' + p.completed + ' terminat, lucrezi la nivelul ' + next : 'Lucrezi la nivelul 1');
-      return '<div class="path"><div class="path-head"><b>' + esc(p.name) + (p.current ? '' : ' <span class="legacy">(traseu vechi)</span>') + '</b><span class="hint">' + state + '</span></div><div class="levels">' + lv + '</div></div>';
+      return '<div class="path"><div class="path-head"><b>' + esc(p.name) + (p.current ? '' : ' <span class="legacy">(traseu vechi)</span>') + '</b><span class="hint">' + state + '</span></div><div class="levels">' + levelsHtml(p) + '</div></div>';
     }).join('') : '<p class="empty">Încă nu ai un traseu Pathways în exportul clubului. Alege-ți unul în Base Camp, cu ajutorul VP Educație.</p>';
 
-    // What they did: counts per role, then the list
     var counts = { other: 0 };
     j.history.forEach(function (it) { if (STAT.some(function (s) { return s[0] === it.role; })) counts[it.role] = (counts[it.role] || 0) + 1; else counts.other++; });
-    $('stats').innerHTML = j.history.length ? STAT.filter(function (s) { return counts[s[0]]; }).map(function (s) { return '<div class="stat"><span class="num">' + counts[s[0]] + '</span><span>' + s[1] + '</span></div>'; }).join('') : '';
-    renderList($('history'), j.history, 'Încă nu apari în agendele salvate. Rolurile tale apar aici după fiecare ședință.', 30);
-    renderList($('upcoming'), j.upcoming, 'Niciun rol în agendele următoare. Spune-i VP Educație ce rol vrei data viitoare.');
+    $('stats').innerHTML = STAT.filter(function (s) { return counts[s[0]]; }).map(function (s) { return '<div class="stat"><span class="num">' + counts[s[0]] + '</span><span>' + s[1] + '</span></div>'; }).join('');
+    roleList($('history'), j.history, 'Încă nu apari în agendele salvate. Rolurile tale apar aici după fiecare ședință.', 30);
+    roleList($('upcoming'), j.upcoming, 'Niciun rol în agendele următoare. Spune-i VP Educație ce rol vrei data viitoare.');
+    var done = {};
+    j.history.concat(j.upcoming).forEach(function (it) { done[it.role] = 1; });
+    var untried = TRY.filter(function (r) { return !done[r]; });
+    $('untried').innerHTML = untried.length ? untried.map(function (r) { return '<span class="chip">' + esc(ROLE[r]) + '</span>'; }).join('') : '<span class="empty">Ai încercat deja toate rolurile principale. Bravo!</span>';
+    if (club) renderAgendas();
   }
 
-  function show(id) {
-    if (!id) return;
-    history.replaceState(null, '', '/membri?id=' + encodeURIComponent(id));
-    api('/api/members?action=profile&id=' + encodeURIComponent(id)).then(render, function (e) { $('profile').hidden = true; alert(e.message); });
+  // ── Club ──
+  function renderClub() {
+    var c = club, ms = c.members;
+    var nw = nextWed(TODAY), ag = c.agendas.find(function (a) { return a.date === nw; });
+    $('n-when').textContent = 'Miercuri, ' + longDate(nw) + ', 19:30';
+    var meta = [isLastWed(nw) ? '<span class="badge blue">În engleză</span>' : '<span class="badge">În română</span>'];
+    var w = (ag && ag.word) || (words[nw] && words[nw].word);
+    if (w) meta.push('<span>Cuvântul serii: <b>' + esc(w) + '</b></span>');
+    if (ag && ag.theme) meta.push('<span>Tema: <b>' + esc(ag.theme) + '</b></span>');
+    $('n-meta').innerHTML = meta.join('');
+    var total = ag ? ag.rolesTotal + ag.speeches * 2 : 0;
+    var filled = ag ? ag.rolesFilled + ag.people.filter(function (p) { return p.role === 'speaker' || p.role === 'evaluator'; }).length : 0;
+    $('n-fill').textContent = ag ? filled + ' din ' + total + ' roluri ocupate, ' + ag.speeches + (ag.speeches === 1 ? ' discurs' : ' discursuri') : 'Agenda nu e făcută încă.';
+    $('n-bar').style.width = total ? Math.round(filled / total * 100) + '%' : '0';
+    $('n-open').href = '/admin/agenda?date=' + nw;
+    $('n-open').textContent = ag ? 'Deschide agenda' : 'Fă agenda';
+
+    $('k-members').textContent = ms.length;
+    var fresh = ms.filter(function (m) { return m.memberSince && daysBetween(m.memberSince, TODAY) <= 183; }).length;
+    $('k-new').textContent = fresh ? fresh + ' au intrat în ultimele 6 luni' : '';
+    $('k-speeches').textContent = c.agendas.filter(function (a) { return a.date < TODAY; }).reduce(function (s, a) { return s + a.speeches; }, 0);
+    $('k-levels').textContent = ms.reduce(function (s, m) { return s + m.pathways.paths.reduce(function (t, p) { return t + p.completed; }, 0); }, 0);
+    var late = ms.filter(function (m) { return m.paidUntil && m.paidUntil < TODAY; });
+    var soon = ms.filter(function (m) { return m.paidUntil && m.paidUntil >= TODAY && daysBetween(TODAY, m.paidUntil) <= 60; });
+    $('k-dues').textContent = (ms.length - late.length) + '/' + ms.length;
+    $('k-dues-sub').textContent = late.length ? late.length + ' expirate' : (soon.length ? soon.length + ' expiră în 60 de zile' : 'toate la zi');
+
+    // Who hasn't had a role in the longest time (nobody scheduled first)
+    var idle = ms.filter(function (m) { return !m.nextRole; }).sort(function (a, b) { return (a.lastRole || '0') < (b.lastRole || '0') ? -1 : 1; }).slice(0, 10);
+    $('idle').innerHTML = idle.length ? idle.map(function (m) {
+      return '<li><span><span class="r">' + esc(m.name) + '</span><br><span class="x">' + (m.lastRole ? 'Ultimul rol: ' + shortDate(m.lastRole) + ' (acum ' + daysBetween(m.lastRole, TODAY) + ' zile)' : 'Niciun rol în agendele salvate') + '</span></span>' +
+        '<span class="x">' + m.roles + (m.roles === 1 ? ' rol' : ' roluri') + '</span></li>';
+    }).join('') : '<li class="empty" style="display:block">Toți membrii au un rol în agendele următoare.</li>';
+
+    var prog = [];
+    ms.forEach(function (m) { m.pathways.paths.forEach(function (p) { prog.push({ m: m, p: p }); }); });
+    prog.sort(function (a, b) { return b.p.completed - a.p.completed || a.m.name.localeCompare(b.m.name, 'ro'); });
+    $('progress').innerHTML = prog.length ? prog.map(function (x) {
+      return '<tr><td class="n">' + esc(x.m.name) + '</td><td>' + esc(x.p.name) + (x.p.current ? '' : ' <span class="legacy">(vechi)</span>') + '</td><td><span class="mini-lv">' +
+        [1, 2, 3, 4, 5].map(function (n) { return '<i class="' + (n <= x.p.completed ? 'on' : '') + '"></i>'; }).join('') + '</span> ' + x.p.completed + '/5</td></tr>';
+    }).join('') : '<tr><td colspan="3" class="empty">Nicio informație Pathways încă.</td></tr>';
+
+    // Birthdays in the next 30 days
+    var bd = ms.filter(function (m) { return m.birthday; }).map(function (m) {
+      var b = m.birthday.split('.'), y = +TODAY.slice(0, 4), d = y + '-' + b[1] + '-' + b[0];
+      if (d < TODAY) d = (y + 1) + '-' + b[1] + '-' + b[0];
+      return { m: m, d: d, in: daysBetween(TODAY, d) };
+    }).filter(function (x) { return x.in <= 30; }).sort(function (a, b) { return a.in - b.in; });
+    $('bdays').innerHTML = bd.length ? bd.map(function (x) {
+      return '<li><span class="r">' + esc(x.m.name) + '</span><span class="x">' + (x.in === 0 ? '<span class="badge">azi</span>' : dayMonth(x.d) + (x.in === 1 ? ', mâine' : ', în ' + x.in + ' zile')) + '</span></li>';
+    }).join('') : '<li class="empty" style="display:block">Nicio zi de naștere în următoarele 30 de zile.</li>';
+
+    var dues = late.concat(soon);
+    $('dues').innerHTML = dues.length ? dues.map(function (m) {
+      var l = m.paidUntil < TODAY;
+      return '<li><span class="r">' + esc(m.name) + '</span><span class="badge ' + (l ? 'red' : 'amber') + '">' + (l ? 'expirată ' : 'până la ') + shortDate(m.paidUntil) + '</span></li>';
+    }).join('') : '<li class="empty" style="display:block">Toate cotizațiile sunt la zi pentru următoarele 60 de zile.</li>';
+
+    var byMentor = {};
+    ms.forEach(function (m) { if (m.mentor) (byMentor[m.mentor] = byMentor[m.mentor] || []).push(m.name); });
+    var mk = Object.keys(byMentor).sort(function (a, b) { return byMentor[b].length - byMentor[a].length || a.localeCompare(b, 'ro'); });
+    $('mentors').innerHTML = mk.length ? mk.map(function (k) { return '<li><span><span class="r">' + esc(k) + '</span><br><span class="x">' + esc(byMentor[k].join(', ')) + '</span></span><span class="x">' + byMentor[k].length + '</span></li>'; }).join('')
+      : '<li class="empty" style="display:block">Niciun mentor trecut în tabelul clubului.</li>';
   }
-  $('who').addEventListener('change', function () { show(this.value); });
+
+  // ── Agendas ──
+  function renderAgendas() {
+    var me = current ? current.name : '';
+    var mine = function (a) { return a.people.filter(function (p) { return p.name === me; }).map(function (p) { return p.role === 'evaluator' ? 'Evaluator ' + p.n : SHORT[p.role]; }); };
+    var row = function (a) {
+      var my = mine(a), w = a.word || (words[a.date] && words[a.date].word);
+      return '<a class="ag" href="/admin/agenda?date=' + a.date + '" style="text-decoration:none">' +
+        '<div class="d"><b>' + shortDate(a.date) + '</b><span>' + (a.lang === 'en' ? 'în engleză' : 'în română') + '</span></div>' +
+        '<div><div>' + esc(a.theme ? 'Tema: ' + a.theme : (a.title || 'Întâlnire de vorbit în public')) + '</div>' +
+        '<div class="hint">' + a.speeches + (a.speeches === 1 ? ' discurs' : ' discursuri') + (w ? ' · cuvântul serii: ' + esc(w) : '') + '</div>' +
+        (my.length ? '<div class="me"><span class="badge">Tu: ' + esc(my.join(', ')) + '</span></div>' : '') + '</div>' +
+        '<span class="btn">Deschide</span></a>';
+    };
+    var next = club.agendas.filter(function (a) { return a.date >= TODAY; }).reverse();
+    var past = club.agendas.filter(function (a) { return a.date < TODAY; });
+    $('ag-next').innerHTML = next.length ? next.map(row).join('') : '<p class="empty">Nicio agendă pentru ședințele următoare. <a href="/admin/agenda?date=' + nextWed(TODAY) + '" style="color:#93c5fd">Fă agenda de miercuri</a></p>';
+    $('ag-past').innerHTML = past.length ? past.slice(0, 20).map(row).join('') : '<p class="empty">Nicio agendă salvată încă.</p>';
+  }
+
+  // ── Word of the evening ──
+  function meetings(n) { var out = [], d = nextWed(TODAY); for (var i = 0; i < n; i++) { out.push(d); d = addDays(d, 7); } return out; }
+  function renderWords() {
+    var nw = nextWed(TODAY), w = words[nw];
+    $('w-next-date').textContent = longDate(nw);
+    $('w-now').innerHTML = w ? '<div class="word-now">' + esc(w.word) + '</div>' + (w.definition ? '<div class="word-def">' + esc(w.definition) + '</div>' : '') +
+      (w.example ? '<div class="word-ex">„' + esc(w.example) + '”</div>' : '') + (w.by ? '<p class="hint" style="margin-top:8px">Propus de ' + esc(w.by) + '</p>' : '')
+      : '<p class="empty">Încă nu e ales. Propune unul alături sau cere idei de la Toasty.</p>';
+    var sel = $('w-date'), keep = sel.value;
+    sel.innerHTML = meetings(8).map(function (d) { return '<option value="' + d + '">' + longDate(d) + (isLastWed(d) ? ' (EN)' : '') + (words[d] ? ' · ' + esc(words[d].word) : '') + '</option>'; }).join('');
+    sel.value = keep && sel.querySelector('option[value="' + keep + '"]') ? keep : nw;
+    fillWordForm();
+    var list = Object.keys(words).sort().reverse();
+    $('w-list').innerHTML = list.length ? list.map(function (d) {
+      var x = words[d];
+      return '<li><span class="d">' + shortDate(d) + '</span><span><span class="r">' + esc(x.word) + '</span>' + (x.definition ? '<br><span class="x">' + esc(x.definition) + '</span>' : '') + '</span><span class="x">' + esc(x.by || '') + '</span></li>';
+    }).join('') : '<li class="empty" style="display:block">Niciun cuvânt ales încă.</li>';
+  }
+  function fillWordForm() {
+    var w = words[$('w-date').value];
+    $('w-word').value = w ? w.word : ''; $('w-def').value = w ? w.definition || '' : ''; $('w-ex').value = w ? w.example || '' : '';
+    $('w-del').hidden = !w; $('w-status').textContent = '';
+  }
+  $('w-date').addEventListener('change', fillWordForm);
+  function wordStatus(t, err) { $('w-status').textContent = t; $('w-status').className = 'status' + (err ? ' err' : ''); }
+  $('w-save').addEventListener('click', function () {
+    var body = { date: $('w-date').value, word: $('w-word').value.trim(), definition: $('w-def').value.trim(), example: $('w-ex').value.trim(), by: current ? current.name : '' };
+    if (!body.word) { wordStatus('Scrie cuvântul.', true); return; }
+    wordStatus('Se salvează…');
+    api('/api/admin?action=word-save', { method: 'POST', body: JSON.stringify(body) }).then(function (j) {
+      words[body.date] = { word: body.word, definition: body.definition, example: body.example, by: body.by };
+      renderWords(); if (club) { renderClub(); renderAgendas(); }
+      wordStatus(j.agendaUpdated ? 'Salvat și trecut pe agendă.' : 'Salvat. Apare pe agendă când o faci.');
+    }, function (e) { wordStatus(e.message, true); });
+  });
+  $('w-del').addEventListener('click', function () {
+    var d = $('w-date').value;
+    if (!confirm('Ștergi cuvântul pentru ' + longDate(d) + '?')) return;
+    api('/api/admin?action=word-delete', { method: 'POST', body: JSON.stringify({ date: d }) }).then(function () { delete words[d]; renderWords(); wordStatus('Șters.'); }, function (e) { wordStatus(e.message, true); });
+  });
+  $('w-ai').addEventListener('click', function () {
+    var btn = this; btn.disabled = true; $('w-ai-status').textContent = 'Toasty se gândește…'; $('w-ai-status').className = 'status';
+    var d = $('w-date').value;
+    api('/api/agenda-ai', { method: 'POST', body: JSON.stringify({ mode: 'word', lang: isLastWed(d) ? 'en' : 'ro', theme: $('w-theme').value, hint: $('w-hint').value,
+      avoid: Object.keys(words).map(function (k) { return words[k].word; }) }) }).then(function (j) {
+      $('w-ai-status').textContent = '';
+      $('w-sugg').innerHTML = (j.suggestions || []).map(function (s, i) {
+        return '<div class="sug"><div><b>' + esc(s.word) + '</b><p>' + esc(s.definition) + '</p><p class="e">„' + esc(s.example) + '”</p></div><button class="btn" type="button" data-use="' + i + '">Folosește</button></div>';
+      }).join('');
+      $('w-sugg').dataset.json = JSON.stringify(j.suggestions || []);
+    }, function (e) { $('w-ai-status').textContent = e.message; $('w-ai-status').className = 'status err'; }).then(function () { btn.disabled = false; });
+  });
+  $('w-sugg').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-use]'); if (!b) return;
+    var s = JSON.parse($('w-sugg').dataset.json || '[]')[+b.getAttribute('data-use')]; if (!s) return;
+    $('w-word').value = s.word; $('w-def').value = s.definition; $('w-ex').value = s.example;
+    wordStatus('Verifică și apasă Salvează.');
+  });
+
+  // ── Loading ──
+  function showMember(id) {
+    current = roster.find(function (m) { return m.id === id; }) || roster[0];
+    var q = '?id=' + encodeURIComponent(current.id);
+    history.replaceState(null, '', location.pathname + q + location.hash);
+    api('/api/members?action=profile&id=' + encodeURIComponent(current.id)).then(renderProfile, function (e) { $('p-name').textContent = e.message; });
+  }
+  $('who').addEventListener('change', function () { showMember(this.value); });
 
   function start() {
     api('/api/members?action=roster').then(function (j) {
-      $('login').hidden = true; $('app').hidden = false; $('nav-roster').hidden = false;
-      if (!j.members.length) { $('empty').hidden = false; $('who').parentNode.hidden = true; return; }
-      $('who').innerHTML = j.members.map(function (m) { return '<option value="' + esc(m.id) + '">' + esc(m.name) + '</option>'; }).join('');
+      $('login').hidden = true; $('app').hidden = false; $('nav-roster').hidden = !isBoard;
+      document.querySelectorAll('[data-board]').forEach(function (el) { el.hidden = !isBoard; });
+      roster = j.members;
+      if (!roster.length) { $('empty').hidden = false; $('preview-bar').hidden = true; return; }
+      $('main').hidden = false;
+      $('who').innerHTML = roster.map(function (m) { return '<option value="' + esc(m.id) + '">' + esc(m.name) + '</option>'; }).join('');
       var want = new URLSearchParams(location.search).get('id');
-      var id = j.members.some(function (m) { return m.id === want; }) ? want : j.members[0].id;
-      $('who').value = id; show(id);
-    }, function (e) {
+      var id = roster.some(function (m) { return m.id === want; }) ? want : roster[0].id;
+      $('who').value = id;
+      openTab((location.hash || '#me').slice(1));
+      return Promise.all([
+        api('/api/admin?action=words').then(function (w) { words = w.words || {}; }, function () {}),
+        api('/api/members?action=club').then(function (c) { club = c; }),
+      ]).then(function () { renderClub(); renderWords(); showMember(id); });
+    }).catch(function (e) {
       if (e.status === 401) { $('login').hidden = false; $('pw').focus(); return; }
-      $('app').hidden = false; $('empty').hidden = false; $('empty').querySelector('.hint').textContent = e.message;
+      $('app').hidden = false; $('empty').hidden = false; $('preview-bar').hidden = true; $('empty').querySelector('.hint').textContent = e.message;
     });
   }
   $('login-form').addEventListener('submit', function (e) {
@@ -273,7 +640,10 @@
   });
 
   // For local testing without the server
-  window.tmMember = { render: render };
+  window.tmMember = { load: function (r, c, w, p) { roster = r; club = c; words = w; current = r[0];
+    $('login').hidden = true; $('app').hidden = false; $('main').hidden = false; $('empty').hidden = true;
+    $('who').innerHTML = r.map(function (m) { return '<option value="' + esc(m.id) + '">' + esc(m.name) + '</option>'; }).join('');
+    renderClub(); renderWords(); renderProfile(p); }, open: openTab };
   start();
 })();
 </script>

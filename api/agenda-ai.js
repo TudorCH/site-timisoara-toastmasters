@@ -100,6 +100,50 @@ async function limited(req) {
   return perIp > PER_IP_HOUR || perDay > PER_DAY;
 }
 
+// ── Word of the evening: three suggestions with a definition and an example sentence ──
+//   POST { mode: 'word', lang: 'ro'|'en', theme, hint, avoid: [recent words] } -> { suggestions: [{ word, definition, example }] }
+const WORD_SYSTEM = `Ești Toasty, asistentul clubului Timișoara Toastmasters. Propui „cuvântul serii” pentru o ședință: un cuvânt pe care vorbitorii încearcă să-l folosească în discursuri, iar gramaticianul numără de câte ori apare.
+Un cuvânt bun: îmbogățește vocabularul, dar e ușor de folosit natural în vorbire (nu un termen tehnic sau arhaic); poate fi substantiv, adjectiv, verb sau adverb; se leagă de tema serii, dacă există una.
+Dai exact 3 propuneri diferite ca stil. Pentru fiecare: cuvântul (forma de dicționar), o definiție scurtă și clară (o propoziție) și un exemplu de folosire într-o propoziție naturală, de discurs.
+Scrii în limba cerută. Fără liniuțe lungi (— sau –). Nu repeta cuvintele din lista de evitat.`;
+const WORD_SCHEMA = {
+  type: 'object', additionalProperties: false, required: ['suggestions'],
+  properties: { suggestions: { type: 'array', items: { type: 'object', additionalProperties: false, required: ['word', 'definition', 'example'],
+    properties: { word: { type: 'string' }, definition: { type: 'string' }, example: { type: 'string' } } } } },
+};
+async function suggestWords(req, res, body) {
+  try {
+    if (await limited(req)) return res.status(429).json({ error: 'Am primit prea multe cereri. Mai încearcă peste puțin timp.' });
+  } catch (e) { console.error('agenda-ai rate limit:', e.message); }
+  const lang = body.lang === 'en' ? 'en' : 'ro';
+  const avoid = (Array.isArray(body.avoid) ? body.avoid : []).filter((w) => typeof w === 'string').slice(0, 40).map((w) => w.slice(0, 40));
+  const client = new Anthropic({ timeout: 40_000, maxRetries: 1 });
+  try {
+    const response = await client.beta.messages.create({
+      model: MODEL,
+      max_tokens: 4000,
+      betas: ['server-side-fallback-2026-07-01'],
+      fallbacks: 'default',
+      output_config: { effort: 'low', format: { type: 'json_schema', schema: WORD_SCHEMA } },
+      system: [{ type: 'text', text: WORD_SYSTEM, cache_control: { type: 'ephemeral' } }],
+      messages: [{ role: 'user', content:
+        `Limba: ${lang === 'en' ? 'engleză (ședința e în engleză)' : 'română'}.\nTema serii: ${str(body.theme, 120) || '(fără temă)'}.\n` +
+        `Preferințe: ${str(body.hint, 300) || '(niciuna)'}.\nDe evitat (folosite recent): ${avoid.join(', ') || '(nimic)'}.` }],
+    });
+    if (response.stop_reason === 'refusal') return res.status(422).json({ error: 'Toasty nu a putut propune cuvinte acum.' });
+    const block = response.content.find((b) => b.type === 'text');
+    let out;
+    try { out = JSON.parse(block ? block.text : ''); } catch { return res.status(502).json({ error: 'Răspuns neașteptat de la Toasty.' }); }
+    store.pipeline(store.eventCmds('word-ai')).catch(() => {});
+    return res.status(200).json({ suggestions: (out.suggestions || []).slice(0, 3) });
+  } catch (err) {
+    if (err instanceof Anthropic.RateLimitError) return res.status(429).json({ error: 'Toasty e ocupat acum. Mai încearcă în câteva secunde.' });
+    if (err instanceof Anthropic.APIError) { console.error('word-ai api:', err.status, err.message); return res.status(502).json({ error: 'Eroare la Toasty (' + (err.status || '?') + ').' }); }
+    console.error('word-ai:', err);
+    return res.status(500).json({ error: 'Eroare server.' });
+  }
+}
+
 module.exports = async function handler(req, res) {
   res.setHeader('Cache-Control', 'no-store');
   res.setHeader('X-Robots-Tag', 'noindex');
@@ -110,6 +154,8 @@ module.exports = async function handler(req, res) {
   let body = req.body;
   if (typeof body === 'string') { try { body = JSON.parse(body); } catch { body = {}; } }
   body = body || {};
+
+  if (body.mode === 'word') return suggestWords(req, res, body);
 
   const text = str(body.text, MAX_TEXT).trim();
   const images = (Array.isArray(body.images) ? body.images : []).slice(0, MAX_IMAGES)

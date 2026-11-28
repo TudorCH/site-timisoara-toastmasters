@@ -9,6 +9,10 @@
 //   POST ?action=agenda-save   { agenda }
 //   POST ?action=agenda-delete { date }
 //   POST ?action=agenda-settings { settings }   club defaults for new agendas (officers, venue...)
+// Word of the evening (same access rules as agendas):
+//   GET  ?action=words                   words from 60 days ago on, by meeting date
+//   POST ?action=word-save   { date, word, definition, example, by }   also fills that agenda's word
+//   POST ?action=word-delete { date }
 // Needs ADMIN_PASSWORD in Vercel; stats need the Upstash Redis integration (see _lib/store.js).
 const { configured, pipeline, k, day, hmac, secret, clientIp, envNames, ENV } = require('./_lib/store');
 const { sign, safeEqual, isAuthed, sameOrigin, parseBody } = require('./_lib/auth');
@@ -152,6 +156,7 @@ async function agendaList(req, res) {
     agendas: (dates || []).map((date, i) => { const a = parseJson(titles[i]) || {}; return { date, title: a.title || '', lang: a.lang || 'ro' }; }),
     names: (names || []).sort((a, b) => a.localeCompare(b, 'ro')),
     settings: parseJson(settings),
+    words: await wordMap(),
   });
 }
 async function agendaGet(req, res) {
@@ -189,6 +194,36 @@ async function agendaSettings(req, res) {
   return res.status(200).json({ ok: true });
 }
 
+// ── Word of the evening ──
+const WORDS = 'words';
+async function wordMap() {
+  const [raw] = await pipeline([['HGETALL', k(WORDS)]]);
+  const out = {}, from = day(60);
+  for (let i = 0; raw && i < raw.length; i += 2) { const w = parseJson(raw[i + 1]); if (w && raw[i] >= from) out[raw[i]] = w; }
+  return out;
+}
+async function wordSave(req, res) {
+  if (!configured()) return res.status(503).json({ error: 'Baza de date nu e conectată.' });
+  const b = parseBody(req);
+  const t = (v, n) => (typeof v === 'string' ? v.trim().slice(0, n) : '');
+  const date = String(b.date || ''), word = t(b.word, 60);
+  if (!AG_DATE.test(date) || !word) return res.status(400).json({ error: 'Alege data și scrie cuvântul.' });
+  const entry = { word, definition: t(b.definition, 400), example: t(b.example, 400), by: t(b.by, 60), updated: Date.now() };
+  const [oldRaw, agRaw] = await pipeline([['HGET', k(WORDS), date], ['GET', k('agenda:' + date)]]);
+  const old = parseJson(oldRaw), ag = parseJson(agRaw);
+  const cmds = [['HSET', k(WORDS), date, JSON.stringify(entry)]];
+  // That meeting's agenda shows the word, unless someone typed a different one there by hand
+  if (ag && (!ag.word || (old && ag.word === old.word))) { ag.word = word; cmds.push(['SET', k('agenda:' + date), JSON.stringify(ag)]); }
+  await pipeline(cmds);
+  return res.status(200).json({ ok: true, agendaUpdated: cmds.length > 1 });
+}
+async function wordDelete(req, res) {
+  const date = String(parseBody(req).date || '');
+  if (!AG_DATE.test(date)) return res.status(400).json({ error: 'Dată invalidă.' });
+  await pipeline([['HDEL', k(WORDS), date]]);
+  return res.status(200).json({ ok: true });
+}
+
 module.exports = async function handler(req, res) {
   res.setHeader('Cache-Control', 'no-store');
   res.setHeader('X-Robots-Tag', 'noindex');
@@ -203,6 +238,11 @@ module.exports = async function handler(req, res) {
     // Agendas are open (no password, by the club's choice); writes are rate-limited per IP.
     if (action === 'agendas' && req.method === 'GET') return await agendaList(req, res);
     if (action === 'agenda' && req.method === 'GET') return await agendaGet(req, res);
+    if (action === 'words' && req.method === 'GET') return res.status(200).json({ words: configured() ? await wordMap() : {} });
+    if (/^word-(save|delete)$/.test(action || '') && req.method === 'POST') {
+      if (await agendaRateLimited(req)) return res.status(429).json({ error: 'Prea multe modificări. Mai încearcă peste o oră.' });
+      return action === 'word-save' ? await wordSave(req, res) : await wordDelete(req, res);
+    }
     if (/^agenda-(save|delete|settings)$/.test(action || '') && req.method === 'POST') {
       if (await agendaRateLimited(req)) return res.status(429).json({ error: 'Prea multe modificări. Mai încearcă peste o oră.' });
       if (action === 'agenda-save') return await agendaSave(req, res);
