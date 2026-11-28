@@ -4,7 +4,8 @@ backend:
   name: github
   repo: TudorCH/site-timisoara-toastmasters
   branch: dev            # la lansare: main
-  auth_endpoint: api/decap-auth
+  # Fără login GitHub: board-ul intră cu parola, iar editorul vorbește cu GitHub prin /api/gh
+  # (api_root e setat în admin/index.html), care adaugă tokenul GITHUB_CMS_TOKEN pe server.
 
 locale: ro
 site_url: https://timisoaratoastmasters.ro

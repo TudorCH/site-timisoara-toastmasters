@@ -1,6 +1,7 @@
 // Admin API for /admin/stats.
 //   POST ?action=login   { password }   sets the tm_admin session cookie (7 days)
 //   POST ?action=logout                  clears it
+//   GET  ?action=session                 200 when the board session is valid (the blog editor checks it)
 //   GET  ?action=stats&days=30           visits, sources, devices, events and form submissions
 //   POST ?action=delete  { id }          deletes one form submission (GDPR requests)
 // Meeting agendas (/admin/agenda), kept until deleted. No password (club's choice); writes rate-limited:
@@ -250,6 +251,7 @@ module.exports = async function handler(req, res) {
       return await agendaSettings(req, res);
     }
     if (!isAuthed(req)) return res.status(401).json({ error: 'Neautentificat.' });
+    if (action === 'session' && req.method === 'GET') return res.status(200).json({ ok: true });
     if (action === 'stats' && req.method === 'GET') return await stats(req, res);
     if (action === 'delete' && req.method === 'POST') return await remove(req, res);
     return res.status(400).json({ error: 'Acțiune necunoscută.' });

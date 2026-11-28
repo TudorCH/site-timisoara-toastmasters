@@ -20,6 +20,7 @@
     { "source": "/blog",       "destination": "/blog.html"      },
     { "source": "/links",      "destination": "/links.html"     },
     { "source": "/blog/:slug", "destination": "/blog/:slug.html" },
+    { "source": "/api/gh/:path*", "destination": "/api/gh?path=:path*" },
     { "source": "/admin",      "destination": "/admin/index.html" },
     { "source": "/admin/stats", "destination": "/admin/stats.html" },
     { "source": "/admin/agenda", "destination": "/admin/agenda.html" },

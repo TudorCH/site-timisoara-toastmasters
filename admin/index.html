@@ -7,13 +7,78 @@
   <title>Administrare blog | Timișoara Toastmasters</title>
   <link rel="icon" type="image/webp" href="/logo.webp" />
   <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" />
+  <style>
+    #gate { position: fixed; inset: 0; z-index: 99999; display: flex; align-items: flex-start; justify-content: center; padding: 12vh 20px 0; background: #00151f; color: #fff; font: 14px/1.5 Inter, system-ui, sans-serif; }
+    #gate[hidden] { display: none; }
+    #gate .card { width: 100%; max-width: 380px; background: rgba(18, 58, 94, .35); border: 1px solid rgba(79, 123, 163, .22); border-radius: 16px; padding: 22px 22px 18px; }
+    #gate .brand { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+    #gate .brand img { width: 36px; height: 36px; }
+    #gate .brand b { display: block; font-size: 14px; }
+    #gate .brand span span { display: block; font-size: 11px; color: #F2DF74; font-weight: 600; }
+    #gate h1 { font-family: 'Plus Jakarta Sans', Inter, sans-serif; font-size: 22px; margin: 0 0 4px; }
+    #gate p { margin: 0; color: rgba(255,255,255,.55); font-size: 13px; }
+    #gate input { width: 100%; box-sizing: border-box; margin-top: 16px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.15); border-radius: 10px; padding: 11px 13px; color: #fff; font: inherit; }
+    #gate input:focus { outline: none; border-color: rgba(242,223,116,.6); }
+    #gate button { width: 100%; margin-top: 4px; padding: 11px; border: 0; border-radius: 10px; background: #F2DF74; color: #00273E; font: inherit; font-weight: 700; cursor: pointer; }
+    #gate button:disabled { opacity: .6; cursor: default; }
+    #gate .err { color: #f87171; font-size: 13px; min-height: 20px; margin-top: 8px; }
+  </style>
 </head>
 <body>
+  <!-- The board signs in with its password; Decap then talks to GitHub through /api/gh, which holds the token -->
+  <div id="gate" hidden>
+    <div class="card">
+      <div class="brand"><img src="/logo.webp" alt="" /><span><b>Timișoara Toastmasters</b><span>Administrare blog</span></span></div>
+      <h1>Blog</h1>
+      <p>Pentru board. Aceeași parolă ca la statistici și membri.</p>
+      <form id="gate-form">
+        <input id="pw" type="password" autocomplete="current-password" required aria-label="Parolă" />
+        <div class="err" id="err" role="alert"></div>
+        <button type="submit" id="go">Intră</button>
+      </form>
+    </div>
+  </div>
+
   <script>window.CMS_MANUAL_INIT = true;</script>
-  <script src="https://unpkg.com/decap-cms@3.16.3/dist/decap-cms.js"></script>
   <script>
-    // Login-ul GitHub trece prin /api/decap-auth de pe același domeniu (preview sau producție).
-    CMS.init({ config: { backend: { base_url: window.location.origin } } });
+  (function () {
+    var KEY = 'decap-cms-user';   // where decap-cms 3.16.3 keeps its session (class Rf in the bundle)
+    var gate = document.getElementById('gate'), started = false;
+    function api(action, opts) {
+      return fetch('/api/admin?action=' + action, Object.assign({ credentials: 'same-origin', headers: { 'Content-Type': 'application/json' } }, opts || {}))
+        .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { if (!r.ok) { var e = new Error(j.error || 'Eroare ' + r.status); e.status = r.status; throw e; } return j; }); });
+    }
+    function startCms() {
+      if (started) return; started = true;
+      gate.hidden = true;
+      // A stand-in token: the proxy ignores it and uses the board session instead, so Decap skips its GitHub login screen
+      try { localStorage.setItem(KEY, JSON.stringify({ token: 'board-session', backendName: 'github' })); } catch (e) {}
+      var s = document.createElement('script');
+      s.src = 'https://unpkg.com/decap-cms@3.16.3/dist/decap-cms.js';
+      s.onload = function () {
+        CMS.init({ config: { backend: { name: 'github', api_root: location.origin + '/api/gh', base_url: location.origin } } });
+        // "Log out" in Decap clears its session: end the board session too and go back to the password form
+        setInterval(function () {
+          var has = null; try { has = localStorage.getItem(KEY); } catch (e) {}
+          if (!has) api('logout', { method: 'POST' }).catch(function () {}).then(function () { location.reload(); });
+        }, 1500);
+      };
+      document.body.appendChild(s);
+    }
+    function showGate() { gate.hidden = false; try { localStorage.removeItem(KEY); } catch (e) {} document.getElementById('pw').focus(); }
+    document.getElementById('gate-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var btn = document.getElementById('go'), err = document.getElementById('err');
+      btn.disabled = true; err.textContent = '';
+      api('login', { method: 'POST', body: JSON.stringify({ password: document.getElementById('pw').value }) })
+        .then(startCms, function (x) { err.textContent = x.message; })
+        .then(function () { btn.disabled = false; });
+    });
+    api('session').then(startCms, showGate);
+  })();
   </script>
 </body>
 </html>
