@@ -42,20 +42,22 @@
     .stage { width: 100%; overflow: hidden; }
     #sheet-wrap { transform-origin: top left; width: 297mm; box-shadow: 0 20px 60px rgba(0,0,0,.5); }
 
-    /* ═════════ The sheet: A4 landscape, light on toner ═════════ */
-    .sheet { width: 297mm; height: 210mm; background: #fff; color: #111; position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 18mm 24mm 22mm; font-family: Inter, Arial, sans-serif; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .sheet.portrait { width: 210mm; height: 297mm; padding: 28mm 18mm 30mm; }
-    .sheet .top { position: absolute; top: 12mm; left: 0; right: 0; display: flex; align-items: center; justify-content: center; gap: 4mm; }
+    /* ═════════ The sheet: A4, light on toner. Header, centred content and date stack in the flow, so the
+       word block sits exactly in the middle of the space between them. ═════════ */
+    .sheet { width: 297mm; height: 210mm; background: #fff; color: #111; position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 12mm 26mm 15mm; font-family: Inter, Arial, sans-serif; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .sheet.portrait { width: 210mm; height: 297mm; padding: 16mm 18mm 18mm; }
+    .sheet .top { display: flex; align-items: center; justify-content: center; gap: 4mm; flex: 0 0 auto; }
     .sheet .top img { width: 16mm; height: 16mm; object-fit: contain; }
     .sheet .top div { text-align: left; line-height: 1.15; }
     .sheet .top b { display: block; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 13pt; letter-spacing: .06em; text-transform: uppercase; color: #004165; }
     .sheet .top span { font-size: 9pt; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: #772432; }
-    .sheet .lbl { font-size: 15pt; font-weight: 700; letter-spacing: .3em; text-transform: uppercase; color: #772432; }
-    .sheet .rule { width: 40mm; height: 1.2mm; border-radius: 1mm; background: #F2DF74; margin: 6mm auto 0; }
-    .sheet .word { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; line-height: 1.02; color: #004165; margin-top: 6mm; letter-spacing: -.01em; overflow-wrap: anywhere; }
-    .sheet .def { font-size: 20pt; line-height: 1.35; color: #222; max-width: 230mm; margin-top: 9mm; }
-    .sheet .ex { font-size: 16pt; line-height: 1.4; color: #555; font-style: italic; max-width: 220mm; margin-top: 6mm; }
-    .sheet .foot { position: absolute; bottom: 11mm; left: 0; right: 0; font-size: 10pt; color: #777; letter-spacing: .04em; }
+    .sheet .mid { flex: 1 1 auto; min-height: 0; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .sheet .word { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; line-height: 1; color: #004165; letter-spacing: -.01em; overflow-wrap: anywhere; }
+    .sheet .rule { width: 36mm; height: 1.2mm; border-radius: 1mm; background: #F2DF74; margin: 8mm auto 0; flex: 0 0 auto; }
+    .sheet .def { font-size: 20pt; line-height: 1.35; color: #222; max-width: 210mm; margin-top: 8mm; text-wrap: balance; }
+    .sheet .ex { font-size: 16pt; line-height: 1.4; color: #555; font-style: italic; max-width: 200mm; margin-top: 5mm; text-wrap: balance; }
+    .sheet.portrait .def { max-width: 165mm; } .sheet.portrait .ex { max-width: 160mm; }
+    .sheet .foot { flex: 0 0 auto; font-size: 10pt; color: #777; letter-spacing: .04em; }
     .sheet .band { position: absolute; left: 0; right: 0; bottom: 0; height: 4mm; background: linear-gradient(90deg, #004165 0 70%, #772432 70% 100%); }
 
     @media print {
@@ -120,10 +122,10 @@
     $('sheet').className = 'sheet' + (orient === 'portrait' ? ' portrait' : '');
     $('sheet').innerHTML =
       '<div class="top"><img src="/logo.webp" alt="" /><div><b>Timișoara Toastmasters</b><span>Where Leaders Are Made</span></div></div>' +
-      '<div class="lbl">' + (en ? 'Word of the evening' : 'Cuvântul serii') + '</div><div class="rule"></div>' +
-      '<div class="word" style="font-size:' + size + 'pt">' + esc(w || '…') + '</div>' +
+      '<div class="mid"><div class="word" style="font-size:' + size + 'pt">' + esc(w || '…') + '</div>' +
+      ($('def').value.trim() || $('ex').value.trim() ? '<div class="rule"></div>' : '') +
       ($('def').value.trim() ? '<div class="def">' + esc($('def').value.trim()) + '</div>' : '') +
-      ($('ex').value.trim() ? '<div class="ex">„' + esc($('ex').value.trim()) + '”</div>' : '') +
+      ($('ex').value.trim() ? '<div class="ex">„' + esc($('ex').value.trim()) + '”</div>' : '') + '</div>' +
       '<div class="foot">' + esc(date) + '</div><div class="band"></div>';
     $('sheet-wrap').style.width = orient === 'portrait' ? '210mm' : '297mm';
     $('page-size').textContent = '@media print { @page { size: A4 ' + orient + '; margin: 0; } }';
